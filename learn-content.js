@@ -1,0 +1,96 @@
+// Curriculum content for the Learn section — plain-language investing education aimed
+// at a complete beginner with limited capital ($100–200/month) looking for the safest
+// way into financial markets. Deliberately keeps hardcoded numbers OUT of this file:
+// any "how much fees cost you" or "what would this have returned" figure is rendered
+// live by learn.js from real fetched data (fund-facts.js, /api/adjusted-history) —
+// this file is prose only, so nothing here can go stale or drift from the real numbers
+// shown elsewhere on the page.
+
+window.SCERE_LEARN_CONTENT = [
+  {
+    id: 'investing-vs-gambling',
+    title: 'Investing vs. Gambling',
+    keyIdea: 'Investing and gambling can look similar — you put money in, hoping to get more back — but they work on opposite mathematics.',
+    body: [
+      'A bet on a football match, a lottery ticket, or a "guaranteed profit" trading signal from a stranger all share the same structure: the house, the bookmaker, or the person selling the signal is set up to win over time, and most players are set up to lose over time. It doesn\'t matter how skilled or careful you are — the math of the game itself works against you. This is called negative expected value: on average, across many tries, the player loses.',
+      'Owning a small slice of real, profit-making businesses — which is what buying an index fund or ETF actually is — works differently. Historically, over long periods, the total value of productive businesses has tended to grow, because businesses produce real goods and services, hire people, and reinvest profits. That doesn\'t mean it always goes up, and it doesn\'t mean any specific year is a good year. But the underlying activity you\'re participating in is fundamentally different from a bet against a house edge.',
+      'This matters most for someone investing $100–200 a month: you cannot afford to treat this money as a bet you might lose overnight, but you also don\'t need to — because the safest, most evidence-backed approach for a small, regular investor has nothing to do with picking a lucky winner. It\'s about consistency, patience, and low costs, covered in the next few lessons.',
+      'A caution worth stating plainly: investing still carries real risk. Markets fall as well as rise, sometimes sharply and for long stretches. Nothing in this app is a guarantee, and past performance — including any historical figures shown elsewhere on this page — is not a promise of future results. The difference from gambling isn\'t "investing is risk-free." It\'s that the odds are not stacked against you by design the way they are in a casino, a lottery, or a "guaranteed-profit" trading scheme.',
+      'Be especially wary of anything that promises fixed, guaranteed, or unusually high returns — a forex "signal group" charging a subscription, a scheme promising to double your money in weeks, or pressure to recruit others to join. Real investing never guarantees a specific return. If something guarantees one, that is the clearest warning sign there is.',
+    ],
+  },
+  {
+    id: 'what-is-an-index',
+    title: 'What Is an Index?',
+    keyIdea: 'An index is a scorecard for a whole group of companies at once, not a single company.',
+    body: [
+      'When people say "the market went up today," they usually mean an index went up — a number calculated from the combined value of many companies\' shares, used as a barometer for how a market or economy is doing overall. The S&P 500, for example, tracks 500 of the largest companies listed in the United States, across every major industry. The Nasdaq-100 leans more heavily toward technology companies. The Dow Jones Industrial Average tracks 30 well-established companies.',
+      'The reason this matters for a beginner: betting on one company\'s success or failure requires you to correctly judge that specific company\'s future — its management, its competitors, its industry, its balance sheet. Betting on an entire index means you\'re instead betting on the combined fate of hundreds of companies at once. Some will do badly. Some will do very well. Historically, broad indices have been far more predictable, in aggregate, than any single company within them.',
+      'You cannot buy "the S&P 500" directly as one thing — it\'s a calculated number, not a tradeable asset. That\'s exactly the gap an ETF fills, covered next.',
+    ],
+  },
+  {
+    id: 'what-is-an-etf',
+    title: 'What Is an ETF?',
+    keyIdea: 'An ETF lets you buy a small piece of hundreds of companies with a single purchase.',
+    body: [
+      'An ETF — Exchange-Traded Fund — is a basket of many companies\' shares (or bonds, or a commodity like gold) bundled together into one single share that trades on an exchange just like a stock. Many ETFs are built specifically to track an index: buying one share of an S&P 500 ETF gives you a small ownership stake spread across all 500 companies in that index, in one transaction, for whatever that one share costs.',
+      'For someone investing $100–200 a month, this is the single most important tool available. Buying individual shares in even ten different companies — enough for meaningful diversification — could easily cost more than your entire monthly amount, and would require you to research and monitor each company individually. A single ETF share gives you that same diversification instantly, for a fraction of the effort and capital.',
+      'ETFs are also generally cheaper and more flexible than an older alternative, mutual funds, which typically charge higher annual fees and can only be bought or sold once per day at a set price. ETFs trade throughout the day like any stock and, as a category, tend to carry much lower fees — see the Expense Ratios lesson for why that fee gap matters more than it sounds like it should.',
+      'This app currently tracks several real ETFs across three categories: broad-market (tracking a whole index, like the S&P 500 or Nasdaq-100), sector (tracking one industry, like technology or health care), and dividend-focused (tracking companies with a strong history of paying shareholders). You can compare their real, current data on the main Markets page.',
+    ],
+  },
+  {
+    id: 'dividends-and-dividend-etfs',
+    title: 'Dividends and Dividend ETFs',
+    keyIdea: 'A dividend is a company sharing its profit with you directly, in cash, just for owning a share.',
+    body: [
+      'Some companies, once established and consistently profitable, pay a portion of their earnings directly to shareholders on a regular schedule — usually quarterly. This payment is called a dividend. You don\'t have to sell anything to receive it; it simply arrives because you own the share on a specific date.',
+      'A dividend-focused ETF is built from companies specifically chosen for a strong, sustained history of paying (and often growing) their dividend — which tends to favor established, financially disciplined businesses over speculative, unprofitable ones. For a small, regular investor, this has two practical appeals: a potential stream of cash income over time, and the option to automatically reinvest those dividends to buy more shares, which compounds your holding faster than price growth alone.',
+      'This app tracks two real, well-known, low-fee dividend ETFs — see the Markets page for their current data and the fund facts table below for what they actually hold and cost. As with everything else here: a dividend is not guaranteed either. Companies can, and sometimes do, reduce or cancel dividend payments, especially during broad economic downturns.',
+    ],
+  },
+  {
+    id: 'expense-ratios',
+    title: 'Expense Ratios — Why a Tiny Fee Matters',
+    keyIdea: 'A fund\'s expense ratio is an annual fee taken automatically, before you ever see your return — and small differences compound into large ones.',
+    body: [
+      'Every fund — ETF or mutual fund — charges an annual fee called an expense ratio, expressed as a percentage of your investment, to cover the cost of running the fund. It\'s deducted automatically and gradually; you\'ll never see a separate bill for it, which is exactly why it\'s easy to overlook.',
+      'The number itself often looks tiny — a difference of a fraction of one percent between two funds that otherwise do almost the same thing. But fees compound the same way returns do: a fund charging even half a percent more, every single year, for twenty or thirty years, quietly claims a meaningfully larger share of your eventual total than the number itself suggests.',
+      'This is one of the few things in investing you can know for certain in advance — unlike future returns, which nobody can guarantee, a fund\'s fee is published and fixed until the issuer changes it. Comparing expense ratios between similar funds (for example, two ETFs that both track the S&P 500) is one of the most reliable, evidence-based things a small investor can do. See the real, sourced fee comparison table below for the actual current numbers on the funds tracked in this app.',
+    ],
+  },
+  {
+    id: 'diversification-by-sector',
+    title: 'Diversification by Industry',
+    keyIdea: 'Spreading investments across different industries reduces the damage any single industry\'s bad year can do to you.',
+    body: [
+      'Even a broad index isn\'t evenly spread — at any given time, some industries make up a much larger share of it than others. Being aware of which industries (sectors) you\'re exposed to, and how concentrated that exposure is, is a core part of managing risk sensibly.',
+      'Sector ETFs let you see — and if you choose, invest in — a single industry on its own: technology, energy, financial companies, or health care, for instance. They\'re a useful way to understand what "the market" is actually made of, and to notice if your holdings are more concentrated in one industry than you realized.',
+      'This lesson deliberately doesn\'t tell you what percentage to put where — that depends on your own goals, timeline, and comfort with risk, which this app doesn\'t know and shouldn\'t guess at. What it does offer is real, current data on each sector ETF it tracks, so you can explore the actual differences yourself on the Markets page.',
+    ],
+  },
+  {
+    id: 'dollar-cost-averaging',
+    title: 'Dollar-Cost Averaging',
+    keyIdea: 'Investing a fixed amount on a regular schedule — exactly what a $100–200/month investor naturally does — smooths out the effect of price swings over time.',
+    body: [
+      'Dollar-cost averaging simply means investing a fixed amount of money at regular intervals, regardless of whether prices are up or down that particular month. Because your contribution is fixed, you automatically buy more shares when prices are low and fewer when prices are high — without needing to predict anything or time the market.',
+      'This isn\'t a special technique you need to learn to apply — if you\'re investing $100–200 every month as it comes in, you are already doing it. Its main benefit is psychological as much as mathematical: it removes the temptation to guess whether now is a "good time" to invest, which is a guess even professional investors get wrong regularly.',
+      'The calculator below uses real historical price and dividend data to show what a fixed monthly contribution into a specific ETF would actually have grown to over different past periods. As with every historical figure in this app: this shows what did happen, not a prediction of what will happen. Past results are not a guarantee of future ones.',
+    ],
+  },
+];
+
+// Copy for the "Your Country at a Glance" panel (learn.js), keyed by the same
+// indicator keys api/markets-hub.js returns. Kept here, not in learn.js, for the same
+// reason the lesson prose lives here: content and rendering logic stay separate.
+// Deliberately no numbers embedded — every figure is rendered live from real World
+// Bank data, this file only supplies the "why this matters" framing per indicator.
+// "{country}" is replaced with the selected country's real name at render time.
+window.SCERE_COUNTRY_INDICATOR_COPY = {
+  inflation: 'This is roughly how much more expensive everyday goods and services got in {country} over the past year. Money kept only as cash loses purchasing power at this rate — one of the clearest, most concrete reasons to consider real, diversified investments alongside savings, not instead of them.',
+  gdpPerCapita: 'A rough measure of average economic output per person in {country}, in US dollars. Useful context for the broader economy you\'re investing from — not a target to compare your own progress against.',
+  gdpGrowth: 'How much {country}\'s overall economy grew (or shrank) that year. One input among many for understanding the environment around you, not a signal about any specific investment.',
+  financialInclusion: 'Share of adults in {country} who already have a bank or mobile-money account, per the World Bank\'s Global Findex survey. If you already have one, you already have a building block many index-fund and ETF platforms require to get started.',
+};

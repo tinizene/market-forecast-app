@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Dashboard — Scere Markets</title>
+    <meta name="theme-color" content="#0f172a">
+    <meta name="description" content="The full, original daily FX dashboard report exactly as generated — regime, currency strength, trade ideas, and charts, in its native layout.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] } } } };
+    </script>
+</head>
+<body class="bg-slate-900 text-white font-sans min-h-screen p-4">
+    <div class="app-bg" aria-hidden="true"></div>
+    <div class="relative z-10 max-w-4xl mx-auto pb-8">
+
+        <header class="text-center my-6 relative">
+            <a href="./index.html" class="absolute top-0 left-0 text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg transition">&larr; Markets</a>
+            <h1 class="text-2xl font-bold tracking-wide">Daily Dashboard</h1>
+            <p class="text-slate-400 text-sm">The full report, exactly as generated</p>
+            <div class="absolute top-0 right-0">
+                <select id="historySelect" aria-label="Report date" class="text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white px-2 py-1.5 rounded-lg transition outline-none border border-slate-700"></select>
+            </div>
+        </header>
+
+        <div class="mb-4 rounded-xl border border-amber-600/50 bg-amber-900/20 px-4 py-3 text-xs text-amber-200" role="note">
+            ⚠️ Analytical scenarios for your own judgment — not personalized financial advice. This is the raw daily report in its own native layout; see the <a href="./fx-intelligence.html" class="underline decoration-amber-500/60 hover:text-amber-100">FX Intelligence Desk</a> for the same data rendered in the app's own style.
+        </div>
+
+        <div id="loadingState" class="text-slate-400 text-sm text-center py-8">Loading latest report…</div>
+        <div id="errorState" class="hidden text-red-300 text-sm text-center py-8 bg-red-900/20 border border-red-600/40 rounded-xl"></div>
+
+        <div id="frameWrap" class="hidden rounded-2xl overflow-hidden border border-slate-700 shadow-xl bg-[#0b0e14]">
+            <iframe id="reportFrame" title="Daily FX dashboard report" class="w-full block" style="height: 82vh; border: 0;" sandbox="allow-scripts allow-same-origin" loading="lazy"></iframe>
+        </div>
+
+        <footer class="mt-10 text-center text-xs text-slate-500">
+            Source: <code>fx-dashboard-YYYY-MM-DD.html</code> files your <code>daily-fx-dashboard</code> scheduled task writes to your FX-Reports folder, copied in as-is by <code>scripts/sync-daily-dashboard.js</code>.
+            <br>
+            Analytical scenarios for your own judgment — not personalized financial advice.
+            <br>
+            <a href="./privacy-policy.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Privacy Policy</a>
+            ·
+            <a href="./manifesto.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Manifesto</a>
+        </footer>
+    </div>
+
+    <script src="./daily-report.js"></script>
+</body>
+</html>

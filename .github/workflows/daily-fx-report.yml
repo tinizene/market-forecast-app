@@ -1,0 +1,55 @@
+name: Daily FX Report (cloud-native, no local machine required)
+
+# Replaces the Cowork-based daily-fx-dashboard + fx-report-app-sync scheduled tasks.
+# Those only fired reliably when the machine running Cowork was on; this runs on
+# GitHub's own runners on a fixed schedule regardless of any local machine's state.
+#
+# Schedule note: GitHub Actions cron is always UTC and has no daylight-saving
+# awareness. 05:00 UTC = ~07:00 in Central European Summer Time (CEST, UTC+2), but
+# during Central European winter time (CET, UTC+1) the same cron line fires at
+# ~06:00 local instead — cron does NOT shift automatically. If you want a fixed
+# *local* time year-round, you'll need to hand-edit this cron expression twice a
+# year (or accept the one-hour seasonal drift, which is what the original Cowork
+# task's own local-time cron did NOT have to deal with).
+on:
+  schedule:
+    - cron: '0 5 * * 1-5' # ~07:00 CEST / ~06:00 CET, Mon–Fri
+  workflow_dispatch: {} # lets you trigger a manual run from the Actions tab to test
+
+permissions:
+  contents: write
+
+jobs:
+  generate-report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Generate today's report
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Optional overrides — set as repo Variables (not Secrets, not sensitive)
+          # under Settings -> Secrets and variables -> Actions -> Variables, only if
+          # you need to deviate from the defaults baked into the script:
+          ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL }}
+          ANTHROPIC_MAX_TOKENS: ${{ vars.ANTHROPIC_MAX_TOKENS }}
+          REPORT_TIMEZONE: ${{ vars.REPORT_TIMEZONE }}
+        run: node scripts/generate-fx-report.js
+
+      - name: Commit and push if anything changed
+        run: |
+          git config user.name "fx-report-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add reports-source data/fx-reports data/daily-dashboard
+          if git diff --cached --quiet; then
+            echo "No changes to commit (report already existed, or generation produced nothing new)."
+          else
+            git commit -m "Daily FX report: $(date -u +%F)"
+            git push
+          fi

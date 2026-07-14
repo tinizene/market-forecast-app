@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scere Markets</title>
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="description" content="Market forecasts, trend context, and financial newsletter digest for major indices, rates, and FX pairs. Educational only — not financial advice.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                },
+            },
+        };
+    </script>
+</head>
+<body class="bg-slate-900 text-white font-sans min-h-screen p-4">
+    <div class="app-bg" aria-hidden="true"></div>
+    <div class="relative z-10 max-w-md mx-auto pb-8">
+
+        <header class="text-center my-6 relative">
+            <h1 class="text-2xl font-bold tracking-wide">Scere Markets</h1>
+            <p class="text-slate-400 text-sm">Forecasts · Analysis · Alerts</p>
+            <a href="./manifesto.html" class="inline-block mt-1 text-[11px] uppercase tracking-[0.15em] text-blue-300 hover:text-blue-200 transition">Get Rich Slow — our manifesto</a>
+            <div class="absolute top-0 right-0 flex gap-2">
+                <button id="proUpsellBtn" type="button" class="text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg transition">Pro <span class="pro-badge">Pro</span></button>
+            </div>
+        </header>
+
+        <!-- Instrument Selector -->
+        <div class="bg-slate-800 p-4 rounded-xl mb-4 shadow-lg">
+            <label for="instrumentSelect" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Instrument</label>
+            <select id="instrumentSelect" class="instrument-select w-full bg-slate-700 text-white rounded-lg p-3 outline-none border border-slate-600 focus:border-blue-500"></select>
+        </div>
+
+        <!-- Not-financial-advice banner — same role the weather app's "guidance only,
+             not official warnings" footer note played, just surfaced higher here given
+             the higher stakes of financial content. -->
+        <div class="mb-4 rounded-xl border border-amber-600/50 bg-amber-900/20 px-4 py-3 text-xs text-amber-200" role="note">
+            ⚠️ Educational context only — not financial advice. See the disclaimer in the footer.
+        </div>
+
+        <div id="apiKeyBanner" class="hidden mb-4 rounded-xl border border-red-600/50 bg-red-900/20 px-4 py-3 text-xs text-red-200" role="alert"></div>
+
+        <!-- New-here entry point — the education-first Learn section is meant to be
+             where a complete beginner starts, not something buried only in the footer. -->
+        <a href="./learn.html" class="advisory-card alert-teaser mb-4 !no-underline">
+            <span class="advisory-icon">📘</span>
+            <div>
+                <p class="font-semibold text-sm">New to investing? Start with Learn</p>
+                <p class="text-xs opacity-90 mt-0.5">What an index and an ETF actually are, why they beat gambling with small amounts, and the safest way in for a beginner.</p>
+            </div>
+        </a>
+
+        <!-- Current quote -->
+        <div id="currentQuote" class="current-card bg-gradient-to-br from-blue-600 to-indigo-700 p-6 rounded-2xl text-center mb-4 shadow-xl hidden">
+            <h2 id="instrumentName" class="text-xl font-semibold mb-1">---</h2>
+            <div id="currentPrice" class="text-4xl font-extrabold my-2">--</div>
+            <p id="currentChange" class="text-blue-100 font-medium">--</p>
+            <p id="proxyNote" class="text-blue-200/70 text-[11px] mt-2"></p>
+        </div>
+
+        <div id="loadingState" class="text-slate-400 text-sm text-center py-8">Loading...</div>
+
+        <!-- Trend chart (inline SVG, no chart library — same bandwidth-conscious choice
+             as the weather app's temperature/precipitation graphs) -->
+        <section id="trendSection" class="mb-8 hidden">
+            <h3 class="section-title">Recent Trend</h3>
+            <div id="trendContent" class="row-card"></div>
+        </section>
+
+        <!-- Advisory cards -->
+        <section id="advisoriesSection" class="mb-8 hidden">
+            <h3 class="section-title">Market Context</h3>
+            <div id="advisoriesContent" class="space-y-3"></div>
+        </section>
+
+        <!-- Financial newsletter / market-commentary aggregator — the direct
+             counterpart to the weather app's "Future of Farming" RSS feed. -->
+        <section id="newsSection" class="mb-8">
+            <h3 class="section-title">📰 Market Newsletters &amp; Commentary</h3>
+            <div id="newsContainer" class="space-y-2">
+                <p class="text-slate-400 text-sm text-center py-4">Loading…</p>
+            </div>
+        </section>
+
+        <footer class="mt-10 text-center text-xs text-slate-500">
+            Quotes &amp; economic series via <a href="https://www.alphavantage.co/" class="text-slate-400 underline decoration-slate-600 underline-offset-2 transition hover:text-sky-400" target="_blank" rel="noopener noreferrer">Alpha Vantage</a>
+            · FX via <a href="https://www.frankfurter.dev/" class="text-slate-400 underline decoration-slate-600 underline-offset-2 transition hover:text-sky-400" target="_blank" rel="noopener noreferrer">Frankfurter</a> (ECB reference rates)
+            <br>
+            <span class="block mt-2 max-w-sm mx-auto">Not financial advice. Content is for informational and educational purposes only and is not a recommendation to buy, sell, or hold any security or instrument. Data may be delayed or inaccurate. Consult a licensed financial advisor before making investment decisions.</span>
+            <br>
+            <a href="./privacy-policy.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Privacy Policy</a>
+            ·
+            <a href="./fx-intelligence.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">FX Intelligence Desk</a>
+            ·
+            <a href="./daily-report.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Daily Dashboard</a>
+            ·
+            <a href="./learn.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Learn</a>
+            ·
+            <a href="./manifesto.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Manifesto</a>
+        </footer>
+    </div>
+
+    <!-- Pro upgrade modal — UI only in this MVP, no payment wiring yet (mirrors the
+         weather app's proModal markup/pattern so it's a drop-in point for a real
+         paywall later: Stripe, or the same WhatsApp/mobile-money code pattern). -->
+    <div id="proModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+        <div class="bg-slate-800 rounded-2xl p-6 max-w-sm w-full shadow-2xl border border-slate-700">
+            <h3 class="text-lg font-bold mb-1">Upgrade to Pro <span class="pro-badge">Pro</span></h3>
+            <p class="text-sm text-slate-400 mb-4">Planned: real-time refresh, price alerts, more instruments, and a saved multi-instrument watchlist. Not wired up yet in this build — see README.md.</p>
+            <button id="proModalClose" type="button" class="w-full px-4 bg-slate-700 hover:bg-slate-600 text-white rounded-lg py-2.5 transition">Close</button>
+        </div>
+    </div>
+
+    <script src="./instruments.js"></script>
+    <script src="./market-advisories.js"></script>
+    <script src="./app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').catch((err) => console.error('Service Worker failed:', err));
+            });
+        }
+    </script>
+</body>
+</html>

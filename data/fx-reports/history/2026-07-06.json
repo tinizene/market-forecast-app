@@ -1,0 +1,536 @@
+{
+  "sourceFile": "fx-dashboard-2026-07-06.md",
+  "title": "Institutional FX Dashboard & Intelligence Report — July 6, 2026",
+  "reportDate": "2026-07-06",
+  "reportDateLabel": "July 6, 2026",
+  "regime": {
+    "classification": "Central-Bank-Driven, sharpening into Event-Driven ahead of Wednesday's RBNZ decision and FOMC minutes.",
+    "justification": "VIX sits at 15.81 (-2.11%, low, risk-on), equities are mixed-to-firm (Dow +1.14%, S&P 500 ~flat at 7,483, Nasdaq -0.80%), and the US 10Y holds near 4.48% — none of this signals acute stress. The real driver is a fast-moving rates repricing story on two fronts at once: the Fed's September-hike odds remain contested (75.6% July-hold priced as of 4 Jul CME FedWatch, though separate June 18 Fed commentary flagged markets sharply raising July-hike odds too — a genuine cross-source conflict, surfaced rather than resolved), and the RBNZ's Wednesday decision has flipped from a comfortable hold to a live coin-flip (~66% market-implied hike odds, down from over 80% a few weeks ago, while at least one bank desk, Westpac, still expects a hold).",
+    "executiveSummary": "The single biggest cross-asset driver is the RBNZ's Wednesday OCR decision colliding with a still-unsettled Fed rate path — both now carry genuine two-way event risk rather than a clean consensus outcome. USD/JPY has pushed to a fresh 40-year weak-yen extreme (~162), with hedge funds and asset managers holding near-record bearish yen bets even as the BoJ hikes and Japan's MOF stays deliberately silent on an intervention trigger level — a classic crowded-trade setup. AUD's positioning remains at a 9-year/record extreme, a second crowded-long risk. Gold holds near recent highs (~$4,189/oz) and WTI has eased to ~$68, consistent with a de-escalated Middle East risk premium. Today's ISM Services PMI (10:00 ET) and this week's FOMC minutes and RBNZ decision are the catalysts that will resolve or extend these tensions."
+  },
+  "performanceReview": {
+    "ideas": [
+      {
+        "idea_as_published_4_jul": "Long EUR/CHF — Bullish. Entry 0.9150-0.9220, Target 0.9350/0.9420, Stop 0.9080 (daily close)",
+        "outcome": "Still Pending — live search today puts EUR/CHF at ~0.9184-0.9194, squarely inside the published entry zone; neither target, stop, nor an invalidation condition has been reached",
+        "hypothetical_p_l_if_followed": "Approximately flat (roughly breakeven to +5-10 pips from a ~0.9185 mid-entry against today's ~0.9190 print) — N/A, still pending for a real result",
+        "key_lesson": "The trending-COT/passive-safe-haven macro divergence hasn't yet forced a technical resolution over a single (largely data-light) weekend; the technicals layer is the one that hasn't confirmed anything yet, for better or worse"
+      },
+      {
+        "idea_as_published_4_jul": "Long NZD/USD — Bullish. Entry 0.5630-0.5680, Target 0.5750/0.5820, Stop 0.5580 (daily close)",
+        "outcome": "Still Pending — live search today shows conflicting reference points (~0.567 per one source describing a \"near 7-month low,\" ~0.5711 per another derived from a USD/NZD quote); either reading sits at or just above the top of the published entry zone, short of target/stop",
+        "hypothetical_p_l_if_followed": "Modest unrealized gain if filled near the zone's midpoint (~0.5655), roughly +15 to +55 pips depending on which of today's conflicting NZD/USD reads is used — N/A, still pending for a confirmed result",
+        "key_lesson": "The RBNZ catalyst (8 Jul decision) that this idea was built around hasn't landed yet — a positioning-based tailwind can carry a trade in the right direction before the actual confirming event, but the thesis isn't proven until Wednesday"
+      }
+    ],
+    "hitRateSummary": "0 played out / 0 invalidated / 2 still pending, out of 2 total ideas issued since July 4, 2026 (first-run date of the merged structure)"
+  },
+  "policyRates": {
+    "type": "rows",
+    "headers": [
+      "Bank",
+      "Rate",
+      "Last Move",
+      "Next Meeting",
+      "Bias"
+    ],
+    "rows": [
+      {
+        "bank": "Fed",
+        "rate": "3.50-3.75% (upper limit)",
+        "last_move": "Held, 17 Jun 2026 (4th straight hold; Kevin Warsh's first meeting as chair)",
+        "next_meeting": "28-29 Jul 2026",
+        "bias": "Split, contested — CME FedWatch (4 Jul read) shows 75.6% odds of a July hold, but separate Fed-commentary-driven coverage (18 Jun) describes markets sharply raising July-hike odds too; both readings surfaced rather than reconciled. September remains the bigger open question"
+      },
+      {
+        "bank": "ECB",
+        "rate": "Deposit 2.25% / Refi 2.40%",
+        "last_move": "Hiked, 17 Jun 2026 (first hike since 2023)",
+        "next_meeting": "23-24 Jul 2026",
+        "bias": "Hawkish, but fading — June Eurozone CPI cooled to 2.8% y/y (from 3.2%), Lagarde's dovish tone has cut odds of a third hike this year"
+      },
+      {
+        "bank": "BoE",
+        "rate": "3.75%",
+        "last_move": "Held (7-2 vote), 17 Jun 2026",
+        "next_meeting": "30 Jul 2026",
+        "bias": "Neutral-hawkish"
+      },
+      {
+        "bank": "BoJ",
+        "rate": "1.00%",
+        "last_move": "Hiked, 16 Jun 2026 (25bp, 7-1 vote; highest since 1995)",
+        "next_meeting": "30-31 Jul 2026",
+        "bias": "Hawkish — further hikes flagged; MOF (Katayama) deliberately declines to name an intervention trigger level, a strategy described as maximizing surprise value after ~$72.5bn already spent on intervention (late Apr-late May)"
+      },
+      {
+        "bank": "BoC",
+        "rate": "2.25% (Bank Rate 2.50%, deposit 2.20%)",
+        "last_move": "Held, 10 Jun 2026 (5th straight hold)",
+        "next_meeting": "15 Jul 2026",
+        "bias": "Neutral; markets and economists see rates on hold for much of 2026, with hike risk (not cut risk) the tail scenario if inflation stays sticky"
+      },
+      {
+        "bank": "RBA",
+        "rate": "4.35%",
+        "last_move": "Held, Jun 2026",
+        "next_meeting": "10-11 Aug 2026",
+        "bias": "Hawkish-hold"
+      },
+      {
+        "bank": "RBNZ",
+        "rate": "2.25%",
+        "last_move": "Held, May 2026 (3rd straight hold)",
+        "next_meeting": "8 Jul 2026, 2:00pm NZST (Tue 7 Jul ~22:00 ET / Wed 8 Jul ~02:00 GMT)",
+        "bias": "Hawkish repricing, genuinely live — market-implied odds of a July hike are ~66% (down from over 80% a few weeks earlier), while at least one bank desk (Westpac) still expects a hold; a real split, not a formality"
+      },
+      {
+        "bank": "SNB",
+        "rate": "0.00%",
+        "last_move": "Held (\"dovish hold\"), 18 Jun 2026",
+        "next_meeting": "September 2026 (SNB meets quarterly: Mar/Jun/Sep/Dec)",
+        "bias": "Neutral; parked at the zero bound"
+      }
+    ]
+  },
+  "currencyStrength": {
+    "type": "rows",
+    "headers": [
+      "Currency",
+      "Strength (0-100)",
+      "Weekly Chg",
+      "Bias",
+      "1-line driver"
+    ],
+    "rows": [
+      {
+        "currency": "CHF",
+        "strength_0_100": "69",
+        "weekly_chg": "+1.0",
+        "bias": "Bullish",
+        "1_line_driver": "Safe-haven bid persists; gross shorts fell a further 37% (large specs) / 33% (asset managers) per latest COT-adjacent coverage"
+      },
+      {
+        "currency": "EUR",
+        "strength_0_100": "66",
+        "weekly_chg": "0",
+        "bias": "Bullish, moderating",
+        "1_line_driver": "COT longs still at an 18-month (large specs) / 15-month (asset managers) high, but Lagarde's dovish tone and cooling CPI cap further hawkish conviction"
+      },
+      {
+        "currency": "USD",
+        "strength_0_100": "52",
+        "weekly_chg": "+2.0",
+        "bias": "Neutral, two-way risk sharpening",
+        "1_line_driver": "A fresh data conflict (75.6% July-hold vs. commentary describing markets raising July-hike odds) makes the dollar's near-term path more contested, not less"
+      },
+      {
+        "currency": "GBP",
+        "strength_0_100": "60",
+        "weekly_chg": "0",
+        "bias": "Bullish",
+        "1_line_driver": "BoE hawkish hold intact; no fresh COT read confirmed this session beyond early-May positioning data"
+      },
+      {
+        "currency": "NZD",
+        "strength_0_100": "47",
+        "weekly_chg": "+3.0",
+        "bias": "Neutral, improving fast",
+        "1_line_driver": "RBNZ hike odds firmed to ~66% for Wednesday — a genuinely fresh hawkish catalyst — though this session's search also surfaced a conflicting COT read describing NZD shorts as \"persistent,\" at odds with the prior report's \"unwound to a 6-month low\" framing"
+      },
+      {
+        "currency": "AUD",
+        "strength_0_100": "57",
+        "weekly_chg": "-1.0",
+        "bias": "Neutral-Bullish, crowded",
+        "1_line_driver": "RBA's highest G10 real rate still supportive, but COT positioning remains at a 9-year (large specs)/record (asset managers) extreme — an unwind risk, not a clean continuation signal"
+      },
+      {
+        "currency": "CAD",
+        "strength_0_100": "45",
+        "weekly_chg": "-1.0",
+        "bias": "Neutral-Bearish",
+        "1_line_driver": "BoC on hold into 15 Jul; WTI eased further to ~$68, a soft tailwind removed"
+      },
+      {
+        "currency": "JPY",
+        "strength_0_100": "41",
+        "weekly_chg": "-1.0",
+        "bias": "Bearish, crowded and unstable",
+        "1_line_driver": "Yen at a fresh ~40-year weak extreme; large specs/hedge funds and asset managers hold near-record bearish (short-yen) bets even as BoJ hikes — a fundamentally hawkish story fighting a technically crowded positioning picture"
+      }
+    ]
+  },
+  "tier1Pairs": {
+    "format": "bullets",
+    "items": [
+      {
+        "pair": "EUR/USD",
+        "detail": "1.1439 (refreshed intraday confirmation, this pass) — broad dollar softness from the June NFP miss still the dominant recent driver, though today's contested Fed-odds conflict adds fresh two-way risk."
+      },
+      {
+        "pair": "GBP/USD",
+        "detail": "1.3357 (refreshed intraday confirmation, this pass — range 1.3335-1.3381) — tracking the same broad-dollar theme as EUR/USD."
+      },
+      {
+        "pair": "USD/JPY",
+        "detail": "~161.95 (+0.36% today, confirmed) — yen pushed to a fresh ~40-year weak extreme; BoJ's hiking path is being overwhelmed by near-record short-yen positioning and a widest-in-G10 rate gap that still favors carry."
+      },
+      {
+        "pair": "USD/CHF",
+        "detail": "~0.8030 (still carried from the most recent confirmed print, ~2 Jul — a fresh intraday Monday quote could not be confirmed even on this later pass) — tracking broad-dollar softness, consistent with EUR/USD's recent move."
+      },
+      {
+        "pair": "USD/CAD",
+        "detail": "~1.4184 (still carried from the most recent confirmed print, 2 Jul — a fresh intraday Monday quote could not be confirmed even on this later pass) — soft-dollar tailwind offset by WTI easing further to ~$68."
+      },
+      {
+        "pair": "AUD/USD",
+        "detail": "0.6943 (+0.34%, refreshed intraday confirmation, this pass) — RBA's hawkish hold supportive, but record-crowded long positioning is the bigger near-term risk than the spot level itself."
+      },
+      {
+        "pair": "NZD/USD",
+        "detail": "~0.567-0.571 (conflicting sources this session — one describes NZD \"near a 7-month low\" around 0.567, another derives ~0.5711 from a USD/NZD quote) — RBNZ's Wednesday decision, now a genuine coin-flip, is the dominant near-term driver."
+      }
+    ]
+  },
+  "correlationCheck": {
+    "text": "EUR/USD and GBP/USD could not be confirmed against fresh Monday prints, but both are tracking the same broad-dollar-softness narrative from Friday's close, consistent with their normal positive correlation holding. EUR/USD and USD/CHF likewise appear consistent with their usual inverse relationship on the data available, though neither pair has a confirmed fresh Monday print to verify against. The bigger story today is less about EUR/GBP/CHF co-movement and more a two-front event-risk day: yen positioning (idiosyncratic, Japan-specific) and RBNZ repricing (idiosyncratic, NZD/AUD-specific) are each running on their own catalysts rather than a single broad-dollar driver.",
+    "read": "Messy"
+  },
+  "ratesRiskBackdrop": null,
+  "tradeIdeas": {
+    "ideas": [
+      {
+        "headline": "Idea 1: Short USD/JPY (theme: fade the record-crowded short-yen carry trade against a hiking BoJ and an intervention-shy MOF) — Bearish",
+        "fields": {
+          "Bias": "Bearish USD/JPY — hedge funds and asset managers hold near-record bearish (short-yen) positioning even as BoJ hikes into a 40-year weak-yen extreme; that combination is a classic crowded-trade unwind setup, not a fundamentals-confirms-the-trend story",
+          "Entry Zone": "161.50-162.80 (approximate; flag as needing live verification — no fresh Monday print beyond today's 161.95 quote was confirmed)",
+          "Target(s)": "159.50, then 157.80",
+          "Stop / Invalidation": "Daily close above 163.50 (a fresh high would signal the carry trade still has legs)",
+          "Risk/Reward": "approx. 1:2.0"
+        },
+        "scoring": {
+          "headers": [
+            "Component",
+            "Weight",
+            "Contribution",
+            "Reasoning"
+          ],
+          "rows": [
+            {
+              "component": "Macro (35%)",
+              "weight": "35%",
+              "contribution": "28/35",
+              "reasoning": "BoJ hiked to a 27-year high (1%), further hikes flagged, and ~$72.5bn already spent on intervention without reversing the trend — a clear, current divergence between policy direction and price action"
+            },
+            {
+              "component": "Technicals (25%)",
+              "weight": "25%",
+              "contribution": "12/25",
+              "reasoning": "Yen sits at a fresh 40-year weak extreme with no confirmed reversal candle yet — the trend is still technically intact against this idea"
+            },
+            {
+              "component": "Positioning (20%)",
+              "weight": "20%",
+              "contribution": "17/20",
+              "reasoning": "Hedge funds/asset managers near-record bearish yen — a genuinely crowded trade, the strongest single input for this idea"
+            },
+            {
+              "component": "Sentiment (15%)",
+              "weight": "15%",
+              "contribution": "7/15",
+              "reasoning": "Risk-on backdrop (VIX ~15.8) is a headwind — carry trades tend to persist longer in low-vol regimes"
+            },
+            {
+              "component": "Volatility (5%)",
+              "weight": "5%",
+              "contribution": "3/5",
+              "reasoning": "Low VIX cuts both ways — supports carry persistence but also means any intervention shock would be a larger relative jump"
+            }
+          ]
+        },
+        "totalConfidence": 67,
+        "confidenceDelta": "∆ vs last report: not applicable — new idea",
+        "confirmationCriteria": "a bearish engulfing or shooting-star candle on the daily chart near the 162-163 area; a volume spike accompanying any pullback from current levels; a successful retest of the 161.00 area (prior support) holding as new resistance; or an outright intervention headline, which would itself act as the trigger. Verify on your own chart before acting — this desk has web search only, not live charting."
+      },
+      {
+        "headline": "Idea 2: Short AUD/NZD (theme: fade AUD's record-crowded long against a resurgent hawkish RBNZ into Wednesday's decision) — Bearish",
+        "fields": {
+          "Bias": "Bearish AUD/NZD — AUD positioning is at a 9-year (large specs)/record (asset managers) extreme (100th percentile across multiple windows), while NZD has a fresh hawkish catalyst (RBNZ hike odds near 66% for Wednesday, up sharply from weeks earlier)",
+          "Entry Zone": "1.2100-1.2170 (approximate; verify live cross rate)",
+          "Target(s)": "1.1950, then 1.1850",
+          "Stop / Invalidation": "Daily close above 1.2250",
+          "Risk/Reward": "approx. 1:2.3"
+        },
+        "scoring": {
+          "headers": [
+            "Component",
+            "Weight",
+            "Contribution",
+            "Reasoning"
+          ],
+          "rows": [
+            {
+              "component": "Macro (35%)",
+              "weight": "35%",
+              "contribution": "24/35",
+              "reasoning": "RBNZ hike odds firming to ~66% is the fresher catalyst, though at least one bank desk (Westpac) still expects a hold — a genuine, not one-sided, macro case"
+            },
+            {
+              "component": "Technicals (25%)",
+              "weight": "25%",
+              "contribution": "15/25",
+              "reasoning": "Clean short-term pullback range (1.22289 high to 1.2134 low) with defined levels, but no confirmed breakdown yet"
+            },
+            {
+              "component": "Positioning (20%)",
+              "weight": "20%",
+              "contribution": "17/20",
+              "reasoning": "AUD net-long at a record/9-year extreme is the strongest single input — a textbook crowded-long unwind setup"
+            },
+            {
+              "component": "Sentiment (15%)",
+              "weight": "15%",
+              "contribution": "7/15",
+              "reasoning": "Broad risk-on is a mild headwind — high-beta AUD tends to hold up in risk-on tape"
+            },
+            {
+              "component": "Volatility (5%)",
+              "weight": "5%",
+              "contribution": "3/5",
+              "reasoning": "Wednesday's RBNZ decision is a binary event that cuts both ways for this cross"
+            }
+          ]
+        },
+        "totalConfidence": 66,
+        "confidenceDelta": "∆ vs last report: not applicable — new idea",
+        "confirmationCriteria": "a bearish engulfing or shooting-star candle near the 29 Jun high of 1.22289; a volume spike on a break below the 2 Jul low of 1.2134; a successful retest of 1.2134 holding as resistance after a breakdown. Verify on your own chart before acting — this desk has web search only, not live charting."
+      }
+    ],
+    "excluded": {
+      "title": "Long EUR/USD momentum continuation.",
+      "reasoning": "Excluded despite the broad-dollar-softness narrative that has driven EUR/USD higher over the past two weeks. The reason: no fresh Monday print could be confirmed for EUR/USD this session (last confirmed level is Friday's 1.1371-1.1454 range), and today's Fed-odds conflict (75.6% July-hold vs. commentary describing markets raising July-hike odds) means the core dollar-softness assumption behind this trade is itself contested this week, not settled. Chasing continuation on a stale print into a data point (today's ISM Services PMI) that could reprice the Fed narrative either way doesn't meet the bar."
+    }
+  },
+  "contrarianCheck": {
+    "primaryRisk": "This report leans on two crowded-positioning unwind theses (short USD/JPY, short AUD/NZD) that both require price to reverse against a still-intact trend. The strongest counter-argument: in a low-VIX, risk-on backdrop (VIX ~15.8), crowded trades can grind further before they reverse — carry trades in particular are known for \"slow bleed, fast unwind\" dynamics, and there is no evidence yet of the reversal catalyst (intervention, RBNZ hold) having actually landed.",
+    "invalidationFactor": "A strong ISM Services PMI print today, combined with the Fed's contested-hawkish read gaining further confirmation, would extend USD strength broadly and could push USD/JPY higher before any yen-positioning unwind materializes — invalidating the crowded-trade thesis on a delayed basis rather than an immediate one.",
+    "bullCase": "BoJ or MOF delivers a surprise intervention or hawkish signal this week, RBNZ hikes as ~66% pricing implies, both crowded trades unwind quickly — USD/JPY and AUD/NZD shorts both work. Invalidated by: a confirmed, sustained break of 163.50 in USD/JPY or 1.2250 in AUD/NZD.",
+    "baseCase": "Both trades stay range-bound into their respective catalysts (RBNZ Wednesday, any BoJ/MOF action later in the month), with modest two-way chop until a real trigger lands. Invalidated by: either the RBNZ decision or an intervention headline breaking the current holding pattern decisively in either direction.",
+    "bearCase": "RBNZ holds (as Westpac expects), risk-on persists, carry trades extend further, both shorts get stopped out. Invalidated by: continued soft-USD data confirming the labor-market cooling trend from June, which would argue for a broader dollar-negative regime instead."
+  },
+  "globalEquityLeaderboard": {
+    "type": "rows",
+    "headers": [
+      "Index",
+      "YTD",
+      "12-Month"
+    ],
+    "rows": [
+      {
+        "index": "KOSPI",
+        "ytd": "~+88% (best performer; this session's read, revised down from the 4 Jul report's ~+100% approximation)",
+        "12_month": "data unavailable this session"
+      },
+      {
+        "index": "Nikkei 225",
+        "ytd": "~+33% (this session)",
+        "12_month": "~+75-80% (sources conflicted this session between ~75% and ~80.5%; both surfaced rather than picking one)"
+      },
+      {
+        "index": "S&P 500",
+        "ytd": "~+9-11% (sources conflicted this session depending on measurement date)",
+        "12_month": "data unavailable this session"
+      },
+      {
+        "index": "FTSE 100",
+        "ytd": "data unavailable this session — only an index level (~10,679) was confirmed, no fresh YTD %",
+        "12_month": "data unavailable"
+      },
+      {
+        "index": "DAX",
+        "ytd": "data unavailable this session — only an index level (~25,779) was confirmed, no fresh YTD %",
+        "12_month": "data unavailable"
+      },
+      {
+        "index": "Sensex",
+        "ytd": "~-9.3% (last confirmed reading, early May 2026 — no fresher figure surfaced this session, flagged as dated)",
+        "12_month": "data unavailable"
+      },
+      {
+        "index": "Shanghai Composite",
+        "ytd": "data unavailable this session — index level ~4,044-4,152 confirmed (sources conflicted on exact level), no fresh YTD %",
+        "12_month": "~+16-21% (sources conflicted this session)"
+      }
+    ]
+  },
+  "noTradeZone": {
+    "flagged": true,
+    "text": "Two idiosyncratic, non-USD event risks (RBNZ decision Wednesday, yen intervention/positioning risk at any time) are live simultaneously, and today's ISM Services PMI could itself reprice the contested Fed narrative. A Messy correlation environment combined with three separate live catalysts argues for reduced size on any single-pair signal until at least Wednesday's RBNZ decision clarifies one leg of the picture."
+  },
+  "keyThemes": [
+    "The RBNZ's Wednesday decision has flipped from a formality to a genuine coin-flip. Market-implied hike odds near 66% (down from over 80% weeks earlier) sit against at least one bank desk still expecting a hold — a real, two-sided catalyst rather than a rubber stamp.",
+    "The yen carry trade is now a crowded, intervention-shadowed setup. USD/JPY at a fresh ~40-year extreme, hedge funds/asset managers near-record short yen, BoJ hiking, and Japan's MOF deliberately refusing to name an intervention level — all pointing toward a setup that could unwind sharply without much warning.",
+    "The Fed's own reaction function is being read two different ways by different sources this week. A 75.6% July-hold reading sits alongside separate commentary describing markets sharply raising July-hike odds — today's ISM Services PMI is the next data point that could tip this either way."
+  ],
+  "decisionDashboard": {
+    "overallConfidence": 58,
+    "confidenceDelta": "∆ vs last report: -2",
+    "portfolioTiltNote": "Modest short-JPY-carry-fade, short-AUD-vs-NZD tilt, low-to-moderate conviction given two live event risks this week. Informational context only — explicitly not a personalized allocation recommendation."
+  },
+  "knownIssues": [
+    "USD/JPY was the only Tier 1 pair with a confirmed fresh Monday (6 Jul) print this session; EUR/USD, GBP/USD, USD/CHF, USD/CAD, and AUD/USD all relied on the most recent confirmed prints from 1-3 Jul. Worth checking against a live terminal at the next Monday open.",
+    "NZD/USD positioning shows a genuine conflict this session between \"persistent net-short\" and the 4 Jul report's \"unwound to a 6-month low\" — surfaced rather than resolved; the delayed CFTC report (due 6 Jul, ~3:30pm ET) should clarify this at the next run.",
+    "Global Equity Leaderboard: FTSE 100, DAX, and Shanghai Composite YTD %, plus 12-month trailing for KOSPI, S&P 500, FTSE, and DAX, could not be confirmed with a fresh figure this session — index levels were found but not YTD/12-month percentages. Sensex's -9.3% YTD figure is from early May 2026 and is flagged as dated rather than reused as current.",
+    "Nikkei 225's 12-month trailing return shows a genuine conflict this session (~75% vs. ~80.5% depending on source) — both surfaced rather than picking one.",
+    "Gold and Brent crude prices could not be confirmed with a fresh 6 Jul print this session; both carried at their most recent confirmed levels (4 Jul and last Friday, respectively) with that dating made explicit.",
+    "This is the second run of the merged structure (first run: 4 Jul 2026) — Section 2's Performance Review, hit-rate tracker, and Section 9/15 deltas now have a genuine one-report baseline to compare against, used above.",
+    "Carried forward from 4 Jul: COT/positioning data remains inherently lagged; today's delayed CFTC release (due ~3:30pm ET, 6 Jul) had not posted at the time of this report's compilation, so positioning figures above still reference the 23 Jun reporting week where a fresher read wasn't separately confirmed this session.",
+    "Intraday refresh note: this report was regenerated later in the day (per an explicit user instruction to update the scheduled task's PDF requirement and re-run it). EUR/USD (1.1439), GBP/USD (1.3357), and AUD/USD (0.6943) picked up genuinely fresher confirmed intraday quotes on this pass. USD/CHF and USD/CAD still could not be pinned to a fresh Monday print even on this later check. US ISM Services PMI had still not posted as of this later compilation either (May's 54.5% remains the last confirmed reading), and the CFTC COT report remained pending its ~3:30pm ET release — both unresolved gaps carry forward unchanged from the morning run."
+  ],
+  "sections": [
+    {
+      "number": 1,
+      "title": "Market Regime & Executive Summary",
+      "raw": "**Regime classification: Central-Bank-Driven, sharpening into Event-Driven ahead of Wednesday's RBNZ decision and FOMC minutes.**\n\nJustification: VIX sits at 15.81 (-2.11%, low, risk-on), equities are mixed-to-firm (Dow +1.14%, S&P 500 ~flat at 7,483, Nasdaq -0.80%), and the US 10Y holds near 4.48% — none of this signals acute stress. The real driver is a fast-moving rates repricing story on two fronts at once: the Fed's September-hike odds remain contested (75.6% July-hold priced as of 4 Jul CME FedWatch, though separate June 18 Fed commentary flagged markets sharply raising July-hike odds too — a genuine cross-source conflict, surfaced rather than resolved), and the RBNZ's Wednesday decision has flipped from a comfortable hold to a live coin-flip (~66% market-implied hike odds, down from over 80% a few weeks ago, while at least one bank desk, Westpac, still expects a hold).\n\n**Executive Summary:** The single biggest cross-asset driver is the RBNZ's Wednesday OCR decision colliding with a still-unsettled Fed rate path — both now carry genuine two-way event risk rather than a clean consensus outcome. USD/JPY has pushed to a fresh 40-year weak-yen extreme (~162), with hedge funds and asset managers holding near-record bearish yen bets even as the BoJ hikes and Japan's MOF stays deliberately silent on an intervention trigger level — a classic crowded-trade setup. AUD's positioning remains at a 9-year/record extreme, a second crowded-long risk. Gold holds near recent highs (~$4,189/oz) and WTI has eased to ~$68, consistent with a de-escalated Middle East risk premium. Today's ISM Services PMI (10:00 ET) and this week's FOMC minutes and RBNZ decision are the catalysts that will resolve or extend these tensions."
+    },
+    {
+      "number": 2,
+      "title": "Performance Review",
+      "raw": "*Reviewing the July 4, 2026 report's Section 9 (then Section 8) High-Conviction Trade Ideas — the first two ideas issued under the merged report structure.*\n\n| Idea (as published 4 Jul) | Outcome | Hypothetical P&L if followed | Key Lesson |\n|---|---|---|---|\n| **Long EUR/CHF** — Bullish. Entry 0.9150-0.9220, Target 0.9350/0.9420, Stop 0.9080 (daily close) | **Still Pending** — live search today puts EUR/CHF at ~0.9184-0.9194, squarely inside the published entry zone; neither target, stop, nor an invalidation condition has been reached | Approximately flat (roughly breakeven to +5-10 pips from a ~0.9185 mid-entry against today's ~0.9190 print) — **N/A, still pending** for a real result | The trending-COT/passive-safe-haven macro divergence hasn't yet forced a technical resolution over a single (largely data-light) weekend; the technicals layer is the one that hasn't confirmed anything yet, for better or worse |\n| **Long NZD/USD** — Bullish. Entry 0.5630-0.5680, Target 0.5750/0.5820, Stop 0.5580 (daily close) | **Still Pending** — live search today shows conflicting reference points (~0.567 per one source describing a \"near 7-month low,\" ~0.5711 per another derived from a USD/NZD quote); either reading sits at or just above the top of the published entry zone, short of target/stop | Modest unrealized gain if filled near the zone's midpoint (~0.5655), roughly +15 to +55 pips depending on which of today's conflicting NZD/USD reads is used — **N/A, still pending** for a confirmed result | The RBNZ catalyst (8 Jul decision) that this idea was built around hasn't landed yet — a positioning-based tailwind can carry a trade in the right direction before the actual confirming event, but the thesis isn't proven until Wednesday |\n\n**Running Hit Rate: 0 played out / 0 invalidated / 2 still pending, out of 2 total ideas issued since July 4, 2026 (first-run date of the merged structure).** Both ideas carry forward unresolved into tomorrow's review."
+    },
+    {
+      "number": 3,
+      "title": "Central Bank Policy Rates",
+      "raw": "| Bank | Rate | Last Move | Next Meeting | Bias |\n|---|---|---|---|---|\n| Fed | 3.50-3.75% (upper limit) | Held, 17 Jun 2026 (4th straight hold; Kevin Warsh's first meeting as chair) | 28-29 Jul 2026 | Split, contested — CME FedWatch (4 Jul read) shows 75.6% odds of a July hold, but separate Fed-commentary-driven coverage (18 Jun) describes markets sharply raising July-hike odds too; both readings surfaced rather than reconciled. September remains the bigger open question |\n| ECB | Deposit 2.25% / Refi 2.40% | Hiked, 17 Jun 2026 (first hike since 2023) | 23-24 Jul 2026 | Hawkish, but fading — June Eurozone CPI cooled to 2.8% y/y (from 3.2%), Lagarde's dovish tone has cut odds of a third hike this year |\n| BoE | 3.75% | Held (7-2 vote), 17 Jun 2026 | 30 Jul 2026 | Neutral-hawkish |\n| BoJ | 1.00% | Hiked, 16 Jun 2026 (25bp, 7-1 vote; highest since 1995) | 30-31 Jul 2026 | Hawkish — further hikes flagged; MOF (Katayama) deliberately declines to name an intervention trigger level, a strategy described as maximizing surprise value after ~$72.5bn already spent on intervention (late Apr-late May) |\n| BoC | 2.25% (Bank Rate 2.50%, deposit 2.20%) | Held, 10 Jun 2026 (5th straight hold) | 15 Jul 2026 | Neutral; markets and economists see rates on hold for much of 2026, with hike risk (not cut risk) the tail scenario if inflation stays sticky |\n| RBA | 4.35% | Held, Jun 2026 | 10-11 Aug 2026 | Hawkish-hold |\n| RBNZ | 2.25% | Held, May 2026 (3rd straight hold) | 8 Jul 2026, 2:00pm NZST (Tue 7 Jul ~22:00 ET / Wed 8 Jul ~02:00 GMT) | Hawkish repricing, genuinely live — market-implied odds of a July hike are ~66% (down from over 80% a few weeks earlier), while at least one bank desk (Westpac) still expects a hold; a real split, not a formality |\n| SNB | 0.00% | Held (\"dovish hold\"), 18 Jun 2026 | September 2026 (SNB meets quarterly: Mar/Jun/Sep/Dec) | Neutral; parked at the zero bound |\n\n**Key divergence:** The RBNZ has gone from the week's most settled call to its most contested — market pricing has swung from a comfortable hold to a genuine coin-flip on a July hike, while the Fed's own reaction function is being read two different ways depending on the source. BoJ remains the cycle's clearest unilateral hawkish outlier (hiking into a currency that's still making 40-year lows), a divergence that intervention risk keeps sharpened rather than resolved."
+    },
+    {
+      "number": 4,
+      "title": "Currency Strength Overview",
+      "raw": "*Methodology note: scores below are a qualitative synthesis of yield differentials, recent price action, and COT positioning bias — not a back-tested quantitative model. Treat as directional context, not a precision output.*\n\n| Currency | Strength (0-100) | Weekly Chg | Bias | 1-line driver |\n|---|---|---|---|---|\n| CHF | 69 | +1.0 | Bullish | Safe-haven bid persists; gross shorts fell a further 37% (large specs) / 33% (asset managers) per latest COT-adjacent coverage |\n| EUR | 66 | 0 | Bullish, moderating | COT longs still at an 18-month (large specs) / 15-month (asset managers) high, but Lagarde's dovish tone and cooling CPI cap further hawkish conviction |\n| USD | 52 | +2.0 | Neutral, two-way risk sharpening | A fresh data conflict (75.6% July-hold vs. commentary describing markets raising July-hike odds) makes the dollar's near-term path more contested, not less |\n| GBP | 60 | 0 | Bullish | BoE hawkish hold intact; no fresh COT read confirmed this session beyond early-May positioning data |\n| NZD | 47 | +3.0 | Neutral, improving fast | RBNZ hike odds firmed to ~66% for Wednesday — a genuinely fresh hawkish catalyst — though this session's search also surfaced a conflicting COT read describing NZD shorts as \"persistent,\" at odds with the prior report's \"unwound to a 6-month low\" framing |\n| AUD | 57 | -1.0 | Neutral-Bullish, crowded | RBA's highest G10 real rate still supportive, but COT positioning remains at a 9-year (large specs)/record (asset managers) extreme — an unwind risk, not a clean continuation signal |\n| CAD | 45 | -1.0 | Neutral-Bearish | BoC on hold into 15 Jul; WTI eased further to ~$68, a soft tailwind removed |\n| JPY | 41 | -1.0 | Bearish, crowded and unstable | Yen at a fresh ~40-year weak extreme; large specs/hedge funds and asset managers hold near-record bearish (short-yen) bets even as BoJ hikes — a fundamentally hawkish story fighting a technically crowded positioning picture |\n\n**Clearest divergence:** CHF (strongest, 69) vs. JPY (weakest, 41) — a 28-point spread. CHF's strength is a passive, low-drama safe-haven/zero-rate story; JPY's weakness is the opposite — an actively crowded, intervention-shadowed trade where the fundamental story (BoJ hiking) and the positioning story (near-record short-yen bets) are pulling against each other, a materially higher-uncertainty setup.\n\n**Known data conflict flagged:** NZD's positioning read this session (\"persistent net-short,\" \"heavily net-short\") conflicts with the 4 Jul report's framing (\"shorts unwound to a 6-month low\"). Both are surfaced here rather than silently resolved; treat NZD positioning context as unsettled pending Wednesday's CFTC update."
+    },
+    {
+      "number": 5,
+      "title": "Tier 1 Pairs — Directional Read",
+      "raw": "- **EUR/USD** 1.1439 (refreshed intraday confirmation, this pass) — broad dollar softness from the June NFP miss still the dominant recent driver, though today's contested Fed-odds conflict adds fresh two-way risk.\n- **GBP/USD** 1.3357 (refreshed intraday confirmation, this pass — range 1.3335-1.3381) — tracking the same broad-dollar theme as EUR/USD.\n- **USD/JPY** ~161.95 (+0.36% today, confirmed) — yen pushed to a fresh ~40-year weak extreme; BoJ's hiking path is being overwhelmed by near-record short-yen positioning and a widest-in-G10 rate gap that still favors carry.\n- **USD/CHF** ~0.8030 (still carried from the most recent confirmed print, ~2 Jul — a fresh intraday Monday quote could not be confirmed even on this later pass) — tracking broad-dollar softness, consistent with EUR/USD's recent move.\n- **USD/CAD** ~1.4184 (still carried from the most recent confirmed print, 2 Jul — a fresh intraday Monday quote could not be confirmed even on this later pass) — soft-dollar tailwind offset by WTI easing further to ~$68.\n- **AUD/USD** 0.6943 (+0.34%, refreshed intraday confirmation, this pass) — RBA's hawkish hold supportive, but record-crowded long positioning is the bigger near-term risk than the spot level itself.\n- **NZD/USD** ~0.567-0.571 (conflicting sources this session — one describes NZD \"near a 7-month low\" around 0.567, another derives ~0.5711 from a USD/NZD quote) — RBNZ's Wednesday decision, now a genuine coin-flip, is the dominant near-term driver."
+    },
+    {
+      "number": 6,
+      "title": "Layer-by-Layer Synthesis",
+      "raw": "**USD/JPY**\n- *Data Layer:* Spot ~161.95 (+0.36% today), a fresh ~40-year weak-yen extreme (last breached this level in December 1986). US 10Y ~4.48%, BoJ policy rate 1.00%.\n- *Macro Layer:* BoJ hiked to 1% on 16 Jun (highest since 1995), with further hikes flagged; Japan has already spent an estimated ~$72.5bn on FX intervention (late Apr-late May) without reversing the underlying trend. The widest G10 rate differential still technically favors carry despite the hikes.\n- *Market Structure Layer:* Grinding to fresh multi-decade lows for the yen with no confirmed reversal candle; a persistent one-directional trend rather than a range.\n- *Positioning Layer:* Hedge funds and asset managers together hold near-record bearish (short-yen) wagers — a crowded trade that increases the risk of a sharp, disorderly reversal if intervention lands or flows turn supportive, per this session's research.\n- *Sentiment Layer:* MOF's Katayama has deliberately declined to name an intervention trigger level — described in coverage as a strategy to maximize surprise value — which itself is a source of two-way event risk layered on top of already-stretched positioning.\n- *Decision Layer:* The combination of a record-crowded short-yen trade, a hawkish BoJ, and an intervention authority that refuses to telegraph its line in the sand argues for treating further yen weakness as a fading, not chasing, opportunity — see Section 9.\n\n**AUD/NZD**\n- *Data Layer:* Cross ~1.2166 (as of 5 Jul), down from a 29 Jun high of 1.22289, having found a recent low of 1.2134 on 2 Jul.\n- *Macro Layer:* RBA's 4.35% cash rate remains the highest real rate in the G10 set, but the RBNZ's Wednesday decision — now a ~66% market-implied hike probability versus a still-comfortable RBA hold cycle until 11 Aug — is the fresher, more actionable catalyst this week.\n- *Market Structure Layer:* A clean short-term pullback range between the 29 Jun high and 2 Jul low, with no confirmed breakout yet in either direction.\n- *Positioning Layer:* AUD net-long positioning sits at a 9-year high (large speculators) and a record high (asset managers), at the 100th percentile across the 3-month, 1-year, and 3-year windows — a textbook crowded-long setup layered on top of the RBNZ's freshly hawkish repricing.\n- *Sentiment Layer:* VIX ~15.8, risk-on — a mild headwind for a short-AUD idea generally, since high-beta AUD tends to hold up better in risk-on tape.\n- *Decision Layer:* A record-crowded AUD long colliding with a resurgent hawkish RBNZ catalyst is a cleaner relative-value setup than picking a single-pair USD direction this week — see Section 9."
+    },
+    {
+      "number": 7,
+      "title": "Correlation Check",
+      "raw": "EUR/USD and GBP/USD could not be confirmed against fresh Monday prints, but both are tracking the same broad-dollar-softness narrative from Friday's close, consistent with their normal positive correlation holding. EUR/USD and USD/CHF likewise appear consistent with their usual inverse relationship on the data available, though neither pair has a confirmed fresh Monday print to verify against. The bigger story today is less about EUR/GBP/CHF co-movement and more a two-front event-risk day: yen positioning (idiosyncratic, Japan-specific) and RBNZ repricing (idiosyncratic, NZD/AUD-specific) are each running on their own catalysts rather than a single broad-dollar driver.\n\n**Read: Messy** — with two idiosyncratic, non-USD-driven stories (yen positioning/intervention risk, RBNZ repricing) running alongside the broader dollar narrative, today does not look like a single-driver day."
+    },
+    {
+      "number": 8,
+      "title": "Rates & Risk Backdrop",
+      "raw": "| Metric | Level |\n|---|---|\n| US 10Y yield | ~4.48% (reference level, last confirmed close) |\n| VIX | 15.81 (-2.11%) |\n| S&P 500 | 7,483.24 (~flat, 0.00%) |\n| Nasdaq Composite | 25,832.67 (-0.80%) |\n| Dow Jones | 52,900.07 (+1.14%) |\n| Nikkei 225 | 69,744 (+1.47%, last confirmed close; no fresher Monday print found this session) |\n| FTSE 100 | ~10,679 (last confirmed close; no fresher Monday print found this session) |\n| Gold | ~$4,188.57/oz (last confirmed print, 4 Jul) |\n| WTI crude | $68.33/bbl (-0.63%, today) |\n| Brent crude | ~$72/bbl (last confirmed reference, Fri) |"
+    },
+    {
+      "number": 9,
+      "title": "High-Conviction Trade Ideas",
+      "raw": "*Two ideas meet the bar this week. A tempting-but-flawed theme (long EUR/USD momentum continuation) is explicitly excluded — see below. All conditions are things to verify on your own chart/feed before acting; this desk has web search only, not live tick or chart access, so no candle or volume observation below is asserted as already confirmed.*\n\n**Idea 1: Short USD/JPY (theme: fade the record-crowded short-yen carry trade against a hiking BoJ and an intervention-shy MOF) — Bearish**\n\n| Field | Detail |\n|---|---|\n| Bias | Bearish USD/JPY — hedge funds and asset managers hold near-record bearish (short-yen) positioning even as BoJ hikes into a 40-year weak-yen extreme; that combination is a classic crowded-trade unwind setup, not a fundamentals-confirms-the-trend story |\n| Entry Zone | 161.50-162.80 (approximate; flag as needing live verification — no fresh Monday print beyond today's 161.95 quote was confirmed) |\n\n**Confirmation Criteria to Watch For:** a bearish engulfing or shooting-star candle on the daily chart near the 162-163 area; a volume spike accompanying any pullback from current levels; a successful retest of the 161.00 area (prior support) holding as new resistance; or an outright intervention headline, which would itself act as the trigger. Verify on your own chart before acting — this desk has web search only, not live charting.\n\n| | |\n|---|---|\n| Target(s) | 159.50, then 157.80 |\n| Stop / Invalidation | Daily close above 163.50 (a fresh high would signal the carry trade still has legs) |\n| Risk/Reward | approx. 1:2.0 |\n\n| Component | Weight | Contribution | Reasoning |\n|---|---|---|---|\n| Macro (35%) | 35% | 28/35 | BoJ hiked to a 27-year high (1%), further hikes flagged, and ~$72.5bn already spent on intervention without reversing the trend — a clear, current divergence between policy direction and price action |\n| Technicals (25%) | 25% | 12/25 | Yen sits at a fresh 40-year weak extreme with no confirmed reversal candle yet — the trend is still technically intact against this idea |\n| Positioning (20%) | 20% | 17/20 | Hedge funds/asset managers near-record bearish yen — a genuinely crowded trade, the strongest single input for this idea |\n| Sentiment (15%) | 15% | 7/15 | Risk-on backdrop (VIX ~15.8) is a headwind — carry trades tend to persist longer in low-vol regimes |\n| Volatility (5%) | 5% | 3/5 | Low VIX cuts both ways — supports carry persistence but also means any intervention shock would be a larger relative jump |\n\n**Total Confidence: 67/100** (∆ vs last report: not applicable — new idea)\n\n**Idea 2: Short AUD/NZD (theme: fade AUD's record-crowded long against a resurgent hawkish RBNZ into Wednesday's decision) — Bearish**\n\n| Field | Detail |\n|---|---|\n| Bias | Bearish AUD/NZD — AUD positioning is at a 9-year (large specs)/record (asset managers) extreme (100th percentile across multiple windows), while NZD has a fresh hawkish catalyst (RBNZ hike odds near 66% for Wednesday, up sharply from weeks earlier) |\n| Entry Zone | 1.2100-1.2170 (approximate; verify live cross rate) |\n\n**Confirmation Criteria to Watch For:** a bearish engulfing or shooting-star candle near the 29 Jun high of 1.22289; a volume spike on a break below the 2 Jul low of 1.2134; a successful retest of 1.2134 holding as resistance after a breakdown. Verify on your own chart before acting — this desk has web search only, not live charting.\n\n| | |\n|---|---|\n| Target(s) | 1.1950, then 1.1850 |\n| Stop / Invalidation | Daily close above 1.2250 |\n| Risk/Reward | approx. 1:2.3 |\n\n| Component | Weight | Contribution | Reasoning |\n|---|---|---|---|\n| Macro (35%) | 35% | 24/35 | RBNZ hike odds firming to ~66% is the fresher catalyst, though at least one bank desk (Westpac) still expects a hold — a genuine, not one-sided, macro case |\n| Technicals (25%) | 25% | 15/25 | Clean short-term pullback range (1.22289 high to 1.2134 low) with defined levels, but no confirmed breakdown yet |\n| Positioning (20%) | 20% | 17/20 | AUD net-long at a record/9-year extreme is the strongest single input — a textbook crowded-long unwind setup |\n| Sentiment (15%) | 15% | 7/15 | Broad risk-on is a mild headwind — high-beta AUD tends to hold up in risk-on tape |\n| Volatility (5%) | 5% | 3/5 | Wednesday's RBNZ decision is a binary event that cuts both ways for this cross |\n\n**Total Confidence: 66/100** (∆ vs last report: not applicable — new idea)\n\n**NO HIGH-CONVICTION TRADE: Long EUR/USD momentum continuation.** Excluded despite the broad-dollar-softness narrative that has driven EUR/USD higher over the past two weeks. The reason: no fresh Monday print could be confirmed for EUR/USD this session (last confirmed level is Friday's 1.1371-1.1454 range), and today's Fed-odds conflict (75.6% July-hold vs. commentary describing markets raising July-hike odds) means the core dollar-softness assumption behind this trade is itself contested this week, not settled. Chasing continuation on a stale print into a data point (today's ISM Services PMI) that could reprice the Fed narrative either way doesn't meet the bar.\n\nThese are analytical scenarios for your own judgment, not personalized financial advice."
+    },
+    {
+      "number": 10,
+      "title": "Contrarian Check & Risks",
+      "raw": "**Primary thesis risk:** This report leans on two crowded-positioning unwind theses (short USD/JPY, short AUD/NZD) that both require price to reverse against a still-intact trend. The strongest counter-argument: in a low-VIX, risk-on backdrop (VIX ~15.8), crowded trades can grind further before they reverse — carry trades in particular are known for \"slow bleed, fast unwind\" dynamics, and there is no evidence yet of the reversal catalyst (intervention, RBNZ hold) having actually landed.\n\n**Overall-view invalidation factor:** A strong ISM Services PMI print today, combined with the Fed's contested-hawkish read gaining further confirmation, would extend USD strength broadly and could push USD/JPY higher before any yen-positioning unwind materializes — invalidating the crowded-trade thesis on a delayed basis rather than an immediate one.\n\n- **Bull case (for this report's ideas):** BoJ or MOF delivers a surprise intervention or hawkish signal this week, RBNZ hikes as ~66% pricing implies, both crowded trades unwind quickly — USD/JPY and AUD/NZD shorts both work. *Invalidated by:* a confirmed, sustained break of 163.50 in USD/JPY or 1.2250 in AUD/NZD.\n- **Base case:** Both trades stay range-bound into their respective catalysts (RBNZ Wednesday, any BoJ/MOF action later in the month), with modest two-way chop until a real trigger lands. *Invalidated by:* either the RBNZ decision or an intervention headline breaking the current holding pattern decisively in either direction.\n- **Bear case (for this report's ideas):** RBNZ holds (as Westpac expects), risk-on persists, carry trades extend further, both shorts get stopped out. *Invalidated by:* continued soft-USD data confirming the labor-market cooling trend from June, which would argue for a broader dollar-negative regime instead."
+    },
+    {
+      "number": 11,
+      "title": "Global Equity Leaderboard",
+      "raw": "| Index | YTD | 12-Month |\n|---|---|---|\n| KOSPI | ~+88% (best performer; this session's read, revised down from the 4 Jul report's ~+100% approximation) | data unavailable this session |\n| Nikkei 225 | ~+33% (this session) | ~+75-80% (sources conflicted this session between ~75% and ~80.5%; both surfaced rather than picking one) |\n| S&P 500 | ~+9-11% (sources conflicted this session depending on measurement date) | data unavailable this session |\n| FTSE 100 | data unavailable this session — only an index level (~10,679) was confirmed, no fresh YTD % | data unavailable |\n| DAX | data unavailable this session — only an index level (~25,779) was confirmed, no fresh YTD % | data unavailable |\n| Sensex | ~-9.3% (last confirmed reading, early May 2026 — no fresher figure surfaced this session, flagged as dated) | data unavailable |\n| Shanghai Composite | data unavailable this session — index level ~4,044-4,152 confirmed (sources conflicted on exact level), no fresh YTD % | ~+16-21% (sources conflicted this session) |\n\n**Biggest driver:** KOSPI's near-90% YTD run is a memory-chip story — SK Hynix has overtaken Samsung Electronics for the top market-cap spot on the exchange, and memory-chip names alone are now roughly half the index's weighting and an estimated ~70% of 2026's gains. No ranking change from the 4 Jul report — KOSPI remains the top performer, Sensex remains the laggard among the names tracked."
+    },
+    {
+      "number": 12,
+      "title": "Economic Catalyst Check",
+      "raw": "**Today, Monday 6 Jul:** US ISM Services PMI (USD), 10:00 ET / 14:00 GMT — not yet released as of this report's compilation; May's reading was 54.5%. Eurozone Retail Sales (EUR) already released earlier today, ~05:00 ET / 09:00 GMT — came in at +0.3% m/m, marginally below the +0.4% consensus.\n\n**Wednesday, 8 Jul:** RBNZ Official Cash Rate decision (NZD), 2:00pm NZST — approximately 22:00 ET Tuesday 7 Jul / 02:00 GMT Wednesday 8 Jul, with a media conference to follow at 3:00pm NZST. US FOMC June meeting minutes (USD), ~14:00 ET / 18:00 GMT.\n\n**Thursday, 9 Jul:** China CPI (CNY-adjacent, affects broader risk/AUD sentiment) — exact release time not confirmed this session.\n\n**Friday, 10 Jul:** Germany CPI (final print, EUR), Canadian June labor market data (CAD).\n\n**Following week:** Tuesday, 14 Jul — US June CPI (USD), 8:30am ET / 12:30pm GMT, the next major test of the Fed's contested rate path. Wednesday, 15 Jul — Bank of Canada rate decision (CAD), ~10:00 ET / 14:00 GMT."
+    },
+    {
+      "number": 13,
+      "title": "No-Trade Zone Flag",
+      "raw": "**Yes — elevated, cross-referencing today's Messy correlation read.** Two idiosyncratic, non-USD event risks (RBNZ decision Wednesday, yen intervention/positioning risk at any time) are live simultaneously, and today's ISM Services PMI could itself reprice the contested Fed narrative. A Messy correlation environment combined with three separate live catalysts argues for reduced size on any single-pair signal until at least Wednesday's RBNZ decision clarifies one leg of the picture."
+    },
+    {
+      "number": 14,
+      "title": "Key Theme Driving Everything Right Now",
+      "raw": "1. **The RBNZ's Wednesday decision has flipped from a formality to a genuine coin-flip.** Market-implied hike odds near 66% (down from over 80% weeks earlier) sit against at least one bank desk still expecting a hold — a real, two-sided catalyst rather than a rubber stamp.\n2. **The yen carry trade is now a crowded, intervention-shadowed setup.** USD/JPY at a fresh ~40-year extreme, hedge funds/asset managers near-record short yen, BoJ hiking, and Japan's MOF deliberately refusing to name an intervention level — all pointing toward a setup that could unwind sharply without much warning.\n3. **The Fed's own reaction function is being read two different ways by different sources this week.** A 75.6% July-hold reading sits alongside separate commentary describing markets sharply raising July-hike odds — today's ISM Services PMI is the next data point that could tip this either way."
+    },
+    {
+      "number": 15,
+      "title": "Decision Dashboard Snapshot",
+      "raw": "**Overall Market Confidence: 58/100** (∆ vs last report: -2). The modest step-down from 60 reflects two fresh, live binary catalysts (RBNZ Wednesday, contested Fed odds) layered on top of the still-unresolved crowded-positioning risks (JPY, AUD) flagged in the prior report — more moving parts, not fewer, even as the underlying risk-on backdrop (VIX ~15.8) hasn't deteriorated.\n\n**Portfolio Tilt Note:** Modest short-JPY-carry-fade, short-AUD-vs-NZD tilt, low-to-moderate conviction given two live event risks this week. Informational context only — explicitly not a personalized allocation recommendation."
+    },
+    {
+      "number": 16,
+      "title": "Historical Parallel Watch",
+      "raw": "No strong historical parallel today. USD/JPY's crowded near-record short-yen positioning against an intervention-shy MOF has a partial echo of Archetype 4 (complacent one-sided positioning around a \"guaranteed\" level), but the parallel isn't clean — Japan's MOF is deliberately not naming a level (the opposite of the SNB's defended 1.20 floor), and the BoJ is actively hiking rather than defending a static peg. Treated as a partial, not genuine, match."
+    },
+    {
+      "number": 17,
+      "title": "Known issues / refinements",
+      "raw": "- USD/JPY was the only Tier 1 pair with a confirmed fresh Monday (6 Jul) print this session; EUR/USD, GBP/USD, USD/CHF, USD/CAD, and AUD/USD all relied on the most recent confirmed prints from 1-3 Jul. Worth checking against a live terminal at the next Monday open.\n- NZD/USD positioning shows a genuine conflict this session between \"persistent net-short\" and the 4 Jul report's \"unwound to a 6-month low\" — surfaced rather than resolved; the delayed CFTC report (due 6 Jul, ~3:30pm ET) should clarify this at the next run.\n- Global Equity Leaderboard: FTSE 100, DAX, and Shanghai Composite YTD %, plus 12-month trailing for KOSPI, S&P 500, FTSE, and DAX, could not be confirmed with a fresh figure this session — index levels were found but not YTD/12-month percentages. Sensex's -9.3% YTD figure is from early May 2026 and is flagged as dated rather than reused as current.\n- Nikkei 225's 12-month trailing return shows a genuine conflict this session (~75% vs. ~80.5% depending on source) — both surfaced rather than picking one.\n- Gold and Brent crude prices could not be confirmed with a fresh 6 Jul print this session; both carried at their most recent confirmed levels (4 Jul and last Friday, respectively) with that dating made explicit.\n- This is the second run of the merged structure (first run: 4 Jul 2026) — Section 2's Performance Review, hit-rate tracker, and Section 9/15 deltas now have a genuine one-report baseline to compare against, used above.\n- Carried forward from 4 Jul: COT/positioning data remains inherently lagged; today's delayed CFTC release (due ~3:30pm ET, 6 Jul) had not posted at the time of this report's compilation, so positioning figures above still reference the 23 Jun reporting week where a fresher read wasn't separately confirmed this session.\n- Intraday refresh note: this report was regenerated later in the day (per an explicit user instruction to update the scheduled task's PDF requirement and re-run it). EUR/USD (1.1439), GBP/USD (1.3357), and AUD/USD (0.6943) picked up genuinely fresher confirmed intraday quotes on this pass. USD/CHF and USD/CAD still could not be pinned to a fresh Monday print even on this later check. US ISM Services PMI had still not posted as of this later compilation either (May's 54.5% remains the last confirmed reading), and the CFTC COT report remained pending its ~3:30pm ET release — both unresolved gaps carry forward unchanged from the morning run.\n\n*(This section is for the user to edit directly — notes here carry forward to future runs.)*"
+    }
+  ],
+  "decisionSummary": {
+    "topIdea": {
+      "label": "Short USD/JPY",
+      "pair": "USD/JPY",
+      "direction": "Short",
+      "confidence": 67,
+      "delta": "∆ vs last report: not applicable — new idea",
+      "scoring": {
+        "headers": [
+          "Component",
+          "Weight",
+          "Contribution",
+          "Reasoning"
+        ],
+        "rows": [
+          {
+            "component": "Macro (35%)",
+            "weight": "35%",
+            "contribution": "28/35",
+            "reasoning": "BoJ hiked to a 27-year high (1%), further hikes flagged, and ~$72.5bn already spent on intervention without reversing the trend — a clear, current divergence between policy direction and price action"
+          },
+          {
+            "component": "Technicals (25%)",
+            "weight": "25%",
+            "contribution": "12/25",
+            "reasoning": "Yen sits at a fresh 40-year weak extreme with no confirmed reversal candle yet — the trend is still technically intact against this idea"
+          },
+          {
+            "component": "Positioning (20%)",
+            "weight": "20%",
+            "contribution": "17/20",
+            "reasoning": "Hedge funds/asset managers near-record bearish yen — a genuinely crowded trade, the strongest single input for this idea"
+          },
+          {
+            "component": "Sentiment (15%)",
+            "weight": "15%",
+            "contribution": "7/15",
+            "reasoning": "Risk-on backdrop (VIX ~15.8) is a headwind — carry trades tend to persist longer in low-vol regimes"
+          },
+          {
+            "component": "Volatility (5%)",
+            "weight": "5%",
+            "contribution": "3/5",
+            "reasoning": "Low VIX cuts both ways — supports carry persistence but also means any intervention shock would be a larger relative jump"
+          }
+        ]
+      }
+    },
+    "avoid": {
+      "label": "Long EUR/USD momentum continuation.",
+      "reason": "Excluded despite the broad-dollar-softness narrative that has driven EUR/USD higher over the past two weeks. The reason: no fresh Monday print could be confirmed for EUR/USD this session (last confirmed level is Friday's 1.1371-1.1454 range), and today's Fed-odds conflict (75.6% July-hold vs. commentary describing markets raising July-hike odds) means the core dollar-softness assumption behind this trade is itself contested this week, not settled. Chasing continuation on a stale print into a data point (today's ISM Services PMI) that could reprice the Fed narrative either way doesn't meet the bar.",
+      "source": "excluded"
+    },
+    "nextEvent": "Today, Monday 6 Jul:: US ISM Services PMI (USD), 10:00 ET / 14:00 GMT — not yet released as of this report's compilation; May's reading was 54.5%. Eurozone Retail Sales (EUR) already released earlier today, ~05:00 ET / 09:00 GMT — came in a",
+    "overallConfidence": 58,
+    "morningBrief": "Good morning. Today's regime: Central-Bank-Driven. Overall market confidence is 58/100. The strongest idea on the desk today is Short USD/JPY, confidence 67/100. Biggest risk to watch: Two idiosyncratic, non-USD event risks (RBNZ decision Wednesday, yen intervention/positioning risk at any time) are live simultaneously, and today's ISM Services PMI could itself reprice the contested Fed narrative."
+  }
+}

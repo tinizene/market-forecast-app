@@ -1,0 +1,487 @@
+{
+  "sourceFile": "fx-dashboard-2026-07-04.md",
+  "title": "Institutional FX Dashboard & Intelligence Report — July 4, 2026",
+  "reportDate": "2026-07-04",
+  "reportDateLabel": "July 4, 2026",
+  "regime": {
+    "classification": "Central-Bank-Driven, transitioning toward Liquidity-Driven into the July 4 holiday weekend.",
+    "justification": "VIX sits at ~15.97 (low, risk-on), equities are firm-to-mixed (Dow +1.03%, Nasdaq flat-to-down, Nikkei +1.47%), and the US 10Y eased to ~4.485% - none of this reads as acute stress. The real driver is a monetary-policy repricing fight: June's weak US jobs report (+57K vs. ~110K expected) reopened Fed cut pricing, but the latest CME FedWatch-style read (as of 4 Jul) shows a sharp hawkish counter-swing - 75.6% odds of a July hold, but by September only 29.8% odds of a hold vs. a combined ~70.2% odds of a hike (50.6% for 25bp, 19.6% for 50bp). That is a materially more hawkish read than the 37-65% range surfacing earlier in the week, and the gap between those two framings is itself the story.",
+    "executiveSummary": "The single biggest cross-asset driver remains the tug-of-war between the soft June NFP print (dollar-negative) and a fast-hawkish Fed repricing for September (dollar-positive) - these are pulling in opposite directions at the same time. EUR/USD, GBP/USD, and AUD/USD all firmed together into Friday's close, a clean broad-dollar move, while COT positioning shows EUR longs at an 18-month high and JPY positioning genuinely unstable (crowded/rolling over depending on the source). Gold sits near a two-week high (~$4,170/oz) and oil has faded toward pre-conflict levels (WTI ~$68-69, Brent ~$71-72) as Middle East de-escalation removes an inflation tailwind. With three straight non-trading days behind us (Thu close to Fri holiday to weekend), treat every level below as a stale reference until Monday's reopen."
+  },
+  "performanceReview": null,
+  "policyRates": {
+    "type": "rows",
+    "headers": [
+      "Bank",
+      "Rate",
+      "Last Move",
+      "Bias"
+    ],
+    "rows": [
+      {
+        "bank": "Fed",
+        "rate": "3.50-3.75% (upper limit)",
+        "last_move": "Held, 17 Jun 2026 (Warsh's first meeting as chair)",
+        "bias": "Split, and sharpening hawkish - weak NFP argues for cuts, but the latest (4 Jul) CME-style pricing shows just 29.8% odds of a September hold vs. ~70% combined odds of a hike, a notably more hawkish read than the 37-65% range seen earlier in the week. Next meeting 28-29 Jul"
+      },
+      {
+        "bank": "ECB",
+        "rate": "Deposit 2.25% / Refi 2.40%",
+        "last_move": "Hiked, 17 Jun 2026 (first hike since 2023)",
+        "bias": "Hawkish, but fading - June Eurozone CPI cooled to 2.8% y/y (from 3.2%) and Lagarde struck a dovish tone, cutting odds of a third hike this year"
+      },
+      {
+        "bank": "BoE",
+        "rate": "3.75%",
+        "last_move": "Held (7-2 vote), 17 Jun 2026",
+        "bias": "Neutral-hawkish; next decision 29-30 Jul"
+      },
+      {
+        "bank": "BoJ",
+        "rate": "1.00%",
+        "last_move": "Hiked, late Jun 2026",
+        "bias": "Hawkish; further hikes flagged. Finance Minister Katayama reiterated intervention readiness this week as JPY volatility picked up"
+      },
+      {
+        "bank": "BoC",
+        "rate": "2.25% (Bank Rate 2.50%, deposit 2.20%)",
+        "last_move": "Held, 10 Jun 2026 (5th straight hold)",
+        "bias": "Neutral; next decision 15 Jul"
+      },
+      {
+        "bank": "RBA",
+        "rate": "4.35%",
+        "last_move": "Held, Jun 2026",
+        "bias": "Hawkish-hold; next decision not until 11 Aug"
+      },
+      {
+        "bank": "RBNZ",
+        "rate": "2.25%",
+        "last_move": "Held, May 2026 (3rd straight hold)",
+        "bias": "Neutral, hawkish repricing building - next meeting 8 Jul (hold expected); market increasingly convinced the cutting cycle is over, with hikes seen from Sept"
+      },
+      {
+        "bank": "SNB",
+        "rate": "0.00%",
+        "last_move": "Held, 18 Jun 2026 (\"dovish hold\")",
+        "bias": "Neutral; parked at the zero bound"
+      }
+    ]
+  },
+  "currencyStrength": {
+    "type": "rows",
+    "headers": [
+      "Currency",
+      "Strength (0-100)",
+      "Weekly Chg",
+      "Bias",
+      "1-line driver"
+    ],
+    "rows": [
+      {
+        "currency": "CHF",
+        "strength_0_100": "68",
+        "weekly_chg": "+1.0",
+        "bias": "Bullish",
+        "1_line_driver": "Safe-haven bid, SNB at zero; COT gross shorts fell ~35% as the market covers bearish bets"
+      },
+      {
+        "currency": "EUR",
+        "strength_0_100": "66",
+        "weekly_chg": "+1.5",
+        "bias": "Bullish",
+        "1_line_driver": "ECB hiking cycle; COT net-longs at an 18-month high (large specs) / 15-month high (asset managers)"
+      },
+      {
+        "currency": "GBP",
+        "strength_0_100": "60",
+        "weekly_chg": "+0.5",
+        "bias": "Bullish",
+        "1_line_driver": "BoE hawkish hold; COT split - large specs net-long ~33k, asset managers net-short ~-13k"
+      },
+      {
+        "currency": "AUD",
+        "strength_0_100": "58",
+        "weekly_chg": "-0.8",
+        "bias": "Neutral-Bullish, crowded",
+        "1_line_driver": "RBA's highest G10 real rate remains supportive, but COT positioning is at a 9-year/record sentiment extreme (100th percentile) with price now pulling back"
+      },
+      {
+        "currency": "USD",
+        "strength_0_100": "50",
+        "weekly_chg": "0",
+        "bias": "Neutral, two-way risk",
+        "1_line_driver": "Large-spec USD shorts have unwound ~75% recently (less bearish), but a sudden hawkish Sept-hike repricing cuts the other way"
+      },
+      {
+        "currency": "CAD",
+        "strength_0_100": "46",
+        "weekly_chg": "-0.5",
+        "bias": "Neutral-Bearish",
+        "1_line_driver": "BoC on hold; COT net-shorts extending for a 2nd straight week, soft-ish oil"
+      },
+      {
+        "currency": "NZD",
+        "strength_0_100": "44",
+        "weekly_chg": "+0.8",
+        "bias": "Neutral, improving",
+        "1_line_driver": "RBNZ dovish bias, but COT shorts have unwound to a 6-month low; market pricing the cutting cycle as over"
+      },
+      {
+        "currency": "JPY",
+        "strength_0_100": "42",
+        "weekly_chg": "-1.0",
+        "bias": "Neutral-Bearish, unstable",
+        "1_line_driver": "Widest G10 rate gap still favors carry, but positioning is genuinely conflicted - one COT read shows crowding on both sides, a more recent read shows longs rolling toward net-short"
+      }
+    ]
+  },
+  "tier1Pairs": {
+    "format": "bullets",
+    "items": [
+      {
+        "pair": "EUR/USD",
+        "detail": "~1.1429 (+0.5% on the week) - broad dollar softness from the NFP miss outweighing fading ECB hike odds and a dovish Lagarde."
+      },
+      {
+        "pair": "GBP/USD",
+        "detail": "~1.335 (off a 1.3376 high on 2 Jul) - riding the same dollar-wide weakness as EUR, easing slightly off its week-high into the close."
+      },
+      {
+        "pair": "USD/JPY",
+        "detail": "~161.3 (yen firmer, extending a ~1% two-day gain) - yen strength amplified by Finance Minister Katayama's fresh intervention-readiness comments plus BoJ's hiking path."
+      },
+      {
+        "pair": "USD/CHF",
+        "detail": "~0.803 (approximate; no fresh Friday print found) - tracking the broad-dollar-weaker theme, consistent with EUR/USD's move."
+      },
+      {
+        "pair": "USD/CAD",
+        "detail": "~1.42 (approximate; latest confirmed print 1.4197 on 30 Jun) - soft-dollar tailwind for CAD offset by WTI holding in the high-$60s."
+      },
+      {
+        "pair": "AUD/USD",
+        "detail": "~0.6940 (+0.25%) - RBA's hawkish 4.35% hold plus broad dollar weakness both pushing the same direction, though positioning is crowded (see Section 3)."
+      },
+      {
+        "pair": "NZD/USD",
+        "detail": "~0.5666 (as of 1 Jul; no confirmed Friday print) - lagging peers on spot, but short-covering and a hawkish RBNZ repricing (hikes seen from Sept) are new tailwinds into the 8 Jul decision."
+      }
+    ]
+  },
+  "correlationCheck": {
+    "text": "EUR/USD and GBP/USD moved in the same direction into Friday's close (both firmer), a reversion to their normal positive correlation after Thursday's Bailey-driven decoupling. EUR/USD and USD/CHF are consistent with their usual inverse relationship: euro strength lines up with an implied softer dollar-vs-franc tape, though a fresh Friday USD/CHF print couldn't be confirmed directly. AUD/USD firming alongside EUR/USD and GBP/USD reinforces a single, broad-dollar driver rather than idiosyncratic, pair-by-pair stories.",
+    "read": "Clean"
+  },
+  "ratesRiskBackdrop": null,
+  "tradeIdeas": {
+    "ideas": [
+      {
+        "headline": "Idea 1: Long EUR/CHF (theme: fade franc's passive strength vs. a genuinely trending euro) - Bullish",
+        "fields": {
+          "Rationale": "EUR has the week's cleanest trending, not-yet-extreme positioning build (COT longs at an 18-month high) while CHF's strength is a passive safe-haven/zero-rate byproduct rather than an actively-bought conviction trade",
+          "Entry Zone": "0.9150-0.9220 (approximate; verify live cross rate)",
+          "Target(s)": "0.9350, then 0.9420",
+          "Stop / Invalidation": "0.9080 on a daily close basis",
+          "Risk/Reward": "approx. 1:2.1"
+        },
+        "scoring": {
+          "headers": [
+            "Component",
+            "Weight",
+            "Contribution"
+          ],
+          "rows": [
+            {
+              "component": "Macro (35%)",
+              "weight": "35%",
+              "contribution": "30/35 - ECB hiking vs. SNB at zero is a clear, current divergence"
+            },
+            {
+              "component": "Technicals (25%)",
+              "weight": "25%",
+              "contribution": "16/25 - trend intact but not yet tested against a real breakout level"
+            },
+            {
+              "component": "Positioning (20%)",
+              "weight": "20%",
+              "contribution": "16/20 - EUR longs trending and not yet at an extreme"
+            },
+            {
+              "component": "Sentiment (15%)",
+              "weight": "15%",
+              "contribution": "9/15 - risk-on backdrop is a mild headwind for a franc-negative trade"
+            },
+            {
+              "component": "Volatility (5%)",
+              "weight": "5%",
+              "contribution": "4/5 - VIX low, supports carrying the position"
+            }
+          ]
+        },
+        "totalConfidence": 75,
+        "confidenceDelta": "delta vs. last report: not applicable - first run of the merged structure",
+        "confirmationCriteria": "a daily close reclaiming 0.9220 after a pullback, or a bullish reversal candle on a retest of 0.9150."
+      },
+      {
+        "headline": "Idea 2: Long NZD/USD (theme: short-covering plus a hawkish RBNZ repricing building into the July 8 decision) - Bullish",
+        "fields": {
+          "Rationale": "NZD/USD shorts have unwound to a 6-month low as the market increasingly prices the RBNZ's cutting cycle as over, with hike expectations building toward September",
+          "Entry Zone": "0.5630-0.5680 (approximate; verify live quote)",
+          "Target(s)": "0.5750, then 0.5820",
+          "Stop / Invalidation": "0.5580 on a daily close basis",
+          "Risk/Reward": "approx. 1:1.8"
+        },
+        "scoring": {
+          "headers": [
+            "Component",
+            "Weight",
+            "Contribution"
+          ],
+          "rows": [
+            {
+              "component": "Macro (35%)",
+              "weight": "35%",
+              "contribution": "24/35 - RBNZ pivot narrative building but decision still ahead"
+            },
+            {
+              "component": "Technicals (25%)",
+              "weight": "25%",
+              "contribution": "14/25 - lagging peers on spot, no fresh breakout confirmed"
+            },
+            {
+              "component": "Positioning (20%)",
+              "weight": "20%",
+              "contribution": "15/20 - shorts already unwound to a 6-month low"
+            },
+            {
+              "component": "Sentiment (15%)",
+              "weight": "15%",
+              "contribution": "9/15 - broad risk-on backdrop a mild tailwind"
+            },
+            {
+              "component": "Volatility (5%)",
+              "weight": "5%",
+              "contribution": "3/5 - event risk into 8 Jul cuts both ways"
+            }
+          ]
+        },
+        "totalConfidence": 65,
+        "confidenceDelta": "delta vs. last report: not applicable - first run of the merged structure",
+        "confirmationCriteria": "watch the 8 Jul RBNZ statement for hawkish-leaning language before adding; an explicitly dovish hold would be the clearest invalidation, even above the stop."
+      }
+    ],
+    "excluded": {
+      "title": "Long AUD/USD continuation.",
+      "reasoning": "Excluded despite RBA's hawkish 4.35% hold being the highest real-rate story in the G10 set - COT data shows AUD net-long positioning at a 9-year high for large speculators and a record high for asset managers, with the percentile rank at 100% across the 3-month, 1-year, and 3-year windows, and price now pulling back. That combination is a classic setup for a crowded-long unwind rather than clean continuation, so it doesn't meet the bar for a directional idea this week."
+    }
+  },
+  "contrarianCheck": {
+    "primaryRisk": "This report leans on a \"soft NFP to dovish Fed repricing to weaker USD\" narrative for Sections 4-8. The strongest counter-argument: the latest (4 Jul) CME-style pricing shows a sharp hawkish swing for September - 29.8% odds of a hold vs. ~70% combined odds of a hike - a materially more hawkish read than the 37-65% range that was circulating just days earlier. If that hawkish repricing holds or extends once Monday's ISM Services PMI and the FOMC minutes land, the dollar-softness thesis underlying the EUR/CHF and NZD/USD longs reverses quickly.",
+    "invalidationFactor": "A hawkish surprise in the FOMC minutes (explicit discussion of a July or September hike rather than pure data-dependence) would invalidate both the EUR/CHF long and the broader \"Fed under pressure but still soft-landing\" framing this report rests on.",
+    "bullCase": "Fed stays functionally on hold despite the hawkish repricing, ECB and BoE hold their hawkish tilt, oil keeps fading - USD softness broadens, EUR/CHF and NZD/USD both work. Invalidated by: a hawkish FOMC minutes surprise or a reversal in the Iran/oil de-escalation story.",
+    "baseCase": "Fed stays genuinely data-dependent into September, RBNZ holds with a slight hawkish lean, choppy range-bound trade dominates, AUD's crowded long unwinds modestly. Invalidated by: any single high-impact surprise (ISM, FOMC minutes, RBNZ) breaking the current calm.",
+    "bearCase": "Hot ISM Services PMI plus hawkish FOMC minutes fully reopen the September hike debate, dollar snaps back broadly, gold's rally stalls, EUR/CHF and NZD/USD longs get stopped out. Invalidated by: continued soft US data confirming the labor-market cooling trend seen in June."
+  },
+  "globalEquityLeaderboard": {
+    "type": "rows",
+    "headers": [
+      "Index",
+      "YTD",
+      "12-Month"
+    ],
+    "rows": [
+      {
+        "index": "KOSPI",
+        "ytd": "~+100% (best performer)",
+        "12_month": "data unavailable"
+      },
+      {
+        "index": "Nikkei 225",
+        "ytd": "~+30% (sources ranged 29-33%)",
+        "12_month": "+75.2%"
+      },
+      {
+        "index": "S&P 500",
+        "ytd": "~+9-10% (sources conflicted)",
+        "12_month": "+19.2%"
+      },
+      {
+        "index": "FTSE 100",
+        "ytd": "+4.5%",
+        "12_month": "data unavailable"
+      },
+      {
+        "index": "Shanghai Composite",
+        "ytd": "~+2% (approximate)",
+        "12_month": "+16.5%"
+      },
+      {
+        "index": "DAX",
+        "ytd": "-1.5%",
+        "12_month": "data unavailable"
+      },
+      {
+        "index": "Sensex",
+        "ytd": "-8.35% (worst performer)",
+        "12_month": "+47.7%"
+      }
+    ]
+  },
+  "noTradeZone": {
+    "flagged": true,
+    "text": "This is the third consecutive non-trading day for US markets, and FX itself is shut through Sunday - combined with FOMC minutes and the RBNZ decision both landing mid-week, calendar risk argues for reduced size even once trading resumes. This aligns with today's Clean correlation read, but the calendar risk into Wednesday argues for caution regardless of signal quality."
+  },
+  "keyThemes": [
+    "A fast, sharp hawkish Fed repricing is colliding with the weak-NFP narrative. Just days after the +57K print reopened cut pricing, the latest CME-style read shows September hold odds falling to 29.8% - the biggest open question of the week.",
+    "The AI equity supercycle is now an FX story, not just an equities story. KOSPI's near-doubling and Nikkei's record run are pulling global risk flows and yen funding dynamics along with them - Japan's Finance Ministry is already jawboning on intervention.",
+    "Triple-length market closure into a mid-week event cluster. Thursday's close, Friday's holiday, and the weekend combine into the thinnest liquidity stretch of the year, right before FOMC minutes and the RBNZ decision hit Wednesday."
+  ],
+  "decisionDashboard": {
+    "overallConfidence": 60,
+    "confidenceDelta": "delta vs. last report: not applicable - first run of the merged structure",
+    "portfolioTiltNote": "Modest EUR/CHF-constructive, NZD-constructive-with-caution tilt, low-to-moderate conviction. Informational context only - explicitly not a personalized allocation recommendation."
+  },
+  "knownIssues": [
+    "USD/JPY spot still could not be confirmed from a single clean live quote this run. Worth checking against a live terminal Monday.",
+    "Fed \"last move\" bias remains genuinely volatile between sources - this run found a sharper hawkish shift (29.8% Sept-hold odds) than the 37-65% range flagged in prior reports; surfaced rather than resolved.",
+    "USD/CHF, USD/CAD, and NZD/USD could not be pinned to a confirmed Friday (3 Jul) print - figures used are the most recent confirmed values found (30 Jun-1 Jul).",
+    "COT/positioning data is inherently lagged (latest confirmed data as of ~23 Jun 2026; next CFTC release delayed to Monday, 6 Jul) - treat as directional context, not a current snapshot.",
+    "Genuine COT data conflicts found on NZD (shorts \"at a 6-week high\" vs. \"unwound to a 6-month low\") and JPY (two-sided crowding vs. longs rolling toward net-short) - both surfaced rather than silently resolved.",
+    "Global Equity Leaderboard still missing 12-month trailing data for KOSPI, FTSE 100, and DAX.",
+    "This is the first run of the newly-merged structure (combining the former separate fx-dashboard and fx-intel reports) - Section 8 and Section 14 confidence scores have no prior-run baseline yet; future runs should compare against today's figures."
+  ],
+  "sections": [
+    {
+      "number": 1,
+      "title": "Market Regime & Executive Summary",
+      "raw": "**Regime classification: Central-Bank-Driven, transitioning toward Liquidity-Driven into the July 4 holiday weekend.**\n\nJustification: VIX sits at ~15.97 (low, risk-on), equities are firm-to-mixed (Dow +1.03%, Nasdaq flat-to-down, Nikkei +1.47%), and the US 10Y eased to ~4.485% - none of this reads as acute stress. The real driver is a monetary-policy repricing fight: June's weak US jobs report (+57K vs. ~110K expected) reopened Fed cut pricing, but the latest CME FedWatch-style read (as of 4 Jul) shows a sharp hawkish counter-swing - 75.6% odds of a July hold, but by September only 29.8% odds of a hold vs. a combined ~70.2% odds of a hike (50.6% for 25bp, 19.6% for 50bp). That is a materially more hawkish read than the 37-65% range surfacing earlier in the week, and the gap between those two framings is itself the story.\n\n**Executive Summary:** The single biggest cross-asset driver remains the tug-of-war between the soft June NFP print (dollar-negative) and a fast-hawkish Fed repricing for September (dollar-positive) - these are pulling in opposite directions at the same time. EUR/USD, GBP/USD, and AUD/USD all firmed together into Friday's close, a clean broad-dollar move, while COT positioning shows EUR longs at an 18-month high and JPY positioning genuinely unstable (crowded/rolling over depending on the source). Gold sits near a two-week high (~$4,170/oz) and oil has faded toward pre-conflict levels (WTI ~$68-69, Brent ~$71-72) as Middle East de-escalation removes an inflation tailwind. With three straight non-trading days behind us (Thu close to Fri holiday to weekend), treat every level below as a stale reference until Monday's reopen."
+    },
+    {
+      "number": 2,
+      "title": "Central Bank Policy Rates",
+      "raw": "| Bank | Rate | Last Move | Bias |\n|---|---|---|---|\n| Fed | 3.50-3.75% (upper limit) | Held, 17 Jun 2026 (Warsh's first meeting as chair) | Split, and sharpening hawkish - weak NFP argues for cuts, but the latest (4 Jul) CME-style pricing shows just 29.8% odds of a September hold vs. ~70% combined odds of a hike, a notably more hawkish read than the 37-65% range seen earlier in the week. Next meeting 28-29 Jul |\n| ECB | Deposit 2.25% / Refi 2.40% | Hiked, 17 Jun 2026 (first hike since 2023) | Hawkish, but fading - June Eurozone CPI cooled to 2.8% y/y (from 3.2%) and Lagarde struck a dovish tone, cutting odds of a third hike this year |\n| BoE | 3.75% | Held (7-2 vote), 17 Jun 2026 | Neutral-hawkish; next decision 29-30 Jul |\n| BoJ | 1.00% | Hiked, late Jun 2026 | Hawkish; further hikes flagged. Finance Minister Katayama reiterated intervention readiness this week as JPY volatility picked up |\n| BoC | 2.25% (Bank Rate 2.50%, deposit 2.20%) | Held, 10 Jun 2026 (5th straight hold) | Neutral; next decision 15 Jul |\n| RBA | 4.35% | Held, Jun 2026 | Hawkish-hold; next decision not until 11 Aug |\n| RBNZ | 2.25% | Held, May 2026 (3rd straight hold) | Neutral, hawkish repricing building - next meeting 8 Jul (hold expected); market increasingly convinced the cutting cycle is over, with hikes seen from Sept |\n| SNB | 0.00% | Held, 18 Jun 2026 (\"dovish hold\") | Neutral; parked at the zero bound |\n\n**Key divergence:** ECB and BoJ remain this cycle's hawkish outliers, though ECB hike expectations are fading on cooler CPI and the RBNZ is emerging as a fresh hawkish story for September. The Fed is the real source of cross-asset confusion this week - not because its stance is unclear in principle, but because the market's pricing of it swung sharply hawkish (37-65% to ~70% Sept-hike odds) within days, even as the underlying jobs data didn't change."
+    },
+    {
+      "number": 3,
+      "title": "Currency Strength Overview",
+      "raw": "*Methodology note: scores below are a qualitative synthesis of yield differentials, recent price action, and COT positioning bias - not a back-tested quantitative model. Treat as directional context, not a precision output.*\n\n| Currency | Strength (0-100) | Weekly Chg | Bias | 1-line driver |\n|---|---|---|---|---|\n| CHF | 68 | +1.0 | Bullish | Safe-haven bid, SNB at zero; COT gross shorts fell ~35% as the market covers bearish bets |\n| EUR | 66 | +1.5 | Bullish | ECB hiking cycle; COT net-longs at an 18-month high (large specs) / 15-month high (asset managers) |\n| GBP | 60 | +0.5 | Bullish | BoE hawkish hold; COT split - large specs net-long ~33k, asset managers net-short ~-13k |\n| AUD | 58 | -0.8 | Neutral-Bullish, crowded | RBA's highest G10 real rate remains supportive, but COT positioning is at a 9-year/record sentiment extreme (100th percentile) with price now pulling back |\n| USD | 50 | 0 | Neutral, two-way risk | Large-spec USD shorts have unwound ~75% recently (less bearish), but a sudden hawkish Sept-hike repricing cuts the other way |\n| CAD | 46 | -0.5 | Neutral-Bearish | BoC on hold; COT net-shorts extending for a 2nd straight week, soft-ish oil |\n| NZD | 44 | +0.8 | Neutral, improving | RBNZ dovish bias, but COT shorts have unwound to a 6-month low; market pricing the cutting cycle as over |\n| JPY | 42 | -1.0 | Neutral-Bearish, unstable | Widest G10 rate gap still favors carry, but positioning is genuinely conflicted - one COT read shows crowding on both sides, a more recent read shows longs rolling toward net-short |\n\n**Clearest divergence:** CHF (strongest, 68) vs. JPY (weakest, 42) - a 26-point spread. CHF's strength is a passive, safe-haven/zero-rate story with shorts being covered; JPY's weakness is not a clean trend but a genuinely unstable positioning picture layered on top of MOF intervention jawboning - a materially different, higher-uncertainty setup than CHF's."
+    },
+    {
+      "number": 4,
+      "title": "Tier 1 Pairs - Directional Read",
+      "raw": "- **EUR/USD** ~1.1429 (+0.5% on the week) - broad dollar softness from the NFP miss outweighing fading ECB hike odds and a dovish Lagarde.\n- **GBP/USD** ~1.335 (off a 1.3376 high on 2 Jul) - riding the same dollar-wide weakness as EUR, easing slightly off its week-high into the close.\n- **USD/JPY** ~161.3 (yen firmer, extending a ~1% two-day gain) - yen strength amplified by Finance Minister Katayama's fresh intervention-readiness comments plus BoJ's hiking path.\n- **USD/CHF** ~0.803 (approximate; no fresh Friday print found) - tracking the broad-dollar-weaker theme, consistent with EUR/USD's move.\n- **USD/CAD** ~1.42 (approximate; latest confirmed print 1.4197 on 30 Jun) - soft-dollar tailwind for CAD offset by WTI holding in the high-$60s.\n- **AUD/USD** ~0.6940 (+0.25%) - RBA's hawkish 4.35% hold plus broad dollar weakness both pushing the same direction, though positioning is crowded (see Section 3).\n- **NZD/USD** ~0.5666 (as of 1 Jul; no confirmed Friday print) - lagging peers on spot, but short-covering and a hawkish RBNZ repricing (hikes seen from Sept) are new tailwinds into the 8 Jul decision."
+    },
+    {
+      "number": 5,
+      "title": "Layer-by-Layer Synthesis",
+      "raw": "**EUR/USD**\n- *Data Layer:* Spot ~1.1429, +0.5% on the week. ECB deposit 2.25% / refi 2.40%, hiked 17 Jun.\n- *Macro Layer:* ECB hiking into a cooling CPI print (2.8% y/y, down from 3.2%) is the key tension - the mirror image of the Fed's soft-jobs dilemma, but for the ECB it's fading hike conviction rather than reopened cut pricing.\n- *Market Structure Layer:* Grinding higher off the ~1.13 area over the past two weeks as the dollar softened; no major resistance broken on the data available.\n- *Positioning Layer:* COT shows EUR net-longs at an 18-month high (large specs) / 15-month high (asset managers) - a genuinely trending build.\n- *Sentiment Layer:* VIX ~16, risk-on. Large-spec USD shorts have unwound roughly 75% recently (to ~-38k contracts) - a data point worth flagging: EUR longs keep extending even as aggregate USD-short positioning normalizes rather than staying at a bearish extreme.\n- *Decision Layer:* A trending, not-yet-extreme EUR long against a normalizing USD short is a healthier setup than USD/JPY's positioning instability below.\n\n**USD/JPY**\n- *Data Layer:* Spot ~161.3, yen firmer, range 160.79-162.80 over the past week. US 10Y ~4.485%, BoJ policy rate 1.00%.\n- *Macro Layer:* The widest G10 rate differential remains USD-JPY, still favoring carry despite BoJ's hiking path; soft NFP trims the differential marginally but doesn't close it.\n- *Market Structure Layer:* Range-bound within 160.79-162.80 over the past week; no confirmed breakout in either direction as of Friday's close.\n- *Positioning Layer:* Genuine data conflict found and surfaced rather than resolved - one source describes JPY positioning as crowded on both sides (shorts rising fast, longs simultaneously at a multi-month high); a more recent source instead describes large specs as \"on the cusp of flipping net-short\" with longs rolling over from a Q2 peak. Both readings agree on one thing: the positioning picture is unstable, not a clean trend.\n- *Sentiment Layer:* MOF intervention jawboning (Katayama) is adding two-way event risk on top of an already-unsettled positioning picture.\n- *Decision Layer:* Positioning instability plus intervention risk argues for monitoring rather than chasing a breakout in either direction - this is why a long-USD/JPY breakout idea is explicitly excluded in Section 8."
+    },
+    {
+      "number": 6,
+      "title": "Correlation Check",
+      "raw": "EUR/USD and GBP/USD moved in the **same direction** into Friday's close (both firmer), a reversion to their normal positive correlation after Thursday's Bailey-driven decoupling. EUR/USD and USD/CHF are consistent with their usual inverse relationship: euro strength lines up with an implied softer dollar-vs-franc tape, though a fresh Friday USD/CHF print couldn't be confirmed directly. AUD/USD firming alongside EUR/USD and GBP/USD reinforces a single, broad-dollar driver rather than idiosyncratic, pair-by-pair stories.\n\n**Read: Clean.**"
+    },
+    {
+      "number": 7,
+      "title": "Rates & Risk Backdrop",
+      "raw": "| Metric | Level |\n|---|---|\n| US 10Y yield | ~4.485% (Thu, 2 Jul close; bond market closed Fri-Sun) |\n| VIX | 15.97 (-1.1%, last available print) |\n| S&P 500 | 7,504 (+0.28%, Thu close) |\n| Nasdaq Composite | ~26,100s (roughly flat-to-down Thu) |\n| Dow Jones | 52,844 (+1.03%, Thu close) |\n| Nikkei 225 | 69,744 (+1.47%, Fri close) |\n| FTSE 100 | ~10,679 (latest available print) |\n| Gold | $4,170.25/oz (+1.15%, Fri) |\n| WTI crude | ~$68-69/bbl |\n| Brent crude | ~$71-72/bbl |"
+    },
+    {
+      "number": 8,
+      "title": "High-Conviction Trade Ideas",
+      "raw": "*Two ideas meet the bar this week; a third theme (long AUD/USD continuation) is explicitly excluded - see below. All conditions are things to verify on your own chart/feed before acting; this desk has web search only, not live tick or chart access, so no candle or volume observation below is asserted as already confirmed.*\n\n**Idea 1: Long EUR/CHF (theme: fade franc's passive strength vs. a genuinely trending euro) - Bullish**\n\n| Field | Detail |\n|---|---|\n| Rationale | EUR has the week's cleanest trending, not-yet-extreme positioning build (COT longs at an 18-month high) while CHF's strength is a passive safe-haven/zero-rate byproduct rather than an actively-bought conviction trade |\n| Entry Zone | 0.9150-0.9220 (approximate; verify live cross rate) |\n| Target(s) | 0.9350, then 0.9420 |\n| Stop / Invalidation | 0.9080 on a daily close basis |\n| Risk/Reward | approx. 1:2.1 |\n\n*Confirmation Criteria (not yet observed):* a daily close reclaiming 0.9220 after a pullback, or a bullish reversal candle on a retest of 0.9150.\n\n| Component | Weight | Contribution |\n|---|---|---|\n| Macro (35%) | 35% | 30/35 - ECB hiking vs. SNB at zero is a clear, current divergence |\n| Technicals (25%) | 25% | 16/25 - trend intact but not yet tested against a real breakout level |\n| Positioning (20%) | 20% | 16/20 - EUR longs trending and not yet at an extreme |\n| Sentiment (15%) | 15% | 9/15 - risk-on backdrop is a mild headwind for a franc-negative trade |\n| Volatility (5%) | 5% | 4/5 - VIX low, supports carrying the position |\n\n**Total Confidence: 75/100** (delta vs. last report: not applicable - first run of the merged structure)\n\n**Idea 2: Long NZD/USD (theme: short-covering plus a hawkish RBNZ repricing building into the July 8 decision) - Bullish**\n\n| Field | Detail |\n|---|---|\n| Rationale | NZD/USD shorts have unwound to a 6-month low as the market increasingly prices the RBNZ's cutting cycle as over, with hike expectations building toward September |\n| Entry Zone | 0.5630-0.5680 (approximate; verify live quote) |\n| Target(s) | 0.5750, then 0.5820 |\n| Stop / Invalidation | 0.5580 on a daily close basis |\n| Risk/Reward | approx. 1:1.8 |\n\n*Confirmation Criteria (not yet observed):* watch the 8 Jul RBNZ statement for hawkish-leaning language before adding; an explicitly dovish hold would be the clearest invalidation, even above the stop.\n\n| Component | Weight | Contribution |\n|---|---|---|\n| Macro (35%) | 35% | 24/35 - RBNZ pivot narrative building but decision still ahead |\n| Technicals (25%) | 25% | 14/25 - lagging peers on spot, no fresh breakout confirmed |\n| Positioning (20%) | 20% | 15/20 - shorts already unwound to a 6-month low |\n| Sentiment (15%) | 15% | 9/15 - broad risk-on backdrop a mild tailwind |\n| Volatility (5%) | 5% | 3/5 - event risk into 8 Jul cuts both ways |\n\n**Total Confidence: 65/100** (delta vs. last report: not applicable - first run of the merged structure)\n\n**NO HIGH-CONVICTION TRADE: Long AUD/USD continuation.** Excluded despite RBA's hawkish 4.35% hold being the highest real-rate story in the G10 set - COT data shows AUD net-long positioning at a 9-year high for large speculators and a record high for asset managers, with the percentile rank at 100% across the 3-month, 1-year, and 3-year windows, and price now pulling back. That combination is a classic setup for a crowded-long unwind rather than clean continuation, so it doesn't meet the bar for a directional idea this week."
+    },
+    {
+      "number": 9,
+      "title": "Contrarian Check & Risks",
+      "raw": "**Primary thesis risk:** This report leans on a \"soft NFP to dovish Fed repricing to weaker USD\" narrative for Sections 4-8. The strongest counter-argument: the latest (4 Jul) CME-style pricing shows a sharp hawkish swing for September - 29.8% odds of a hold vs. ~70% combined odds of a hike - a materially more hawkish read than the 37-65% range that was circulating just days earlier. If that hawkish repricing holds or extends once Monday's ISM Services PMI and the FOMC minutes land, the dollar-softness thesis underlying the EUR/CHF and NZD/USD longs reverses quickly.\n\n**Overall-view invalidation factor:** A hawkish surprise in the FOMC minutes (explicit discussion of a July or September hike rather than pure data-dependence) would invalidate both the EUR/CHF long and the broader \"Fed under pressure but still soft-landing\" framing this report rests on.\n\n- **Bull case:** Fed stays functionally on hold despite the hawkish repricing, ECB and BoE hold their hawkish tilt, oil keeps fading - USD softness broadens, EUR/CHF and NZD/USD both work. *Invalidated by:* a hawkish FOMC minutes surprise or a reversal in the Iran/oil de-escalation story.\n- **Base case:** Fed stays genuinely data-dependent into September, RBNZ holds with a slight hawkish lean, choppy range-bound trade dominates, AUD's crowded long unwinds modestly. *Invalidated by:* any single high-impact surprise (ISM, FOMC minutes, RBNZ) breaking the current calm.\n- **Bear case:** Hot ISM Services PMI plus hawkish FOMC minutes fully reopen the September hike debate, dollar snaps back broadly, gold's rally stalls, EUR/CHF and NZD/USD longs get stopped out. *Invalidated by:* continued soft US data confirming the labor-market cooling trend seen in June."
+    },
+    {
+      "number": 10,
+      "title": "Global Equity Leaderboard",
+      "raw": "| Index | YTD | 12-Month |\n|---|---|---|\n| KOSPI | ~+100% (best performer) | data unavailable |\n| Nikkei 225 | ~+30% (sources ranged 29-33%) | +75.2% |\n| S&P 500 | ~+9-10% (sources conflicted) | +19.2% |\n| FTSE 100 | +4.5% | data unavailable |\n| Shanghai Composite | ~+2% (approximate) | +16.5% |\n| DAX | -1.5% | data unavailable |\n| Sensex | -8.35% (worst performer) | +47.7% |\n\n**Biggest driver:** KOSPI's near-doubling is almost entirely an AI-chip story - Samsung Electronics rallied 14% to cross a $1T valuation, with SK Hynix riding the same AI-memory demand wave that's also pushed Nikkei 225 to repeated record highs this year. No ranking change to note this run."
+    },
+    {
+      "number": 11,
+      "title": "Economic Catalyst Check",
+      "raw": "**Nothing high-impact in the next 24-48 hours.** FX, equity, and bond markets are shut through the weekend. Into the reopen: **Monday, 6 Jul** - Eurozone Retail Sales (EUR, ~05:00 ET / 09:00 GMT) and US ISM Services PMI (USD, ~10:00 ET / 14:00 GMT). **Wednesday, 8 Jul** - RBNZ interest rate decision and Fed June FOMC meeting minutes (~14:00 ET / 18:00 GMT). **Thursday, 9 Jul** - China CPI. **Friday, 10 Jul** - Germany CPI, Canadian June labor market data."
+    },
+    {
+      "number": 12,
+      "title": "No-Trade Zone Flag",
+      "raw": "**Yes - elevated.** This is the third consecutive non-trading day for US markets, and FX itself is shut through Sunday - combined with FOMC minutes and the RBNZ decision both landing mid-week, calendar risk argues for reduced size even once trading resumes. This aligns with today's **Clean** correlation read, but the calendar risk into Wednesday argues for caution regardless of signal quality."
+    },
+    {
+      "number": 13,
+      "title": "Key Theme Driving Everything Right Now",
+      "raw": "1. **A fast, sharp hawkish Fed repricing is colliding with the weak-NFP narrative.** Just days after the +57K print reopened cut pricing, the latest CME-style read shows September hold odds falling to 29.8% - the biggest open question of the week.\n2. **The AI equity supercycle is now an FX story, not just an equities story.** KOSPI's near-doubling and Nikkei's record run are pulling global risk flows and yen funding dynamics along with them - Japan's Finance Ministry is already jawboning on intervention.\n3. **Triple-length market closure into a mid-week event cluster.** Thursday's close, Friday's holiday, and the weekend combine into the thinnest liquidity stretch of the year, right before FOMC minutes and the RBNZ decision hit Wednesday."
+    },
+    {
+      "number": 14,
+      "title": "Decision Dashboard Snapshot",
+      "raw": "**Overall Market Confidence: 60/100** (delta vs. last report: not applicable - first run of the merged structure). This reflects a moderate-conviction week: the macro narrative is clear and trackable, but AUD's positioning extreme, JPY's unstable positioning picture, and a weekend liquidity gap ahead of Wednesday's event cluster all argue against high conviction across the board.\n\n**Portfolio Tilt Note:** Modest EUR/CHF-constructive, NZD-constructive-with-caution tilt, low-to-moderate conviction. Informational context only - explicitly not a personalized allocation recommendation."
+    },
+    {
+      "number": 15,
+      "title": "Historical Parallel Watch",
+      "raw": "No strong historical parallel today - JPY's unstable, conflicting positioning picture combined with MOF intervention jawboning has a faint echo of Archetype 4 (complacent one-sided positioning around a \"guaranteed\" level), but with BoJ actively hiking and positioning itself already unwinding (not one-sided and complacent), it isn't a clean match."
+    },
+    {
+      "number": 16,
+      "title": "Known issues / refinements",
+      "raw": "- USD/JPY spot still could not be confirmed from a single clean live quote this run. Worth checking against a live terminal Monday.\n- Fed \"last move\" bias remains genuinely volatile between sources - this run found a sharper hawkish shift (29.8% Sept-hold odds) than the 37-65% range flagged in prior reports; surfaced rather than resolved.\n- USD/CHF, USD/CAD, and NZD/USD could not be pinned to a confirmed Friday (3 Jul) print - figures used are the most recent confirmed values found (30 Jun-1 Jul).\n- COT/positioning data is inherently lagged (latest confirmed data as of ~23 Jun 2026; next CFTC release delayed to Monday, 6 Jul) - treat as directional context, not a current snapshot.\n- Genuine COT data conflicts found on NZD (shorts \"at a 6-week high\" vs. \"unwound to a 6-month low\") and JPY (two-sided crowding vs. longs rolling toward net-short) - both surfaced rather than silently resolved.\n- Global Equity Leaderboard still missing 12-month trailing data for KOSPI, FTSE 100, and DAX.\n- This is the first run of the newly-merged structure (combining the former separate fx-dashboard and fx-intel reports) - Section 8 and Section 14 confidence scores have no prior-run baseline yet; future runs should compare against today's figures.\n\n*(This section is for the user to edit directly - notes here carry forward to future runs.)*"
+    }
+  ],
+  "decisionSummary": {
+    "topIdea": {
+      "label": "Long EUR/CHF",
+      "pair": "EUR/CHF",
+      "direction": "Long",
+      "confidence": 75,
+      "delta": "delta vs. last report: not applicable - first run of the merged structure",
+      "scoring": {
+        "headers": [
+          "Component",
+          "Weight",
+          "Contribution"
+        ],
+        "rows": [
+          {
+            "component": "Macro (35%)",
+            "weight": "35%",
+            "contribution": "30/35 - ECB hiking vs. SNB at zero is a clear, current divergence"
+          },
+          {
+            "component": "Technicals (25%)",
+            "weight": "25%",
+            "contribution": "16/25 - trend intact but not yet tested against a real breakout level"
+          },
+          {
+            "component": "Positioning (20%)",
+            "weight": "20%",
+            "contribution": "16/20 - EUR longs trending and not yet at an extreme"
+          },
+          {
+            "component": "Sentiment (15%)",
+            "weight": "15%",
+            "contribution": "9/15 - risk-on backdrop is a mild headwind for a franc-negative trade"
+          },
+          {
+            "component": "Volatility (5%)",
+            "weight": "5%",
+            "contribution": "4/5 - VIX low, supports carrying the position"
+          }
+        ]
+      }
+    },
+    "avoid": {
+      "label": "Long AUD/USD continuation.",
+      "reason": "Excluded despite RBA's hawkish 4.35% hold being the highest real-rate story in the G10 set - COT data shows AUD net-long positioning at a 9-year high for large speculators and a record high for asset managers, with the percentile rank at 100% across the 3-month, 1-year, and 3-year windows, and price now pulling back. That combination is a classic setup for a crowded-long unwind rather than clean continuation, so it doesn't meet the bar for a directional idea this week.",
+      "source": "excluded"
+    },
+    "nextEvent": "Nothing high-impact in the next 24-48 hours.: FX, equity, and bond markets are shut through the weekend. Into the reopen: Monday, 6 Jul - Eurozone Retail Sales (EUR, ~05:00 ET / 09:00 GMT) and US ISM Services PMI (USD, ~10:00 ET / 14:00 GMT",
+    "overallConfidence": 60,
+    "morningBrief": "Good morning. Today's regime: Central-Bank-Driven. Overall market confidence is 60/100. The strongest idea on the desk today is Long EUR/CHF, confidence 75/100. Biggest risk to watch: This is the third consecutive non-trading day for US markets, and FX itself is shut through Sunday - combined with FOMC minutes and the RBNZ decision both landing mid-week, calendar risk argues for reduced size even once trading resumes."
+  }
+}

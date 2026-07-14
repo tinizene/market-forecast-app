@@ -1,0 +1,549 @@
+{
+  "sourceFile": "fx-dashboard-2026-07-13.md",
+  "title": "Institutional FX Dashboard & Intelligence Report — July 13, 2026",
+  "reportDate": "2026-07-13",
+  "reportDateLabel": "July 13, 2026",
+  "regime": {
+    "classification": "Event-Driven, tilting Risk-Off — the Iran/Strait of Hormuz crisis escalated sharply over the weekend from a declared-over ceasefire to a formal Iranian closure of the Strait and a US naval blockade, and today's market reaction is more clearly risk-off than any prior session in this crisis.",
+    "justification": "VIX jumped intraday to ~16.39 (+9.05% vs Friday's ~15.03 close), and US cash equities fell broadly (Dow -0.2%, S&P 500 -0.7%, Nasdaq -1.4% on renewed AI-stock pressure) rather than shrugging off the news as in prior sessions. The US 10Y yield holds at 4.58% (little changed from Thursday's 4.59%), and oil extended its rally sharply (Brent surging as much as 4.2-7.1% on different measures to the $79-81 area).",
+    "executiveSummary": "The single biggest cross-asset driver is a major weekend escalation in the Iran/Strait of Hormuz crisis: Iran formally announced it had closed the Strait of Hormuz \"until further notice,\" President Trump responded by announcing the US would reinstate a naval blockade of Iranian ships and begin charging a 20% toll on all cargo transiting the waterway, and Iran retaliated with strikes against US allies Kuwait, Jordan, and Qatar — the fourth US strike on Iran in a week followed an Iranian attack on a Cyprus-flagged container ship. Shipping through the Strait has fallen roughly 52% week-on-week. Oil has surged further on the news (Brent briefly topping $81, WTI in the $72-75 range), while gold has continued to fall (~$4,064-4,107/oz) in the same \"safe-haven paradox\" this crisis has produced since last week. Markets now turn to Tuesday's US June CPI print and a slate of major bank earnings (JPMorgan, Goldman Sachs, Wells Fargo) — the Fed's (US Federal Reserve's) next real data test after last Wednesday's hawkish June minutes. USD/JPY remains near its weakest yen level in roughly four decades, still without any safe-haven bid despite the worst escalation of this crisis yet."
+  },
+  "performanceReview": {
+    "ideas": [
+      {
+        "idea_as_published": "Long EUR/CHF (4 Jul) — Bullish. Entry 0.9150-0.9220, Target 0.9350/0.9420, Stop 0.9080",
+        "outcome": "Still Pending — live search today puts EUR/CHF at ~0.9230-0.9246 (sources vary slightly), above the entry zone and continuing to grind higher, but still short of the 0.9350 target",
+        "hypothetical_p_l_if_followed": "Roughly +50-60 pips unrealized gain (entry mid ~0.9185 vs today's ~0.9238) — N/A, still pending",
+        "key_lesson": "Nine trading days in, this idea continues its slow grind rather than a sharp break — even the weekend's severe escalation (formal Strait closure, blockade) has not produced the outsized CHF safe-haven move a shock of this magnitude would typically generate"
+      },
+      {
+        "idea_as_published": "Long NZD/USD (4 Jul) — Bullish. Entry 0.5630-0.5680, Target 0.5750/0.5820, Stop 0.5580",
+        "outcome": "Played out as thesis predicted — live search today puts NZD/USD at ~0.578, the highest level in over three weeks, above the first published target (0.5750) though still short of the second (0.5820)",
+        "hypothetical_p_l_if_followed": "Approximately +125 pips (+2.2%) realized against the entry zone midpoint (~0.5655 vs ~0.578 today) — the first idea in this tracker to reach a published target",
+        "key_lesson": "The RBNZ's (New Zealand) 8 Jul hike proved to be a durable, multi-session catalyst rather than a one-day pop — this is the clearest evidence yet in this report series that a confirmed, realized central-bank catalyst can carry a pair to target even against a broad-dollar-strength crosscurrent"
+      },
+      {
+        "idea_as_published": "Short USD/JPY (6 Jul) — Bearish. Entry 161.50-162.90, Target 159.50/157.80, Stop close above 163.50",
+        "outcome": "Still Pending — today's confirmed print is ~162.41 (+0.44%), inside the entry zone, roughly 110 pips from the 163.50 stop",
+        "hypothetical_p_l_if_followed": "Roughly -20 pips unrealized (entry mid ~162.20 vs today's ~162.41) — N/A, still pending",
+        "key_lesson": "Now the report's clearest ongoing case study in a failed safe-haven thesis: even a formal Strait-of-Hormuz closure and a full naval blockade have failed to produce any yen safe-haven bid across four-plus sessions — a genuine, deepening anomaly rather than a temporary lag"
+      },
+      {
+        "idea_as_published": "Short AUD/NZD (6 Jul) — Bearish. Entry 1.2100-1.2170, Target 1.1950/1.1850, Stop close above 1.2250",
+        "outcome": "Still Pending — today's confirmed print is ~1.2117 (previous close ~1.2157), essentially unchanged from the 9 Jul report's 1.2117, still in the lower half of the entry zone",
+        "hypothetical_p_l_if_followed": "Roughly +18 pips unrealized gain (entry mid ~1.2135 vs today's ~1.2117) — largely unchanged from 9 Jul",
+        "key_lesson": "The idea has stalled rather than extended over the gap days — a reminder that a favorable multi-session drift can plateau well short of target even when the underlying macro case (RBNZ hike, soft China CPI) remains intact"
+      }
+    ],
+    "hitRateSummary": "1 played out / 0 invalidated / 3 still pending, out of 4 total ideas issued since July 4, 2026 (first-run date of the merged structure)"
+  },
+  "policyRates": {
+    "type": "rows",
+    "headers": [
+      "Bank",
+      "Rate",
+      "Last Move",
+      "Next Meeting",
+      "Bias"
+    ],
+    "rows": [
+      {
+        "bank": "Fed",
+        "rate": "3.50-3.75% (upper limit)",
+        "last_move": "Held, 17 Jun 2026 (4th straight hold; Kevin Warsh's first meeting as chair)",
+        "next_meeting": "28-29 Jul 2026",
+        "bias": "Hawkish, freshly confirmed by last Wednesday's June minutes (rate-cut hints removed); Tuesday's US June CPI (8:30am ET) is the next major test of this stance, complicated by an energy-driven headline decline set against sticky core inflation"
+      },
+      {
+        "bank": "ECB",
+        "rate": "Deposit 2.25% / Refi 2.40% / Marginal lending 2.65%",
+        "last_move": "Hiked, 17 Jun 2026 (first hike since 2023)",
+        "next_meeting": "23-24 Jul 2026",
+        "bias": "Hawkish, fading further (unchanged) — Lagarde's dovish-leaning Sintra tone continues to cap hike-again conviction"
+      },
+      {
+        "bank": "BoE",
+        "rate": "3.75%",
+        "last_move": "Held (7-2 vote), 17 Jun 2026",
+        "next_meeting": "30 Jul 2026",
+        "bias": "Neutral-hawkish (unchanged; no fresh BoE-specific headline this session)"
+      },
+      {
+        "bank": "BoJ",
+        "rate": "1.00%",
+        "last_move": "Hiked, 16 Jun 2026 (25bp, 7-1 vote; highest since 1995)",
+        "next_meeting": "30-31 Jul 2026",
+        "bias": "Hawkish, intervention-shadowed — USD/JPY remains near its weakest yen level in roughly four decades; remarkably, not even a formal Strait-of-Hormuz closure and naval blockade have produced a safe-haven yen bid, and Finance Ministry rhetoric remains verbal-only"
+      },
+      {
+        "bank": "BoC",
+        "rate": "2.25% (Bank Rate 2.50%, deposit 2.20%)",
+        "last_move": "Held, 10 Jun 2026 (5th straight hold)",
+        "next_meeting": "15 Jul 2026 (two days away)",
+        "bias": "Neutral — a unanimous C.D. Howe Institute policy panel and bond markets (~91% odds of no change, as of the most recently confirmed read) both expect another hold; the ongoing oil rally remains a favorable offset to the soft-domestic-economy case against hiking"
+      },
+      {
+        "bank": "RBA",
+        "rate": "4.35%",
+        "last_move": "Held, Jun 2026",
+        "next_meeting": "10-11 Aug 2026",
+        "bias": "Hawkish-hold, with a lingering mild headwind from last Thursday's soft China June CPI (+1.0% y/y, below consensus)"
+      },
+      {
+        "bank": "RBNZ",
+        "rate": "2.50%",
+        "last_move": "Hiked 25bp, 8 Jul 2026 (first hike in 3 years; decision came in line with ~75%-priced market odds after a genuinely split economist poll)",
+        "next_meeting": "2 Sep 2026 (next Monetary Policy Statement)",
+        "bias": "Hawkish-hold — NZD/USD's continued grind to a fresh three-week high (~0.578) and past its first published target confirms the market is treating the hike as a durable, multi-session catalyst rather than a one-day event"
+      },
+      {
+        "bank": "SNB",
+        "rate": "0.00%",
+        "last_move": "Held (\"dovish hold\"), 18 Jun 2026",
+        "next_meeting": "September 2026 (SNB meets quarterly: Mar/Jun/Sep/Dec)",
+        "bias": "Neutral; parked at the zero bound — even this weekend's severe escalation has produced only a muted CHF bid, with the dollar continuing to absorb more of the safe-haven flow than usual"
+      }
+    ]
+  },
+  "currencyStrength": {
+    "type": "rows",
+    "headers": [
+      "Currency",
+      "Strength (0-100)",
+      "Weekly Chg",
+      "Bias",
+      "1-line driver"
+    ],
+    "rows": [
+      {
+        "currency": "NZD",
+        "strength_0_100": "65",
+        "weekly_chg": "+6",
+        "bias": "Bullish",
+        "1_line_driver": "NZD/USD has now cleared its first published target (~0.578, a 3-week high) — the clearest, most durable follow-through of any pair since the RBNZ hike"
+      },
+      {
+        "currency": "USD",
+        "strength_0_100": "62",
+        "weekly_chg": "+2",
+        "bias": "Bullish",
+        "1_line_driver": "Broad safe-haven-plus-hawkish-Fed demand persists through the weekend's severe escalation, though DXY itself is little changed (~100.9) even as individual pairs like EUR/USD and USD/CHF show clearer dollar strength"
+      },
+      {
+        "currency": "CHF",
+        "strength_0_100": "63",
+        "weekly_chg": "-2",
+        "bias": "Bullish",
+        "1_line_driver": "Safe-haven bid remains notably muted for the scale of the weekend's escalation — EUR/CHF only modestly higher (~0.9230-0.9246)"
+      },
+      {
+        "currency": "EUR",
+        "strength_0_100": "58",
+        "weekly_chg": "-2",
+        "bias": "Bullish, fading",
+        "1_line_driver": "EUR/USD eased to ~1.1395 as broad dollar demand outweighs the ECB's own hawkish-fading bias"
+      },
+      {
+        "currency": "GBP",
+        "strength_0_100": "55",
+        "weekly_chg": "-1",
+        "bias": "Bullish, fading",
+        "1_line_driver": "GBP/USD holds ~1.336, tracking the same broad-dollar theme; BoE hawkish-hold intact underneath"
+      },
+      {
+        "currency": "CAD",
+        "strength_0_100": "50",
+        "weekly_chg": "+1",
+        "bias": "Neutral",
+        "1_line_driver": "Oil's continued surge (Brent to the $79-81 area) remains a favorable offset to broad-dollar strength; USD/CAD little changed (~1.420)"
+      },
+      {
+        "currency": "AUD",
+        "strength_0_100": "48",
+        "weekly_chg": "-1",
+        "bias": "Neutral",
+        "1_line_driver": "AUD/NZD's pullback has stalled around 1.2117 rather than extending; the China CPI-driven headwind is now several days old and losing some freshness"
+      },
+      {
+        "currency": "JPY",
+        "strength_0_100": "32",
+        "weekly_chg": "-1",
+        "bias": "Bearish, crowded and unstable",
+        "1_line_driver": "USD/JPY holds near its multi-decade low; even a formal Strait-of-Hormuz closure and naval blockade have failed to produce a safe-haven yen bid — the clearest deterioration signal yet for the crowded-short thesis"
+      }
+    ]
+  },
+  "tier1Pairs": {
+    "format": "bullets",
+    "items": [
+      {
+        "pair": "EUR/USD",
+        "detail": "~1.1395 (-0.18%) — broad safe-haven-dollar demand outweighs the ECB's own hawkish-fading tone."
+      },
+      {
+        "pair": "GBP/USD",
+        "detail": "~1.336 — tracking the same broad-dollar theme as EUR/USD; BoE hawkish-hold intact underneath."
+      },
+      {
+        "pair": "USD/JPY",
+        "detail": "~162.41 (+0.44%) — near a multi-decade low for the yen; still no safe-haven bid despite the weekend's severe escalation."
+      },
+      {
+        "pair": "USD/CHF",
+        "detail": "~0.8139 — notably firmer than last week's ~0.806-0.808, consistent with broad-dollar strength outpacing CHF's muted safe-haven allocation."
+      },
+      {
+        "pair": "USD/CAD",
+        "detail": "~1.4198 (little changed) — oil's continued surge (bullish CAD) and broad-dollar strength (bearish CAD) roughly offsetting."
+      },
+      {
+        "pair": "AUD/USD",
+        "detail": "~0.6938 — softer, pressured by both the broad-dollar bid and the lingering China CPI miss."
+      },
+      {
+        "pair": "NZD/USD",
+        "detail": "~0.578 — a fresh three-week high, past its first published target, on continued RBNZ-hike follow-through."
+      }
+    ]
+  },
+  "correlationCheck": {
+    "text": "EUR/USD (softer, ~1.1395) and GBP/USD (softer, ~1.336) continue moving in the same direction today — their normal positive correlation remains clean, both reflecting the same broad safe-haven-dollar demand. EUR/USD's softness alongside USD/CHF's firmer print (~0.8139) is consistent with their usual inverse relationship, though the relationship remains somewhat muted in absolute CHF terms since EUR/CHF itself has drifted only modestly higher — the dollar continues to capture more of the safe-haven flow than CHF specifically. NZD remains the clearest idiosyncratic exception, now confirmed by a target hit on its own realized RBNZ catalyst; AUD/NZD's stalled-but-still-favorable level is a direct extension of that same story.",
+    "read": "Clean"
+  },
+  "ratesRiskBackdrop": null,
+  "tradeIdeas": {
+    "ideas": [
+      {
+        "headline": "Idea 1: Short USD/JPY (theme: fade the record-crowded short-yen carry trade against a hiking BoJ and an intervention-shy MOF) — Bearish",
+        "fields": {
+          "Bias": "Bearish USD/JPY — the crowded short-yen positioning (last confirmed read, not reconfirmed fresh this session) against a hiking BoJ remains the core thesis, but it now faces its most sustained set of headwinds yet: a confirmed hawkish Fed, tomorrow's US CPI, and yen's now four-plus-session failure to catch any safe-haven bid despite the weekend's severe escalation",
+          "Entry Zone": "161.50-162.90 (approximate; today's ~162.41 print sits inside this zone, near its multi-decade low for the yen)",
+          "Target(s)": "159.50, then 157.80",
+          "Stop / Invalidation": "Daily close above 163.50",
+          "Risk/Reward": "approx. 1:2.0"
+        },
+        "scoring": {
+          "headers": [
+            "Component",
+            "Weight",
+            "Contribution",
+            "Reasoning"
+          ],
+          "rows": [
+            {
+              "component": "Macro (35%)",
+              "weight": "35%",
+              "contribution": "18/35",
+              "reasoning": "Reduced (from 19/35) — the confirmed hawkish Fed backdrop plus tomorrow's US CPI keep the macro case working against this short thesis; BoJ's own hiking bias is unable to offset the divergence"
+            },
+            {
+              "component": "Technicals (25%)",
+              "weight": "25%",
+              "contribution": "9/25",
+              "reasoning": "Unchanged — the pair continues to hold near its multi-decade extreme with no reversal signal for a fourth-plus straight session"
+            },
+            {
+              "component": "Positioning (20%)",
+              "weight": "20%",
+              "contribution": "14/20",
+              "reasoning": "Slightly reduced (from 15/20) — no fresh COT read confirmed this session; the \"crowded\" read grows more stale with each passing session"
+            },
+            {
+              "component": "Sentiment (15%)",
+              "weight": "15%",
+              "contribution": "4/15",
+              "reasoning": "Reduced (from 5/15) — a new low for this component: even a formal Strait closure and naval blockade have failed to produce a safe-haven yen bid, the most damning evidence yet against this idea's bull case"
+            },
+            {
+              "component": "Volatility (5%)",
+              "weight": "5%",
+              "contribution": "4/5",
+              "reasoning": "Unchanged — realized FX/commodity volatility remains elevated"
+            }
+          ]
+        },
+        "totalConfidence": 49,
+        "confidenceDelta": "∆ vs last report: -3 — a third consecutive session of deterioration, now below the halfway mark for the first time",
+        "confirmationCriteria": "a bearish engulfing or shooting-star candle on the daily chart near the 162-163 area; a volume spike accompanying any pullback from current levels; a successful retest of the 161.00 area (prior support) holding as new resistance; or an outright intervention headline, which would itself act as the trigger. Verify on your own chart before acting — this desk has web search only, not live charting."
+      },
+      {
+        "headline": "Idea 2: Short AUD/NZD (theme: fade AUD's record-crowded long against a now-confirmed hawkish RBNZ, reinforced by a soft China CPI print) — Bearish",
+        "fields": {
+          "Bias": "Bearish AUD/NZD — the RBNZ's confirmed hike (now validated by NZD/USD's own target hit) and the still-recent soft China CPI print continue to support this thesis, though price has stalled rather than extended toward target over the gap days",
+          "Entry Zone": "1.2100-1.2170 (approximate; today's ~1.2117 print sits in the lower half of this zone, essentially unchanged from the 9 Jul report)",
+          "Target(s)": "1.1950, then 1.1850",
+          "Stop / Invalidation": "Daily close above 1.2250",
+          "Risk/Reward": "approx. 1:2.3"
+        },
+        "scoring": {
+          "headers": [
+            "Component",
+            "Weight",
+            "Contribution",
+            "Reasoning"
+          ],
+          "rows": [
+            {
+              "component": "Macro (35%)",
+              "weight": "35%",
+              "contribution": "28/35",
+              "reasoning": "Slightly reduced (from 29/35) — the underlying case (confirmed RBNZ hike, soft China CPI) remains intact, but both catalysts are now several days old and losing some incremental freshness"
+            },
+            {
+              "component": "Technicals (25%)",
+              "weight": "25%",
+              "contribution": "17/25",
+              "reasoning": "Slightly reduced (from 18/25) — price has stalled in the lower half of the entry zone rather than extending toward the 2 Jul low (1.2134) or beyond, a loss of momentum versus the prior two sessions' favorable drift"
+            },
+            {
+              "component": "Positioning (20%)",
+              "weight": "20%",
+              "contribution": "14/20",
+              "reasoning": "Slightly reduced (from 15/20) — no fresh COT read confirmed this session; same staleness caveat as USD/JPY above"
+            },
+            {
+              "component": "Sentiment (15%)",
+              "weight": "15%",
+              "contribution": "9/15",
+              "reasoning": "Increased (from 8/15) — today's genuinely more risk-off tone (VIX up, equities down more broadly) is a modestly more supportive backdrop for this fade against a higher-beta currency than the calmer backdrop of prior sessions"
+            },
+            {
+              "component": "Volatility (5%)",
+              "weight": "5%",
+              "contribution": "4/5",
+              "reasoning": "Unchanged"
+            }
+          ]
+        },
+        "totalConfidence": 72,
+        "confidenceDelta": "∆ vs last report: -3 — a modest pullback from last report's high, reflecting stalled technical momentum, though still the highest-conviction idea in this report",
+        "confirmationCriteria": "a bearish engulfing or shooting-star candle near the 29 Jun high of 1.22289; a volume spike on a break below the 2 Jul low of 1.2134 (already approached intraday in prior sessions); a successful retest of 1.2134 holding as resistance after a breakdown. Verify on your own chart before acting — this desk has web search only, not live charting."
+      }
+    ],
+    "excluded": {
+      "title": "A fresh idea built around the further-escalated Iran/Strait of Hormuz oil shock (long CAD, long oil-linked currencies, or short risk-sensitive pairs).",
+      "reasoning": "Explicitly considered and excluded for a third consecutive report. The move (Brent to the $79-81 area) is real and remains this report's biggest single ongoing data point, and the situation has only escalated further — a formal Strait closure, a US naval blockade with a 20% toll, and a multi-country Iranian retaliation cycle (Kuwait, Jordan, Qatar) all developed over the weekend. Iran is also reportedly continuing separate talks with Oman on safe passage, meaning the situation could still move sharply toward de-escalation as well as further escalation within days. Building a precise entry/target/stop around a shock this fluid still doesn't meet this report's bar for a leveled, verifiable idea; this remains better captured in Section 10's scenario framing."
+    }
+  },
+  "contrarianCheck": {
+    "primaryRisk": "The Iran/Hormuz situation could still move sharply in either direction — reports that Iran is pursuing parallel talks with Oman on safe passage suggest a swift de-escalation remains possible even after this weekend's severe escalation, which would likely reverse the oil rally and unwind some of the safe-haven-dollar bid. Separately, USD/JPY's now four-plus-session failure to respond to an escalating crisis is itself becoming the report's central risk to monitor — a delayed, abrupt safe-haven catch-up move (or an intervention headline) remains a live tail risk that would move sharply against the short thesis's timing even if not its direction.",
+    "invalidationFactor": "A confirmed de-escalation headline on Iran/Hormuz — even a partial one, such as concrete progress in the Iran-Oman safe-passage talks — combined with a soft US CPI print Tuesday would be the cleanest scenario to reverse the current broad-dollar strength and reduce oil's safe-haven premium.",
+    "bullCase": "NZD/USD extends toward its second target (0.5820); AUD/NZD's stalled pullback resumes toward 1.1950 as the RBNZ/China-CPI theses continue to work; BoJ/MOF rhetoric hardens further or an actual intervention lands, cooling USD/JPY. Invalidated by: a confirmed, sustained break of 163.50 in USD/JPY or 1.2250 in AUD/NZD.",
+    "baseCase": "USD/JPY continues to hold near its highs into tomorrow's US CPI without a confirmed break; AUD/NZD continues to consolidate in the lower half of its entry zone without a fresh catalyst. Invalidated by: a decisive break in either pair's key level, or a surprise US CPI print that moves the dollar sharply.",
+    "bearCase": "The Iran/Hormuz situation escalates yet further, tomorrow's US CPI prints hot on a core basis, USD/JPY breaks above 163.50, and AUD/NZD reverses back toward its highs. Invalidated by: a confirmed de-escalation in Iran/Hormuz combined with a soft US CPI print."
+  },
+  "globalEquityLeaderboard": {
+    "type": "rows",
+    "headers": [
+      "Index",
+      "YTD",
+      "12-Month"
+    ],
+    "rows": [
+      {
+        "index": "KOSPI",
+        "ytd": "Extremely volatile this year; sources conflict sharply (recent reads ranging from roughly +88% to +96% YTD) — not resolved to a single figure this session",
+        "12_month": "data unavailable this session"
+      },
+      {
+        "index": "Nikkei 225",
+        "ytd": "~+39.2% (Total Return basis), carried forward as the most recently confirmed precise read; today's -1.76% session move is reflected in Section 8, not yet re-verified as a fresh YTD %",
+        "12_month": "~+75-80% (sources conflicted previously, unresolved)"
+      },
+      {
+        "index": "S&P 500",
+        "ytd": "~+8.1% (as of late-June read); an earlier-in-year read cited ~+11% (end of May) — both surfaced given the genuine conflict/volatility across the measurement window",
+        "12_month": "data unavailable this session"
+      },
+      {
+        "index": "FTSE 100",
+        "ytd": "data unavailable this session — only today's +0.11% session move was confirmed",
+        "12_month": "+20.5% to +21.0% (range across sources, carried forward)"
+      },
+      {
+        "index": "DAX",
+        "ytd": "Unresolved data-quality conflict, carried forward across multiple prior reports — one tracked product shows +1.15% YTD (total return) while the index had climbed to a record ~25,826.78 as recently as 3 Jul before this month's reversal; flagged rather than resolved",
+        "12_month": "data unavailable"
+      },
+      {
+        "index": "Sensex",
+        "ytd": "Unresolved conflict, carried forward — one read shows roughly flat to modestly negative (-6.81%), while another shows +5.30% over the past 12 months — both surfaced rather than arbitrarily resolved",
+        "12_month": "-6.81% to +5.30% (conflicting reads)"
+      },
+      {
+        "index": "Shanghai Composite",
+        "ytd": "data unavailable this session for a precise YTD %",
+        "12_month": "~+16.4% to +16.8% (consistent with prior reports' +16.36% read)"
+      }
+    ]
+  },
+  "noTradeZone": {
+    "flagged": true,
+    "text": "Today combines a freshly and severely escalated geopolitical/oil shock (formal Strait closure, naval blockade, multi-country retaliation), a \"double event day\" tomorrow (US CPI plus major bank earnings), and a genuinely more risk-off equity/VIX tone than any prior session in this crisis. Despite the Clean correlation read, the sheer concentration of live risk into the next 24-48 hours argues strongly for actively monitoring open positions against their stops and targets rather than adding fresh single-pair risk today."
+  },
+  "keyThemes": [
+    "The Iran/Strait of Hormuz crisis escalated sharply over the weekend from a \"ceasefire is over\" declaration to a formal Iranian closure of the Strait and a US naval blockade with a 20% cargo toll. Iran retaliated with strikes against Kuwait, Jordan, and Qatar; shipping through the Strait has fallen roughly 52% week-on-week; oil has surged further (Brent briefly above $81).",
+    "NZD/USD has cleared its first published target, the clearest confirmed win in this report's tracker so far , as the RBNZ's (New Zealand) 8 Jul hike continues to prove a durable, multi-session catalyst even against a broad-dollar-strength crosscurrent.",
+    "USD/JPY's now four-plus-session failure to catch any safe-haven bid — even through a formal Strait closure and naval blockade — remains this crisis's single most striking cross-asset anomaly , and the item most likely to produce an abrupt catch-up move if the market's read on it changes, with tomorrow's US CPI and bank earnings adding fresh two-way risk into the pair."
+  ],
+  "decisionDashboard": {
+    "overallConfidence": 50,
+    "confidenceDelta": "∆ vs last report: -2",
+    "portfolioTiltNote": "Long-NZD/USD idea substantially de-risked (thesis validated, first target hit) with the second target (0.5820) the remaining objective. Short-AUD/NZD tilt maintained, still the highest-conviction idea in this report despite a modest pullback. Short-JPY-carry-fade tilt maintained but flagged for further reduced conviction, now below the halfway confidence mark for the first time. The Iran/Hormuz oil shock remains flagged as a live, unhedged macro risk factor across the book generally, even though it does not meet this report's bar for a specific tradeable idea today. Informational context only — explicitly not a personalized allocation recommendation."
+  },
+  "knownIssues": [
+    "No dated, sourced CFTC Commitments of Traders update specific to this week could be confirmed via live search this session — positioning characterizations in Sections 4/6/9 remain carried forward from stale reads across multiple consecutive sessions now and should be the top research priority at the next run.",
+    "This report covers a four-calendar-day gap since the last run (9 Jul; 10-12 Jul were not run under this structure) — Section 2's review had to span several days of price action rather than one session, which is reflected in the wider hypothetical P&L ranges above; future gaps of this length should be flagged explicitly like this rather than treated as a normal single-day update.",
+    "VIX shows a genuine cross-source conflict this session (an intraday spike to ~16.39, +9.05%, vs. a separate read of 15.34, -3.16%) — both are surfaced in Section 8, with the higher, spike figure used for the regime classification given its consistency with today's broader risk-off equity tone; confirm the true closing print at the next run.",
+    "Brent crude shows a similarly wide same-day conflict ($79.22, +4.2% vs. $81.40, +7.1%, depending on whether the toll/blockade announcement is reflected) — both surfaced rather than arbitrarily resolved; pin down the confirmed close at the next run.",
+    "Nikkei 225, DAX, and FTSE 100 precise closing index levels (not just % moves) could not be independently confirmed at compilation time this session — only percentage changes were available; pin down exact levels at the next run.",
+    "Global Equity Leaderboard: KOSPI's YTD %, DAX's YTD conflict, and Sensex's YTD/12-month conflict (all flagged across multiple prior reports) remain unresolved this session — none were re-investigated given time constraints; prioritize at least one of these at the next run.",
+    "The Long NZD/USD idea (Sections 2/6) has now cleared its first published target (0.5750) — the next run should formally treat this as resolved/substantially de-risked in its write-up rather than continuing to carry it as an undifferentiated \"still pending\" alongside the other three ideas, and should watch specifically for a close above the second target (0.5820) or a reversal.",
+    "The Short USD/JPY idea (Section 9) has fallen below the halfway confidence mark (49/100) for the first time — worth an explicit discussion at the next run about whether this idea should be retired/replaced given three consecutive sessions of deterioration, even though it has not technically hit its stop.",
+    "This is the sixth run of the merged structure (first run: 4 Jul 2026; second: 6 Jul 2026; third: 7 Jul 2026; fourth: 8 Jul 2026; fifth: 9 Jul 2026; note 5 Jul and 10-12 Jul 2026 were not run under this structure) — Section 2, hit-rate tracker, and Section 9/15 deltas continue to build a genuine multi-report baseline despite the gap."
+  ],
+  "sections": [
+    {
+      "number": 1,
+      "title": "Market Regime & Executive Summary",
+      "raw": "**Regime classification: Event-Driven, tilting Risk-Off — the Iran/Strait of Hormuz crisis escalated sharply over the weekend from a declared-over ceasefire to a formal Iranian closure of the Strait and a US naval blockade, and today's market reaction is more clearly risk-off than any prior session in this crisis.**\n\nJustification: VIX jumped intraday to ~16.39 (+9.05% vs Friday's ~15.03 close), and US cash equities fell broadly (Dow -0.2%, S&P 500 -0.7%, Nasdaq -1.4% on renewed AI-stock pressure) rather than shrugging off the news as in prior sessions. The US 10Y yield holds at 4.58% (little changed from Thursday's 4.59%), and oil extended its rally sharply (Brent surging as much as 4.2-7.1% on different measures to the $79-81 area).\n\n**Executive Summary:** The single biggest cross-asset driver is a major weekend escalation in the Iran/Strait of Hormuz crisis: Iran formally announced it had closed the Strait of Hormuz \"until further notice,\" President Trump responded by announcing the US would reinstate a naval blockade of Iranian ships and begin charging a 20% toll on all cargo transiting the waterway, and Iran retaliated with strikes against US allies Kuwait, Jordan, and Qatar — the fourth US strike on Iran in a week followed an Iranian attack on a Cyprus-flagged container ship. Shipping through the Strait has fallen roughly 52% week-on-week. Oil has surged further on the news (Brent briefly topping $81, WTI in the $72-75 range), while gold has continued to fall (~$4,064-4,107/oz) in the same \"safe-haven paradox\" this crisis has produced since last week. Markets now turn to Tuesday's US June CPI print and a slate of major bank earnings (JPMorgan, Goldman Sachs, Wells Fargo) — the Fed's (US Federal Reserve's) next real data test after last Wednesday's hawkish June minutes. USD/JPY remains near its weakest yen level in roughly four decades, still without any safe-haven bid despite the worst escalation of this crisis yet."
+    },
+    {
+      "number": 2,
+      "title": "Performance Review",
+      "raw": "*Reviewing all ideas still open since the merged structure began: the July 4, 2026 report's two ideas (Long EUR/CHF, Long NZD/USD) and the July 6, 2026 report's two ideas (Short USD/JPY, Short AUD/NZD) — four total ideas across two prior reports. As of the July 9 report (the most recent prior run; 10-12 Jul were not run), all four remained still pending.*\n\n| Idea (as published) | Outcome | Hypothetical P&L if followed | Key Lesson |\n|---|---|---|---|\n| **Long EUR/CHF** (4 Jul) — Bullish. Entry 0.9150-0.9220, Target 0.9350/0.9420, Stop 0.9080 | **Still Pending** — live search today puts EUR/CHF at ~0.9230-0.9246 (sources vary slightly), above the entry zone and continuing to grind higher, but still short of the 0.9350 target | Roughly +50-60 pips unrealized gain (entry mid ~0.9185 vs today's ~0.9238) — **N/A, still pending** | Nine trading days in, this idea continues its slow grind rather than a sharp break — even the weekend's severe escalation (formal Strait closure, blockade) has not produced the outsized CHF safe-haven move a shock of this magnitude would typically generate |\n| **Long NZD/USD** (4 Jul) — Bullish. Entry 0.5630-0.5680, Target 0.5750/0.5820, Stop 0.5580 | **Played out as thesis predicted** — live search today puts NZD/USD at ~0.578, the highest level in over three weeks, above the first published target (0.5750) though still short of the second (0.5820) | Approximately +125 pips (+2.2%) realized against the entry zone midpoint (~0.5655 vs ~0.578 today) — the first idea in this tracker to reach a published target | The RBNZ's (New Zealand) 8 Jul hike proved to be a durable, multi-session catalyst rather than a one-day pop — this is the clearest evidence yet in this report series that a confirmed, realized central-bank catalyst can carry a pair to target even against a broad-dollar-strength crosscurrent |\n| **Short USD/JPY** (6 Jul) — Bearish. Entry 161.50-162.90, Target 159.50/157.80, Stop close above 163.50 | **Still Pending** — today's confirmed print is ~162.41 (+0.44%), inside the entry zone, roughly 110 pips from the 163.50 stop | Roughly -20 pips unrealized (entry mid ~162.20 vs today's ~162.41) — **N/A, still pending** | Now the report's clearest ongoing case study in a failed safe-haven thesis: even a formal Strait-of-Hormuz closure and a full naval blockade have failed to produce any yen safe-haven bid across four-plus sessions — a genuine, deepening anomaly rather than a temporary lag |\n| **Short AUD/NZD** (6 Jul) — Bearish. Entry 1.2100-1.2170, Target 1.1950/1.1850, Stop close above 1.2250 | **Still Pending** — today's confirmed print is ~1.2117 (previous close ~1.2157), essentially unchanged from the 9 Jul report's 1.2117, still in the lower half of the entry zone | Roughly +18 pips unrealized gain (entry mid ~1.2135 vs today's ~1.2117) — largely unchanged from 9 Jul | The idea has stalled rather than extended over the gap days — a reminder that a favorable multi-session drift can plateau well short of target even when the underlying macro case (RBNZ hike, soft China CPI) remains intact |\n\n**Running Hit Rate: 1 played out / 0 invalidated / 3 still pending, out of 4 total ideas issued since July 4, 2026 (first-run date of the merged structure).** This is the tracker's first resolved idea. The three still-pending ideas carry forward unresolved into tomorrow's review; Short USD/JPY (now the most stressed of the two Section 9 carry-forward ideas, per its declining confidence score below) is the item to watch most closely."
+    },
+    {
+      "number": 3,
+      "title": "Central Bank Policy Rates",
+      "raw": "| Bank | Rate | Last Move | Next Meeting | Bias |\n|---|---|---|---|---|\n| Fed | 3.50-3.75% (upper limit) | Held, 17 Jun 2026 (4th straight hold; Kevin Warsh's first meeting as chair) | 28-29 Jul 2026 | Hawkish, freshly confirmed by last Wednesday's June minutes (rate-cut hints removed); Tuesday's US June CPI (8:30am ET) is the next major test of this stance, complicated by an energy-driven headline decline set against sticky core inflation |\n| ECB | Deposit 2.25% / Refi 2.40% / Marginal lending 2.65% | Hiked, 17 Jun 2026 (first hike since 2023) | 23-24 Jul 2026 | Hawkish, fading further (unchanged) — Lagarde's dovish-leaning Sintra tone continues to cap hike-again conviction |\n| BoE | 3.75% | Held (7-2 vote), 17 Jun 2026 | 30 Jul 2026 | Neutral-hawkish (unchanged; no fresh BoE-specific headline this session) |\n| BoJ | 1.00% | Hiked, 16 Jun 2026 (25bp, 7-1 vote; highest since 1995) | 30-31 Jul 2026 | Hawkish, intervention-shadowed — USD/JPY remains near its weakest yen level in roughly four decades; remarkably, not even a formal Strait-of-Hormuz closure and naval blockade have produced a safe-haven yen bid, and Finance Ministry rhetoric remains verbal-only |\n| BoC | 2.25% (Bank Rate 2.50%, deposit 2.20%) | Held, 10 Jun 2026 (5th straight hold) | 15 Jul 2026 (two days away) | Neutral — a unanimous C.D. Howe Institute policy panel and bond markets (~91% odds of no change, as of the most recently confirmed read) both expect another hold; the ongoing oil rally remains a favorable offset to the soft-domestic-economy case against hiking |\n| RBA | 4.35% | Held, Jun 2026 | 10-11 Aug 2026 | Hawkish-hold, with a lingering mild headwind from last Thursday's soft China June CPI (+1.0% y/y, below consensus) |\n| RBNZ | 2.50% | Hiked 25bp, 8 Jul 2026 (first hike in 3 years; decision came in line with ~75%-priced market odds after a genuinely split economist poll) | 2 Sep 2026 (next Monetary Policy Statement) | Hawkish-hold — NZD/USD's continued grind to a fresh three-week high (~0.578) and past its first published target confirms the market is treating the hike as a durable, multi-session catalyst rather than a one-day event |\n| SNB | 0.00% | Held (\"dovish hold\"), 18 Jun 2026 | September 2026 (SNB meets quarterly: Mar/Jun/Sep/Dec) | Neutral; parked at the zero bound — even this weekend's severe escalation has produced only a muted CHF bid, with the dollar continuing to absorb more of the safe-haven flow than usual |\n\n**Key divergence:** The RBNZ's (New Zealand) confirmed hike continues to prove itself a durable, multi-session catalyst (NZD/USD now past its first target), while the Fed (US) faces its next real test Tuesday with US June CPI. BoJ (Japan) remains the cycle's most striking outlier — still hiking into a currency near multi-decade lows, with even a formal Strait-of-Hormuz closure failing to produce the safe-haven yen bid a crisis of this scale would typically generate.\n\n**Legend:** Fed = US Federal Reserve (United States); ECB = European Central Bank (Eurozone); BoE = Bank of England (United Kingdom); BoJ = Bank of Japan (Japan); BoC = Bank of Canada (Canada); RBA = Reserve Bank of Australia (Australia); RBNZ = Reserve Bank of New Zealand (New Zealand); SNB = Swiss National Bank (Switzerland)."
+    },
+    {
+      "number": 4,
+      "title": "Currency Strength Overview",
+      "raw": "*Methodology note: scores below are a qualitative synthesis of yield differentials, recent price action, and positioning bias — not a back-tested quantitative model. Treat as directional context, not a precision output. Fresh CFTC positioning data could not be confirmed with a new dated read this session (see Section 17); positioning characterizations below carry forward the most recently confirmed reads.*\n\n| Currency | Strength (0-100) | Weekly Chg | Bias | 1-line driver |\n|---|---|---|---|---|\n| NZD | 65 | +6 | Bullish | NZD/USD has now cleared its first published target (~0.578, a 3-week high) — the clearest, most durable follow-through of any pair since the RBNZ hike |\n| USD | 62 | +2 | Bullish | Broad safe-haven-plus-hawkish-Fed demand persists through the weekend's severe escalation, though DXY itself is little changed (~100.9) even as individual pairs like EUR/USD and USD/CHF show clearer dollar strength |\n| CHF | 63 | -2 | Bullish | Safe-haven bid remains notably muted for the scale of the weekend's escalation — EUR/CHF only modestly higher (~0.9230-0.9246) |\n| EUR | 58 | -2 | Bullish, fading | EUR/USD eased to ~1.1395 as broad dollar demand outweighs the ECB's own hawkish-fading bias |\n| GBP | 55 | -1 | Bullish, fading | GBP/USD holds ~1.336, tracking the same broad-dollar theme; BoE hawkish-hold intact underneath |\n| CAD | 50 | +1 | Neutral | Oil's continued surge (Brent to the $79-81 area) remains a favorable offset to broad-dollar strength; USD/CAD little changed (~1.420) |\n| AUD | 48 | -1 | Neutral | AUD/NZD's pullback has stalled around 1.2117 rather than extending; the China CPI-driven headwind is now several days old and losing some freshness |\n| JPY | 32 | -1 | Bearish, crowded and unstable | USD/JPY holds near its multi-decade low; even a formal Strait-of-Hormuz closure and naval blockade have failed to produce a safe-haven yen bid — the clearest deterioration signal yet for the crowded-short thesis |\n\n**Clearest divergence:** NZD (65) vs. JPY (32) — a 33-point spread, the widest in this report series so far, reflecting both NZD's confirmed follow-through and JPY's now four-plus-session failure to respond to an escalating crisis.\n\n**Known data gap flagged:** No dated, sourced CFTC positioning update specific to this week could be confirmed via live search this session (see Section 17) — all positioning characterizations above are carried forward from the most recently confirmed reads."
+    },
+    {
+      "number": 5,
+      "title": "Tier 1 Pairs — Directional Read",
+      "raw": "- **EUR/USD** ~1.1395 (-0.18%) — broad safe-haven-dollar demand outweighs the ECB's own hawkish-fading tone.\n- **GBP/USD** ~1.336 — tracking the same broad-dollar theme as EUR/USD; BoE hawkish-hold intact underneath.\n- **USD/JPY** ~162.41 (+0.44%) — near a multi-decade low for the yen; still no safe-haven bid despite the weekend's severe escalation.\n- **USD/CHF** ~0.8139 — notably firmer than last week's ~0.806-0.808, consistent with broad-dollar strength outpacing CHF's muted safe-haven allocation.\n- **USD/CAD** ~1.4198 (little changed) — oil's continued surge (bullish CAD) and broad-dollar strength (bearish CAD) roughly offsetting.\n- **AUD/USD** ~0.6938 — softer, pressured by both the broad-dollar bid and the lingering China CPI miss.\n- **NZD/USD** ~0.578 — a fresh three-week high, past its first published target, on continued RBNZ-hike follow-through."
+    },
+    {
+      "number": 6,
+      "title": "Layer-by-Layer Synthesis",
+      "raw": "**NZD/USD**\n- *Data Layer:* Spot ~0.578, a fresh three-week high. RBNZ policy rate 2.50%.\n- *Macro Layer:* The RBNZ's (New Zealand) 8 Jul hike continues to drive the pair five sessions later — a genuinely durable catalyst rather than a one-day pop, now confirmed by a published-target hit.\n- *Market Structure Layer:* Price has cleared the first published target (0.5750) and is approaching the second (0.5820) — the clearest technical resolution any idea in this tracker has produced.\n- *Positioning Layer:* No fresh CFTC read confirmed this session; the \"unsettled NZD positioning\" characterization from early July is now clearly stale given five sessions of confirmed, one-directional follow-through.\n- *Sentiment Layer:* The broad safe-haven-dollar bid from the Iran/Hormuz escalation is a live headwind, yet has still not been enough to halt the pair's advance — the RBNZ catalyst remains the dominant force.\n- *Decision Layer:* With the first target now cleared, this idea should be treated as substantially de-risked (thesis validated) with the second target (0.5820) the remaining objective; a future run should formally close this out if 0.5820 is reached or price reverses meaningfully.\n\n**USD/JPY**\n- *Data Layer:* Spot ~162.41 (+0.44%), still near its weakest yen level in roughly four decades. US 10Y 4.58%, BoJ policy rate 1.00%.\n- *Macro Layer:* The Fed's (US) confirmed hawkish stance (last Wednesday's minutes) continues to work against this pair's bearish thesis; BoJ's own hiking bias remains intact but unable to offset the divergence.\n- *Market Structure Layer:* Holding near its recent multi-decade extreme for a fourth-plus straight session, no reversal signal.\n- *Positioning Layer:* No fresh CFTC read confirmed this session; the \"near-record bearish (short-yen)\" characterization grows more stale each session.\n- *Sentiment Layer:* This week's most striking, now-recurring anomaly: even a formal Strait-of-Hormuz closure, naval blockade, and multi-country retaliation cycle have failed to produce any safe-haven yen bid.\n- *Decision Layer:* The short-USD/JPY idea's confidence has fallen for a third straight session (see Section 9) — still technically valid (no stop or target hit) but increasingly reliant on a catalyst (intervention, or a delayed safe-haven repricing) that has repeatedly failed to arrive."
+    },
+    {
+      "number": 7,
+      "title": "Correlation Check",
+      "raw": "EUR/USD (softer, ~1.1395) and GBP/USD (softer, ~1.336) continue moving in the same direction today — their normal positive correlation remains clean, both reflecting the same broad safe-haven-dollar demand. EUR/USD's softness alongside USD/CHF's firmer print (~0.8139) is consistent with their usual inverse relationship, though the relationship remains somewhat muted in absolute CHF terms since EUR/CHF itself has drifted only modestly higher — the dollar continues to capture more of the safe-haven flow than CHF specifically. NZD remains the clearest idiosyncratic exception, now confirmed by a target hit on its own realized RBNZ catalyst; AUD/NZD's stalled-but-still-favorable level is a direct extension of that same story.\n\n**Read: Clean** — with one clearly-identified, well-explained idiosyncratic exception (NZD/RBNZ). Today looks like a broad-dollar, risk-off-tilted day at its core, aside from that exception."
+    },
+    {
+      "number": 8,
+      "title": "Rates & Risk Backdrop",
+      "raw": "| Metric | Level |\n|---|---|\n| US 10Y yield | 4.58% (little changed vs Thursday's 4.59%) |\n| VIX | ~16.39 intraday (+9.05% vs Friday's ~15.03 close) — sources show some variance (a separate read cited 15.34), the intraday-spike figure is used given the clear risk-off tone in equities and oil today |\n| S&P 500 | -0.7% (today's session move) |\n| Nasdaq Composite | -1.4% (today's session move, AI-stock-led) |\n| Dow Jones | -0.2% (today's session move) |\n| Nikkei 225 | -1.76% (today's close, back below 68,000; semiconductor profit-taking plus fresh geopolitical anxiety) |\n| FTSE 100 | +0.11% (today's close) |\n| DAX | -0.21% (today's close) |\n| Gold | ~$4,064-4,107/oz (down ~0.2%, continuing the \"safe-haven paradox\" — oil-driven inflation fears and a hawkish-Fed backdrop outweigh traditional safe-haven demand even as the crisis deepens) |\n| WTI crude | ~$72.6-75.1/bbl intraday range (up roughly 4%, snapping a two-day losing streak) |\n| Brent crude | ~$79-81/bbl (sources conflict on the precise figure and whether the move is +4.2% to $79.22 or +7.1% to $81.40 following the blockade/toll announcement; both surfaced rather than arbitrarily resolved) |"
+    },
+    {
+      "number": 9,
+      "title": "High-Conviction Trade Ideas",
+      "raw": "*Both ideas carry forward from the 9 Jul report with updated levels and confidence, reflecting the weekend's severe Iran/Hormuz escalation and several days of price action. A tempting-but-flawed theme (a fresh trade built around the still-unfolding, now-further-escalated Iran/Hormuz oil shock) remains explicitly excluded — see below.*\n\n**Idea 1: Short USD/JPY (theme: fade the record-crowded short-yen carry trade against a hiking BoJ and an intervention-shy MOF) — Bearish**\n\n| Field | Detail |\n|---|---|\n| Bias | Bearish USD/JPY — the crowded short-yen positioning (last confirmed read, not reconfirmed fresh this session) against a hiking BoJ remains the core thesis, but it now faces its most sustained set of headwinds yet: a confirmed hawkish Fed, tomorrow's US CPI, and yen's now four-plus-session failure to catch any safe-haven bid despite the weekend's severe escalation |\n| Entry Zone | 161.50-162.90 (approximate; today's ~162.41 print sits inside this zone, near its multi-decade low for the yen) |\n\n**Confirmation Criteria to Watch For:** a bearish engulfing or shooting-star candle on the daily chart near the 162-163 area; a volume spike accompanying any pullback from current levels; a successful retest of the 161.00 area (prior support) holding as new resistance; or an outright intervention headline, which would itself act as the trigger. Verify on your own chart before acting — this desk has web search only, not live charting.\n\n| | |\n|---|---|\n| Target(s) | 159.50, then 157.80 |\n| Stop / Invalidation | Daily close above 163.50 |\n| Risk/Reward | approx. 1:2.0 |\n\n| Component | Weight | Contribution | Reasoning |\n|---|---|---|---|\n| Macro (35%) | 35% | 18/35 | Reduced (from 19/35) — the confirmed hawkish Fed backdrop plus tomorrow's US CPI keep the macro case working against this short thesis; BoJ's own hiking bias is unable to offset the divergence |\n| Technicals (25%) | 25% | 9/25 | Unchanged — the pair continues to hold near its multi-decade extreme with no reversal signal for a fourth-plus straight session |\n| Positioning (20%) | 20% | 14/20 | Slightly reduced (from 15/20) — no fresh COT read confirmed this session; the \"crowded\" read grows more stale with each passing session |\n| Sentiment (15%) | 15% | 4/15 | Reduced (from 5/15) — a new low for this component: even a formal Strait closure and naval blockade have failed to produce a safe-haven yen bid, the most damning evidence yet against this idea's bull case |\n| Volatility (5%) | 5% | 4/5 | Unchanged — realized FX/commodity volatility remains elevated |\n\n**Total Confidence: 49/100** (∆ vs last report: -3 — a third consecutive session of deterioration, now below the halfway mark for the first time)\n\n**Idea 2: Short AUD/NZD (theme: fade AUD's record-crowded long against a now-confirmed hawkish RBNZ, reinforced by a soft China CPI print) — Bearish**\n\n| Field | Detail |\n|---|---|\n| Bias | Bearish AUD/NZD — the RBNZ's confirmed hike (now validated by NZD/USD's own target hit) and the still-recent soft China CPI print continue to support this thesis, though price has stalled rather than extended toward target over the gap days |\n| Entry Zone | 1.2100-1.2170 (approximate; today's ~1.2117 print sits in the lower half of this zone, essentially unchanged from the 9 Jul report) |\n\n**Confirmation Criteria to Watch For:** a bearish engulfing or shooting-star candle near the 29 Jun high of 1.22289; a volume spike on a break below the 2 Jul low of 1.2134 (already approached intraday in prior sessions); a successful retest of 1.2134 holding as resistance after a breakdown. Verify on your own chart before acting — this desk has web search only, not live charting.\n\n| | |\n|---|---|\n| Target(s) | 1.1950, then 1.1850 |\n| Stop / Invalidation | Daily close above 1.2250 |\n| Risk/Reward | approx. 1:2.3 |\n\n| Component | Weight | Contribution | Reasoning |\n|---|---|---|---|\n| Macro (35%) | 35% | 28/35 | Slightly reduced (from 29/35) — the underlying case (confirmed RBNZ hike, soft China CPI) remains intact, but both catalysts are now several days old and losing some incremental freshness |\n| Technicals (25%) | 25% | 17/25 | Slightly reduced (from 18/25) — price has stalled in the lower half of the entry zone rather than extending toward the 2 Jul low (1.2134) or beyond, a loss of momentum versus the prior two sessions' favorable drift |\n| Positioning (20%) | 20% | 14/20 | Slightly reduced (from 15/20) — no fresh COT read confirmed this session; same staleness caveat as USD/JPY above |\n| Sentiment (15%) | 15% | 9/15 | Increased (from 8/15) — today's genuinely more risk-off tone (VIX up, equities down more broadly) is a modestly more supportive backdrop for this fade against a higher-beta currency than the calmer backdrop of prior sessions |\n| Volatility (5%) | 5% | 4/5 | Unchanged |\n\n**Total Confidence: 72/100** (∆ vs last report: -3 — a modest pullback from last report's high, reflecting stalled technical momentum, though still the highest-conviction idea in this report)\n\n**NO HIGH-CONVICTION TRADE: A fresh idea built around the further-escalated Iran/Strait of Hormuz oil shock (long CAD, long oil-linked currencies, or short risk-sensitive pairs).** Explicitly considered and excluded for a third consecutive report. The move (Brent to the $79-81 area) is real and remains this report's biggest single ongoing data point, and the situation has only escalated further — a formal Strait closure, a US naval blockade with a 20% toll, and a multi-country Iranian retaliation cycle (Kuwait, Jordan, Qatar) all developed over the weekend. Iran is also reportedly continuing separate talks with Oman on safe passage, meaning the situation could still move sharply toward de-escalation as well as further escalation within days. Building a precise entry/target/stop around a shock this fluid still doesn't meet this report's bar for a leveled, verifiable idea; this remains better captured in Section 10's scenario framing.\n\nThese are analytical scenarios for your own judgment, not personalized financial advice."
+    },
+    {
+      "number": 10,
+      "title": "Contrarian Check & Risks",
+      "raw": "**Primary thesis risk:** The Iran/Hormuz situation could still move sharply in either direction — reports that Iran is pursuing parallel talks with Oman on safe passage suggest a swift de-escalation remains possible even after this weekend's severe escalation, which would likely reverse the oil rally and unwind some of the safe-haven-dollar bid. Separately, USD/JPY's now four-plus-session failure to respond to an escalating crisis is itself becoming the report's central risk to monitor — a delayed, abrupt safe-haven catch-up move (or an intervention headline) remains a live tail risk that would move sharply against the short thesis's timing even if not its direction.\n\n**Overall-view invalidation factor:** A confirmed de-escalation headline on Iran/Hormuz — even a partial one, such as concrete progress in the Iran-Oman safe-passage talks — combined with a soft US CPI print Tuesday would be the cleanest scenario to reverse the current broad-dollar strength and reduce oil's safe-haven premium.\n\n- **Bull case (for this report's ideas):** NZD/USD extends toward its second target (0.5820); AUD/NZD's stalled pullback resumes toward 1.1950 as the RBNZ/China-CPI theses continue to work; BoJ/MOF rhetoric hardens further or an actual intervention lands, cooling USD/JPY. *Invalidated by:* a confirmed, sustained break of 163.50 in USD/JPY or 1.2250 in AUD/NZD.\n- **Base case:** USD/JPY continues to hold near its highs into tomorrow's US CPI without a confirmed break; AUD/NZD continues to consolidate in the lower half of its entry zone without a fresh catalyst. *Invalidated by:* a decisive break in either pair's key level, or a surprise US CPI print that moves the dollar sharply.\n- **Bear case (for this report's ideas):** The Iran/Hormuz situation escalates yet further, tomorrow's US CPI prints hot on a core basis, USD/JPY breaks above 163.50, and AUD/NZD reverses back toward its highs. *Invalidated by:* a confirmed de-escalation in Iran/Hormuz combined with a soft US CPI print."
+    },
+    {
+      "number": 11,
+      "title": "Global Equity Leaderboard",
+      "raw": "| Index | YTD | 12-Month |\n|---|---|---|\n| KOSPI | Extremely volatile this year; sources conflict sharply (recent reads ranging from roughly +88% to +96% YTD) — not resolved to a single figure this session | data unavailable this session |\n| Nikkei 225 | ~+39.2% (Total Return basis), carried forward as the most recently confirmed precise read; today's -1.76% session move is reflected in Section 8, not yet re-verified as a fresh YTD % | ~+75-80% (sources conflicted previously, unresolved) |\n| S&P 500 | ~+8.1% (as of late-June read); an earlier-in-year read cited ~+11% (end of May) — both surfaced given the genuine conflict/volatility across the measurement window | data unavailable this session |\n| FTSE 100 | data unavailable this session — only today's +0.11% session move was confirmed | +20.5% to +21.0% (range across sources, carried forward) |\n| DAX | Unresolved data-quality conflict, carried forward across multiple prior reports — one tracked product shows +1.15% YTD (total return) while the index had climbed to a record ~25,826.78 as recently as 3 Jul before this month's reversal; flagged rather than resolved | data unavailable |\n| Sensex | Unresolved conflict, carried forward — one read shows roughly flat to modestly negative (-6.81%), while another shows +5.30% over the past 12 months — both surfaced rather than arbitrarily resolved | -6.81% to +5.30% (conflicting reads) |\n| Shanghai Composite | data unavailable this session for a precise YTD % | ~+16.4% to +16.8% (consistent with prior reports' +16.36% read) |\n\n**Biggest driver:** KOSPI remains the top performer, still a memory-chip/AI story, though its YTD % remains impossible to pin to one figure given extreme intra-week volatility earlier this month. No ranking change since the prior report. Today's session moves (Nikkei -1.76%, DAX -0.21%, FTSE +0.11%) reflect the weekend's Iran/Hormuz escalation but are not yet reflected in a fresh, confirmed same-day leaderboard update for most indices."
+    },
+    {
+      "number": 12,
+      "title": "Economic Catalyst Check",
+      "raw": "**Today, Monday 13 Jul:** No scheduled high-impact (\"red folder\") US or European release confirmed for today. **Ongoing:** the Iran/Strait of Hormuz situation escalated sharply over the weekend (formal Strait closure, US naval blockade and 20% toll, multi-country Iranian retaliation) — not a scheduled release, but this report's dominant catalyst; monitor for further escalation or any resumption-of-talks headline (Iran-Oman talks reportedly ongoing).\n\n**Tuesday, 14 Jul:** US June CPI (USD), 8:30am ET/12:30pm GMT — consensus expects headline CPI to ease toward ~3.9% y/y (from May's 4.2%) largely on an energy-driven decline, with core CPI holding near 2.9% y/y; a soft headline paired with sticky core would create a complicated read for the Fed. The same day brings Q2 earnings from JPMorgan, Goldman Sachs, and Wells Fargo — a \"double event day\" for global markets.\n\n**Wednesday, 15 Jul:** Bank of Canada rate decision (CAD); markets and a unanimous C.D. Howe Institute policy panel expect another hold, with bond markets pricing roughly a 91% probability of no change (as of the most recently confirmed read).\n\n**Following week:** No specific high-impact release beyond the standard calendar was confirmed with confidence this session; the Iran/Hormuz situation remains the dominant open-ended catalyst."
+    },
+    {
+      "number": 13,
+      "title": "No-Trade Zone Flag",
+      "raw": "**Yes — elevated, and arguably the highest of any session in this report series.** Today combines a freshly and severely escalated geopolitical/oil shock (formal Strait closure, naval blockade, multi-country retaliation), a \"double event day\" tomorrow (US CPI plus major bank earnings), and a genuinely more risk-off equity/VIX tone than any prior session in this crisis. Despite the Clean correlation read, the sheer concentration of live risk into the next 24-48 hours argues strongly for actively monitoring open positions against their stops and targets rather than adding fresh single-pair risk today."
+    },
+    {
+      "number": 14,
+      "title": "Key Theme Driving Everything Right Now",
+      "raw": "1. **The Iran/Strait of Hormuz crisis escalated sharply over the weekend from a \"ceasefire is over\" declaration to a formal Iranian closure of the Strait and a US naval blockade with a 20% cargo toll.** Iran retaliated with strikes against Kuwait, Jordan, and Qatar; shipping through the Strait has fallen roughly 52% week-on-week; oil has surged further (Brent briefly above $81).\n2. **NZD/USD has cleared its first published target, the clearest confirmed win in this report's tracker so far**, as the RBNZ's (New Zealand) 8 Jul hike continues to prove a durable, multi-session catalyst even against a broad-dollar-strength crosscurrent.\n3. **USD/JPY's now four-plus-session failure to catch any safe-haven bid — even through a formal Strait closure and naval blockade — remains this crisis's single most striking cross-asset anomaly**, and the item most likely to produce an abrupt catch-up move if the market's read on it changes, with tomorrow's US CPI and bank earnings adding fresh two-way risk into the pair."
+    },
+    {
+      "number": 15,
+      "title": "Decision Dashboard Snapshot",
+      "raw": "**Overall Market Confidence: 50/100** (∆ vs last report: -2). The modest net decline reflects the weekend's genuine escalation in systemic risk (formal Strait closure, naval blockade, broader retaliation cycle, a clearly more risk-off VIX/equity tone) outweighing the tracker's first confirmed win (NZD/USD's target hit) and Short AUD/NZD's still-solid, if slightly pulled-back, confidence score.\n\n**Portfolio Tilt Note:** Long-NZD/USD idea substantially de-risked (thesis validated, first target hit) with the second target (0.5820) the remaining objective. Short-AUD/NZD tilt maintained, still the highest-conviction idea in this report despite a modest pullback. Short-JPY-carry-fade tilt maintained but flagged for further reduced conviction, now below the halfway confidence mark for the first time. The Iran/Hormuz oil shock remains flagged as a live, unhedged macro risk factor across the book generally, even though it does not meet this report's bar for a specific tradeable idea today. Informational context only — explicitly not a personalized allocation recommendation."
+    },
+    {
+      "number": 16,
+      "title": "Historical Parallel Watch",
+      "raw": "No strong historical parallel today, though the partial echo flagged in prior reports has sharpened further. The Iran/Strait of Hormuz escalation remains fundamentally a geopolitical/commodity shock with FX and rates as second-order effects, not a clean match for any of the four FX-positioning-specific archetypes. That said, the market's weeks-long treatment of the Strait-reopening ceasefire as a durable, near-\"guaranteed\" state of affairs — the loose partial echo of Archetype 4 (complacent one-sided positioning around a \"guaranteed\" level) flagged in prior reports — has now been decisively broken by an actual formal closure, not just a rhetorical threat, sharpening that partial parallel meaningfully. It still isn't a clean match (there is no defended FX peg or rate level being tested, as in the SNB 2015 reference case), so this remains a partial echo rather than a genuine one."
+    },
+    {
+      "number": 17,
+      "title": "Known issues / refinements",
+      "raw": "- No dated, sourced CFTC Commitments of Traders update specific to this week could be confirmed via live search this session — positioning characterizations in Sections 4/6/9 remain carried forward from stale reads across multiple consecutive sessions now and should be the top research priority at the next run.\n- This report covers a four-calendar-day gap since the last run (9 Jul; 10-12 Jul were not run under this structure) — Section 2's review had to span several days of price action rather than one session, which is reflected in the wider hypothetical P&L ranges above; future gaps of this length should be flagged explicitly like this rather than treated as a normal single-day update.\n- VIX shows a genuine cross-source conflict this session (an intraday spike to ~16.39, +9.05%, vs. a separate read of 15.34, -3.16%) — both are surfaced in Section 8, with the higher, spike figure used for the regime classification given its consistency with today's broader risk-off equity tone; confirm the true closing print at the next run.\n- Brent crude shows a similarly wide same-day conflict ($79.22, +4.2% vs. $81.40, +7.1%, depending on whether the toll/blockade announcement is reflected) — both surfaced rather than arbitrarily resolved; pin down the confirmed close at the next run.\n- Nikkei 225, DAX, and FTSE 100 precise closing index levels (not just % moves) could not be independently confirmed at compilation time this session — only percentage changes were available; pin down exact levels at the next run.\n- Global Equity Leaderboard: KOSPI's YTD %, DAX's YTD conflict, and Sensex's YTD/12-month conflict (all flagged across multiple prior reports) remain unresolved this session — none were re-investigated given time constraints; prioritize at least one of these at the next run.\n- The Long NZD/USD idea (Sections 2/6) has now cleared its first published target (0.5750) — the next run should formally treat this as resolved/substantially de-risked in its write-up rather than continuing to carry it as an undifferentiated \"still pending\" alongside the other three ideas, and should watch specifically for a close above the second target (0.5820) or a reversal.\n- The Short USD/JPY idea (Section 9) has fallen below the halfway confidence mark (49/100) for the first time — worth an explicit discussion at the next run about whether this idea should be retired/replaced given three consecutive sessions of deterioration, even though it has not technically hit its stop.\n- This is the sixth run of the merged structure (first run: 4 Jul 2026; second: 6 Jul 2026; third: 7 Jul 2026; fourth: 8 Jul 2026; fifth: 9 Jul 2026; note 5 Jul and 10-12 Jul 2026 were not run under this structure) — Section 2, hit-rate tracker, and Section 9/15 deltas continue to build a genuine multi-report baseline despite the gap.\n\n*(This section is for the user to edit directly — notes here carry forward to future runs.)*"
+    }
+  ],
+  "decisionSummary": {
+    "topIdea": {
+      "label": "Short AUD/NZD",
+      "pair": "AUD/NZD",
+      "direction": "Short",
+      "confidence": 72,
+      "delta": "∆ vs last report: -3 — a modest pullback from last report's high, reflecting stalled technical momentum, though still the highest-conviction idea in this report",
+      "scoring": {
+        "headers": [
+          "Component",
+          "Weight",
+          "Contribution",
+          "Reasoning"
+        ],
+        "rows": [
+          {
+            "component": "Macro (35%)",
+            "weight": "35%",
+            "contribution": "28/35",
+            "reasoning": "Slightly reduced (from 29/35) — the underlying case (confirmed RBNZ hike, soft China CPI) remains intact, but both catalysts are now several days old and losing some incremental freshness"
+          },
+          {
+            "component": "Technicals (25%)",
+            "weight": "25%",
+            "contribution": "17/25",
+            "reasoning": "Slightly reduced (from 18/25) — price has stalled in the lower half of the entry zone rather than extending toward the 2 Jul low (1.2134) or beyond, a loss of momentum versus the prior two sessions' favorable drift"
+          },
+          {
+            "component": "Positioning (20%)",
+            "weight": "20%",
+            "contribution": "14/20",
+            "reasoning": "Slightly reduced (from 15/20) — no fresh COT read confirmed this session; same staleness caveat as USD/JPY above"
+          },
+          {
+            "component": "Sentiment (15%)",
+            "weight": "15%",
+            "contribution": "9/15",
+            "reasoning": "Increased (from 8/15) — today's genuinely more risk-off tone (VIX up, equities down more broadly) is a modestly more supportive backdrop for this fade against a higher-beta currency than the calmer backdrop of prior sessions"
+          },
+          {
+            "component": "Volatility (5%)",
+            "weight": "5%",
+            "contribution": "4/5",
+            "reasoning": "Unchanged"
+          }
+        ]
+      }
+    },
+    "avoid": {
+      "label": "A fresh idea built around the further-escalated Iran/Strait of Hormuz oil shock (long CAD, long oil-linked currencies, or short risk-sensitive pairs).",
+      "reason": "Explicitly considered and excluded for a third consecutive report. The move (Brent to the $79-81 area) is real and remains this report's biggest single ongoing data point, and the situation has only escalated further — a formal Strait closure, a US naval blockade with a 20% toll, and a multi-country Iranian retaliation cycle (Kuwait, Jordan, Qatar) all developed over the weekend. Iran is also reportedly continuing separate talks with Oman on safe passage, meaning the situation could still move sharply toward de-escalation as well as further escalation within days. Building a precise entry/target/stop around a shock this fluid still doesn't meet this report's bar for a leveled, verifiable idea; this remains better captured in Section 10's scenario framing.",
+      "source": "excluded"
+    },
+    "nextEvent": "Today, Monday 13 Jul:: No scheduled high-impact (\"red folder\") US or European release confirmed for today. Ongoing: the Iran/Strait of Hormuz situation escalated sharply over the weekend (formal Strait closure, US naval blockade and 20% tol",
+    "overallConfidence": 50,
+    "morningBrief": "Good morning. Today's regime: Event-Driven. Overall market confidence is 50/100. The strongest idea on the desk today is Short AUD/NZD, confidence 72/100. Biggest risk to watch: Today combines a freshly and severely escalated geopolitical/oil shock (formal Strait closure, naval blockade, multi-country retaliation), a \"double event day\" tomorrow (US CPI plus major bank earnings), and a genuinely more risk-off equity/VIX tone than any prior session in this crisis."
+  }
+}

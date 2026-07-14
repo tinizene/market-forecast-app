@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FX Intelligence Desk — Scere Markets</title>
+    <meta name="theme-color" content="#0f172a">
+    <meta name="description" content="Daily institutional FX dashboard: regime, currency strength, trade ideas with confidence scores, and macro catalysts. Not financial advice.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] } } } };
+    </script>
+</head>
+<body class="bg-slate-900 text-white font-sans min-h-screen p-4">
+    <div class="app-bg" aria-hidden="true"></div>
+    <div class="relative z-10 max-w-2xl mx-auto pb-8">
+
+        <header class="text-center my-6 relative">
+            <a href="./index.html" class="absolute top-0 left-0 text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg transition">&larr; Markets</a>
+            <h1 class="text-2xl font-bold tracking-wide">FX Intelligence Desk</h1>
+            <p class="text-slate-400 text-sm">Daily institutional dashboard · Appelton Intelligent Trading</p>
+            <div class="absolute top-0 right-0">
+                <select id="historySelect" aria-label="Report date" class="text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white px-2 py-1.5 rounded-lg transition outline-none border border-slate-700"></select>
+            </div>
+        </header>
+
+        <div class="mb-4 rounded-xl border border-amber-600/50 bg-amber-900/20 px-4 py-3 text-xs text-amber-200" role="note">
+            ⚠️ Analytical scenarios for your own judgment — not personalized financial advice or a recommendation to trade. Verify all levels on your own chart/feed before acting.
+        </div>
+
+        <div id="loadingState" class="text-slate-400 text-sm text-center py-8">Loading latest report…</div>
+        <div id="errorState" class="hidden text-red-300 text-sm text-center py-8 bg-red-900/20 border border-red-600/40 rounded-xl"></div>
+
+        <div id="reportRoot" class="hidden space-y-8">
+
+            <!-- Morning Brief: one-paragraph read-first summary, assembled entirely from
+                 fields already parsed elsewhere on this page (regime, confidence, top
+                 idea, primary risk) — no separate judgment layered on top. -->
+            <section>
+                <div id="morningBriefCard" class="advisory-card alert-teaser !items-start"></div>
+            </section>
+
+            <!-- Hero card: today's market at a glance — regime, overall confidence,
+                 best opportunity, what to avoid, next event. Every value here is pulled
+                 straight from the sections below; this is a summary view, not a second
+                 opinion. -->
+            <section>
+                <div id="heroCard" class="current-card bg-gradient-to-br from-blue-600 to-indigo-700 p-5 rounded-2xl shadow-xl"></div>
+            </section>
+
+            <!-- Decision Engine: component-by-component confidence breakdown for
+                 today's single highest-confidence trade idea (if any), taken verbatim
+                 from that idea's own scoring table in Section 9 of the source report. -->
+            <section id="decisionEngineSection">
+                <h3 class="section-title">Decision Engine — Top Idea Breakdown</h3>
+                <div id="decisionEngineCard" class="advisory-card !items-start flex-col !flex"></div>
+            </section>
+
+            <section id="noTradeSection" class="hidden">
+                <div id="noTradeContent"></div>
+            </section>
+
+            <section>
+                <h3 class="section-title">Market Regime &amp; Executive Summary</h3>
+                <div id="regimeContent" class="advisory-card"></div>
+            </section>
+
+            <section id="performanceSection">
+                <h3 class="section-title">Performance Review — Open Ideas</h3>
+                <div id="performanceContent" class="space-y-2"></div>
+            </section>
+
+            <section>
+                <h3 class="section-title">Currency Strength Overview</h3>
+                <div id="currencyStrengthContent" class="space-y-2"></div>
+            </section>
+
+            <section>
+                <h3 class="section-title">Central Bank Policy Rates</h3>
+                <div id="policyRatesContent" class="space-y-2 overflow-x-auto"></div>
+            </section>
+
+            <section>
+                <h3 class="section-title">Tier 1 Pairs — Directional Read</h3>
+                <div id="tier1Content" class="space-y-2"></div>
+            </section>
+
+            <section id="synthesisSection">
+                <h3 class="section-title">Layer-by-Layer Synthesis</h3>
+                <div id="synthesisContent" class="space-y-3"></div>
+            </section>
+
+            <section>
+                <h3 class="section-title">Correlation Check</h3>
+                <div id="correlationContent" class="advisory-card"></div>
+            </section>
+
+            <section>
+                <h3 class="section-title">Rates &amp; Risk Backdrop</h3>
+                <div id="ratesRiskContent" class="row-card-list space-y-2"></div>
+            </section>
+
+            <section>
+                <h3 class="section-title">High-Conviction Trade Ideas</h3>
+                <div id="tradeIdeasContent" class="space-y-4"></div>
+            </section>
+
+            <section>
+                <h3 class="section-title">Contrarian Check &amp; Risks</h3>
+                <div id="contrarianContent" class="space-y-2"></div>
+            </section>
+
+            <section>
+                <h3 class="section-title">Global Equity Leaderboard</h3>
+                <div id="equityLeaderboardContent" class="space-y-2 overflow-x-auto"></div>
+            </section>
+
+            <section>
+                <h3 class="section-title">Economic Catalyst Check</h3>
+                <div id="catalystContent" class="advisory-card"></div>
+            </section>
+
+            <section>
+                <h3 class="section-title">Key Themes</h3>
+                <div id="keyThemesContent" class="space-y-2"></div>
+            </section>
+
+            <section>
+                <h3 class="section-title">Historical Parallel Watch</h3>
+                <div id="historicalContent" class="advisory-card"></div>
+            </section>
+
+            <section>
+                <h3 class="section-title">Known Issues / Refinements</h3>
+                <div id="knownIssuesContent" class="space-y-1 text-xs text-slate-400"></div>
+            </section>
+
+        </div>
+
+        <footer class="mt-10 text-center text-xs text-slate-500">
+            Source: daily markdown reports generated by the <code>daily-fx-dashboard</code> scheduled task into your FX-Reports folder, parsed automatically.
+            <br>
+            Analytical scenarios for your own judgment — not personalized financial advice.
+            <br>
+            <a href="./privacy-policy.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Privacy Policy</a>
+            ·
+            <a href="./daily-report.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Daily Dashboard</a>
+            ·
+            <a href="./manifesto.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Manifesto</a>
+        </footer>
+    </div>
+
+    <script src="./fx-intelligence.js"></script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+{
+  "sourceFile": "fx-dashboard-2026-07-03.md",
+  "title": "Institutional FX Dashboard — July 3, 2026",
+  "reportDate": "2026-07-03",
+  "reportDateLabel": "July 3, 2026",
+  "regime": {
+    "classification": null,
+    "justification": null,
+    "executiveSummary": null
+  },
+  "performanceReview": null,
+  "policyRates": {
+    "type": "rows",
+    "headers": [
+      "Bank",
+      "Rate",
+      "Last Move",
+      "Bias"
+    ],
+    "rows": [
+      {
+        "bank": "Fed",
+        "rate": "3.50–3.75% (upper limit)",
+        "last_move": "Held, June 2026 meeting",
+        "bias": "Split — dovish repricing post-NFP vs. hawkish Fed rhetoric"
+      },
+      {
+        "bank": "ECB",
+        "rate": "Deposit 2.25% / Refi 2.40%",
+        "last_move": "Hiked, 17 Jun 2026 (first hike since 2023)",
+        "bias": "Hawkish"
+      },
+      {
+        "bank": "BoE",
+        "rate": "3.75%",
+        "last_move": "Held (7–2 vote), 17 Jun 2026",
+        "bias": "Neutral–hawkish; next decision 30 Jul"
+      },
+      {
+        "bank": "BoJ",
+        "rate": "1.00%",
+        "last_move": "Hiked, late Jun 2026",
+        "bias": "Hawkish; further hikes flagged"
+      },
+      {
+        "bank": "BoC",
+        "rate": "2.25% (Bank Rate 2.50%)",
+        "last_move": "Held, 10 Jun 2026 (5th straight hold)",
+        "bias": "Neutral; next decision 15 Jul"
+      },
+      {
+        "bank": "RBA",
+        "rate": "4.35%",
+        "last_move": "Held, Jun 2026",
+        "bias": "Hawkish-hold; inflation still elevated"
+      },
+      {
+        "bank": "RBNZ",
+        "rate": "2.25%",
+        "last_move": "Held, May 2026 (3rd straight hold)",
+        "bias": "Neutral–dovish"
+      },
+      {
+        "bank": "SNB",
+        "rate": "0.00%",
+        "last_move": "Held, 18 Jun 2026",
+        "bias": "Neutral; parked near zero-bound"
+      }
+    ]
+  },
+  "currencyStrength": null,
+  "tier1Pairs": {
+    "format": "bullets",
+    "items": [
+      {
+        "pair": "EUR/USD",
+        "detail": "~1.1425 (-0.1%) — capped into the holiday close; ECB's hawkish hike is being offset by a broader tech-led risk-off tone."
+      },
+      {
+        "pair": "GBP/USD",
+        "detail": "~1.3352 (+0.5%) — outperforming on hawkish Bailey remarks at the ECB Forum reinforcing a \"higher for longer\" BoE read."
+      },
+      {
+        "pair": "USD/JPY",
+        "detail": "~162 (approximate — sources conflicted on exact spot) — capped by the BoJ's hiking cycle even as the dollar holds firmer elsewhere."
+      },
+      {
+        "pair": "USD/CHF",
+        "detail": "~0.8085 — rangebound; SNB's zero-rate anchor keeps CHF a funding currency."
+      },
+      {
+        "pair": "USD/CAD",
+        "detail": "~1.4206 — firmer as WTI sits in the high-$60s, a soft crude tape leaning against CAD."
+      },
+      {
+        "pair": "AUD/USD",
+        "detail": "~0.6904 — supported by RBA's hawkish hold at 4.35%, the highest real-rate story in the G10 set here."
+      },
+      {
+        "pair": "NZD/USD",
+        "detail": "~0.5674 — lagging peers; RBNZ's low rate and three straight holds leave NZD the weakest carry case in the bloc."
+      }
+    ]
+  },
+  "correlationCheck": {
+    "text": "EUR/USD and GBP/USD are pulling in opposite directions today (EUR soft, GBP firm) — a clear decoupling from their normal positive correlation, traced to Bailey's hawkish Sintra remarks giving GBP a stand-alone bid. EUR/USD and USD/CHF are holding closer to their usual inverse relationship, both reflecting steady, low-vol European rate anchors rather than a directional dollar move. With GBP breaking from the pack, this looks like a currency-specific (UK) story overriding what would otherwise be a quiet dollar day.",
+    "read": "Messy"
+  },
+  "ratesRiskBackdrop": null,
+  "tradeIdeas": null,
+  "contrarianCheck": null,
+  "globalEquityLeaderboard": null,
+  "noTradeZone": {
+    "flagged": true,
+    "text": "US equity and bond markets are fully closed today for the July 4 holiday, leaving FX liquidity thin into a long weekend; combined with today's Messy correlation read, this is a lower-confidence session — treat any single-pair signal as a watch item, not a trigger."
+  },
+  "keyThemes": [
+    "Weak June NFP resets the Fed narrative. Thursday's +57K print (vs. ~110K expected, prior months revised lower) reopened Fed rate-cut pricing even as Chair Warsh talked tough on inflation at Sintra — that tension is the dominant multi-day story.",
+    "ECB and BoJ break from the pack. Both delivered or extended hikes this cycle while the rest of the G10 sits on hold — a genuine hawkish-outlier pairing worth tracking into their next meetings (BoE July 30, BoC July 15).",
+    "Holiday liquidity is the near-term wildcard. With US markets closed today and a long weekend ahead, expect thinner books and wider spreads that can reverse quickly once normal volume returns Monday."
+  ],
+  "decisionDashboard": null,
+  "knownIssues": [
+    "First report in this series — no prior reports to reconcile terminology/depth against.",
+    "USD/JPY spot could not be confirmed directly from a live quote; it was backed into via EUR/JPY ÷ EUR/USD from slightly stale (June 30) data. Worth spot-checking against a live terminal.",
+    "Fed \"last move\" bias is unresolved between sources — one search suggested markets pricing >60% odds of a September hike, which contradicts the dovish repricing narrative from the weak NFP. Flagged here rather than resolved; worth a source check on the next run.",
+    "Position sizing baseline set: target ~0.5%/week moves on the underlying pair with asymmetric R:R (stop smaller than target, ~1.6–2:1), not outsized single moves — full reasoning and math logged in trade-preflight-skill-v3.md, section 3b. Check any Scenario Watch level in this report against that baseline before treating it as a real setup."
+  ],
+  "sections": [
+    {
+      "number": null,
+      "title": "Executive Summary",
+      "raw": "The dominant story remains Thursday's weak June US jobs report (+57K vs. ~110K expected, prior months revised lower), which reopened Fed rate-cut pricing even as Chair Warsh talked tough on inflation at the ECB Forum in Sintra. That tension is colliding with a holiday-thinned session: US equity and bond markets are fully closed today for the July 4 holiday (observed, since the 4th falls on a Saturday), so liquidity is light into a long weekend. Dollar softness from the jobs miss is not showing up evenly — GBP is outperforming on hawkish BoE commentary while EUR stays capped — which muddies today's read. Treat any single-pair signal here as a watch item, not a trigger, until normal volume returns Monday."
+    },
+    {
+      "number": null,
+      "title": "Central Bank Policy Rates",
+      "raw": "| Bank | Rate | Last Move | Bias |\n|---|---|---|---|\n| Fed | 3.50–3.75% (upper limit) | Held, June 2026 meeting | Split — dovish repricing post-NFP vs. hawkish Fed rhetoric |\n| ECB | Deposit 2.25% / Refi 2.40% | Hiked, 17 Jun 2026 (first hike since 2023) | Hawkish |\n| BoE | 3.75% | Held (7–2 vote), 17 Jun 2026 | Neutral–hawkish; next decision 30 Jul |\n| BoJ | 1.00% | Hiked, late Jun 2026 | Hawkish; further hikes flagged |\n| BoC | 2.25% (Bank Rate 2.50%) | Held, 10 Jun 2026 (5th straight hold) | Neutral; next decision 15 Jul |\n| RBA | 4.35% | Held, Jun 2026 | Hawkish-hold; inflation still elevated |\n| RBNZ | 2.25% | Held, May 2026 (3rd straight hold) | Neutral–dovish |\n| SNB | 0.00% | Held, 18 Jun 2026 | Neutral; parked near zero-bound |\n\n**Key divergence:** the ECB and BoJ are this cycle's hawkish outliers — the ECB's first hike since 2023 and the BoJ's continued normalization toward 1%+ — while the Fed, BoE, BoC, RBA, RBNZ, and SNB all sit on hold. A rare stretch where the traditionally dovish ECB and BoJ are out-hawking the Fed."
+    },
+    {
+      "number": null,
+      "title": "Tier 1 Pairs — Directional Read",
+      "raw": "- **EUR/USD** ~1.1425 (-0.1%) — capped into the holiday close; ECB's hawkish hike is being offset by a broader tech-led risk-off tone.\n- **GBP/USD** ~1.3352 (+0.5%) — outperforming on hawkish Bailey remarks at the ECB Forum reinforcing a \"higher for longer\" BoE read.\n- **USD/JPY** ~162 (approximate — sources conflicted on exact spot) — capped by the BoJ's hiking cycle even as the dollar holds firmer elsewhere.\n- **USD/CHF** ~0.8085 — rangebound; SNB's zero-rate anchor keeps CHF a funding currency.\n- **USD/CAD** ~1.4206 — firmer as WTI sits in the high-$60s, a soft crude tape leaning against CAD.\n- **AUD/USD** ~0.6904 — supported by RBA's hawkish hold at 4.35%, the highest real-rate story in the G10 set here.\n- **NZD/USD** ~0.5674 — lagging peers; RBNZ's low rate and three straight holds leave NZD the weakest carry case in the bloc."
+    },
+    {
+      "number": null,
+      "title": "Correlation Check",
+      "raw": "EUR/USD and GBP/USD are pulling in **opposite directions** today (EUR soft, GBP firm) — a clear decoupling from their normal positive correlation, traced to Bailey's hawkish Sintra remarks giving GBP a stand-alone bid. EUR/USD and USD/CHF are holding closer to their usual inverse relationship, both reflecting steady, low-vol European rate anchors rather than a directional dollar move. With GBP breaking from the pack, this looks like a currency-specific (UK) story overriding what would otherwise be a quiet dollar day.\n\n**Read: Messy**"
+    },
+    {
+      "number": null,
+      "title": "Rates & Risk Backdrop",
+      "raw": "| Metric | Level |\n|---|---|\n| US 10Y yield | ~4.48% (Thu close; UST market closed today) |\n| VIX | 15.82 (-4.7%) |\n| S&P 500 | 7,483 (flat) |\n| Nasdaq Composite | 26,122 (-0.35%) |\n| Dow Jones | 52,348 (+0.05%) |\n| Nikkei 225 | 70,475 (+0.6%) |\n| FTSE 100 | 10,663 (+1.76% Thu) |\n| Gold | >$4,100/oz (+2%+ prior session) |\n| WTI crude | ~$68/bbl |\n| Brent crude | ~$71/bbl |"
+    },
+    {
+      "number": null,
+      "title": "Economic Catalyst Check",
+      "raw": "US cash equity and bond markets are **closed today** for the July 4 holiday (observed). No US red-folder releases scheduled today. June NFP already printed Thursday, July 2, 8:30am ET (+57K vs. ~110K expected) — a known driver already in the price, not a forward catalyst. Next scheduled high-impact items: **Eurozone Retail Sales (EUR)** and **US ISM Services PMI (USD)**, both Monday, July 6 — exact release times to confirm as the week opens (typically ~05:00 ET / 09:00 GMT for EZ retail sales, ~10:00 ET / 14:00 GMT for ISM Services)."
+    },
+    {
+      "number": null,
+      "title": "Scenario Watch",
+      "raw": "- **GBP/USD:** If it holds above ~1.3300 into next week, that confirms the Bailey-driven hawkish BoE repricing; a fail back below 1.3300 points to the move fading as a one-day event spike.\n- **AUD/USD:** If it clears ~0.6920, that confirms the RBA hawkish-hold carry trade extending; a rejection below ~0.6880 points to broader risk-off dragging it back down.\n- **USD/CAD:** If it breaks above ~1.4220, that confirms the soft-oil/BoC-hold theme pushing CAD weaker; failure to hold above ~1.4180 points to oil stabilizing and capping the move."
+    },
+    {
+      "number": null,
+      "title": "No-Trade Zone Flag",
+      "raw": "**Yes.** US equity and bond markets are fully closed today for the July 4 holiday, leaving FX liquidity thin into a long weekend; combined with today's Messy correlation read, this is a lower-confidence session — treat any single-pair signal as a watch item, not a trigger."
+    },
+    {
+      "number": null,
+      "title": "Key Theme Driving Everything Right Now",
+      "raw": "1. **Weak June NFP resets the Fed narrative.** Thursday's +57K print (vs. ~110K expected, prior months revised lower) reopened Fed rate-cut pricing even as Chair Warsh talked tough on inflation at Sintra — that tension is the dominant multi-day story.\n2. **ECB and BoJ break from the pack.** Both delivered or extended hikes this cycle while the rest of the G10 sits on hold — a genuine hawkish-outlier pairing worth tracking into their next meetings (BoE July 30, BoC July 15).\n3. **Holiday liquidity is the near-term wildcard.** With US markets closed today and a long weekend ahead, expect thinner books and wider spreads that can reverse quickly once normal volume returns Monday."
+    },
+    {
+      "number": null,
+      "title": "Known issues / refinements",
+      "raw": "- First report in this series — no prior reports to reconcile terminology/depth against.\n- USD/JPY spot could not be confirmed directly from a live quote; it was backed into via EUR/JPY ÷ EUR/USD from slightly stale (June 30) data. Worth spot-checking against a live terminal.\n- Fed \"last move\" bias is unresolved between sources — one search suggested markets pricing >60% odds of a September *hike*, which contradicts the dovish repricing narrative from the weak NFP. Flagged here rather than resolved; worth a source check on the next run.\n- Position sizing baseline set: target ~0.5%/week moves on the underlying pair with asymmetric R:R (stop smaller than target, ~1.6–2:1), not outsized single moves — full reasoning and math logged in trade-preflight-skill-v3.md, section 3b. Check any Scenario Watch level in this report against that baseline before treating it as a real setup.\n\n*(This section is for the user to edit directly — notes here carry forward to future runs.)*"
+    }
+  ],
+  "decisionSummary": {
+    "topIdea": null,
+    "avoid": null,
+    "nextEvent": "closed today: for the July 4 holiday (observed). No US red-folder releases scheduled today. June NFP already printed Thursday, July 2, 8:30am ET (+57K vs. ~110K expected) — a known driver already in the price, not a forward catalyst. Next s",
+    "overallConfidence": null,
+    "morningBrief": "Good morning. Biggest risk to watch: US equity and bond markets are fully closed today for the July 4 holiday, leaving FX liquidity thin into a long weekend; combined with today's Messy correlation read, this is a lower-confidence session — treat any single-pair signal as a watch item, not a trigger."
+  }
+}

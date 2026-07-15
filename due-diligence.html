@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Due Diligence — Scere Markets</title>
+    <meta name="theme-color" content="#0f172a">
+    <meta name="description" content="What due diligence actually looks like for Forex, Crypto, and Indexes & ETFs — a phased roadmap from foundations through tools to applying it to real reports.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] } } } };
+    </script>
+</head>
+<body class="bg-slate-900 text-white font-sans min-h-screen p-4">
+    <div class="app-bg" aria-hidden="true"></div>
+    <div class="relative z-10 max-w-2xl mx-auto pb-8">
+
+        <header class="text-center my-6 relative">
+            <a href="./learn.html" class="absolute top-0 left-0 text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg transition">&larr; Learn</a>
+            <h1 class="text-2xl font-bold tracking-wide">Due Diligence</h1>
+            <p class="text-slate-400 text-sm">What to check, before you trust a call — including ours</p>
+        </header>
+
+        <div class="mb-6 rounded-xl border border-amber-600/50 bg-amber-900/20 px-4 py-3 text-xs text-amber-200" role="note">
+            ⚠️ Educational content only — not financial advice, and not a recommendation to trade any specific instrument. See the full disclaimer in the footer.
+        </div>
+
+        <!-- Column switcher: Forex / Crypto / Indexes & ETFs. Plain buttons rather than
+             a <select>, since there are only three and seeing all three at once (with
+             the active one highlighted) makes the "three parallel tracks" structure
+             legible at a glance, unlike a dropdown that hides the other two options. -->
+        <div id="columnSwitcher" class="grid grid-cols-3 gap-2 mb-6" role="tablist" aria-label="Due diligence track"></div>
+
+        <div id="columnIntro" class="advisory-card !items-start flex-col !flex mb-6"></div>
+
+        <div id="roadmapRoot" class="space-y-5"></div>
+
+        <footer class="mt-10 text-center text-xs text-slate-500">
+            This is our own standard, applied consistently — the same lens Phase 3 will eventually turn on our own daily FX dashboard.
+            <br>
+            Nothing on this page is financial advice or a recommendation to buy, sell, or hold any security, currency, or token. Consult a licensed financial advisor before making investment decisions.
+            <br>
+            <a href="./privacy-policy.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Privacy Policy</a>
+            ·
+            <a href="./learn.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Learn</a>
+            ·
+            <a href="./manifesto.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Manifesto</a>
+        </footer>
+    </div>
+
+    <script src="./due-diligence-content.js"></script>
+    <script src="./due-diligence.js"></script>
+</body>
+</html>

@@ -403,6 +403,68 @@ limitation, documented honestly rather than overpromised:** some iOS Safari vers
 have unreliable `pause()`/`resume()` behavior in the Web Speech API — Stop is always
 offered alongside Pause so a stuck pause never traps the user without a way out.
 
+## Due Diligence hub
+
+`due-diligence.html`/`due-diligence.js` (content in `due-diligence-content.js`) is a
+second, deeper track alongside the core Learn curriculum, linked from a teaser card on
+`learn.html`: **"what does due diligence actually look like?"**, answered separately
+for three parallel tracks — Forex, Crypto, and Indexes & ETFs — since each has genuinely
+different tools, sources, and scam patterns, not one generic checklist stretched across
+all three.
+
+**Structure — three columns, three phases each:**
+
+1. **Phase 1: Foundations** — the mindset and the specific, well-documented red flags
+   for that asset class (guaranteed-return claims, signal-group incentives, unlicensed
+   brokers/exchanges, etc.).
+2. **Phase 2: Tools & Sources** — the actual free, public places to check a claim:
+   economic calendars, central bank statements, CFTC positioning data, and (for the
+   Forex column specifically) a direct pointer to this app's own FX Intelligence Desk
+   and Daily Dashboard as one input among several, not a signal to act on blindly.
+3. **Phase 3: Applying It** — using Phases 1–2 on a real, live example. For Forex, this
+   is planned to be a field-by-field walkthrough of the daily FX dashboard report —
+   what each section (regime classification, currency strength scores, confidence
+   breakdowns, etc.) is actually based on, in plain language, so the reasoning behind
+   our own published conclusions is as checkable as anything else in this hub. **Not
+   built yet** — next phase of work, by explicit request.
+
+**Current content status** (why some phases say "Coming soon" instead of showing
+articles): built in the order requested — Forex Phases 1–2 are fully written (3
+articles: "What Due Diligence Means in Forex," "Red Flags: Signal Groups, Guaranteed
+Returns & Broker Scams," and "Reading the Tools: Economic Calendars, Central Bank Rates
+& Positioning Data"). Crypto and Indexes & ETFs have their full roadmap shape already
+in place — column, tagline, intro, and every phase's planned article titles — so the
+complete plan is visible in the app, but the articles themselves aren't written yet.
+This was a deliberate choice, not an oversight: `comingSoonNote` on each empty phase in
+`due-diligence-content.js` says exactly what's planned, so nothing here overstates how
+finished it is.
+
+**Why Crypto is educational-only:** this app tracks zero crypto prices or instruments,
+by the same "real, sourced data only" standard as everything else here — there was no
+existing free/keyless crypto data source vetted the way Alpha Vantage, Frankfurter, and
+the World Bank API were for the rest of the app. The Crypto column exists purely to
+teach due diligence (reading a whitepaper, verifying tokenomics, spotting rug pulls and
+fake exchanges) — revisit adding live crypto data as a separate decision later, not
+bundled into this content work.
+
+**Design notes:**
+
+- Column switcher is three buttons, not a dropdown — with only three tracks, showing
+  all three at once (active one highlighted) makes the "three parallel tracks"
+  structure legible at a glance, unlike a `<select>` that hides the other two.
+- Articles use native `<details>`/`<summary>` for expand/collapse — no custom toggle
+  JS needed, and it degrades sensibly (just an inert expandable block) even without
+  full script execution.
+- Last-viewed column persists via `localStorage` (`scere-due-diligence-column`), same
+  pattern as the country selector in Learn.
+- Verified via a headless jsdom test: column switcher renders 3 buttons with correct
+  `aria-selected` state, Forex renders 3 articles across its 2 written phases plus a
+  "Coming soon" note on Phase 3, Crypto renders 0 articles and 3 "Coming soon" notes
+  (one per phase), and the selected column persists across a simulated reload.
+- Not yet wired into the Web Speech read-aloud feature that `learn.html` has — a
+  natural follow-up given the same accessibility rationale applies here, but out of
+  scope for this pass.
+
 ## Get Rich Slow manifesto
 
 `manifesto.html` (source: `MANIFESTO.md`) is a short, public-facing article, not a
@@ -482,4 +544,6 @@ decision behind it" discipline the weather app's roadmap docs used:
   curriculum, real fee comparison table, dollar-cost-averaging calculator, "Your
   country at a glance" (World Bank data, all countries), and Web Speech API
   read-aloud (page-level + per-lesson)
+- `due-diligence.html`, `due-diligence.js`, `due-diligence-content.js` — Due Diligence
+  hub: three-column (Forex/Crypto/Indexes & ETFs), three-phase roadmap of articles
 - `manifesto.html`, `MANIFESTO.md` — Get Rich Slow manifesto (in-app page + shareable source)

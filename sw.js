@@ -15,6 +15,8 @@ const ASSETS_TO_CACHE = [
   './due-diligence.html',
   './due-diligence.js',
   './due-diligence-content.js',
+  './legend.js',
+  './legend-content.js',
   './fund-facts.js',
   './manifesto.html',
   './styles.css',

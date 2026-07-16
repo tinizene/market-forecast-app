@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FX Intelligence Reports — Appelton Intelligent Trading</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root {
+    --bg: #0b0e14; --card: #151a24; --card-border: #262d3d;
+    --text: #e6e9ef; --text-dim: #9aa4b2; --accent: #5b8cff; --green: #3ddc84;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 16px; line-height: 1.5; }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  h1 { font-size: 1.4rem; margin: 0 0 4px 0; }
+  .sub { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 24px; }
+  .latest-card { display: block; background: var(--card); border: 1px solid var(--accent); border-radius: 10px; padding: 18px 20px; margin-bottom: 24px; text-decoration: none; color: var(--text); transition: border-color 0.15s; }
+  .latest-card:hover { border-color: var(--green); }
+  .latest-card .eyebrow { color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; margin-bottom: 6px; }
+  .latest-card .title { font-size: 1.1rem; font-weight: 700; }
+  .latest-card .desc { color: var(--text-dim); font-size: 0.85rem; margin-top: 4px; }
+  .list-heading { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 24px 0 10px 0; border-bottom: 1px solid var(--card-border); padding-bottom: 8px; }
+  ul { list-style: none; margin: 0; padding: 0; }
+  li { border-bottom: 1px solid var(--card-border); }
+  li a { display: flex; justify-content: space-between; align-items: center; padding: 12px 4px; text-decoration: none; color: var(--text); font-size: 0.95rem; }
+  li a:hover { color: var(--accent); }
+  li a .arrow { color: var(--text-dim); font-size: 0.85rem; }
+  .empty { color: var(--text-dim); font-size: 0.9rem; padding: 20px 4px; }
+  .disclaimer { color: var(--text-dim); font-size: 0.75rem; font-style: italic; margin-top: 32px; border-top: 1px solid var(--card-border); padding-top: 16px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>FX Intelligence Reports</h1>
+  <p class="sub">Appelton Intelligent Trading — daily institutional FX dashboard, published each weekday morning.</p>
+
+  <a class="latest-card" href="./latest.html">
+    <div class="eyebrow">Always current</div>
+    <div class="title">Today's Report &rarr;</div>
+    <div class="desc">Bookmark this link — it always points to the most recently published report, whatever the date.</div>
+  </a>
+
+  <div class="list-heading">All Reports</div>
+  <ul id="reportList">
+    <li class="empty">Loading...</li>
+  </ul>
+
+  <p class="disclaimer">Prepared as an analytical synthesis for educational purposes. Spot levels are same-day/last-close reference, not live ticks. Not personalized financial advice.</p>
+</div>
+
+<script>
+  fetch('./manifest.json', { cache: 'no-store' })
+    .then((r) => r.ok ? r.json() : [])
+    .then((dates) => {
+      const list = document.getElementById('reportList');
+      if (!Array.isArray(dates) || dates.length === 0) {
+        list.innerHTML = '<li class="empty">No reports published yet — check back after the next weekday run.</li>';
+        return;
+      }
+      const sorted = [...dates].sort().reverse();
+      list.innerHTML = sorted.map((date) => {
+        const label = new Date(date + 'T12:00:00Z').toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+        return `<li><a href="./${date}.html">${label}<span class="arrow">view &rarr;</span></a></li>`;
+      }).join('');
+    })
+    .catch(() => {
+      document.getElementById('reportList').innerHTML = '<li class="empty">Could not load the report list right now.</li>';
+    });
+</script>
+</body>
+</html>

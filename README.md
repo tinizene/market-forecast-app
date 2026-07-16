@@ -199,13 +199,51 @@ tradeable ideas) — verified against both a data-rich report (July 9) and the
 sparsest available report (July 3, a holiday-thinned session with no open ideas)
 via a headless DOM test harness.
 
-**Known limitation:** this keeps the *local* app data current automatically. If/when
-this app is actually deployed to a public Vercel URL, that deployment won't pick up
-new reports on its own — `data/fx-reports/` would need to be part of what gets
-deployed (e.g. committed to a git repo Vercel auto-deploys from), or synced to cloud
-storage the deployed app fetches from. Neither exists yet since the app itself hasn't
-been deployed — revisit once it is, don't build sync infrastructure for a deployment
-that doesn't exist yet.
+**Update:** the app is now deployed to Vercel, and this local-only limitation has been
+addressed by a separate publishing pipeline — see "Publishing reports publicly" below.
+`data/fx-reports/` (this app's own internal data) and `reports/` (the public,
+password-gated pages meant for sharing) are two different things: the former still only
+updates locally via `fx-report-app-sync`, while the latter is explicitly pushed to git so
+Vercel serves it.
+
+## Publishing reports publicly (Vercel, password-gated)
+
+A third scheduled task, `fx-report-publish`, runs after `fx-report-app-sync` and copies
+that day's already-generated `fx-dashboard-YYYY-MM-DD.html` from the local FX-Reports
+folder into this repo's `reports/` folder, then commits and pushes. Vercel's own
+GitHub integration (already connected — see below) picks up the push and redeploys
+automatically, so there's no separate deploy step to run.
+
+**What gets published, and where:**
+- `reports/YYYY-MM-DD.html` — each day's report, byte-identical to the local `.html` file
+- `reports/latest.html` — always overwritten to mirror the most recent report, so people
+  can bookmark one stable link instead of a dated one
+- `reports/manifest.json` — the list of published dates, read by `reports/index.html` to
+  render the list
+- `reports/index.html` — a simple listing page (`/reports` on your deployed URL) linking
+  to `latest.html` and every dated report
+
+**Access control:** `middleware.js` at the repo root gates everything under `/reports`
+behind a single shared HTTP Basic Auth username/password (not bank-grade security — good
+enough to keep casual visitors and search engines out, not a determined attacker). Set it
+up **on every Vercel project connected to this repo** (see the note below — there are
+currently two):
+
+1. Vercel dashboard → the project → Settings → Environment Variables
+2. Add `REPORTS_PASSWORD` = a password you choose and share with your students
+3. Optionally add `REPORTS_USER` (defaults to `student` if not set)
+4. Redeploy (or just push again — either picks up new env vars)
+
+If `REPORTS_PASSWORD` isn't set, the middleware fails **closed** — it blocks access with
+an error rather than silently leaving reports open to the public.
+
+**Known issue as of writing: two Vercel projects are both connected to this same GitHub
+repo** (`finance-app` and `market-forecast-app-ovoo`), so every push deploys to both,
+meaning the reports will appear at two different URLs. This still works, but it's
+wasteful and confusing — worth going into the Vercel dashboard and deleting one of them
+once you've confirmed which URL you actually want to share. Whichever you keep, remember
+to set `REPORTS_PASSWORD` on it (env vars aren't shared between separate projects even if
+they deploy the same repo).
 
 ## Cloud-native report generation (no local machine required)
 
@@ -318,6 +356,46 @@ outbound links from taking over the app shell.
 **Known limitation:** same as the FX Intelligence Desk above — this syncs local app
 data only; a deployed instance would need `data/daily-dashboard/` included in whatever
 gets deployed.
+
+## Legend / terminology glossary
+
+`legend-content.js` (data) + `legend.js` (generic renderer) is a small shared widget,
+included on both `fx-intelligence.html` and `daily-report.html`, that answers "what do
+these colors and words mean?" right where the confusion happens — no navigating away.
+Built after a user question about why every field on a Bearish trade idea (card wash,
+headline, and every confidence-breakdown bar) renders in the same red tone.
+
+**What it covers:**
+
+- **The color system:** red = Bearish/Dovish, green = Bullish/Hawkish, amber =
+  neutral/mixed. Explicitly notes that color encodes *direction only*, not confidence —
+  a 20/100 Bearish idea and a 90/100 Bearish idea are both red.
+- **A glossary** of the report's own recurring vocabulary: Bearish, Bullish, Hawkish,
+  Dovish, Fade/Fading a trade, High-conviction trade idea, No high-conviction trade /
+  No-Trade Zone, the Entry Zone/Target/Stop/Risk:Reward trade-mechanics fields, and the
+  five Confidence Breakdown components (Macro/Technicals/Positioning/Sentiment/
+  Volatility).
+
+**Why a shared widget, not copy-pasted markup:** both pages show the same underlying
+report (parsed vs. raw) using the identical color system and vocabulary — a shared
+`legend-content.js` means the two copies can't drift out of sync the way hand-duplicated
+markup eventually would. Same content/rendering split as `learn-content.js`/`learn.js`
+and `due-diligence-content.js`/`due-diligence.js`, just scoped to one reusable widget
+instead of a full page — any future page can add this by including both `<script>` tags
+plus a `<div id="legendRoot"></div>` placeholder; `legend.js` no-ops safely if either is
+missing.
+
+**Rendered as** a single collapsible `<details>` block (collapsed by default, so it
+doesn't push report content down for returning users), positioned right below the
+disclaimer banner on both pages. Links out to the Due Diligence hub for anyone who wants
+the fuller explanation with our own report used as the worked example — that's the
+still-not-built Forex Phase 3 ("Applying It") mentioned above, which this legend is a
+lightweight, immediate complement to, not a replacement for.
+
+Verified via a headless jsdom test on both pages: `#legendRoot` placeholder exists,
+renders one `<details>` with the correct summary text, exactly 3 color swatches, all 9
+glossary terms present, and the Due Diligence link present — run identically against
+`fx-intelligence.html` and `daily-report.html` to confirm neither page drifted.
 
 ## Learn section
 
@@ -546,4 +624,6 @@ decision behind it" discipline the weather app's roadmap docs used:
   read-aloud (page-level + per-lesson)
 - `due-diligence.html`, `due-diligence.js`, `due-diligence-content.js` — Due Diligence
   hub: three-column (Forex/Crypto/Indexes & ETFs), three-phase roadmap of articles
+- `legend.js`, `legend-content.js` — shared color/terminology glossary widget, included
+  on both `fx-intelligence.html` and `daily-report.html`
 - `manifesto.html`, `MANIFESTO.md` — Get Rich Slow manifesto (in-app page + shareable source)

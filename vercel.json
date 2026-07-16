@@ -26,9 +26,12 @@
     { "source": "/due-diligence.html", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
     { "source": "/due-diligence.js", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
     { "source": "/due-diligence-content.js", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
+    { "source": "/legend.js", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
+    { "source": "/legend-content.js", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
     { "source": "/manifesto.html", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
     { "source": "/data/fx-reports/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
     { "source": "/data/daily-dashboard/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
+    { "source": "/reports/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
     { "source": "/manifest.json", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
     { "source": "/sw.js", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
     { "source": "/styles.css", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] }

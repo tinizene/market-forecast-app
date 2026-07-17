@@ -62,7 +62,8 @@ function main() {
   const newDates = candidates.filter((d) => !alreadyPublished.has(d));
 
   if (newDates.length === 0) {
-    console.log('Nothing new to publish — manifest is already up to date with the source folder.');
+    console.log('No new report HTML to publish — checking for unpushed data changes anyway.');
+    commitAndPush([], 'Sync FX dashboard data');
     return;
   }
 
@@ -84,16 +85,23 @@ function main() {
   fs.copyFileSync(path.join(SOURCE_DIR, `fx-dashboard-${newestDate}.html`), path.join(REPORTS_DIR, 'latest.html'));
   console.log(`Updated reports/latest.html -> ${newestDate}`);
 
+  commitAndPush(newDates, `Publish report(s): ${newDates.join(', ')}`);
+}
+
+// Commits and pushes the reports/ folder AND the parsed data folders
+// (data/fx-reports, data/daily-dashboard) so the live site's dashboard data
+// stays in sync with the published report HTML — previously only reports/
+// was pushed, which left the deployed data stale until a manual commit.
+function commitAndPush(newDates, commitMsg) {
   // Commit and push using whatever git identity/credentials are already
   // configured in this environment (same as every other push in this repo).
-  run('git', ['add', 'reports']);
-  const status = execFileSync('git', ['status', '--porcelain', '--', 'reports'], { cwd: ROOT, encoding: 'utf8' });
+  const PUBLISH_PATHS = ['reports', 'data/fx-reports', 'data/daily-dashboard'];
+  run('git', ['add', '--', ...PUBLISH_PATHS]);
+  const status = execFileSync('git', ['status', '--porcelain', '--', ...PUBLISH_PATHS], { cwd: ROOT, encoding: 'utf8' });
   if (!status.trim()) {
-    console.log('git status shows no staged changes under reports/ — nothing to commit (unexpected, but not fatal).');
+    console.log('git status shows no staged changes under reports/ or data/ — nothing to commit.');
     return;
   }
-
-  const commitMsg = `Publish report(s): ${newDates.join(', ')}`;
 
   try {
     run('git', ['commit', '-m', commitMsg]);

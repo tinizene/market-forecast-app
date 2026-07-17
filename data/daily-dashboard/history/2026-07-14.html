@@ -358,4 +358,31 @@
   new Chart(document.getElementById('pairsChart'), {
     type: 'bar',
     data: {
-      labels: ['EUR/USD','GBP/USD','USD/JPY','USD/CHF','USD/CAD','A
+      labels: ['EUR/USD','GBP/USD','USD/JPY','USD/CHF','USD/CAD','AUD/USD','NZD/USD'],
+      datasets: [{ label: 'Approx daily % change (only confirmed figures shown)', data: [0.3, 0.2, -0.15, -0.2, 0.0, -0.3, 0.67],
+        backgroundColor: function(ctx) { const v = ctx.raw; return v > 0 ? '#3ddc84' : (v < 0 ? '#ff5c5c' : '#ffb84d'); } }]
+    },
+    options: { indexAxis: 'y', responsive: true, plugins: { legend: { display: false } },
+      scales: { x: { ticks: { color: textColor }, grid: { color: gridColor } }, y: { ticks: { color: textColor }, grid: { color: gridColor } } } }
+  });
+
+  new Chart(document.getElementById('leaderboardChart'), {
+    type: 'bar',
+    data: {
+      labels: ['KOSPI','Nikkei 225','S&P 500','Sensex'],
+      datasets: [{ label: 'YTD % Return (only confirmed figures charted)', data: [92, 39.2, 8.1, -6.81],
+        backgroundColor: function(ctx) { const v = ctx.raw; return v > 0 ? '#3ddc84' : '#ff5c5c'; } }]
+    },
+    options: { indexAxis: 'y', responsive: true, plugins: { legend: { display: false } },
+      scales: { x: { ticks: { color: textColor }, grid: { color: gridColor } }, y: { ticks: { color: textColor }, grid: { color: gridColor } } } }
+  });
+
+  new Chart(document.getElementById('vixGauge'), {
+    type: 'doughnut',
+    data: { labels: ['VIX level', 'Remaining'], datasets: [{ data: [17.16, Math.max(0, 40 - 17.16)],
+      backgroundColor: ['#ffb84d', 'rgba(255,255,255,0.06)'], borderWidth: 0, circumference: 270, rotation: 225, cutout: '72%' }] },
+    options: { responsive: true, plugins: { legend: { display: false }, tooltip: { enabled: false } } }
+  });
+</script>
+</body>
+</html>

@@ -331,4 +331,34 @@
     type: 'bar',
     data: {
       labels: ['Fed','ECB','BoE','BoJ','BoC','RBA','RBNZ','SNB'],
-      datasets: [{ label: 'Policy Rate (%
+      datasets: [{ label: 'Policy Rate (%)', data: [3.75, 2.40, 3.75, 1.00, 2.25, 4.35, 2.50, 0.00],
+        backgroundColor: ['#ffb84d','#ffb84d','#ffb84d','#3ddc84','#3ddc84','#ffb84d','#3ddc84','#ffb84d'] }]
+    },
+    options: { responsive: true, plugins: { legend: { display: false } },
+      scales: { x: { ticks: { color: textColor }, grid: { color: gridColor } }, y: { ticks: { color: textColor }, grid: { color: gridColor }, beginAtZero: true } } }
+  });
+
+  new Chart(document.getElementById('strengthChart'), {
+    type: 'bar',
+    data: {
+      labels: ['NZD','EUR','CHF','GBP','USD','CAD','AUD','JPY'],
+      datasets: [{ label: 'Currency Strength (0-100)', data: [67, 61, 61, 57, 56, 52, 46, 34],
+        backgroundColor: function(ctx) { const v = ctx.raw; return v >= 60 ? '#3ddc84' : (v >= 48 ? '#ffb84d' : '#ff5c5c'); } }]
+    },
+    options: { indexAxis: 'y', responsive: true, plugins: { legend: { display: false } },
+      scales: { x: { ticks: { color: textColor }, grid: { color: gridColor }, beginAtZero: true, max: 100 }, y: { ticks: { color: textColor }, grid: { color: gridColor } } } }
+  });
+
+  new Chart(document.getElementById('leaderboardChart'), {
+    type: 'bar',
+    data: {
+      labels: ['KOSPI','Nikkei 225','S&P 500','Sensex'],
+      datasets: [{ label: 'YTD % Return (only confirmed figures charted)', data: [92, 39.2, 8.1, -6.81],
+        backgroundColor: function(ctx) { const v = ctx.raw; return v > 0 ? '#3ddc84' : '#ff5c5c'; } }]
+    },
+    options: { indexAxis: 'y', responsive: true, plugins: { legend: { display: false } },
+      scales: { x: { ticks: { color: textColor }, grid: { color: gridColor } }, y: { ticks: { color: textColor }, grid: { color: gridColor } } } }
+  });
+</script>
+</body>
+</html>

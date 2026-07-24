@@ -461,7 +461,7 @@ function renderLessonBlock(block, idBase, index) {
         </div>`;
 
     case 'image': {
-      const svgMarkup = FOUNDATION_SVGS[block.svg] || '';
+      const svgMarkup = FOUNDATION_SVGS[block.svg] || (window.SCERE_FOREX_SVGS || {})[block.svg] || '';
       return `
         <figure class="lesson-image-card">
           ${svgMarkup}
@@ -594,6 +594,38 @@ function renderFoundationTrack() {
   const header = `
     <div class="mb-2">
       <span class="foundation-badge">Free</span>
+      <p class="text-[11px] uppercase tracking-[0.15em] text-slate-400 mt-2">${escapeHtml(track.trackTitle || '')}</p>
+      <p class="text-xs text-slate-400 mt-1">${escapeHtml(track.trackTagline || '')}</p>
+    </div>`;
+
+  let lastChapter = null;
+  const lessonsHtml = lessons.map((lesson) => {
+    let dividerHtml = '';
+    if (lesson.chapterNumber !== lastChapter) {
+      dividerHtml = renderChapterDivider(lesson);
+      lastChapter = lesson.chapterNumber;
+    }
+    return dividerHtml + renderFoundationLessonCard(lesson);
+  }).join('');
+
+  root.innerHTML = header + lessonsHtml;
+  wireQuizInteractivity(root);
+}
+
+// ---------- forex track (paid) ----------
+// Same content model, block renderer, chapter dividers, quiz wiring and read-aloud
+// markup as the foundation track — the lesson card renderer is generic. Only the
+// data source (SCERE_FOREX_*), the mount point (#forexRoot) and the badge differ.
+// Diagrams resolve via window.SCERE_FOREX_SVGS (see the 'image' case above).
+function renderForexTrack() {
+  const track = window.SCERE_FOREX_TRACK || {};
+  const lessons = window.SCERE_FOREX_CONTENT || [];
+  const root = document.getElementById('forexRoot');
+  if (!root || !lessons.length) return;
+
+  const header = `
+    <div class="mb-2">
+      <span class="paid-badge">Paid track</span>
       <p class="text-[11px] uppercase tracking-[0.15em] text-slate-400 mt-2">${escapeHtml(track.trackTitle || '')}</p>
       <p class="text-xs text-slate-400 mt-1">${escapeHtml(track.trackTagline || '')}</p>
     </div>`;
@@ -1164,5 +1196,6 @@ function renderLessons() {
 
 document.addEventListener('DOMContentLoaded', () => {
   renderFoundationTrack();
+  renderForexTrack();
   renderLessons();
 });

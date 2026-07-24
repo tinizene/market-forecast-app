@@ -841,6 +841,24 @@
 - **PT:** Agrupamento de ordens
 - **SW:** Mkusanyiko wa oda ⚠
 
+### Pip Value
+- **EN:** The amount of money gained or lost per pip of movement, for a given position size, expressed in your account currency. Only equals a flat $10 per standard lot when the quote currency is your account currency.
+- **FR:** Valeur du pip
+- **PT:** Valor do pip
+- **SW:** Thamani ya pip ⚠ (kept partly as-is)
+
+### Account Currency
+- **EN:** The currency a trading account is denominated in — the currency in which all risk is finally measured.
+- **FR:** Devise du compte
+- **PT:** Moeda da conta
+- **SW:** Sarafu ya akaunti ⚠
+
+### Risk of Ruin
+- **EN:** The probability that a run of losses reduces an account past recovery. The trading form of the classical gambler's ruin problem; driven mainly by the fraction of the account risked per trade (Vince, The Mathematics of Money Management, 1992).
+- **FR:** Risque de ruine
+- **PT:** Risco de ruína
+- **SW:** Hatari ya kufilisika ⚠
+
 ## Crypto Track Terms
 
 *(Not yet started. Expect terms like: blockchain, wallet, private key, gas fee, exchange, volatility, market cap, stablecoin.)*

@@ -32,7 +32,7 @@
 ## Chapter 3: Risk Management for Forex Traders
 *Builds directly on Foundations Ch2 — this chapter is where those universal principles get actual forex-specific math attached to them.*
 
-1. Position Sizing With Pip Value (the calculation Foundations never covered: stop-loss distance + account risk % + pip value = position size)
+1. Position Sizing With Pip Value (the calculation Foundations never covered: stop-loss distance + account risk % + pip value = position size) — ✅ drafted *(goes past Ch1 L5's simplified "$10/pip": computes true pip value across USD-quote, USD-base and cross pairs and any account currency, then re-sizes; anchored to risk of ruin — gambler's ruin + Vince, The Mathematics of Money Management, Wiley 1992)*
 2. Margin Calls and Leverage Risk
 3. Risk-to-Reward Ratio in Practice
 

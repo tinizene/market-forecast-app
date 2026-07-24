@@ -309,3 +309,15 @@
   border-radius: 9999px;
 }
 
+.paid-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #eab308, #f59e0b);
+  color: #0f172a;
+  padding: 0.15rem 0.6rem;
+  border-radius: 9999px;
+}
+

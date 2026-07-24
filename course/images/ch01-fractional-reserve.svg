@@ -1,0 +1,67 @@
+<svg viewBox="0 0 950 520" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="950" height="520" fill="#FDFCF9"/>
+  <text x="475" y="42" text-anchor="middle" font-size="24" font-weight="bold" fill="#1F3864">Fractional Reserve Banking — And the Problem It Created</text>
+
+  <!-- Vault -->
+  <rect x="70" y="80" width="230" height="160" rx="10" fill="#EAF0FB" stroke="#2E5395" stroke-width="2"/>
+  <text x="185" y="108" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F3864">Bank Vault</text>
+  <circle cx="130" cy="150" r="16" fill="#D9B23C"/>
+  <circle cx="165" cy="150" r="16" fill="#D9B23C"/>
+  <circle cx="200" cy="150" r="16" fill="#D9B23C"/>
+  <circle cx="147" cy="180" r="16" fill="#D9B23C"/>
+  <circle cx="182" cy="180" r="16" fill="#D9B23C"/>
+  <text x="185" y="222" text-anchor="middle" font-size="13" fill="#333333">100 gold coins actually held</text>
+
+  <!-- Arrow -->
+  <line x1="300" y1="160" x2="360" y2="160" stroke="#555555" stroke-width="3" marker-end="url(#arrow2)"/>
+  <defs>
+    <marker id="arrow2" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L6,3 z" fill="#555555"/>
+    </marker>
+  </defs>
+
+  <!-- IOUs issued -->
+  <rect x="370" y="80" width="260" height="160" rx="10" fill="#FFF7E6" stroke="#C99A2E" stroke-width="2"/>
+  <text x="500" y="108" text-anchor="middle" font-size="15" font-weight="bold" fill="#8A6D1F">IOU Notes Issued</text>
+  <rect x="400" y="130" width="70" height="45" rx="4" fill="#FFFFFF" stroke="#C99A2E" stroke-width="1.5"/>
+  <rect x="480" y="130" width="70" height="45" rx="4" fill="#FFFFFF" stroke="#C99A2E" stroke-width="1.5"/>
+  <rect x="560" y="130" width="45" height="45" rx="4" fill="#FFFFFF" stroke="#C99A2E" stroke-width="1.5"/>
+  <rect x="400" y="182" width="70" height="30" rx="4" fill="#FFFFFF" stroke="#C99A2E" stroke-width="1.5"/>
+  <rect x="480" y="182" width="70" height="30" rx="4" fill="#FFFFFF" stroke="#C99A2E" stroke-width="1.5"/>
+  <text x="500" y="238" text-anchor="middle" font-size="13" fill="#333333">500 IOUs promised as "gold on demand"</text>
+
+  <!-- Warning box -->
+  <rect x="670" y="80" width="220" height="160" rx="10" fill="#FDEEEE" stroke="#B23B2E" stroke-width="2"/>
+  <text x="780" y="112" text-anchor="middle" font-size="15" font-weight="bold" fill="#B23B2E">The Risk</text>
+  <text x="780" y="140" text-anchor="middle" font-size="12" fill="#333333">Only 1 in 5 IOUs</text>
+  <text x="780" y="158" text-anchor="middle" font-size="12" fill="#333333">could actually be paid</text>
+  <text x="780" y="176" text-anchor="middle" font-size="12" fill="#333333">out in real gold if</text>
+  <text x="780" y="194" text-anchor="middle" font-size="12" fill="#333333">everyone showed up</text>
+  <text x="780" y="212" text-anchor="middle" font-size="12" fill="#333333">on the same day.</text>
+
+  <!-- Bank run row -->
+  <line x1="475" y1="255" x2="475" y2="290" stroke="#B23B2E" stroke-width="3" marker-end="url(#arrow3)"/>
+  <defs>
+    <marker id="arrow3" markerWidth="10" markerHeight="10" refX="3" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L6,0 L3,6 z" fill="#B23B2E"/>
+    </marker>
+  </defs>
+
+  <rect x="235" y="300" width="480" height="80" rx="10" fill="#FDEEEE" stroke="#B23B2E" stroke-width="2"/>
+  <text x="475" y="330" text-anchor="middle" font-size="16" font-weight="bold" fill="#B23B2E">Bank Run</text>
+  <text x="475" y="352" text-anchor="middle" font-size="12.5" fill="#333333">If confidence drops and many holders demand their gold at once,</text>
+  <text x="475" y="370" text-anchor="middle" font-size="12.5" fill="#333333">the bank runs out — even though it did nothing differently that day.</text>
+
+  <!-- Arrow down to solution -->
+  <line x1="475" y1="380" x2="475" y2="415" stroke="#1E7A4C" stroke-width="3" marker-end="url(#arrow4)"/>
+  <defs>
+    <marker id="arrow4" markerWidth="10" markerHeight="10" refX="3" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L6,0 L3,6 z" fill="#1E7A4C"/>
+    </marker>
+  </defs>
+
+  <rect x="185" y="425" width="580" height="80" rx="10" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="475" y="455" text-anchor="middle" font-size="16" font-weight="bold" fill="#1E7A4C">Central Bank (e.g. Bank of England, founded 1694)</text>
+  <text x="475" y="477" text-anchor="middle" font-size="12.5" fill="#333333">Centralizes note issuance, sets reserve rules, and backstops the system —</text>
+  <text x="475" y="495" text-anchor="middle" font-size="12.5" fill="#333333">so one trusted currency replaces hundreds of competing bank notes.</text>
+</svg>

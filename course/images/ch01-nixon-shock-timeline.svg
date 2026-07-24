@@ -1,0 +1,53 @@
+<svg viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="1000" height="400" fill="#FDFCF9"/>
+  <text x="500" y="40" text-anchor="middle" font-size="24" font-weight="bold" fill="#1F3864">From Bretton Woods to Floating Rates</text>
+
+  <line x1="60" y1="190" x2="940" y2="190" stroke="#2E5395" stroke-width="4"/>
+
+  <!-- 1944 -->
+  <circle cx="120" cy="190" r="10" fill="#2E5395"/>
+  <text x="120" y="160" text-anchor="middle" font-size="13" font-weight="bold" fill="#1F3864">1944</text>
+  <rect x="45" y="210" width="150" height="80" rx="8" fill="#EAF0FB" stroke="#2E5395" stroke-width="1.5"/>
+  <text x="120" y="232" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#333333">Bretton Woods</text>
+  <text x="120" y="250" text-anchor="middle" font-size="11" fill="#555555">44 nations peg</text>
+  <text x="120" y="265" text-anchor="middle" font-size="11" fill="#555555">currencies to USD,</text>
+  <text x="120" y="280" text-anchor="middle" font-size="11" fill="#555555">USD pegged to gold</text>
+
+  <!-- 1960s -->
+  <circle cx="340" cy="190" r="10" fill="#B23B2E"/>
+  <text x="340" y="160" text-anchor="middle" font-size="13" font-weight="bold" fill="#B23B2E">1960s</text>
+  <rect x="265" y="210" width="150" height="80" rx="8" fill="#FDEEEE" stroke="#B23B2E" stroke-width="1.5"/>
+  <text x="340" y="232" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#333333">Cracks Form</text>
+  <text x="340" y="250" text-anchor="middle" font-size="11" fill="#555555">U.S. inflation, more</text>
+  <text x="340" y="265" text-anchor="middle" font-size="11" fill="#555555">dollars printed than</text>
+  <text x="340" y="280" text-anchor="middle" font-size="11" fill="#555555">gold could cover</text>
+
+  <!-- Aug 1971 -->
+  <circle cx="560" cy="190" r="10" fill="#B23B2E"/>
+  <text x="560" y="160" text-anchor="middle" font-size="13" font-weight="bold" fill="#B23B2E">Aug 15, 1971</text>
+  <rect x="485" y="210" width="150" height="80" rx="8" fill="#FDEEEE" stroke="#B23B2E" stroke-width="1.5"/>
+  <text x="560" y="232" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#333333">The Nixon Shock</text>
+  <text x="560" y="250" text-anchor="middle" font-size="11" fill="#555555">Nixon suspends USD-</text>
+  <text x="560" y="265" text-anchor="middle" font-size="11" fill="#555555">to-gold convertibility.</text>
+  <text x="560" y="280" text-anchor="middle" font-size="11" fill="#555555">The peg is broken.</text>
+
+  <!-- 1973 -->
+  <circle cx="760" cy="190" r="10" fill="#C99A2E"/>
+  <text x="760" y="160" text-anchor="middle" font-size="13" font-weight="bold" fill="#8A6D1F">1973</text>
+  <rect x="685" y="210" width="150" height="80" rx="8" fill="#FFF7E6" stroke="#C99A2E" stroke-width="1.5"/>
+  <text x="760" y="232" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#333333">Full Float</text>
+  <text x="760" y="250" text-anchor="middle" font-size="11" fill="#555555">A brief realignment</text>
+  <text x="760" y="265" text-anchor="middle" font-size="11" fill="#555555">attempt fails; major</text>
+  <text x="760" y="280" text-anchor="middle" font-size="11" fill="#555555">currencies fully float</text>
+
+  <!-- Today -->
+  <circle cx="900" cy="190" r="12" fill="#1E7A4C"/>
+  <text x="900" y="160" text-anchor="middle" font-size="13" font-weight="bold" fill="#1E7A4C">Today</text>
+  <rect x="825" y="210" width="150" height="80" rx="8" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="900" y="232" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#333333">The Forex Market</text>
+  <text x="900" y="250" text-anchor="middle" font-size="11" fill="#555555">Currencies move</text>
+  <text x="900" y="265" text-anchor="middle" font-size="11" fill="#555555">freely on supply,</text>
+  <text x="900" y="280" text-anchor="middle" font-size="11" fill="#555555">demand &amp; trust</text>
+
+  <text x="500" y="345" text-anchor="middle" font-size="12.5" font-style="italic" fill="#888888">Floating exchange rates are the reason a forex market exists at all — without constant price movement, there would be nothing to trade.</text>
+</svg>

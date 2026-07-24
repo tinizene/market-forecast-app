@@ -1,0 +1,44 @@
+<svg viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="480" fill="#FDFCF9"/>
+  <text x="450" y="42" text-anchor="middle" font-size="24" font-weight="bold" fill="#1F3864">The Bretton Woods System (1944–1971)</text>
+
+  <!-- Gold at top -->
+  <circle cx="450" cy="110" r="45" fill="#D9B23C"/>
+  <text x="450" y="105" text-anchor="middle" font-size="15" font-weight="bold" fill="#5C4813">GOLD</text>
+  <text x="450" y="122" text-anchor="middle" font-size="10" fill="#5C4813">$35 / oz</text>
+
+  <!-- Line to USD -->
+  <line x1="450" y1="155" x2="450" y2="200" stroke="#2E5395" stroke-width="3"/>
+  <text x="470" y="182" font-size="11" fill="#555555">convertible</text>
+
+  <!-- USD box -->
+  <rect x="340" y="205" width="220" height="70" rx="10" fill="#EAF0FB" stroke="#2E5395" stroke-width="2.5"/>
+  <text x="450" y="234" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F3864">U.S. Dollar (USD)</text>
+  <text x="450" y="255" text-anchor="middle" font-size="11.5" fill="#333333">The world's anchor currency</text>
+
+  <!-- Lines down to other currencies -->
+  <line x1="450" y1="275" x2="180" y2="330" stroke="#7A8FBF" stroke-width="2"/>
+  <line x1="450" y1="275" x2="340" y2="330" stroke="#7A8FBF" stroke-width="2"/>
+  <line x1="450" y1="275" x2="500" y2="330" stroke="#7A8FBF" stroke-width="2"/>
+  <line x1="450" y1="275" x2="660" y2="330" stroke="#7A8FBF" stroke-width="2"/>
+
+  <!-- Currency boxes -->
+  <rect x="100" y="335" width="160" height="60" rx="8" fill="#F5F5F5" stroke="#7A8FBF" stroke-width="1.5"/>
+  <text x="180" y="360" text-anchor="middle" font-size="13" font-weight="bold" fill="#333333">British Pound</text>
+  <text x="180" y="378" text-anchor="middle" font-size="11" fill="#666666">pegged to USD</text>
+
+  <rect x="270" y="335" width="150" height="60" rx="8" fill="#F5F5F5" stroke="#7A8FBF" stroke-width="1.5"/>
+  <text x="345" y="360" text-anchor="middle" font-size="13" font-weight="bold" fill="#333333">French Franc</text>
+  <text x="345" y="378" text-anchor="middle" font-size="11" fill="#666666">pegged to USD</text>
+
+  <rect x="430" y="335" width="150" height="60" rx="8" fill="#F5F5F5" stroke="#7A8FBF" stroke-width="1.5"/>
+  <text x="505" y="360" text-anchor="middle" font-size="13" font-weight="bold" fill="#333333">German Mark</text>
+  <text x="505" y="378" text-anchor="middle" font-size="11" fill="#666666">pegged to USD</text>
+
+  <rect x="590" y="335" width="150" height="60" rx="8" fill="#F5F5F5" stroke="#7A8FBF" stroke-width="1.5"/>
+  <text x="665" y="360" text-anchor="middle" font-size="13" font-weight="bold" fill="#333333">Japanese Yen</text>
+  <text x="665" y="378" text-anchor="middle" font-size="11" fill="#666666">pegged to USD</text>
+
+  <text x="450" y="435" text-anchor="middle" font-size="12.5" fill="#333333">Only the U.S. dollar was directly convertible to gold — and only for foreign central banks, not individuals.</text>
+  <text x="450" y="455" text-anchor="middle" font-size="12.5" fill="#333333">Every other currency's value was fixed relative to the dollar, within a narrow band.</text>
+</svg>

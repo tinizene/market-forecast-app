@@ -1,0 +1,50 @@
+<svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="560" fill="#FDFCF9"/>
+  <text x="450" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#1F3864">The Position Sizing Formula</text>
+
+  <!-- Formula flow -->
+  <rect x="40" y="65" width="190" height="80" rx="10" fill="#EAF0FB" stroke="#2E5395" stroke-width="2"/>
+  <text x="135" y="92" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#2E5395">Account Balance</text>
+  <text x="135" y="112" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F3864">$10,000</text>
+  <text x="135" y="130" text-anchor="middle" font-size="10.5" fill="#555555">× 1% risk = $100</text>
+
+  <text x="245" y="112" text-anchor="middle" font-size="22" fill="#888888">÷</text>
+
+  <rect x="270" y="65" width="190" height="80" rx="10" fill="#FFF3EF" stroke="#B23B2E" stroke-width="2"/>
+  <text x="365" y="92" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#B23B2E">Stop-Loss Distance</text>
+  <text x="365" y="112" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F3864">50 pips</text>
+  <text x="365" y="130" text-anchor="middle" font-size="10.5" fill="#555555">from Chapter 2, Lesson 2</text>
+
+  <text x="475" y="112" text-anchor="middle" font-size="22" fill="#888888">×</text>
+
+  <rect x="500" y="65" width="190" height="80" rx="10" fill="#FFF7E6" stroke="#C99A2E" stroke-width="2"/>
+  <text x="595" y="92" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#8A6D1F">Pip Value</text>
+  <text x="595" y="112" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F3864">$10 / lot</text>
+  <text x="595" y="130" text-anchor="middle" font-size="10.5" fill="#555555">from Chapter 1, Lesson 4</text>
+
+  <text x="450" y="180" text-anchor="middle" font-size="14" fill="#333333">Lot Size = (Account Balance × Risk %) ÷ (Stop-Loss Pips × Pip Value)</text>
+
+  <line x1="450" y1="195" x2="450" y2="225" stroke="#1E7A4C" stroke-width="3" marker-end="url(#arrowDown2)"/>
+  <defs>
+    <marker id="arrowDown2" markerWidth="10" markerHeight="10" refX="3" refY="6" orient="auto">
+      <path d="M0,0 L6,0 L3,6 z" fill="#1E7A4C"/>
+    </marker>
+  </defs>
+
+  <rect x="280" y="235" width="340" height="80" rx="10" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="2.5"/>
+  <text x="450" y="265" text-anchor="middle" font-size="14" font-weight="bold" fill="#1E7A4C">Result: 0.2 standard lots</text>
+  <text x="450" y="285" text-anchor="middle" font-size="12" fill="#333333">(20,000 units — 2 mini lots)</text>
+  <text x="450" y="303" text-anchor="middle" font-size="11" fill="#555555">Max loss if stopped out: exactly $100 (1%)</text>
+
+  <!-- Kelly section -->
+  <line x1="450" y1="340" x2="450" y2="365" stroke="#888888" stroke-width="2" stroke-dasharray="4,3"/>
+
+  <rect x="80" y="370" width="740" height="165" rx="10" fill="#F5F5F5" stroke="#888888" stroke-width="1.2"/>
+  <text x="450" y="398" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#1F3864">Why a Fixed Percentage — Not the "Mathematically Optimal" Size?</text>
+  <text x="450" y="422" text-anchor="middle" font-size="11.5" fill="#333333">The Kelly Criterion (Kelly, 1956, Bell System Technical Journal) calculates the</text>
+  <text x="450" y="440" text-anchor="middle" font-size="11.5" fill="#333333">mathematically optimal bet size for long-term growth — but it requires precisely</text>
+  <text x="450" y="458" text-anchor="middle" font-size="11.5" fill="#333333">knowing your real win rate and reward-to-risk ratio, which beginners never have.</text>
+  <text x="450" y="480" text-anchor="middle" font-size="11.5" fill="#333333">"Full Kelly" is also known to produce 50–80% drawdowns even with a real edge.</text>
+  <text x="450" y="504" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#8A6D1F">A small, fixed risk percentage is the practical, beginner-safe version of the same idea.</text>
+  <text x="450" y="524" text-anchor="middle" font-size="10.5" font-style="italic" fill="#6B6B6B">Even professionals typically use "fractional Kelly" — a quarter or half of the full formula.</text>
+</svg>

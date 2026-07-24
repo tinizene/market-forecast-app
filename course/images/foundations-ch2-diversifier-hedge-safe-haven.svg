@@ -1,0 +1,59 @@
+<svg viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="480" fill="#FDFCF9"/>
+  <text x="450" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#1F3864">Diversifier vs. Hedge vs. Safe Haven</text>
+  <text x="450" y="62" text-anchor="middle" font-size="12.5" font-style="italic" fill="#6B6B6B">Three different relationships — not three names for the same thing</text>
+
+  <!-- Diversifier column -->
+  <rect x="40" y="90" width="255" height="330" rx="12" fill="#EAF0FB" stroke="#2E5395" stroke-width="2"/>
+  <text x="167" y="122" text-anchor="middle" font-size="16" font-weight="bold" fill="#2E5395">Diversifier</text>
+  <line x1="70" y1="140" x2="265" y2="140" stroke="#B5C4E0" stroke-width="1.5"/>
+  <text x="167" y="165" text-anchor="middle" font-size="12" fill="#333333">Average correlation:</text>
+  <text x="167" y="185" text-anchor="middle" font-size="14" font-weight="bold" fill="#2E5395">Positive, but imperfect</text>
+  <text x="167" y="215" text-anchor="middle" font-size="11.5" fill="#333333">Still tends to move with</text>
+  <text x="167" y="233" text-anchor="middle" font-size="11.5" fill="#333333">your other holdings —</text>
+  <text x="167" y="251" text-anchor="middle" font-size="11.5" fill="#333333">just not in lockstep.</text>
+  <text x="167" y="281" text-anchor="middle" font-size="11.5" fill="#333333">Smooths day-to-day</text>
+  <text x="167" y="299" text-anchor="middle" font-size="11.5" fill="#333333">swings. No special</text>
+  <text x="167" y="317" text-anchor="middle" font-size="11.5" fill="#333333">promise during a crisis.</text>
+  <rect x="65" y="345" width="205" height="55" rx="8" fill="#FFFFFF" stroke="#B5C4E0" stroke-width="1.2"/>
+  <text x="167" y="368" text-anchor="middle" font-size="10.5" fill="#555555">Example claim in the</text>
+  <text x="167" y="384" text-anchor="middle" font-size="10.5" fill="#555555">literature: crypto, per the</text>
+  <text x="167" y="398" text-anchor="middle" font-size="10.5" fill="#2E5395" font-weight="bold">2021 Dutch thesis finding</text>
+
+  <!-- Hedge column -->
+  <rect x="322" y="90" width="255" height="330" rx="12" fill="#FFF7E6" stroke="#C99A2E" stroke-width="2"/>
+  <text x="449" y="122" text-anchor="middle" font-size="16" font-weight="bold" fill="#8A6D1F">Hedge</text>
+  <line x1="352" y1="140" x2="547" y2="140" stroke="#E3CE8F" stroke-width="1.5"/>
+  <text x="449" y="165" text-anchor="middle" font-size="12" fill="#333333">Average correlation:</text>
+  <text x="449" y="185" text-anchor="middle" font-size="14" font-weight="bold" fill="#8A6D1F">Zero or negative</text>
+  <text x="449" y="215" text-anchor="middle" font-size="11.5" fill="#333333">Holds across ALL</text>
+  <text x="449" y="233" text-anchor="middle" font-size="11.5" fill="#333333">conditions — calm</text>
+  <text x="449" y="251" text-anchor="middle" font-size="11.5" fill="#333333">markets and turbulent</text>
+  <text x="449" y="269" text-anchor="middle" font-size="11.5" fill="#333333">ones alike, on average.</text>
+  <text x="449" y="299" text-anchor="middle" font-size="11.5" fill="#333333">Does not guarantee it</text>
+  <text x="449" y="317" text-anchor="middle" font-size="11.5" fill="#333333">reduces losses in any</text>
+  <text x="449" y="335" text-anchor="middle" font-size="11.5" fill="#333333">one specific event.</text>
+  <rect x="347" y="345" width="205" height="55" rx="8" fill="#FFFFFF" stroke="#E3CE8F" stroke-width="1.2"/>
+  <text x="449" y="368" text-anchor="middle" font-size="10.5" fill="#555555">Example claim in the</text>
+  <text x="449" y="384" text-anchor="middle" font-size="10.5" fill="#555555">literature: gold, in the</text>
+  <text x="449" y="398" text-anchor="middle" font-size="10.5" fill="#8A6D1F" font-weight="bold">2026 CBCG journal study</text>
+
+  <!-- Safe Haven column -->
+  <rect x="604" y="90" width="255" height="330" rx="12" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="731" y="122" text-anchor="middle" font-size="16" font-weight="bold" fill="#1E7A4C">Safe Haven</text>
+  <line x1="634" y1="140" x2="829" y2="140" stroke="#A9DDBE" stroke-width="1.5"/>
+  <text x="731" y="165" text-anchor="middle" font-size="12" fill="#333333">Correlation specifically</text>
+  <text x="731" y="183" text-anchor="middle" font-size="12" fill="#333333">during market stress:</text>
+  <text x="731" y="205" text-anchor="middle" font-size="14" font-weight="bold" fill="#1E7A4C">Zero or negative</text>
+  <text x="731" y="235" text-anchor="middle" font-size="11.5" fill="#333333">May behave completely</text>
+  <text x="731" y="253" text-anchor="middle" font-size="11.5" fill="#333333">differently outside of a</text>
+  <text x="731" y="271" text-anchor="middle" font-size="11.5" fill="#333333">crisis — the promise is</text>
+  <text x="731" y="289" text-anchor="middle" font-size="11.5" fill="#333333">narrow and specific.</text>
+  <rect x="629" y="345" width="205" height="55" rx="8" fill="#FFFFFF" stroke="#A9DDBE" stroke-width="1.2"/>
+  <text x="731" y="368" text-anchor="middle" font-size="10.5" fill="#555555">Example claim in the</text>
+  <text x="731" y="384" text-anchor="middle" font-size="10.5" fill="#555555">literature: Bitcoin, in the</text>
+  <text x="731" y="398" text-anchor="middle" font-size="10.5" fill="#1E7A4C" font-weight="bold">2026 CBCG journal study</text>
+
+  <text x="450" y="440" text-anchor="middle" font-size="12" fill="#333333">Two separate academic studies reached different conclusions about Bitcoin — not because one is wrong,</text>
+  <text x="450" y="458" text-anchor="middle" font-size="12" fill="#333333">but because the underlying relationship genuinely shifts over time. Treat any single "safe haven" claim with care.</text>
+</svg>

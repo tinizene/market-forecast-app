@@ -1,0 +1,61 @@
+<svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="520" fill="#FDFCF9"/>
+  <text x="450" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#1F3864">Currency Pairs: Base, Quote &amp; the Pecking Order</text>
+
+  <!-- Top: base/quote breakdown -->
+  <rect x="150" y="65" width="600" height="130" rx="12" fill="#EAF0FB" stroke="#2E5395" stroke-width="2"/>
+  <text x="450" y="95" text-anchor="middle" font-size="20" font-weight="bold" fill="#1F3864">EUR / USD = 1.0850</text>
+
+  <rect x="185" y="115" width="200" height="60" rx="8" fill="#FFFFFF" stroke="#2E5395" stroke-width="1.5"/>
+  <text x="285" y="138" text-anchor="middle" font-size="13" font-weight="bold" fill="#2E5395">EUR — Base</text>
+  <text x="285" y="157" text-anchor="middle" font-size="11" fill="#333333">The "1" — what's being priced</text>
+
+  <rect x="515" y="115" width="200" height="60" rx="8" fill="#FFFFFF" stroke="#1E7A4C" stroke-width="1.5"/>
+  <text x="615" y="138" text-anchor="middle" font-size="13" font-weight="bold" fill="#1E7A4C">USD — Quote</text>
+  <text x="615" y="157" text-anchor="middle" font-size="11" fill="#333333">The price, per 1 base unit</text>
+
+  <text x="450" y="180" text-anchor="middle" font-size="12" font-style="italic" fill="#555555">1 euro costs 1.0850 US dollars</text>
+
+  <!-- Pecking order -->
+  <text x="450" y="230" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F3864">The Pecking Order — Why Pairs Aren't Written "Any Old Way"</text>
+  <text x="450" y="250" text-anchor="middle" font-size="11.5" font-style="italic" fill="#6B6B6B">Higher-ranked currency is conventionally listed first (as base) against a lower-ranked one</text>
+
+  <g>
+    <rect x="80" y="270" width="110" height="50" rx="8" fill="#EAF0FB" stroke="#2E5395" stroke-width="1.5"/>
+    <text x="135" y="300" text-anchor="middle" font-size="14" font-weight="bold" fill="#2E5395">EUR</text>
+
+    <rect x="215" y="270" width="110" height="50" rx="8" fill="#EAF0FB" stroke="#2E5395" stroke-width="1.5"/>
+    <text x="270" y="300" text-anchor="middle" font-size="14" font-weight="bold" fill="#2E5395">GBP</text>
+
+    <rect x="350" y="270" width="145" height="50" rx="8" fill="#EAF0FB" stroke="#2E5395" stroke-width="1.5"/>
+    <text x="422" y="300" text-anchor="middle" font-size="13" font-weight="bold" fill="#2E5395">AUD / NZD</text>
+
+    <rect x="520" y="270" width="110" height="50" rx="8" fill="#FFF7E6" stroke="#C99A2E" stroke-width="1.5"/>
+    <text x="575" y="300" text-anchor="middle" font-size="14" font-weight="bold" fill="#8A6D1F">USD</text>
+
+    <rect x="655" y="270" width="165" height="50" rx="8" fill="#F5F5F5" stroke="#888888" stroke-width="1.5"/>
+    <text x="737" y="300" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#555555">CAD / CHF / JPY</text>
+
+    <line x1="190" y1="295" x2="215" y2="295" stroke="#999999" stroke-width="2" marker-end="url(#arr)"/>
+    <line x1="325" y1="295" x2="350" y2="295" stroke="#999999" stroke-width="2" marker-end="url(#arr)"/>
+    <line x1="495" y1="295" x2="520" y2="295" stroke="#999999" stroke-width="2" marker-end="url(#arr)"/>
+    <line x1="630" y1="295" x2="655" y2="295" stroke="#999999" stroke-width="2" marker-end="url(#arr)"/>
+    <defs>
+      <marker id="arr" markerWidth="8" markerHeight="8" refX="4" refY="2" orient="auto">
+        <path d="M0,0 L4,2 L0,4 z" fill="#999999"/>
+      </marker>
+    </defs>
+  </g>
+
+  <text x="450" y="345" text-anchor="middle" font-size="11.5" fill="#333333">So the market quotes EUR/USD and USD/CAD — never USD/EUR or CAD/USD — by long-standing convention.</text>
+
+  <!-- History note -->
+  <rect x="100" y="370" width="700" height="70" rx="10" fill="#FFF7E6" stroke="#C99A2E" stroke-width="1.5"/>
+  <text x="450" y="395" text-anchor="middle" font-size="12.5" fill="#8A6D1F" font-weight="bold">Where this comes from: history, not logic</text>
+  <text x="450" y="415" text-anchor="middle" font-size="11.5" fill="#5C4813">The British pound "sat on top" because sterling was the world's reserve currency before the dollar.</text>
+  <text x="450" y="430" text-anchor="middle" font-size="11.5" fill="#5C4813">The euro inherited that priority from the German mark when EUR/GBP was set as convention in 1999.</text>
+
+  <!-- Current data -->
+  <text x="450" y="470" text-anchor="middle" font-size="12.5" fill="#333333">2025 BIS Triennial Survey: $9.6 trillion traded daily · USD on one side of 89% of all trades · EUR/USD still the largest single pair</text>
+  <text x="450" y="492" text-anchor="middle" font-size="11" font-style="italic" fill="#6B6B6B">Source: Bank for International Settlements, Triennial Central Bank Survey, April 2025</text>
+</svg>

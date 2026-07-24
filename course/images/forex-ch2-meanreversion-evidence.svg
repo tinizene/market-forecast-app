@@ -1,0 +1,57 @@
+<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="600" fill="#FDFCF9"/>
+  <text x="450" y="36" text-anchor="middle" font-size="21" font-weight="bold" fill="#1F3864">Mean Reversion Tools — and What the Evidence Says</text>
+
+  <!-- Bollinger panel -->
+  <rect x="40" y="55" width="400" height="240" rx="10" fill="#EAF0FB" stroke="#2E5395" stroke-width="1.5"/>
+  <text x="240" y="80" text-anchor="middle" font-size="14" font-weight="bold" fill="#2E5395">Bollinger Bands (20-SMA ± 2 SD)</text>
+  <path d="M 70 130 C 130 125, 200 135, 260 130 C 320 125, 380 130, 410 128" fill="none" stroke="#B23B2E" stroke-width="2" stroke-dasharray="6,4"/>
+  <path d="M 70 175 C 130 172, 200 178, 260 174 C 320 171, 380 175, 410 173" fill="none" stroke="#888888" stroke-width="2"/>
+  <path d="M 70 220 C 130 217, 200 223, 260 219 C 320 216, 380 220, 410 218" fill="none" stroke="#1E7A4C" stroke-width="2" stroke-dasharray="6,4"/>
+  <polyline points="80,180 110,150 140,132 170,160 200,190 230,215 260,200 290,168 320,135 350,158 380,185" fill="none" stroke="#333333" stroke-width="2"/>
+  <text x="425" y="132" font-size="9.5" fill="#B23B2E">upper</text>
+  <text x="425" y="177" font-size="9.5" fill="#888888">20 SMA</text>
+  <text x="425" y="222" font-size="9.5" fill="#1E7A4C">lower</text>
+  <text x="240" y="252" text-anchor="middle" font-size="10.5" fill="#333333">Normal distribution: ~68% within 1 SD, ~95% within 2 SD</text>
+  <text x="240" y="272" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#B23B2E">But returns have FAT TAILS — extremes happen far</text>
+  <text x="240" y="287" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#B23B2E">more often than the bell curve predicts (SNB 2015!)</text>
+
+  <!-- RSI panel -->
+  <rect x="460" y="55" width="400" height="240" rx="10" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="1.5"/>
+  <text x="660" y="80" text-anchor="middle" font-size="14" font-weight="bold" fill="#1E7A4C">RSI (14) — Overbought / Oversold</text>
+  <line x1="490" y1="120" x2="830" y2="120" stroke="#B23B2E" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="838" y="124" font-size="9.5" fill="#B23B2E">70</text>
+  <line x1="490" y1="230" x2="830" y2="230" stroke="#1E7A4C" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="838" y="234" font-size="9.5" fill="#1E7A4C">30</text>
+  <polyline points="500,180 530,150 560,110 590,100 620,115 650,135 680,190 710,240 740,250 770,235 800,205" fill="none" stroke="#333333" stroke-width="2.5"/>
+  <circle cx="620" cy="115" r="6" fill="#B23B2E"/>
+  <text x="620" y="103" text-anchor="middle" font-size="9" font-weight="bold" fill="#B23B2E">exits zone → short</text>
+  <circle cx="770" cy="235" r="6" fill="#1E7A4C"/>
+  <text x="770" y="262" text-anchor="middle" font-size="9" font-weight="bold" fill="#1E7A4C">exits zone → buy</text>
+  <text x="660" y="285" text-anchor="middle" font-size="10.5" font-style="italic" fill="#333333">Don't act on entering the zone — markets stay extreme for a long time. Wait for the exit.</text>
+
+  <!-- Fibonacci evidence panel -->
+  <text x="450" y="330" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F3864">Fibonacci Retracement — the Claim vs. the Evidence</text>
+
+  <rect x="60" y="345" width="380" height="150" rx="10" fill="#FFF7E6" stroke="#C99A2E" stroke-width="1.5"/>
+  <text x="250" y="370" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#8A6D1F">The Claim</text>
+  <text x="250" y="392" text-anchor="middle" font-size="10.5" fill="#5C4813">Prices retrace to "special" ratio levels derived</text>
+  <text x="250" y="408" text-anchor="middle" font-size="10.5" fill="#5C4813">from the Fibonacci sequence: 23.6%, 38.2%,</text>
+  <text x="250" y="424" text-anchor="middle" font-size="10.5" fill="#5C4813">50%*, 61.8%, 78.6%</text>
+  <text x="250" y="448" text-anchor="middle" font-size="9.5" font-style="italic" fill="#8A6D1F">*50% isn't actually a Fibonacci ratio — added by convention</text>
+  <text x="250" y="475" text-anchor="middle" font-size="10" fill="#5C4813">"What has been found is..." — even the lecturer</text>
+  <text x="250" y="489" text-anchor="middle" font-size="10" fill="#5C4813">flags he didn't verify the research himself</text>
+
+  <rect x="460" y="345" width="380" height="150" rx="10" fill="#FFF3EF" stroke="#B23B2E" stroke-width="1.5"/>
+  <text x="650" y="370" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#B23B2E">The Peer-Reviewed Test</text>
+  <text x="650" y="392" text-anchor="middle" font-size="10.5" fill="#333333">Tsinaslanidis et al. (2022), Expert Systems with</text>
+  <text x="650" y="408" text-anchor="middle" font-size="10.5" fill="#333333">Applications — algorithmic test across Dow Jones,</text>
+  <text x="650" y="424" text-anchor="middle" font-size="10.5" fill="#333333">NASDAQ &amp; DAX stocks:</text>
+  <text x="650" y="450" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#B23B2E">Bounce probability at Fibonacci zones was</text>
+  <text x="650" y="466" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#B23B2E">statistically indistinguishable from any other zone.</text>
+  <text x="650" y="486" text-anchor="middle" font-size="9.5" font-style="italic" fill="#555555">No support as a standalone rule.</text>
+
+  <text x="450" y="530" text-anchor="middle" font-size="11.5" fill="#333333">Honest takeaway: Fibonacci levels may still "work" as widely-watched zones (self-fulfilling attention),</text>
+  <text x="450" y="548" text-anchor="middle" font-size="11.5" fill="#333333">but the ratios themselves carry no verified special power. Treat them as a map of where others look —</text>
+  <text x="450" y="566" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#1F3864">never as a guarantee, and never as a substitute for a stop-loss.</text>
+</svg>

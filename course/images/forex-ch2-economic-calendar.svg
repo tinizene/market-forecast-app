@@ -1,0 +1,60 @@
+<svg viewBox="0 0 900 640" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="640" fill="#FDFCF9"/>
+  <text x="450" y="36" text-anchor="middle" font-size="20" font-weight="bold" fill="#1F3864">Reading an Economic Calendar Entry</text>
+
+  <text x="450" y="66" text-anchor="middle" font-size="12.5" font-style="italic" fill="#6B6B6B">Every entry answers four questions: which currency, when, how much it matters, and what was expected</text>
+
+  <rect x="50" y="85" width="800" height="120" rx="10" fill="#FFFFFF" stroke="#2E5395" stroke-width="2"/>
+
+  <line x1="50" y1="118" x2="850" y2="118" stroke="#E1E5EE" stroke-width="1.5"/>
+  <text x="95" y="108" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#1F3864">TIME</text>
+  <text x="185" y="108" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#1F3864">CURRENCY</text>
+  <text x="290" y="108" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#1F3864">IMPACT</text>
+  <text x="430" y="108" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#1F3864">EVENT</text>
+  <text x="600" y="108" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#1F3864">ACTUAL</text>
+  <text x="700" y="108" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#1F3864">FORECAST</text>
+  <text x="800" y="108" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#1F3864">PREVIOUS</text>
+
+  <text x="95" y="148" text-anchor="middle" font-size="11.5" fill="#333333">10:00am</text>
+  <text x="185" y="148" text-anchor="middle" font-size="12" font-weight="bold" fill="#2E5395">CAD</text>
+  <rect x="255" y="136" width="70" height="17" rx="4" fill="#FFF3EF" stroke="#B23B2E" stroke-width="1.2"/>
+  <text x="290" y="149" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#B23B2E">HIGH</text>
+  <text x="430" y="148" text-anchor="middle" font-size="11.5" fill="#333333">Overnight Rate</text>
+  <text x="600" y="148" text-anchor="middle" font-size="11.5" font-style="italic" fill="#888888">pending</text>
+  <text x="700" y="148" text-anchor="middle" font-size="11.5" fill="#333333">1.75%</text>
+  <text x="800" y="148" text-anchor="middle" font-size="11.5" fill="#333333">1.75%</text>
+
+  <text x="450" y="180" text-anchor="middle" font-size="11" fill="#555555">Forecast equals previous, so no change is expected. If the actual arrives at 1.75%, reaction is usually muted.</text>
+  <text x="450" y="196" text-anchor="middle" font-size="11" font-weight="bold" fill="#B23B2E">The violent move comes if ACTUAL differs from FORECAST.</text>
+
+  <text x="450" y="240" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F3864">Impact Colour = How Much Room You Should Give It</text>
+
+  <rect x="80" y="255" width="230" height="80" rx="9" fill="#FFF7E6" stroke="#C99A2E" stroke-width="1.5"/>
+  <text x="195" y="278" text-anchor="middle" font-size="12" font-weight="bold" fill="#8A6D1F">LOW (yellow)</text>
+  <text x="195" y="299" text-anchor="middle" font-size="10.5" fill="#333333">Minor data. Rarely moves price</text>
+  <text x="195" y="315" text-anchor="middle" font-size="10.5" fill="#333333">much on its own.</text>
+
+  <rect x="335" y="255" width="230" height="80" rx="9" fill="#FFF3EF" stroke="#D2691E" stroke-width="1.5"/>
+  <text x="450" y="278" text-anchor="middle" font-size="12" font-weight="bold" fill="#B8651B">MEDIUM (orange)</text>
+  <text x="450" y="299" text-anchor="middle" font-size="10.5" fill="#333333">Can move price, especially if</text>
+  <text x="450" y="315" text-anchor="middle" font-size="10.5" fill="#333333">it surprises.</text>
+
+  <rect x="590" y="255" width="230" height="80" rx="9" fill="#FFF3EF" stroke="#B23B2E" stroke-width="2"/>
+  <text x="705" y="278" text-anchor="middle" font-size="12" font-weight="bold" fill="#B23B2E">HIGH (red)</text>
+  <text x="705" y="299" text-anchor="middle" font-size="10.5" fill="#333333">Rate decisions, CPI, jobs data.</text>
+  <text x="705" y="315" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#B23B2E">Beginners: stay flat through these.</text>
+
+  <rect x="60" y="360" width="780" height="115" rx="10" fill="#EAF0FB" stroke="#2E5395" stroke-width="1.5"/>
+  <text x="450" y="385" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#2E5395">What the Research Actually Found</text>
+  <text x="450" y="409" text-anchor="middle" font-size="11.5" fill="#333333">Andersen, Bollerslev, Diebold and Vega (2003), American Economic Review, studied six years of</text>
+  <text x="450" y="426" text-anchor="middle" font-size="11.5" fill="#333333">real-time FX quotes against forecasts and outcomes. Announcement SURPRISES produce immediate</text>
+  <text x="450" y="443" text-anchor="middle" font-size="11.5" fill="#333333">jumps in exchange rates. The announcement alone does not - the gap versus expectation does.</text>
+  <text x="450" y="464" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#B23B2E">They also found an asymmetry: bad news moves the market more than equally-sized good news.</text>
+
+  <rect x="60" y="495" width="780" height="120" rx="10" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="1.5"/>
+  <text x="450" y="520" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#1E7A4C">The Beginner Workflow</text>
+  <text x="450" y="544" text-anchor="middle" font-size="11.5" fill="#333333">1. Check the calendar before every session. 2. Find high-impact events for BOTH currencies in your pair.</text>
+  <text x="450" y="561" text-anchor="middle" font-size="11.5" fill="#333333">3. Do not hold a position through them while learning. 4. Watch what happens instead: the surprise,</text>
+  <text x="450" y="578" text-anchor="middle" font-size="11.5" fill="#333333">then price after 5 min, 1 hour, 1 day. 5. Build your own record of how each event type behaves.</text>
+  <text x="450" y="601" text-anchor="middle" font-size="10.5" font-style="italic" fill="#555555">Avoidance now is not permanent. It is how you earn the knowledge to trade these events later.</text>
+</svg>

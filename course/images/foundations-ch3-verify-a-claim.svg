@@ -1,0 +1,41 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="500" fill="#FDFCF9"/>
+  <text x="450" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#1F3864">Verifying an "It Works" Claim</text>
+
+  <!-- Left: unverified -->
+  <rect x="50" y="65" width="370" height="330" rx="12" fill="#FFF3EF" stroke="#B23B2E" stroke-width="2"/>
+  <text x="235" y="95" text-anchor="middle" font-size="16" font-weight="bold" fill="#B23B2E">Unverified Claim</text>
+  <text x="235" y="118" text-anchor="middle" font-size="12" font-style="italic" fill="#8A4038">"70% success rate" — seen on a blog</text>
+
+  <text x="75" y="150" font-size="12.5" fill="#333333">✗ No named author or institution</text>
+  <text x="75" y="178" font-size="12.5" fill="#333333">✗ No journal, no link, no DOI</text>
+  <text x="75" y="206" font-size="12.5" fill="#333333">✗ Market/time period unspecified</text>
+  <text x="75" y="234" font-size="12.5" fill="#333333">✗ Number shifts between sources</text>
+  <text x="75" y="262" font-size="12.5" fill="#333333">✗ Repeated as fact, never re-tested</text>
+
+  <rect x="75" y="290" width="320" height="85" rx="8" fill="#FFFFFF" stroke="#E3B5AC" stroke-width="1.2"/>
+  <text x="235" y="313" text-anchor="middle" font-size="11" fill="#555555">Example: Bulkowski's pattern statistics —</text>
+  <text x="235" y="331" text-anchor="middle" font-size="11" fill="#555555">a private investor's own backtest, not peer-</text>
+  <text x="235" y="349" text-anchor="middle" font-size="11" fill="#555555">reviewed, admittedly regime-dependent —</text>
+  <text x="235" y="367" text-anchor="middle" font-size="11" fill="#8A4038" font-weight="bold">yet quoted everywhere as settled fact.</text>
+
+  <!-- Right: verified -->
+  <rect x="480" y="65" width="370" height="330" rx="12" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="665" y="95" text-anchor="middle" font-size="16" font-weight="bold" fill="#1E7A4C">Peer-Reviewed Finding</text>
+  <text x="665" y="118" text-anchor="middle" font-size="12" font-style="italic" fill="#14512F">Published, verifiable research</text>
+
+  <text x="505" y="150" font-size="12.5" fill="#333333">✓ Named authors, institution</text>
+  <text x="505" y="178" font-size="12.5" fill="#333333">✓ Named journal, real DOI/link</text>
+  <text x="505" y="206" font-size="12.5" fill="#333333">✓ Market, dates, method specified</text>
+  <text x="505" y="234" font-size="12.5" fill="#333333">✓ Consistent across citing sources</text>
+  <text x="505" y="262" font-size="12.5" fill="#333333">✓ Reviewed by independent experts</text>
+
+  <rect x="505" y="290" width="320" height="85" rx="8" fill="#FFFFFF" stroke="#A9DDBE" stroke-width="1.2"/>
+  <text x="665" y="313" text-anchor="middle" font-size="11" fill="#555555">Example: Lo, Mamaysky &amp; Wang (2000),</text>
+  <text x="665" y="331" text-anchor="middle" font-size="11" fill="#555555">Journal of Finance — found real signal,</text>
+  <text x="665" y="349" text-anchor="middle" font-size="11" fill="#555555">but explicitly noted statistical significance</text>
+  <text x="665" y="367" text-anchor="middle" font-size="11" fill="#1E7A4C" font-weight="bold">≠ guaranteed trading profit.</text>
+
+  <text x="450" y="425" text-anchor="middle" font-size="13" fill="#333333">Both can exist for the same pattern. The question is never just "does it work" —</text>
+  <text x="450" y="447" text-anchor="middle" font-size="13" fill="#333333">it's "how do I know, and how sure can I actually be?"</text>
+</svg>

@@ -1,0 +1,39 @@
+<svg viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="460" fill="#FDFCF9"/>
+  <text x="450" y="42" text-anchor="middle" font-size="24" font-weight="bold" fill="#1F3864">Why Gold Struggled as Everyday Money</text>
+
+  <!-- 2x2 grid -->
+  <!-- Box 1: Debasement -->
+  <rect x="60" y="80" width="360" height="150" rx="12" fill="#FFF3EF" stroke="#B23B2E" stroke-width="2"/>
+  <text x="240" y="112" text-anchor="middle" font-size="17" font-weight="bold" fill="#B23B2E">Debasement</text>
+  <text x="240" y="140" text-anchor="middle" font-size="12.5" fill="#333333">Rulers or forgers could mix cheaper</text>
+  <text x="240" y="160" text-anchor="middle" font-size="12.5" fill="#333333">metal into gold coins, reducing their</text>
+  <text x="240" y="180" text-anchor="middle" font-size="12.5" fill="#333333">true value while keeping the same</text>
+  <text x="240" y="200" text-anchor="middle" font-size="12.5" fill="#333333">stamped face value.</text>
+
+  <!-- Box 2: Value fluctuation -->
+  <rect x="480" y="80" width="360" height="150" rx="12" fill="#FFF3EF" stroke="#B23B2E" stroke-width="2"/>
+  <text x="660" y="112" text-anchor="middle" font-size="17" font-weight="bold" fill="#B23B2E">Value Fluctuation</text>
+  <text x="660" y="140" text-anchor="middle" font-size="12.5" fill="#333333">New gold discoveries could suddenly</text>
+  <text x="660" y="160" text-anchor="middle" font-size="12.5" fill="#333333">increase supply and shift gold's value</text>
+  <text x="660" y="180" text-anchor="middle" font-size="12.5" fill="#333333">relative to goods — undermining its</text>
+  <text x="660" y="200" text-anchor="middle" font-size="12.5" fill="#333333">role as a stable store of value.</text>
+
+  <!-- Box 3: Transport -->
+  <rect x="60" y="255" width="360" height="150" rx="12" fill="#FFF3EF" stroke="#B23B2E" stroke-width="2"/>
+  <text x="240" y="287" text-anchor="middle" font-size="17" font-weight="bold" fill="#B23B2E">Difficult to Transport</text>
+  <text x="240" y="315" text-anchor="middle" font-size="12.5" fill="#333333">Gold is heavy. Moving enough of it</text>
+  <text x="240" y="335" text-anchor="middle" font-size="12.5" fill="#333333">to cover a large transaction — or carry</text>
+  <text x="240" y="355" text-anchor="middle" font-size="12.5" fill="#333333">across long trade routes — was slow,</text>
+  <text x="240" y="375" text-anchor="middle" font-size="12.5" fill="#333333">costly, and risky (theft, loss at sea).</text>
+
+  <!-- Box 4: Limited supply -->
+  <rect x="480" y="255" width="360" height="150" rx="12" fill="#FFF3EF" stroke="#B23B2E" stroke-width="2"/>
+  <text x="660" y="287" text-anchor="middle" font-size="17" font-weight="bold" fill="#B23B2E">Limited Supply</text>
+  <text x="660" y="315" text-anchor="middle" font-size="12.5" fill="#333333">As economies grew, there often wasn't</text>
+  <text x="660" y="335" text-anchor="middle" font-size="12.5" fill="#333333">enough physical gold in circulation to</text>
+  <text x="660" y="355" text-anchor="middle" font-size="12.5" fill="#333333">match the pace of trade — a hard</text>
+  <text x="660" y="375" text-anchor="middle" font-size="12.5" fill="#333333">physical ceiling on the money supply.</text>
+
+  <text x="450" y="440" text-anchor="middle" font-size="12" font-style="italic" fill="#888888">Gold solved barter's problem, but created new ones of its own — problems that paper money set out to fix.</text>
+</svg>

@@ -1,0 +1,50 @@
+<svg viewBox="0 0 900 660" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="660" fill="#FDFCF9"/>
+  <text x="450" y="34" text-anchor="middle" font-size="20" font-weight="bold" fill="#1F3864">Multi-Timeframe Analysis: Top-Down</text>
+  <text x="450" y="58" text-anchor="middle" font-size="12" font-style="italic" fill="#6B6B6B">The same chart can look bullish and bearish at once. Sequence resolves the contradiction.</text>
+
+  <rect x="60" y="78" width="780" height="86" rx="10" fill="#EAF0FB" stroke="#2E5395" stroke-width="2"/>
+  <text x="132" y="105" text-anchor="middle" font-size="13" font-weight="bold" fill="#2E5395">1. LONG-TERM</text>
+  <text x="132" y="123" text-anchor="middle" font-size="10.5" fill="#333333">Weekly / Daily</text>
+  <text x="450" y="105" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1F3864">Establishes the DIRECTION you are allowed to trade</text>
+  <text x="450" y="125" text-anchor="middle" font-size="11" fill="#333333">Filters out noise. Shows the dominant trend and major support/resistance.</text>
+  <text x="450" y="145" text-anchor="middle" font-size="10.5" font-style="italic" fill="#555555">Decide here FIRST, before looking at anything faster.</text>
+
+  <text x="450" y="182" text-anchor="middle" font-size="16" fill="#888888">|</text>
+
+  <rect x="60" y="190" width="780" height="86" rx="10" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="132" y="217" text-anchor="middle" font-size="13" font-weight="bold" fill="#1E7A4C">2. MEDIUM-TERM</text>
+  <text x="132" y="235" text-anchor="middle" font-size="10.5" fill="#333333">4-hour / 1-hour</text>
+  <text x="450" y="217" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1F3864">Finds the SETUP that agrees with that direction</text>
+  <text x="450" y="237" text-anchor="middle" font-size="11" fill="#333333">Your main working chart. Matches how long you actually hold a trade.</text>
+  <text x="450" y="257" text-anchor="middle" font-size="10.5" font-style="italic" fill="#555555">If no setup agrees with the higher timeframe, there is no trade.</text>
+
+  <text x="450" y="294" text-anchor="middle" font-size="16" fill="#888888">|</text>
+
+  <rect x="60" y="302" width="780" height="86" rx="10" fill="#FFF7E6" stroke="#C99A2E" stroke-width="2"/>
+  <text x="132" y="329" text-anchor="middle" font-size="13" font-weight="bold" fill="#8A6D1F">3. SHORT-TERM</text>
+  <text x="132" y="347" text-anchor="middle" font-size="10.5" fill="#333333">15-min / 5-min</text>
+  <text x="450" y="329" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1F3864">Times the ENTRY and places the stop</text>
+  <text x="450" y="349" text-anchor="middle" font-size="11" fill="#333333">Sharper entry means a tighter stop, which means a smaller position risk.</text>
+  <text x="450" y="369" text-anchor="middle" font-size="10.5" font-style="italic" fill="#555555">Never used to pick direction. Only to refine execution.</text>
+
+  <rect x="60" y="410" width="380" height="105" rx="10" fill="#FFFFFF" stroke="#2E5395" stroke-width="1.5"/>
+  <text x="250" y="435" text-anchor="middle" font-size="13" font-weight="bold" fill="#2E5395">The Rule of Four</text>
+  <text x="250" y="458" text-anchor="middle" font-size="11" fill="#333333">Pick your MEDIUM timeframe first - it should</text>
+  <text x="250" y="474" text-anchor="middle" font-size="11" fill="#333333">match your typical holding period.</text>
+  <text x="250" y="494" text-anchor="middle" font-size="11" fill="#333333">Long = medium x4 or more. Short = medium / 4.</text>
+  <text x="250" y="510" text-anchor="middle" font-size="10.5" font-style="italic" fill="#555555">e.g. 15-min, 1-hour, 4-hour</text>
+
+  <rect x="460" y="410" width="380" height="105" rx="10" fill="#FFF3EF" stroke="#B23B2E" stroke-width="1.5"/>
+  <text x="650" y="435" text-anchor="middle" font-size="13" font-weight="bold" fill="#B23B2E">Why Exactly Three?</text>
+  <text x="650" y="458" text-anchor="middle" font-size="11" fill="#333333">Fewer than three: you lose context and</text>
+  <text x="650" y="474" text-anchor="middle" font-size="11" fill="#333333">trade against a trend you cannot see.</text>
+  <text x="650" y="494" text-anchor="middle" font-size="11" fill="#333333">More than three: contradictory signals,</text>
+  <text x="650" y="510" text-anchor="middle" font-size="11" fill="#333333">paralysis, and over-analysis.</text>
+
+  <rect x="60" y="535" width="780" height="105" rx="10" fill="#F5F5F5" stroke="#888888" stroke-width="1.3"/>
+  <text x="450" y="559" text-anchor="middle" font-size="13" font-weight="bold" fill="#1F3864">The Honest Caution: Do Not Timeframe-Shop</text>
+  <text x="450" y="582" text-anchor="middle" font-size="11" fill="#333333">Sullivan, Timmermann and White (1999, Journal of Finance) tested a huge universe of trading rules on</text>
+  <text x="450" y="599" text-anchor="middle" font-size="11" fill="#333333">100 years of data. The best rule beat the benchmark in-sample - then failed in the following 10 years.</text>
+  <text x="450" y="621" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#B23B2E">Searching timeframes until one confirms your bias is the same error, in miniature.</text>
+</svg>

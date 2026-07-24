@@ -817,6 +817,30 @@
 - **PT:** Garimpagem de dados (data snooping)
 - **SW:** Data snooping ⚠ (kept as-is; technical statistics term)
 
+### Price Action
+- **EN:** Trading from the movement of price itself — its highs, lows, and shapes — without indicators derived from that price.
+- **FR:** Action des prix
+- **PT:** Ação do preço (price action)
+- **SW:** Price action ⚠ (kept as-is; widely used in Swahili trading contexts)
+
+### Naked Chart
+- **EN:** A price chart carrying no indicators — just candles and drawn support/resistance levels.
+- **FR:** Graphique nu
+- **PT:** Gráfico limpo (sem indicadores)
+- **SW:** Chati tupu ⚠
+
+### Candlestick Pattern
+- **EN:** A short sequence of one to three candlesticks (e.g., pin bar, engulfing, morning star) claimed to signal a reversal or continuation. Distinct from a candlestick chart, which is the display format.
+- **FR:** Figure en chandeliers
+- **PT:** Padrão de candlestick
+- **SW:** Muundo wa candlestick ⚠ (kept partly as-is)
+
+### Order Clustering
+- **EN:** The tendency for many traders' stop-loss and take-profit orders to pile up at the same round-number prices, making those levels act as real support and resistance (Osler, 2003).
+- **FR:** Regroupement des ordres
+- **PT:** Agrupamento de ordens
+- **SW:** Mkusanyiko wa oda ⚠
+
 ## Crypto Track Terms
 
 *(Not yet started. Expect terms like: blockchain, wallet, private key, gas fee, exchange, volatility, market cap, stablecoin.)*

@@ -25,7 +25,9 @@
 3. Fundamental Analysis — Interest Rates & Central Banks (direct callback to Foundations Ch1's central bank content) — ✅ drafted
 4. The Economic Calendar — What to Watch, and When — ✅ drafted
 5. Multi-Timeframe Analysis (top-down: start on the highest timeframe, work down — the practitioner mental model we found in the ForexFactory research) — ✅ drafted
-6. Price Action — Trading From the Chart Alone *(added from book-list analysis: a distinct practitioner school — "price is king," indicator-free reading — worth one honest lesson including what evidence does and doesn't support it)* — 🔜 next, closes Chapter 2
+6. Price Action — Trading From the Chart Alone *(added from book-list analysis: a distinct practitioner school — "price is king," indicator-free reading — worth one honest lesson including what evidence does and doesn't support it)* — ✅ drafted *(honest split verified at drafting: support/resistance has forex-specific evidence and an order-flow mechanism — Osler 2000 & 2003; candlestick patterns are contested and exit-rule dependent — Caginalp & Laurent 1998 vs Marshall, Young & Rose 2006, tied back to Lesson 5's data-snooping thread)*
+
+**Chapter 2 complete — 6/6 lessons drafted.**
 
 ## Chapter 3: Risk Management for Forex Traders
 *Builds directly on Foundations Ch2 — this chapter is where those universal principles get actual forex-specific math attached to them.*

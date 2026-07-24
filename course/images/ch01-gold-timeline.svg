@@ -1,0 +1,52 @@
+<svg viewBox="0 0 1000 380" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="1000" height="380" fill="#FDFCF9"/>
+  <text x="500" y="40" text-anchor="middle" font-size="24" font-weight="bold" fill="#1F3864">The Evolution of Money — A Timeline</text>
+
+  <!-- Main timeline -->
+  <line x1="60" y1="180" x2="940" y2="180" stroke="#2E5395" stroke-width="4"/>
+
+  <!-- Point 1: Barter -->
+  <circle cx="120" cy="180" r="10" fill="#2E5395"/>
+  <text x="120" y="150" text-anchor="middle" font-size="13" font-weight="bold" fill="#1F3864">6,000+ years ago</text>
+  <rect x="45" y="200" width="150" height="70" rx="8" fill="#EAF0FB" stroke="#2E5395" stroke-width="1.5"/>
+  <text x="120" y="222" text-anchor="middle" font-size="13" font-weight="bold" fill="#333333">Barter</text>
+  <text x="120" y="240" text-anchor="middle" font-size="11" fill="#555555">Direct trade of</text>
+  <text x="120" y="255" text-anchor="middle" font-size="11" fill="#555555">goods for goods</text>
+
+  <!-- Point 2: Lydia coins -->
+  <circle cx="320" cy="180" r="10" fill="#2E5395"/>
+  <text x="320" y="150" text-anchor="middle" font-size="13" font-weight="bold" fill="#1F3864">~700 B.C.</text>
+  <rect x="245" y="200" width="150" height="70" rx="8" fill="#EAF0FB" stroke="#2E5395" stroke-width="1.5"/>
+  <text x="320" y="222" text-anchor="middle" font-size="13" font-weight="bold" fill="#333333">Lydian Coins</text>
+  <text x="320" y="240" text-anchor="middle" font-size="11" fill="#555555">First standardized</text>
+  <text x="320" y="255" text-anchor="middle" font-size="11" fill="#555555">gold/silver coinage</text>
+
+  <!-- Point 3: Gold standard -->
+  <circle cx="520" cy="180" r="10" fill="#2E5395"/>
+  <text x="520" y="150" text-anchor="middle" font-size="13" font-weight="bold" fill="#1F3864">19th–20th century</text>
+  <rect x="445" y="200" width="150" height="70" rx="8" fill="#EAF0FB" stroke="#2E5395" stroke-width="1.5"/>
+  <text x="520" y="222" text-anchor="middle" font-size="13" font-weight="bold" fill="#333333">Gold Standard</text>
+  <text x="520" y="240" text-anchor="middle" font-size="11" fill="#555555">Paper currency backed</text>
+  <text x="520" y="255" text-anchor="middle" font-size="11" fill="#555555">by fixed gold reserves</text>
+
+  <!-- Point 4: Fiat -->
+  <circle cx="720" cy="180" r="10" fill="#2E5395"/>
+  <text x="720" y="150" text-anchor="middle" font-size="13" font-weight="bold" fill="#1F3864">20th century</text>
+  <rect x="645" y="200" width="150" height="70" rx="8" fill="#EAF0FB" stroke="#2E5395" stroke-width="1.5"/>
+  <text x="720" y="222" text-anchor="middle" font-size="13" font-weight="bold" fill="#333333">Fiat Currency</text>
+  <text x="720" y="240" text-anchor="middle" font-size="11" fill="#555555">Value from trust and</text>
+  <text x="720" y="255" text-anchor="middle" font-size="11" fill="#555555">government backing</text>
+
+  <!-- Point 5: Forex today -->
+  <circle cx="900" cy="180" r="12" fill="#1E7A4C"/>
+  <text x="900" y="150" text-anchor="middle" font-size="13" font-weight="bold" fill="#1E7A4C">Today</text>
+  <rect x="825" y="200" width="150" height="70" rx="8" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="900" y="222" text-anchor="middle" font-size="13" font-weight="bold" fill="#333333">Floating Rates</text>
+  <text x="900" y="240" text-anchor="middle" font-size="11" fill="#555555">Currency values move</text>
+  <text x="900" y="255" text-anchor="middle" font-size="11" fill="#555555">freely — the forex market</text>
+
+  <!-- Next lecture callout -->
+  <rect x="640" y="300" width="335" height="55" rx="10" fill="#FFF7E6" stroke="#C99A2E" stroke-width="1.5"/>
+  <text x="807" y="322" text-anchor="middle" font-size="12" font-weight="bold" fill="#8A6D1F">Next lecture: The Trouble With Gold</text>
+  <text x="807" y="342" text-anchor="middle" font-size="11" fill="#8A6D1F">Why the gold standard eventually broke down</text>
+</svg>

@@ -1,0 +1,54 @@
+<svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="800" height="460" fill="#0f172a"/>
+  <text x="400" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#e2e8f0">Where Your Stop-Loss Goes — Long vs. Short</text>
+
+  <!-- LONG side -->
+  <text x="190" y="75" text-anchor="middle" font-size="16" font-weight="bold" fill="#e2e8f0">Long Position (buy)</text>
+  <line x1="190" y1="95" x2="190" y2="400" stroke="#475569" stroke-width="3"/>
+
+  <!-- Take-profit (top, green) -->
+  <rect x="80" y="100" width="220" height="55" rx="8" fill="rgba(34,197,94,0.10)" stroke="#22c55e" stroke-width="2"/>
+  <text x="190" y="122" text-anchor="middle" font-size="13" font-weight="bold" fill="#22c55e">Take-Profit</text>
+  <text x="190" y="142" text-anchor="middle" font-size="11.5" fill="#e2e8f0">Price rises — you exit in profit</text>
+
+  <!-- Entry (middle, blue) -->
+  <rect x="80" y="222" width="220" height="55" rx="8" fill="rgba(59,130,246,0.10)" stroke="#3b82f6" stroke-width="2"/>
+  <text x="190" y="244" text-anchor="middle" font-size="13" font-weight="bold" fill="#e2e8f0">Entry Price</text>
+  <text x="190" y="264" text-anchor="middle" font-size="11.5" fill="#e2e8f0">Where you buy in</text>
+
+  <!-- Stop-loss (bottom, red) -->
+  <rect x="80" y="345" width="220" height="55" rx="8" fill="rgba(239,68,68,0.10)" stroke="#ef4444" stroke-width="2"/>
+  <text x="190" y="367" text-anchor="middle" font-size="13" font-weight="bold" fill="#ef4444">Stop-Loss</text>
+  <text x="190" y="387" text-anchor="middle" font-size="11.5" fill="#e2e8f0">Price falls — you exit, capped loss</text>
+
+  <!-- arrows showing direction -->
+  <text x="190" y="195" text-anchor="middle" font-size="20" fill="#22c55e">↑</text>
+  <text x="190" y="320" text-anchor="middle" font-size="20" fill="#ef4444">↓</text>
+
+  <!-- Divider -->
+  <line x1="400" y1="70" x2="400" y2="420" stroke="#334155" stroke-width="2"/>
+
+  <!-- SHORT side -->
+  <text x="610" y="75" text-anchor="middle" font-size="16" font-weight="bold" fill="#e2e8f0">Short Position (sell)</text>
+  <line x1="610" y1="95" x2="610" y2="400" stroke="#475569" stroke-width="3"/>
+
+  <!-- Stop-loss (top, red) -->
+  <rect x="500" y="100" width="220" height="55" rx="8" fill="rgba(239,68,68,0.10)" stroke="#ef4444" stroke-width="2"/>
+  <text x="610" y="122" text-anchor="middle" font-size="13" font-weight="bold" fill="#ef4444">Stop-Loss</text>
+  <text x="610" y="142" text-anchor="middle" font-size="11.5" fill="#e2e8f0">Price rises — you exit, capped loss</text>
+
+  <!-- Entry (middle, blue) -->
+  <rect x="500" y="222" width="220" height="55" rx="8" fill="rgba(59,130,246,0.10)" stroke="#3b82f6" stroke-width="2"/>
+  <text x="610" y="244" text-anchor="middle" font-size="13" font-weight="bold" fill="#e2e8f0">Entry Price</text>
+  <text x="610" y="264" text-anchor="middle" font-size="11.5" fill="#e2e8f0">Where you sell/short</text>
+
+  <!-- Take-profit (bottom, green) -->
+  <rect x="500" y="345" width="220" height="55" rx="8" fill="rgba(34,197,94,0.10)" stroke="#22c55e" stroke-width="2"/>
+  <text x="610" y="367" text-anchor="middle" font-size="13" font-weight="bold" fill="#22c55e">Take-Profit</text>
+  <text x="610" y="387" text-anchor="middle" font-size="11.5" fill="#e2e8f0">Price falls — you exit in profit</text>
+
+  <text x="610" y="195" text-anchor="middle" font-size="20" fill="#ef4444">↑</text>
+  <text x="610" y="320" text-anchor="middle" font-size="20" fill="#22c55e">↓</text>
+
+  <text x="400" y="440" text-anchor="middle" font-size="12.5" font-style="italic" fill="#94a3b8">The direction flips completely — because in a short, you profit when price falls, not rises.</text>
+</svg>

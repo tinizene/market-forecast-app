@@ -1,0 +1,59 @@
+<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="600" fill="#FDFCF9"/>
+  <text x="450" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#1F3864">Leverage &amp; Margin</text>
+
+  <!-- Mechanics -->
+  <rect x="60" y="60" width="360" height="110" rx="10" fill="#EAF0FB" stroke="#2E5395" stroke-width="2"/>
+  <text x="240" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#2E5395">50:1 Leverage</text>
+  <text x="240" y="108" text-anchor="middle" font-size="12" fill="#333333">Control $50,000 of currency</text>
+  <text x="240" y="126" text-anchor="middle" font-size="12" fill="#333333">with just $1,000 of your own</text>
+  <text x="240" y="144" text-anchor="middle" font-size="12" fill="#333333">capital held as margin</text>
+  <text x="240" y="162" text-anchor="middle" font-size="10.5" font-style="italic" fill="#555555">Margin % = 1 ÷ Leverage (here, 2%)</text>
+
+  <rect x="480" y="60" width="360" height="110" rx="10" fill="#FFF3EF" stroke="#B23B2E" stroke-width="2"/>
+  <text x="660" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#B23B2E">The Catch</text>
+  <text x="660" y="108" text-anchor="middle" font-size="12" fill="#333333">A 2% adverse move wipes out</text>
+  <text x="660" y="126" text-anchor="middle" font-size="12" fill="#333333">100% of that $1,000 margin —</text>
+  <text x="660" y="144" text-anchor="middle" font-size="12" fill="#333333">leverage amplifies losses exactly</text>
+  <text x="660" y="162" text-anchor="middle" font-size="10.5" font-style="italic" fill="#555555">as much as it amplifies gains</text>
+
+  <!-- Regulatory table -->
+  <text x="450" y="205" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F3864">Real Regulatory Leverage Caps (Major FX Pairs)</text>
+
+  <g font-size="12.5">
+    <rect x="100" y="220" width="700" height="34" fill="#E1E5EE"/>
+    <text x="150" y="242" font-weight="bold" fill="#1F3864">Regulator</text>
+    <text x="400" y="242" font-weight="bold" fill="#1F3864">Region</text>
+    <text x="620" y="242" font-weight="bold" fill="#1F3864">Max Leverage</text>
+
+    <text x="150" y="272" fill="#333333">CFTC / NFA</text>
+    <text x="400" y="272" fill="#333333">United States</text>
+    <text x="620" y="272" fill="#2E5395" font-weight="bold">50:1</text>
+
+    <text x="150" y="298" fill="#333333">ESMA</text>
+    <text x="400" y="298" fill="#333333">European Union</text>
+    <text x="620" y="298" fill="#2E5395" font-weight="bold">30:1</text>
+
+    <text x="150" y="324" fill="#333333">FCA</text>
+    <text x="400" y="324" fill="#333333">United Kingdom</text>
+    <text x="620" y="324" fill="#2E5395" font-weight="bold">30:1</text>
+
+    <text x="150" y="350" fill="#333333">ASIC</text>
+    <text x="400" y="350" fill="#333333">Australia</text>
+    <text x="620" y="350" fill="#2E5395" font-weight="bold">30:1</text>
+  </g>
+
+  <!-- Why capped -->
+  <rect x="70" y="380" width="760" height="90" rx="10" fill="#FFF7E6" stroke="#C99A2E" stroke-width="1.5"/>
+  <text x="450" y="405" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#8A6D1F">Why Regulators Cap It</text>
+  <text x="450" y="428" text-anchor="middle" font-size="11.5" fill="#5C4813">ESMA's own 2018 analysis found 74–89% of retail CFD accounts lose money, with average losses</text>
+  <text x="450" y="446" text-anchor="middle" font-size="11.5" fill="#5C4813">of €1,600–€29,000 per client — the direct evidence behind the EU's 30:1 cap.</text>
+  <text x="450" y="464" text-anchor="middle" font-size="11.5" fill="#5C4813">This isn't a guess — it's documented, regulator-published outcome data.</text>
+
+  <!-- Academic finding -->
+  <rect x="70" y="485" width="760" height="100" rx="10" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="450" y="510" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#1E7A4C">What Happened When the US Actually Capped Leverage (2010)</text>
+  <text x="450" y="533" text-anchor="middle" font-size="11.5" fill="#333333">Heimer &amp; Simsek (2019), Journal of Financial Economics — a natural-experiment study comparing</text>
+  <text x="450" y="551" text-anchor="middle" font-size="11.5" fill="#333333">US traders (newly capped at 50:1) against otherwise-similar European traders (uncapped) found the</text>
+  <text x="450" y="569" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#1E7A4C">cap reduced high-leverage traders' losses by 40% — real, measured, causal evidence.</text>
+</svg>

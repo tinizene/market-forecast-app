@@ -1,0 +1,53 @@
+<svg viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="1000" height="400" fill="#FDFCF9"/>
+  <text x="500" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#1F3864">The Classical Gold Standard — Rise and Fall</text>
+
+  <line x1="60" y1="190" x2="940" y2="190" stroke="#2E5395" stroke-width="4"/>
+
+  <!-- 1879 -->
+  <circle cx="120" cy="190" r="10" fill="#2E5395"/>
+  <text x="120" y="160" text-anchor="middle" font-size="13" font-weight="bold" fill="#1F3864">1879</text>
+  <rect x="45" y="210" width="150" height="85" rx="8" fill="#EAF0FB" stroke="#2E5395" stroke-width="1.5"/>
+  <text x="120" y="232" text-anchor="middle" font-size="12" font-weight="bold" fill="#333333">U.S. Adopts Gold</text>
+  <text x="120" y="248" text-anchor="middle" font-size="10.5" fill="#555555">Dollars fully</text>
+  <text x="120" y="262" text-anchor="middle" font-size="10.5" fill="#555555">convertible to gold</text>
+  <text x="120" y="276" text-anchor="middle" font-size="10.5" fill="#555555">on demand</text>
+
+  <!-- 1914 -->
+  <circle cx="340" cy="190" r="10" fill="#B23B2E"/>
+  <text x="340" y="160" text-anchor="middle" font-size="13" font-weight="bold" fill="#B23B2E">1914</text>
+  <rect x="265" y="210" width="150" height="85" rx="8" fill="#FDEEEE" stroke="#B23B2E" stroke-width="1.5"/>
+  <text x="340" y="232" text-anchor="middle" font-size="12" font-weight="bold" fill="#333333">WWI Suspension</text>
+  <text x="340" y="248" text-anchor="middle" font-size="10.5" fill="#555555">War spending forces</text>
+  <text x="340" y="262" text-anchor="middle" font-size="10.5" fill="#555555">nations off gold to</text>
+  <text x="340" y="276" text-anchor="middle" font-size="10.5" fill="#555555">print more money</text>
+
+  <!-- 1925 -->
+  <circle cx="560" cy="190" r="10" fill="#C99A2E"/>
+  <text x="560" y="160" text-anchor="middle" font-size="13" font-weight="bold" fill="#8A6D1F">1925</text>
+  <rect x="485" y="210" width="150" height="85" rx="8" fill="#FFF7E6" stroke="#C99A2E" stroke-width="1.5"/>
+  <text x="560" y="232" text-anchor="middle" font-size="12" font-weight="bold" fill="#333333">Britain's Return</text>
+  <text x="560" y="248" text-anchor="middle" font-size="10.5" fill="#555555">UK rejoins gold at</text>
+  <text x="560" y="262" text-anchor="middle" font-size="10.5" fill="#555555">pre-war rate — strains</text>
+  <text x="560" y="276" text-anchor="middle" font-size="10.5" fill="#555555">the economy badly</text>
+
+  <!-- 1929-33 -->
+  <circle cx="760" cy="190" r="10" fill="#B23B2E"/>
+  <text x="760" y="160" text-anchor="middle" font-size="13" font-weight="bold" fill="#B23B2E">1929–33</text>
+  <rect x="685" y="210" width="150" height="85" rx="8" fill="#FDEEEE" stroke="#B23B2E" stroke-width="1.5"/>
+  <text x="760" y="232" text-anchor="middle" font-size="12" font-weight="bold" fill="#333333">Great Depression</text>
+  <text x="760" y="248" text-anchor="middle" font-size="10.5" fill="#555555">Defend the gold peg,</text>
+  <text x="760" y="262" text-anchor="middle" font-size="10.5" fill="#555555">or ease the crisis —</text>
+  <text x="760" y="276" text-anchor="middle" font-size="10.5" fill="#555555">not both</text>
+
+  <!-- 1934 -->
+  <circle cx="900" cy="190" r="12" fill="#1E7A4C"/>
+  <text x="900" y="160" text-anchor="middle" font-size="13" font-weight="bold" fill="#1E7A4C">1933–34</text>
+  <rect x="825" y="210" width="150" height="85" rx="8" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="900" y="232" text-anchor="middle" font-size="12" font-weight="bold" fill="#333333">Roosevelt Breaks Away</text>
+  <text x="900" y="248" text-anchor="middle" font-size="10.5" fill="#555555">U.S. leaves domestic</text>
+  <text x="900" y="262" text-anchor="middle" font-size="10.5" fill="#555555">gold standard; dollar</text>
+  <text x="900" y="276" text-anchor="middle" font-size="10.5" fill="#555555">reset to $35/oz</text>
+
+  <text x="500" y="345" text-anchor="middle" font-size="12.5" font-style="italic" fill="#888888">That same $35/oz rate is exactly what Bretton Woods formalized internationally ten years later, in 1944.</text>
+</svg>

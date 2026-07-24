@@ -1,0 +1,49 @@
+<svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="520" fill="#FDFCF9"/>
+  <text x="450" y="40" text-anchor="middle" font-size="24" font-weight="bold" fill="#1F3864">Inflation Rises — Three Different Ripples</text>
+
+  <!-- Center node -->
+  <rect x="350" y="65" width="200" height="60" rx="10" fill="#FFF7E6" stroke="#C99A2E" stroke-width="2.5"/>
+  <text x="450" y="90" text-anchor="middle" font-size="15" font-weight="bold" fill="#8A6D1F">Inflation Rises</text>
+  <text x="450" y="108" text-anchor="middle" font-size="11" fill="#8A6D1F">Central bank likely reacts</text>
+
+  <!-- Lines down -->
+  <line x1="450" y1="125" x2="180" y2="175" stroke="#B5C4E0" stroke-width="2.5"/>
+  <line x1="450" y1="125" x2="450" y2="175" stroke="#B5C4E0" stroke-width="2.5"/>
+  <line x1="450" y1="125" x2="720" y2="175" stroke="#B5C4E0" stroke-width="2.5"/>
+
+  <!-- Forex column -->
+  <rect x="60" y="180" width="240" height="105" rx="10" fill="#EAF0FB" stroke="#2E5395" stroke-width="2"/>
+  <text x="180" y="205" text-anchor="middle" font-size="15" font-weight="bold" fill="#2E5395">Forex</text>
+  <text x="180" y="226" text-anchor="middle" font-size="11.5" fill="#333333">Rate hikes often attract</text>
+  <text x="180" y="242" text-anchor="middle" font-size="11.5" fill="#333333">foreign capital → currency</text>
+  <text x="180" y="258" text-anchor="middle" font-size="11.5" fill="#333333">often strengthens...</text>
+  <text x="180" y="276" text-anchor="middle" font-size="11" font-style="italic" fill="#B23B2E">...unless sentiment overrides it</text>
+
+  <!-- Stocks column -->
+  <rect x="330" y="180" width="240" height="105" rx="10" fill="#EAF0FB" stroke="#2E5395" stroke-width="2"/>
+  <text x="450" y="205" text-anchor="middle" font-size="15" font-weight="bold" fill="#2E5395">Stocks</text>
+  <text x="450" y="226" text-anchor="middle" font-size="11.5" fill="#333333">Higher discount rate on</text>
+  <text x="450" y="242" text-anchor="middle" font-size="11.5" fill="#333333">future earnings → short-term</text>
+  <text x="450" y="258" text-anchor="middle" font-size="11.5" fill="#333333">headwind, growth stocks hit hardest</text>
+  <text x="450" y="276" text-anchor="middle" font-size="11" font-style="italic" fill="#1E7A4C">Long run: often a hedge</text>
+
+  <!-- Crypto column -->
+  <rect x="600" y="180" width="240" height="105" rx="10" fill="#EAF0FB" stroke="#2E5395" stroke-width="2"/>
+  <text x="720" y="205" text-anchor="middle" font-size="15" font-weight="bold" fill="#2E5395">Crypto</text>
+  <text x="720" y="226" text-anchor="middle" font-size="11.5" fill="#333333">"Digital gold" narrative vs.</text>
+  <text x="720" y="242" text-anchor="middle" font-size="11.5" fill="#333333">rate hikes pulling speculative</text>
+  <text x="720" y="258" text-anchor="middle" font-size="11.5" fill="#333333">capital back out — mixed signal</text>
+  <text x="720" y="276" text-anchor="middle" font-size="11" font-style="italic" fill="#B23B2E">Volatility undermines the theory</text>
+
+  <!-- Bottom unifying message -->
+  <rect x="130" y="330" width="640" height="140" rx="12" fill="#F5F5F5" stroke="#888888" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="450" y="360" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F3864">The Same Signal, Three Different Reads</text>
+  <text x="450" y="386" text-anchor="middle" font-size="12.5" fill="#333333">Inflation is one signal — but it moves each market through a different</text>
+  <text x="450" y="405" text-anchor="middle" font-size="12.5" fill="#333333">mechanism, and none of them are guaranteed. In every case, the "textbook"</text>
+  <text x="450" y="424" text-anchor="middle" font-size="12.5" fill="#333333">direction can be overridden by sentiment, timing, or a stronger competing factor.</text>
+  <text x="450" y="450" text-anchor="middle" font-size="12" font-style="italic" fill="#6B6B6B">Learning to read a market well means learning its specific mechanism —</text>
+  <text x="450" y="467" text-anchor="middle" font-size="12" font-style="italic" fill="#6B6B6B">not just memorizing a rule that sometimes breaks.</text>
+
+  <text x="450" y="500" text-anchor="middle" font-size="11.5" fill="#888888">This is exactly what the Forex, Stocks, and Crypto tracks each go on to teach in depth.</text>
+</svg>

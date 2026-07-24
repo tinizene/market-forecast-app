@@ -1,0 +1,54 @@
+<svg viewBox="0 0 900 620" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="620" fill="#FDFCF9"/>
+  <text x="450" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#1F3864">Order Types &amp; the Limits of a Stop-Loss</text>
+
+  <!-- Order type row -->
+  <rect x="40" y="60" width="195" height="95" rx="10" fill="#EAF0FB" stroke="#2E5395" stroke-width="2"/>
+  <text x="137" y="85" text-anchor="middle" font-size="13" font-weight="bold" fill="#2E5395">Market Order</text>
+  <text x="137" y="106" text-anchor="middle" font-size="10.5" fill="#333333">Guarantees execution,</text>
+  <text x="137" y="122" text-anchor="middle" font-size="10.5" fill="#333333">not price</text>
+  <text x="137" y="142" text-anchor="middle" font-size="10" font-style="italic" fill="#555555">Fills now, at whatever</text>
+
+  <rect x="245" y="60" width="195" height="95" rx="10" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="342" y="85" text-anchor="middle" font-size="13" font-weight="bold" fill="#1E7A4C">Limit Order</text>
+  <text x="342" y="106" text-anchor="middle" font-size="10.5" fill="#333333">Guarantees price,</text>
+  <text x="342" y="122" text-anchor="middle" font-size="10.5" fill="#333333">not execution</text>
+  <text x="342" y="142" text-anchor="middle" font-size="10" font-style="italic" fill="#555555">May never fill</text>
+
+  <rect x="450" y="60" width="195" height="95" rx="10" fill="#FFF3EF" stroke="#B23B2E" stroke-width="2"/>
+  <text x="547" y="85" text-anchor="middle" font-size="13" font-weight="bold" fill="#B23B2E">Stop Order</text>
+  <text x="547" y="106" text-anchor="middle" font-size="10.5" fill="#333333">Becomes a market order</text>
+  <text x="547" y="122" text-anchor="middle" font-size="10.5" fill="#333333">once triggered</text>
+  <text x="547" y="142" text-anchor="middle" font-size="10" font-style="italic" fill="#555555">Same guarantee as market</text>
+
+  <rect x="655" y="60" width="205" height="95" rx="10" fill="#FFF7E6" stroke="#C99A2E" stroke-width="2"/>
+  <text x="757" y="85" text-anchor="middle" font-size="13" font-weight="bold" fill="#8A6D1F">Stop-Limit / Trailing</text>
+  <text x="757" y="106" text-anchor="middle" font-size="10.5" fill="#333333">Refinements — price</text>
+  <text x="757" y="122" text-anchor="middle" font-size="10.5" fill="#333333">control or dynamic exit</text>
+  <text x="757" y="142" text-anchor="middle" font-size="10" font-style="italic" fill="#555555">Still can fail to fill</text>
+
+  <!-- Case study -->
+  <text x="450" y="195" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F3864">Case Study: When Stop-Losses Didn't Work</text>
+  <text x="450" y="216" text-anchor="middle" font-size="12.5" fill="#333333">EUR/CHF, January 15, 2015 — the Swiss National Bank removes its 1.20 floor, without warning</text>
+
+  <rect x="80" y="235" width="740" height="80" rx="10" fill="#FFF3EF" stroke="#B23B2E" stroke-width="2"/>
+  <text x="450" y="260" text-anchor="middle" font-size="13" font-weight="bold" fill="#B23B2E">Price fell from 1.20 to as low as 0.85 — in minutes</text>
+  <text x="450" y="282" text-anchor="middle" font-size="11.5" fill="#333333">Stop-loss orders correctly triggered — then converted to market orders and searched</text>
+  <text x="450" y="299" text-anchor="middle" font-size="11.5" fill="#333333">for a buyer. There wasn't one nearby. Orders filled far below where they were set.</text>
+
+  <line x1="450" y1="320" x2="450" y2="345" stroke="#888888" stroke-width="2" stroke-dasharray="4,3"/>
+
+  <rect x="80" y="350" width="740" height="115" rx="10" fill="#F5F5F5" stroke="#888888" stroke-width="1.2"/>
+  <text x="450" y="375" text-anchor="middle" font-size="13" font-weight="bold" fill="#1F3864">The Real Cost</text>
+  <text x="450" y="398" text-anchor="middle" font-size="11.5" fill="#333333">Alpari UK declared insolvency the same day. FXCM absorbed $225 million in client losses</text>
+  <text x="450" y="416" text-anchor="middle" font-size="11.5" fill="#333333">and needed an emergency bailout to survive. Many individual traders owed their brokers</text>
+  <text x="450" y="434" text-anchor="middle" font-size="11.5" fill="#333333">more than their entire account balance — a negative balance, from a single trade.</text>
+  <text x="450" y="454" text-anchor="middle" font-size="11" font-style="italic" fill="#555555">This is precisely why negative balance protection is now a regulatory requirement.</text>
+
+  <!-- Balancing note -->
+  <rect x="80" y="480" width="740" height="90" rx="10" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="1.5"/>
+  <text x="450" y="505" text-anchor="middle" font-size="13" font-weight="bold" fill="#1E7A4C">This Is the Exception, Not the Rule</text>
+  <text x="450" y="528" text-anchor="middle" font-size="11.5" fill="#333333">Academic research tracking real retail futures orders end-to-end found execution is</text>
+  <text x="450" y="546" text-anchor="middle" font-size="11.5" fill="#333333">generally fast and not systematically biased against retail traders. Catastrophic gaps like</text>
+  <text x="450" y="564" text-anchor="middle" font-size="11.5" fill="#333333">the SNB event are rare — but rare doesn't mean irrelevant to how you manage risk.</text>
+</svg>

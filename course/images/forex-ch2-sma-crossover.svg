@@ -1,0 +1,52 @@
+<svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="560" fill="#FDFCF9"/>
+  <text x="450" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#1F3864">Moving Averages &amp; the Crossover Signal</text>
+
+  <!-- Rolling window worked example -->
+  <text x="240" y="72" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F3864">The Rolling Window (4-period SMA)</text>
+  <rect x="45" y="85" width="390" height="150" rx="10" fill="#EAF0FB" stroke="#2E5395" stroke-width="1.5"/>
+  <g font-family="monospace" font-size="12.5">
+    <text x="70" y="115" fill="#333333">Closes:  10   11   12   14   9</text>
+    <rect x="118" y="100" width="150" height="20" rx="4" fill="none" stroke="#1E7A4C" stroke-width="2"/>
+    <text x="70" y="145" fill="#1E7A4C">SMA day 5 = (10+11+12+14)/4 = 11.75</text>
+    <rect x="155" y="152" width="150" height="20" rx="4" fill="none" stroke="#B23B2E" stroke-width="2" stroke-dasharray="5,3"/>
+    <text x="70" y="167" fill="#333333">Window slides →   11   12   14   9</text>
+    <text x="70" y="195" fill="#B23B2E">SMA day 6 = (11+12+14+9)/4 = 11.50</text>
+  </g>
+  <text x="240" y="222" text-anchor="middle" font-size="10.5" font-style="italic" fill="#555555">Oldest value drops out, newest enters — the average "moves"</text>
+
+  <!-- Short vs long -->
+  <text x="675" y="72" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F3864">Short vs. Long Period</text>
+  <rect x="490" y="85" width="370" height="150" rx="10" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="1.5"/>
+  <text x="675" y="112" text-anchor="middle" font-size="11.5" fill="#333333">20-period: each new candle = 1/20 of the data</text>
+  <text x="675" y="130" text-anchor="middle" font-size="11.5" fill="#1E7A4C" font-weight="bold">→ reacts fast, follows price closely</text>
+  <text x="675" y="158" text-anchor="middle" font-size="11.5" fill="#333333">50-period: each new candle = only 1/50 of the data</text>
+  <text x="675" y="176" text-anchor="middle" font-size="11.5" fill="#2E5395" font-weight="bold">→ smoother, slower, filters noise</text>
+  <text x="675" y="205" text-anchor="middle" font-size="10.5" font-style="italic" fill="#555555">Same math, different memory length</text>
+
+  <!-- Crossover chart -->
+  <text x="450" y="270" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F3864">The 20/50 Crossover — Including the Losing Trades</text>
+  <rect x="70" y="285" width="760" height="200" rx="10" fill="#FFFFFF" stroke="#CCCCCC" stroke-width="1.2"/>
+
+  <!-- 50 SMA: slow smooth line -->
+  <path d="M 100 340 C 200 335, 300 345, 400 370 C 500 395, 600 400, 700 385 C 750 377, 790 370, 810 365" fill="none" stroke="#2E5395" stroke-width="3"/>
+  <!-- 20 SMA: faster line crossing -->
+  <path d="M 100 320 C 160 322, 220 350, 280 385 C 330 412, 380 420, 430 405 C 470 393, 490 370, 530 362 C 560 357, 580 370, 610 390 C 650 415, 700 430, 810 440" fill="none" stroke="#1E7A4C" stroke-width="3"/>
+
+  <!-- Crossover markers -->
+  <circle cx="262" cy="372" r="7" fill="#B23B2E"/>
+  <text x="262" y="360" text-anchor="middle" font-size="10" font-weight="bold" fill="#B23B2E">SELL</text>
+  <circle cx="512" cy="366" r="7" fill="#1E7A4C"/>
+  <text x="512" y="354" text-anchor="middle" font-size="10" font-weight="bold" fill="#1E7A4C">BUY</text>
+  <circle cx="596" cy="381" r="7" fill="#B23B2E"/>
+  <text x="596" y="404" text-anchor="middle" font-size="10" font-weight="bold" fill="#B23B2E">SELL</text>
+
+  <rect x="480" y="330" width="130" height="22" rx="4" fill="#FFF7E6" stroke="#C99A2E" stroke-width="1.2"/>
+  <text x="545" y="345" text-anchor="middle" font-size="9.5" fill="#8A6D1F" font-weight="bold">whipsaw: quick loss</text>
+
+  <text x="145" y="310" font-size="10.5" fill="#1E7A4C" font-weight="bold">20 SMA (fast)</text>
+  <text x="145" y="470" font-size="10.5" fill="#2E5395" font-weight="bold">50 SMA (slow)</text>
+
+  <text x="450" y="510" text-anchor="middle" font-size="11.5" fill="#333333">Fast crossing below slow = recent prices weaker than older prices (sell signal); crossing above = buy signal.</text>
+  <text x="450" y="530" text-anchor="middle" font-size="11.5" font-style="italic" fill="#8A6D1F">Sideways markets produce whipsaws — small losing trades are part of the system, not a malfunction.</text>
+</svg>

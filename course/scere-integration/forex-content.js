@@ -6,7 +6,7 @@
 // window.SCERE_FOREX_SVGS (dark-theme variants, defined at the bottom of this file).
 //
 // Shown fully open with a "Paid track" badge; real payment gating is a separate build.
-// Chapters 1-2 complete (13 lessons); Chapters 3-6 land here later, same pattern.
+// Chapters 1-2 complete plus Chapter 3 Lesson 1; further Chapter 3 lessons land here later.
 
 window.SCERE_FOREX_TRACK = {
   "trackTitle": "Forex",
@@ -1867,6 +1867,181 @@ window.SCERE_FOREX_CONTENT = [
         "def": "The bunching of stop-loss and take-profit orders at round-number levels, which makes those levels act as support and resistance."
       }
     ]
+  },
+  {
+    "id": "position-sizing-with-pip-value",
+    "lessonNumber": 1,
+    "chapterNumber": 3,
+    "chapterTitle": "Chapter 3: Risk Management for Forex Traders",
+    "title": "Position Sizing With Pip Value",
+    "keyIdea": "The \"one pip = $10\" rule is only exact when the quote currency is your account currency; getting pip value right for every pair is what makes your risk control real.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Chapter 1, Lesson 5 gave you the position-sizing formula, and it used a simple figure: on a standard lot, one pip is worth about 10 dollars. That lesson was careful to label it — \"USD-quoted pairs\" — because it is not the whole story. This lesson tells the whole story."
+      },
+      {
+        "type": "paragraph",
+        "text": "The reason it matters is precise. The sizing formula turns your account size, your risk percentage, and your stop-loss into an exact position. Every input has to be exact for the output to be exact. Pip value is the one input that quietly changes from pair to pair, and getting it wrong is the most common way a carefully planned \"one percent risk\" turns into something else entirely."
+      },
+      {
+        "type": "definition",
+        "term": "Pip Value",
+        "text": "The amount of money gained or lost for each pip of price movement, for a given position size, expressed in your account's currency."
+      },
+      {
+        "type": "paragraph",
+        "text": "The last three words are the ones beginners skip: in your account's currency. A pip is a movement in the quote currency of a pair. Your profit and loss, though, are counted in whatever currency your account is held in. Pip value is the bridge between those two, and the bridge is only \"10 dollars\" in one specific case."
+      },
+      {
+        "type": "paragraph",
+        "text": "The full calculation is always the same two steps, whatever the pair. Step 1 is to find the pip value in the quote currency: multiply the pip size by the number of units you are trading."
+      },
+      {
+        "type": "example",
+        "text": "On a four-decimal pair, one pip is 0.0001. A standard lot is 100,000 units. So 0.0001 x 100,000 = 10 units of the quote currency per pip. On a yen pair, one pip is 0.01, so 0.01 x 100,000 = 1,000 units of the quote currency (yen) per pip. Notice this is denominated in the quote currency, not dollars."
+      },
+      {
+        "type": "paragraph",
+        "text": "Step 2 is to convert the quote currency into your account currency at the current exchange rate."
+      },
+      {
+        "type": "definition",
+        "term": "Account Currency",
+        "text": "The currency your trading account is denominated in. Every risk figure, in the end, has to be expressed in it, because that is the currency you actually win or lose."
+      },
+      {
+        "type": "paragraph",
+        "text": "Whether Step 2 does anything depends on the pair. There are three cases, and only the first gives you the familiar 10 dollars."
+      },
+      {
+        "type": "paragraph",
+        "text": "Case A — the quote currency is your account currency. For a US-dollar account trading EUR/USD, Step 1 already gives 10 US dollars per pip. Step 2 changes nothing. Pip value is exactly 10 dollars. This is the case Chapter 1 used, and it is the only one where the shortcut is exact."
+      },
+      {
+        "type": "paragraph",
+        "text": "Case B — the base currency is your account currency. For a US-dollar account trading USD/JPY, Step 1 gives 1,000 yen per pip. You must convert yen into dollars."
+      },
+      {
+        "type": "example",
+        "text": "USD/JPY is trading at 150.00. Pip value = 1,000 yen / 150.00 = 6.67 US dollars per pip on a standard lot. Not 10 dollars — about a third less."
+      },
+      {
+        "type": "paragraph",
+        "text": "Case C — neither currency is your account currency, which is any cross pair. For a US-dollar account trading EUR/GBP, Step 1 gives 10 British pounds per pip, and you must convert pounds into dollars using GBP/USD."
+      },
+      {
+        "type": "example",
+        "text": "GBP/USD is trading at 1.27. Pip value = 10 pounds x 1.27 = 12.70 US dollars per pip on a standard lot. Not 10 dollars — about a quarter more."
+      },
+      {
+        "type": "image",
+        "svg": "forex-ch3-position-sizing-pip-value",
+        "alt": "Diagram showing the two-step pip value calculation and the three cases: quote currency equals account currency (exactly 10 dollars), base currency equals account currency (convert, about 6.67), and a cross pair (convert, about 12.70), then the effect on position size",
+        "caption": "Pip value in two steps, the three cases for a US-dollar account, and how the $10 shortcut mis-sizes a trade."
+      },
+      {
+        "type": "warning",
+        "text": "In Cases B and C, pip value is not fixed — it floats with the exchange rate you convert through. As USD/JPY moves, the dollar value of a pip on that pair moves too. This means your dollar risk drifts slightly as rates change, so recompute pip value at the current rate rather than reusing a number from last week. This is a genuine, if small, way that \"fixed\" risk in forex is never perfectly fixed."
+      },
+      {
+        "type": "paragraph",
+        "text": "Now put the correct pip value back into the Chapter 1, Lesson 5 formula and watch what the shortcut does to your risk. Lot Size = (Account Balance x Risk %) / (Stop-Loss in Pips x Pip Value)."
+      },
+      {
+        "type": "example",
+        "text": "Take a 10,000 dollar account, risking 1% (100 dollars), with a 50-pip stop-loss. On USD/JPY, true pip value is 6.67 dollars, so the correct size is 100 / (50 x 6.67) = 0.30 standard lots. If you had used the 10-dollar shortcut, you would have traded 0.20 lots — and actually risked only 0.20 x 50 x 6.67 = 66.70 dollars. You under-sized: your real risk was two-thirds of what you intended, quietly leaving return on the table. On EUR/GBP, true pip value is 12.70 dollars, so the correct size is 100 / (50 x 12.70) = 0.157 standard lots. Using the 10-dollar shortcut would have given 0.20 lots — and a real risk of 0.20 x 50 x 12.70 = 127 dollars. You over-sized: you risked 27% more than the 1% you decided on."
+      },
+      {
+        "type": "paragraph",
+        "text": "That is the whole point of the lesson in one example. The shortcut does not just round a little. On one pair it made you risk a third less than planned; on another, a quarter more. The careful \"exactly 100 dollars\" guarantee from Chapter 1 only holds if the pip value feeding the formula is the real one."
+      },
+      {
+        "type": "warning",
+        "text": "Your broker's platform usually shows a pip-value or position-size calculator, and you should use it — it does this arithmetic for you at live rates. Understanding the mechanism is still worth it for one reason: it lets you sanity-check the tool. The most common calculator error is having it set to the wrong account currency, which produces exactly the kind of silent mis-sizing above. A number you can check is safer than a number you have to trust."
+      },
+      {
+        "type": "paragraph",
+        "text": "It is fair to ask whether this much care over a few dollars of pip value really matters. The answer comes from the mathematics of losing, not winning."
+      },
+      {
+        "type": "definition",
+        "term": "Risk of Ruin",
+        "text": "The probability that a series of losing trades reduces an account to the point where it can no longer recover or continue. It is the trading form of the classical \"gambler's ruin\" problem in probability."
+      },
+      {
+        "type": "paragraph",
+        "text": "The gambler's ruin problem is old and well understood: a player with limited money making repeated bets has a calculable chance of eventually losing everything, and the single biggest lever on that chance is not the win rate — it is the fraction of the account risked on each bet. Ralph Vince brought this framework to trading in The Mathematics of Money Management (Wiley, 1992), formalising the \"fixed fractional\" approach this course has used since Foundations: risk a small, constant fraction of the account each time."
+      },
+      {
+        "type": "paragraph",
+        "text": "The robust result, the part that holds regardless of the exact assumptions, is directional and stark: even a strategy with a genuine edge has a high probability of ruin if it is over-sized, while risking a small fixed fraction — the 1% to 2% from Foundations Chapter 2 — drives the probability of ruin toward zero. Position size is the lever. And position size is exactly what a wrong pip value corrupts."
+      },
+      {
+        "type": "warning",
+        "text": "Be honest about the limits here, in the spirit of the Kelly caution from Chapter 1, Lesson 5. The precise risk-of-ruin number for a real strategy depends on inputs — your true win rate, your average win and loss, how correlated your trades are — that most traders cannot pin down reliably. So do not chase a specific ruin percentage from a calculator as if it were fact. Respect the direction the mathematics points, which is not in doubt: a smaller fraction risked per trade means dramatically lower odds of ruin."
+      },
+      {
+        "type": "paragraph",
+        "text": "This is why the arithmetic earlier is not pedantry. When the Swiss National Bank floor collapsed in 2015 (Chapter 1, Lesson 7), the traders who survived were not the ones who predicted it — they were the ones whose positions were small enough that a violent move could not end them. Correct pip value feeds correct position size, and correct position size is what keeps you at the table long enough for an edge to matter."
+      },
+      {
+        "type": "practice",
+        "text": "Before you size a trade, run these checks: Do you actually know the pip value for this pair in your account currency, or are you assuming 10 dollars out of habit? For any USD/XXX pair or any cross pair, did you recompute pip value at the current rate rather than reusing an old figure? After sizing, does the stop-loss really cost your intended risk percentage when you check it with the true pip value — exactly, not approximately? And is your fraction small enough that a run of losses, or a single gap through your stop, cannot take you out of the game?"
+      }
+    ],
+    "quiz": [
+      {
+        "question": "On a US-dollar account, is the pip value of USD/JPY on a standard lot exactly 10 dollars?",
+        "options": [
+          "Yes, pip value is always 10 dollars on a standard lot",
+          "No — it must be converted from yen, and at a rate near 150 it is about 6.67 dollars",
+          "No — it is always higher than 10 dollars for yen pairs",
+          "Only on Fridays"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — a standard lot on a yen pair is 1,000 yen per pip; converting at USD/JPY near 150 gives about 6.67 dollars. The 10-dollar figure only holds when the quote currency is your account currency.",
+        "feedbackWrong": "Not quite — a standard lot on a yen pair is 1,000 yen per pip, which converts to about 6.67 dollars near a rate of 150. The 10-dollar figure only holds when the quote currency is your account currency."
+      },
+      {
+        "question": "You size a EUR/GBP trade using a 10-dollar pip value, but the true pip value is 12.70 dollars. Compared with your intended 1% risk, what actually happens?",
+        "options": [
+          "You risk exactly 1%",
+          "You risk less than 1%",
+          "You risk more than 1% — about 27% more than intended",
+          "The trade cannot be placed"
+        ],
+        "correctIndex": 2,
+        "feedbackCorrect": "Correct — a higher true pip value than the one you sized with means each pip costs more than you assumed, so the same lot size risks more: 127 dollars instead of 100.",
+        "feedbackWrong": "Not quite — the true pip value is higher than the one you used, so each pip costs more and the same lot size risks more: about 127 dollars instead of 100."
+      },
+      {
+        "question": "According to the risk-of-ruin idea, what is the single biggest lever on the chance of blowing up an account?",
+        "options": [
+          "The win rate",
+          "The fraction of the account risked per trade",
+          "The broker you choose",
+          "The number of indicators on your chart"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — both the classical gambler's-ruin result and Vince's fixed-fractional framework point to position size, the fraction risked per trade, as the dominant factor, ahead of win rate.",
+        "feedbackWrong": "Not quite — the dominant lever is position size, the fraction of the account risked per trade, ahead of the win rate."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Pip Value",
+        "def": "The money gained or lost per pip, for a given position size, in your account currency."
+      },
+      {
+        "term": "Account Currency",
+        "def": "The currency your account is denominated in — the currency all risk is finally measured in."
+      },
+      {
+        "term": "Risk of Ruin",
+        "def": "The probability that losses reduce an account past recovery; driven mainly by the fraction risked per trade."
+      }
+    ]
   }
 ];
 
@@ -2645,6 +2820,76 @@ window.SCERE_FOREX_SVGS = {
 
   <text x="450" y="510" text-anchor="middle" font-size="11.5" fill="#cbd5e1">Fast crossing below slow = recent prices weaker than older prices (sell signal); crossing above = buy signal.</text>
   <text x="450" y="530" text-anchor="middle" font-size="11.5" font-style="italic" fill="#fde68a">Sideways markets produce whipsaws — small losing trades are part of the system, not a malfunction.</text>
+</svg>
+`,
+  'forex-ch3-position-sizing-pip-value': `
+<svg viewBox="0 0 900 640" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="640" fill="#0f172a"/>
+  <text x="450" y="34" text-anchor="middle" font-size="20" font-weight="bold" fill="#e2e8f0">Pip Value: Why "One Pip = $10" Is Only Sometimes True</text>
+  <text x="450" y="58" text-anchor="middle" font-size="12" font-style="italic" fill="#94a3b8">Pip value is the one input in the sizing formula that changes with the pair and your account currency.</text>
+
+  <!-- ===== TWO STEPS ===== -->
+  <rect x="40" y="78" width="820" height="92" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <text x="60" y="102" font-size="13" font-weight="bold" fill="#e2e8f0">The calculation is always two steps</text>
+  <rect x="60" y="112" width="380" height="46" rx="8" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="72" y="131" font-size="11.5" font-weight="bold" fill="#3b82f6">Step 1: pip value in the QUOTE currency</text>
+  <text x="72" y="149" font-size="11" fill="#cbd5e1">pip size x units. Std lot: 0.0001 x 100,000 = 10 units</text>
+  <rect x="460" y="112" width="380" height="46" rx="8" fill="rgba(34,197,94,0.12)" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="472" y="131" font-size="11.5" font-weight="bold" fill="#22c55e">Step 2: convert to your ACCOUNT currency</text>
+  <text x="472" y="149" font-size="11" fill="#cbd5e1">using the current exchange rate (may do nothing)</text>
+
+  <!-- ===== THREE CASES ===== -->
+  <text x="450" y="196" text-anchor="middle" font-size="13" font-weight="bold" fill="#e2e8f0">Three cases for a US-dollar account (standard lot)</text>
+
+  <!-- Case A -->
+  <rect x="40" y="208" width="266" height="150" rx="10" fill="rgba(34,197,94,0.12)" stroke="#22c55e" stroke-width="2"/>
+  <text x="60" y="232" font-size="13" font-weight="bold" fill="#22c55e">Case A: quote = account</text>
+  <text x="60" y="252" font-size="11.5" fill="#cbd5e1">e.g. EUR/USD (quote is USD)</text>
+  <text x="60" y="278" font-size="11" fill="#cbd5e1">Step 1: 10 USD per pip</text>
+  <text x="60" y="296" font-size="11" fill="#cbd5e1">Step 2: no conversion needed</text>
+  <text x="60" y="330" font-size="15" font-weight="bold" fill="#22c55e">Pip value = $10.00</text>
+  <text x="60" y="349" font-size="10" font-style="italic" fill="#22c55e">the only exact case for "$10"</text>
+
+  <!-- Case B -->
+  <rect x="317" y="208" width="266" height="150" rx="10" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="2"/>
+  <text x="337" y="232" font-size="13" font-weight="bold" fill="#3b82f6">Case B: base = account</text>
+  <text x="337" y="252" font-size="11.5" fill="#cbd5e1">e.g. USD/JPY (base is USD)</text>
+  <text x="337" y="278" font-size="11" fill="#cbd5e1">Step 1: 1,000 JPY per pip</text>
+  <text x="337" y="296" font-size="11" fill="#cbd5e1">Step 2: 1,000 / 150.00</text>
+  <text x="337" y="330" font-size="15" font-weight="bold" fill="#3b82f6">Pip value = $6.67</text>
+  <text x="337" y="349" font-size="10" font-style="italic" fill="#3b82f6">about a third LESS than $10</text>
+
+  <!-- Case C -->
+  <rect x="594" y="208" width="266" height="150" rx="10" fill="rgba(234,179,8,0.12)" stroke="#eab308" stroke-width="2"/>
+  <text x="614" y="232" font-size="13" font-weight="bold" fill="#fde68a">Case C: cross pair</text>
+  <text x="614" y="252" font-size="11.5" fill="#cbd5e1">e.g. EUR/GBP (no USD at all)</text>
+  <text x="614" y="278" font-size="11" fill="#cbd5e1">Step 1: 10 GBP per pip</text>
+  <text x="614" y="296" font-size="11" fill="#cbd5e1">Step 2: 10 x 1.27 (GBP/USD)</text>
+  <text x="614" y="330" font-size="15" font-weight="bold" fill="#fde68a">Pip value = $12.70</text>
+  <text x="614" y="349" font-size="10" font-style="italic" fill="#fde68a">about a quarter MORE than $10</text>
+
+  <!-- ===== SIZING CONSEQUENCE ===== -->
+  <text x="450" y="396" text-anchor="middle" font-size="13" font-weight="bold" fill="#e2e8f0">What the "$10" shortcut does to a $100 (1%) risk, 50-pip stop, $10,000 account</text>
+
+  <rect x="40" y="410" width="820" height="150" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <text x="60" y="434" font-size="12" fill="#cbd5e1">Formula: Lot Size = (Account x Risk %) / (Stop pips x Pip Value)</text>
+
+  <!-- USD/JPY row -->
+  <rect x="60" y="446" width="380" height="98" rx="8" fill="rgba(239,68,68,0.12)" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="72" y="468" font-size="12" font-weight="bold" fill="#ef4444">USD/JPY (true pip value $6.67)</text>
+  <text x="72" y="488" font-size="11" fill="#cbd5e1">Correct: 100 / (50 x 6.67) = 0.30 lots</text>
+  <text x="72" y="506" font-size="11" fill="#cbd5e1">Using $10: 0.20 lots</text>
+  <text x="72" y="528" font-size="11.5" font-weight="bold" fill="#ef4444">Real risk = $66.70 -- you UNDER-sized (only 0.67%)</text>
+
+  <!-- EUR/GBP row -->
+  <rect x="460" y="446" width="380" height="98" rx="8" fill="rgba(239,68,68,0.12)" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="472" y="468" font-size="12" font-weight="bold" fill="#ef4444">EUR/GBP (true pip value $12.70)</text>
+  <text x="472" y="488" font-size="11" fill="#cbd5e1">Correct: 100 / (50 x 12.70) = 0.157 lots</text>
+  <text x="472" y="506" font-size="11" fill="#cbd5e1">Using $10: 0.20 lots</text>
+  <text x="472" y="528" font-size="11.5" font-weight="bold" fill="#ef4444">Real risk = $127 -- you OVER-sized (+27%)</text>
+
+  <text x="450" y="592" text-anchor="middle" font-size="12" font-style="italic" fill="#e2e8f0">Correct pip value feeds correct position size -- and position size is the biggest lever on the risk of ruin.</text>
+  <text x="450" y="614" text-anchor="middle" font-size="10.5" font-style="italic" fill="#94a3b8">Classical gambler's ruin; formalised for trading in Ralph Vince, The Mathematics of Money Management (Wiley, 1992).</text>
 </svg>
 `,
 };

@@ -1,0 +1,68 @@
+<svg viewBox="0 0 900 640" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="640" fill="#FDFCF9"/>
+  <text x="450" y="34" text-anchor="middle" font-size="20" font-weight="bold" fill="#1F3864">Pip Value: Why "One Pip = $10" Is Only Sometimes True</text>
+  <text x="450" y="58" text-anchor="middle" font-size="12" font-style="italic" fill="#6B6B6B">Pip value is the one input in the sizing formula that changes with the pair and your account currency.</text>
+
+  <!-- ===== TWO STEPS ===== -->
+  <rect x="40" y="78" width="820" height="92" rx="10" fill="#FFFFFF" stroke="#CBD3E1" stroke-width="1.5"/>
+  <text x="60" y="102" font-size="13" font-weight="bold" fill="#1F3864">The calculation is always two steps</text>
+  <rect x="60" y="112" width="380" height="46" rx="8" fill="#EAF0FB" stroke="#2E5395" stroke-width="1.5"/>
+  <text x="72" y="131" font-size="11.5" font-weight="bold" fill="#2E5395">Step 1: pip value in the QUOTE currency</text>
+  <text x="72" y="149" font-size="11" fill="#333333">pip size x units. Std lot: 0.0001 x 100,000 = 10 units</text>
+  <rect x="460" y="112" width="380" height="46" rx="8" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="1.5"/>
+  <text x="472" y="131" font-size="11.5" font-weight="bold" fill="#1E7A4C">Step 2: convert to your ACCOUNT currency</text>
+  <text x="472" y="149" font-size="11" fill="#333333">using the current exchange rate (may do nothing)</text>
+
+  <!-- ===== THREE CASES ===== -->
+  <text x="450" y="196" text-anchor="middle" font-size="13" font-weight="bold" fill="#1F3864">Three cases for a US-dollar account (standard lot)</text>
+
+  <!-- Case A -->
+  <rect x="40" y="208" width="266" height="150" rx="10" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="60" y="232" font-size="13" font-weight="bold" fill="#1E7A4C">Case A: quote = account</text>
+  <text x="60" y="252" font-size="11.5" fill="#333333">e.g. EUR/USD (quote is USD)</text>
+  <text x="60" y="278" font-size="11" fill="#333333">Step 1: 10 USD per pip</text>
+  <text x="60" y="296" font-size="11" fill="#333333">Step 2: no conversion needed</text>
+  <text x="60" y="330" font-size="15" font-weight="bold" fill="#1E7A4C">Pip value = $10.00</text>
+  <text x="60" y="349" font-size="10" font-style="italic" fill="#1E7A4C">the only exact case for "$10"</text>
+
+  <!-- Case B -->
+  <rect x="317" y="208" width="266" height="150" rx="10" fill="#EAF0FB" stroke="#2E5395" stroke-width="2"/>
+  <text x="337" y="232" font-size="13" font-weight="bold" fill="#2E5395">Case B: base = account</text>
+  <text x="337" y="252" font-size="11.5" fill="#333333">e.g. USD/JPY (base is USD)</text>
+  <text x="337" y="278" font-size="11" fill="#333333">Step 1: 1,000 JPY per pip</text>
+  <text x="337" y="296" font-size="11" fill="#333333">Step 2: 1,000 / 150.00</text>
+  <text x="337" y="330" font-size="15" font-weight="bold" fill="#2E5395">Pip value = $6.67</text>
+  <text x="337" y="349" font-size="10" font-style="italic" fill="#2E5395">about a third LESS than $10</text>
+
+  <!-- Case C -->
+  <rect x="594" y="208" width="266" height="150" rx="10" fill="#FFF7E6" stroke="#C99A2E" stroke-width="2"/>
+  <text x="614" y="232" font-size="13" font-weight="bold" fill="#8A6D1F">Case C: cross pair</text>
+  <text x="614" y="252" font-size="11.5" fill="#333333">e.g. EUR/GBP (no USD at all)</text>
+  <text x="614" y="278" font-size="11" fill="#333333">Step 1: 10 GBP per pip</text>
+  <text x="614" y="296" font-size="11" fill="#333333">Step 2: 10 x 1.27 (GBP/USD)</text>
+  <text x="614" y="330" font-size="15" font-weight="bold" fill="#8A6D1F">Pip value = $12.70</text>
+  <text x="614" y="349" font-size="10" font-style="italic" fill="#8A6D1F">about a quarter MORE than $10</text>
+
+  <!-- ===== SIZING CONSEQUENCE ===== -->
+  <text x="450" y="396" text-anchor="middle" font-size="13" font-weight="bold" fill="#1F3864">What the "$10" shortcut does to a $100 (1%) risk, 50-pip stop, $10,000 account</text>
+
+  <rect x="40" y="410" width="820" height="150" rx="10" fill="#FFFFFF" stroke="#CBD3E1" stroke-width="1.5"/>
+  <text x="60" y="434" font-size="12" fill="#333333">Formula: Lot Size = (Account x Risk %) / (Stop pips x Pip Value)</text>
+
+  <!-- USD/JPY row -->
+  <rect x="60" y="446" width="380" height="98" rx="8" fill="#FFF3EF" stroke="#B23B2E" stroke-width="1.5"/>
+  <text x="72" y="468" font-size="12" font-weight="bold" fill="#B23B2E">USD/JPY (true pip value $6.67)</text>
+  <text x="72" y="488" font-size="11" fill="#333333">Correct: 100 / (50 x 6.67) = 0.30 lots</text>
+  <text x="72" y="506" font-size="11" fill="#333333">Using $10: 0.20 lots</text>
+  <text x="72" y="528" font-size="11.5" font-weight="bold" fill="#B23B2E">Real risk = $66.70 -- you UNDER-sized (only 0.67%)</text>
+
+  <!-- EUR/GBP row -->
+  <rect x="460" y="446" width="380" height="98" rx="8" fill="#FFF3EF" stroke="#B23B2E" stroke-width="1.5"/>
+  <text x="472" y="468" font-size="12" font-weight="bold" fill="#B23B2E">EUR/GBP (true pip value $12.70)</text>
+  <text x="472" y="488" font-size="11" fill="#333333">Correct: 100 / (50 x 12.70) = 0.157 lots</text>
+  <text x="472" y="506" font-size="11" fill="#333333">Using $10: 0.20 lots</text>
+  <text x="472" y="528" font-size="11.5" font-weight="bold" fill="#B23B2E">Real risk = $127 -- you OVER-sized (+27%)</text>
+
+  <text x="450" y="592" text-anchor="middle" font-size="12" font-style="italic" fill="#1F3864">Correct pip value feeds correct position size -- and position size is the biggest lever on the risk of ruin.</text>
+  <text x="450" y="614" text-anchor="middle" font-size="10.5" font-style="italic" fill="#6B6B6B">Classical gambler's ruin; formalised for trading in Ralph Vince, The Mathematics of Money Management (Wiley, 1992).</text>
+</svg>

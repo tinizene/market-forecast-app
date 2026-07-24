@@ -859,6 +859,42 @@
 - **PT:** Risco de ruína
 - **SW:** Hatari ya kufilisika ⚠
 
+### Equity
+- **EN:** Account balance plus or minus the floating profit and loss of any open positions — the real, live value of the account, and the figure margin level is measured from.
+- **FR:** Capitaux propres du compte (equity)
+- **PT:** Patrimônio da conta (equity)
+- **SW:** Thamani halisi ya akaunti ⚠ (mara nyingi "equity")
+
+### Free Margin
+- **EN:** Equity minus the margin currently used by open positions — the cushion available to absorb further losses and to open new trades.
+- **FR:** Marge libre
+- **PT:** Margem livre
+- **SW:** Margin huru ⚠
+
+### Stop-Out Level
+- **EN:** The margin level at which a broker automatically closes positions (largest loser first) to stop equity falling below the margin backing them. Sits below the margin call level; common default around 50%, but broker-specific.
+- **FR:** Niveau de stop-out
+- **PT:** Nível de stop-out
+- **SW:** Kiwango cha stop-out ⚠
+
+### Effective Leverage
+- **EN:** Total open position size divided by account equity — the leverage actually being run, as opposed to the broker's maximum offered leverage. The number that sets the distance to a margin call.
+- **FR:** Levier effectif
+- **PT:** Alavancagem efetiva
+- **SW:** Uwiano halisi wa mkopo ⚠
+
+### Risk-to-Reward Ratio
+- **EN:** The loss taken if a trade hits its stop compared with the gain if it hits its target, written risk-to-reward (e.g., 1:2 = risk one unit to make two).
+- **FR:** Ratio risque/récompense
+- **PT:** Relação risco/retorno
+- **SW:** Uwiano wa hatari na tuzo ⚠
+
+### Break-even Win Rate
+- **EN:** The fraction of trades that must be won, at a given risk-to-reward ratio, just to break even. Equals 1 / (1 + R), where R is the reward as a multiple of the risk.
+- **FR:** Taux de réussite d'équilibre
+- **PT:** Taxa de acerto de equilíbrio
+- **SW:** Kiwango cha ushindi cha kufikia sare ⚠
+
 ## Crypto Track Terms
 
 *(Not yet started. Expect terms like: blockchain, wallet, private key, gas fee, exchange, volatility, market cap, stablecoin.)*

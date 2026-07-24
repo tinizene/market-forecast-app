@@ -110,7 +110,7 @@ Content is written English-first. Glossary holds locked EN/FR/PT/SW translations
 **Forex track (paid) — in progress:**
 - Chapter 1 (Mechanics of a Trade): 7/7 complete
 - Chapter 2 (Reading the Forex Market): 6/6 complete
-- Chapter 3 (Risk Management for Forex Traders): 1/3 — Lesson 1 (Position Sizing With Pip Value) drafted; Lessons 2–3 remaining
+- Chapter 3 (Risk Management for Forex Traders): 3/3 complete
 - Chapters 4–6: not started
 
 **Not started:** Crypto track, Stocks track, Advanced Forex Course.

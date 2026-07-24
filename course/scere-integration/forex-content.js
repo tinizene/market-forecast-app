@@ -6,7 +6,7 @@
 // window.SCERE_FOREX_SVGS (dark-theme variants, defined at the bottom of this file).
 //
 // Shown fully open with a "Paid track" badge; real payment gating is a separate build.
-// Chapters 1-2 complete plus Chapter 3 Lesson 1; further Chapter 3 lessons land here later.
+// Chapters 1-2 complete plus Chapter 3 (Risk Management) complete; Chapters 4-6 land later.
 
 window.SCERE_FOREX_TRACK = {
   "trackTitle": "Forex",
@@ -2042,6 +2042,296 @@ window.SCERE_FOREX_CONTENT = [
         "def": "The probability that losses reduce an account past recovery; driven mainly by the fraction risked per trade."
       }
     ]
+  },
+  {
+    "id": "margin-calls-and-leverage-risk",
+    "lessonNumber": 2,
+    "chapterNumber": 3,
+    "chapterTitle": "Chapter 3: Risk Management for Forex Traders",
+    "title": "Margin Calls and Leverage Risk",
+    "keyIdea": "A margin call is set off by your equity, not your balance, and it is almost always a symptom of committing too much of the account — using too much effective leverage.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Chapter 1, Lesson 6 gave you the fixed parts: leverage, margin, the margin level formula, and the idea of a margin call. This lesson watches those numbers move in real time, because that is where the risk actually lives."
+      },
+      {
+        "type": "paragraph",
+        "text": "The first thing to separate is your balance from your equity."
+      },
+      {
+        "type": "definition",
+        "term": "Equity",
+        "text": "Your account balance plus or minus the running profit or loss of any open positions. It is the real, live value of your account at this moment."
+      },
+      {
+        "type": "paragraph",
+        "text": "Your balance is settled cash — it only changes when a trade is closed. Equity is balance plus the floating profit or loss of trades still open. The moment you open a position, the two can diverge, and every risk measure that matters is built on equity, not balance."
+      },
+      {
+        "type": "definition",
+        "term": "Free Margin",
+        "text": "Your equity minus the margin currently used by open positions. It is the cushion available to absorb further losses and to open new trades."
+      },
+      {
+        "type": "paragraph",
+        "text": "So the account splits cleanly: used margin (locked as collateral for your open positions) plus free margin (everything else) equals your equity. When a trade moves against you, its floating loss lowers your equity, which shrinks your free margin, which drives your margin level down. Watching that chain is the whole skill of this lesson."
+      },
+      {
+        "type": "paragraph",
+        "text": "Chapter 1 described the margin call as one event. In a live account there are usually two levels, and knowing the difference matters."
+      },
+      {
+        "type": "paragraph",
+        "text": "The margin call level (commonly a margin level of 100%) is the warning: your equity has fallen until it only just covers the margin your positions require. The broker asks you to add funds or reduce the position."
+      },
+      {
+        "type": "definition",
+        "term": "Stop-Out Level",
+        "text": "The margin level at which the broker stops asking and starts acting: it automatically closes your positions, usually the largest loser first, to stop your equity falling below the margin backing them. It sits below the margin call level."
+      },
+      {
+        "type": "paragraph",
+        "text": "The stop-out level (commonly a margin level of 50%) is the forced exit. It exists to protect the broker from your account going negative, and it will close your trades whether you want it to or not."
+      },
+      {
+        "type": "warning",
+        "text": "The exact percentages are set by each broker, not by law — 100% and 50% are common, but yours may differ. Find your broker's real margin call and stop-out levels before you trade, not during your first losing position."
+      },
+      {
+        "type": "example",
+        "text": "You have a 2,000 dollar account and open a 50,000 dollar EUR/USD position at 50:1 leverage. Used margin is 50,000 / 50 = 1,000 dollars, leaving 1,000 dollars of free margin, and your margin level starts at 2,000 / 1,000 = 200%. Now price moves against you. A 1,000 dollar floating loss — a 2% move, about 200 pips — drops equity to 1,000 dollars, so margin level hits 100%: the margin call. If the loss reaches 1,500 dollars — a 3% move, about 300 pips — equity is 500 dollars, margin level is 50%, and the stop-out closes the trade for you. A 300-pip move has ended this position, whatever you wanted."
+      },
+      {
+        "type": "image",
+        "svg": "forex-ch3-margin-calls-leverage",
+        "alt": "Diagram showing the live account split into equity, used margin and free margin; the margin call level around 100 percent and the stop-out level around 50 percent; and two accounts holding the same position where the over-committed one is called after 200 pips and the well-sized one survives to 1,800 pips",
+        "caption": "Equity, used margin and free margin; the two thresholds; and how the same position calls a small account at 200 pips but a well-sized one only at 1,800."
+      },
+      {
+        "type": "paragraph",
+        "text": "Here is the misunderstanding that this lesson exists to fix. The broker advertises a maximum leverage — 30:1, 50:1, sometimes far more. That number is a ceiling on what you are allowed to do. It says nothing about the risk you are actually running. That is a different number."
+      },
+      {
+        "type": "definition",
+        "term": "Effective Leverage",
+        "text": "The total size of your open positions divided by your account equity. Unlike the broker's maximum offered leverage, this is the leverage you are actually using right now."
+      },
+      {
+        "type": "example",
+        "text": "Take the same 50,000 dollar position, at the same 50:1 broker leverage, on two different accounts. On the 2,000 dollar account above, effective leverage is 50,000 / 2,000 = 25:1, and you saw the margin call arrive after just 200 pips. On a 10,000 dollar account, the identical position is only 50,000 / 10,000 = 5:1 effective leverage — and now the margin call does not arrive until a floating loss of 9,000 dollars, an 18% move of about 1,800 pips. Same broker, same leverage cap, same trade. One account dies at 200 pips; the other survives to 1,800. The only difference is how much of the account was committed."
+      },
+      {
+        "type": "paragraph",
+        "text": "That is the honest core of \"leverage risk.\" The danger was never the broker's headline ratio on its own — it is how much of that ceiling you choose to use. And that choice is exactly position sizing from Lesson 1. A correctly sized position leaves a large free-margin cushion, which keeps effective leverage low and the margin call far away. A margin call is, almost always, a position-sizing mistake showing up one step later."
+      },
+      {
+        "type": "warning",
+        "text": "Treat \"500:1 leverage available\" as marketing, not a feature. The number tells you the most rope the broker will hand you; it says nothing about how much you should take. Your effective leverage, set by your position size, is the figure to watch — and to keep small."
+      },
+      {
+        "type": "paragraph",
+        "text": "It is tempting to treat the stop-out as a guaranteed floor: the worst that happens is you get closed at 50%. Usually true. Not always."
+      },
+      {
+        "type": "warning",
+        "text": "The stop-out closes your position at the best price available when it fires — and in a violent gap, there may be no price nearby, exactly as you saw with stop-loss orders in Chapter 1, Lesson 7. When the Swiss National Bank floor broke in 2015, stop-outs triggered correctly but filled far below their levels, and many accounts went negative — traders ended up owing money they never deposited. This is precisely why negative balance protection exists as a rule in the EU, UK, and Australia (Chapter 1, Lesson 6)."
+      },
+      {
+        "type": "paragraph",
+        "text": "So the layering is: correct position size keeps you far from the margin call in the first place; the broker's stop-out is a second line that usually works; and negative balance protection is a legal backstop for the rare case where a gap defeats the stop-out. The first line is the one you control, and it is the one that matters most."
+      },
+      {
+        "type": "practice",
+        "text": "Before and during a leveraged trade, check: Do you actually know your broker's margin call and stop-out levels, in numbers, before you need them? What is your effective leverage right now — total open position size divided by equity — a small number or a large one? Could your free-margin cushion absorb a realistic adverse move without triggering a margin call? And are you relying on the stop-out as a safety net, or sizing your positions so that you never come close to it?"
+      }
+    ],
+    "quiz": [
+      {
+        "question": "A margin call is triggered when which value falls to meet the margin your positions require?",
+        "options": [
+          "Your account balance",
+          "Your account equity (balance plus floating profit and loss)",
+          "The broker's leverage cap",
+          "The spread"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — margin level is measured from equity, not balance. It is the live value including open trades' floating loss that determines when a margin call or stop-out fires.",
+        "feedbackWrong": "Not quite — margin level is measured from equity (balance plus floating profit and loss), not from balance alone."
+      },
+      {
+        "question": "Two accounts hold the exact same 50,000 dollar position at the same 50:1 broker leverage — one with 2,000 dollars of equity, one with 10,000 dollars. Which faces a margin call after a much smaller move against it?",
+        "options": [
+          "The 10,000 dollar account",
+          "The 2,000 dollar account, because its effective leverage (25:1) is far higher",
+          "Neither — they are identical because the broker leverage is the same",
+          "It depends only on the spread"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — effective leverage is position size divided by equity: 25:1 versus 5:1. The smaller account has a thinner free-margin cushion, so a 200-pip move calls it while the larger account can absorb about 1,800.",
+        "feedbackWrong": "Not quite — effective leverage is position divided by equity, so the 2,000 dollar account runs 25:1 versus 5:1 and is called after a far smaller move."
+      },
+      {
+        "question": "True or False: the broker's stop-out level is a guaranteed floor, so your account can never go below it.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — in a violent gap the stop-out can fill far from its level; the 2015 Swiss franc move pushed many accounts negative. That is why negative balance protection exists — the stop-out is a strong safeguard, not an absolute guarantee.",
+        "feedbackWrong": "Not quite — a violent gap can push the stop-out fill far below its level (the 2015 Swiss franc move sent accounts negative), which is exactly why negative balance protection exists."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Equity",
+        "def": "Account balance plus or minus the floating profit and loss of open positions."
+      },
+      {
+        "term": "Free Margin",
+        "def": "Equity minus used margin — the cushion available to absorb losses and open trades."
+      },
+      {
+        "term": "Stop-Out Level",
+        "def": "The margin level at which the broker forcibly closes positions, below the margin call level."
+      },
+      {
+        "term": "Effective Leverage",
+        "def": "Total open position size divided by account equity — the leverage you are actually running."
+      }
+    ]
+  },
+  {
+    "id": "risk-to-reward-ratio-in-practice",
+    "lessonNumber": 3,
+    "chapterNumber": 3,
+    "chapterTitle": "Chapter 3: Risk Management for Forex Traders",
+    "title": "Risk-to-Reward Ratio in Practice",
+    "keyIdea": "The risk-to-reward ratio sets the win rate you need to break even, which is why a trader who is wrong more often than right can still make money — and a high win rate can still lose.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Every trade you place has two distances built into it: how far price can go against you before your stop-loss closes it, and how far it can go in your favour before you take profit. The relationship between those two distances is the most important number in a trading plan that Foundations Chapter 2 kept pointing toward without naming."
+      },
+      {
+        "type": "definition",
+        "term": "Risk-to-Reward Ratio",
+        "text": "The size of the loss you take if a trade hits its stop, compared with the size of the gain if it hits its target. Written risk-to-reward, so 1:2 means risking one unit to make two."
+      },
+      {
+        "type": "paragraph",
+        "text": "It is cleanest to measure both in the \"R\" unit from Foundations Chapter 2. Your risk on the trade — the stop distance, turned into money by the pip value and position size from Lessons 1 and 2 — is one R. A target twice as far away is two R; three times as far is three R."
+      },
+      {
+        "type": "example",
+        "text": "You go long EUR/USD at 1.1000 with your stop at 1.0970, a 30-pip risk. That stop distance is your 1R. If you set your target at 1.1060 — 60 pips away, twice the stop distance — the trade is a 1:2 risk-to-reward. If price reaches the target you gain 2R; if it hits the stop you lose 1R."
+      },
+      {
+        "type": "paragraph",
+        "text": "The ratio matters because it decides how often you actually have to be right just to stay level. Wins have to pay for losses, and a bigger reward per win means each win pays for more losses."
+      },
+      {
+        "type": "definition",
+        "term": "Break-even Win Rate",
+        "text": "The fraction of trades you must win, at a given risk-to-reward ratio, simply to end up flat. It equals 1 divided by (1 + R), where R is the reward as a multiple of the risk."
+      },
+      {
+        "type": "example",
+        "text": "At 1:1, break-even win rate = 1 / (1 + 1) = 50%. At 1:2, it is 1 / (1 + 2) = 33.3%. At 1:3, it is 1 / (1 + 3) = 25%. So with a 1:3 ratio, you can lose three trades out of four and still break even. Going the other way, if your reward is only half your risk (you take 15-pip profits behind a 30-pip stop), R is 0.5 and the break-even win rate climbs to 1 / 1.5 = 66.7% — you now have to win two out of every three trades just to stand still."
+      },
+      {
+        "type": "warning",
+        "text": "The reasoning is simple enough to hold in your head: to break even, total winnings must equal total losses, so (win rate times reward) must equal (loss rate times risk). Solve that and the winning fraction is 1 / (1 + R). You do not need to memorise the algebra — you need to remember that a better reward-to-risk ratio lowers the win rate you need, and a worse one raises it, fast."
+      },
+      {
+        "type": "paragraph",
+        "text": "This is where the whole course's most repeated idea becomes arithmetic instead of a slogan. Foundations Chapter 2 said being right often is not the same as trading well. Here is the proof."
+      },
+      {
+        "type": "example",
+        "text": "Trader A wins 40% of trades at 1:2. Out of 10 trades, 4 wins pay 2R each (+8R) and 6 losses cost 1R each (-6R), for +2R overall — a profit, from being wrong more often than right. Trader B wins 60% at 1:1: 6 wins (+6R) and 4 losses (-4R) also make +2R. Same result from opposite-looking records. Now Trader C wins 70% of trades but takes profits half the size of the risk (1:0.5): 7 wins pay 0.5R each (+3.5R) and 3 losses cost 1R each (-3R), for just +0.5R over 10 trades. Trader C is right far more often than A or B and makes a quarter as much."
+      },
+      {
+        "type": "image",
+        "svg": "forex-ch3-risk-reward",
+        "alt": "Diagram showing one trade measured in R with a stop at minus 1R and target at plus 2R, a table of break-even win rates (1:1 needs 50 percent, 1:2 needs 33.3 percent, 1:3 needs 25 percent), and three traders over ten trades where a 40 percent win rate at 1:2 and a 60 percent win rate at 1:1 both make plus 2R while a 70 percent win rate at 1:0.5 makes only plus 0.5R",
+        "caption": "The break-even win rate for each ratio, and three traders whose win rates hide who actually makes money."
+      },
+      {
+        "type": "paragraph",
+        "text": "That is why a win rate quoted on its own is close to meaningless — it is a vanity number. A strategy that wins 90% of the time can still bleed an account dry if the occasional loss is larger than many wins combined. What determines whether you make money is the win rate and the risk-to-reward ratio together, never either alone."
+      },
+      {
+        "type": "paragraph",
+        "text": "A full accounting of this — combining win rate and average sizes into a single \"expectancy\" number, and building a plan around it — is the subject of Chapter 4, Lesson 2. For now, the practical takeaway is enough: protect the ratio, and you can be wrong a lot and still win."
+      },
+      {
+        "type": "paragraph",
+        "text": "A risk-to-reward ratio is only real if both prices in it are real. It is easy to draw a target three times as far as your stop and announce a 1:3 trade — but if price has almost no chance of travelling that far before turning, the ratio is a fiction."
+      },
+      {
+        "type": "paragraph",
+        "text": "The disciplined sequence uses tools you already have. Put the stop where the trade idea is actually wrong — the invalidation level from Foundations Chapter 2 and the multi-timeframe method in Chapter 2, Lesson 5. Put the target at a genuine obstacle — a support or resistance level from Foundations Chapter 3 that price would realistically reach and stall at. Then read off the ratio those two honest prices produce, and only take the trade if that ratio clears your minimum given a win rate you can actually expect."
+      },
+      {
+        "type": "warning",
+        "text": "Never move the target closer, or the stop wider, after entry to rescue a trade — that quietly destroys the ratio you planned. Widening a stop to avoid being closed turns a 1:2 trade into a 1:1 or worse, and the arithmetic above shows exactly what that does to the win rate you now need. The ratio is a decision made before the trade, and then defended."
+      },
+      {
+        "type": "paragraph",
+        "text": "There is a strong pull to do the opposite — to grab small profits quickly and give losing trades room to recover. That instinct feels like winning because it raises your win rate, but it is Trader C above, and it is a losing pattern with a comforting face. The psychology behind it, and how to build a plan that resists it, is Chapter 4."
+      },
+      {
+        "type": "practice",
+        "text": "Before entering, run these checks: Can you state the trade's risk-to-reward ratio as a number, from a real stop price and a real target price? Does that ratio clear its break-even win rate with room to spare, given a win rate you can honestly expect rather than a hoped-for one? Are your stop and target placed at meaningful levels — invalidation, support, resistance — or chosen to manufacture a nice-looking ratio? And do you ever widen a stop or pull in a target mid-trade? That is the ratio quietly collapsing, the one habit this lesson most wants you to catch."
+      }
+    ],
+    "quiz": [
+      {
+        "question": "What is the break-even win rate for a trade with a 1:3 risk-to-reward ratio?",
+        "options": [
+          "50%",
+          "33.3%",
+          "25%",
+          "75%"
+        ],
+        "correctIndex": 2,
+        "feedbackCorrect": "Correct — break-even win rate = 1 / (1 + R) = 1 / (1 + 3) = 25%. At 1:3 you can lose three of every four trades and still break even.",
+        "feedbackWrong": "Not quite — break-even win rate = 1 / (1 + R) = 1 / 4 = 25% at 1:3."
+      },
+      {
+        "question": "Trader A wins 40% of trades at a 1:2 ratio; Trader B wins 40% at a 1:1 ratio. Who is profitable?",
+        "options": [
+          "Both, equally",
+          "Only Trader A",
+          "Only Trader B",
+          "Neither"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — at 1:2, break-even is 33.3%, so a 40% win rate is profitable (+0.2R per trade). At 1:1, break-even is 50%, so the same 40% win rate loses. The ratio, not the win rate, flips the outcome.",
+        "feedbackWrong": "Not quite — at 1:2 break-even is 33.3% (A profits), but at 1:1 break-even is 50% (B loses at 40%). The ratio flips the outcome."
+      },
+      {
+        "question": "True or False: a trading strategy with a 70% win rate is guaranteed to be profitable.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — if the reward per win is smaller than the risk per loss, even a 70% win rate can barely break even or lose. Win rate is only half the story; the risk-to-reward ratio is the other half.",
+        "feedbackWrong": "Not quite — with a poor risk-to-reward ratio, even a 70% win rate can barely break even or lose. Win rate alone does not decide profitability."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Risk-to-Reward Ratio",
+        "def": "The loss if a trade hits its stop versus the gain if it hits its target (e.g., 1:2)."
+      },
+      {
+        "term": "Break-even Win Rate",
+        "def": "The win fraction needed to break even at a given ratio — equal to 1 / (1 + R)."
+      }
+    ]
   }
 ];
 
@@ -2822,6 +3112,66 @@ window.SCERE_FOREX_SVGS = {
   <text x="450" y="530" text-anchor="middle" font-size="11.5" font-style="italic" fill="#fde68a">Sideways markets produce whipsaws — small losing trades are part of the system, not a malfunction.</text>
 </svg>
 `,
+  'forex-ch3-margin-calls-leverage': `
+<svg viewBox="0 0 900 610" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="610" fill="#0f172a"/>
+  <text x="450" y="34" text-anchor="middle" font-size="20" font-weight="bold" fill="#e2e8f0">Margin Calls: What Actually Happens as a Trade Loses</text>
+  <text x="450" y="58" text-anchor="middle" font-size="12" font-style="italic" fill="#94a3b8">Effective leverage -- how much of your account you commit -- sets your distance to a margin call.</text>
+
+  <!-- Account anatomy -->
+  <rect x="40" y="78" width="820" height="86" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <text x="60" y="102" font-size="13" font-weight="bold" fill="#e2e8f0">The account, live</text>
+  <rect x="60" y="112" width="240" height="42" rx="6" fill="rgba(34,197,94,0.12)" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="180" y="131" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#22c55e">Equity</text>
+  <text x="180" y="147" text-anchor="middle" font-size="10" fill="#cbd5e1">balance +/- floating P/L</text>
+  <text x="312" y="139" font-size="15" fill="#64748b">=</text>
+  <rect x="330" y="112" width="240" height="42" rx="6" fill="rgba(234,179,8,0.12)" stroke="#eab308" stroke-width="1.5"/>
+  <text x="450" y="131" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#fde68a">Used Margin</text>
+  <text x="450" y="147" text-anchor="middle" font-size="10" fill="#cbd5e1">locked as collateral</text>
+  <text x="582" y="139" font-size="15" fill="#64748b">+</text>
+  <rect x="600" y="112" width="240" height="42" rx="6" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="720" y="131" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#3b82f6">Free Margin</text>
+  <text x="720" y="147" text-anchor="middle" font-size="10" fill="#cbd5e1">the loss-absorbing cushion</text>
+
+  <!-- Two thresholds -->
+  <text x="450" y="192" text-anchor="middle" font-size="13" font-weight="bold" fill="#e2e8f0">Two thresholds as margin level falls (margin level = equity / used margin x 100)</text>
+  <rect x="120" y="204" width="300" height="70" rx="10" fill="rgba(234,179,8,0.12)" stroke="#eab308" stroke-width="2"/>
+  <text x="270" y="228" text-anchor="middle" font-size="13" font-weight="bold" fill="#fde68a">Margin Call -- around 100%</text>
+  <text x="270" y="248" text-anchor="middle" font-size="10.5" fill="#cbd5e1">Warning: equity has fallen to equal</text>
+  <text x="270" y="263" text-anchor="middle" font-size="10.5" fill="#cbd5e1">used margin. Add funds or reduce.</text>
+  <rect x="480" y="204" width="300" height="70" rx="10" fill="rgba(239,68,68,0.12)" stroke="#ef4444" stroke-width="2"/>
+  <text x="630" y="228" text-anchor="middle" font-size="13" font-weight="bold" fill="#ef4444">Stop-Out -- around 50%</text>
+  <text x="630" y="248" text-anchor="middle" font-size="10.5" fill="#cbd5e1">Forced: the broker closes positions</text>
+  <text x="630" y="263" text-anchor="middle" font-size="10.5" fill="#cbd5e1">for you, biggest loser first.</text>
+  <text x="450" y="290" text-anchor="middle" font-size="10" font-style="italic" fill="#94a3b8">Exact percentages vary by broker -- check yours before you trade.</text>
+
+  <!-- Two scenarios: same position, different account -->
+  <text x="450" y="322" text-anchor="middle" font-size="13" font-weight="bold" fill="#e2e8f0">Same 50,000 position at 50:1 broker leverage -- two accounts</text>
+
+  <rect x="40" y="334" width="400" height="210" rx="10" fill="rgba(239,68,68,0.12)" stroke="#ef4444" stroke-width="2"/>
+  <text x="60" y="358" font-size="14" font-weight="bold" fill="#ef4444">2,000 account (over-committed)</text>
+  <text x="60" y="384" font-size="11.5" fill="#cbd5e1">Used margin: 1,000   Free margin: 1,000</text>
+  <text x="60" y="404" font-size="11.5" fill="#cbd5e1">Opening margin level: 200%</text>
+  <text x="60" y="430" font-size="13" font-weight="bold" fill="#ef4444">Effective leverage = 50,000 / 2,000 = 25:1</text>
+  <text x="60" y="456" font-size="11.5" fill="#cbd5e1">Margin call after a 1,000 loss:</text>
+  <text x="60" y="474" font-size="12.5" font-weight="bold" fill="#ef4444">just a 2% move -- about 200 pips</text>
+  <text x="60" y="500" font-size="11.5" fill="#cbd5e1">Stop-out at a 1,500 loss:</text>
+  <text x="60" y="518" font-size="12.5" font-weight="bold" fill="#ef4444">a 3% move -- about 300 pips</text>
+
+  <rect x="460" y="334" width="400" height="210" rx="10" fill="rgba(34,197,94,0.12)" stroke="#22c55e" stroke-width="2"/>
+  <text x="480" y="358" font-size="14" font-weight="bold" fill="#22c55e">10,000 account (well-sized)</text>
+  <text x="480" y="384" font-size="11.5" fill="#cbd5e1">Used margin: 1,000   Free margin: 9,000</text>
+  <text x="480" y="404" font-size="11.5" fill="#cbd5e1">Opening margin level: 1,000%</text>
+  <text x="480" y="430" font-size="13" font-weight="bold" fill="#22c55e">Effective leverage = 50,000 / 10,000 = 5:1</text>
+  <text x="480" y="456" font-size="11.5" fill="#cbd5e1">Margin call after a 9,000 loss:</text>
+  <text x="480" y="474" font-size="12.5" font-weight="bold" fill="#22c55e">an 18% move -- about 1,800 pips</text>
+  <text x="480" y="500" font-size="11.5" fill="#cbd5e1">Same trade, same leverage cap --</text>
+  <text x="480" y="518" font-size="12.5" font-weight="bold" fill="#22c55e">survives 9x the adverse move</text>
+
+  <text x="450" y="576" text-anchor="middle" font-size="12" font-style="italic" fill="#e2e8f0">A margin call is almost always a position-sizing mistake showing up one step later.</text>
+  <text x="450" y="596" text-anchor="middle" font-size="10.5" font-style="italic" fill="#94a3b8">The broker's headline leverage is a ceiling; your effective leverage is the risk you actually run.</text>
+</svg>
+`,
   'forex-ch3-position-sizing-pip-value': `
 <svg viewBox="0 0 900 640" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
   <rect width="900" height="640" fill="#0f172a"/>
@@ -2890,6 +3240,82 @@ window.SCERE_FOREX_SVGS = {
 
   <text x="450" y="592" text-anchor="middle" font-size="12" font-style="italic" fill="#e2e8f0">Correct pip value feeds correct position size -- and position size is the biggest lever on the risk of ruin.</text>
   <text x="450" y="614" text-anchor="middle" font-size="10.5" font-style="italic" fill="#94a3b8">Classical gambler's ruin; formalised for trading in Ralph Vince, The Mathematics of Money Management (Wiley, 1992).</text>
+</svg>
+`,
+  'forex-ch3-risk-reward': `
+<svg viewBox="0 0 900 610" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="610" fill="#0f172a"/>
+  <text x="450" y="34" text-anchor="middle" font-size="20" font-weight="bold" fill="#e2e8f0">Risk-to-Reward: Why Being Right Is Not the Same as Trading Well</text>
+  <text x="450" y="58" text-anchor="middle" font-size="12" font-style="italic" fill="#94a3b8">The ratio decides the win rate you need. Win rate on its own tells you only half the story.</text>
+
+  <!-- R:R scale (left) -->
+  <rect x="40" y="80" width="330" height="216" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <text x="60" y="104" font-size="13" font-weight="bold" fill="#e2e8f0">One trade, measured in R</text>
+  <!-- target zone -->
+  <rect x="150" y="118" width="180" height="56" rx="5" fill="rgba(34,197,94,0.12)" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="240" y="141" text-anchor="middle" font-size="12" font-weight="bold" fill="#22c55e">Target: +2R</text>
+  <text x="240" y="159" text-anchor="middle" font-size="10.5" fill="#cbd5e1">60 pips (2x the stop)</text>
+  <!-- entry line -->
+  <line x1="70" y1="196" x2="340" y2="196" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="70" y="190" font-size="10.5" font-weight="bold" fill="#e2e8f0">Entry 1.1000</text>
+  <!-- stop zone -->
+  <rect x="150" y="212" width="180" height="42" rx="5" fill="rgba(239,68,68,0.12)" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="240" y="230" text-anchor="middle" font-size="12" font-weight="bold" fill="#ef4444">Stop: -1R</text>
+  <text x="240" y="247" text-anchor="middle" font-size="10.5" fill="#cbd5e1">30 pips = your risk</text>
+  <text x="60" y="278" font-size="10.5" font-style="italic" fill="#94a3b8">Risk = stop distance x pip value x size.</text>
+  <text x="60" y="292" font-size="10.5" font-style="italic" fill="#94a3b8">That is 1R. Reward is measured against it.</text>
+
+  <!-- Break-even table (right) -->
+  <rect x="390" y="80" width="470" height="216" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <text x="410" y="104" font-size="13" font-weight="bold" fill="#e2e8f0">Break-even win rate = 1 / (1 + R)</text>
+  <line x1="410" y1="116" x2="840" y2="116" stroke="#334155" stroke-width="1.5"/>
+  <text x="430" y="140" font-size="12" fill="#cbd5e1">Reward : Risk</text>
+  <text x="700" y="140" font-size="12" fill="#cbd5e1">You must win</text>
+  <text x="430" y="168" font-size="12.5" font-weight="bold" fill="#ef4444">1 : 0.5  (reward smaller than risk)</text>
+  <text x="700" y="168" font-size="12.5" font-weight="bold" fill="#ef4444">66.7%</text>
+  <text x="430" y="196" font-size="12.5" font-weight="bold" fill="#fde68a">1 : 1</text>
+  <text x="700" y="196" font-size="12.5" font-weight="bold" fill="#fde68a">50.0%</text>
+  <text x="430" y="224" font-size="12.5" font-weight="bold" fill="#22c55e">1 : 2</text>
+  <text x="700" y="224" font-size="12.5" font-weight="bold" fill="#22c55e">33.3%</text>
+  <text x="430" y="252" font-size="12.5" font-weight="bold" fill="#22c55e">1 : 3</text>
+  <text x="700" y="252" font-size="12.5" font-weight="bold" fill="#22c55e">25.0%</text>
+  <text x="410" y="282" font-size="10.5" font-style="italic" fill="#94a3b8">A better ratio lowers the win rate you need; a worse one raises it fast.</text>
+
+  <!-- Three traders -->
+  <text x="450" y="326" text-anchor="middle" font-size="13" font-weight="bold" fill="#e2e8f0">Ten trades each -- the win rate alone hides who wins</text>
+
+  <rect x="40" y="338" width="260" height="210" rx="10" fill="rgba(34,197,94,0.12)" stroke="#22c55e" stroke-width="2"/>
+  <text x="170" y="362" text-anchor="middle" font-size="13" font-weight="bold" fill="#22c55e">Trader A</text>
+  <text x="170" y="384" text-anchor="middle" font-size="12" fill="#cbd5e1">40% win rate, at 1:2</text>
+  <text x="60" y="414" font-size="11.5" fill="#cbd5e1">4 wins x +2R = +8R</text>
+  <text x="60" y="436" font-size="11.5" fill="#cbd5e1">6 losses x -1R = -6R</text>
+  <line x1="60" y1="450" x2="280" y2="450" stroke="#22c55e" stroke-width="1"/>
+  <text x="60" y="474" font-size="14" font-weight="bold" fill="#22c55e">Net = +2R (profit)</text>
+  <text x="60" y="512" font-size="11" font-style="italic" fill="#22c55e">Wrong more often than right,</text>
+  <text x="60" y="528" font-size="11" font-style="italic" fill="#22c55e">and still makes money.</text>
+
+  <rect x="320" y="338" width="260" height="210" rx="10" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="2"/>
+  <text x="450" y="362" text-anchor="middle" font-size="13" font-weight="bold" fill="#3b82f6">Trader B</text>
+  <text x="450" y="384" text-anchor="middle" font-size="12" fill="#cbd5e1">60% win rate, at 1:1</text>
+  <text x="340" y="414" font-size="11.5" fill="#cbd5e1">6 wins x +1R = +6R</text>
+  <text x="340" y="436" font-size="11.5" fill="#cbd5e1">4 losses x -1R = -4R</text>
+  <line x1="340" y1="450" x2="560" y2="450" stroke="#3b82f6" stroke-width="1"/>
+  <text x="340" y="474" font-size="14" font-weight="bold" fill="#3b82f6">Net = +2R (profit)</text>
+  <text x="340" y="512" font-size="11" font-style="italic" fill="#3b82f6">Same profit as A, from an</text>
+  <text x="340" y="528" font-size="11" font-style="italic" fill="#3b82f6">opposite-looking record.</text>
+
+  <rect x="600" y="338" width="260" height="210" rx="10" fill="rgba(239,68,68,0.12)" stroke="#ef4444" stroke-width="2"/>
+  <text x="730" y="362" text-anchor="middle" font-size="13" font-weight="bold" fill="#ef4444">Trader C</text>
+  <text x="730" y="384" text-anchor="middle" font-size="12" fill="#cbd5e1">70% win rate, at 1:0.5</text>
+  <text x="620" y="414" font-size="11.5" fill="#cbd5e1">7 wins x +0.5R = +3.5R</text>
+  <text x="620" y="436" font-size="11.5" fill="#cbd5e1">3 losses x -1R = -3R</text>
+  <line x1="620" y1="450" x2="840" y2="450" stroke="#ef4444" stroke-width="1"/>
+  <text x="620" y="474" font-size="14" font-weight="bold" fill="#ef4444">Net = +0.5R (barely)</text>
+  <text x="620" y="512" font-size="11" font-style="italic" fill="#ef4444">Right most often, trading</text>
+  <text x="620" y="528" font-size="11" font-style="italic" fill="#ef4444">worst -- a quarter of A's gain.</text>
+
+  <text x="450" y="580" text-anchor="middle" font-size="12" font-style="italic" fill="#e2e8f0">What makes money is win rate and the risk-to-reward ratio together -- never either one alone.</text>
+  <text x="450" y="600" text-anchor="middle" font-size="10.5" font-style="italic" fill="#94a3b8">Set both prices from real levels before entry; never widen a stop or pull in a target to rescue a trade.</text>
 </svg>
 `,
 };

@@ -33,8 +33,10 @@
 *Builds directly on Foundations Ch2 — this chapter is where those universal principles get actual forex-specific math attached to them.*
 
 1. Position Sizing With Pip Value (the calculation Foundations never covered: stop-loss distance + account risk % + pip value = position size) — ✅ drafted *(goes past Ch1 L5's simplified "$10/pip": computes true pip value across USD-quote, USD-base and cross pairs and any account currency, then re-sizes; anchored to risk of ruin — gambler's ruin + Vince, The Mathematics of Money Management, Wiley 1992)*
-2. Margin Calls and Leverage Risk
-3. Risk-to-Reward Ratio in Practice
+2. Margin Calls and Leverage Risk — ✅ drafted *(deepens Ch1 L6: the live account sequence — balance vs equity, free margin, the margin-call vs stop-out thresholds — and effective leverage as the number that actually sets the distance to a call; frames a margin call as a symptom of over-sizing, callback to Ch1 L7 SNB gap and negative balance protection)*
+3. Risk-to-Reward Ratio in Practice — ✅ drafted *(the break-even win rate = 1/(1+R); makes Foundations Ch2's "being right ≠ trading well" precise with the three-trader comparison; expectancy itself deferred to Ch4 L2 per the plan)*
+
+**Chapter 3 complete — 3/3 lessons drafted.**
 
 ## Chapter 4: Trading Psychology & Building a Plan
 

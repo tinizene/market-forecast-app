@@ -6,7 +6,7 @@
 // window.SCERE_FOREX_SVGS (dark-theme variants, defined at the bottom of this file).
 //
 // Shown fully open with a "Paid track" badge; real payment gating is a separate build.
-// Chapters 1-3 complete plus Chapter 4 Lesson 1; further Chapter 4 lessons land later.
+// Chapters 1-4 complete; Chapters 5-6 land here later, same pattern.
 
 window.SCERE_FOREX_TRACK = {
   "trackTitle": "Forex",
@@ -2481,6 +2481,270 @@ window.SCERE_FOREX_CONTENT = [
         "def": "Following a pre-committed plan regardless of feeling — a system, not a personality trait."
       }
     ]
+  },
+  {
+    "id": "building-a-trading-plan",
+    "lessonNumber": 2,
+    "chapterNumber": 4,
+    "chapterTitle": "Chapter 4: Trading Psychology & Building a Plan",
+    "title": "Building a Trading Plan",
+    "keyIdea": "A written plan pre-decides every recurring choice, and expectancy — (win rate x avg win) minus (loss rate x avg loss) — is the one number that says whether that plan actually makes money over time.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Lesson 1 defined discipline as following a pre-committed plan rather than winning an emotional battle in real time. This lesson builds that plan. It is the tool the whole chapter has been pointing at."
+      },
+      {
+        "type": "definition",
+        "term": "Trading Plan",
+        "text": "A written set of rules covering what you trade, the conditions for entering, where the stop and target go, how position size is calculated, the maximum you will risk, and how you review results. Its purpose is to move decisions out of the emotional moment and into calm preparation."
+      },
+      {
+        "type": "paragraph",
+        "text": "Notice that you already have every component from earlier chapters — the plan just assembles them. What and when to trade comes from Chapter 2 (indicators, fundamentals, the economic calendar). The stop goes at the invalidation level from Foundations Chapter 2 and Chapter 2, Lesson 5. The target sits at a real support or resistance level, and must clear your risk-to-reward minimum from Chapter 3, Lesson 3. Position size comes from the formula in Chapter 3, Lesson 1, capped by a fixed risk percentage. The plan is not new material; it is these decisions written down in advance."
+      },
+      {
+        "type": "warning",
+        "text": "A plan you keep only in your head is not a plan — it is an intention, and Lesson 1 showed exactly how intentions bend under fear and greed. Writing it down is what makes it a rule you can be held to, by yourself, when the moment tries to talk you out of it."
+      },
+      {
+        "type": "paragraph",
+        "text": "Chapter 3, Lesson 3 gave you the break-even win rate — whether a ratio can survive a given hit rate. Expectancy is the full accounting: not just whether you break even, but how much you make or lose per trade on average."
+      },
+      {
+        "type": "definition",
+        "term": "Expectancy",
+        "text": "The average profit or loss to expect per trade over many trades, calculated as (win rate times average win) minus (loss rate times average loss). Positive expectancy means the system makes money over time; negative means it loses, however good it feels along the way."
+      },
+      {
+        "type": "example",
+        "text": "A system wins 45% of the time, with an average win of 300 dollars and an average loss of 150 dollars. Expectancy = (0.45 times 300) minus (0.55 times 150) = 135 minus 82.50 = +52.50 dollars per trade. Over 200 trades, that is about +10,500 dollars before costs — from a system that loses more often than it wins. Now the warning case: a system wins 60% of the time, but the average win is only 80 dollars against an average loss of 150. Expectancy = (0.60 times 80) minus (0.40 times 150) = 48 minus 60 = minus 12 dollars per trade. A 60% win rate that steadily loses money — Chapter 3, Lesson 3's point, now measured in dollars."
+      },
+      {
+        "type": "paragraph",
+        "text": "Dollars make expectancy concrete, but they change with account size and position size, which makes it hard to compare trades or systems. The fix is to measure everything in the R unit from Chapter 3, Lesson 3."
+      },
+      {
+        "type": "definition",
+        "term": "R-multiple",
+        "text": "A trade's result expressed as a multiple of the amount risked on it. A trade that makes twice its risk is +2R; a trade stopped out for its full risk is -1R. Every trade, on any pair, in any size, collapses to a single R number."
+      },
+      {
+        "type": "paragraph",
+        "text": "Expectancy in R is then simply (win rate times the average R won) minus (loss rate times the average R lost). If you always risk 1R and honour your stops, your average loss is 1R, and the formula gets clean."
+      },
+      {
+        "type": "example",
+        "text": "A system wins 40% of trades with an average win of 2R. Expectancy = (0.40 times 2) minus (0.60 times 1) = 0.80 minus 0.60 = +0.20R per trade. Over 100 trades that is +20R. If 1R is 1% of a 10,000 dollar account — 100 dollars — that is +2,000 dollars, produced by a system that is wrong 60% of the time. Because R strips out account and position size, two completely different systems can be compared directly by their expectancy in R alone."
+      },
+      {
+        "type": "image",
+        "svg": "forex-ch4-expectancy",
+        "alt": "Diagram showing the expectancy formula in dollars and in R, a worked positive example (40 percent win rate at plus 2R gives plus 0.2R per trade) and a warning example (60 percent win rate with small wins gives minus 12 dollars per trade), and a note that expectancy is a long-run average that a short run of trades hides",
+        "caption": "Expectancy in dollars and in R, a real edge versus a high win rate that still loses, and the long-run-average catch."
+      },
+      {
+        "type": "warning",
+        "text": "Expectancy in R is the cleanest scorecard a trader has, because it answers the only question that ultimately matters — does this process make money per trade, on average — in a single number, independent of how big your account is."
+      },
+      {
+        "type": "paragraph",
+        "text": "Here is the catch that undoes beginners who understand everything above. Expectancy is an average over many trades. Any short stretch is dominated by luck, not edge."
+      },
+      {
+        "type": "warning",
+        "text": "A genuinely positive-expectancy system can lose over 5, 10, even 20 trades in a row — that is normal variance, not a broken system, and it is the same fat-tailed, streaky randomness you met in Chapter 2. Just as dangerous in reverse: a losing system can win for a while by pure chance, tempting you to trust it and size up. You cannot judge a system, or yourself, on a handful of trades. This is exactly why the plan includes a review over a meaningful sample, and why your risk per trade must be small enough (Chapter 3, Lesson 1) to survive the inevitable losing streaks while the edge has time to show."
+      },
+      {
+        "type": "paragraph",
+        "text": "That last point ties the whole risk chapter together. Position sizing (Chapter 3, Lesson 1) keeps you alive through the variance. The risk-to-reward ratio and win rate (Chapter 3, Lesson 3) combine into expectancy. Discipline (Lesson 1) is what lets a positive expectancy actually be realised, instead of abandoned in the middle of a normal drawdown. The trading plan is the document that binds all of it into one repeatable process — which is the only thing that turns an edge on paper into money in an account."
+      },
+      {
+        "type": "practice",
+        "text": "Pressure-test your own plan: Is it actually written down, or does it live only in your head where it can quietly change? Can you state your system's expectancy — even a rough figure from past trades — in R or in dollars? Is that expectancy positive over a meaningful number of trades, not just your most recent, most memorable few? And is your risk per trade small enough that a normal losing streak cannot end you before the expectancy has time to play out?"
+      }
+    ],
+    "quiz": [
+      {
+        "question": "A system wins 60% of trades, but its average win is 80 dollars and its average loss is 150 dollars. What is its expectancy per trade?",
+        "options": [
+          "Positive, because the win rate is above 50%",
+          "Negative — about minus 12 dollars per trade",
+          "Exactly zero",
+          "It cannot be calculated"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — (0.60 times 80) minus (0.40 times 150) = 48 minus 60 = minus 12 dollars. A high win rate does not save a system whose losses are much larger than its wins.",
+        "feedbackWrong": "Not quite — (0.60 times 80) minus (0.40 times 150) = minus 12 dollars per trade. A high win rate cannot save losses far larger than the wins."
+      },
+      {
+        "question": "A system wins 40% of trades with an average win of 2R and an average loss of 1R. What is its expectancy in R?",
+        "options": [
+          "-0.2R per trade",
+          "+0.2R per trade",
+          "+2R per trade",
+          "Zero"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — (0.40 times 2) minus (0.60 times 1) = 0.80 minus 0.60 = +0.20R per trade, profitable despite being wrong most of the time.",
+        "feedbackWrong": "Not quite — (0.40 times 2) minus (0.60 times 1) = +0.20R per trade. It profits even with a sub-50% win rate."
+      },
+      {
+        "question": "True or False: a system with positive expectancy should be profitable over your next eight trades.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — expectancy is a long-run average. Over eight trades luck dominates, and a positive-expectancy system can easily lose. The edge only reliably shows over a large sample, which is why small per-trade risk matters.",
+        "feedbackWrong": "Not quite — expectancy is a long-run average; over eight trades luck dominates and a positive-expectancy system can lose. Its edge needs a large sample to show."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Trading Plan",
+        "def": "A written set of rules (what, when, stop, target, size, risk, review) that pre-decides trades."
+      },
+      {
+        "term": "Expectancy",
+        "def": "Average profit per trade = (win rate x avg win) minus (loss rate x avg loss); positive means a real edge."
+      },
+      {
+        "term": "R-multiple",
+        "def": "A trade's result as a multiple of the risk taken — +2R, -1R — a single ruler for every trade."
+      }
+    ]
+  },
+  {
+    "id": "common-beginner-mistakes",
+    "lessonNumber": 3,
+    "chapterNumber": 4,
+    "chapterTitle": "Chapter 4: Trading Psychology & Building a Plan",
+    "title": "Common Beginner Mistakes (and How to Avoid Them)",
+    "keyIdea": "Most early losses come from a short, repeating list of mistakes the course has already solved — and nearly all of them are the same failure: acting on feeling or hope instead of a pre-decided, evidence-checked rule.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Start with a sobering number you have already met. When European regulators studied real retail accounts, they found that 74% to 89% of them lose money (the ESMA figure from Chapter 1, Lesson 6). Trading is genuinely hard, and that is worth respecting honestly."
+      },
+      {
+        "type": "paragraph",
+        "text": "But those losses are not spread evenly across a thousand different errors. They cluster around a small, repeating set of mistakes — and nearly every one of them is something this course has already solved in an earlier lesson. This lesson gathers them in one place so you can check yourself against the list, because recognising a mistake by name is most of what it takes to stop making it."
+      },
+      {
+        "type": "warning",
+        "text": "No plan, trading on emotion. Entering because a chart looks ready rather than because a written rule was met. Fixed by the trading plan in Lesson 2 and the pre-committed exits in Lesson 1."
+      },
+      {
+        "type": "warning",
+        "text": "Risking too much per trade. Betting 10%, 20%, or an unmeasured amount on a single idea, so one bad run ends the account. Fixed by the fixed-fractional 1 to 2% rule and the position-sizing formula (Chapter 3, Lesson 1), and by keeping effective leverage low (Chapter 3, Lesson 2)."
+      },
+      {
+        "type": "warning",
+        "text": "No stop, or a moving stop. Trading without a stop-loss, or widening it when price approaches to avoid being closed. Fixed by placing the stop at the invalidation level as an order before entry, and never widening it (Chapter 1, Lesson 7; Chapter 3, Lesson 3)."
+      },
+      {
+        "type": "warning",
+        "text": "Cutting winners, riding losers. Taking small profits quickly while letting losses run — the disposition effect. Fixed by setting a risk-to-reward minimum before entry (Chapter 3, Lesson 3) and letting linked OCO orders execute the exit (Chapter 4, Lesson 1)."
+      },
+      {
+        "type": "warning",
+        "text": "Overtrading and revenge trading. Trading out of boredom or confidence, or forcing trades to win back a loss. Fixed by trading only setups that meet your rules, and by a plan rule that caps trades or enforces a cool-down after a loss (Chapter 4, Lesson 1)."
+      },
+      {
+        "type": "warning",
+        "text": "Chasing news. Jumping into a high-impact event with no evidence for how that release behaves. Fixed by checking the economic calendar and sitting out events you have not personally studied (Chapter 2, Lesson 4)."
+      },
+      {
+        "type": "warning",
+        "text": "Indicator overload and timeframe-shopping. Piling on indicators until they agree, or hopping timeframes until one endorses the trade you already want. Fixed by using a few tools you understand and a fixed, top-down set of timeframes (Chapter 2, Lessons 1 and 5)."
+      },
+      {
+        "type": "warning",
+        "text": "Trusting unverified claims. Paying a signal group, following a tip, or believing a promise of guaranteed or unusually high returns. This one is the course's whole reason for existing: verify claims rather than accept them, and treat any guaranteed-return promise as the clearest warning sign there is."
+      },
+      {
+        "type": "image",
+        "svg": "forex-ch4-common-mistakes",
+        "alt": "Diagram mapping each common beginner mistake to the fix and the lesson that already gives it — no plan, over-risking, moving stops, cutting winners and riding losers, overtrading, chasing news, indicator overload, and trusting unverified claims — plus the two habits that catch them: a pre-trade checklist and a trading journal",
+        "caption": "Each common mistake mapped to the lesson that already solves it, plus the checklist and journal that catch them before and after."
+      },
+      {
+        "type": "paragraph",
+        "text": "Reading a list of mistakes does not prevent them. Two simple habits do most of the work."
+      },
+      {
+        "type": "paragraph",
+        "text": "The first is a pre-trade checklist — a handful of yes-or-no questions you run before every entry. Did a planned setup actually trigger? Is the stop at a real invalidation level, placed as an order? Does the risk-to-reward clear my minimum? Is my size within my risk percentage? Am I trading a rule, or chasing? If any answer is no, there is no trade. The checklist catches mistakes in advance, while you can still not make them."
+      },
+      {
+        "type": "paragraph",
+        "text": "The second is a record of what actually happened."
+      },
+      {
+        "type": "definition",
+        "term": "Trading Journal",
+        "text": "A record of every trade — the setup, entry, stop, target, size, the R-multiple result, and an honest note on whether you followed your plan — kept so you can measure your real expectancy and spot the mistakes you keep repeating."
+      },
+      {
+        "type": "paragraph",
+        "text": "The journal is what turns expectancy (Lesson 2) from a formula into a number you actually know about yourself, and it is the only way to tell the difference between a losing system and a winning system in a normal losing streak. The checklist protects the next trade; the journal improves the next hundred."
+      },
+      {
+        "type": "paragraph",
+        "text": "Look back at the list and a single pattern appears. Almost every mistake is the same failure wearing different clothes: acting on feeling or hope instead of a pre-decided, evidence-checked rule. That is precisely the spine this whole course was built on — risk management ahead of prediction, verifying a claim before trusting it, remembering that a textbook rule is an instinct rather than a law, and sizing so that fat-tailed surprises cannot end you. The common mistakes are just those four principles, violated."
+      },
+      {
+        "type": "warning",
+        "text": "End on an honest note, because the course would not be worth much otherwise. Even doing all of this correctly, most retail accounts still lose money — trading is difficult, and nothing here guarantees a profit. What a disciplined process can do is remove the self-inflicted losses: the blown accounts from over-leverage, the giving-back from the disposition effect, the bleed from overtrading, the scams. Take those away, and you are left facing only the market's real difficulty, instead of your own avoidable errors. That is a far better place to stand than where most beginners start."
+      },
+      {
+        "type": "practice",
+        "text": "Build these into your routine: Run the pre-trade checklist every single time — a planned setup, a real stop as an order, a ratio that clears your minimum, size within your risk percentage, and no chasing. When you break a rule, write down which one and why; the pattern in your journal is your real list of mistakes. Be most suspicious of anything that removes the need to think — a signal to copy, a promise of guaranteed returns, a can't-lose setup. And remember that a losing streak inside a positive-expectancy system is not a mistake; abandoning the system because of it is."
+      }
+    ],
+    "quiz": [
+      {
+        "question": "Which of these is the clearest warning sign of a scam rather than a normal trading risk?",
+        "options": [
+          "A strategy that sometimes loses several trades in a row",
+          "A service promising guaranteed or unusually high returns",
+          "A pair with a wide spread",
+          "An economic release that moves the market"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — real trading never guarantees a return, so a promise of guaranteed or unusually high returns is the clearest sign of a scam. Losing streaks, spreads and news moves are ordinary features of real markets.",
+        "feedbackWrong": "Not quite — losing streaks, spreads and news moves are normal. A promise of guaranteed or unusually high returns is the clearest scam sign, because real trading never guarantees a return."
+      },
+      {
+        "question": "A trader widens their stop-loss as price approaches it, to avoid being closed out. Which mistake is this, and what is the fix?",
+        "options": [
+          "Overtrading; fix by trading more",
+          "Moving the stop; fix by placing it at invalidation as an order and never widening it",
+          "Chasing news; fix by ignoring the calendar",
+          "There is no mistake here"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — widening a stop destroys the risk-to-reward you planned (Chapter 3, Lesson 3). The fix is to set the stop at a real invalidation level as an order before entry, and leave it.",
+        "feedbackWrong": "Not quite — this is moving the stop, which destroys your planned risk-to-reward. Set it at invalidation as an order before entry and never widen it."
+      },
+      {
+        "question": "True or False: keeping a trading journal is mainly useful for tax records, not for improving as a trader.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — a journal's main value is measuring your real expectancy and revealing the mistakes you repeat. It is how you tell a losing system from a winning one in a drawdown, and how you actually improve.",
+        "feedbackWrong": "Not quite — a journal's main value is measuring real expectancy and revealing repeated mistakes, which is how you improve and how you read a drawdown correctly."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Trading Journal",
+        "def": "A record of every trade and whether you followed your plan, used to measure real expectancy and catch repeated mistakes."
+      }
+    ]
   }
 ];
 
@@ -3465,6 +3729,117 @@ window.SCERE_FOREX_SVGS = {
 
   <text x="450" y="580" text-anchor="middle" font-size="12" font-style="italic" fill="#e2e8f0">What makes money is win rate and the risk-to-reward ratio together -- never either one alone.</text>
   <text x="450" y="600" text-anchor="middle" font-size="10.5" font-style="italic" fill="#94a3b8">Set both prices from real levels before entry; never widen a stop or pull in a target to rescue a trade.</text>
+</svg>
+`,
+  'forex-ch4-common-mistakes': `
+<svg viewBox="0 0 900 660" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="660" fill="#0f172a"/>
+  <text x="450" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#e2e8f0">Common Beginner Mistakes -- and Where Each Was Already Solved</text>
+  <text x="450" y="55" text-anchor="middle" font-size="12" font-style="italic" fill="#94a3b8">74-89% of retail accounts lose (ESMA, Ch1 L6). The losses cluster around a short, fixable list.</text>
+
+  <!-- table header -->
+  <rect x="40" y="72" width="820" height="30" rx="6" fill="#e2e8f0"/>
+  <text x="60" y="92" font-size="12.5" font-weight="bold" fill="#0f172a">The mistake</text>
+  <text x="470" y="92" font-size="12.5" font-weight="bold" fill="#0f172a">The fix (and the lesson that gives it)</text>
+
+  <!-- rows -->
+  <rect x="40" y="102" width="820" height="52" fill="rgba(239,68,68,0.12)" stroke="#334155" stroke-width="1"/>
+  <text x="60" y="124" font-size="11.5" font-weight="bold" fill="#ef4444">No plan, trading on emotion</text>
+  <text x="60" y="142" font-size="10.5" fill="#94a3b8">entering because it "looks ready"</text>
+  <text x="470" y="132" font-size="11.5" fill="#cbd5e1">Write a plan (L2); pre-commit the exit before entry (L1)</text>
+
+  <rect x="40" y="154" width="820" height="52" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="60" y="176" font-size="11.5" font-weight="bold" fill="#ef4444">Risking too much per trade</text>
+  <text x="60" y="194" font-size="10.5" fill="#94a3b8">one bad run ends the account</text>
+  <text x="470" y="184" font-size="11.5" fill="#cbd5e1">Fixed 1-2%, position-sizing formula (Ch3 L1); low effective leverage (Ch3 L2)</text>
+
+  <rect x="40" y="206" width="820" height="52" fill="rgba(239,68,68,0.12)" stroke="#334155" stroke-width="1"/>
+  <text x="60" y="228" font-size="11.5" font-weight="bold" fill="#ef4444">No stop, or moving the stop</text>
+  <text x="60" y="246" font-size="10.5" fill="#94a3b8">widening it to avoid being closed</text>
+  <text x="470" y="236" font-size="11.5" fill="#cbd5e1">Stop at invalidation, set as an order, never widened (Ch1 L7, Ch3 L3)</text>
+
+  <rect x="40" y="258" width="820" height="52" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="60" y="280" font-size="11.5" font-weight="bold" fill="#ef4444">Cutting winners, riding losers</text>
+  <text x="60" y="298" font-size="10.5" fill="#94a3b8">the disposition effect (Ch4 L1)</text>
+  <text x="470" y="290" font-size="11.5" fill="#cbd5e1">Risk-to-reward minimum before entry; let OCO orders execute (Ch3 L3, Ch4 L1)</text>
+
+  <rect x="40" y="310" width="820" height="52" fill="rgba(239,68,68,0.12)" stroke="#334155" stroke-width="1"/>
+  <text x="60" y="332" font-size="11.5" font-weight="bold" fill="#ef4444">Overtrading / revenge trading</text>
+  <text x="60" y="350" font-size="10.5" fill="#94a3b8">trading bored, confident, or to get even</text>
+  <text x="470" y="342" font-size="11.5" fill="#cbd5e1">Trade only rule-met setups; cap trades or enforce a cool-down (Ch4 L1)</text>
+
+  <rect x="40" y="362" width="820" height="52" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="60" y="384" font-size="11.5" font-weight="bold" fill="#ef4444">Chasing news</text>
+  <text x="60" y="402" font-size="10.5" fill="#94a3b8">no evidence for how a release behaves</text>
+  <text x="470" y="392" font-size="11.5" fill="#cbd5e1">Check the calendar; sit out events you have not studied (Ch2 L4)</text>
+
+  <rect x="40" y="414" width="820" height="52" fill="rgba(239,68,68,0.12)" stroke="#334155" stroke-width="1"/>
+  <text x="60" y="436" font-size="11.5" font-weight="bold" fill="#ef4444">Indicator overload / timeframe-shopping</text>
+  <text x="60" y="454" font-size="10.5" fill="#94a3b8">tools until they agree; charts until one agrees</text>
+  <text x="470" y="444" font-size="11.5" fill="#cbd5e1">A few tools you understand; fixed top-down timeframes (Ch2 L1, L5)</text>
+
+  <rect x="40" y="466" width="820" height="52" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="60" y="488" font-size="11.5" font-weight="bold" fill="#ef4444">Trusting unverified claims</text>
+  <text x="60" y="506" font-size="10.5" fill="#94a3b8">signal groups, tips, guaranteed returns</text>
+  <text x="470" y="498" font-size="11.5" fill="#cbd5e1">Verify claims; a guaranteed-return promise is the clearest scam sign there is</text>
+
+  <!-- two habits -->
+  <rect x="40" y="530" width="400" height="88" rx="10" fill="rgba(34,197,94,0.12)" stroke="#22c55e" stroke-width="2"/>
+  <text x="60" y="553" font-size="12.5" font-weight="bold" fill="#22c55e">Pre-trade checklist (catches them before)</text>
+  <text x="60" y="574" font-size="10.5" fill="#cbd5e1">Planned setup? Stop at invalidation, as an order?</text>
+  <text x="60" y="590" font-size="10.5" fill="#cbd5e1">Ratio clears minimum? Size within risk %? Not chasing?</text>
+  <text x="60" y="609" font-size="10.5" font-style="italic" fill="#94a3b8">Any "no" = no trade.</text>
+
+  <rect x="460" y="530" width="400" height="88" rx="10" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="2"/>
+  <text x="480" y="553" font-size="12.5" font-weight="bold" fill="#3b82f6">Trading journal (catches them after)</text>
+  <text x="480" y="574" font-size="10.5" fill="#cbd5e1">Every trade: setup, stop, target, size, R result,</text>
+  <text x="480" y="590" font-size="10.5" fill="#cbd5e1">and whether you followed the plan.</text>
+  <text x="480" y="609" font-size="10.5" font-style="italic" fill="#94a3b8">Measures real expectancy; reveals repeated mistakes.</text>
+
+  <text x="450" y="644" text-anchor="middle" font-size="11.5" font-style="italic" fill="#e2e8f0">Nearly every mistake is one thing: acting on feeling or hope instead of a pre-decided, evidence-checked rule.</text>
+</svg>
+`,
+  'forex-ch4-expectancy': `
+<svg viewBox="0 0 900 580" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="580" fill="#0f172a"/>
+  <text x="450" y="34" text-anchor="middle" font-size="20" font-weight="bold" fill="#e2e8f0">Expectancy: The One Number That Says a System Makes Money</text>
+  <text x="450" y="58" text-anchor="middle" font-size="12" font-style="italic" fill="#94a3b8">Win rate and reward, combined into the average profit per trade -- in dollars or in R.</text>
+
+  <!-- Formula -->
+  <rect x="40" y="78" width="820" height="72" rx="10" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="2"/>
+  <text x="450" y="106" text-anchor="middle" font-size="14" font-weight="bold" fill="#3b82f6">Expectancy = (win rate x average win) - (loss rate x average loss)</text>
+  <text x="450" y="132" text-anchor="middle" font-size="12.5" fill="#cbd5e1">In R (always risk 1R, honour stops):  (win% x average R won) - (loss% x 1R)</text>
+
+  <!-- Positive example -->
+  <rect x="40" y="166" width="400" height="176" rx="10" fill="rgba(34,197,94,0.12)" stroke="#22c55e" stroke-width="2"/>
+  <text x="60" y="192" font-size="14" font-weight="bold" fill="#22c55e">A real edge (positive)</text>
+  <text x="60" y="216" font-size="11.5" fill="#cbd5e1">45% win, avg win $300, avg loss $150:</text>
+  <text x="60" y="236" font-size="12.5" font-weight="bold" fill="#22c55e">0.45x300 - 0.55x150 = +$52.50 / trade</text>
+  <text x="60" y="264" font-size="11.5" fill="#cbd5e1">40% win at +2R average (loss 1R):</text>
+  <text x="60" y="284" font-size="12.5" font-weight="bold" fill="#22c55e">0.40x2 - 0.60x1 = +0.2R / trade</text>
+  <text x="60" y="308" font-size="11.5" fill="#cbd5e1">Over 100 trades = +20R. At $100 / R,</text>
+  <text x="60" y="326" font-size="12.5" font-weight="bold" fill="#22c55e">+$2,000 -- while wrong 60% of the time.</text>
+
+  <!-- Warning example -->
+  <rect x="460" y="166" width="400" height="176" rx="10" fill="rgba(239,68,68,0.12)" stroke="#ef4444" stroke-width="2"/>
+  <text x="480" y="192" font-size="14" font-weight="bold" fill="#ef4444">A high win rate that still loses</text>
+  <text x="480" y="216" font-size="11.5" fill="#cbd5e1">60% win, avg win $80, avg loss $150:</text>
+  <text x="480" y="236" font-size="12.5" font-weight="bold" fill="#ef4444">0.60x80 - 0.40x150 = -$12 / trade</text>
+  <text x="480" y="266" font-size="11.5" fill="#cbd5e1">Right most of the time, losing money</text>
+  <text x="480" y="284" font-size="11.5" fill="#cbd5e1">every trade -- because the losses are</text>
+  <text x="480" y="302" font-size="11.5" fill="#cbd5e1">far larger than the wins.</text>
+  <text x="480" y="328" font-size="10.5" font-style="italic" fill="#ef4444">Win rate alone never decides.</text>
+
+  <!-- Long-run note -->
+  <rect x="40" y="360" width="820" height="150" rx="10" fill="rgba(234,179,8,0.12)" stroke="#eab308" stroke-width="2"/>
+  <text x="60" y="386" font-size="14" font-weight="bold" fill="#fde68a">The catch: expectancy is a long-run average</text>
+  <text x="60" y="410" font-size="11.5" fill="#cbd5e1">A positive-expectancy system can still lose 5, 10, even 20 trades in a row -- that is normal variance,</text>
+  <text x="60" y="428" font-size="11.5" fill="#cbd5e1">not a broken system. A losing system can also win for a while by luck. A handful of trades tells you nothing.</text>
+  <text x="60" y="454" font-size="12" font-weight="bold" fill="#fde68a">So: judge a system over many trades (a journal), and keep risk per trade small (1-2%, Ch3 L1)</text>
+  <text x="60" y="472" font-size="12" font-weight="bold" fill="#fde68a">so a normal losing streak cannot end you before the edge has time to show.</text>
+  <text x="60" y="497" font-size="10.5" font-style="italic" fill="#94a3b8">Position sizing keeps you alive through variance; discipline lets the positive expectancy actually be realised.</text>
+
+  <text x="450" y="540" text-anchor="middle" font-size="12" font-style="italic" fill="#e2e8f0">The plan turns an edge on paper into money in an account -- by making you trade the same positive-expectancy process every time.</text>
 </svg>
 `,
   'forex-ch4-trading-psychology': `

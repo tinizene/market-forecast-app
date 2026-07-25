@@ -919,6 +919,30 @@
 - **PT:** Disciplina
 - **SW:** Nidhamu
 
+### Trading Plan
+- **EN:** A written set of rules covering what to trade, entry conditions, stop and target placement, position sizing, maximum risk, and how results are reviewed — designed to move decisions out of the emotional moment.
+- **FR:** Plan de trading
+- **PT:** Plano de negociação (trading plan)
+- **SW:** Mpango wa biashara ⚠
+
+### Expectancy
+- **EN:** The average profit or loss expected per trade over many trades: (win rate × average win) − (loss rate × average loss). Positive means the system makes money over time; negative means it loses regardless of win rate.
+- **FR:** Espérance de gain (expectancy)
+- **PT:** Expectância (expectancy)
+- **SW:** Matarajio ya faida ⚠
+
+### R-multiple
+- **EN:** A trade's result expressed as a multiple of the amount risked on it — a win of twice the risk is +2R, a full stop-out is −1R. A single unit for comparing any trade or system.
+- **FR:** Multiple R (R-multiple)
+- **PT:** Múltiplo R (R-multiple)
+- **SW:** Kizidishi cha R ⚠
+
+### Trading Journal
+- **EN:** A record of every trade — setup, entry, stop, target, size, R-multiple result, and whether the plan was followed — kept to measure real expectancy and reveal repeated mistakes.
+- **FR:** Journal de trading
+- **PT:** Diário de negociação
+- **SW:** Jarida la biashara ⚠
+
 ## Crypto Track Terms
 
 *(Not yet started. Expect terms like: blockchain, wallet, private key, gas fee, exchange, volatility, market cap, stablecoin.)*

@@ -120,7 +120,7 @@ Content is written English-first. Glossary holds locked EN/FR/PT/SW translations
 - Chapter 1 (Mechanics of a Trade): 7/7 complete
 - Chapter 2 (Reading the Forex Market): 6/6 complete
 - Chapter 3 (Risk Management for Forex Traders): 3/3 complete
-- Chapter 4 (Trading Psychology & Building a Plan): 1/3 — Lesson 1 (Trading Psychology) drafted; Lessons 2–3 remaining
+- Chapter 4 (Trading Psychology & Building a Plan): 3/3 complete
 - Chapters 5–6: not started
 
 **Not started:** Crypto track, Stocks track, Advanced Forex Course.

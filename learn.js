@@ -1194,7 +1194,150 @@ function renderLessons() {
   initSpeechControls();
 }
 
+// ============================================================
+// Per-lesson pages
+// The course used to render every track onto one endless page. It now splits
+// into a table of contents (learn.html → #courseIndexRoot) and a single-lesson
+// viewer (lesson.html → #lessonRoot), both built from one canonical ordered
+// list across all three tracks, reusing the lesson renderers above.
+// ============================================================
+
+// Canonical order: free Foundation → paid Forex → Stocks & ETFs. Each entry
+// carries the metadata both the index and the viewer (breadcrumb, prev/next) need.
+function buildCourseIndex() {
+  const out = [];
+  const ft = window.SCERE_FOUNDATION_TRACK || {};
+  (window.SCERE_FOUNDATION_CONTENT || []).forEach((l) => out.push({
+    track: 'foundation', trackTitle: ft.trackTitle || 'The Foundation of Money and Trade',
+    tagline: ft.trackTagline || '', badge: 'Free', badgeClass: 'foundation-badge',
+    id: l.id, chapterNumber: l.chapterNumber, chapterTitle: l.chapterTitle,
+    lessonNumber: l.lessonNumber, title: l.title, keyIdea: l.keyIdea, type: 'structured', ref: l,
+  }));
+  const xt = window.SCERE_FOREX_TRACK || {};
+  (window.SCERE_FOREX_CONTENT || []).forEach((l) => out.push({
+    track: 'forex', trackTitle: xt.trackTitle || 'Forex',
+    tagline: xt.trackTagline || '', badge: 'Paid track', badgeClass: 'paid-badge',
+    id: l.id, chapterNumber: l.chapterNumber, chapterTitle: l.chapterTitle,
+    lessonNumber: l.lessonNumber, title: l.title, keyIdea: l.keyIdea, type: 'structured', ref: l,
+  }));
+  (window.SCERE_LEARN_CONTENT || []).forEach((l, i) => out.push({
+    track: 'stocks', trackTitle: 'Stocks & ETFs — a beginner’s guide',
+    tagline: 'Free — the safest way into index funds and ETFs, for a complete beginner.',
+    badge: 'Free', badgeClass: 'foundation-badge',
+    id: l.id, chapterNumber: null, chapterTitle: null,
+    lessonNumber: i + 1, title: l.title, keyIdea: l.keyIdea, type: 'body', ref: l, localIndex: i,
+  }));
+  return out;
+}
+
+function lessonHref(id) { return `./lesson.html?id=${encodeURIComponent(id)}`; }
+
+// ---------- learn.html: table of contents ----------
+function renderCourseIndex() {
+  const root = document.getElementById('courseIndexRoot');
+  if (!root) return;
+  const index = buildCourseIndex();
+
+  const tracks = [];
+  index.forEach((e) => {
+    let t = tracks.find((x) => x.track === e.track);
+    if (!t) { t = { track: e.track, trackTitle: e.trackTitle, tagline: e.tagline, badge: e.badge, badgeClass: e.badgeClass, lessons: [] }; tracks.push(t); }
+    t.lessons.push(e);
+  });
+
+  root.innerHTML = tracks.map((t) => {
+    let lastChapter = null;
+    const rows = t.lessons.map((e) => {
+      let divider = '';
+      if (e.chapterNumber != null && e.chapterNumber !== lastChapter) {
+        divider = `<div class="toc-chapter">Chapter ${e.chapterNumber}${e.chapterTitle ? ' · ' + escapeHtml(e.chapterTitle) : ''}</div>`;
+        lastChapter = e.chapterNumber;
+      }
+      const label = e.chapterNumber != null ? `${e.chapterNumber}.${e.lessonNumber}` : `${e.lessonNumber}`;
+      return divider + `
+        <a class="toc-row" href="${lessonHref(e.id)}">
+          <span class="toc-num">${escapeHtml(label)}</span>
+          <span class="toc-body">
+            <span class="toc-title">${escapeHtml(e.title)}</span>
+            <span class="toc-key">${escapeHtml(e.keyIdea || '')}</span>
+          </span>
+          <span class="toc-go" aria-hidden="true">→</span>
+        </a>`;
+    }).join('');
+    return `
+      <section class="toc-track">
+        <div class="toc-head">
+          <span class="${t.badgeClass}">${escapeHtml(t.badge)}</span>
+          <h2 class="toc-track-title">${escapeHtml(t.trackTitle)}</h2>
+          <p class="toc-track-tag">${escapeHtml(t.tagline || '')}</p>
+          <p class="toc-count">${t.lessons.length} lesson${t.lessons.length === 1 ? '' : 's'}</p>
+        </div>
+        ${rows}
+      </section>`;
+  }).join('');
+}
+
+// ---------- lesson.html: single lesson + prev/next ----------
+function renderSingleLesson() {
+  const root = document.getElementById('lessonRoot');
+  if (!root) return;
+  const id = new URLSearchParams(window.location.search).get('id');
+  const index = buildCourseIndex();
+  const pos = index.findIndex((e) => e.id === id);
+
+  if (pos < 0) {
+    root.innerHTML = `
+      <div class="current-card bg-slate-800 rounded-2xl p-6 text-center">
+        <p class="text-slate-300 mb-1">That lesson could not be found.</p>
+        <p class="text-xs text-slate-500 mb-4">It may have been renamed or moved.</p>
+        <a href="./learn.html" class="upgrade-btn">Back to all lessons</a>
+      </div>`;
+    return;
+  }
+
+  const e = index[pos];
+  const prev = pos > 0 ? index[pos - 1] : null;
+  const next = pos < index.length - 1 ? index[pos + 1] : null;
+
+  const crumb = [e.trackTitle];
+  if (e.chapterNumber != null) crumb.push(`Chapter ${e.chapterNumber}${e.chapterTitle ? ': ' + e.chapterTitle : ''}`);
+  const breadcrumb = `
+    <div class="lesson-crumb">
+      <span class="${e.badgeClass}">${escapeHtml(e.badge)}</span>
+      <span class="lesson-crumb-text">${crumb.map(escapeHtml).join(' &middot; ')}</span>
+      <span class="lesson-crumb-count">Lesson ${pos + 1} of ${index.length}</span>
+    </div>`;
+
+  const lessonHtml = e.type === 'structured'
+    ? renderFoundationLessonCard(e.ref)
+    : renderLessonCard(e.ref, e.localIndex);
+
+  let tools = '';
+  if (e.id === 'investing-vs-gambling') tools = renderCountryPanelShell();
+  if (e.id === 'expense-ratios') tools = renderFeeTable();
+  if (e.id === 'dollar-cost-averaging') tools = renderDcaCalculatorShell();
+
+  const navBtn = (l, dir) => l
+    ? `<a class="lesson-nav-btn ${dir}" href="${lessonHref(l.id)}"><span class="lnav-dir">${dir === 'prev' ? '← Previous' : 'Next →'}</span><span class="lnav-title">${escapeHtml(l.title)}</span></a>`
+    : '<span class="lesson-nav-btn is-empty" aria-hidden="true"></span>';
+  const nav = `<nav class="lesson-nav">${navBtn(prev, 'prev')}${navBtn(next, 'next')}</nav>`;
+
+  root.innerHTML = breadcrumb + lessonHtml + tools + nav;
+
+  wireQuizInteractivity(root);
+  const calcBtn = document.getElementById('dcaCalculate');
+  if (calcBtn) calcBtn.addEventListener('click', runDcaCalculation);
+  if (e.id === 'investing-vs-gambling') loadCountryList();
+  initSpeechControls();
+
+  document.title = `${e.title} — Scere Markets`;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  // Page-aware dispatch. Legacy single-page render (#foundationRoot etc.) still
+  // works if those mounts are present, so nothing else that includes learn.js breaks.
+  if (document.getElementById('lessonRoot')) { renderSingleLesson(); return; }
+  if (document.getElementById('courseIndexRoot')) { renderCourseIndex(); return; }
   renderFoundationTrack();
   renderForexTrack();
   renderLessons();

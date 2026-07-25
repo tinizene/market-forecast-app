@@ -40,7 +40,7 @@
 
 ## Chapter 4: Trading Psychology & Building a Plan
 
-1. Trading Psychology — Fear, Greed, and Discipline *(pair the practitioner view with its academic counterpart: behavioral-finance findings on overtrading and the disposition effect — verify at drafting time)*
+1. Trading Psychology — Fear, Greed, and Discipline *(pair the practitioner view with its academic counterpart: behavioral-finance findings on overtrading and the disposition effect — verify at drafting time)* — ✅ drafted *(citations verified live: disposition effect — Shefrin & Statman 1985 (coinage), Odean 1998 (1.5–2x more likely to sell winners); overtrading — Barber & Odean 2000 (most active traders 11.4%/yr vs market 17.9%). Ties disposition effect back to Ch3 L3's Trader C; discipline framed as pre-commitment, not willpower)*
 2. Building a Trading Plan — including **expectancy and R-multiples** *(added from book-list analysis: a plan isn't complete without the math of whether a system is net-positive — expectancy = (win rate × avg win) − (loss rate × avg loss). This is the quantitative bridge between Ch4 and everything Foundations Ch2 taught about "being right often ≠ trading well")*
 3. Common Beginner Mistakes (and How to Avoid Them)
 

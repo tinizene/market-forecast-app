@@ -895,6 +895,30 @@
 - **PT:** Taxa de acerto de equilíbrio
 - **SW:** Kiwango cha ushindi cha kufikia sare ⚠
 
+### Disposition Effect
+- **EN:** The documented tendency to sell winning positions too early while holding losing positions too long. Coined by Shefrin and Statman (1985); measured by Odean (1998), who found investors 1.5 to 2 times more likely to sell a winner than a loser.
+- **FR:** Effet de disposition
+- **PT:** Efeito de disposição
+- **SW:** Athari ya mwelekeo wa kuuza ⚠
+
+### Overtrading
+- **EN:** Trading more frequently or in larger size than a strategy justifies, usually driven by overconfidence. Barber and Odean (2000) found the most active traders badly underperformed the market.
+- **FR:** Excès de transactions (overtrading)
+- **PT:** Excesso de negociação (overtrading)
+- **SW:** Kufanya biashara kupita kiasi ⚠
+
+### Overconfidence
+- **EN:** Overrating one's own judgement or information — the behavioural driver behind overtrading and its cost to returns.
+- **FR:** Excès de confiance
+- **PT:** Excesso de confiança
+- **SW:** Kujiamini kupita kiasi ⚠
+
+### Discipline
+- **EN:** Following a pre-committed trading plan — entry, stop, target, size — regardless of what you feel in the moment. A system for removing in-the-moment decisions, not a personality trait.
+- **FR:** Discipline
+- **PT:** Disciplina
+- **SW:** Nidhamu
+
 ## Crypto Track Terms
 
 *(Not yet started. Expect terms like: blockchain, wallet, private key, gas fee, exchange, volatility, market cap, stablecoin.)*

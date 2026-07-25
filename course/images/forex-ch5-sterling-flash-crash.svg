@@ -1,0 +1,42 @@
+<svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="560" fill="#FDFCF9"/>
+  <text x="450" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#1F3864">The 2016 Sterling Flash Crash (GBP/USD, 7 October 2016)</text>
+  <text x="450" y="55" text-anchor="middle" font-size="12" font-style="italic" fill="#6B6B6B">Down ~6% in two minutes, then mostly back -- no headline, just an empty market.</text>
+
+  <!-- chart -->
+  <rect x="40" y="74" width="500" height="230" rx="8" fill="#FFFFFF" stroke="#CBD3E1" stroke-width="1.5"/>
+  <text x="52" y="94" font-size="10.5" fill="#6B6B6B">GBP/USD, deep in the Asian session</text>
+  <line x1="70" y1="120" x2="520" y2="120" stroke="#E1E5EE" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="44" y="124" font-size="10" fill="#6B6B6B">1.26</text>
+  <line x1="70" y1="250" x2="520" y2="250" stroke="#E1E5EE" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="44" y="254" font-size="10" fill="#6B6B6B">1.18</text>
+  <!-- flat, sharp V, partial recovery -->
+  <polyline points="70,120 250,121 280,120 300,250 315,230 340,175 400,165 520,160" fill="none" stroke="#B23B2E" stroke-width="2.5"/>
+  <text x="95" y="112" font-size="10.5" fill="#333333">Quiet, thin overnight market</text>
+  <text x="300" y="275" font-size="10.5" font-weight="bold" fill="#B23B2E">~6% in ~2 min to a 31-year low ~1.18</text>
+  <text x="360" y="150" font-size="10.5" fill="#8A6D1F">then mostly recovered, minutes later</text>
+
+  <!-- causes -->
+  <rect x="560" y="74" width="300" height="230" rx="8" fill="#FFF7E6" stroke="#C99A2E" stroke-width="2"/>
+  <text x="580" y="96" font-size="12.5" font-weight="bold" fill="#8A6D1F">BIS report: no single cause</text>
+  <text x="580" y="122" font-size="11" fill="#333333">1. Time of day -- the thinnest,</text>
+  <text x="580" y="137" font-size="11" fill="#333333">least-liquid hour of the day.</text>
+  <text x="580" y="162" font-size="11" fill="#333333">2. Options-hedging: real demand</text>
+  <text x="580" y="177" font-size="11" fill="#333333">to sell pounds.</text>
+  <text x="580" y="202" font-size="11" fill="#333333">3. Stop-loss execution triggering</text>
+  <text x="580" y="217" font-size="11" fill="#333333">a cascade of market sell orders.</text>
+  <text x="580" y="242" font-size="11" fill="#333333">4. Algorithms selling into a market</text>
+  <text x="580" y="257" font-size="11" fill="#333333">with almost no one on the other side.</text>
+  <text x="580" y="286" font-size="10.5" font-style="italic" fill="#6B6B6B">A modest imbalance met no resistance.</text>
+
+  <!-- lesson strip -->
+  <rect x="40" y="320" width="820" height="128" rx="10" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="60" y="344" font-size="14" font-weight="bold" fill="#1E7A4C">Where you have seen each piece before</text>
+  <text x="60" y="368" font-size="11.5" fill="#333333">Thin liquidity is the flip side of the spread (Ch1 L4): fewer participants, so price moves further per order.</text>
+  <text x="60" y="388" font-size="11.5" fill="#333333">The stop cascade is the stop-out mechanism (Ch3 L2) at market scale: stops trigger stops trigger stops.</text>
+  <text x="60" y="408" font-size="11.5" fill="#333333">The timing is the calendar discipline (Ch2 L4) in reverse: the market was fragile because almost no one traded.</text>
+  <text x="60" y="432" font-size="12" font-weight="bold" fill="#1E7A4C">A stop held through the plunge filled far below its level -- then price recovered. Right on direction, wrecked on execution.</text>
+
+  <text x="450" y="484" text-anchor="middle" font-size="12" font-style="italic" fill="#1F3864">Execution and liquidity are real risks, not background detail. Trade liquid hours; size for a thin-market spike.</text>
+  <text x="450" y="516" text-anchor="middle" font-size="10.5" font-style="italic" fill="#6B6B6B">Source: BIS Markets Committee report on the 7 October 2016 sterling flash event.</text>
+</svg>

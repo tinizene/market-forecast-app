@@ -1,0 +1,47 @@
+<svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="560" fill="#FDFCF9"/>
+  <text x="450" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#1F3864">The 2015 Swiss Franc Shock (EUR/CHF, 15 January 2015)</text>
+  <text x="450" y="55" text-anchor="middle" font-size="12" font-style="italic" fill="#6B6B6B">A guaranteed floor withdrawn without warning -- a genuine black swan.</text>
+
+  <!-- chart area -->
+  <rect x="40" y="74" width="500" height="230" rx="8" fill="#FFFFFF" stroke="#CBD3E1" stroke-width="1.5"/>
+  <text x="52" y="94" font-size="10.5" fill="#6B6B6B">EUR/CHF</text>
+  <!-- axis marks -->
+  <line x1="70" y1="120" x2="520" y2="120" stroke="#E1E5EE" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="46" y="124" font-size="10" fill="#6B6B6B">1.20</text>
+  <line x1="70" y1="250" x2="520" y2="250" stroke="#E1E5EE" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="46" y="254" font-size="10" fill="#6B6B6B">0.85</text>
+  <text x="46" y="190" font-size="10" fill="#6B6B6B">1.00</text>
+  <!-- price path: flat floor then collapse then partial recovery -->
+  <polyline points="70,120 300,119 340,120 348,250 360,205 400,198 520,196" fill="none" stroke="#B23B2E" stroke-width="2.5"/>
+  <text x="120" y="112" font-size="10.5" fill="#1E7A4C">Floor held since Sep 2011: SNB defends 1.20</text>
+  <line x1="348" y1="130" x2="348" y2="245" stroke="#8A6D1F" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="356" y="240" font-size="10.5" font-weight="bold" fill="#B23B2E">Jan 15: floor</text>
+  <text x="356" y="254" font-size="10.5" font-weight="bold" fill="#B23B2E">abandoned</text>
+  <text x="356" y="285" font-size="10.5" fill="#333333">-30% intraday, as low as ~0.85;</text>
+  <text x="356" y="298" font-size="10.5" fill="#333333">liquidity vanished within seconds.</text>
+
+  <!-- fallout -->
+  <rect x="560" y="74" width="300" height="230" rx="8" fill="#FFF3EF" stroke="#B23B2E" stroke-width="2"/>
+  <text x="580" y="96" font-size="13" font-weight="bold" fill="#B23B2E">The fallout</text>
+  <text x="580" y="120" font-size="11" fill="#333333">FXCM: ~$225M client negative</text>
+  <text x="580" y="135" font-size="11" fill="#333333">balances; ~$300M emergency bailout.</text>
+  <text x="580" y="158" font-size="11" fill="#333333">Alpari (UK): entered insolvency.</text>
+  <text x="580" y="181" font-size="11" fill="#333333">Everest Capital Global: ~$1B loss</text>
+  <text x="580" y="196" font-size="11" fill="#333333">(short-franc bet), fund closed.</text>
+  <text x="580" y="219" font-size="11" fill="#333333">Bank of England study: algo traders</text>
+  <text x="580" y="234" font-size="11" fill="#333333">pulling liquidity made it worse.</text>
+  <text x="580" y="268" font-size="10.5" font-style="italic" fill="#6B6B6B">Some traders ended up owing more</text>
+  <text x="580" y="282" font-size="10.5" font-style="italic" fill="#6B6B6B">than their whole account, on one trade.</text>
+
+  <!-- lesson strip -->
+  <rect x="40" y="320" width="820" height="130" rx="10" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="60" y="344" font-size="14" font-weight="bold" fill="#1E7A4C">What the course's principles did</text>
+  <text x="60" y="368" font-size="11.5" fill="#333333">Stops triggered but filled hundreds of pips away -- a stop guarantees a trigger, not a fill (Ch1 L7).</text>
+  <text x="60" y="388" font-size="11.5" fill="#333333">Ruined accounts were over-leveraged; a gap larger than the free-margin cushion blew through it (Ch3 L2).</text>
+  <text x="60" y="408" font-size="11.5" fill="#333333">Small position size turned catastrophe into a survivable loss (Ch3 L1). Negative balance protection: born here (Ch1 L6).</text>
+  <text x="60" y="432" font-size="12" font-weight="bold" fill="#1E7A4C">Survival was not about being right. It was about being sized to be wrong.</text>
+
+  <text x="450" y="482" text-anchor="middle" font-size="12" font-style="italic" fill="#1F3864">A "once in ten thousand years" move by the bell curve -- on an ordinary Thursday. Fat tails are normal (Ch2 L2).</text>
+  <text x="450" y="518" text-anchor="middle" font-size="10.5" font-style="italic" fill="#6B6B6B">Figures from FXCM's published data, Bank of England analysis, and contemporaneous reporting.</text>
+</svg>

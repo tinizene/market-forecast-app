@@ -943,6 +943,18 @@
 - **PT:** Diário de negociação
 - **SW:** Jarida la biashara ⚠
 
+### Black Swan
+- **EN:** A rare, high-impact event that is very hard to predict in advance and is often rationalised as obvious only in hindsight. Popularised by Nassim Taleb; the 2015 Swiss franc shock is a textbook case.
+- **FR:** Cygne noir
+- **PT:** Cisne negro
+- **SW:** Tukio adimu la mshtuko ⚠ ("black swan")
+
+### Flash Crash
+- **EN:** A very rapid, deep price drop that reverses within minutes, driven by a collapse in liquidity and the interaction of automated orders rather than by fundamental news (e.g., the 2016 sterling flash crash).
+- **FR:** Krach éclair
+- **PT:** Flash crash (queda relâmpago)
+- **SW:** Anguko la ghafla ⚠ ("flash crash")
+
 ## Crypto Track Terms
 
 *(Not yet started. Expect terms like: blockchain, wallet, private key, gas fee, exchange, volatility, market cap, stablecoin.)*

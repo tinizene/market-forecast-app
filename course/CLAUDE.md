@@ -112,10 +112,11 @@ Content is written English-first. Glossary holds locked EN/FR/PT/SW translations
 - Chapter 2 (Reading the Forex Market): 6/6 complete
 - Chapter 3 (Risk Management for Forex Traders): 3/3 complete
 - Chapter 4 (Trading Psychology & Building a Plan): 3/3 complete
-- Chapters 5–6: not started
+- Chapter 5 (Real-World Case Studies): 3/3 complete — SNB 2015, yen carry unwind 2008, sterling flash crash 2016
+- Chapter 6 (Building a Professional Trade Process): not started — note the paid trade-thesis service must be mentioned plainly once, at the end of Lesson 4 only
 
 **Not started:** Crypto track, Stocks track, Advanced Forex Course.
 
 **Known outstanding work:**
-- Forex lessons exist as markdown only — not yet compiled into the app's JS content format (Foundations was; use `scere-integration/foundation-content.js` as the pattern).
+- Forex and Foundations lessons are compiled into `forex-content.js` / `foundation-content.js` at the repo **root** (the live, deployed location) and rendered by `learn.js` via `renderForexTrack()` / `renderFoundationTrack()`. To add a lesson: write the markdown in `course/forex/`, verify citations/arithmetic, create a light SVG in `course/images/`, then compile the lesson into a block object appended to `window.SCERE_FOREX_CONTENT` in root `forex-content.js` and add its dark-ported inline SVG to `window.SCERE_FOREX_SVGS` in the same file. (The old `course/scere-integration/` staging copies were removed once promoted to root — root is now the single source of truth.)
 - Chapter 6 of the Forex track ties into a business model: students who can't run the professional trade-thesis framework themselves can buy completed theses from the platform. Teach the framework completely and honestly; mention the service plainly once, at the end of Lesson 4 only.

@@ -1,0 +1,66 @@
+<svg viewBox="0 0 900 660" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="660" fill="#FDFCF9"/>
+  <text x="450" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#1F3864">Common Beginner Mistakes -- and Where Each Was Already Solved</text>
+  <text x="450" y="55" text-anchor="middle" font-size="12" font-style="italic" fill="#6B6B6B">74-89% of retail accounts lose (ESMA, Ch1 L6). The losses cluster around a short, fixable list.</text>
+
+  <!-- table header -->
+  <rect x="40" y="72" width="820" height="30" rx="6" fill="#1F3864"/>
+  <text x="60" y="92" font-size="12.5" font-weight="bold" fill="#FDFCF9">The mistake</text>
+  <text x="470" y="92" font-size="12.5" font-weight="bold" fill="#FDFCF9">The fix (and the lesson that gives it)</text>
+
+  <!-- rows -->
+  <rect x="40" y="102" width="820" height="52" fill="#FFF3EF" stroke="#E1E5EE" stroke-width="1"/>
+  <text x="60" y="124" font-size="11.5" font-weight="bold" fill="#B23B2E">No plan, trading on emotion</text>
+  <text x="60" y="142" font-size="10.5" fill="#6B6B6B">entering because it "looks ready"</text>
+  <text x="470" y="132" font-size="11.5" fill="#333333">Write a plan (L2); pre-commit the exit before entry (L1)</text>
+
+  <rect x="40" y="154" width="820" height="52" fill="#FFFFFF" stroke="#E1E5EE" stroke-width="1"/>
+  <text x="60" y="176" font-size="11.5" font-weight="bold" fill="#B23B2E">Risking too much per trade</text>
+  <text x="60" y="194" font-size="10.5" fill="#6B6B6B">one bad run ends the account</text>
+  <text x="470" y="184" font-size="11.5" fill="#333333">Fixed 1-2%, position-sizing formula (Ch3 L1); low effective leverage (Ch3 L2)</text>
+
+  <rect x="40" y="206" width="820" height="52" fill="#FFF3EF" stroke="#E1E5EE" stroke-width="1"/>
+  <text x="60" y="228" font-size="11.5" font-weight="bold" fill="#B23B2E">No stop, or moving the stop</text>
+  <text x="60" y="246" font-size="10.5" fill="#6B6B6B">widening it to avoid being closed</text>
+  <text x="470" y="236" font-size="11.5" fill="#333333">Stop at invalidation, set as an order, never widened (Ch1 L7, Ch3 L3)</text>
+
+  <rect x="40" y="258" width="820" height="52" fill="#FFFFFF" stroke="#E1E5EE" stroke-width="1"/>
+  <text x="60" y="280" font-size="11.5" font-weight="bold" fill="#B23B2E">Cutting winners, riding losers</text>
+  <text x="60" y="298" font-size="10.5" fill="#6B6B6B">the disposition effect (Ch4 L1)</text>
+  <text x="470" y="290" font-size="11.5" fill="#333333">Risk-to-reward minimum before entry; let OCO orders execute (Ch3 L3, Ch4 L1)</text>
+
+  <rect x="40" y="310" width="820" height="52" fill="#FFF3EF" stroke="#E1E5EE" stroke-width="1"/>
+  <text x="60" y="332" font-size="11.5" font-weight="bold" fill="#B23B2E">Overtrading / revenge trading</text>
+  <text x="60" y="350" font-size="10.5" fill="#6B6B6B">trading bored, confident, or to get even</text>
+  <text x="470" y="342" font-size="11.5" fill="#333333">Trade only rule-met setups; cap trades or enforce a cool-down (Ch4 L1)</text>
+
+  <rect x="40" y="362" width="820" height="52" fill="#FFFFFF" stroke="#E1E5EE" stroke-width="1"/>
+  <text x="60" y="384" font-size="11.5" font-weight="bold" fill="#B23B2E">Chasing news</text>
+  <text x="60" y="402" font-size="10.5" fill="#6B6B6B">no evidence for how a release behaves</text>
+  <text x="470" y="392" font-size="11.5" fill="#333333">Check the calendar; sit out events you have not studied (Ch2 L4)</text>
+
+  <rect x="40" y="414" width="820" height="52" fill="#FFF3EF" stroke="#E1E5EE" stroke-width="1"/>
+  <text x="60" y="436" font-size="11.5" font-weight="bold" fill="#B23B2E">Indicator overload / timeframe-shopping</text>
+  <text x="60" y="454" font-size="10.5" fill="#6B6B6B">tools until they agree; charts until one agrees</text>
+  <text x="470" y="444" font-size="11.5" fill="#333333">A few tools you understand; fixed top-down timeframes (Ch2 L1, L5)</text>
+
+  <rect x="40" y="466" width="820" height="52" fill="#FFFFFF" stroke="#E1E5EE" stroke-width="1"/>
+  <text x="60" y="488" font-size="11.5" font-weight="bold" fill="#B23B2E">Trusting unverified claims</text>
+  <text x="60" y="506" font-size="10.5" fill="#6B6B6B">signal groups, tips, guaranteed returns</text>
+  <text x="470" y="498" font-size="11.5" fill="#333333">Verify claims; a guaranteed-return promise is the clearest scam sign there is</text>
+
+  <!-- two habits -->
+  <rect x="40" y="530" width="400" height="88" rx="10" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="60" y="553" font-size="12.5" font-weight="bold" fill="#1E7A4C">Pre-trade checklist (catches them before)</text>
+  <text x="60" y="574" font-size="10.5" fill="#333333">Planned setup? Stop at invalidation, as an order?</text>
+  <text x="60" y="590" font-size="10.5" fill="#333333">Ratio clears minimum? Size within risk %? Not chasing?</text>
+  <text x="60" y="609" font-size="10.5" font-style="italic" fill="#6B6B6B">Any "no" = no trade.</text>
+
+  <rect x="460" y="530" width="400" height="88" rx="10" fill="#EAF0FB" stroke="#2E5395" stroke-width="2"/>
+  <text x="480" y="553" font-size="12.5" font-weight="bold" fill="#2E5395">Trading journal (catches them after)</text>
+  <text x="480" y="574" font-size="10.5" fill="#333333">Every trade: setup, stop, target, size, R result,</text>
+  <text x="480" y="590" font-size="10.5" fill="#333333">and whether you followed the plan.</text>
+  <text x="480" y="609" font-size="10.5" font-style="italic" fill="#6B6B6B">Measures real expectancy; reveals repeated mistakes.</text>
+
+  <text x="450" y="644" text-anchor="middle" font-size="11.5" font-style="italic" fill="#1F3864">Nearly every mistake is one thing: acting on feeling or hope instead of a pre-decided, evidence-checked rule.</text>
+</svg>

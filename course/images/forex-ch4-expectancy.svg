@@ -1,0 +1,41 @@
+<svg viewBox="0 0 900 580" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="580" fill="#FDFCF9"/>
+  <text x="450" y="34" text-anchor="middle" font-size="20" font-weight="bold" fill="#1F3864">Expectancy: The One Number That Says a System Makes Money</text>
+  <text x="450" y="58" text-anchor="middle" font-size="12" font-style="italic" fill="#6B6B6B">Win rate and reward, combined into the average profit per trade -- in dollars or in R.</text>
+
+  <!-- Formula -->
+  <rect x="40" y="78" width="820" height="72" rx="10" fill="#EAF0FB" stroke="#2E5395" stroke-width="2"/>
+  <text x="450" y="106" text-anchor="middle" font-size="14" font-weight="bold" fill="#2E5395">Expectancy = (win rate x average win) - (loss rate x average loss)</text>
+  <text x="450" y="132" text-anchor="middle" font-size="12.5" fill="#333333">In R (always risk 1R, honour stops):  (win% x average R won) - (loss% x 1R)</text>
+
+  <!-- Positive example -->
+  <rect x="40" y="166" width="400" height="176" rx="10" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="60" y="192" font-size="14" font-weight="bold" fill="#1E7A4C">A real edge (positive)</text>
+  <text x="60" y="216" font-size="11.5" fill="#333333">45% win, avg win $300, avg loss $150:</text>
+  <text x="60" y="236" font-size="12.5" font-weight="bold" fill="#1E7A4C">0.45x300 - 0.55x150 = +$52.50 / trade</text>
+  <text x="60" y="264" font-size="11.5" fill="#333333">40% win at +2R average (loss 1R):</text>
+  <text x="60" y="284" font-size="12.5" font-weight="bold" fill="#1E7A4C">0.40x2 - 0.60x1 = +0.2R / trade</text>
+  <text x="60" y="308" font-size="11.5" fill="#333333">Over 100 trades = +20R. At $100 / R,</text>
+  <text x="60" y="326" font-size="12.5" font-weight="bold" fill="#1E7A4C">+$2,000 -- while wrong 60% of the time.</text>
+
+  <!-- Warning example -->
+  <rect x="460" y="166" width="400" height="176" rx="10" fill="#FFF3EF" stroke="#B23B2E" stroke-width="2"/>
+  <text x="480" y="192" font-size="14" font-weight="bold" fill="#B23B2E">A high win rate that still loses</text>
+  <text x="480" y="216" font-size="11.5" fill="#333333">60% win, avg win $80, avg loss $150:</text>
+  <text x="480" y="236" font-size="12.5" font-weight="bold" fill="#B23B2E">0.60x80 - 0.40x150 = -$12 / trade</text>
+  <text x="480" y="266" font-size="11.5" fill="#333333">Right most of the time, losing money</text>
+  <text x="480" y="284" font-size="11.5" fill="#333333">every trade -- because the losses are</text>
+  <text x="480" y="302" font-size="11.5" fill="#333333">far larger than the wins.</text>
+  <text x="480" y="328" font-size="10.5" font-style="italic" fill="#B23B2E">Win rate alone never decides.</text>
+
+  <!-- Long-run note -->
+  <rect x="40" y="360" width="820" height="150" rx="10" fill="#FFF7E6" stroke="#C99A2E" stroke-width="2"/>
+  <text x="60" y="386" font-size="14" font-weight="bold" fill="#8A6D1F">The catch: expectancy is a long-run average</text>
+  <text x="60" y="410" font-size="11.5" fill="#333333">A positive-expectancy system can still lose 5, 10, even 20 trades in a row -- that is normal variance,</text>
+  <text x="60" y="428" font-size="11.5" fill="#333333">not a broken system. A losing system can also win for a while by luck. A handful of trades tells you nothing.</text>
+  <text x="60" y="454" font-size="12" font-weight="bold" fill="#8A6D1F">So: judge a system over many trades (a journal), and keep risk per trade small (1-2%, Ch3 L1)</text>
+  <text x="60" y="472" font-size="12" font-weight="bold" fill="#8A6D1F">so a normal losing streak cannot end you before the edge has time to show.</text>
+  <text x="60" y="497" font-size="10.5" font-style="italic" fill="#6B6B6B">Position sizing keeps you alive through variance; discipline lets the positive expectancy actually be realised.</text>
+
+  <text x="450" y="540" text-anchor="middle" font-size="12" font-style="italic" fill="#1F3864">The plan turns an edge on paper into money in an account -- by making you trade the same positive-expectancy process every time.</text>
+</svg>

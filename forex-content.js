@@ -6,7 +6,7 @@
 // window.SCERE_FOREX_SVGS (dark-theme variants, defined at the bottom of this file).
 //
 // Shown fully open with a "Paid track" badge; real payment gating is a separate build.
-// Chapters 1-4 complete; Chapters 5-6 land here later, same pattern.
+// Chapters 1-5 complete; Chapter 6 lands here later, same pattern.
 
 window.SCERE_FOREX_TRACK = {
   "trackTitle": "Forex",
@@ -2745,6 +2745,333 @@ window.SCERE_FOREX_CONTENT = [
         "def": "A record of every trade and whether you followed your plan, used to measure real expectancy and catch repeated mistakes."
       }
     ]
+  },
+  {
+    "id": "case-study-swiss-franc-shock",
+    "lessonNumber": 1,
+    "chapterNumber": 5,
+    "chapterTitle": "Chapter 5: Real-World Case Studies",
+    "title": "Case Study — The 2015 Swiss Franc Shock",
+    "keyIdea": "When the Swiss National Bank abandoned its EUR/CHF floor in 2015, stops and stop-outs failed in the liquidity vacuum — and the traders who survived were not the ones who predicted it, but the ones sized small enough to be wrong.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "For over three years, the Swiss National Bank held a floor under EUR/CHF, promising to defend a minimum of 1.20 francs per euro \"with the utmost determination\" — a cap it set in September 2011 to stop the franc strengthening too far. Traders came to treat that floor as almost a law of nature: you could not lose much buying EUR/CHF near 1.20, because the central bank guaranteed it would not fall below."
+      },
+      {
+        "type": "definition",
+        "term": "Black Swan",
+        "text": "A rare, high-impact event that is very hard to predict in advance and is often rationalised as obvious only afterwards. The term was popularised by Nassim Taleb; the franc shock is a textbook case."
+      },
+      {
+        "type": "paragraph",
+        "text": "On 15 January 2015, without warning, the Swiss National Bank abandoned the floor. The franc did not drift — it detonated. EUR/CHF fell straight through 1.20 and collapsed by roughly 30% intraday, trading as low as around 0.85 in the chaos, before settling nearer parity. The move happened in minutes, and with so little liquidity that the exact bottom is genuinely disputed: one broker's own feed printed as low as 1.1659 within nine seconds as the banks providing its prices pulled them."
+      },
+      {
+        "type": "warning",
+        "text": "This is the lived version of the fat tails you met in Chapter 2, Lesson 2, and Mandelbrot's 1963 finding. A standard bell curve model would have called a move this size an event of once in many thousands of years. It happened on an ordinary Thursday. Markets produce extreme moves far more often than tidy models predict — and forex, with its leverage, punishes that fact hardest."
+      },
+      {
+        "type": "paragraph",
+        "text": "The damage was not only in the size of the move — it was in how it broke the tools traders rely on. This is where Chapter 1, Lesson 7 stops being theory."
+      },
+      {
+        "type": "paragraph",
+        "text": "A stop-loss order becomes a market order once triggered, and a market order fills at the best price available. On 15 January there was almost no price available: buyers vanished exactly as the sell orders arrived. Stop-losses set safely near 1.20 did trigger — and then filled hundreds of pips lower, or not at all. Even the broker's own stop-out (Chapter 3, Lesson 2), meant to close positions before an account goes negative, could not work in a market with no bids to sell into."
+      },
+      {
+        "type": "example",
+        "text": "The fallout was severe and specific. The retail broker FXCM saw its customers left with roughly 225 million dollars in negative balances — accounts that owed the broker more than they held — and FXCM needed an emergency infusion of about 300 million dollars from Leucadia to survive. The UK broker Alpari (UK) entered insolvency that same day. And it was not only amateurs: the hedge fund Everest Capital Global, which had bet against the franc, lost close to a billion dollars and was shut down. A Bank of England study later found that algorithmic traders pulling liquidity made the crash worse."
+      },
+      {
+        "type": "image",
+        "svg": "forex-ch5-snb-shock",
+        "alt": "Diagram of EUR/CHF holding the 1.20 floor from 2011 until it collapsed about 30 percent to roughly 0.85 on 15 January 2015, the fallout (FXCM's 225 million dollars of client negative balances and 300 million dollar bailout, Alpari UK insolvency, Everest Capital's roughly 1 billion dollar loss), and the survival lesson that small position size and low leverage were what mattered",
+        "caption": "The floor, the collapse, the fallout, and the survival lesson: being sized to be wrong beat being right."
+      },
+      {
+        "type": "warning",
+        "text": "Notice who was ruined: not the people who predicted the move — almost nobody did — but the people who were over-sized when it came. Traders who owed money on a single trade were not wrong about direction. They were simply too large for a gap to survive. This is the whole argument of Chapter 3, Lessons 1 and 2, written in losses."
+      },
+      {
+        "type": "paragraph",
+        "text": "Run the event back through the framework and every principle earns its place."
+      },
+      {
+        "type": "paragraph",
+        "text": "Position sizing (Chapter 3, Lesson 1). A trader risking 1% with a correctly sized position still took a bad loss when the stop failed — but a bad loss, not a wiped-out or negative account. Small size is what turns a catastrophe into a survivable dent."
+      },
+      {
+        "type": "paragraph",
+        "text": "Effective leverage (Chapter 3, Lesson 2). The accounts that went negative were running high effective leverage, so a gap larger than their free-margin cushion blew straight through it. Low effective leverage was the difference between a scare and a ruin."
+      },
+      {
+        "type": "paragraph",
+        "text": "Negative balance protection (Chapter 1, Lesson 6). This event is the reason the rule exists in the EU, UK, and Australia. It is a genuine backstop — but note it is the last line, not the first. Depending on it means everything before it has already failed."
+      },
+      {
+        "type": "paragraph",
+        "text": "Fat tails (Chapter 2, Lesson 2). The trader who internalised that extreme moves are normal, not impossible, sized and prepared for one. The trader who trusted the once-in-ten-thousand-years math did not."
+      },
+      {
+        "type": "warning",
+        "text": "The honest, uncomfortable takeaway: you cannot reliably predict a black swan, and you cannot count on your stop filling where you set it. The only defence that works is structural — being small enough, and unleveraged enough, that even a failed stop cannot end you. Survival is not built on being right. It is built on being sized to be wrong."
+      },
+      {
+        "type": "practice",
+        "text": "Carry these forward: For any pair pinned by a central bank policy (a peg or a floor), remember that \"it cannot move past here\" is a promise that can be withdrawn without notice. Never assume a stop-loss guarantees your exit price — it guarantees a trigger, not a fill, and in a gap the two can be far apart. Size every position so that a violent gap through your stop is a survivable loss, not an account-ending one. And confirm your broker offers negative balance protection, but treat it as a backstop, never as permission to size larger."
+      }
+    ],
+    "quiz": [
+      {
+        "question": "Why did stop-loss orders fail to protect many traders during the Swiss franc shock?",
+        "options": [
+          "The orders were never triggered",
+          "They triggered but filled far from their level, because liquidity vanished and there were no buyers nearby",
+          "Brokers ignored them on purpose",
+          "The franc barely moved"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — a triggered stop becomes a market order and fills at whatever price exists. On 15 January 2015 there was almost no liquidity, so stops filled hundreds of pips away, or not at all.",
+        "feedbackWrong": "Not quite — the stops did trigger, but a triggered stop fills at the available price, and liquidity had vanished, so they filled far from their level."
+      },
+      {
+        "question": "Who was most likely to be financially ruined by the event?",
+        "options": [
+          "Traders who correctly predicted the move",
+          "Traders who were over-sized and over-leveraged when the gap hit",
+          "Traders who used small position sizes",
+          "Traders who avoided EUR/CHF entirely"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — the move was nearly unpredictable, so ruin was not about direction. It was about size: over-leveraged accounts had no cushion for a gap that large, and some went negative.",
+        "feedbackWrong": "Not quite — direction was almost unpredictable. Ruin came from size: over-leveraged accounts had no cushion for the gap."
+      },
+      {
+        "question": "True or False: the Swiss franc shock shows that a good enough model can be trusted to rule out extreme moves.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — the opposite. Standard models called a move this size almost impossible, yet it happened. Extreme moves are a normal feature of markets (fat tails), and no model rules them out.",
+        "feedbackWrong": "Not quite — standard models called this move nearly impossible and it happened anyway. Fat tails are normal; no model rules extreme moves out."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Black Swan",
+        "def": "A rare, high-impact, hard-to-predict event, rationalised as obvious only in hindsight."
+      }
+    ]
+  },
+  {
+    "id": "case-study-yen-carry-trade-unwind",
+    "lessonNumber": 2,
+    "chapterNumber": 5,
+    "chapterTitle": "Chapter 5: Real-World Case Studies",
+    "title": "Case Study — The Yen Carry Trade Unwind of 2008",
+    "keyIdea": "The yen carry trade paid a steady interest edge for years, then delivered a violent correlated crash in 2008 — the exact shape the carry-trade evidence had already described, showing the income was payment for crash risk.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "For most of the 2000s, Japan held interest rates near zero while other economies paid much more. That gap was an open invitation, and traders took it — exactly the carry trade you met in Chapter 2, Lesson 3."
+      },
+      {
+        "type": "paragraph",
+        "text": "The mechanics were simple. Borrow (or sell) the low-yielding yen, and buy a high-yielding currency like the Australian dollar, whose central bank paid far more. AUD/JPY became the classic expression of the trade."
+      },
+      {
+        "type": "example",
+        "text": "By late 2007 the Reserve Bank of Australia was paying around 6.75%, while the Bank of Japan paid about 0.5% — a gap of roughly five percentage points, earned simply for holding the position. On top of that interest, the trade itself kept rising: as more money poured in, the yen weakened and the Australian dollar strengthened, so carry traders were paid twice — the rate difference, plus the currency move. AUD/JPY climbed to an all-time high near 107.80 in October 2007."
+      },
+      {
+        "type": "paragraph",
+        "text": "For years it looked like free money: a steady, high return with a calm, rising chart. That appearance is exactly the trap."
+      },
+      {
+        "type": "paragraph",
+        "text": "When the global financial crisis struck in 2008, risk appetite evaporated, and the trade reversed with terrifying speed."
+      },
+      {
+        "type": "paragraph",
+        "text": "As markets fell, leveraged investors rushed to close their carry positions all at once. Closing the trade meant buying back yen — millions of traders buying the same currency at the same time — so the yen did not just recover, it surged. The same crowding that had paid on the way up now punished everyone on the way down, together."
+      },
+      {
+        "type": "example",
+        "text": "The reversal in AUD/JPY was brutal. Between July and October 2008 the pair fell by roughly 45%, from about 104 to below 57, reaching a low near 55 in October 2008 — nearly halving in a matter of months. The yen strengthened sharply across the board as capital fled risky assets and rushed home to safety. Traders who had earned a few percent a year in interest lost many times that in currency losses in a few weeks."
+      },
+      {
+        "type": "image",
+        "svg": "forex-ch5-carry-unwind",
+        "alt": "Diagram of AUD/JPY rising through the carry-trade build-up to a peak near 107.80 in October 2007 then collapsing about 45 percent to near 55 in 2008, the mechanics of the trade (borrow yen near 0.5 percent, buy Australian dollars near 6.75 percent), and the evidence that carry income is compensation for crash risk rather than a free lunch",
+        "caption": "The build-up that paid twice, the crowded 2008 unwind, and the evidence that carry income is crash-risk compensation."
+      },
+      {
+        "type": "warning",
+        "text": "This is the sign flip that defines the carry trade: the position pays small, steady, positive returns for a long time, then delivers a large, sudden, correlated loss. And the losses hit everyone in the trade at once, because they are all forced to unwind together — precisely when markets are already in crisis and least forgiving."
+      },
+      {
+        "type": "paragraph",
+        "text": "The most important part of this case study is that none of it was a surprise to the research. Chapter 2, Lesson 3 gave you the finding in advance."
+      },
+      {
+        "type": "example",
+        "text": "Menkhoff, Sarno, Schmeling and Schrimpf (2012), in The Journal of Finance, showed that carry trade returns are strongly tied to global currency volatility: the strategy earns steadily in calm periods and then suffers sharp, correlated losses exactly when volatility spikes. The broader work on this — including Brunnermeier, Nagel and Pedersen's study \"Carry Trades and Currency Crashes\" — describes the same shape: carry profits are not a free lunch but compensation for bearing crash risk. The 2008 yen unwind is that theory playing out in the open."
+      },
+      {
+        "type": "paragraph",
+        "text": "In plain terms, the interest edge was real, but you were being paid to hold a currency position that could drop violently at the worst possible moment. That is not a flaw in the carry trade — it is what the carry trade fundamentally is. The steady income is the market paying you to insure everyone else against a crash, and 2008 was the year the insurance was called."
+      },
+      {
+        "type": "warning",
+        "text": "This reframes \"free money\" everywhere it appears in trading. A strategy that pays a little, reliably, for a long time, with rare but severe blow-ups, is not beating the market — it is being paid a premium for a risk that has not shown up yet. The forward premium puzzle from Chapter 2, Lesson 3 explains why the trade works at all; this crash risk explains what you are really being paid for."
+      },
+      {
+        "type": "practice",
+        "text": "Take these into any carry-like position: Be suspicious of any strategy that looks like steady, easy income — ask what rare event it is quietly exposed to, and how bad that event would be. Remember that a carry position's real risk is not the daily wiggle but the sudden, correlated unwind, which arrives fastest in a crisis. Notice crowding: if everyone is in the same trade for the same reason, the exit is narrow and the reversal is violent. And size for the crash, not the calm — the quiet years are not the ones that decide whether you survive."
+      }
+    ],
+    "quiz": [
+      {
+        "question": "Why did the yen surge so violently when the carry trade unwound in 2008?",
+        "options": [
+          "Japan raised interest rates sharply",
+          "Traders closing carry positions all had to buy back yen at the same time, and that crowded rush drove it up",
+          "The Australian economy collapsed overnight",
+          "The yen is legally pegged to the dollar"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — unwinding a yen-funded carry trade means buying yen back. With everyone forced to unwind together in the crisis, the crowded, simultaneous buying sent the yen sharply higher.",
+        "feedbackWrong": "Not quite — closing a yen-funded carry trade means buying yen back, and everyone doing it at once in the crisis drove the yen sharply up."
+      },
+      {
+        "question": "According to the carry-trade evidence from Chapter 2, Lesson 3, steady carry profits are best understood as what?",
+        "options": [
+          "A genuine free lunch with no real risk",
+          "Compensation for bearing a rare but severe crash risk",
+          "Proof that high-rate currencies always rise",
+          "A guaranteed return set by central banks"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — Menkhoff and colleagues (2012) showed carry returns are steady in calm periods and crash together when volatility spikes. The income is payment for holding crash risk, not a free lunch.",
+        "feedbackWrong": "Not quite — the evidence shows carry returns crash together when volatility spikes, so the steady income is compensation for crash risk, not a free lunch."
+      },
+      {
+        "question": "True or False: the 2008 yen carry unwind was an unforeseeable shock that no framework had anticipated.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — the academic evidence had already described exactly this pattern: steady gains punctuated by sudden correlated crashes. The 2008 unwind was that known risk arriving, not a bolt from the blue.",
+        "feedbackWrong": "Not quite — the research had already described this shape of steady gains and sudden correlated crashes. The unwind was a known risk arriving, not unforeseeable."
+      }
+    ],
+    "keyTerms": []
+  },
+  {
+    "id": "case-study-sterling-flash-crash",
+    "lessonNumber": 3,
+    "chapterNumber": 5,
+    "chapterTitle": "Chapter 5: Real-World Case Studies",
+    "title": "Case Study — The 2016 Sterling Flash Crash",
+    "keyIdea": "The pound fell about 6% in two minutes with no major news, driven by thin overnight liquidity and a stop-and-algorithm cascade — showing that execution and liquidity risk can hurt you even when your direction is right.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "In the very early hours of 7 October 2016 — just after midnight in London, the quietest stretch of the trading day — the British pound suddenly fell off a cliff. GBP/USD dropped about 6% in roughly two minutes, plunging to a 31-year low around 1.18, before recovering much of the loss almost as quickly."
+      },
+      {
+        "type": "paragraph",
+        "text": "What makes this case different from the Swiss franc shock is that there was no single dramatic announcement behind it. No central bank moved. No headline number was released. A currency of a major economy simply lost a large fraction of its value in minutes and then partly reappeared, in a market that is supposed to be the most liquid on earth."
+      },
+      {
+        "type": "definition",
+        "term": "Flash Crash",
+        "text": "A very rapid, deep price drop that reverses within minutes, driven by a collapse in liquidity and the interaction of automated orders rather than by fundamental news."
+      },
+      {
+        "type": "paragraph",
+        "text": "An official investigation gave the clearest answer, and its most useful conclusion is that there was no single cause."
+      },
+      {
+        "type": "example",
+        "text": "The Bank for International Settlements — the same body behind the currency-turnover survey you met in Chapter 1 — convened its Markets Committee to study the event. Its report concluded that a range of factors, not one trigger, combined to cause the crash. The time of day made the sterling market unusually thin, so order flow was easily overwhelmed. On top of that came genuine selling pressure — including demand to sell pounds to hedge options positions — and, critically, the execution of stop-loss orders, with algorithmic systems adding to the selling into a market with almost no one on the other side."
+      },
+      {
+        "type": "image",
+        "svg": "forex-ch5-sterling-flash-crash",
+        "alt": "Diagram of GBP/USD falling about 6 percent in two minutes to a 31-year low near 1.18 in the thin overnight session then mostly recovering, the BIS finding of no single cause (thin time-of-day liquidity, options-hedging sell flow, stop-loss cascade, and algorithms), and the lesson that thin liquidity and timing are real execution risks",
+        "caption": "The two-minute plunge, the BIS finding of no single cause, and where each factor was met earlier in the course."
+      },
+      {
+        "type": "paragraph",
+        "text": "Every piece of that maps onto something you already know. Thin liquidity is the flip side of the bid-ask spread from Chapter 1, Lesson 4 — when few participants are willing to trade, prices move much further for a given order. The stop-loss cascade is the stop-out mechanics of Chapter 3, Lesson 2 at market scale: falling prices trigger stops, which become market sell orders, which push prices lower, which trigger more stops. And the timing is the mirror image of the economic-calendar discipline in Chapter 2, Lesson 4 — the market was fragile precisely because it was the hour when almost no one was trading."
+      },
+      {
+        "type": "warning",
+        "text": "A flash crash is not really about the news that started it. It is about a market so thin that a modest imbalance meets no resistance, and automated stop and hedging orders feed on each other. The same sell order that barely moves price during the busy London afternoon can crater it at one in the morning. Liquidity, not headlines, decided how far this move went."
+      },
+      {
+        "type": "paragraph",
+        "text": "The Swiss franc shock taught that a stop-loss may not fill at its level. The sterling flash crash sharpens the point: even without any fundamental reason, the market itself can move against you faster than any exit can keep up — and then move back, having taken out your position on the way."
+      },
+      {
+        "type": "example",
+        "text": "Consider a trader holding a long pound position with a sensible stop, asleep during the London night. The flash crash triggers the stop deep in the plunge, filling far below its level in the thin market — and then price recovers within minutes. The trader is left with a real, oversized loss from a move that had largely reversed by the time they woke. They were not wrong about the pound. They were caught by when and how the market moved, not by which direction it ultimately went."
+      },
+      {
+        "type": "warning",
+        "text": "This is why the course keeps insisting that execution and risk control matter more than prediction. Two defences would have softened this: trading the pound during liquid hours rather than holding naked exposure through the thinnest part of the night, and sizing so that even a violent, illiquid spike against you is survivable. Neither requires predicting the crash — only respecting that liquidity and timing are real risks, not background details."
+      },
+      {
+        "type": "practice",
+        "text": "Build these habits: Know the quiet hours for the pairs you trade — thin sessions (deep night for a currency's home market) are where small imbalances become large moves. Treat any stop held through an illiquid period as one that may fill far from its level, exactly as in a gap. Recognise a stop cascade — falling price triggering stops that push price lower still — as the same stop-out mechanism from Chapter 3, Lesson 2 at market scale. And judge your exposure by what a thin-market spike could do to it, not only by whether your directional view is right."
+      }
+    ],
+    "quiz": [
+      {
+        "question": "According to the BIS report, what best explains the severity of the 2016 sterling flash crash?",
+        "options": [
+          "A single major news announcement",
+          "A combination of factors — very thin overnight liquidity, options-hedging sell flow, stop-loss execution, and algorithms — with no single cause",
+          "The Bank of England raising interest rates",
+          "A permanent change in the pound's value"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — the BIS Markets Committee found a range of factors combined, led by the extreme thinness of the market at that hour, rather than one dramatic trigger.",
+        "feedbackWrong": "Not quite — the BIS found no single cause: thin overnight liquidity, options hedging, stop-loss execution and algorithms combined."
+      },
+      {
+        "question": "How does a stop cascade deepen a flash crash?",
+        "options": [
+          "Stops cancel each other out and calm the market",
+          "Falling prices trigger stop-losses that become market sell orders, pushing prices lower and triggering still more stops",
+          "Stops guarantee execution at the set price, preventing losses",
+          "Stops only apply during liquid hours"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — it is the stop-out mechanism from Chapter 3, Lesson 2 at scale: each wave of triggered stops adds selling into a thin market, driving price down and setting off the next wave.",
+        "feedbackWrong": "Not quite — triggered stops become market sell orders that push price lower, triggering more stops: the stop-out mechanism at market scale."
+      },
+      {
+        "question": "True or False: because the pound largely recovered within minutes, a trader holding a stop through the crash would have been unharmed.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — a stop triggered in the plunge fills in the thin market, far below its level, locking in a real loss even though price recovered soon after. The recovery does not undo an exit that already happened.",
+        "feedbackWrong": "Not quite — the stop fills deep in the plunge, locking in a real loss, and a later recovery cannot undo an exit that already executed."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Flash Crash",
+        "def": "A rapid, deep price drop that reverses within minutes, driven by collapsing liquidity and automated orders rather than news."
+      }
+    ]
   }
 ];
 
@@ -3899,6 +4226,147 @@ window.SCERE_FOREX_SVGS = {
   <text x="605" y="516" text-anchor="middle" font-size="10.5" font-style="italic" fill="#94a3b8">Trade the plan, not the mood.</text>
 
   <text x="450" y="576" text-anchor="middle" font-size="11" font-style="italic" fill="#94a3b8">No one removes fear and greed -- professionals included. You build a process that makes them irrelevant to the decision.</text>
+</svg>
+`,
+  'forex-ch5-carry-unwind': `
+<svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="560" fill="#0f172a"/>
+  <text x="450" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#e2e8f0">The Yen Carry Trade Unwind (AUD/JPY, 2007-2008)</text>
+  <text x="450" y="55" text-anchor="middle" font-size="12" font-style="italic" fill="#94a3b8">Steady income for years, then a sudden correlated crash -- exactly as the evidence warned.</text>
+
+  <!-- chart -->
+  <rect x="40" y="74" width="500" height="240" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <text x="52" y="94" font-size="10.5" fill="#94a3b8">AUD/JPY</text>
+  <line x1="70" y1="110" x2="520" y2="110" stroke="#334155" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="44" y="114" font-size="10" fill="#94a3b8">108</text>
+  <line x1="70" y1="270" x2="520" y2="270" stroke="#334155" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="48" y="274" font-size="10" fill="#94a3b8">55</text>
+  <!-- rising then collapse -->
+  <polyline points="70,210 180,175 280,140 350,112 380,120 420,175 470,250 520,268" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+  <polyline points="350,112 380,120 420,175 470,250 520,268" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+  <text x="95" y="200" font-size="10.5" fill="#22c55e">Build-up 2004-2007: yen weak,</text>
+  <text x="95" y="214" font-size="10.5" fill="#22c55e">AUD strong, carry pays.</text>
+  <text x="300" y="104" font-size="10.5" font-weight="bold" fill="#22c55e">Peak ~107.80 (Oct 2007)</text>
+  <text x="360" y="300" font-size="10.5" font-weight="bold" fill="#ef4444">2008: -45% to ~55</text>
+
+  <!-- build-up panel -->
+  <rect x="560" y="74" width="300" height="112" rx="8" fill="rgba(34,197,94,0.12)" stroke="#22c55e" stroke-width="2"/>
+  <text x="580" y="96" font-size="12.5" font-weight="bold" fill="#22c55e">The trade (paid twice)</text>
+  <text x="580" y="118" font-size="11" fill="#cbd5e1">Borrow yen at ~0.5% (BoJ),</text>
+  <text x="580" y="133" font-size="11" fill="#cbd5e1">buy AUD at ~6.75% (RBA):</text>
+  <text x="580" y="150" font-size="11" font-weight="bold" fill="#22c55e">~5% rate gap, plus a rising pair.</text>
+  <text x="580" y="172" font-size="10.5" font-style="italic" fill="#94a3b8">"Free money" -- steady and calm.</text>
+
+  <!-- unwind panel -->
+  <rect x="560" y="194" width="300" height="120" rx="8" fill="rgba(239,68,68,0.12)" stroke="#ef4444" stroke-width="2"/>
+  <text x="580" y="216" font-size="12.5" font-weight="bold" fill="#ef4444">The unwind (2008)</text>
+  <text x="580" y="238" font-size="11" fill="#cbd5e1">Crisis hits: everyone closes at once.</text>
+  <text x="580" y="255" font-size="11" fill="#cbd5e1">Closing = buying yen back, together,</text>
+  <text x="580" y="270" font-size="11" fill="#cbd5e1">so the yen surges. Crowded exit.</text>
+  <text x="580" y="292" font-size="11" fill="#cbd5e1">Years of interest lost in weeks.</text>
+
+  <!-- lesson strip -->
+  <rect x="40" y="330" width="820" height="130" rx="10" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="2"/>
+  <text x="60" y="354" font-size="14" font-weight="bold" fill="#3b82f6">What the evidence already told you (Ch2 L3)</text>
+  <text x="60" y="378" font-size="11.5" fill="#cbd5e1">Menkhoff, Sarno, Schmeling and Schrimpf (2012): carry returns are steady in calm periods and crash together</text>
+  <text x="60" y="396" font-size="11.5" fill="#cbd5e1">when volatility spikes. Brunnermeier, Nagel and Pedersen ("Carry Trades and Currency Crashes"): the same shape.</text>
+  <text x="60" y="420" font-size="12" font-weight="bold" fill="#3b82f6">The steady income is payment for bearing crash risk -- not a free lunch. 2008 was the year it was called.</text>
+  <text x="60" y="444" font-size="11" font-style="italic" fill="#94a3b8">A strategy that pays a little reliably with rare severe blow-ups is being paid a premium for a risk not yet shown up.</text>
+
+  <text x="450" y="502" text-anchor="middle" font-size="12" font-style="italic" fill="#e2e8f0">Size a carry position for the crash, not the calm. The quiet years are not the ones that decide survival.</text>
+</svg>
+`,
+  'forex-ch5-snb-shock': `
+<svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="560" fill="#0f172a"/>
+  <text x="450" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#e2e8f0">The 2015 Swiss Franc Shock (EUR/CHF, 15 January 2015)</text>
+  <text x="450" y="55" text-anchor="middle" font-size="12" font-style="italic" fill="#94a3b8">A guaranteed floor withdrawn without warning -- a genuine black swan.</text>
+
+  <!-- chart area -->
+  <rect x="40" y="74" width="500" height="230" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <text x="52" y="94" font-size="10.5" fill="#94a3b8">EUR/CHF</text>
+  <!-- axis marks -->
+  <line x1="70" y1="120" x2="520" y2="120" stroke="#334155" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="46" y="124" font-size="10" fill="#94a3b8">1.20</text>
+  <line x1="70" y1="250" x2="520" y2="250" stroke="#334155" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="46" y="254" font-size="10" fill="#94a3b8">0.85</text>
+  <text x="46" y="190" font-size="10" fill="#94a3b8">1.00</text>
+  <!-- price path: flat floor then collapse then partial recovery -->
+  <polyline points="70,120 300,119 340,120 348,250 360,205 400,198 520,196" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+  <text x="120" y="112" font-size="10.5" fill="#22c55e">Floor held since Sep 2011: SNB defends 1.20</text>
+  <line x1="348" y1="130" x2="348" y2="245" stroke="#fde68a" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="356" y="240" font-size="10.5" font-weight="bold" fill="#ef4444">Jan 15: floor</text>
+  <text x="356" y="254" font-size="10.5" font-weight="bold" fill="#ef4444">abandoned</text>
+  <text x="356" y="285" font-size="10.5" fill="#cbd5e1">-30% intraday, as low as ~0.85;</text>
+  <text x="356" y="298" font-size="10.5" fill="#cbd5e1">liquidity vanished within seconds.</text>
+
+  <!-- fallout -->
+  <rect x="560" y="74" width="300" height="230" rx="8" fill="rgba(239,68,68,0.12)" stroke="#ef4444" stroke-width="2"/>
+  <text x="580" y="96" font-size="13" font-weight="bold" fill="#ef4444">The fallout</text>
+  <text x="580" y="120" font-size="11" fill="#cbd5e1">FXCM: ~$225M client negative</text>
+  <text x="580" y="135" font-size="11" fill="#cbd5e1">balances; ~$300M emergency bailout.</text>
+  <text x="580" y="158" font-size="11" fill="#cbd5e1">Alpari (UK): entered insolvency.</text>
+  <text x="580" y="181" font-size="11" fill="#cbd5e1">Everest Capital Global: ~$1B loss</text>
+  <text x="580" y="196" font-size="11" fill="#cbd5e1">(short-franc bet), fund closed.</text>
+  <text x="580" y="219" font-size="11" fill="#cbd5e1">Bank of England study: algo traders</text>
+  <text x="580" y="234" font-size="11" fill="#cbd5e1">pulling liquidity made it worse.</text>
+  <text x="580" y="268" font-size="10.5" font-style="italic" fill="#94a3b8">Some traders ended up owing more</text>
+  <text x="580" y="282" font-size="10.5" font-style="italic" fill="#94a3b8">than their whole account, on one trade.</text>
+
+  <!-- lesson strip -->
+  <rect x="40" y="320" width="820" height="130" rx="10" fill="rgba(34,197,94,0.12)" stroke="#22c55e" stroke-width="2"/>
+  <text x="60" y="344" font-size="14" font-weight="bold" fill="#22c55e">What the course's principles did</text>
+  <text x="60" y="368" font-size="11.5" fill="#cbd5e1">Stops triggered but filled hundreds of pips away -- a stop guarantees a trigger, not a fill (Ch1 L7).</text>
+  <text x="60" y="388" font-size="11.5" fill="#cbd5e1">Ruined accounts were over-leveraged; a gap larger than the free-margin cushion blew through it (Ch3 L2).</text>
+  <text x="60" y="408" font-size="11.5" fill="#cbd5e1">Small position size turned catastrophe into a survivable loss (Ch3 L1). Negative balance protection: born here (Ch1 L6).</text>
+  <text x="60" y="432" font-size="12" font-weight="bold" fill="#22c55e">Survival was not about being right. It was about being sized to be wrong.</text>
+
+  <text x="450" y="482" text-anchor="middle" font-size="12" font-style="italic" fill="#e2e8f0">A "once in ten thousand years" move by the bell curve -- on an ordinary Thursday. Fat tails are normal (Ch2 L2).</text>
+  <text x="450" y="518" text-anchor="middle" font-size="10.5" font-style="italic" fill="#94a3b8">Figures from FXCM's published data, Bank of England analysis, and contemporaneous reporting.</text>
+</svg>
+`,
+  'forex-ch5-sterling-flash-crash': `
+<svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="560" fill="#0f172a"/>
+  <text x="450" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#e2e8f0">The 2016 Sterling Flash Crash (GBP/USD, 7 October 2016)</text>
+  <text x="450" y="55" text-anchor="middle" font-size="12" font-style="italic" fill="#94a3b8">Down ~6% in two minutes, then mostly back -- no headline, just an empty market.</text>
+
+  <!-- chart -->
+  <rect x="40" y="74" width="500" height="230" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <text x="52" y="94" font-size="10.5" fill="#94a3b8">GBP/USD, deep in the Asian session</text>
+  <line x1="70" y1="120" x2="520" y2="120" stroke="#334155" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="44" y="124" font-size="10" fill="#94a3b8">1.26</text>
+  <line x1="70" y1="250" x2="520" y2="250" stroke="#334155" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="44" y="254" font-size="10" fill="#94a3b8">1.18</text>
+  <!-- flat, sharp V, partial recovery -->
+  <polyline points="70,120 250,121 280,120 300,250 315,230 340,175 400,165 520,160" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+  <text x="95" y="112" font-size="10.5" fill="#cbd5e1">Quiet, thin overnight market</text>
+  <text x="300" y="275" font-size="10.5" font-weight="bold" fill="#ef4444">~6% in ~2 min to a 31-year low ~1.18</text>
+  <text x="360" y="150" font-size="10.5" fill="#fde68a">then mostly recovered, minutes later</text>
+
+  <!-- causes -->
+  <rect x="560" y="74" width="300" height="230" rx="8" fill="rgba(234,179,8,0.12)" stroke="#eab308" stroke-width="2"/>
+  <text x="580" y="96" font-size="12.5" font-weight="bold" fill="#fde68a">BIS report: no single cause</text>
+  <text x="580" y="122" font-size="11" fill="#cbd5e1">1. Time of day -- the thinnest,</text>
+  <text x="580" y="137" font-size="11" fill="#cbd5e1">least-liquid hour of the day.</text>
+  <text x="580" y="162" font-size="11" fill="#cbd5e1">2. Options-hedging: real demand</text>
+  <text x="580" y="177" font-size="11" fill="#cbd5e1">to sell pounds.</text>
+  <text x="580" y="202" font-size="11" fill="#cbd5e1">3. Stop-loss execution triggering</text>
+  <text x="580" y="217" font-size="11" fill="#cbd5e1">a cascade of market sell orders.</text>
+  <text x="580" y="242" font-size="11" fill="#cbd5e1">4. Algorithms selling into a market</text>
+  <text x="580" y="257" font-size="11" fill="#cbd5e1">with almost no one on the other side.</text>
+  <text x="580" y="286" font-size="10.5" font-style="italic" fill="#94a3b8">A modest imbalance met no resistance.</text>
+
+  <!-- lesson strip -->
+  <rect x="40" y="320" width="820" height="128" rx="10" fill="rgba(34,197,94,0.12)" stroke="#22c55e" stroke-width="2"/>
+  <text x="60" y="344" font-size="14" font-weight="bold" fill="#22c55e">Where you have seen each piece before</text>
+  <text x="60" y="368" font-size="11.5" fill="#cbd5e1">Thin liquidity is the flip side of the spread (Ch1 L4): fewer participants, so price moves further per order.</text>
+  <text x="60" y="388" font-size="11.5" fill="#cbd5e1">The stop cascade is the stop-out mechanism (Ch3 L2) at market scale: stops trigger stops trigger stops.</text>
+  <text x="60" y="408" font-size="11.5" fill="#cbd5e1">The timing is the calendar discipline (Ch2 L4) in reverse: the market was fragile because almost no one traded.</text>
+  <text x="60" y="432" font-size="12" font-weight="bold" fill="#22c55e">A stop held through the plunge filled far below its level -- then price recovered. Right on direction, wrecked on execution.</text>
+
+  <text x="450" y="484" text-anchor="middle" font-size="12" font-style="italic" fill="#e2e8f0">Execution and liquidity are real risks, not background detail. Trade liquid hours; size for a thin-market spike.</text>
+  <text x="450" y="516" text-anchor="middle" font-size="10.5" font-style="italic" fill="#94a3b8">Source: BIS Markets Committee report on the 7 October 2016 sterling flash event.</text>
 </svg>
 `,
 };

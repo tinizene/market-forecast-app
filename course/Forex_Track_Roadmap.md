@@ -49,6 +49,12 @@
 ## Chapter 5: Real-World Case Studies
 *Capstone chapter — walks through actual historical FX market events using everything from Chapters 1–4 together, closing the "what to look for" thread that's run through the entire course since Foundations Chapter 1.*
 
+1. The 2015 Swiss Franc Shock — ✅ drafted *(black-swan floor removal; stops/stop-outs fail in a liquidity vacuum; survivors were small-sized. Facts verified live: FXCM ~$225M client negative balances + ~$300M bailout, Alpari UK insolvency, Everest Capital ~$1B loss, BoE algo study. Ties Ch1 L7, Ch2 L2 fat tails, Ch3 L1/L2)*
+2. The Yen Carry Trade Unwind of 2008 — ✅ drafted *(AUD/JPY ~107.80 Oct 2007 → ~55 Oct 2008, ~45% collapse; carry = crash-risk compensation. Reuses the course-verified Menkhoff et al. 2012 plus Brunnermeier/Nagel/Pedersen "Carry Trades and Currency Crashes". Ties Ch2 L3)*
+3. The 2016 Sterling Flash Crash — ✅ drafted *(GBP/USD ~6% in ~2 min to a 31-year low ~1.18; BIS Markets Committee report — no single cause: thin liquidity + options hedging + stop cascade + algos. Ties Ch1 L4, Ch3 L2, Ch2 L4)*
+
+**Chapter 5 complete — 3/3 case studies drafted.**
+
 ## Chapter 6: Building a Professional Trade Process
 *Added following a user-provided professional trade-thesis template (citations independently verified — see note below). This is genuinely advanced material, not beginner content: it assumes working familiarity with carry trades, factor investing, positioning data, and valuation concepts this course hasn't taught yet. It only makes sense placed after Chapters 1–5, once a student has the vocabulary to use it. Kept as a fully separate chapter from Chapter 5 — not merged.*
 

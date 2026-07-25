@@ -19,11 +19,12 @@
     <div class="app-bg" aria-hidden="true"></div>
     <div class="relative z-10 max-w-2xl mx-auto pb-8" id="mainReadScope">
 
-        <header class="text-center my-6 relative">
-            <a href="./index.html" class="absolute top-0 left-0 text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg transition">&larr; Markets</a>
-            <h1 class="text-2xl font-bold tracking-wide">Learn</h1>
-            <p class="text-slate-400 text-sm">The safest way in, for a complete beginner</p>
-            <p class="text-[11px] uppercase tracking-[0.15em] text-blue-300 mt-1">Get Rich Slow</p>
+        <div id="siteNav" data-active="learn"></div>
+
+        <header class="text-center my-4 relative">
+            <p class="text-[11px] uppercase tracking-[0.15em] text-blue-300">Get Rich Slow · the education program</p>
+            <h1 class="text-2xl font-bold tracking-wide mt-1">Start free. Go as deep as you like.</h1>
+            <p class="text-slate-400 text-sm mt-1">Everyone begins with the same free Foundation — then choose the market you want to trade.</p>
         </header>
 
         <div class="mb-6 rounded-xl border border-amber-600/50 bg-amber-900/20 px-4 py-3 text-xs text-amber-200" role="note">
@@ -84,12 +85,25 @@
              separate, disconnected "tools" section. -->
         <div id="lessonsRoot" class="space-y-6"></div>
 
+        <!-- Bridge to the Research Desk — the funnel closes here: the paid course
+             teaches the six-pillar framework, the Research Desk shows it applied on
+             live markets with an open track record of how past calls turned out. -->
+        <a href="./research.html" class="advisory-card alert-teaser mt-8 !no-underline">
+            <span class="advisory-icon">🔎</span>
+            <div>
+                <p class="font-semibold text-sm">Finished the framework? See it applied.</p>
+                <p class="text-xs opacity-90 mt-0.5">The Research Desk scores a live market with this exact six-pillar method every day — and shows how past calls actually turned out, wins and invalidations, in the open.</p>
+            </div>
+        </a>
+
         <footer class="mt-10 text-center text-xs text-slate-500">
             Fund facts (expense ratios, index tracked) are curated from each issuer's own official page — see the source link on each row of the fee table above. Historical return and dividend figures come from Alpha Vantage's published, dividend-adjusted price series.
             <br>
             <span class="block mt-2 max-w-sm mx-auto">Nothing on this page is financial advice or a recommendation to buy or sell any security. Data may be delayed or incomplete. Consult a licensed financial advisor before making investment decisions.</span>
             <br>
             <a href="./privacy-policy.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Privacy Policy</a>
+            ·
+            <a href="./research.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Research Desk</a>
             ·
             <a href="./daily-report.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Daily Dashboard</a>
             ·
@@ -99,6 +113,7 @@
         </footer>
     </div>
 
+    <script src="./nav.js"></script>
     <script src="./instruments.js"></script>
     <script src="./fund-facts.js"></script>
     <script src="./foundation-content.js"></script>

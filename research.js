@@ -1,0 +1,301 @@
+// The Research Desk — renders the daily FX pipeline (data/fx-reports) as a
+// decision-ready, paywall-gated view:
+//   • Regime + top idea + track record are FREE (the honest-skepticism hook).
+//   • Today's live theses are a locked preview (blurred entries/targets/scorecards).
+// Every value is machine-parsed from the same latest.json the FX Intelligence Desk
+// uses — no second judgment layered on top. Degrades to a clear "no data" state.
+
+const DATA_DIR = './data/fx-reports';
+
+function escapeHtml(str) {
+  return String(str == null ? '' : str)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+// ---- classification helpers ---------------------------------------------
+
+// Map a free-text outcome string to one of: 'win' | 'inv' | 'pending'.
+function classifyOutcome(text) {
+  const t = String(text || '').toLowerCase();
+  if (/pending/.test(t)) return 'pending';
+  if (/invalidat|stopped out|stop (hit|triggered|taken)|hit .*stop|closed[^.]*loss/.test(t)) return 'inv';
+  if (/\bwin\b|won\b|target (hit|reached|met)|hit .*target|played out|closed[^.]*(win|profit|target)|double-target/.test(t)) return 'win';
+  return 'pending';
+}
+
+// Pull headline counts out of the hitRateSummary sentence, when present.
+function parseHitRate(text) {
+  const t = String(text || '');
+  const grab = (re) => { const m = t.match(re); return m ? parseInt(m[1], 10) : null; };
+  const wins = grab(/(\d+)\s+(?:played out|won|win)/i);
+  const inv = grab(/(\d+)\s+invalidated/i);
+  const pending = grab(/(\d+)\s+still pending/i);
+  const total = grab(/out of\s+(\d+)\s+total/i);
+  if (wins == null && inv == null && pending == null) return null;
+  return { wins: wins || 0, inv: inv || 0, pending: pending || 0, total: total };
+}
+
+// "14/35" -> { num: 14, den: 35, pct: 40 }
+function parseScore(contribution) {
+  const m = String(contribution || '').match(/([\d.]+)\s*\/\s*([\d.]+)/);
+  if (!m) return null;
+  const num = parseFloat(m[1]), den = parseFloat(m[2]);
+  if (!den) return null;
+  return { num, den, pct: Math.max(0, Math.min(100, (num / den) * 100)) };
+}
+
+function directionMeta(text) {
+  const t = String(text || '').toLowerCase();
+  if (/\bbear|short\b/.test(t)) return { label: 'BEARISH', cls: 'trend-down' };
+  if (/\bbull|long\b/.test(t)) return { label: 'BULLISH', cls: 'trend-up' };
+  return { label: '', cls: 'alert-low' };
+}
+
+// ---- renderers -----------------------------------------------------------
+
+function renderRegimeHero(data) {
+  const regime = data.regime || {};
+  const ds = data.decisionSummary || {};
+  const top = ds.topIdea;
+  const regimeShort = regime.classification
+    ? regime.classification.split('—')[0].split(',')[0].trim()
+    : 'Market Regime';
+  const overall = ds.overallConfidence != null ? ds.overallConfidence : null;
+  const dateLabel = data.reportDateLabel || data.reportDate || '';
+
+  let topHtml = '';
+  if (top) {
+    const dir = directionMeta(top.direction || top.label);
+    topHtml = `
+      <div class="mt-4 pt-4 border-t border-white/20 flex items-center gap-4 flex-wrap">
+        <div class="flex-1 min-w-[9rem]">
+          <p class="text-[11px] uppercase tracking-wide text-blue-100/80 font-semibold">Top idea today</p>
+          <p class="text-lg font-bold mt-0.5">${escapeHtml(top.label || '')}${dir.label ? ` <span class="text-xs font-semibold align-middle opacity-80">${dir.label}</span>` : ''}</p>
+        </div>
+        ${top.confidence != null ? `<div class="text-center">
+          <div class="text-3xl font-extrabold leading-none">${escapeHtml(top.confidence)}</div>
+          <div class="text-[11px] text-blue-100/80 mt-0.5">confidence /100</div>
+        </div>` : ''}
+      </div>`;
+  }
+
+  document.getElementById('regimeHero').innerHTML = `
+    <p class="text-[11px] uppercase tracking-[0.15em] text-blue-100/80 font-semibold">Today's regime${dateLabel ? ` · ${escapeHtml(dateLabel)}` : ''}</p>
+    <h2 class="text-lg font-bold mt-1 leading-snug">${escapeHtml(regimeShort)}</h2>
+    ${overall != null ? `<p class="text-blue-100/90 text-sm mt-2">Overall market confidence <b>${escapeHtml(overall)}/100</b> — the desk's read on how tradable conditions are right now.</p>` : ''}
+    ${topHtml}
+  `;
+}
+
+function renderNoTrade(data) {
+  const nt = data.noTradeZone;
+  const section = document.getElementById('noTradeSection');
+  if (!nt || !nt.flagged) { section.classList.add('hidden'); return; }
+  section.classList.remove('hidden');
+  document.getElementById('noTradeFlag').innerHTML = `
+    <div class="advisory-card alert-moderate !items-start">
+      <span class="advisory-icon">⚠️</span>
+      <div>
+        <p class="font-semibold text-sm">No-Trade Zone flagged</p>
+        <p class="text-xs opacity-90 mt-0.5">${escapeHtml(nt.text || 'Conditions argue for caution — the desk is flagging elevated risk of whipsaw or event-driven noise.')}</p>
+      </div>
+    </div>`;
+}
+
+function renderTrackRecord(data) {
+  const pr = data.performanceReview || {};
+  const root = document.getElementById('trackRecord');
+  const ideas = Array.isArray(pr.ideas) ? pr.ideas : [];
+  const hr = parseHitRate(pr.hitRateSummary);
+
+  let summaryHtml = '';
+  if (hr) {
+    summaryHtml = `<span class="record-summary"><b>${hr.wins} win${hr.wins === 1 ? '' : 's'}</b> · ${hr.inv} invalidated · ${hr.pending} pending${hr.total ? ` · ${hr.total} total` : ''}</span>`;
+  }
+
+  const rows = ideas.map((it) => {
+    const status = classifyOutcome(it.outcome);
+    const chip = status === 'win'
+      ? '<span class="status-chip win">Win</span>'
+      : status === 'inv'
+        ? '<span class="status-chip inv">Invalidated</span>'
+        : '<span class="status-chip pending">Open</span>';
+    // Idea label = everything before the first "Entry"; keep the (date) if present.
+    const raw = String(it.idea_as_published || '');
+    const label = raw.split(/\.\s*Entry|,?\s*Entry/i)[0].replace(/\s*—\s*(Bullish|Bearish)\.?/i, ' · $1').trim() || 'Idea';
+    const pl = String(it.hypothetical_p_l_if_followed || '');
+    const plShort = pl.split('—')[0].trim().slice(0, 60);
+    const plCls = /\+|favorable|profit|win/i.test(pl) && !/n\/?a|flat|pending/i.test(pl.split('—')[0]) ? 'pos'
+      : /-\d|loss|stopped/i.test(pl.split('—')[0]) ? 'neg' : 'na';
+    return `
+      <div class="record-row">
+        <div>
+          <div class="rr-idea">${escapeHtml(label)}</div>
+          ${plShort ? `<div class="rr-sub">${escapeHtml(plShort)}</div>` : ''}
+        </div>
+        ${chip}
+        <div class="rr-pl ${plCls}">${status === 'pending' ? 'open' : (plCls === 'pos' ? 'win' : plCls === 'neg' ? 'loss' : '—')}</div>
+      </div>`;
+  }).join('');
+
+  if (!ideas.length && !hr) {
+    root.innerHTML = '<div class="record-card"><div class="record-row"><div class="rr-idea text-slate-400">No closed or open ideas recorded yet for this report.</div></div></div>';
+    return;
+  }
+
+  root.innerHTML = `
+    <div class="record-card">
+      <div class="record-head">
+        <span class="pro-badge" style="background:linear-gradient(90deg,#22c55e,#16a34a)">Free</span>
+        <strong class="text-sm">Every call, tracked in the open</strong>
+        ${summaryHtml}
+      </div>
+      ${rows}
+    </div>
+    ${pr.hitRateSummary ? `<p class="text-[11px] text-slate-500 mt-1 px-1">${escapeHtml(pr.hitRateSummary)}</p>` : ''}`;
+}
+
+function renderScoreBars(scoring) {
+  const rows = (scoring && Array.isArray(scoring.rows)) ? scoring.rows : [];
+  if (!rows.length) return '';
+  const bars = rows.map((r) => {
+    const s = parseScore(r.contribution);
+    const pct = s ? s.pct : 0;
+    return `
+      <div class="grid grid-cols-[1fr_auto] gap-2 items-center text-xs mb-1.5">
+        <div class="flex items-center gap-2">
+          <span class="text-slate-300 w-28 shrink-0">${escapeHtml(r.component || '')}</span>
+          <span class="flex-1 h-1.5 rounded-full bg-slate-700 overflow-hidden"><span class="block h-full bg-blue-500" style="width:${pct.toFixed(0)}%"></span></span>
+        </div>
+        <span class="font-mono text-slate-400">${escapeHtml(r.contribution || '')}</span>
+      </div>`;
+  }).join('');
+  return `<div class="w-full mt-2"><p class="text-[11px] uppercase tracking-wide text-slate-400 mb-1.5">Six-pillar score</p>${bars}</div>`;
+}
+
+function renderLiveIdeas(data) {
+  const ti = data.tradeIdeas || {};
+  const ideas = Array.isArray(ti.ideas) ? ti.ideas : [];
+  const root = document.getElementById('liveIdeas');
+  const unlockBtn = document.getElementById('unlockBtn');
+
+  if (!ideas.length) {
+    root.innerHTML = '<div class="advisory-card"><p class="text-sm text-slate-400">No open trade ideas on the desk today — often the most honest call there is.</p></div>';
+    if (unlockBtn) unlockBtn.classList.add('hidden');
+    return;
+  }
+
+  root.innerHTML = ideas.map((idea) => {
+    // Free head: pair + direction + confidence + score bars.
+    const headlineCore = String(idea.headline || '')
+      .replace(/^Idea\s*\d+:\s*/i, '')
+      .split('(')[0]
+      .replace(/\s*—\s*(Bullish|Bearish).*$/i, '')
+      .trim();
+    const dir = directionMeta(idea.headline || (idea.fields && idea.fields.Bias));
+    const conf = idea.totalConfidence != null ? idea.totalConfidence : null;
+
+    // Locked body: actionable levels + per-pillar reasoning + confirmation.
+    const f = idea.fields || {};
+    const fieldOrder = ['Bias', 'Entry Zone', 'Target(s)', 'Stop / Invalidation', 'Risk/Reward'];
+    const fieldsHtml = fieldOrder.filter((k) => f[k]).map((k) => `
+      <div class="grid grid-cols-[8.5rem_1fr] gap-2 py-1 border-b border-slate-700/50 text-xs">
+        <span class="text-slate-400">${escapeHtml(k)}</span>
+        <span class="text-slate-100 font-medium">${escapeHtml(f[k])}</span>
+      </div>`).join('');
+    const reasoningHtml = (idea.scoring && Array.isArray(idea.scoring.rows) ? idea.scoring.rows : [])
+      .filter((r) => r.reasoning)
+      .map((r) => `<li class="text-xs text-slate-400 mb-1"><span class="text-slate-300 font-medium">${escapeHtml(r.component || '')}:</span> ${escapeHtml(r.reasoning)}</li>`).join('');
+    const confirmHtml = idea.confirmationCriteria
+      ? `<p class="text-xs text-slate-400 mt-2"><span class="text-slate-300 font-medium">Confirmation:</span> ${escapeHtml(idea.confirmationCriteria)}</p>`
+      : '';
+
+    return `
+      <div class="advisory-card !items-start flex-col !flex">
+        <div class="flex items-center gap-2 flex-wrap w-full mb-1">
+          <span class="font-bold text-sm">${escapeHtml(headlineCore || 'Idea')}</span>
+          ${dir.label ? `<span class="text-[10px] font-bold px-2 py-0.5 rounded ${dir.cls}">${dir.label}</span>` : ''}
+          <span class="flex-1"></span>
+          ${conf != null ? `<span class="text-xs text-slate-400">score <b class="text-slate-200">${escapeHtml(conf)}/100</b></span>` : ''}
+          <span class="pro-badge">Thesis locked</span>
+        </div>
+        ${renderScoreBars(idea.scoring)}
+        <div class="lock-wrap w-full mt-3">
+          <div class="lock-blur">
+            <p class="text-[11px] uppercase tracking-wide text-slate-400 mb-1">The trade</p>
+            ${fieldsHtml || '<p class="text-xs text-slate-500">—</p>'}
+            ${reasoningHtml ? `<p class="text-[11px] uppercase tracking-wide text-slate-400 mt-3 mb-1">Why it scores this way</p><ul class="mt-1">${reasoningHtml}</ul>` : ''}
+            ${confirmHtml}
+          </div>
+          <div class="lock-over">
+            <div class="lock-ic">🔒</div>
+            <p class="lock-msg">Entries, targets, invalidation and the full scorecard unlock with a paid track.</p>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+
+  if (unlockBtn) {
+    unlockBtn.classList.remove('hidden');
+    unlockBtn.onclick = () => {
+      const wraps = root.querySelectorAll('.lock-wrap');
+      const nowUnlocked = !root.classList.contains('is-open');
+      root.classList.toggle('is-open', nowUnlocked);
+      wraps.forEach((w) => w.classList.toggle('is-unlocked', nowUnlocked));
+      unlockBtn.textContent = nowUnlocked ? '🔒 Re-lock preview' : '🔓 Unlock full theses (demo)';
+    };
+  }
+}
+
+// ---- data plumbing -------------------------------------------------------
+
+function renderReport(data) {
+  renderRegimeHero(data);
+  renderNoTrade(data);
+  renderTrackRecord(data);
+  renderLiveIdeas(data);
+  document.getElementById('loadingState').classList.add('hidden');
+  document.getElementById('errorState').classList.add('hidden');
+  document.getElementById('researchRoot').classList.remove('hidden');
+}
+
+async function fetchJson(url) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`${url} → ${res.status}`);
+  return res.json();
+}
+
+async function loadReport(dateKey) {
+  document.getElementById('loadingState').classList.remove('hidden');
+  document.getElementById('researchRoot').classList.add('hidden');
+  try {
+    const data = dateKey
+      ? await fetchJson(`${DATA_DIR}/history/${dateKey}.json`)
+      : await fetchJson(`${DATA_DIR}/latest.json`);
+    renderReport(data);
+  } catch (err) {
+    console.error('Failed to load research data:', err);
+    document.getElementById('loadingState').classList.add('hidden');
+    const errEl = document.getElementById('errorState');
+    errEl.textContent = 'No research data found yet. The daily pipeline writes to data/fx-reports/ — check back after the next scheduled run.';
+    errEl.classList.remove('hidden');
+  }
+}
+
+async function populateHistorySelect() {
+  const select = document.getElementById('historySelect');
+  try {
+    const index = await fetchJson(`${DATA_DIR}/index.json`);
+    const sorted = [...index].sort().reverse();
+    select.innerHTML = sorted.map((date, i) => `<option value="${date}" ${i === 0 ? 'selected' : ''}>${date}${i === 0 ? ' · latest' : ''}</option>`).join('');
+    select.addEventListener('change', () => loadReport(select.value));
+  } catch {
+    select.classList.add('hidden');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  populateHistorySelect();
+  loadReport(null);
+});

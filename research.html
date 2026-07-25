@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Research Desk — Scere Markets</title>
+    <meta name="theme-color" content="#0f172a">
+    <meta name="description" content="High-conviction ideas, scored daily with a weighted six-pillar framework — with an open track record of how past calls actually turned out. Educational only, not financial advice.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] } } } };
+    </script>
+</head>
+<body class="bg-slate-900 text-white font-sans min-h-screen p-4">
+    <div class="app-bg" aria-hidden="true"></div>
+    <div class="relative z-10 max-w-2xl mx-auto pb-8">
+
+        <div id="siteNav" data-active="research"></div>
+
+        <header class="text-center my-4 relative">
+            <p class="text-[11px] uppercase tracking-[0.2em] text-amber-300 mb-1">The research desk · paid</p>
+            <h1 class="text-2xl font-bold tracking-wide">High-Conviction Ideas</h1>
+            <p class="text-slate-400 text-sm mt-1">Real due-diligence research, scored daily — with the receipts</p>
+            <div class="absolute top-0 right-0">
+                <select id="historySelect" aria-label="Report date" class="text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white px-2 py-1.5 rounded-lg transition outline-none border border-slate-700"></select>
+            </div>
+        </header>
+
+        <div class="mb-4 rounded-xl border border-amber-600/50 bg-amber-900/20 px-4 py-3 text-xs text-amber-200" role="note">
+            ⚠️ Analytical scenarios for your own judgment — not personalized financial advice or a recommendation to trade. Verify every level on your own chart before acting.
+        </div>
+
+        <!-- How the desk works: track record is free and open; today's live theses are
+             a locked preview. This is the honest-skepticism promise made concrete —
+             you see how past calls turned out, wins and invalidations, before any wall. -->
+        <div class="advisory-card alert-teaser !items-start mb-6">
+            <span class="advisory-icon">🔎</span>
+            <div>
+                <p class="font-semibold text-sm">Track record is free and in the open.</p>
+                <p class="text-xs opacity-90 mt-0.5">Every closed idea shows its outcome — a win or an invalidation — before you hit any wall. Today's <em>live</em> theses (entries, targets, invalidation, full scorecards) unlock with a paid track. The exact six-pillar method is taught, step by step, in the <a href="./learn.html" class="underline decoration-blue-400/60 hover:text-white">Forex track</a>.</p>
+            </div>
+        </div>
+
+        <div id="loadingState" class="text-slate-400 text-sm text-center py-8">Loading the desk…</div>
+        <div id="errorState" class="hidden text-red-300 text-sm text-center py-8 bg-red-900/20 border border-red-600/40 rounded-xl"></div>
+
+        <div id="researchRoot" class="hidden space-y-8">
+
+            <!-- Today's regime + top idea — free hook -->
+            <section>
+                <div id="regimeHero" class="current-card bg-gradient-to-br from-blue-600 to-indigo-700 p-5 rounded-2xl shadow-xl"></div>
+            </section>
+
+            <section id="noTradeSection" class="hidden">
+                <div id="noTradeFlag"></div>
+            </section>
+
+            <!-- FREE track record — shown before any paywall -->
+            <section>
+                <h3 class="section-title">Track record — how past calls turned out</h3>
+                <div id="trackRecord" class="space-y-2"></div>
+            </section>
+
+            <!-- Locked-preview live theses -->
+            <section>
+                <div class="flex items-center justify-between gap-3 flex-wrap mb-3">
+                    <h3 class="section-title !mb-0">Today's live ideas</h3>
+                    <button id="unlockBtn" type="button" class="text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-amber-200 border border-amber-600/40 px-3 py-1.5 rounded-lg transition">🔓 Unlock full theses (demo)</button>
+                </div>
+                <p class="text-xs text-slate-400 mb-3">Headline and confidence score are free. The full thesis — entry, targets, invalidation and the weighted scorecard — is the locked preview.</p>
+                <div id="liveIdeas" class="space-y-4"></div>
+            </section>
+
+            <!-- Path back into the full desk + archive -->
+            <section>
+                <div class="advisory-card !items-start flex-col !flex">
+                    <p class="font-semibold text-sm mb-1">Want the whole report?</p>
+                    <p class="text-xs text-slate-400 mb-2">This desk is the decision-ready summary. The complete daily dashboard — currency strength, policy rates, correlations, catalysts and every section as generated — lives on the FX Intelligence Desk.</p>
+                    <div class="flex gap-2 flex-wrap">
+                        <a href="./fx-intelligence.html" class="text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg transition">Open the full FX Intelligence Desk →</a>
+                        <a href="./due-diligence.html" class="text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg transition">What due diligence looks like</a>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <footer class="mt-10 text-center text-xs text-slate-500">
+            Built on the same daily pipeline that writes <code>data/fx-reports/</code> — nothing new to generate. Every level is machine-parsed from the generated report.
+            <br>
+            <span class="block mt-2 max-w-sm mx-auto">Analytical scenarios for your own judgment — not personalized financial advice. Data may be delayed or incomplete. Consult a licensed financial advisor before making investment decisions.</span>
+            <br>
+            <a href="./privacy-policy.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Privacy Policy</a>
+            ·
+            <a href="./daily-report.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Daily Dashboard</a>
+            ·
+            <a href="./manifesto.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Manifesto</a>
+        </footer>
+    </div>
+
+    <script src="./nav.js"></script>
+    <script src="./research.js"></script>
+</body>
+</html>

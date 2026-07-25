@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scere Markets</title>
+    <title>Scere Markets — Get Rich Slow</title>
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#0f172a">
-    <meta name="description" content="Market forecasts, trend context, and financial newsletter digest for major indices, rates, and FX pairs. Educational only — not financial advice.">
+    <meta name="description" content="Learn to invest with the math on your side, then watch a rigorous six-pillar method applied to live markets every day. Educational only — not financial advice.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,82 +14,102 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
-                },
-            },
+            theme: { extend: { fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] } } },
         };
     </script>
 </head>
 <body class="bg-slate-900 text-white font-sans min-h-screen p-4">
     <div class="app-bg" aria-hidden="true"></div>
-    <div class="relative z-10 max-w-md mx-auto pb-8">
+    <div class="relative z-10 max-w-2xl mx-auto pb-8">
 
-        <header class="text-center my-6 relative">
-            <h1 class="text-2xl font-bold tracking-wide">Scere Markets</h1>
-            <p class="text-slate-400 text-sm">Forecasts · Analysis · Alerts</p>
-            <a href="./manifesto.html" class="inline-block mt-1 text-[11px] uppercase tracking-[0.15em] text-blue-300 hover:text-blue-200 transition">Get Rich Slow — our manifesto</a>
-            <div class="absolute top-0 right-0 flex gap-2">
-                <button id="proUpsellBtn" type="button" class="text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg transition">Pro <span class="pro-badge">Pro</span></button>
-            </div>
+        <div id="siteNav" data-active="home"></div>
+
+        <!-- ============ Mission-first hero ============ -->
+        <header class="text-center my-8">
+            <p class="text-[11px] uppercase tracking-[0.2em] text-blue-300 mb-2">Get Rich Slow</p>
+            <h1 class="text-3xl font-extrabold tracking-tight leading-tight">Build real wealth slowly — with the math on your side.</h1>
+            <p class="text-slate-400 text-sm sm:text-[15px] mt-3 max-w-lg mx-auto leading-relaxed">
+                Most beginners lose money to avoidable mistakes, not the market. Scere Markets teaches the method openly — then shows exactly how it holds up on live markets, every day, wins and misses in the open.
+            </p>
+            <a href="./manifesto.html" class="inline-block mt-3 text-xs font-semibold text-blue-300 hover:text-blue-200 transition">Read why we exist →</a>
         </header>
 
-        <!-- Instrument Selector -->
-        <div class="bg-slate-800 p-4 rounded-xl mb-4 shadow-lg">
-            <label for="instrumentSelect" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Instrument</label>
-            <select id="instrumentSelect" class="instrument-select w-full bg-slate-700 text-white rounded-lg p-3 outline-none border border-slate-600 focus:border-blue-500"></select>
-        </div>
+        <!-- ============ Two paths ============ -->
+        <section class="grid gap-3 sm:grid-cols-2 mb-8">
+            <a href="./learn.html" class="path-card path-free">
+                <span class="pro-badge" style="background:linear-gradient(90deg,#22c55e,#16a34a)">Free</span>
+                <h2 class="path-title">Learn the method</h2>
+                <p class="path-desc">Start with the free Foundation — what money, risk, and markets actually are — then go deep on Forex. Honest, evidence-checked, built for a complete beginner.</p>
+                <span class="path-cta">Start learning, free →</span>
+            </a>
+            <a href="./research.html" class="path-card path-paid">
+                <span class="paid-badge">The Research Desk</span>
+                <h2 class="path-title">Today's research</h2>
+                <p class="path-desc">See a live market scored with our six-pillar method — and exactly how past calls turned out, wins and invalidations, in the open before any paywall.</p>
+                <span class="path-cta">Open the research desk →</span>
+            </a>
+        </section>
 
-        <!-- Not-financial-advice banner — same role the weather app's "guidance only,
-             not official warnings" footer note played, just surfaced higher here given
-             the higher stakes of financial content. -->
-        <div class="mb-4 rounded-xl border border-amber-600/50 bg-amber-900/20 px-4 py-3 text-xs text-amber-200" role="note">
-            ⚠️ Educational context only — not financial advice. See the disclaimer in the footer.
-        </div>
-
-        <div id="apiKeyBanner" class="hidden mb-4 rounded-xl border border-red-600/50 bg-red-900/20 px-4 py-3 text-xs text-red-200" role="alert"></div>
-
-        <!-- New-here entry point — the education-first Learn section is meant to be
-             where a complete beginner starts, not something buried only in the footer. -->
-        <a href="./learn.html" class="advisory-card alert-teaser mb-4 !no-underline">
-            <span class="advisory-icon">📘</span>
+        <!-- Bridge to the manifesto (the "why") -->
+        <a href="./manifesto.html" class="advisory-card alert-teaser mb-8 !no-underline">
+            <span class="advisory-icon">🧭</span>
             <div>
-                <p class="font-semibold text-sm">New to investing? Start with Learn</p>
-                <p class="text-xs opacity-90 mt-0.5">What an index and an ETF actually are, why they beat gambling with small amounts, and the safest way in for a beginner.</p>
+                <p class="font-semibold text-sm">Our one promise: no false promises.</p>
+                <p class="text-xs opacity-90 mt-0.5">Risk before prediction. Verify every claim — including our own. No guaranteed returns, ever. Read the manifesto.</p>
             </div>
         </a>
 
-        <!-- Current quote -->
-        <div id="currentQuote" class="current-card bg-gradient-to-br from-blue-600 to-indigo-700 p-6 rounded-2xl text-center mb-4 shadow-xl hidden">
-            <h2 id="instrumentName" class="text-xl font-semibold mb-1">---</h2>
-            <div id="currentPrice" class="text-4xl font-extrabold my-2">--</div>
-            <p id="currentChange" class="text-blue-100 font-medium">--</p>
-            <p id="proxyNote" class="text-blue-200/70 text-[11px] mt-2"></p>
-        </div>
-
-        <div id="loadingState" class="text-slate-400 text-sm text-center py-8">Loading...</div>
-
-        <!-- Trend chart (inline SVG, no chart library — same bandwidth-conscious choice
-             as the weather app's temperature/precipitation graphs) -->
-        <section id="trendSection" class="mb-8 hidden">
-            <h3 class="section-title">Recent Trend</h3>
-            <div id="trendContent" class="row-card"></div>
-        </section>
-
-        <!-- Advisory cards -->
-        <section id="advisoriesSection" class="mb-8 hidden">
-            <h3 class="section-title">Market Context</h3>
-            <div id="advisoriesContent" class="space-y-3"></div>
-        </section>
-
-        <!-- Financial newsletter / market-commentary aggregator — the direct
-             counterpart to the weather app's "Future of Farming" RSS feed. -->
-        <section id="newsSection" class="mb-8">
-            <h3 class="section-title">📰 Market Newsletters &amp; Commentary</h3>
-            <div id="newsContainer" class="space-y-2">
-                <p class="text-slate-400 text-sm text-center py-4">Loading…</p>
+        <!-- ============ Simple market snapshot (secondary) ============ -->
+        <section class="mb-2">
+            <div class="flex items-center justify-between gap-3 mb-3">
+                <h3 class="section-title !mb-0">Market snapshot</h3>
+                <button id="proUpsellBtn" type="button" class="text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg transition">Pro <span class="pro-badge">Pro</span></button>
             </div>
+            <p class="text-xs text-slate-500 mb-3">A free live look at a major index, rate, or FX pair. Richer, paid data comes later — this is the simple snapshot for now.</p>
+
+            <!-- Instrument Selector -->
+            <div class="bg-slate-800 p-4 rounded-xl mb-4 shadow-lg">
+                <label for="instrumentSelect" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Instrument</label>
+                <select id="instrumentSelect" class="instrument-select w-full bg-slate-700 text-white rounded-lg p-3 outline-none border border-slate-600 focus:border-blue-500"></select>
+            </div>
+
+            <div class="mb-4 rounded-xl border border-amber-600/50 bg-amber-900/20 px-4 py-3 text-xs text-amber-200" role="note">
+                ⚠️ Educational context only — not financial advice. See the disclaimer in the footer.
+            </div>
+
+            <div id="apiKeyBanner" class="hidden mb-4 rounded-xl border border-red-600/50 bg-red-900/20 px-4 py-3 text-xs text-red-200" role="alert"></div>
+
+            <!-- Current quote -->
+            <div id="currentQuote" class="current-card bg-gradient-to-br from-blue-600 to-indigo-700 p-6 rounded-2xl text-center mb-4 shadow-xl hidden">
+                <h2 id="instrumentName" class="text-xl font-semibold mb-1">---</h2>
+                <div id="currentPrice" class="text-4xl font-extrabold my-2">--</div>
+                <p id="currentChange" class="text-blue-100 font-medium">--</p>
+                <p id="proxyNote" class="text-blue-200/70 text-[11px] mt-2"></p>
+            </div>
+
+            <div id="loadingState" class="text-slate-400 text-sm text-center py-8">Loading…</div>
+
+            <!-- Trend chart (inline SVG, no chart library — same bandwidth-conscious choice
+                 as the weather app's temperature/precipitation graphs) -->
+            <section id="trendSection" class="mb-8 hidden">
+                <h3 class="section-title">Recent Trend</h3>
+                <div id="trendContent" class="row-card"></div>
+            </section>
+
+            <!-- Advisory cards -->
+            <section id="advisoriesSection" class="mb-8 hidden">
+                <h3 class="section-title">Market Context</h3>
+                <div id="advisoriesContent" class="space-y-3"></div>
+            </section>
+
+            <!-- Financial newsletter / market-commentary aggregator — the direct
+                 counterpart to the weather app's "Future of Farming" RSS feed. -->
+            <section id="newsSection" class="mb-8">
+                <h3 class="section-title">📰 Market Newsletters &amp; Commentary</h3>
+                <div id="newsContainer" class="space-y-2">
+                    <p class="text-slate-400 text-sm text-center py-4">Loading…</p>
+                </div>
+            </section>
         </section>
 
         <footer class="mt-10 text-center text-xs text-slate-500">
@@ -99,6 +119,8 @@
             <span class="block mt-2 max-w-sm mx-auto">Not financial advice. Content is for informational and educational purposes only and is not a recommendation to buy, sell, or hold any security or instrument. Data may be delayed or inaccurate. Consult a licensed financial advisor before making investment decisions.</span>
             <br>
             <a href="./privacy-policy.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Privacy Policy</a>
+            ·
+            <a href="./research.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Research Desk</a>
             ·
             <a href="./fx-intelligence.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">FX Intelligence Desk</a>
             ·
@@ -112,9 +134,7 @@
         </footer>
     </div>
 
-    <!-- Pro upgrade modal — UI only in this MVP, no payment wiring yet (mirrors the
-         weather app's proModal markup/pattern so it's a drop-in point for a real
-         paywall later: Stripe, or the same WhatsApp/mobile-money code pattern). -->
+    <!-- Pro upgrade modal — UI only in this MVP, no payment wiring yet. -->
     <div id="proModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
         <div class="bg-slate-800 rounded-2xl p-6 max-w-sm w-full shadow-2xl border border-slate-700">
             <h3 class="text-lg font-bold mb-1">Upgrade to Pro <span class="pro-badge">Pro</span></h3>
@@ -123,6 +143,7 @@
         </div>
     </div>
 
+    <script src="./nav.js"></script>
     <script src="./instruments.js"></script>
     <script src="./market-advisories.js"></script>
     <script src="./app.js"></script>

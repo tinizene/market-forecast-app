@@ -1,0 +1,58 @@
+<svg viewBox="0 0 900 610" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="610" fill="#FDFCF9"/>
+  <text x="450" y="34" text-anchor="middle" font-size="20" font-weight="bold" fill="#1F3864">Margin Calls: What Actually Happens as a Trade Loses</text>
+  <text x="450" y="58" text-anchor="middle" font-size="12" font-style="italic" fill="#6B6B6B">Effective leverage -- how much of your account you commit -- sets your distance to a margin call.</text>
+
+  <!-- Account anatomy -->
+  <rect x="40" y="78" width="820" height="86" rx="10" fill="#FFFFFF" stroke="#CBD3E1" stroke-width="1.5"/>
+  <text x="60" y="102" font-size="13" font-weight="bold" fill="#1F3864">The account, live</text>
+  <rect x="60" y="112" width="240" height="42" rx="6" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="1.5"/>
+  <text x="180" y="131" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#1E7A4C">Equity</text>
+  <text x="180" y="147" text-anchor="middle" font-size="10" fill="#333333">balance +/- floating P/L</text>
+  <text x="312" y="139" font-size="15" fill="#888888">=</text>
+  <rect x="330" y="112" width="240" height="42" rx="6" fill="#FFF7E6" stroke="#C99A2E" stroke-width="1.5"/>
+  <text x="450" y="131" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#8A6D1F">Used Margin</text>
+  <text x="450" y="147" text-anchor="middle" font-size="10" fill="#333333">locked as collateral</text>
+  <text x="582" y="139" font-size="15" fill="#888888">+</text>
+  <rect x="600" y="112" width="240" height="42" rx="6" fill="#EAF0FB" stroke="#2E5395" stroke-width="1.5"/>
+  <text x="720" y="131" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#2E5395">Free Margin</text>
+  <text x="720" y="147" text-anchor="middle" font-size="10" fill="#333333">the loss-absorbing cushion</text>
+
+  <!-- Two thresholds -->
+  <text x="450" y="192" text-anchor="middle" font-size="13" font-weight="bold" fill="#1F3864">Two thresholds as margin level falls (margin level = equity / used margin x 100)</text>
+  <rect x="120" y="204" width="300" height="70" rx="10" fill="#FFF7E6" stroke="#C99A2E" stroke-width="2"/>
+  <text x="270" y="228" text-anchor="middle" font-size="13" font-weight="bold" fill="#8A6D1F">Margin Call -- around 100%</text>
+  <text x="270" y="248" text-anchor="middle" font-size="10.5" fill="#333333">Warning: equity has fallen to equal</text>
+  <text x="270" y="263" text-anchor="middle" font-size="10.5" fill="#333333">used margin. Add funds or reduce.</text>
+  <rect x="480" y="204" width="300" height="70" rx="10" fill="#FFF3EF" stroke="#B23B2E" stroke-width="2"/>
+  <text x="630" y="228" text-anchor="middle" font-size="13" font-weight="bold" fill="#B23B2E">Stop-Out -- around 50%</text>
+  <text x="630" y="248" text-anchor="middle" font-size="10.5" fill="#333333">Forced: the broker closes positions</text>
+  <text x="630" y="263" text-anchor="middle" font-size="10.5" fill="#333333">for you, biggest loser first.</text>
+  <text x="450" y="290" text-anchor="middle" font-size="10" font-style="italic" fill="#6B6B6B">Exact percentages vary by broker -- check yours before you trade.</text>
+
+  <!-- Two scenarios: same position, different account -->
+  <text x="450" y="322" text-anchor="middle" font-size="13" font-weight="bold" fill="#1F3864">Same 50,000 position at 50:1 broker leverage -- two accounts</text>
+
+  <rect x="40" y="334" width="400" height="210" rx="10" fill="#FFF3EF" stroke="#B23B2E" stroke-width="2"/>
+  <text x="60" y="358" font-size="14" font-weight="bold" fill="#B23B2E">2,000 account (over-committed)</text>
+  <text x="60" y="384" font-size="11.5" fill="#333333">Used margin: 1,000   Free margin: 1,000</text>
+  <text x="60" y="404" font-size="11.5" fill="#333333">Opening margin level: 200%</text>
+  <text x="60" y="430" font-size="13" font-weight="bold" fill="#B23B2E">Effective leverage = 50,000 / 2,000 = 25:1</text>
+  <text x="60" y="456" font-size="11.5" fill="#333333">Margin call after a 1,000 loss:</text>
+  <text x="60" y="474" font-size="12.5" font-weight="bold" fill="#B23B2E">just a 2% move -- about 200 pips</text>
+  <text x="60" y="500" font-size="11.5" fill="#333333">Stop-out at a 1,500 loss:</text>
+  <text x="60" y="518" font-size="12.5" font-weight="bold" fill="#B23B2E">a 3% move -- about 300 pips</text>
+
+  <rect x="460" y="334" width="400" height="210" rx="10" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="480" y="358" font-size="14" font-weight="bold" fill="#1E7A4C">10,000 account (well-sized)</text>
+  <text x="480" y="384" font-size="11.5" fill="#333333">Used margin: 1,000   Free margin: 9,000</text>
+  <text x="480" y="404" font-size="11.5" fill="#333333">Opening margin level: 1,000%</text>
+  <text x="480" y="430" font-size="13" font-weight="bold" fill="#1E7A4C">Effective leverage = 50,000 / 10,000 = 5:1</text>
+  <text x="480" y="456" font-size="11.5" fill="#333333">Margin call after a 9,000 loss:</text>
+  <text x="480" y="474" font-size="12.5" font-weight="bold" fill="#1E7A4C">an 18% move -- about 1,800 pips</text>
+  <text x="480" y="500" font-size="11.5" fill="#333333">Same trade, same leverage cap --</text>
+  <text x="480" y="518" font-size="12.5" font-weight="bold" fill="#1E7A4C">survives 9x the adverse move</text>
+
+  <text x="450" y="576" text-anchor="middle" font-size="12" font-style="italic" fill="#1F3864">A margin call is almost always a position-sizing mistake showing up one step later.</text>
+  <text x="450" y="596" text-anchor="middle" font-size="10.5" font-style="italic" fill="#6B6B6B">The broker's headline leverage is a ceiling; your effective leverage is the risk you actually run.</text>
+</svg>

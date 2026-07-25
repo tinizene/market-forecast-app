@@ -321,3 +321,114 @@
   border-radius: 9999px;
 }
 
+
+/* ============================================================
+   App restructure — shared nav, mission home, Research desk
+   ============================================================ */
+
+/* --- Shared top navigation (nav.js) --- */
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+  padding: 0.55rem 0.7rem;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(51, 65, 85, 0.7);
+  border-radius: 0.9rem;
+  backdrop-filter: blur(6px);
+}
+.site-nav .nav-brand {
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  color: #f1f5f9;
+  text-decoration: none;
+  margin-right: 0.25rem;
+}
+.site-nav .nav-brand .nav-dot { color: #3b82f6; }
+.site-nav .nav-links { display: flex; align-items: center; gap: 0.15rem; flex-wrap: wrap; }
+.site-nav .nav-link {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-decoration: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.site-nav .nav-link:hover { color: #e2e8f0; background: rgba(51, 65, 85, 0.5); }
+.site-nav .nav-link.is-active { color: #bfdbfe; background: rgba(59, 130, 246, 0.18); }
+.site-nav .nav-spacer { flex: 1 1 auto; }
+.site-nav .nav-access {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #0f172a;
+  text-decoration: none;
+  padding: 0.32rem 0.7rem;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #eab308, #f59e0b);
+  white-space: nowrap;
+}
+
+/* --- Mission home: path cards --- */
+.path-card {
+  display: block;
+  text-decoration: none;
+  border-radius: 1rem;
+  padding: 1.15rem 1.25rem;
+  border: 1px solid rgba(51, 65, 85, 0.8);
+  background: linear-gradient(160deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.5));
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.path-card:hover { transform: translateY(-2px); border-color: rgba(96, 165, 250, 0.6); }
+.path-card.path-free { border-color: rgba(34, 197, 94, 0.35); }
+.path-card.path-paid { border-color: rgba(234, 179, 8, 0.35); }
+.path-card .path-title { font-size: 1.05rem; font-weight: 700; color: #f1f5f9; margin: 0.5rem 0 0.35rem; }
+.path-card .path-desc { font-size: 0.82rem; color: #94a3b8; line-height: 1.5; }
+.path-card .path-cta { display: inline-block; margin-top: 0.75rem; font-size: 0.8rem; font-weight: 600; color: #93c5fd; }
+
+/* --- Compact market snapshot strip (home) --- */
+.snapshot-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 0.5rem; }
+.snapshot-tile {
+  border: 1px solid rgba(51, 65, 85, 0.7);
+  border-radius: 0.7rem;
+  padding: 0.6rem 0.7rem;
+  background: rgba(15, 23, 42, 0.5);
+}
+.snapshot-tile .st-name { font-size: 0.68rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.03em; }
+.snapshot-tile .st-price { font-size: 0.95rem; font-weight: 700; color: #f1f5f9; margin-top: 0.15rem; }
+.snapshot-tile .st-chg { font-size: 0.72rem; margin-top: 0.1rem; }
+.snapshot-tile .st-chg.up { color: #4ade80; }
+.snapshot-tile .st-chg.down { color: #f87171; }
+.snapshot-tile .st-chg.flat { color: #94a3b8; }
+
+/* --- Research desk: track record (free, before paywall) --- */
+.record-card { border: 1px solid rgba(51, 65, 85, 0.8); border-radius: 0.9rem; overflow: hidden; background: rgba(15, 23, 42, 0.5); }
+.record-head { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; padding: 0.8rem 1rem; border-bottom: 1px solid rgba(51, 65, 85, 0.6); }
+.record-head .record-summary { margin-left: auto; font-size: 0.72rem; color: #94a3b8; }
+.record-head .record-summary b { color: #86efac; }
+.record-row { display: grid; grid-template-columns: 1.4fr auto auto; gap: 0.6rem; align-items: center; padding: 0.7rem 1rem; border-top: 1px solid rgba(24, 39, 64, 0.9); }
+.record-row:first-of-type { border-top: none; }
+.record-row .rr-idea { font-size: 0.82rem; color: #e2e8f0; font-weight: 600; }
+.record-row .rr-sub { font-size: 0.72rem; color: #94a3b8; font-weight: 400; margin-top: 0.1rem; }
+.status-chip { justify-self: start; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.2rem 0.55rem; border-radius: 9999px; white-space: nowrap; }
+.status-chip.win { background: rgba(34, 197, 94, 0.14); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.35); }
+.status-chip.inv { background: rgba(239, 68, 68, 0.12); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.35); }
+.status-chip.pending { background: rgba(100, 116, 139, 0.15); color: #cbd5e1; border: 1px solid rgba(100, 116, 139, 0.4); }
+.rr-pl { font-size: 0.78rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; text-align: right; }
+.rr-pl.pos { color: #4ade80; } .rr-pl.neg { color: #f87171; } .rr-pl.na { color: #94a3b8; }
+
+/* --- Research desk: locked-preview live theses --- */
+.lock-wrap { position: relative; border-radius: 0.9rem; overflow: hidden; }
+.lock-blur { filter: blur(6px); pointer-events: none; user-select: none; }
+.lock-wrap.is-unlocked .lock-blur { filter: none; pointer-events: auto; user-select: auto; }
+.lock-over {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; gap: 0.5rem; padding: 1.25rem;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.82));
+}
+.lock-wrap.is-unlocked .lock-over { display: none; }
+.lock-over .lock-ic { font-size: 1.6rem; }
+.lock-over .lock-msg { font-size: 0.8rem; color: #cbd5e1; max-width: 22rem; }

@@ -432,3 +432,53 @@
 .lock-wrap.is-unlocked .lock-over { display: none; }
 .lock-over .lock-ic { font-size: 1.6rem; }
 .lock-over .lock-msg { font-size: 0.8rem; color: #cbd5e1; max-width: 22rem; }
+
+/* ============================================================
+   Per-lesson pages — table of contents + single-lesson nav
+   ============================================================ */
+
+/* --- learn.html table of contents --- */
+.toc-track { margin-bottom: 2rem; }
+.toc-head { margin-bottom: 0.75rem; }
+.toc-head .toc-track-title { font-size: 1.15rem; font-weight: 700; color: #f1f5f9; margin: 0.5rem 0 0.15rem; }
+.toc-head .toc-track-tag { font-size: 0.8rem; color: #94a3b8; line-height: 1.5; }
+.toc-head .toc-count { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; margin-top: 0.25rem; }
+.toc-chapter {
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+  color: #86efac; margin: 1rem 0 0.4rem; padding-left: 0.15rem;
+}
+.toc-row {
+  display: flex; align-items: flex-start; gap: 0.85rem; text-decoration: none;
+  padding: 0.8rem 0.9rem; margin-bottom: 0.5rem; border-radius: 0.8rem;
+  background: rgba(30, 41, 59, 0.55); border: 1px solid rgba(51, 65, 85, 0.7);
+  transition: transform 0.12s ease, border-color 0.12s ease, background-color 0.12s ease;
+}
+.toc-row:hover { transform: translateX(2px); border-color: rgba(96, 165, 250, 0.6); background: rgba(30, 41, 59, 0.85); }
+.toc-num {
+  flex-shrink: 0; font-size: 0.75rem; font-weight: 700; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #93c5fd; background: rgba(59, 130, 246, 0.12); border-radius: 0.5rem;
+  padding: 0.2rem 0.5rem; min-width: 2.4rem; text-align: center; margin-top: 0.1rem;
+}
+.toc-body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.toc-title { font-size: 0.9rem; font-weight: 600; color: #e2e8f0; }
+.toc-key { font-size: 0.78rem; color: #94a3b8; margin-top: 0.15rem; line-height: 1.45; }
+.toc-go { flex-shrink: 0; color: #64748b; font-size: 1rem; margin-top: 0.1rem; }
+.toc-row:hover .toc-go { color: #93c5fd; }
+
+/* --- lesson.html single-lesson chrome --- */
+.lesson-crumb { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.lesson-crumb-text { font-size: 0.78rem; color: #94a3b8; }
+.lesson-crumb-count { margin-left: auto; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; }
+.lesson-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1.5rem; }
+.lesson-nav-btn {
+  display: flex; flex-direction: column; gap: 0.2rem; text-decoration: none;
+  padding: 0.85rem 1rem; border-radius: 0.8rem;
+  background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(51, 65, 85, 0.8);
+  transition: border-color 0.12s ease, background-color 0.12s ease;
+}
+.lesson-nav-btn:hover { border-color: rgba(96, 165, 250, 0.6); background: rgba(30, 41, 59, 0.9); }
+.lesson-nav-btn.is-empty { background: transparent; border-color: transparent; pointer-events: none; }
+.lesson-nav-btn.next { text-align: right; }
+.lnav-dir { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #93c5fd; }
+.lnav-title { font-size: 0.82rem; color: #cbd5e1; line-height: 1.35; }
+@media (max-width: 380px) { .lesson-nav { grid-template-columns: 1fr; } .lesson-nav-btn.next { text-align: left; } }

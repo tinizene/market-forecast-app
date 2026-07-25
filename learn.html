@@ -44,46 +44,11 @@
             </div>
         </a>
 
-        <!-- Read-aloud control bar — hidden by default, shown by learn.js only if the
-             browser's Web Speech API is available. Built for readers who are not
-             strong readers or are non-literate: every lesson can be listened to
-             instead of read. -->
-        <div id="speechBar" class="hidden mb-6 rounded-xl border border-slate-700 bg-slate-800/80 px-4 py-3 flex items-center gap-3 flex-wrap" role="region" aria-label="Read this page aloud">
-            <button id="speechPlayBtn" type="button" class="flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg px-3 py-2 transition">
-                <span id="speechPlayIcon">🔊</span>
-                <span id="speechPlayLabel">Listen to this page</span>
-            </button>
-            <button id="speechStopBtn" type="button" class="hidden bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold rounded-lg px-3 py-2 transition">Stop</button>
-            <label class="text-xs text-slate-400 flex items-center gap-1.5 ml-auto">
-                Speed
-                <select id="speechSpeedSelect" class="bg-slate-700 text-white rounded-lg px-2 py-1.5 text-xs outline-none border border-slate-600">
-                    <option value="slow">Slow</option>
-                    <option value="normal" selected>Normal</option>
-                    <option value="fast">Fast</option>
-                </select>
-            </label>
-            <p class="w-full text-[11px] text-slate-500">Reads each lesson aloud using your device's built-in voice. Works best on recent phone and desktop browsers.</p>
-        </div>
-
-        <!-- "The Foundation of Money and Trade" — the free track shared by every
-             vertical (Forex, Crypto, Stocks). Rendered from foundation-content.js by
-             renderFoundationTrack() in learn.js, ABOVE the Stocks/ETF curriculum below.
-             Chapter 1 (money history) is the only chapter built so far — Chapters 2-3
-             (universal risk/investing basics) land here later, same pattern. -->
-        <div id="foundationRoot" class="space-y-6 mb-8"></div>
-
-        <!-- Forex (paid track) — rendered from forex-content.js by renderForexTrack()
-             in learn.js, below the free Foundation track and above the Stocks/ETF
-             curriculum. Currently shown fully open with a "Paid track" badge; real
-             payment gating is a separate future build. -->
-        <div id="forexRoot" class="space-y-6 mb-8"></div>
-
-        <!-- Lessons render here, in order, from learn-content.js. The fee comparison
-             table and the DCA calculator are injected inline after their related
-             lesson (Expense Ratios, Dollar-Cost Averaging respectively) by learn.js,
-             so they sit next to the concept they illustrate instead of being a
-             separate, disconnected "tools" section. -->
-        <div id="lessonsRoot" class="space-y-6"></div>
+        <!-- Course table of contents — every lesson across all three tracks, in
+             order, rendered as links to its own page by renderCourseIndex() in
+             learn.js. Each lesson opens on lesson.html?id=<lessonId> with its own
+             Previous/Next navigation, instead of one endless scrolling page. -->
+        <div id="courseIndexRoot" class="mt-2"></div>
 
         <!-- Bridge to the Research Desk — the funnel closes here: the paid course
              teaches the six-pillar framework, the Research Desk shows it applied on

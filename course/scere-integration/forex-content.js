@@ -6,7 +6,7 @@
 // window.SCERE_FOREX_SVGS (dark-theme variants, defined at the bottom of this file).
 //
 // Shown fully open with a "Paid track" badge; real payment gating is a separate build.
-// Chapters 1-2 complete plus Chapter 3 (Risk Management) complete; Chapters 4-6 land later.
+// Chapters 1-3 complete plus Chapter 4 Lesson 1; further Chapter 4 lessons land later.
 
 window.SCERE_FOREX_TRACK = {
   "trackTitle": "Forex",
@@ -2332,6 +2332,155 @@ window.SCERE_FOREX_CONTENT = [
         "def": "The win fraction needed to break even at a given ratio — equal to 1 / (1 + R)."
       }
     ]
+  },
+  {
+    "id": "trading-psychology-fear-greed-discipline",
+    "lessonNumber": 1,
+    "chapterNumber": 4,
+    "chapterTitle": "Chapter 4: Trading Psychology & Building a Plan",
+    "title": "Trading Psychology — Fear, Greed, and Discipline",
+    "keyIdea": "Most accounts are lost not to bad analysis but to two documented behaviours — the disposition effect and overtrading — and the only reliable defence is a pre-committed plan, not willpower.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Chapters 1 through 3 gave you the mechanics and the mathematics: pairs and pips, position sizing, margin, the risk-to-reward ratio. If trading were only those things, a careful beginner would do fine. Most accounts are not lost to bad arithmetic, though. They are lost to good rules abandoned under emotion."
+      },
+      {
+        "type": "paragraph",
+        "text": "Two feelings do most of the damage, and they are worth naming plainly. Fear, in trading, is the pull to cut a gain short before it can turn, or to avoid the discomfort of admitting a loss. Greed is the pull to want more — a bigger position, one more trade, a target stretched further out. The rest of this lesson is really about the specific, documented mistakes those two feelings produce, and the one thing that actually defends against them."
+      },
+      {
+        "type": "paragraph",
+        "text": "The reason this matters more in forex than in slow investing is speed and leverage. A leveraged position (Chapter 3, Lesson 2) moves fast enough to trigger fear in real time, and cheap, instant trades make it easy to act on greed. The emotions are ordinary. The environment amplifies what they cost you."
+      },
+      {
+        "type": "paragraph",
+        "text": "The single best-documented trading mistake has a name, and once you know it you will see it everywhere — including in your own account."
+      },
+      {
+        "type": "definition",
+        "term": "Disposition Effect",
+        "text": "The tendency to sell winning positions too early, to lock in a sure gain, while holding losing positions too long, hoping they recover. The term was coined by Shefrin and Statman (1985)."
+      },
+      {
+        "type": "paragraph",
+        "text": "The emotional logic is easy to feel. A winning trade offers the pleasure of being right, available right now if you close it — so you do. A losing trade would force you to admit you were wrong, so you wait, and hope. Both impulses push directly against the risk-to-reward discipline from Chapter 3, Lesson 3: they shrink your winners and let your losers run — exactly backwards."
+      },
+      {
+        "type": "example",
+        "text": "Odean (1998), in The Journal of Finance, examined the trading records of 10,000 real discount-brokerage accounts. Investors were 1.5 to 2 times more likely to sell a winning stock than a losing one, even after accounting for taxes and portfolio rebalancing. And it was not shrewd: the winning stocks they sold went on to outperform the losing stocks they held. The instinct to bank the sure profit and give the loser room to recover measurably cost these investors money."
+      },
+      {
+        "type": "paragraph",
+        "text": "Look back at Chapter 3, Lesson 3 and you will recognise this. The disposition effect is Trader C — grabbing small wins while letting losses run — turned from a diagram into a documented pattern across thousands of real people. It is the psychological engine that manufactures a bad risk-to-reward ratio, one trade at a time."
+      },
+      {
+        "type": "warning",
+        "text": "The fix is structural, not emotional. You will not reliably out-argue an instinct this strong in the heat of an open trade. What works is deciding the exit before you enter — a stop and a target set as orders, ideally linked so one cancels the other (the OCO order from Chapter 1, Lesson 7) — and then letting them execute without your interference. Pre-commitment beats willpower."
+      },
+      {
+        "type": "paragraph",
+        "text": "The second engine is greed's quieter form: the belief that more activity means more profit."
+      },
+      {
+        "type": "definition",
+        "term": "Overtrading",
+        "text": "Trading more frequently, or in larger size, than a strategy actually justifies — usually driven by overconfidence, the sense that you can read the market well enough to act often."
+      },
+      {
+        "type": "example",
+        "text": "Barber and Odean (2000), in The Journal of Finance, tracked 66,465 households at a discount broker over 1991 to 1996. Their finding is one of the most cited in behavioural finance: the households that traded the most earned 11.4% a year, while the market itself returned 17.9%. Same market, same years — the gap was activity. They concluded that overconfidence drives the excessive trading, and the excessive trading drives the underperformance. Their title puts it bluntly: trading is hazardous to your wealth."
+      },
+      {
+        "type": "paragraph",
+        "text": "That study is on stock investors, and it is worth being honest about that — but the mechanism transfers directly, and forex makes it worse. Every trade pays the bid-ask spread (Chapter 1, Lesson 4), so more trades means more guaranteed cost before you are even right or wrong. Add leverage (Chapter 3, Lesson 2), and the damage from acting too often compounds faster than it would in a plain stock account."
+      },
+      {
+        "type": "warning",
+        "text": "Activity feels like work, and work feels like it should be rewarded. Trading inverts that intuition: beyond the trades your rules actually call for, each extra one is a cost, not an effort. For most retail traders, doing less is the higher-skill move."
+      },
+      {
+        "type": "image",
+        "svg": "forex-ch4-trading-psychology",
+        "alt": "Diagram of the two documented behaviours that drain trading accounts — the disposition effect (Odean 1998: investors 1.5 to 2 times more likely to sell winners than losers) and overtrading (Barber and Odean 2000: the most active traders earned 11.4 percent a year versus the market's 17.9 percent) — and discipline as the structural fix using pre-committed OCO orders and preset position size",
+        "caption": "The two documented engines of loss and their evidence, and discipline as a structural fix rather than an act of willpower."
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Discipline\" gets used as if it means staying calm, or having nerves of steel. That is the wrong definition, and chasing it sets you up to fail — because you will not always feel calm."
+      },
+      {
+        "type": "definition",
+        "term": "Discipline",
+        "text": "In trading, following a pre-committed plan — entry, stop, target, and size — regardless of what you feel in the moment. It is a system for removing in-the-moment decisions, not a personality trait."
+      },
+      {
+        "type": "paragraph",
+        "text": "This reframes everything the course has built. The whole point of Chapters 1 through 3 was to let you decide the things that matter — position size, stop, target, the ratio — in advance, while you are calm and thinking clearly. Discipline is simply honouring those decisions when fear and greed show up, which they will. That is why the tools are the answer, not gritted teeth: an OCO order (Chapter 1, Lesson 7) executes your exit whether or not you can bring yourself to click; a pre-set position size (Chapter 3, Lesson 1) removes the greedy \"go bigger just this once.\" The plan is your defence against your own psychology — and building that plan properly is the subject of the next lesson."
+      },
+      {
+        "type": "warning",
+        "text": "Be honest about the limit: no one eliminates fear and greed, professionals included. The difference is that experienced traders build rules and automation that make the feelings irrelevant to the decision, rather than trying to win an emotional battle in real time. Aim for a process that does not depend on you being calm at the worst possible moment."
+      },
+      {
+        "type": "practice",
+        "text": "Watch for these in your own trading: When you close a trade early, ask honestly — is this my plan executing, or the disposition effect offering me a sure small win? When you are still holding a position past where your stop should have been, ask the same question in reverse — plan, or hope? Count your trades over a week: are you trading because a setup genuinely met your rules, or because you were bored, confident, or chasing a loss back? And is each trade's exit placed as an order before you enter, so the decision is already made and not left to you to fumble in the moment?"
+      }
+    ],
+    "quiz": [
+      {
+        "question": "What does the \"disposition effect\" describe?",
+        "options": [
+          "Selling losing trades quickly and letting winners run",
+          "Selling winning trades too early while holding losing trades too long",
+          "Trading only once per day",
+          "Always using maximum leverage"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — Shefrin and Statman named it, and Odean (1998) measured it: investors were 1.5 to 2 times more likely to sell winners than losers, shrinking gains and letting losses run — the opposite of good risk-to-reward.",
+        "feedbackWrong": "Not quite — the disposition effect is selling winners too early and holding losers too long, the opposite of good risk-to-reward. Odean (1998) measured it directly."
+      },
+      {
+        "question": "Barber and Odean (2000) found the households that traded the most earned about 11.4% a year while the market returned about 17.9%. What does this best demonstrate?",
+        "options": [
+          "Active trading reliably beats the market",
+          "Overtrading, driven by overconfidence, tends to lower returns",
+          "The market always returns 17.9%",
+          "Spreads do not matter"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — same market and period, yet the most active traders underperformed by more than six percentage points a year. The study attributes the excessive trading to overconfidence.",
+        "feedbackWrong": "Not quite — the most active traders underperformed the market by over six points a year; the study ties the excessive trading to overconfidence."
+      },
+      {
+        "question": "True or False: discipline in trading means staying calm and unemotional while you decide what to do in a live trade.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — discipline means following a plan committed to in advance, so the important decisions are not made live at all. It is a system that removes in-the-moment choices, not a feeling you summon.",
+        "feedbackWrong": "Not quite — discipline is following a pre-committed plan so the key decisions are not made live. It is a system, not a calm feeling you have to summon."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Disposition Effect",
+        "def": "Selling winners too early and holding losers too long (Shefrin & Statman, 1985)."
+      },
+      {
+        "term": "Overtrading",
+        "def": "Trading more often or larger than a strategy justifies, usually from overconfidence."
+      },
+      {
+        "term": "Overconfidence",
+        "def": "Overrating your own judgement — the driver behind overtrading and its cost to returns."
+      },
+      {
+        "term": "Discipline",
+        "def": "Following a pre-committed plan regardless of feeling — a system, not a personality trait."
+      }
+    ]
   }
 ];
 
@@ -3316,6 +3465,65 @@ window.SCERE_FOREX_SVGS = {
 
   <text x="450" y="580" text-anchor="middle" font-size="12" font-style="italic" fill="#e2e8f0">What makes money is win rate and the risk-to-reward ratio together -- never either one alone.</text>
   <text x="450" y="600" text-anchor="middle" font-size="10.5" font-style="italic" fill="#94a3b8">Set both prices from real levels before entry; never widen a stop or pull in a target to rescue a trade.</text>
+</svg>
+`,
+  'forex-ch4-trading-psychology': `
+<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="600" fill="#0f172a"/>
+  <text x="450" y="34" text-anchor="middle" font-size="20" font-weight="bold" fill="#e2e8f0">Trading Psychology: Two Engines That Drain Accounts -- and the Fix</text>
+  <text x="450" y="58" text-anchor="middle" font-size="12" font-style="italic" fill="#94a3b8">The problem is rarely the analysis. It is good rules abandoned under fear and greed.</text>
+
+  <!-- emotion chips -->
+  <rect x="360" y="76" width="80" height="30" rx="15" fill="rgba(239,68,68,0.12)" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="400" y="96" text-anchor="middle" font-size="13" font-weight="bold" fill="#ef4444">FEAR</text>
+  <rect x="460" y="76" width="80" height="30" rx="15" fill="rgba(234,179,8,0.12)" stroke="#eab308" stroke-width="1.5"/>
+  <text x="500" y="96" text-anchor="middle" font-size="13" font-weight="bold" fill="#fde68a">GREED</text>
+  <line x1="400" y1="106" x2="250" y2="128" stroke="#64748b" stroke-width="1.5"/>
+  <line x1="500" y1="106" x2="650" y2="128" stroke="#64748b" stroke-width="1.5"/>
+
+  <!-- Disposition effect card -->
+  <rect x="40" y="130" width="400" height="200" rx="10" fill="rgba(239,68,68,0.12)" stroke="#ef4444" stroke-width="2"/>
+  <text x="60" y="156" font-size="15" font-weight="bold" fill="#ef4444">1. The Disposition Effect</text>
+  <text x="60" y="178" font-size="12" fill="#cbd5e1">Sell winners too early (bank the sure gain);</text>
+  <text x="60" y="195" font-size="12" fill="#cbd5e1">ride losers too long (hope they come back).</text>
+  <text x="60" y="213" font-size="10.5" font-style="italic" fill="#94a3b8">Named by Shefrin and Statman (1985).</text>
+  <rect x="60" y="226" width="360" height="86" rx="8" fill="#0f172a" stroke="#ef4444" stroke-width="1"/>
+  <text x="72" y="248" font-size="11.5" font-weight="bold" fill="#ef4444">Evidence: Odean (1998), J. Finance</text>
+  <text x="72" y="267" font-size="11" fill="#cbd5e1">10,000 accounts: 1.5 to 2x more likely to sell</text>
+  <text x="72" y="284" font-size="11" fill="#cbd5e1">a winner than a loser -- and the winners sold</text>
+  <text x="72" y="301" font-size="11" fill="#cbd5e1">went on to beat the losers kept. It cost them.</text>
+
+  <!-- Overtrading card -->
+  <rect x="460" y="130" width="400" height="200" rx="10" fill="rgba(234,179,8,0.12)" stroke="#eab308" stroke-width="2"/>
+  <text x="480" y="156" font-size="15" font-weight="bold" fill="#fde68a">2. Overtrading</text>
+  <text x="480" y="178" font-size="12" fill="#cbd5e1">Trade more often or bigger than the strategy</text>
+  <text x="480" y="195" font-size="12" fill="#cbd5e1">justifies -- driven by overconfidence.</text>
+  <text x="480" y="213" font-size="10.5" font-style="italic" fill="#94a3b8">Every trade also pays the spread (Ch1 L4).</text>
+  <rect x="480" y="226" width="360" height="86" rx="8" fill="#0f172a" stroke="#eab308" stroke-width="1"/>
+  <text x="492" y="248" font-size="11.5" font-weight="bold" fill="#fde68a">Evidence: Barber and Odean (2000), J. Finance</text>
+  <text x="492" y="267" font-size="11" fill="#cbd5e1">66,465 households: the most active traders</text>
+  <text x="492" y="284" font-size="13" font-weight="bold" fill="#ef4444">earned 11.4%/yr vs the market's 17.9%</text>
+  <text x="492" y="301" font-size="11" fill="#cbd5e1">Same market, same years -- the gap was activity.</text>
+
+  <!-- arrow down to fix -->
+  <text x="450" y="356" text-anchor="middle" font-size="12" font-weight="bold" fill="#e2e8f0">Both are feelings you cannot reliably beat in the moment. So do not try to.</text>
+
+  <!-- Discipline card -->
+  <rect x="120" y="372" width="660" height="176" rx="10" fill="rgba(34,197,94,0.12)" stroke="#22c55e" stroke-width="2"/>
+  <text x="450" y="398" text-anchor="middle" font-size="15" font-weight="bold" fill="#22c55e">The Fix: Discipline = a pre-committed plan, not a feeling</text>
+  <text x="450" y="422" text-anchor="middle" font-size="12" fill="#cbd5e1">Decide entry, stop, target, and size in advance -- while calm -- then remove the live decision.</text>
+  <rect x="150" y="436" width="290" height="96" rx="8" fill="#0f172a" stroke="#22c55e" stroke-width="1"/>
+  <text x="295" y="458" text-anchor="middle" font-size="12" font-weight="bold" fill="#22c55e">Beats the disposition effect</text>
+  <text x="295" y="479" text-anchor="middle" font-size="11" fill="#cbd5e1">OCO order (Ch1 L7): stop and target</text>
+  <text x="295" y="495" text-anchor="middle" font-size="11" fill="#cbd5e1">set before entry, execute on their own.</text>
+  <text x="295" y="516" text-anchor="middle" font-size="10.5" font-style="italic" fill="#94a3b8">No live choice to fumble.</text>
+  <rect x="460" y="436" width="290" height="96" rx="8" fill="#0f172a" stroke="#22c55e" stroke-width="1"/>
+  <text x="605" y="458" text-anchor="middle" font-size="12" font-weight="bold" fill="#22c55e">Beats overtrading</text>
+  <text x="605" y="479" text-anchor="middle" font-size="11" fill="#cbd5e1">Preset size (Ch3 L1) removes "go bigger";</text>
+  <text x="605" y="495" text-anchor="middle" font-size="11" fill="#cbd5e1">rules define what counts as a setup.</text>
+  <text x="605" y="516" text-anchor="middle" font-size="10.5" font-style="italic" fill="#94a3b8">Trade the plan, not the mood.</text>
+
+  <text x="450" y="576" text-anchor="middle" font-size="11" font-style="italic" fill="#94a3b8">No one removes fear and greed -- professionals included. You build a process that makes them irrelevant to the decision.</text>
 </svg>
 `,
 };

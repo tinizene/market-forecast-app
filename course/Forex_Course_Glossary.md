@@ -955,6 +955,42 @@
 - **PT:** Flash crash (queda relâmpago)
 - **SW:** Anguko la ghafla ⚠ ("flash crash")
 
+### Trade Thesis
+- **EN:** A written, structured argument for why a specific trade should work, built from several independent lines of evidence (the six pillars) rather than a single opinion or feeling.
+- **FR:** Thèse de trade
+- **PT:** Tese de trade
+- **SW:** Nadharia ya biashara ⚠
+
+### Return Factor
+- **EN:** A documented, persistent source of return found across markets — e.g., value, momentum, and carry (Asness/Moskowitz/Pedersen 2013; Koijen et al. 2018) — rather than a one-off pattern.
+- **FR:** Facteur de rendement
+- **PT:** Fator de retorno
+- **SW:** Kipengele cha mapato ⚠
+
+### Invalidation Level
+- **EN:** The specific price or condition at which a trade thesis is proven wrong. It is where the stop-loss belongs — not an arbitrary distance, but the point where being wrong becomes a fact.
+- **FR:** Niveau d'invalidation
+- **PT:** Nível de invalidação
+- **SW:** Kiwango cha kubatilisha ⚠
+
+### Pre-Mortem
+- **EN:** A risk exercise (Gary Klein, HBR 2007) in which you assume a trade has already failed and list all the plausible reasons, surfacing risks that optimism about your own idea would otherwise hide.
+- **FR:** Pré-mortem
+- **PT:** Pré-mortem
+- **SW:** Pre-mortem ⚠ (kept as-is)
+
+### Market Regime
+- **EN:** The prevailing market environment — risk-on or risk-off, calm or volatile, trending or ranging — which determines which strategies have an edge and which are traps.
+- **FR:** Régime de marché
+- **PT:** Regime de mercado
+- **SW:** Hali ya soko ⚠
+
+### Active Share
+- **EN:** A measure of how much a portfolio differs from its benchmark; higher Active Share, when backed by real analysis, predicted outperformance (Cremers & Petajisto, 2009).
+- **FR:** Active Share (part active du portefeuille)
+- **PT:** Active Share (parcela ativa)
+- **SW:** Active Share ⚠ (kept as-is)
+
 ## Crypto Track Terms
 
 *(Not yet started. Expect terms like: blockchain, wallet, private key, gas fee, exchange, volatility, market cap, stablecoin.)*

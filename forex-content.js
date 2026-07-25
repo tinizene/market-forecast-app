@@ -6,7 +6,7 @@
 // window.SCERE_FOREX_SVGS (dark-theme variants, defined at the bottom of this file).
 //
 // Shown fully open with a "Paid track" badge; real payment gating is a separate build.
-// Chapters 1-5 complete; Chapter 6 lands here later, same pattern.
+// Forex track COMPLETE: Chapters 1-6, 26 lessons.
 
 window.SCERE_FOREX_TRACK = {
   "trackTitle": "Forex",
@@ -3072,6 +3072,548 @@ window.SCERE_FOREX_CONTENT = [
         "def": "A rapid, deep price drop that reverses within minutes, driven by collapsing liquidity and automated orders rather than news."
       }
     ]
+  },
+  {
+    "id": "the-high-conviction-trade-thesis",
+    "lessonNumber": 1,
+    "chapterNumber": 6,
+    "chapterTitle": "Chapter 6: Building a Professional Trade Process",
+    "title": "The High-Conviction Trade Thesis",
+    "keyIdea": "A professional replaces a strong feeling with a written six-pillar thesis (fundamentals, valuation, catalyst, positioning, momentum, carry); conviction means how many independent, evidence-based pillars agree — three of which are documented return factors.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Everything so far has been about not losing: sizing, stops, discipline, avoiding the classic mistakes. This final chapter is about the other half — how a serious trader decides what is actually worth trading in the first place. It is the most advanced material in the course, and it assumes everything before it."
+      },
+      {
+        "type": "paragraph",
+        "text": "Start with the trap. A beginner says \"I feel strongly that the euro will fall\" and treats the strength of the feeling as a reason. It is not. A feeling is just a feeling; the market does not pay you for confidence."
+      },
+      {
+        "type": "definition",
+        "term": "Trade Thesis",
+        "text": "A written, structured argument for why a specific trade should work, built from several independent lines of evidence rather than a single opinion or feeling."
+      },
+      {
+        "type": "paragraph",
+        "text": "The professional replaces the feeling with a thesis: a set of independent questions, each answered with evidence, that either line up or do not. Conviction then means something real — not \"how sure am I?\" but \"how many separate, evidence-based reasons point the same way?\""
+      },
+      {
+        "type": "paragraph",
+        "text": "A complete thesis scores a trade against six pillars. Each asks a different question, and the more of them that agree, the stronger the case."
+      },
+      {
+        "type": "definition",
+        "term": "The Six Pillars",
+        "text": "Fundamentals, Valuation, Catalyst, Positioning/Sentiment, Momentum, and Carry. A high-conviction trade is one where several of these independently point in the same direction."
+      },
+      {
+        "type": "paragraph",
+        "text": "Fundamentals — what is the macro story? Interest-rate paths, growth, inflation, central-bank direction (Chapter 2, Lesson 3). Is the underlying economic pressure pushing the currency your way?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Valuation — is the currency cheap or expensive versus a sensible measure of fair value? A cheap currency with a reason to rise is a very different trade from an expensive one."
+      },
+      {
+        "type": "paragraph",
+        "text": "Catalyst — what will actually make the move happen, and when? A thesis with no catalyst can be right and go nowhere for a year. A scheduled event (Chapter 2, Lesson 4) or a building pressure gives the trade a reason to move now."
+      },
+      {
+        "type": "paragraph",
+        "text": "Positioning and sentiment — is everyone already on your side? A trade the whole market has piled into is crowded, and crowded trades unwind violently (the 2008 carry unwind, Chapter 5, Lesson 2). Extreme positioning is a reason for caution, sometimes a reason to fade the crowd."
+      },
+      {
+        "type": "paragraph",
+        "text": "Momentum — is price already moving your way? A thesis that fights a strong existing trend needs to be exceptional; one that rides it has the wind at its back (Chapter 2, Lesson 1)."
+      },
+      {
+        "type": "paragraph",
+        "text": "Carry — does holding the position pay you or cost you? A position that earns the interest-rate difference while you wait is easier to hold than one that bleeds it (Chapter 2, Lesson 3)."
+      },
+      {
+        "type": "warning",
+        "text": "No single pillar is a trade. A cheap currency can stay cheap for years without a catalyst; strong momentum with terrible valuation is how bubbles end. The point of six pillars is that any one can be wrong — conviction comes from independent agreement, the same logic as not trusting a single indicator in Chapter 2, Lesson 1."
+      },
+      {
+        "type": "image",
+        "svg": "forex-ch6-six-pillars",
+        "alt": "Diagram of the six-pillar trade thesis — fundamentals, valuation, catalyst, positioning/sentiment, momentum, and carry — scored together so that conviction means how many independent evidence-based pillars agree, with the note that value, momentum, and carry are documented return factors (Asness/Moskowitz/Pedersen 2013; Koijen et al. 2018) and that best-analysed ideas outperform (Anton/Cohen/Polk)",
+        "caption": "The six pillars scored together, and the evidence that value, momentum and carry are real return factors."
+      },
+      {
+        "type": "paragraph",
+        "text": "The reason this framework is an edge and not just a checklist is that several pillars are backed by some of the most robust findings in finance. Value, momentum, and carry are not hunches — they are documented, persistent sources of return across markets."
+      },
+      {
+        "type": "example",
+        "text": "Asness, Moskowitz and Pedersen (2013), in The Journal of Finance, studied value and momentum across eight different markets and asset classes at once and found both earn consistent return premia everywhere they looked, with a common structure — and, usefully, that value and momentum are negatively correlated, so they complement each other. Separately, Koijen, Moskowitz, Pedersen and Vrugt (2018), in the Journal of Financial Economics, showed that carry — long studied only in currencies — predicts returns across global bonds, equities, commodities, and more, a genuinely general phenomenon."
+      },
+      {
+        "type": "paragraph",
+        "text": "This is what turns the pillars from a feeling into an edge. When your valuation pillar and your carry pillar and your momentum pillar all point the same way, you are not stacking opinions — you are aligning several independently documented return sources on a single trade."
+      },
+      {
+        "type": "example",
+        "text": "There is even evidence that conviction, defined properly, pays. Anton, Cohen and Polk, in their study \"Best Ideas,\" found that the single stocks in which professional managers show the most ex-ante conviction outperform both the market and the managers' own other holdings by roughly 2.8 to 4.5% per year — while the rest of what those managers hold does not beat the market at all. The lesson is not \"be confident.\" It is that a manager's best-analysed idea, the one where the case is strongest, is where the edge lives — and the six pillars are how you find which idea that is."
+      },
+      {
+        "type": "warning",
+        "text": "Be honest about the limit. \"Best ideas\" means best-analysed, not most strongly felt — the two are easy to confuse and it is the confusion this whole lesson exists to break. Evidence-backed factors are also not guarantees; they have long stretches of underperformance, which is exactly why you need several pillars and, still, the risk control of Chapter 3. A thesis raises your odds. It never removes the need to be sized to be wrong."
+      },
+      {
+        "type": "practice",
+        "text": "Before any trade, run the thesis check: Can you write down which of the six pillars support it, with a reason for each, not just a direction? Are the supporting pillars actually independent, or are you counting the same story twice? Is there a catalyst — a thesis with no reason to move now is a reason to wait, not to enter? And are you calling a trade high conviction because the analysis is strong, or only because the feeling is strong? Only the first is an edge."
+      }
+    ],
+    "quiz": [
+      {
+        "question": "In this framework, what makes a trade genuinely \"high conviction\"?",
+        "options": [
+          "A very strong gut feeling that it will work",
+          "Several independent, evidence-based pillars pointing the same way",
+          "Using the maximum position size",
+          "A single indicator giving a clear signal"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — conviction is defined by independent agreement across the pillars, not by the intensity of a feeling. One strong opinion, or one indicator, is not a thesis.",
+        "feedbackWrong": "Not quite — conviction here means several independent, evidence-based pillars agreeing, not the strength of a feeling or a single signal."
+      },
+      {
+        "question": "Which three pillars are directly supported by documented, cross-market return factors in the academic evidence?",
+        "options": [
+          "Fundamentals, catalyst, and sentiment",
+          "Valuation, momentum, and carry",
+          "Only fundamentals",
+          "None — the framework is purely intuitive"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — Asness, Moskowitz and Pedersen (2013) documented value and momentum across markets, and Koijen and colleagues (2018) documented carry across asset classes.",
+        "feedbackWrong": "Not quite — value, momentum and carry are the documented return factors (Asness/Moskowitz/Pedersen 2013; Koijen et al. 2018)."
+      },
+      {
+        "question": "True or False: Anton, Cohen and Polk's \"best ideas\" finding shows that traders should simply act more confidently.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — their finding is that managers' best-analysed ideas outperform, where the case is strongest, not where the feeling is strongest. It is an argument for rigour, not confidence.",
+        "feedbackWrong": "Not quite — the finding is about best-analysed ideas, not most strongly felt ones. It argues for rigour, not confidence."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Trade Thesis",
+        "def": "A written, evidence-based argument for a trade, built from several independent lines rather than a feeling."
+      },
+      {
+        "term": "The Six Pillars",
+        "def": "Fundamentals, Valuation, Catalyst, Positioning/Sentiment, Momentum, Carry — scored together for conviction."
+      },
+      {
+        "term": "Return Factor",
+        "def": "A documented, persistent source of return (e.g., value, momentum, carry) found across markets, not a one-off."
+      }
+    ]
+  },
+  {
+    "id": "risk-sizing-and-the-pre-mortem",
+    "lessonNumber": 2,
+    "chapterNumber": 6,
+    "chapterTitle": "Chapter 6: Building a Professional Trade Process",
+    "title": "Risk, Sizing, and the Pre-Mortem",
+    "keyIdea": "Turn a thesis into a survivable trade by placing the stop at the invalidation level, demanding a reward-to-risk that justifies it, running a pre-mortem to surface hidden failure modes, and writing the full exit before entry.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A thesis you cannot disprove is not a thesis — it is a belief. The professional's first move after building the six-pillar case (Lesson 1) is to ask the opposite question: what would have to happen for this to be wrong?"
+      },
+      {
+        "type": "definition",
+        "term": "Invalidation Level",
+        "text": "The specific price, or condition, at which your thesis is proven wrong and the reason for the trade no longer holds. It is where your stop-loss belongs — not at an arbitrary distance, but where being wrong becomes a fact."
+      },
+      {
+        "type": "paragraph",
+        "text": "This sharpens the stop-loss from Chapter 3. A beginner puts a stop \"far enough away to not get hit.\" A professional puts it exactly where the thesis breaks: below the support that the whole case rested on, or beyond the level that would mean the catalyst failed. If price reaches the invalidation level, you are not unlucky — you were wrong, and the stop is simply recording that."
+      },
+      {
+        "type": "warning",
+        "text": "Every pillar can be invalidated, and a real thesis names how. If your trade rests on a rate-hike catalyst and the central bank holds, the thesis is dead regardless of price — that is an invalidation too. Writing these down in advance is what stops you from inventing reasons to stay in a losing trade, the disposition effect from Chapter 4, Lesson 1."
+      },
+      {
+        "type": "paragraph",
+        "text": "From the invalidation level you get your risk — the distance to the stop, turned into money by position sizing (Chapter 3, Lesson 1). Now the thesis has to clear a bar."
+      },
+      {
+        "type": "paragraph",
+        "text": "A professional does not take a trade just because the case is good; the payoff has to justify the risk. Using the risk-to-reward and break-even math from Chapter 3, Lesson 3, a serious thesis is expected to offer a reward-to-risk of at least roughly 2 to 1, and often more — enough that the trade is worth taking even at a modest win rate, and enough to carry the whole process's expectancy (Chapter 4, Lesson 2) into positive territory after the inevitable losers."
+      },
+      {
+        "type": "warning",
+        "text": "If a thesis is compelling but the nearest sensible target is barely further than the stop, the correct decision is often no trade — the analysis was right and the trade still is not worth it. This is the discipline beginners find hardest: a good thesis with a poor reward-to-risk is a pass, not a trade you shrink your target to justify."
+      },
+      {
+        "type": "paragraph",
+        "text": "Here is the technique that separates a careful trader from a merely confident one. Before entering, you deliberately assume the trade has already failed, and work backwards to why."
+      },
+      {
+        "type": "definition",
+        "term": "Pre-Mortem",
+        "text": "A risk exercise, introduced by psychologist Gary Klein (Harvard Business Review, 2007), in which you imagine that a plan has already failed and then generate all the plausible reasons for its failure — surfacing risks that optimism about your own idea would otherwise hide."
+      },
+      {
+        "type": "paragraph",
+        "text": "The power of the pre-mortem is psychological. Once you have committed to a thesis, you are motivated to see it work, and that motivation quietly blinds you to its weaknesses — the overconfidence of Chapter 4, Lesson 1. Assuming failure flips the incentive: now your goal is to find problems, and you find far more than you would by asking \"what could go wrong?\" in the abstract."
+      },
+      {
+        "type": "example",
+        "text": "You have a high-conviction short on a currency: fundamentals, valuation, and a rate-decision catalyst all agree. Pre-mortem: it is three weeks later and the trade lost. Why? Perhaps the central bank surprised dovishly the other way; perhaps positioning was already so short that there was no one left to sell (Chapter 5, Lesson 2); perhaps a risk-off shock sent money into the currency as a safe haven; perhaps the move happened in an illiquid session and your stop filled far away (Chapter 5, Lesson 3). Each reason you surface becomes something you plan for now — a wider or differently placed stop, a smaller size, a decision to wait past the event, or a reason not to take the trade at all."
+      },
+      {
+        "type": "image",
+        "svg": "forex-ch6-premortem",
+        "alt": "Diagram of the four-step process from thesis to a survivable trade — set the stop at the invalidation level, demand a reward-to-risk of at least about 2 to 1, run a pre-mortem by assuming the trade already failed and listing why (Klein 2007), and write the full exit before entry — with the rule that you may exit if the thesis breaks but never move the stop or target because price is uncomfortable",
+        "caption": "Invalidation, reward-to-risk, the pre-mortem, and writing the whole exit before the entry."
+      },
+      {
+        "type": "warning",
+        "text": "A pre-mortem is not pessimism for its own sake. It is the honest-skepticism spine of this whole course turned on your own idea: verify the claim, especially when the claim is yours and you want it to be true."
+      },
+      {
+        "type": "paragraph",
+        "text": "Put the pieces together and the rule is simple and strict: the entire exit plan is written before the position exists."
+      },
+      {
+        "type": "paragraph",
+        "text": "That means, in advance: the entry condition, the stop at the invalidation level, the target at a real level clearing your reward-to-risk minimum, the position size that makes the loss your fixed risk percentage, and the non-price conditions that would end the thesis (a failed catalyst, a changed rate path). Once written, the plan is executed, ideally through pre-placed orders (the OCO order of Chapter 1, Lesson 7) so that discipline does not depend on your nerve in the moment (Chapter 4)."
+      },
+      {
+        "type": "warning",
+        "text": "The one rule that protects all of this: you may exit early if the thesis breaks, but you may never move the stop or target simply because price is uncomfortable. Changing the plan mid-trade to avoid a loss is how every earlier chapter's discipline is quietly undone. The plan is decided when you are calm, and defended when you are not."
+      },
+      {
+        "type": "practice",
+        "text": "Before entering a thesis-driven trade, confirm: Can you state, in one sentence, exactly what would prove this trade wrong — and is your stop at that level rather than an arbitrary distance? Does the trade clear your reward-to-risk minimum from a real target, or are you shrinking the target to make the number work? Have you actually run the pre-mortem — imagined the loss and listed the reasons — or only glanced at the risks? And is the entire exit, including the conditions that kill the thesis, written down before you enter?"
+      }
+    ],
+    "quiz": [
+      {
+        "question": "Where does a professional place the stop-loss for a thesis-driven trade?",
+        "options": [
+          "A fixed number of pips away, the same for every trade",
+          "At the invalidation level — the price or condition at which the thesis is proven wrong",
+          "As far away as the account can withstand",
+          "There is no stop on a high-conviction trade"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — the stop belongs at the invalidation level, where being wrong becomes a fact, not at an arbitrary distance and never absent on a \"sure thing.\"",
+        "feedbackWrong": "Not quite — the stop belongs at the invalidation level where the thesis is proven wrong, not at an arbitrary distance."
+      },
+      {
+        "question": "What is the purpose of a pre-mortem?",
+        "options": [
+          "To celebrate a trade that worked",
+          "To assume the trade has already failed and generate the reasons, surfacing risks that optimism hides",
+          "To calculate position size",
+          "To pick the entry price"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — Klein's pre-mortem flips your incentive from defending the idea to finding its flaws, which surfaces far more real risks than asking \"what could go wrong?\" in the abstract.",
+        "feedbackWrong": "Not quite — a pre-mortem assumes the trade already failed and lists why, surfacing risks that optimism about your own idea hides."
+      },
+      {
+        "question": "True or False: once in a trade, it is fine to widen the stop if the thesis is still intact but price is moving against you uncomfortably.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — you may exit if the thesis breaks, but never move the stop or target just because price is uncomfortable; that undoes the reward-to-risk and the discipline the plan was built on.",
+        "feedbackWrong": "Not quite — widening the stop for comfort destroys the planned reward-to-risk. You may exit if the thesis breaks, but not move the stop for comfort."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Invalidation Level",
+        "def": "The price or condition at which a thesis is proven wrong — where the stop-loss belongs."
+      },
+      {
+        "term": "Pre-Mortem",
+        "def": "Imagining a trade has already failed and listing why, to surface hidden risks before entry (Klein, 2007)."
+      }
+    ]
+  },
+  {
+    "id": "regime-mapping-where-to-hunt",
+    "lessonNumber": 3,
+    "chapterNumber": 6,
+    "chapterTitle": "Chapter 6: Building a Professional Trade Process",
+    "title": "Regime Mapping — Where to Hunt",
+    "keyIdea": "Read the market regime first because it decides which pillar works; follow a policy shock along the transmission chain from rates to FX to credit/equities to commodities to crypto; and when nothing aligns, hold cash.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A professional does not hunt for trades everywhere at once. They first ask what kind of market they are in, because the answer decides which of the six pillars will even work."
+      },
+      {
+        "type": "definition",
+        "term": "Market Regime",
+        "text": "The prevailing environment of the market: whether risk appetite is rising or falling, whether volatility is low or high, and whether prices are trending or ranging. The regime determines which strategies have an edge and which are traps."
+      },
+      {
+        "type": "paragraph",
+        "text": "You have already seen this decide outcomes. Carry trades pay beautifully in a calm, risk-on regime and crash violently when volatility spikes — the exact finding from Chapter 2, Lesson 3 and the lived 2008 unwind in Chapter 5, Lesson 2. Momentum thrives in trending regimes and bleeds in ranging ones (Chapter 2, Lesson 1). Reading the regime first is how you avoid bringing the right tool to the wrong market."
+      },
+      {
+        "type": "warning",
+        "text": "Most strategy failures are not the strategy being broken — they are the strategy being used in the wrong regime. Before asking \"is this a good trade?\", ask \"what regime is this, and does my thesis suit it?\" A carry thesis in a rising-volatility, risk-off regime is not a good trade no matter how wide the rate gap."
+      },
+      {
+        "type": "paragraph",
+        "text": "Markets are connected, and shocks move through them in a rough order. Knowing that order tells you where to look."
+      },
+      {
+        "type": "definition",
+        "term": "Transmission Chain",
+        "text": "The path by which a change in monetary policy ripples across markets: interest rates move first, then flow through to currencies and bonds, then to credit and equities, then to commodities, and on to risk assets like crypto."
+      },
+      {
+        "type": "paragraph",
+        "text": "The logic follows everything the course has taught. A central bank changes rates or signals a change (Chapter 2, Lesson 3). That reprices currencies and government bonds first, because they are closest to interest rates. Changing borrowing costs then feed into credit and company earnings, moving equities. Growth and rate expectations move commodities. And the most risk-sensitive assets — including cryptocurrencies — swing the most, because they sit at the far, high-beta end of the risk spectrum."
+      },
+      {
+        "type": "example",
+        "text": "Cryptocurrencies are worth a specific note, because they are often assumed to be a world apart. Liu, Tsyvinski and Wu (2022), in The Journal of Finance, found that cryptocurrency returns are captured by just three factors — a crypto market factor, size, and momentum — a structure that echoes the factor logic of ordinary asset markets rather than escaping it. In a risk-off transmission wave, crypto has tended to behave as a high-beta risk asset, falling hardest, not as an independent safe haven."
+      },
+      {
+        "type": "image",
+        "svg": "forex-ch6-regime-transmission",
+        "alt": "Diagram of the transmission chain (interest rates to FX and bonds to credit and equities to commodities to crypto), the way regimes decide which pillar works (carry and momentum in calm risk-on markets, carry crashing and crypto falling hardest in volatile risk-off markets), and the all-quiet regime where the correct position is cash",
+        "caption": "The transmission chain from rates outward, how regimes pick the winning pillar, and why all-quiet means cash."
+      },
+      {
+        "type": "paragraph",
+        "text": "Practically, the chain is a map of where to hunt. If a major central bank shifts, the first, cleanest expression is often in FX and rates; the later links (equities, commodities, crypto) may offer follow-on trades as the shock propagates. You look along the chain from the source."
+      },
+      {
+        "type": "paragraph",
+        "text": "The hardest regime to trade is the one where nothing is happening."
+      },
+      {
+        "type": "definition",
+        "term": "All-Quiet Regime",
+        "text": "A market with no clear trend, no imminent catalyst, and no pillar strongly aligned. In this environment, forcing a trade is how edges are given back."
+      },
+      {
+        "type": "paragraph",
+        "text": "When you scan the pillars and the regime and nothing lines up — valuation neutral, no catalyst, momentum flat, positioning unremarkable — the professional answer is not to lower the bar until something qualifies. It is to hold cash and wait."
+      },
+      {
+        "type": "warning",
+        "text": "Cash is a position. Choosing not to trade when nothing aligns is not inactivity — it is the active decision that preserves your capital and your discipline for when the odds are actually in your favour. This is the direct antidote to the overtrading of Chapter 4, Lesson 1: the urge to always have a position on is exactly what the all-quiet regime punishes. The best traders spend a great deal of time doing nothing, deliberately."
+      },
+      {
+        "type": "practice",
+        "text": "Map the regime before the trade: Name it — risk-on or risk-off, calm or volatile, trending or ranging — and ask whether your thesis suits it. Follow the transmission chain from its source: a central-bank move shows up in FX and rates first, then ripples outward; where is the cleanest expression? Treat crypto as a high-beta link in that chain in risk-off waves, not an independent safe haven. And when you scan and nothing aligns, recognise the all-quiet regime and take the cash position, not a forced trade."
+      }
+    ],
+    "quiz": [
+      {
+        "question": "Why does the same strategy succeed in one period and fail in another?",
+        "options": [
+          "The strategy randomly stops working",
+          "The market regime changed, and the strategy suited the old regime but not the new one",
+          "Strategies only work on certain currency pairs",
+          "It depends only on the spread"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — a strategy's edge is regime-dependent (carry in calm markets, momentum in trending ones). Most \"the strategy broke\" moments are really \"the regime changed.\"",
+        "feedbackWrong": "Not quite — a strategy's edge is regime-dependent; most failures are the regime changing, not the strategy breaking."
+      },
+      {
+        "question": "In the transmission chain, where does a change in central-bank interest rates show up first?",
+        "options": [
+          "In cryptocurrencies",
+          "In currencies and government bonds, which sit closest to interest rates",
+          "In commodities only",
+          "Nowhere — rates do not affect other markets"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — rates reprice currencies and bonds first, then flow to credit and equities, then commodities, then the most risk-sensitive assets like crypto.",
+        "feedbackWrong": "Not quite — rates hit currencies and bonds first (closest to rates), then ripple out to credit/equities, commodities, and crypto."
+      },
+      {
+        "question": "True or False: when no pillar aligns and there is no catalyst, a disciplined trader lowers their standards so they always have a position on.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — the opposite. When nothing aligns, cash is the correct position. Forcing a trade in an all-quiet regime is overtrading, which gives edges back.",
+        "feedbackWrong": "Not quite — when nothing aligns, cash is the right position. Forcing a trade is overtrading, which gives edges back."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Market Regime",
+        "def": "The prevailing environment (risk-on/off, calm/volatile, trending/ranging) that decides which strategies have an edge."
+      },
+      {
+        "term": "Transmission Chain",
+        "def": "The path of a policy shock: rates to FX and bonds to credit and equities to commodities to crypto."
+      },
+      {
+        "term": "All-Quiet Regime",
+        "def": "A market with no trend, catalyst, or aligned pillar — where the correct position is usually cash."
+      }
+    ]
+  },
+  {
+    "id": "portfolio-level-discipline",
+    "lessonNumber": 4,
+    "chapterNumber": 6,
+    "chapterTitle": "Chapter 6: Building a Professional Trade Process",
+    "title": "Portfolio-Level Discipline",
+    "keyIdea": "Weight capital toward your best-analysed theses (which outperform), while still sizing every trade to the fixed-fractional rule — concentrate conviction, not risk — and review closed trades for the quality of the decision, not just the result.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A beginner spreads money evenly across every idea they have. The evidence says that is a mistake."
+      },
+      {
+        "type": "definition",
+        "term": "Best-Ideas Concentration",
+        "text": "The principle that a trader's or manager's most rigorously analysed ideas deserve more capital than their weaker ones, because the strongest ideas carry most of the edge."
+      },
+      {
+        "type": "example",
+        "text": "Anton, Cohen and Polk, in their study \"Best Ideas,\" found that the positions in which professional managers showed the most conviction — their single best-analysed ideas — outperformed both the market and the managers' own other holdings by roughly 2.8 to 4.5% per year. The striking part is the rest: the majority of the other stocks those managers held did not beat the market at all. Their edge was concentrated in a handful of ideas, and diluted by everything else they owned."
+      },
+      {
+        "type": "paragraph",
+        "text": "The message is not \"own fewer things for its own sake.\" It is that spreading capital evenly across strong and weak ideas alike drags your strong ideas down toward the average. Weight follows conviction — the real, six-pillar conviction of Lesson 1, not a feeling."
+      },
+      {
+        "type": "example",
+        "text": "A related finding sharpens it. Cremers and Petajisto (2009), in The Review of Financial Studies, introduced \"Active Share\" — how much a portfolio actually differs from its benchmark — and found that the managers who deviated most from the crowd, with the highest Active Share, were the ones who outperformed, before and after fees. Doing something genuinely different from the consensus is where returns come from — but only, both studies imply, when that difference is backed by real analysis rather than mere boldness."
+      },
+      {
+        "type": "paragraph",
+        "text": "There is a hard tension here that an honest course has to name. Concentration raises returns and raises risk. Putting more weight on fewer trades increases the damage when one is wrong, and Chapter 3, Lesson 1 showed exactly where that leads: the fraction risked per trade is the dominant lever on the risk of ruin."
+      },
+      {
+        "type": "warning",
+        "text": "The resolution is that \"best ideas\" governs where your conviction goes, while the fixed-fractional risk rule governs how much any single trade can cost you. You concentrate toward your strongest theses, but each one is still sized so that being wrong is survivable — the 1 to 2% risk per trade never gets abandoned because a thesis feels certain. Concentration of conviction, not concentration of risk. The 2015 franc traders who blew up (Chapter 5, Lesson 1) had concentrated risk; that is the opposite of this."
+      },
+      {
+        "type": "paragraph",
+        "text": "Where do the best ideas come from? A funnel, not a flash of insight."
+      },
+      {
+        "type": "definition",
+        "term": "Research Funnel",
+        "text": "The process of screening many possible trades down to a few worth taking: a wide scan of the regime and the pillars, narrowing to the handful of theses that genuinely align, and narrowing again to the few that also clear the risk and reward-to-risk bars."
+      },
+      {
+        "type": "paragraph",
+        "text": "Most ideas die in the funnel, and that is the point. You scan broadly (Lesson 3), build theses on the candidates that look promising (Lesson 1), stress each with a pre-mortem and a reward-to-risk test (Lesson 2), and only the survivors get capital. A trader who takes every idea that reaches the top of the funnel has no funnel at all."
+      },
+      {
+        "type": "paragraph",
+        "text": "Then, after the trade, the loop closes."
+      },
+      {
+        "type": "definition",
+        "term": "Post-Trade Review",
+        "text": "The standing practice of examining closed trades not just for profit or loss, but for whether the thesis and the process were sound — separating good decisions from lucky outcomes, and bad decisions from unlucky ones."
+      },
+      {
+        "type": "paragraph",
+        "text": "This extends the trading journal of Chapter 4, Lesson 3 up to the level of theses. The question is never only \"did it make money?\" — a bad process can win by luck and a good one can lose by variance (Chapter 4, Lesson 2). The question is \"was the thesis sound, was it sized right, did I follow the plan?\" Reviewing that, over many trades, is how a process actually improves instead of just accumulating outcomes."
+      },
+      {
+        "type": "warning",
+        "text": "Judge the decision, not just the result. A trade that won because the market bailed out a sloppy thesis is a warning, not a success; a well-built thesis that lost to a genuine surprise may have been exactly right to take. Rewarding yourself for luck and punishing yourself for variance trains the wrong habits."
+      },
+      {
+        "type": "image",
+        "svg": "forex-ch6-portfolio-discipline",
+        "alt": "Diagram of portfolio-level discipline — the research funnel narrowing many scanned ideas down to the few traded, the evidence that best-analysed ideas outperform by about 2.8 to 4.5 percent a year (Anton/Cohen/Polk) and that high Active Share backed by analysis outperforms (Cremers & Petajisto 2009), the rule to concentrate conviction but not risk, and post-trade review that judges the decision rather than the result",
+        "caption": "The research funnel, the best-ideas evidence, concentrating conviction not risk, and reviewing the decision not the result."
+      },
+      {
+        "type": "paragraph",
+        "text": "Step back and the six chapters form one process. The mechanics (Chapter 1) let you place a trade. Reading the market (Chapter 2) and the case studies (Chapter 5) tell you what is happening and how it can go wrong. Risk management (Chapter 3) keeps you alive. Psychology and the plan (Chapter 4) make you follow your own rules. And this chapter assembles them into how a professional actually works: build a six-pillar thesis, define its invalidation and pre-mortem it, place it only in a suitable regime, size it against the risk of ruin, weight toward your best ideas, and review the decision afterwards. That loop, run honestly and repeatedly, is the whole craft."
+      },
+      {
+        "type": "warning",
+        "text": "And the honest close the course has earned the right to make: doing all of this well is genuinely hard and takes real time to build. It is not a shortcut to guaranteed profit — nothing is, and most retail accounts still lose (Chapter 4, Lesson 3). What this process does is put the odds, and your own behaviour, on the right side, which is the most any method honestly can."
+      },
+      {
+        "type": "paragraph",
+        "text": "One practical note, stated plainly and only once. Running this full six-pillar process on a live trade — researching each pillar, verifying the evidence, sizing and reviewing — takes hours and a skill built over time. For someone who wants the output of this framework on a specific trade without building that skill themselves, a completed trade thesis is something the Scere Markets platform offers as a service. The framework above is taught here in full and holds nothing back; the service simply exists for people who want the result without the hours. Everything you need to do it yourself is in this course."
+      },
+      {
+        "type": "practice",
+        "text": "Run your process at the portfolio level: Are you weighting capital toward your best-analysed theses, or spreading it evenly and dragging your strong ideas toward average? Are you concentrating conviction while still sizing every single trade to the fixed-fractional risk rule — never concentrating risk? Does every trade you take survive a real funnel (scan, thesis, pre-mortem, reward-to-risk), or do ideas reach your account untested? And in review, are you judging the quality of the decision and the thesis, or only whether it happened to make money?"
+      }
+    ],
+    "quiz": [
+      {
+        "question": "What did Anton, Cohen and Polk's \"best ideas\" research find about professional managers' holdings?",
+        "options": [
+          "All their holdings outperformed equally",
+          "Their single best-analysed ideas outperformed by roughly 2.8 to 4.5% a year, while the rest of their holdings did not beat the market",
+          "Concentrated portfolios always lose",
+          "Managers have no skill at all"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — the edge was concentrated in the best-analysed ideas; the rest of what the managers held diluted it. Weight belongs on your strongest theses.",
+        "feedbackWrong": "Not quite — the best-analysed ideas outperformed by ~2.8-4.5%/yr while the rest did not beat the market. The edge was concentrated."
+      },
+      {
+        "question": "How does best-ideas concentration coexist with avoiding the risk of ruin?",
+        "options": [
+          "By abandoning position sizing on high-conviction trades",
+          "By concentrating conviction toward the strongest theses while still sizing every trade to the fixed-fractional risk rule",
+          "By risking everything on one idea",
+          "They cannot coexist"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — concentrate conviction, not risk. Your best theses get more attention and weight, but each trade is still sized so being wrong is survivable.",
+        "feedbackWrong": "Not quite — you concentrate conviction toward the best theses while still sizing every trade to the fixed-fractional rule. Concentrate conviction, not risk."
+      },
+      {
+        "question": "True or False: a trade should be judged in review purely by whether it made money.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — judge the decision and the thesis, not just the result. A good process can lose to variance and a bad one can win by luck; rewarding outcomes alone trains the wrong habits.",
+        "feedbackWrong": "Not quite — judge the decision and thesis, not only the money. Good processes lose to variance and bad ones win by luck."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Best-Ideas Concentration",
+        "def": "Weighting capital toward your most rigorously analysed theses, where most of the edge lives."
+      },
+      {
+        "term": "Active Share",
+        "def": "How much a portfolio differs from its benchmark; higher Active Share, backed by analysis, predicted outperformance (Cremers & Petajisto, 2009)."
+      },
+      {
+        "term": "Research Funnel",
+        "def": "Screening many possible trades down to the few that clear the thesis, pre-mortem, and reward-to-risk bars."
+      },
+      {
+        "term": "Post-Trade Review",
+        "def": "Reviewing closed trades for the soundness of the decision and thesis, not only the profit or loss."
+      }
+    ]
   }
 ];
 
@@ -4367,6 +4909,210 @@ window.SCERE_FOREX_SVGS = {
 
   <text x="450" y="484" text-anchor="middle" font-size="12" font-style="italic" fill="#e2e8f0">Execution and liquidity are real risks, not background detail. Trade liquid hours; size for a thin-market spike.</text>
   <text x="450" y="516" text-anchor="middle" font-size="10.5" font-style="italic" fill="#94a3b8">Source: BIS Markets Committee report on the 7 October 2016 sterling flash event.</text>
+</svg>
+`,
+  'forex-ch6-portfolio-discipline': `
+<svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="560" fill="#0f172a"/>
+  <text x="450" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#e2e8f0">Portfolio-Level Discipline</text>
+  <text x="450" y="55" text-anchor="middle" font-size="12" font-style="italic" fill="#94a3b8">Weight toward your best-analysed ideas, screen many down to few, and judge the decision -- not just the result.</text>
+
+  <!-- research funnel -->
+  <text x="60" y="90" font-size="14" font-weight="bold" fill="#e2e8f0">The research funnel: many ideas in, few trades out</text>
+  <polygon points="60,104 380,104 320,150 120,150" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="220" y="122" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#3b82f6">Wide scan: regime + pillars (L1, L3)</text>
+  <text x="220" y="138" text-anchor="middle" font-size="10" fill="#cbd5e1">many candidates</text>
+  <polygon points="120,154 320,154 280,196 160,196" fill="rgba(34,197,94,0.12)" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="220" y="172" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#22c55e">Build theses; pre-mortem + reward-to-risk (L2)</text>
+  <text x="220" y="188" text-anchor="middle" font-size="10" fill="#cbd5e1">a handful survive</text>
+  <polygon points="160,200 280,200 255,238 185,238" fill="rgba(234,179,8,0.12)" stroke="#eab308" stroke-width="1.5"/>
+  <text x="220" y="220" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#fde68a">Traded</text>
+  <text x="220" y="234" text-anchor="middle" font-size="10" fill="#cbd5e1">the few that clear every bar</text>
+  <text x="220" y="258" text-anchor="middle" font-size="10" font-style="italic" fill="#94a3b8">Most ideas die in the funnel. That is the point.</text>
+
+  <!-- concentration evidence -->
+  <rect x="420" y="104" width="440" height="154" rx="10" fill="rgba(34,197,94,0.12)" stroke="#22c55e" stroke-width="2"/>
+  <text x="440" y="128" font-size="13" font-weight="bold" fill="#22c55e">Weight follows conviction (the evidence)</text>
+  <text x="440" y="150" font-size="11" fill="#cbd5e1">Anton, Cohen and Polk ("Best Ideas"): a manager's</text>
+  <text x="440" y="165" font-size="11" fill="#cbd5e1">best-analysed ideas beat the market and their own</text>
+  <text x="440" y="180" font-size="12" font-weight="bold" fill="#22c55e">other holdings by ~2.8-4.5%/yr;</text>
+  <text x="440" y="196" font-size="11" fill="#cbd5e1">the rest did not beat the market at all.</text>
+  <text x="440" y="219" font-size="11" fill="#cbd5e1">Cremers and Petajisto (2009): high "Active Share"</text>
+  <text x="440" y="234" font-size="11" fill="#cbd5e1">-- differing most from the crowd -- outperformed,</text>
+  <text x="440" y="249" font-size="11" fill="#cbd5e1">when backed by real analysis, not mere boldness.</text>
+
+  <!-- concentration vs ruin -->
+  <rect x="40" y="278" width="820" height="88" rx="10" fill="rgba(239,68,68,0.12)" stroke="#ef4444" stroke-width="2"/>
+  <text x="60" y="302" font-size="13" font-weight="bold" fill="#ef4444">Concentrate CONVICTION, not RISK</text>
+  <text x="60" y="324" font-size="11.5" fill="#cbd5e1">Concentration raises returns and risk. So best-ideas governs WHERE conviction goes; the fixed 1-2% rule (Ch3 L1)</text>
+  <text x="60" y="340" font-size="11.5" fill="#cbd5e1">still governs HOW MUCH any one trade can cost. Your strongest theses get more weight -- each still sized to survive.</text>
+  <text x="60" y="360" font-size="11" font-style="italic" fill="#94a3b8">The 2015 franc traders who blew up had concentrated risk -- the opposite of this.</text>
+
+  <!-- review loop -->
+  <rect x="40" y="380" width="820" height="110" rx="10" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="2"/>
+  <text x="60" y="404" font-size="13" font-weight="bold" fill="#3b82f6">Post-trade review: judge the decision, not the result</text>
+  <text x="60" y="426" font-size="11.5" fill="#cbd5e1">Extends the trading journal (Ch4 L3) up to theses. Not "did it make money?" but "was the thesis sound, sized right,</text>
+  <text x="60" y="442" font-size="11.5" fill="#cbd5e1">and did I follow the plan?" A bad process can win by luck; a good one can lose to variance (Ch4 L2).</text>
+  <text x="60" y="466" font-size="11.5" font-weight="bold" fill="#3b82f6">Reward good decisions, not lucky outcomes -- that is how a process improves instead of just accumulating results.</text>
+
+  <text x="450" y="522" text-anchor="middle" font-size="12" font-style="italic" fill="#e2e8f0">Scan -&gt; thesis -&gt; pre-mortem -&gt; size -&gt; weight to best ideas -&gt; review. Run honestly and repeatedly, that loop is the craft.</text>
+</svg>
+`,
+  'forex-ch6-premortem': `
+<svg viewBox="0 0 900 540" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="540" fill="#0f172a"/>
+  <text x="450" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#e2e8f0">From Thesis to a Trade You Can Survive</text>
+  <text x="450" y="55" text-anchor="middle" font-size="12" font-style="italic" fill="#94a3b8">Define how it can be wrong, demand a payoff, imagine the failure -- then write the exit before entry.</text>
+
+  <!-- step 1 -->
+  <rect x="40" y="78" width="820" height="76" rx="10" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="2"/>
+  <text x="60" y="102" font-size="13" font-weight="bold" fill="#3b82f6">1. Invalidation level -- where the thesis is proven wrong</text>
+  <text x="60" y="124" font-size="11.5" fill="#cbd5e1">The stop goes here: below the support the case rested on, or beyond the level that means the catalyst failed.</text>
+  <text x="60" y="142" font-size="11.5" fill="#cbd5e1">Not an arbitrary distance. If price reaches it, you were wrong -- and a failed catalyst invalidates too, whatever price does.</text>
+
+  <!-- step 2 -->
+  <rect x="40" y="164" width="820" height="72" rx="10" fill="rgba(34,197,94,0.12)" stroke="#22c55e" stroke-width="2"/>
+  <text x="60" y="188" font-size="13" font-weight="bold" fill="#22c55e">2. Reward-to-risk must clear the bar (>= ~2:1)</text>
+  <text x="60" y="210" font-size="11.5" fill="#cbd5e1">The distance to invalidation is your risk (Ch3 L1). The target, at a real level, must pay enough to justify it (Ch3 L3).</text>
+  <text x="60" y="228" font-size="11.5" fill="#cbd5e1">A great thesis with a poor reward-to-risk is a PASS -- not a trade you shrink the target to justify.</text>
+
+  <!-- step 3 pre-mortem -->
+  <rect x="40" y="246" width="820" height="128" rx="10" fill="rgba(239,68,68,0.12)" stroke="#ef4444" stroke-width="2"/>
+  <text x="60" y="270" font-size="13" font-weight="bold" fill="#ef4444">3. Pre-mortem -- assume it already failed, then list why (Klein, HBR 2007)</text>
+  <text x="60" y="292" font-size="11.5" fill="#cbd5e1">Once committed to a thesis you are motivated to see it work, which hides its flaws (overconfidence, Ch4 L1).</text>
+  <text x="60" y="308" font-size="11.5" fill="#cbd5e1">Assuming failure flips the incentive: now your goal is to find problems -- and you find far more.</text>
+  <text x="60" y="332" font-size="11" fill="#fde68a">"It is 3 weeks later and the trade lost. Why?" -- dovish surprise? positioning already extreme? risk-off safe-haven</text>
+  <text x="60" y="348" font-size="11" fill="#fde68a">bid? illiquid session, stop filled far away? Each reason becomes a plan now: wider stop, smaller size, wait, or no trade.</text>
+  <text x="60" y="367" font-size="10.5" font-style="italic" fill="#94a3b8">Verify the claim -- especially when the claim is yours and you want it to be true.</text>
+
+  <!-- step 4 -->
+  <rect x="40" y="384" width="820" height="76" rx="10" fill="rgba(234,179,8,0.12)" stroke="#eab308" stroke-width="2"/>
+  <text x="60" y="408" font-size="13" font-weight="bold" fill="#fde68a">4. Write the full exit BEFORE the entry</text>
+  <text x="60" y="430" font-size="11.5" fill="#cbd5e1">Entry condition, stop at invalidation, target clearing reward-to-risk, size = fixed risk %, and the non-price</text>
+  <text x="60" y="448" font-size="11.5" fill="#cbd5e1">conditions that kill the thesis. Place it as OCO orders (Ch1 L7) so discipline does not depend on your nerve.</text>
+
+  <text x="450" y="500" text-anchor="middle" font-size="12" font-weight="bold" fill="#e2e8f0">You may exit early if the THESIS breaks -- never move the stop or target just because price is uncomfortable.</text>
+  <text x="450" y="524" text-anchor="middle" font-size="11" font-style="italic" fill="#94a3b8">Decided when you are calm; defended when you are not.</text>
+</svg>
+`,
+  'forex-ch6-regime-transmission': `
+<svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="560" fill="#0f172a"/>
+  <text x="450" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#e2e8f0">Regime Mapping: Where to Hunt</text>
+  <text x="450" y="55" text-anchor="middle" font-size="12" font-style="italic" fill="#94a3b8">Read the regime first, then follow a policy shock along the chain -- and when nothing aligns, hold cash.</text>
+
+  <!-- transmission chain -->
+  <text x="60" y="92" font-size="14" font-weight="bold" fill="#e2e8f0">The transmission chain (a policy shock ripples outward, in order)</text>
+  <rect x="40" y="104" width="150" height="60" rx="8" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="2"/>
+  <text x="115" y="130" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#3b82f6">Interest rates</text>
+  <text x="115" y="148" text-anchor="middle" font-size="10" fill="#cbd5e1">move first (Ch2 L3)</text>
+  <text x="198" y="140" font-size="16" fill="#64748b">-&gt;</text>
+  <rect x="216" y="104" width="150" height="60" rx="8" fill="rgba(34,197,94,0.12)" stroke="#22c55e" stroke-width="2"/>
+  <text x="291" y="130" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#22c55e">FX and bonds</text>
+  <text x="291" y="148" text-anchor="middle" font-size="10" fill="#cbd5e1">closest to rates</text>
+  <text x="374" y="140" font-size="16" fill="#64748b">-&gt;</text>
+  <rect x="392" y="104" width="150" height="60" rx="8" fill="rgba(234,179,8,0.12)" stroke="#eab308" stroke-width="2"/>
+  <text x="467" y="128" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#fde68a">Credit and</text>
+  <text x="467" y="144" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#fde68a">equities</text>
+  <text x="550" y="140" font-size="16" fill="#64748b">-&gt;</text>
+  <rect x="568" y="104" width="140" height="60" rx="8" fill="rgba(239,68,68,0.12)" stroke="#ef4444" stroke-width="2"/>
+  <text x="638" y="130" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#ef4444">Commodities</text>
+  <text x="638" y="148" text-anchor="middle" font-size="10" fill="#cbd5e1">growth-sensitive</text>
+  <text x="714" y="140" font-size="16" fill="#64748b">-&gt;</text>
+  <rect x="732" y="104" width="128" height="60" rx="8" fill="rgba(239,68,68,0.12)" stroke="#ef4444" stroke-width="2"/>
+  <text x="796" y="128" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#ef4444">Crypto</text>
+  <text x="796" y="146" text-anchor="middle" font-size="9.5" fill="#cbd5e1">highest-beta risk</text>
+  <text x="796" y="158" text-anchor="middle" font-size="9.5" fill="#cbd5e1">asset</text>
+  <text x="450" y="184" text-anchor="middle" font-size="11" font-style="italic" fill="#94a3b8">Look from the source: a central-bank move shows up cleanest in FX and rates, then offers follow-on trades down the chain.</text>
+
+  <!-- regimes -->
+  <text x="60" y="216" font-size="14" font-weight="bold" fill="#e2e8f0">The regime decides which pillar even works</text>
+  <rect x="40" y="228" width="400" height="150" rx="10" fill="rgba(34,197,94,0.12)" stroke="#22c55e" stroke-width="2"/>
+  <text x="60" y="252" font-size="13" font-weight="bold" fill="#22c55e">Calm, risk-on, trending</text>
+  <text x="60" y="276" font-size="11.5" fill="#cbd5e1">Carry pays (wide rate gap, low volatility).</text>
+  <text x="60" y="294" font-size="11.5" fill="#cbd5e1">Momentum thrives in a clear trend (Ch2 L1).</text>
+  <text x="60" y="318" font-size="11.5" fill="#cbd5e1">These are the environments the pillars were</text>
+  <text x="60" y="334" font-size="11.5" fill="#cbd5e1">built for -- the wind is at your back.</text>
+  <text x="60" y="360" font-size="10.5" font-style="italic" fill="#94a3b8">Most "the strategy broke" moments are really</text>
+  <text x="60" y="373" font-size="10.5" font-style="italic" fill="#94a3b8">"the regime changed."</text>
+
+  <rect x="460" y="228" width="400" height="150" rx="10" fill="rgba(239,68,68,0.12)" stroke="#ef4444" stroke-width="2"/>
+  <text x="480" y="252" font-size="13" font-weight="bold" fill="#ef4444">Volatile, risk-off</text>
+  <text x="480" y="276" font-size="11.5" fill="#cbd5e1">Carry crashes -- the crowded unwind (Ch5 L2,</text>
+  <text x="480" y="292" font-size="11.5" fill="#cbd5e1">Menkhoff et al. 2012). Crypto falls hardest</text>
+  <text x="480" y="308" font-size="11.5" fill="#cbd5e1">as a high-beta risk asset (Liu, Tsyvinski and</text>
+  <text x="480" y="324" font-size="11.5" fill="#cbd5e1">Wu 2022) -- not an independent safe haven.</text>
+  <text x="480" y="350" font-size="10.5" font-style="italic" fill="#94a3b8">A carry thesis here is not a good trade, no</text>
+  <text x="480" y="363" font-size="10.5" font-style="italic" fill="#94a3b8">matter how wide the rate gap.</text>
+
+  <!-- all quiet -->
+  <rect x="40" y="392" width="820" height="106" rx="10" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="2"/>
+  <text x="60" y="416" font-size="14" font-weight="bold" fill="#3b82f6">All-quiet regime: the right trade is no trade</text>
+  <text x="60" y="440" font-size="11.5" fill="#cbd5e1">No trend, no catalyst, no pillar strongly aligned. Do not lower the bar until something qualifies.</text>
+  <text x="60" y="462" font-size="12.5" font-weight="bold" fill="#3b82f6">Cash is a position. Choosing not to trade preserves capital and discipline for when the odds are real.</text>
+  <text x="60" y="484" font-size="11" font-style="italic" fill="#94a3b8">The direct antidote to overtrading (Ch4 L1). The best traders spend a great deal of time doing nothing, deliberately.</text>
+
+  <text x="450" y="528" text-anchor="middle" font-size="12" font-style="italic" fill="#e2e8f0">Ask "what regime is this?" before "is this a good trade?" -- the right tool in the wrong market is a trap.</text>
+</svg>
+`,
+  'forex-ch6-six-pillars': `
+<svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="560" fill="#0f172a"/>
+  <text x="450" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#e2e8f0">The Six-Pillar Trade Thesis</text>
+  <text x="450" y="55" text-anchor="middle" font-size="12" font-style="italic" fill="#94a3b8">Conviction is not a feeling -- it is how many independent, evidence-based pillars point the same way.</text>
+
+  <!-- 6 pillars, 3x2 -->
+  <rect x="40" y="76" width="266" height="92" rx="8" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="56" y="98" font-size="13" font-weight="bold" fill="#3b82f6">1. Fundamentals</text>
+  <text x="56" y="118" font-size="10.5" fill="#cbd5e1">Rates, growth, inflation, central-bank</text>
+  <text x="56" y="132" font-size="10.5" fill="#cbd5e1">direction (Ch2 L3). The macro pressure.</text>
+  <text x="56" y="156" font-size="9.5" font-style="italic" fill="#94a3b8">Which way is the economy pushing?</text>
+
+  <rect x="317" y="76" width="266" height="92" rx="8" fill="rgba(34,197,94,0.12)" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="333" y="98" font-size="13" font-weight="bold" fill="#22c55e">2. Valuation</text>
+  <text x="333" y="118" font-size="10.5" fill="#cbd5e1">Cheap or expensive vs fair value.</text>
+  <text x="333" y="132" font-size="10.5" fill="#cbd5e1">The value factor (evidence-backed).</text>
+  <text x="333" y="156" font-size="9.5" font-style="italic" fill="#94a3b8">Is there room to move your way?</text>
+
+  <rect x="594" y="76" width="266" height="92" rx="8" fill="rgba(234,179,8,0.12)" stroke="#eab308" stroke-width="1.5"/>
+  <text x="610" y="98" font-size="13" font-weight="bold" fill="#fde68a">3. Catalyst</text>
+  <text x="610" y="118" font-size="10.5" fill="#cbd5e1">What makes the move happen, and when</text>
+  <text x="610" y="132" font-size="10.5" fill="#cbd5e1">(Ch2 L4). No catalyst = wait.</text>
+  <text x="610" y="156" font-size="9.5" font-style="italic" fill="#94a3b8">Why now, not someday?</text>
+
+  <rect x="40" y="178" width="266" height="92" rx="8" fill="rgba(239,68,68,0.12)" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="56" y="200" font-size="13" font-weight="bold" fill="#ef4444">4. Positioning / Sentiment</text>
+  <text x="56" y="220" font-size="10.5" fill="#cbd5e1">Is everyone already on your side?</text>
+  <text x="56" y="234" font-size="10.5" fill="#cbd5e1">Crowded trades unwind hard (Ch5 L2).</text>
+  <text x="56" y="258" font-size="9.5" font-style="italic" fill="#94a3b8">Who is left to push it further?</text>
+
+  <rect x="317" y="178" width="266" height="92" rx="8" fill="rgba(34,197,94,0.12)" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="333" y="200" font-size="13" font-weight="bold" fill="#22c55e">5. Momentum</text>
+  <text x="333" y="220" font-size="10.5" fill="#cbd5e1">Is price already trending your way</text>
+  <text x="333" y="234" font-size="10.5" fill="#cbd5e1">(Ch2 L1)? The momentum factor.</text>
+  <text x="333" y="258" font-size="9.5" font-style="italic" fill="#94a3b8">Wind at your back, or in your face?</text>
+
+  <rect x="594" y="178" width="266" height="92" rx="8" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="610" y="200" font-size="13" font-weight="bold" fill="#3b82f6">6. Carry</text>
+  <text x="610" y="220" font-size="10.5" fill="#cbd5e1">Does holding it pay or cost you interest</text>
+  <text x="610" y="234" font-size="10.5" fill="#cbd5e1">(Ch2 L3)? The carry factor.</text>
+  <text x="610" y="258" font-size="9.5" font-style="italic" fill="#94a3b8">Are you paid to wait, or bleeding?</text>
+
+  <!-- conviction bar -->
+  <rect x="40" y="288" width="820" height="70" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <text x="60" y="312" font-size="13" font-weight="bold" fill="#e2e8f0">Conviction = independent agreement, not intensity of feeling</text>
+  <text x="60" y="334" font-size="11.5" fill="#cbd5e1">One pillar is not a trade. A cheap currency can stay cheap for years; momentum with bad valuation is how bubbles end.</text>
+  <text x="60" y="350" font-size="11.5" fill="#cbd5e1">The more pillars that independently agree, the stronger the case -- the same logic as not trusting a single indicator.</text>
+
+  <!-- evidence strip -->
+  <rect x="40" y="368" width="820" height="122" rx="10" fill="rgba(34,197,94,0.12)" stroke="#22c55e" stroke-width="2"/>
+  <text x="60" y="392" font-size="14" font-weight="bold" fill="#22c55e">Why three pillars are evidence, not opinion</text>
+  <text x="60" y="416" font-size="11.5" fill="#cbd5e1">Asness, Moskowitz and Pedersen (2013): value and momentum earn premia across eight markets -- and are</text>
+  <text x="60" y="432" font-size="11.5" fill="#cbd5e1">negatively correlated, so they complement each other. Koijen, Moskowitz, Pedersen and Vrugt (2018): carry</text>
+  <text x="60" y="448" font-size="11.5" fill="#cbd5e1">predicts returns across bonds, equities, commodities and more. Value, momentum and carry are documented factors.</text>
+  <text x="60" y="472" font-size="11.5" font-weight="bold" fill="#22c55e">Anton, Cohen and Polk ("Best Ideas"): a manager's best-ANALYSED idea beats their others by ~2.8-4.5%/yr.</text>
+
+  <text x="450" y="524" text-anchor="middle" font-size="12" font-style="italic" fill="#e2e8f0">"Best idea" means best-analysed, not most strongly felt. The six pillars are how you tell which is which.</text>
 </svg>
 `,
 };

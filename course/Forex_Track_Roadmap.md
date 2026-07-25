@@ -58,16 +58,19 @@
 ## Chapter 6: Building a Professional Trade Process
 *Added following a user-provided professional trade-thesis template (citations independently verified — see note below). This is genuinely advanced material, not beginner content: it assumes working familiarity with carry trades, factor investing, positioning data, and valuation concepts this course hasn't taught yet. It only makes sense placed after Chapters 1–5, once a student has the vocabulary to use it. Kept as a fully separate chapter from Chapter 5 — not merged.*
 
-1. The High-Conviction Trade Thesis — the 6-pillar scoring framework (fundamentals, valuation, catalyst, positioning/sentiment, momentum, carry) and why "I feel strongly" isn't an edge
-2. Risk, Sizing & the Pre-Mortem — formalizing invalidation levels, reward:risk minimums, and writing exit rules *before* entry, not after
-3. Regime Mapping — Where to Hunt — the market-scanning tool, the rates→FX→credit/equities→commodities→crypto transmission chain, and why "all-quiet" regimes mean the correct position is cash
-4. Portfolio-Level Discipline — the "best ideas" concentration philosophy (backed by Antón, Cohen & Polk's finding that a manager's highest-conviction pick outperforms the rest of their portfolio by 2.8–4.5%/year), the research funnel, and post-trade review as a standing practice
+1. The High-Conviction Trade Thesis — the 6-pillar scoring framework (fundamentals, valuation, catalyst, positioning/sentiment, momentum, carry) and why "I feel strongly" isn't an edge — ✅ drafted *(citations verified live: Asness/Moskowitz/Pedersen 2013 value & momentum, Koijen et al. 2018 carry, Antón/Cohen/Polk best ideas)*
+2. Risk, Sizing & the Pre-Mortem — formalizing invalidation levels, reward:risk minimums, and writing exit rules *before* entry, not after — ✅ drafted *(Klein 2007 pre-mortem verified; builds on Ch3 sizing/R:R and Ch1 L7 OCO)*
+3. Regime Mapping — Where to Hunt — the market-scanning tool, the rates→FX→credit/equities→commodities→crypto transmission chain, and why "all-quiet" regimes mean the correct position is cash — ✅ drafted *(Liu/Tsyvinski/Wu 2022 crypto factors verified; all-quiet = cash ties to Ch4 overtrading)*
+4. Portfolio-Level Discipline — the "best ideas" concentration philosophy (backed by Antón, Cohen & Polk's finding that a manager's highest-conviction pick outperforms the rest of their portfolio by 2.8–4.5%/year), the research funnel, and post-trade review as a standing practice — ✅ drafted *(Antón/Cohen/Polk & Cremers/Petajisto 2009 verified; concentrate conviction not risk; the paid trade-thesis service is mentioned plainly once, at the end of this lesson, per the plan)*
 
 **Note on citations:** spot-checked the central claim (Antón, Cohen & Polk's 2.8–4.5%/year figure) directly against the paper across 6 independent sources, including the exact URL provided — confirmed accurate. The other cited papers (Cremers & Petajisto 2009, Menkhoff/Sarno/Schmeling/Schrimpf, Liu/Tsyvinski/Wu 2022, Koijen/Moskowitz/Pedersen/Vrugt 2018, Asness/Moskowitz/Pedersen 2013) are all well-established, frequently-cited real papers; not yet individually re-verified one by one, but there's no indication of any citation problem here — this document is unusually well-sourced for user-provided material.
 
 **Business model note — this shapes how Chapter 6 gets written:** the plan is that students who complete this chapter but don't want to (or can't) run the full framework themselves on a live trade can get a completed trade thesis *from the platform* as a service — likely a paid offering beyond the course itself. Two things follow from that:
 - The teaching content needs to be genuinely complete and honest — the course is what builds trust that the framework is real and rigorous, which is exactly what makes the "we'll do it for you" offer credible rather than a bait-and-switch. Don't hold anything back to create artificial demand for the service.
 - Lesson 4 (or a short closing section) should end with a clear, honest bridge: doing this well takes real time and skill-building — for students who want the output without building that skill themselves, that's a service the platform offers. This should be stated plainly once, not repeated as a sales pitch throughout the chapter.
+
+
+**Chapter 6 complete — 4/4 lessons drafted. The Forex track is COMPLETE: 6 chapters, 26 lessons.**
 
 ---
 

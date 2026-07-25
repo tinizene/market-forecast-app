@@ -1,0 +1,35 @@
+<svg viewBox="0 0 900 540" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="540" fill="#FDFCF9"/>
+  <text x="450" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#1F3864">From Thesis to a Trade You Can Survive</text>
+  <text x="450" y="55" text-anchor="middle" font-size="12" font-style="italic" fill="#6B6B6B">Define how it can be wrong, demand a payoff, imagine the failure -- then write the exit before entry.</text>
+
+  <!-- step 1 -->
+  <rect x="40" y="78" width="820" height="76" rx="10" fill="#EAF0FB" stroke="#2E5395" stroke-width="2"/>
+  <text x="60" y="102" font-size="13" font-weight="bold" fill="#2E5395">1. Invalidation level -- where the thesis is proven wrong</text>
+  <text x="60" y="124" font-size="11.5" fill="#333333">The stop goes here: below the support the case rested on, or beyond the level that means the catalyst failed.</text>
+  <text x="60" y="142" font-size="11.5" fill="#333333">Not an arbitrary distance. If price reaches it, you were wrong -- and a failed catalyst invalidates too, whatever price does.</text>
+
+  <!-- step 2 -->
+  <rect x="40" y="164" width="820" height="72" rx="10" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="60" y="188" font-size="13" font-weight="bold" fill="#1E7A4C">2. Reward-to-risk must clear the bar (>= ~2:1)</text>
+  <text x="60" y="210" font-size="11.5" fill="#333333">The distance to invalidation is your risk (Ch3 L1). The target, at a real level, must pay enough to justify it (Ch3 L3).</text>
+  <text x="60" y="228" font-size="11.5" fill="#333333">A great thesis with a poor reward-to-risk is a PASS -- not a trade you shrink the target to justify.</text>
+
+  <!-- step 3 pre-mortem -->
+  <rect x="40" y="246" width="820" height="128" rx="10" fill="#FFF3EF" stroke="#B23B2E" stroke-width="2"/>
+  <text x="60" y="270" font-size="13" font-weight="bold" fill="#B23B2E">3. Pre-mortem -- assume it already failed, then list why (Klein, HBR 2007)</text>
+  <text x="60" y="292" font-size="11.5" fill="#333333">Once committed to a thesis you are motivated to see it work, which hides its flaws (overconfidence, Ch4 L1).</text>
+  <text x="60" y="308" font-size="11.5" fill="#333333">Assuming failure flips the incentive: now your goal is to find problems -- and you find far more.</text>
+  <text x="60" y="332" font-size="11" fill="#8A6D1F">"It is 3 weeks later and the trade lost. Why?" -- dovish surprise? positioning already extreme? risk-off safe-haven</text>
+  <text x="60" y="348" font-size="11" fill="#8A6D1F">bid? illiquid session, stop filled far away? Each reason becomes a plan now: wider stop, smaller size, wait, or no trade.</text>
+  <text x="60" y="367" font-size="10.5" font-style="italic" fill="#6B6B6B">Verify the claim -- especially when the claim is yours and you want it to be true.</text>
+
+  <!-- step 4 -->
+  <rect x="40" y="384" width="820" height="76" rx="10" fill="#FFF7E6" stroke="#C99A2E" stroke-width="2"/>
+  <text x="60" y="408" font-size="13" font-weight="bold" fill="#8A6D1F">4. Write the full exit BEFORE the entry</text>
+  <text x="60" y="430" font-size="11.5" fill="#333333">Entry condition, stop at invalidation, target clearing reward-to-risk, size = fixed risk %, and the non-price</text>
+  <text x="60" y="448" font-size="11.5" fill="#333333">conditions that kill the thesis. Place it as OCO orders (Ch1 L7) so discipline does not depend on your nerve.</text>
+
+  <text x="450" y="500" text-anchor="middle" font-size="12" font-weight="bold" fill="#1F3864">You may exit early if the THESIS breaks -- never move the stop or target just because price is uncomfortable.</text>
+  <text x="450" y="524" text-anchor="middle" font-size="11" font-style="italic" fill="#6B6B6B">Decided when you are calm; defended when you are not.</text>
+</svg>

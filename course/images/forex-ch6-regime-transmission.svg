@@ -1,0 +1,58 @@
+<svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="560" fill="#FDFCF9"/>
+  <text x="450" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#1F3864">Regime Mapping: Where to Hunt</text>
+  <text x="450" y="55" text-anchor="middle" font-size="12" font-style="italic" fill="#6B6B6B">Read the regime first, then follow a policy shock along the chain -- and when nothing aligns, hold cash.</text>
+
+  <!-- transmission chain -->
+  <text x="60" y="92" font-size="14" font-weight="bold" fill="#1F3864">The transmission chain (a policy shock ripples outward, in order)</text>
+  <rect x="40" y="104" width="150" height="60" rx="8" fill="#EAF0FB" stroke="#2E5395" stroke-width="2"/>
+  <text x="115" y="130" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#2E5395">Interest rates</text>
+  <text x="115" y="148" text-anchor="middle" font-size="10" fill="#333333">move first (Ch2 L3)</text>
+  <text x="198" y="140" font-size="16" fill="#888888">-&gt;</text>
+  <rect x="216" y="104" width="150" height="60" rx="8" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="291" y="130" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1E7A4C">FX and bonds</text>
+  <text x="291" y="148" text-anchor="middle" font-size="10" fill="#333333">closest to rates</text>
+  <text x="374" y="140" font-size="16" fill="#888888">-&gt;</text>
+  <rect x="392" y="104" width="150" height="60" rx="8" fill="#FFF7E6" stroke="#C99A2E" stroke-width="2"/>
+  <text x="467" y="128" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#8A6D1F">Credit and</text>
+  <text x="467" y="144" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#8A6D1F">equities</text>
+  <text x="550" y="140" font-size="16" fill="#888888">-&gt;</text>
+  <rect x="568" y="104" width="140" height="60" rx="8" fill="#FFF3EF" stroke="#B23B2E" stroke-width="2"/>
+  <text x="638" y="130" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#B23B2E">Commodities</text>
+  <text x="638" y="148" text-anchor="middle" font-size="10" fill="#333333">growth-sensitive</text>
+  <text x="714" y="140" font-size="16" fill="#888888">-&gt;</text>
+  <rect x="732" y="104" width="128" height="60" rx="8" fill="#FFF3EF" stroke="#B23B2E" stroke-width="2"/>
+  <text x="796" y="128" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#B23B2E">Crypto</text>
+  <text x="796" y="146" text-anchor="middle" font-size="9.5" fill="#333333">highest-beta risk</text>
+  <text x="796" y="158" text-anchor="middle" font-size="9.5" fill="#333333">asset</text>
+  <text x="450" y="184" text-anchor="middle" font-size="11" font-style="italic" fill="#6B6B6B">Look from the source: a central-bank move shows up cleanest in FX and rates, then offers follow-on trades down the chain.</text>
+
+  <!-- regimes -->
+  <text x="60" y="216" font-size="14" font-weight="bold" fill="#1F3864">The regime decides which pillar even works</text>
+  <rect x="40" y="228" width="400" height="150" rx="10" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="60" y="252" font-size="13" font-weight="bold" fill="#1E7A4C">Calm, risk-on, trending</text>
+  <text x="60" y="276" font-size="11.5" fill="#333333">Carry pays (wide rate gap, low volatility).</text>
+  <text x="60" y="294" font-size="11.5" fill="#333333">Momentum thrives in a clear trend (Ch2 L1).</text>
+  <text x="60" y="318" font-size="11.5" fill="#333333">These are the environments the pillars were</text>
+  <text x="60" y="334" font-size="11.5" fill="#333333">built for -- the wind is at your back.</text>
+  <text x="60" y="360" font-size="10.5" font-style="italic" fill="#6B6B6B">Most "the strategy broke" moments are really</text>
+  <text x="60" y="373" font-size="10.5" font-style="italic" fill="#6B6B6B">"the regime changed."</text>
+
+  <rect x="460" y="228" width="400" height="150" rx="10" fill="#FFF3EF" stroke="#B23B2E" stroke-width="2"/>
+  <text x="480" y="252" font-size="13" font-weight="bold" fill="#B23B2E">Volatile, risk-off</text>
+  <text x="480" y="276" font-size="11.5" fill="#333333">Carry crashes -- the crowded unwind (Ch5 L2,</text>
+  <text x="480" y="292" font-size="11.5" fill="#333333">Menkhoff et al. 2012). Crypto falls hardest</text>
+  <text x="480" y="308" font-size="11.5" fill="#333333">as a high-beta risk asset (Liu, Tsyvinski and</text>
+  <text x="480" y="324" font-size="11.5" fill="#333333">Wu 2022) -- not an independent safe haven.</text>
+  <text x="480" y="350" font-size="10.5" font-style="italic" fill="#6B6B6B">A carry thesis here is not a good trade, no</text>
+  <text x="480" y="363" font-size="10.5" font-style="italic" fill="#6B6B6B">matter how wide the rate gap.</text>
+
+  <!-- all quiet -->
+  <rect x="40" y="392" width="820" height="106" rx="10" fill="#EAF0FB" stroke="#2E5395" stroke-width="2"/>
+  <text x="60" y="416" font-size="14" font-weight="bold" fill="#2E5395">All-quiet regime: the right trade is no trade</text>
+  <text x="60" y="440" font-size="11.5" fill="#333333">No trend, no catalyst, no pillar strongly aligned. Do not lower the bar until something qualifies.</text>
+  <text x="60" y="462" font-size="12.5" font-weight="bold" fill="#2E5395">Cash is a position. Choosing not to trade preserves capital and discipline for when the odds are real.</text>
+  <text x="60" y="484" font-size="11" font-style="italic" fill="#6B6B6B">The direct antidote to overtrading (Ch4 L1). The best traders spend a great deal of time doing nothing, deliberately.</text>
+
+  <text x="450" y="528" text-anchor="middle" font-size="12" font-style="italic" fill="#1F3864">Ask "what regime is this?" before "is this a good trade?" -- the right tool in the wrong market is a trap.</text>
+</svg>

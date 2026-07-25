@@ -116,13 +116,13 @@ Content is written English-first. Glossary holds locked EN/FR/PT/SW translations
 
 **Foundations track (free) — complete:** 3 chapters, 10 lessons, all built into the app.
 
-**Forex track (paid) — in progress:**
+**Forex track (paid) — COMPLETE: 6 chapters, 26 lessons, all live in the app.**
 - Chapter 1 (Mechanics of a Trade): 7/7 complete
 - Chapter 2 (Reading the Forex Market): 6/6 complete
 - Chapter 3 (Risk Management for Forex Traders): 3/3 complete
 - Chapter 4 (Trading Psychology & Building a Plan): 3/3 complete
 - Chapter 5 (Real-World Case Studies): 3/3 complete — SNB 2015, yen carry unwind 2008, sterling flash crash 2016
-- Chapter 6 (Building a Professional Trade Process): not started — note the paid trade-thesis service must be mentioned plainly once, at the end of Lesson 4 only
+- Chapter 6 (Building a Professional Trade Process): 4/4 complete — the paid trade-thesis service is mentioned plainly once, at the end of Lesson 4, per the plan
 
 **Not started:** Crypto track, Stocks track, Advanced Forex Course.
 

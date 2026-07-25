@@ -1,0 +1,58 @@
+<svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="560" fill="#FDFCF9"/>
+  <text x="450" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#1F3864">The Six-Pillar Trade Thesis</text>
+  <text x="450" y="55" text-anchor="middle" font-size="12" font-style="italic" fill="#6B6B6B">Conviction is not a feeling -- it is how many independent, evidence-based pillars point the same way.</text>
+
+  <!-- 6 pillars, 3x2 -->
+  <rect x="40" y="76" width="266" height="92" rx="8" fill="#EAF0FB" stroke="#2E5395" stroke-width="1.5"/>
+  <text x="56" y="98" font-size="13" font-weight="bold" fill="#2E5395">1. Fundamentals</text>
+  <text x="56" y="118" font-size="10.5" fill="#333333">Rates, growth, inflation, central-bank</text>
+  <text x="56" y="132" font-size="10.5" fill="#333333">direction (Ch2 L3). The macro pressure.</text>
+  <text x="56" y="156" font-size="9.5" font-style="italic" fill="#6B6B6B">Which way is the economy pushing?</text>
+
+  <rect x="317" y="76" width="266" height="92" rx="8" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="1.5"/>
+  <text x="333" y="98" font-size="13" font-weight="bold" fill="#1E7A4C">2. Valuation</text>
+  <text x="333" y="118" font-size="10.5" fill="#333333">Cheap or expensive vs fair value.</text>
+  <text x="333" y="132" font-size="10.5" fill="#333333">The value factor (evidence-backed).</text>
+  <text x="333" y="156" font-size="9.5" font-style="italic" fill="#6B6B6B">Is there room to move your way?</text>
+
+  <rect x="594" y="76" width="266" height="92" rx="8" fill="#FFF7E6" stroke="#C99A2E" stroke-width="1.5"/>
+  <text x="610" y="98" font-size="13" font-weight="bold" fill="#8A6D1F">3. Catalyst</text>
+  <text x="610" y="118" font-size="10.5" fill="#333333">What makes the move happen, and when</text>
+  <text x="610" y="132" font-size="10.5" fill="#333333">(Ch2 L4). No catalyst = wait.</text>
+  <text x="610" y="156" font-size="9.5" font-style="italic" fill="#6B6B6B">Why now, not someday?</text>
+
+  <rect x="40" y="178" width="266" height="92" rx="8" fill="#FFF3EF" stroke="#B23B2E" stroke-width="1.5"/>
+  <text x="56" y="200" font-size="13" font-weight="bold" fill="#B23B2E">4. Positioning / Sentiment</text>
+  <text x="56" y="220" font-size="10.5" fill="#333333">Is everyone already on your side?</text>
+  <text x="56" y="234" font-size="10.5" fill="#333333">Crowded trades unwind hard (Ch5 L2).</text>
+  <text x="56" y="258" font-size="9.5" font-style="italic" fill="#6B6B6B">Who is left to push it further?</text>
+
+  <rect x="317" y="178" width="266" height="92" rx="8" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="1.5"/>
+  <text x="333" y="200" font-size="13" font-weight="bold" fill="#1E7A4C">5. Momentum</text>
+  <text x="333" y="220" font-size="10.5" fill="#333333">Is price already trending your way</text>
+  <text x="333" y="234" font-size="10.5" fill="#333333">(Ch2 L1)? The momentum factor.</text>
+  <text x="333" y="258" font-size="9.5" font-style="italic" fill="#6B6B6B">Wind at your back, or in your face?</text>
+
+  <rect x="594" y="178" width="266" height="92" rx="8" fill="#EAF0FB" stroke="#2E5395" stroke-width="1.5"/>
+  <text x="610" y="200" font-size="13" font-weight="bold" fill="#2E5395">6. Carry</text>
+  <text x="610" y="220" font-size="10.5" fill="#333333">Does holding it pay or cost you interest</text>
+  <text x="610" y="234" font-size="10.5" fill="#333333">(Ch2 L3)? The carry factor.</text>
+  <text x="610" y="258" font-size="9.5" font-style="italic" fill="#6B6B6B">Are you paid to wait, or bleeding?</text>
+
+  <!-- conviction bar -->
+  <rect x="40" y="288" width="820" height="70" rx="10" fill="#FFFFFF" stroke="#CBD3E1" stroke-width="1.5"/>
+  <text x="60" y="312" font-size="13" font-weight="bold" fill="#1F3864">Conviction = independent agreement, not intensity of feeling</text>
+  <text x="60" y="334" font-size="11.5" fill="#333333">One pillar is not a trade. A cheap currency can stay cheap for years; momentum with bad valuation is how bubbles end.</text>
+  <text x="60" y="350" font-size="11.5" fill="#333333">The more pillars that independently agree, the stronger the case -- the same logic as not trusting a single indicator.</text>
+
+  <!-- evidence strip -->
+  <rect x="40" y="368" width="820" height="122" rx="10" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="60" y="392" font-size="14" font-weight="bold" fill="#1E7A4C">Why three pillars are evidence, not opinion</text>
+  <text x="60" y="416" font-size="11.5" fill="#333333">Asness, Moskowitz and Pedersen (2013): value and momentum earn premia across eight markets -- and are</text>
+  <text x="60" y="432" font-size="11.5" fill="#333333">negatively correlated, so they complement each other. Koijen, Moskowitz, Pedersen and Vrugt (2018): carry</text>
+  <text x="60" y="448" font-size="11.5" fill="#333333">predicts returns across bonds, equities, commodities and more. Value, momentum and carry are documented factors.</text>
+  <text x="60" y="472" font-size="11.5" font-weight="bold" fill="#1E7A4C">Anton, Cohen and Polk ("Best Ideas"): a manager's best-ANALYSED idea beats their others by ~2.8-4.5%/yr.</text>
+
+  <text x="450" y="524" text-anchor="middle" font-size="12" font-style="italic" fill="#1F3864">"Best idea" means best-analysed, not most strongly felt. The six pillars are how you tell which is which.</text>
+</svg>

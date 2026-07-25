@@ -1,0 +1,45 @@
+<svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="560" fill="#FDFCF9"/>
+  <text x="450" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#1F3864">Portfolio-Level Discipline</text>
+  <text x="450" y="55" text-anchor="middle" font-size="12" font-style="italic" fill="#6B6B6B">Weight toward your best-analysed ideas, screen many down to few, and judge the decision -- not just the result.</text>
+
+  <!-- research funnel -->
+  <text x="60" y="90" font-size="14" font-weight="bold" fill="#1F3864">The research funnel: many ideas in, few trades out</text>
+  <polygon points="60,104 380,104 320,150 120,150" fill="#EAF0FB" stroke="#2E5395" stroke-width="1.5"/>
+  <text x="220" y="122" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#2E5395">Wide scan: regime + pillars (L1, L3)</text>
+  <text x="220" y="138" text-anchor="middle" font-size="10" fill="#333333">many candidates</text>
+  <polygon points="120,154 320,154 280,196 160,196" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="1.5"/>
+  <text x="220" y="172" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#1E7A4C">Build theses; pre-mortem + reward-to-risk (L2)</text>
+  <text x="220" y="188" text-anchor="middle" font-size="10" fill="#333333">a handful survive</text>
+  <polygon points="160,200 280,200 255,238 185,238" fill="#FFF7E6" stroke="#C99A2E" stroke-width="1.5"/>
+  <text x="220" y="220" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#8A6D1F">Traded</text>
+  <text x="220" y="234" text-anchor="middle" font-size="10" fill="#333333">the few that clear every bar</text>
+  <text x="220" y="258" text-anchor="middle" font-size="10" font-style="italic" fill="#6B6B6B">Most ideas die in the funnel. That is the point.</text>
+
+  <!-- concentration evidence -->
+  <rect x="420" y="104" width="440" height="154" rx="10" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="440" y="128" font-size="13" font-weight="bold" fill="#1E7A4C">Weight follows conviction (the evidence)</text>
+  <text x="440" y="150" font-size="11" fill="#333333">Anton, Cohen and Polk ("Best Ideas"): a manager's</text>
+  <text x="440" y="165" font-size="11" fill="#333333">best-analysed ideas beat the market and their own</text>
+  <text x="440" y="180" font-size="12" font-weight="bold" fill="#1E7A4C">other holdings by ~2.8-4.5%/yr;</text>
+  <text x="440" y="196" font-size="11" fill="#333333">the rest did not beat the market at all.</text>
+  <text x="440" y="219" font-size="11" fill="#333333">Cremers and Petajisto (2009): high "Active Share"</text>
+  <text x="440" y="234" font-size="11" fill="#333333">-- differing most from the crowd -- outperformed,</text>
+  <text x="440" y="249" font-size="11" fill="#333333">when backed by real analysis, not mere boldness.</text>
+
+  <!-- concentration vs ruin -->
+  <rect x="40" y="278" width="820" height="88" rx="10" fill="#FFF3EF" stroke="#B23B2E" stroke-width="2"/>
+  <text x="60" y="302" font-size="13" font-weight="bold" fill="#B23B2E">Concentrate CONVICTION, not RISK</text>
+  <text x="60" y="324" font-size="11.5" fill="#333333">Concentration raises returns and risk. So best-ideas governs WHERE conviction goes; the fixed 1-2% rule (Ch3 L1)</text>
+  <text x="60" y="340" font-size="11.5" fill="#333333">still governs HOW MUCH any one trade can cost. Your strongest theses get more weight -- each still sized to survive.</text>
+  <text x="60" y="360" font-size="11" font-style="italic" fill="#6B6B6B">The 2015 franc traders who blew up had concentrated risk -- the opposite of this.</text>
+
+  <!-- review loop -->
+  <rect x="40" y="380" width="820" height="110" rx="10" fill="#EAF0FB" stroke="#2E5395" stroke-width="2"/>
+  <text x="60" y="404" font-size="13" font-weight="bold" fill="#2E5395">Post-trade review: judge the decision, not the result</text>
+  <text x="60" y="426" font-size="11.5" fill="#333333">Extends the trading journal (Ch4 L3) up to theses. Not "did it make money?" but "was the thesis sound, sized right,</text>
+  <text x="60" y="442" font-size="11.5" fill="#333333">and did I follow the plan?" A bad process can win by luck; a good one can lose to variance (Ch4 L2).</text>
+  <text x="60" y="466" font-size="11.5" font-weight="bold" fill="#2E5395">Reward good decisions, not lucky outcomes -- that is how a process improves instead of just accumulating results.</text>
+
+  <text x="450" y="522" text-anchor="middle" font-size="12" font-style="italic" fill="#1F3864">Scan -&gt; thesis -&gt; pre-mortem -&gt; size -&gt; weight to best ideas -&gt; review. Run honestly and repeatedly, that loop is the craft.</text>
+</svg>

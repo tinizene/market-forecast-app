@@ -65,13 +65,16 @@
                 <div id="trackRecord" class="space-y-2"></div>
             </section>
 
-            <!-- Locked-preview live theses -->
+            <!-- Live theses — free headline + score, full thesis behind a real
+                 subscription. #accessBar is filled by research.js with the
+                 subscribe / active-subscription / restore UI. -->
             <section>
-                <div class="flex items-center justify-between gap-3 flex-wrap mb-3">
+                <div class="flex items-center justify-between gap-3 flex-wrap mb-1">
                     <h3 class="section-title !mb-0">Today's live ideas</h3>
-                    <button id="unlockBtn" type="button" class="text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-amber-200 border border-amber-600/40 px-3 py-1.5 rounded-lg transition">🔓 Unlock full theses (demo)</button>
+                    <span id="accessStatus" class="text-xs font-semibold"></span>
                 </div>
-                <p class="text-xs text-slate-400 mb-3">Headline and confidence score are free. The full thesis — entry, targets, invalidation and the weighted scorecard — is the locked preview.</p>
+                <p class="text-xs text-slate-400 mb-3">Headline and confidence score are free. The full thesis — entry, targets, invalidation and the weighted scorecard — unlocks with a subscription.</p>
+                <div id="accessBar" class="mb-4"></div>
                 <div id="liveIdeas" class="space-y-4"></div>
             </section>
 

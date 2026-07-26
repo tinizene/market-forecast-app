@@ -1,4 +1,7 @@
 {
+  "functions": {
+    "api/research.js": { "includeFiles": "data/fx-reports/**" }
+  },
   "rewrites": [
     { "source": "/api/quote", "destination": "/api/markets-hub?fn=quote" },
     { "source": "/api/history", "destination": "/api/markets-hub?fn=history" },

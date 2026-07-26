@@ -1,4 +1,4 @@
-const CACHE_NAME = 'scere-markets-v4';
+const CACHE_NAME = 'scere-markets-v5';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

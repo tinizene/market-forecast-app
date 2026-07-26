@@ -24,10 +24,26 @@
 // clear error rather than silently leaving the reports open to the public.
 
 export const config = {
-  matcher: ['/reports', '/reports/:path*'],
+  // /reports*        → shared Basic Auth (unchanged).
+  // /data/fx-reports → hard-blocked so the raw report JSON (which contains the
+  //                    paid trade theses) can only be reached through the gated
+  //                    /api/research endpoint, never fetched directly.
+  matcher: ['/reports', '/reports/:path*', '/data/fx-reports/:path*'],
 };
 
 export default function middleware(request) {
+  const pathname = new URL(request.url).pathname;
+
+  // Block direct public access to the raw FX report data. The Research Desk and
+  // FX Intelligence Desk read it through /api/research, which enforces the
+  // subscription paywall; the files themselves must never be publicly fetchable.
+  if (pathname.startsWith('/data/fx-reports/')) {
+    return new Response('Not found.', {
+      status: 404,
+      headers: { 'content-type': 'text/plain', 'cache-control': 'no-store' },
+    });
+  }
+
   const expectedPassword = process.env.REPORTS_PASSWORD;
   const expectedUser = process.env.REPORTS_USER || 'student';
 

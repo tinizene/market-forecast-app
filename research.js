@@ -174,29 +174,35 @@ function renderScoreBars(scoring) {
   return `<div class="w-full mt-2"><p class="text-[11px] uppercase tracking-wide text-slate-400 mb-1.5">Six-pillar score</p>${bars}</div>`;
 }
 
-function renderLiveIdeas(data) {
-  const ti = data.tradeIdeas || {};
-  const ideas = Array.isArray(ti.ideas) ? ti.ideas : [];
+// Idea headline → "Short USD/JPY" (pair + direction), free on every card.
+function ideaCore(headline, biasFallback) {
+  const core = String(headline || '')
+    .replace(/^Idea\s*\d+:\s*/i, '')
+    .split('(')[0]
+    .replace(/\s*—\s*(Bullish|Bearish).*$/i, '')
+    .trim();
+  return { core: core || 'Idea', dir: directionMeta(headline || biasFallback) };
+}
+
+function ideaHead(headline, biasFallback, conf, badge) {
+  const { core, dir } = ideaCore(headline, biasFallback);
+  return `
+    <div class="flex items-center gap-2 flex-wrap w-full mb-1">
+      <span class="font-bold text-sm">${escapeHtml(core)}</span>
+      ${dir.label ? `<span class="text-[10px] font-bold px-2 py-0.5 rounded ${dir.cls}">${dir.label}</span>` : ''}
+      <span class="flex-1"></span>
+      ${conf != null ? `<span class="text-xs text-slate-400">score <b class="text-slate-200">${escapeHtml(conf)}/100</b></span>` : ''}
+      ${badge}
+    </div>`;
+}
+
+const NO_IDEAS_HTML = '<div class="advisory-card"><p class="text-sm text-slate-400">No open trade ideas on the desk today — often the most honest call there is.</p></div>';
+
+// Entitled / open mode: the full thesis, no blur, no overlay.
+function renderLiveIdeasFull(ideas) {
   const root = document.getElementById('liveIdeas');
-  const unlockBtn = document.getElementById('unlockBtn');
-
-  if (!ideas.length) {
-    root.innerHTML = '<div class="advisory-card"><p class="text-sm text-slate-400">No open trade ideas on the desk today — often the most honest call there is.</p></div>';
-    if (unlockBtn) unlockBtn.classList.add('hidden');
-    return;
-  }
-
+  if (!ideas || !ideas.length) { root.innerHTML = NO_IDEAS_HTML; return; }
   root.innerHTML = ideas.map((idea) => {
-    // Free head: pair + direction + confidence + score bars.
-    const headlineCore = String(idea.headline || '')
-      .replace(/^Idea\s*\d+:\s*/i, '')
-      .split('(')[0]
-      .replace(/\s*—\s*(Bullish|Bearish).*$/i, '')
-      .trim();
-    const dir = directionMeta(idea.headline || (idea.fields && idea.fields.Bias));
-    const conf = idea.totalConfidence != null ? idea.totalConfidence : null;
-
-    // Locked body: actionable levels + per-pillar reasoning + confirmation.
     const f = idea.fields || {};
     const fieldOrder = ['Bias', 'Entry Zone', 'Target(s)', 'Stop / Invalidation', 'Risk/Reward'];
     const fieldsHtml = fieldOrder.filter((k) => f[k]).map((k) => `
@@ -210,70 +216,179 @@ function renderLiveIdeas(data) {
     const confirmHtml = idea.confirmationCriteria
       ? `<p class="text-xs text-slate-400 mt-2"><span class="text-slate-300 font-medium">Confirmation:</span> ${escapeHtml(idea.confirmationCriteria)}</p>`
       : '';
-
     return `
       <div class="advisory-card !items-start flex-col !flex">
-        <div class="flex items-center gap-2 flex-wrap w-full mb-1">
-          <span class="font-bold text-sm">${escapeHtml(headlineCore || 'Idea')}</span>
-          ${dir.label ? `<span class="text-[10px] font-bold px-2 py-0.5 rounded ${dir.cls}">${dir.label}</span>` : ''}
-          <span class="flex-1"></span>
-          ${conf != null ? `<span class="text-xs text-slate-400">score <b class="text-slate-200">${escapeHtml(conf)}/100</b></span>` : ''}
-          <span class="pro-badge">Thesis locked</span>
+        ${ideaHead(idea.headline, f.Bias, idea.totalConfidence, '<span class="pro-badge" style="background:linear-gradient(90deg,#22c55e,#16a34a)">Unlocked</span>')}
+        ${renderScoreBars(idea.scoring)}
+        <div class="w-full mt-3">
+          <p class="text-[11px] uppercase tracking-wide text-slate-400 mb-1">The trade</p>
+          ${fieldsHtml || '<p class="text-xs text-slate-500">—</p>'}
+          ${reasoningHtml ? `<p class="text-[11px] uppercase tracking-wide text-slate-400 mt-3 mb-1">Why it scores this way</p><ul class="mt-1">${reasoningHtml}</ul>` : ''}
+          ${confirmHtml}
         </div>
+      </div>`;
+  }).join('');
+}
+
+// Locked mode: free headline + score bars; the thesis body is a blurred
+// PLACEHOLDER (no real levels are ever sent to the browser). The single
+// subscribe call-to-action lives in #accessBar above the list.
+function renderLiveIdeasLocked(liveIdeas) {
+  const root = document.getElementById('liveIdeas');
+  if (!liveIdeas || !liveIdeas.length) { root.innerHTML = NO_IDEAS_HTML; return; }
+  const placeholderRow = (k) => `
+    <div class="grid grid-cols-[8.5rem_1fr] gap-2 py-1 border-b border-slate-700/50 text-xs">
+      <span class="text-slate-400">${k}</span>
+      <span class="text-slate-100 font-medium tracking-widest">••••••••</span>
+    </div>`;
+  root.innerHTML = liveIdeas.map((idea) => `
+      <div class="advisory-card !items-start flex-col !flex">
+        ${ideaHead(idea.headline, null, idea.totalConfidence, '<span class="pro-badge">Thesis locked</span>')}
         ${renderScoreBars(idea.scoring)}
         <div class="lock-wrap w-full mt-3">
           <div class="lock-blur">
             <p class="text-[11px] uppercase tracking-wide text-slate-400 mb-1">The trade</p>
-            ${fieldsHtml || '<p class="text-xs text-slate-500">—</p>'}
-            ${reasoningHtml ? `<p class="text-[11px] uppercase tracking-wide text-slate-400 mt-3 mb-1">Why it scores this way</p><ul class="mt-1">${reasoningHtml}</ul>` : ''}
-            ${confirmHtml}
+            ${['Entry zone', 'Target(s)', 'Stop / invalidation', 'Risk / reward'].map(placeholderRow).join('')}
           </div>
           <div class="lock-over">
             <div class="lock-ic">🔒</div>
-            <p class="lock-msg">Entries, targets, invalidation and the full scorecard unlock with a paid track.</p>
+            <p class="lock-msg">Entry, targets, invalidation and the full scorecard unlock with a subscription.</p>
           </div>
         </div>
-      </div>`;
-  }).join('');
+      </div>`).join('');
+}
 
-  if (unlockBtn) {
-    unlockBtn.classList.remove('hidden');
-    unlockBtn.onclick = () => {
-      const wraps = root.querySelectorAll('.lock-wrap');
-      const nowUnlocked = !root.classList.contains('is-open');
-      root.classList.toggle('is-open', nowUnlocked);
-      wraps.forEach((w) => w.classList.toggle('is-unlocked', nowUnlocked));
-      unlockBtn.textContent = nowUnlocked ? '🔒 Re-lock preview' : '🔓 Unlock full theses (demo)';
-    };
+// ---- access / subscription state ----------------------------------------
+
+const access = { paywallActive: false, entitled: false, configured: false, priceLabel: null };
+let selectedDate = null;
+
+async function fetchJson(url, opts) {
+  const res = await fetch(url, opts);
+  if (!res.ok) { const e = new Error(`${url} → ${res.status}`); e.status = res.status; throw e; }
+  return res.json();
+}
+
+function postJson(url, bodyObj) {
+  return fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(bodyObj || {}) });
+}
+
+function renderAccess() {
+  const bar = document.getElementById('accessBar');
+  const status = document.getElementById('accessStatus');
+
+  if (!access.paywallActive) { // paywall not configured → fully open preview
+    status.textContent = 'Open preview';
+    status.className = 'text-xs font-semibold text-slate-500';
+    bar.innerHTML = '';
+    return;
   }
+
+  if (access.entitled) {
+    status.textContent = '✓ Subscription active';
+    status.className = 'text-xs font-semibold text-emerald-300';
+    bar.innerHTML = `<div class="flex items-center gap-3 text-xs text-slate-400">
+        <span>You have full access to every live thesis.</span>
+        <button id="logoutBtn" type="button" class="underline hover:text-slate-200">Sign out</button>
+      </div>`;
+    const lo = document.getElementById('logoutBtn'); if (lo) lo.onclick = doLogout;
+    return;
+  }
+
+  status.textContent = '🔒 Locked';
+  status.className = 'text-xs font-semibold text-amber-300';
+  const price = access.priceLabel ? escapeHtml(access.priceLabel) : '';
+  bar.innerHTML = `
+    <div class="paywall-card">
+      <div class="paywall-icon">🔒</div>
+      <p class="text-sm text-slate-200 font-semibold mb-1">Unlock every live thesis${price ? ` — ${price}` : ''}</p>
+      <p class="text-xs text-slate-400 mb-1 max-w-sm mx-auto">Full entries, targets, invalidation and the weighted six-pillar scorecard, updated daily. The track record above stays free, always.</p>
+      <button id="subscribeBtn" type="button" class="upgrade-btn">Subscribe${price ? ` · ${price}` : ''}</button>
+      <p class="text-[11px] text-slate-500 mt-3">Already subscribed? <button id="restoreBtn" type="button" class="underline hover:text-slate-300">Restore access</button></p>
+    </div>`;
+  document.getElementById('subscribeBtn').onclick = doSubscribe;
+  document.getElementById('restoreBtn').onclick = doRestore;
+}
+
+async function doSubscribe() {
+  const btn = document.getElementById('subscribeBtn');
+  if (btn) { btn.disabled = true; btn.textContent = 'Redirecting…'; }
+  try {
+    const res = await postJson('/api/billing?fn=createCheckout', {});
+    const d = await res.json();
+    if (d && d.url) { window.location.href = d.url; return; }
+    alert('Subscriptions aren’t available right now. Please try again later.');
+  } catch (e) {
+    alert('Could not start checkout. Please try again.');
+  }
+  if (btn) { btn.disabled = false; btn.textContent = 'Subscribe' + (access.priceLabel ? ` · ${access.priceLabel}` : ''); }
+}
+
+async function doRestore() {
+  const email = window.prompt('Enter the email address you subscribed with:');
+  if (!email) return;
+  try {
+    const res = await postJson('/api/billing?fn=restore', { email });
+    const d = await res.json();
+    if (res.ok && d.entitled) { loadReport(selectedDate); }
+    else alert('No active subscription was found for that email.');
+  } catch (e) {
+    alert('Could not restore access right now. Please try again.');
+  }
+}
+
+async function doLogout() {
+  try { await postJson('/api/billing?fn=logout', {}); } catch (e) { /* ignore */ }
+  loadReport(selectedDate);
+}
+
+// If we just came back from Stripe Checkout, verify the session and set access.
+async function handleCheckoutReturn() {
+  const p = new URLSearchParams(window.location.search);
+  const sub = p.get('sub');
+  if (sub === 'success' && p.get('session_id')) {
+    try { await postJson('/api/billing?fn=activate', { session_id: p.get('session_id') }); } catch (e) { /* ignore */ }
+  }
+  if (sub) window.history.replaceState({}, '', window.location.pathname);
+}
+
+async function loadBillingConfig() {
+  try {
+    const c = await fetchJson('/api/billing?fn=config');
+    access.configured = !!c.configured;
+    access.priceLabel = c.priceLabel || null;
+  } catch (e) { /* leave defaults; paywall treated as inactive */ }
 }
 
 // ---- data plumbing -------------------------------------------------------
 
-function renderReport(data) {
-  renderRegimeHero(data);
-  renderNoTrade(data);
-  renderTrackRecord(data);
-  renderLiveIdeas(data);
-  document.getElementById('loadingState').classList.add('hidden');
-  document.getElementById('errorState').classList.add('hidden');
-  document.getElementById('researchRoot').classList.remove('hidden');
-}
-
-async function fetchJson(url) {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`${url} → ${res.status}`);
-  return res.json();
-}
-
 async function loadReport(dateKey) {
+  selectedDate = dateKey || null;
   document.getElementById('loadingState').classList.remove('hidden');
   document.getElementById('researchRoot').classList.add('hidden');
+  document.getElementById('errorState').classList.add('hidden');
   try {
-    const data = dateKey
-      ? await fetchJson(`${DATA_DIR}/history/${dateKey}.json`)
-      : await fetchJson(`${DATA_DIR}/latest.json`);
-    renderReport(data);
+    const q = dateKey ? `&date=${encodeURIComponent(dateKey)}` : '';
+    const pub = await fetchJson(`/api/research?fn=public${q}`);
+    access.paywallActive = !!pub.paywallActive;
+    access.entitled = !!pub.entitled;
+
+    renderRegimeHero(pub);
+    renderNoTrade(pub);
+    renderTrackRecord(pub);
+
+    const openMode = !pub.paywallActive || pub.entitled;
+    if (openMode) {
+      const full = await fetchJson(`/api/research?fn=full${q}`);
+      const ideas = full.report && full.report.tradeIdeas ? full.report.tradeIdeas.ideas : [];
+      renderLiveIdeasFull(ideas);
+    } else {
+      renderLiveIdeasLocked(pub.liveIdeas || []);
+    }
+    renderAccess();
+
+    document.getElementById('loadingState').classList.add('hidden');
+    document.getElementById('researchRoot').classList.remove('hidden');
   } catch (err) {
     console.error('Failed to load research data:', err);
     document.getElementById('loadingState').classList.add('hidden');
@@ -286,8 +401,9 @@ async function loadReport(dateKey) {
 async function populateHistorySelect() {
   const select = document.getElementById('historySelect');
   try {
-    const index = await fetchJson(`${DATA_DIR}/index.json`);
-    const sorted = [...index].sort().reverse();
+    const { dates } = await fetchJson('/api/research?fn=index');
+    const sorted = [...(dates || [])].sort().reverse();
+    if (!sorted.length) { select.classList.add('hidden'); return; }
     select.innerHTML = sorted.map((date, i) => `<option value="${date}" ${i === 0 ? 'selected' : ''}>${date}${i === 0 ? ' · latest' : ''}</option>`).join('');
     select.addEventListener('change', () => loadReport(select.value));
   } catch {
@@ -295,7 +411,9 @@ async function populateHistorySelect() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  populateHistorySelect();
+document.addEventListener('DOMContentLoaded', async () => {
+  await handleCheckoutReturn();
+  await loadBillingConfig();
+  await populateHistorySelect();
   loadReport(null);
 });

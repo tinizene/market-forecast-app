@@ -487,14 +487,37 @@ async function fetchJson(url) {
   return res.json();
 }
 
+// Subscriber gate: the full desk requires an active subscription. Shown in place
+// of the report when /api/research?fn=full returns 402.
+function showSubscribeGate() {
+  const root = document.getElementById('reportRoot');
+  root.innerHTML = `
+    <div class="paywall-card">
+      <div class="paywall-icon">🔒</div>
+      <h2 class="text-lg font-bold text-slate-100 mb-1">The full FX Intelligence Desk is for subscribers</h2>
+      <p class="text-sm text-slate-400 mb-4 max-w-md mx-auto">Regime, currency strength, policy rates, correlations, catalysts and every trade thesis — the complete daily report. The Research Desk shows today's regime, top idea and the full track record for free.</p>
+      <a href="./research.html" class="upgrade-btn">Subscribe on the Research Desk →</a>
+    </div>`;
+  root.classList.remove('hidden');
+}
+
 async function loadReport(dateKey) {
   document.getElementById('loadingState').classList.remove('hidden');
   document.getElementById('reportRoot').classList.add('hidden');
+  document.getElementById('errorState').classList.add('hidden');
   try {
-    const data = dateKey
-      ? await fetchJson(`${DATA_DIR}/history/${dateKey}.json`)
-      : await fetchJson(`${DATA_DIR}/latest.json`);
-    renderReport(data);
+    // The full report is served only through the gated API — the raw data path
+    // is blocked by middleware. 402 => needs a subscription.
+    const q = dateKey ? `&date=${encodeURIComponent(dateKey)}` : '';
+    const res = await fetch(`/api/research?fn=full${q}`);
+    if (res.status === 402) {
+      document.getElementById('loadingState').classList.add('hidden');
+      showSubscribeGate();
+      return;
+    }
+    if (!res.ok) throw new Error(`status ${res.status}`);
+    const payload = await res.json();
+    renderReport(payload.report);
   } catch (err) {
     console.error('Failed to load FX report:', err);
     document.getElementById('loadingState').classList.add('hidden');
@@ -507,8 +530,9 @@ async function loadReport(dateKey) {
 async function populateHistorySelect() {
   const select = document.getElementById('historySelect');
   try {
-    const index = await fetchJson(`${DATA_DIR}/index.json`);
-    const sorted = [...index].sort().reverse();
+    const { dates } = await fetchJson('/api/research?fn=index');
+    const sorted = [...(dates || [])].sort().reverse();
+    if (!sorted.length) { select.classList.add('hidden'); return; }
     select.innerHTML = sorted.map((date, i) => `<option value="${date}" ${i === 0 ? 'selected' : ''}>${date}${i === 0 ? ' (latest)' : ''}</option>`).join('');
     select.addEventListener('change', () => loadReport(select.value));
   } catch {

@@ -88,14 +88,14 @@ function main() {
   commitAndPush(newDates, `Publish report(s): ${newDates.join(', ')}`);
 }
 
-// Commits and pushes the reports/ folder AND the parsed data folders
-// (data/fx-reports, data/daily-dashboard) so the live site's dashboard data
-// stays in sync with the published report HTML — previously only reports/
-// was pushed, which left the deployed data stale until a manual commit.
+// Commits and pushes the reports/ folder AND the parsed data folder
+// (data/fx-reports) so the live site's report data stays in sync with the
+// published report HTML — previously only reports/ was pushed, which left the
+// deployed data stale until a manual commit.
 function commitAndPush(newDates, commitMsg) {
   // Commit and push using whatever git identity/credentials are already
   // configured in this environment (same as every other push in this repo).
-  const PUBLISH_PATHS = ['reports', 'data/fx-reports', 'data/daily-dashboard'];
+  const PUBLISH_PATHS = ['reports', 'data/fx-reports'];
   run('git', ['add', '--', ...PUBLISH_PATHS]);
   const status = execFileSync('git', ['status', '--porcelain', '--', ...PUBLISH_PATHS], { cwd: ROOT, encoding: 'utf8' });
   if (!status.trim()) {

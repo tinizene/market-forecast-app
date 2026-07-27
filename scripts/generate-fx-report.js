@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 // Generates the daily "Institutional FX Dashboard & Intelligence Report" directly via
 // the Anthropic Messages API (with the server-side web_search tool), then feeds the
-// result through the existing local parsers (parse-fx-report.js, sync-daily-dashboard.js)
-// so `data/fx-reports/` and `data/daily-dashboard/` come out identical in shape to what
-// the Cowork-based pipeline has always produced.
+// result through the existing local parser (parse-fx-report.js) so `data/fx-reports/`
+// comes out identical in shape to what the Cowork-based pipeline has always produced.
 //
 // WHY THIS EXISTS: the original pipeline (Cowork's `daily-fx-dashboard` scheduled task)
 // only fires reliably when the Cowork app/session is active — in practice, when the
@@ -32,7 +31,7 @@
 //
 // USAGE: node scripts/generate-fx-report.js
 // Writes reports-source/fx-dashboard-<date>.md and .html, then runs the existing
-// parsers to refresh data/fx-reports/ and data/daily-dashboard/.
+// parser to refresh data/fx-reports/.
 
 const fs = require('fs');
 const path = require('path');
@@ -41,7 +40,6 @@ const { execFileSync } = require('child_process');
 const ROOT = path.join(__dirname, '..');
 const SOURCE_DIR = path.join(ROOT, 'reports-source');
 const FX_REPORTS_DATA_DIR = path.join(ROOT, 'data', 'fx-reports');
-const DASHBOARD_DATA_DIR = path.join(ROOT, 'data', 'daily-dashboard');
 
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 // Default is a real, known-good model as of this script's writing — but models are
@@ -267,12 +265,7 @@ async function main() {
   console.log('Running parse-fx-report.js...');
   execFileSync('node', [path.join(ROOT, 'scripts', 'parse-fx-report.js'), existingMd, FX_REPORTS_DATA_DIR], { stdio: 'inherit' });
 
-  if (html) {
-    console.log('Running sync-daily-dashboard.js...');
-    execFileSync('node', [path.join(ROOT, 'scripts', 'sync-daily-dashboard.js'), path.join(SOURCE_DIR, `fx-dashboard-${dateIso}.html`)], { stdio: 'inherit' });
-  }
-
-  console.log(`Done: ${dateIso} generated and synced.`);
+  console.log(`Done: ${dateIso} generated and parsed.`);
 }
 
 main().catch((err) => {

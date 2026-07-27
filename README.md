@@ -258,9 +258,8 @@ entirely on GitHub's own cloud runners instead, with no dependency on any local 
 markdown AND the matching HTML in a single response (split by explicit markers — this
 sidesteps a real bug seen in manual runs where generating the two formats separately let
 them drift out of sync), writes them to `reports-source/`, then re-runs the existing
-`scripts/parse-fx-report.js` and `scripts/sync-daily-dashboard.js` unchanged so
-`data/fx-reports/` and `data/daily-dashboard/` end up in exactly the same shape either
-pipeline produces. For continuity (Section 2's performance review, Section 9/15's
+`scripts/parse-fx-report.js` unchanged so `data/fx-reports/` ends up in exactly the
+same shape either pipeline produces. For continuity (Section 2's performance review, Section 9/15's
 confidence deltas), it reads the previous run's `data/fx-reports/latest.json` and feeds a
 summary of it back into the prompt.
 
@@ -304,64 +303,32 @@ it needs credentials only you can grant):**
    day's report automatically, with no manual deploy step.
 7. **Test it manually before trusting the schedule:** repo → Actions tab → "Daily FX
    Report" workflow → Run workflow (this uses the `workflow_dispatch` trigger baked into
-   the workflow file). Confirm `reports-source/`, `data/fx-reports/`, and
-   `data/daily-dashboard/` all get new files and the commit/push step succeeds before
-   relying on the 05:00 UTC cron trigger.
+   the workflow file). Confirm `reports-source/` and `data/fx-reports/` get new files
+   and the commit/push step succeeds before relying on the 05:00 UTC cron trigger.
 
 **Cron timing caveat:** GitHub Actions cron is UTC-only with no daylight-saving
 awareness — see the comment at the top of `daily-fx-report.yml` for what that means for
 the actual local fire time across summer/winter.
 
-## Daily Dashboard
+## Daily Dashboard (retired — consolidated into the FX Intelligence Desk)
 
-`daily-report.html` is a second, deliberately different view of the same underlying
-daily report: instead of parsing it into structured JSON like the FX Intelligence Desk
-does, it shows the report's own self-contained HTML export exactly as generated —
-same dark dashboard layout, same inline CSS, same Chart.js gauges/bars — inside an
-`<iframe>`. Built as a standalone page rather than folded into `fx-intelligence.html`
-so the two views can diverge freely: one is the app's own rendering of the data, the
-other is a faithful copy of the original report file.
+There used to be a second page, `daily-report.html`, that iframed the report's own
+self-contained HTML export (with its Chart.js gauges). It read a separate
+`data/daily-dashboard/` copy of the same daily report, kept in sync by a separate
+`scripts/sync-daily-dashboard.js`.
 
-**Pipeline:**
-
-1. `daily-fx-dashboard` (the same scheduled task that writes the `.md` used by the FX
-   Intelligence Desk) also writes `fx-dashboard-YYYY-MM-DD.html` into your FX-Reports
-   folder — no extra generation step needed.
-2. `scripts/sync-daily-dashboard.js` copies that file byte-for-byte into
-   `data/daily-dashboard/history/<date>.html`, and updates `data/daily-dashboard/latest.html`
-   and `data/daily-dashboard/index.json` (the in-app date picker), mirroring the
-   three-artifact shape `parse-fx-report.js` already uses for `data/fx-reports/`.
-3. `daily-report.html`/`daily-report.js` fetch `index.json` client-side to populate the
-   date dropdown, then point an `<iframe>` at the selected date's HTML file.
-
-Run it the same way `fx-report-app-sync` runs the markdown parser — either point it at
-a single new file, or re-run it against the whole FX-Reports folder to backfill/refresh
-everything at once (safe to re-run; overwriting an already-synced date is a no-op):
-
-```
-node scripts/sync-daily-dashboard.js "<path to>/fx-dashboard-2026-07-14.html"
-node scripts/sync-daily-dashboard.js "<path to FX-Reports folder>"
-```
-
-Backfilled against all 6 currently available `.html` reports (2026-07-04 through
-2026-07-13) as an initial regression check.
-
-**Why an iframe, not inline markup:** the report's own stylesheet uses `:root`
-variables and bare element selectors (`body`, `table`, `th`) that would collide with
-the app's Tailwind-based styling if injected directly into the page. Sandboxing it in
-an iframe (`sandbox="allow-scripts allow-same-origin"`, no `allow-top-navigation` or
-`allow-popups`) keeps the report's own CSS/Chart.js fully isolated and keeps its
-outbound links from taking over the app shell.
-
-**Known limitation:** same as the FX Intelligence Desk above — this syncs local app
-data only; a deployed instance would need `data/daily-dashboard/` included in whatever
-gets deployed.
+That has been **consolidated onto the single `data/fx-reports/` JSON source.** The FX
+Intelligence Desk already renders every section of that report, so the Daily Dashboard
+page, its `data/daily-dashboard/` directory, and the sync script were removed, and
+`/daily-report.html` now redirects to `/fx-intelligence.html` (see `vercel.json`). The
+only thing lost is the original HTML's Chart.js visuals; all the data lives on in the
+FX Intelligence Desk.
 
 ## Legend / terminology glossary
 
 `legend-content.js` (data) + `legend.js` (generic renderer) is a small shared widget,
-included on both `fx-intelligence.html` and `daily-report.html`, that answers "what do
-these colors and words mean?" right where the confusion happens — no navigating away.
+included on `fx-intelligence.html`, that answers "what do these colors and words mean?"
+right where the confusion happens — no navigating away.
 Built after a user question about why every field on a Bearish trade idea (card wash,
 headline, and every confidence-breakdown bar) renders in the same red tone.
 
@@ -394,8 +361,8 @@ lightweight, immediate complement to, not a replacement for.
 
 Verified via a headless jsdom test on both pages: `#legendRoot` placeholder exists,
 renders one `<details>` with the correct summary text, exactly 3 color swatches, all 9
-glossary terms present, and the Due Diligence link present — run identically against
-`fx-intelligence.html` and `daily-report.html` to confirm neither page drifted.
+glossary terms present, and the Due Diligence link present — run against
+`fx-intelligence.html`.
 
 ## Learn section
 
@@ -498,7 +465,7 @@ all three.
 2. **Phase 2: Tools & Sources** — the actual free, public places to check a claim:
    economic calendars, central bank statements, CFTC positioning data, and (for the
    Forex column specifically) a direct pointer to this app's own FX Intelligence Desk
-   and Daily Dashboard as one input among several, not a signal to act on blindly.
+   as one input among several, not a signal to act on blindly.
 3. **Phase 3: Applying It** — using Phases 1–2 on a real, live example. For Forex, this
    is planned to be a field-by-field walkthrough of the daily FX dashboard report —
    what each section (regime classification, currency strength scores, confidence
@@ -613,11 +580,6 @@ decision behind it" discipline the weather app's roadmap docs used:
 - `scripts/parse-fx-report.js` — markdown → JSON parser for the daily FX dashboard report
 - `data/fx-reports/` — parsed report data (`latest.json`, `index.json`, `history/*.json`),
   kept current by the `fx-report-app-sync` scheduled task
-- `daily-report.html`, `daily-report.js` — Daily Dashboard page: the report's own
-  original HTML export shown in an iframe, unparsed
-- `scripts/sync-daily-dashboard.js` — copies `fx-dashboard-YYYY-MM-DD.html` files as-is
-  into `data/daily-dashboard/`
-- `data/daily-dashboard/` — raw report HTML (`latest.html`, `index.json`, `history/*.html`)
 - `learn.html`, `learn.js`, `learn-content.js`, `fund-facts.js` — Learn section: beginner
   curriculum, real fee comparison table, dollar-cost-averaging calculator, "Your
   country at a glance" (World Bank data, all countries), and Web Speech API
@@ -625,5 +587,5 @@ decision behind it" discipline the weather app's roadmap docs used:
 - `due-diligence.html`, `due-diligence.js`, `due-diligence-content.js` — Due Diligence
   hub: three-column (Forex/Crypto/Indexes & ETFs), three-phase roadmap of articles
 - `legend.js`, `legend-content.js` — shared color/terminology glossary widget, included
-  on both `fx-intelligence.html` and `daily-report.html`
+  on `fx-intelligence.html`
 - `manifesto.html`, `MANIFESTO.md` — Get Rich Slow manifesto (in-app page + shareable source)

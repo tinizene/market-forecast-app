@@ -1,8 +1,10 @@
 {
   "functions": {
-    "api/research.js": { "includeFiles": "data/fx-reports/**" },
-    "api/dashboard.js": { "includeFiles": "data/daily-dashboard/**" }
+    "api/research.js": { "includeFiles": "data/fx-reports/**" }
   },
+  "redirects": [
+    { "source": "/daily-report.html", "destination": "/fx-intelligence.html", "permanent": false }
+  ],
   "rewrites": [
     { "source": "/api/quote", "destination": "/api/markets-hub?fn=quote" },
     { "source": "/api/history", "destination": "/api/markets-hub?fn=history" },
@@ -22,8 +24,6 @@
     { "source": "/fund-facts.js", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
     { "source": "/fx-intelligence.html", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
     { "source": "/fx-intelligence.js", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
-    { "source": "/daily-report.html", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
-    { "source": "/daily-report.js", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
     { "source": "/learn.html", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
     { "source": "/learn.js", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
     { "source": "/learn-content.js", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
@@ -36,7 +36,6 @@
     { "source": "/legend-content.js", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
     { "source": "/manifesto.html", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
     { "source": "/data/fx-reports/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
-    { "source": "/data/daily-dashboard/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
     { "source": "/reports/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
     { "source": "/manifest.json", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
     { "source": "/sw.js", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },

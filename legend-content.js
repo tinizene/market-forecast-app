@@ -1,9 +1,8 @@
 // Content for the shared "How to read this page" legend widget (legend.js renders
-// it). Included on fx-intelligence.html and daily-report.html — both pages display
-// the same daily FX dashboard report (parsed vs. raw), using the same color system
-// and the same trading terminology, so one shared content file avoids the two
-// drifting apart. Prose only, no numbers, same content/rendering split as
-// learn-content.js/learn.js and due-diligence-content.js/due-diligence.js.
+// it). Included on fx-intelligence.html, which renders the daily FX dashboard
+// report, using a consistent color system and trading terminology. Prose only, no
+// numbers, same content/rendering split as learn-content.js/learn.js and
+// due-diligence-content.js/due-diligence.js.
 
 window.SCERE_LEGEND = {
   colors: [

@@ -62,6 +62,29 @@ Use `sk_test_...` + a test-mode `price_...`, then subscribe with Stripe's
 [test card](https://docs.stripe.com/testing) `4242 4242 4242 4242` (any future
 expiry, any CVC). Confirm the theses unlock, then swap in the live keys.
 
+### 5. (Optional but recommended) Instant revocation — webhook + KV
+
+Without this, a cancellation or failed payment stops access at the end of the
+paid period (up to one billing cycle of lag). Add a webhook + a small KV
+denylist to make revocation **immediate**.
+
+1. **Provision a KV store.** Vercel → **Storage → KV** (create a database and
+   connect it to this project — it injects `KV_REST_API_URL` and
+   `KV_REST_API_TOKEN`). [Upstash Redis](https://upstash.com/) works too, via
+   `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`.
+2. **Register the webhook** in Stripe → Developers → Webhooks → Add endpoint:
+   - URL: `https://<your-domain>/api/stripe-webhook`
+   - Events: `customer.subscription.updated`, `customer.subscription.deleted`,
+     `invoice.payment_failed`, `invoice.paid`
+   - Copy the endpoint's **Signing secret** (`whsec_...`).
+3. **Set** `STRIPE_WEBHOOK_SECRET` = that `whsec_...` in Vercel env vars, and
+   **redeploy**.
+
+Now cancelling a subscription (or a failed renewal) revokes access on the
+subscriber's very next request. The webhook always re-checks the subscription's
+status directly with Stripe, so a forged event can never grant or wrongly revoke
+access — only trigger a re-check.
+
 ---
 
 ## How it works
@@ -79,10 +102,14 @@ expiry, any CVC). Confirm the theses unlock, then swap in the live keys.
 - **Enforcement.** `GET /api/research?fn=full` (used by the Research Desk when
   unlocked, and by the FX Intelligence Desk) returns the report only if
   `scere_ent` is valid. `fn=public` always returns the free subset.
-- **Renewals & cancellations — no webhook needed.** When `scere_ent` expires,
-  `checkEntitlement()` re-checks Stripe using `scere_cus`: an active
-  subscription silently re-issues `scere_ent`; a cancelled one drops access
-  (with at most one billing period of lag).
+- **Renewals.** When `scere_ent` expires, `checkEntitlement()` re-checks Stripe
+  using `scere_cus`: an active subscription silently re-issues `scere_ent`.
+- **Revocation.** Without the webhook, a cancellation drops access when the
+  entitlement cookie expires (up to one billing period). With the webhook + KV
+  (step 5), `api/stripe-webhook.js` writes a `revoked:<customer>` denylist entry
+  that `checkEntitlement()` checks on every request, so access is cut off
+  **immediately** — even while the cookie is still valid. An active event clears
+  the entry (self-heal).
 - **Restore on a new device.** "Restore access" calls
   `POST /api/billing?fn=restore` with the subscriber's email; if Stripe has an
   active subscription for that email, the cookies are re-issued.
@@ -98,6 +125,7 @@ expiry, any CVC). Confirm the theses unlock, then swap in the live keys.
 - `POST /api/billing?fn=activate` — `{ session_id }` → sets cookies
 - `POST /api/billing?fn=restore` — `{ email }` → sets cookies if subscribed
 - `POST /api/billing?fn=logout` — clears cookies
+- `POST /api/stripe-webhook` — Stripe events → KV revocation denylist (instant revocation)
 
 ---
 
@@ -112,10 +140,6 @@ expiry, any CVC). Confirm the theses unlock, then swap in the live keys.
 
 ## Not included (possible follow-ups)
 
-- **Stripe webhook.** Enforcement relies on cookie expiry + re-check, so a
-  cancellation can linger up to one billing period. A webhook
-  (`customer.subscription.deleted`) plus a small store would make revocation
-  immediate.
 - **Gating the Daily Dashboard.** `daily-report.html` / `data/daily-dashboard/`
   is still open; gate it the same way if it should be subscriber-only.
 - **Customer portal.** Add a Stripe Billing Portal link so subscribers can

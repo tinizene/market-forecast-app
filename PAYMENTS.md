@@ -18,15 +18,13 @@ it on, and how it behaves.
 | --- | --- | --- |
 | **Research Desk** (`research.html`) | Regime headline, top idea, overall confidence, the full **track record** (wins / invalidations), each live idea's **headline + six-pillar score bars** | Entry, targets, stop/invalidation, per-pillar reasoning, confirmation criteria |
 | **FX Intelligence Desk** (`fx-intelligence.html`) | — | The entire daily report |
+| **Daily Dashboard** (`daily-report.html`) | — | The full generated daily report (iframed HTML) |
 
-The paid fields are **stripped server-side** and never sent to an
-unsubscribed browser — this is real enforcement, not CSS hiding. The raw report
-JSON under `/data/fx-reports/*` is blocked from direct public access by
-`middleware.js`; the only way to the data is the gated `/api/research` endpoint.
-
-The **Daily Dashboard** (`daily-report.html`, backed by `data/daily-dashboard/`)
-is a separate raw-HTML artifact and is **not** covered by this gate yet — see
-"Not included" below.
+The paid content is **withheld server-side** and never sent to an unsubscribed
+browser — this is real enforcement, not CSS hiding. The raw data under
+`/data/fx-reports/*` and `/data/daily-dashboard/*` is blocked from direct public
+access by `middleware.js`; the only way to it is through the gated
+`/api/research` and `/api/dashboard` endpoints.
 
 ---
 
@@ -119,6 +117,8 @@ access — only trigger a re-check.
 - `GET  /api/research?fn=index` — available report dates (public)
 - `GET  /api/research?fn=public` — free subset + `{ entitled, paywallActive }`
 - `GET  /api/research?fn=full` — entire report (402 if not subscribed)
+- `GET  /api/dashboard?fn=index` — daily-dashboard dates (public)
+- `GET  /api/dashboard?date=…` — daily dashboard HTML, or a subscribe page if not subscribed
 - `GET  /api/billing?fn=config` — `{ configured, priceLabel, interval, entitled }`
 - `GET  /api/billing?fn=status` — `{ entitled, paywallActive }`
 - `POST /api/billing?fn=createCheckout` — `{ url }`
@@ -140,8 +140,6 @@ access — only trigger a re-check.
 
 ## Not included (possible follow-ups)
 
-- **Gating the Daily Dashboard.** `daily-report.html` / `data/daily-dashboard/`
-  is still open; gate it the same way if it should be subscriber-only.
 - **Customer portal.** Add a Stripe Billing Portal link so subscribers can
   manage or cancel their plan in-app.
 

@@ -1,6 +1,7 @@
 {
   "functions": {
-    "api/research.js": { "includeFiles": "data/fx-reports/**" }
+    "api/research.js": { "includeFiles": "data/fx-reports/**" },
+    "api/dashboard.js": { "includeFiles": "data/daily-dashboard/**" }
   },
   "rewrites": [
     { "source": "/api/quote", "destination": "/api/markets-hub?fn=quote" },

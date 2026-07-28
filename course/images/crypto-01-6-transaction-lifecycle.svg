@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 475" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="960" height="475" fill="#FDFCF9"/>
+
+  <text x="480" y="40" text-anchor="middle" font-size="25" font-weight="bold" fill="#1F3864">The Life of a Transaction</text>
+  <text x="480" y="64" text-anchor="middle" font-size="13.5" fill="#2E5395">Five stages from pressing send to settled - and where the fee auction happens</text>
+
+  <!-- zone brackets -->
+  <text x="298" y="96" text-anchor="middle" font-size="12" font-weight="bold" fill="#B23B2E">SENT is not SETTLED: can still fail, be replaced, or never confirm</text>
+  <line x1="37" y1="106" x2="559" y2="106" stroke="#B23B2E" stroke-width="2"/>
+  <line x1="37" y1="106" x2="37" y2="114" stroke="#B23B2E" stroke-width="2"/>
+  <line x1="559" y1="106" x2="559" y2="114" stroke="#B23B2E" stroke-width="2"/>
+
+  <text x="753" y="96" text-anchor="middle" font-size="12" font-weight="bold" fill="#1E7A4C">SETTLING: deeper = harder to reverse</text>
+  <line x1="583" y1="106" x2="923" y2="106" stroke="#1E7A4C" stroke-width="2"/>
+  <line x1="583" y1="106" x2="583" y2="114" stroke="#1E7A4C" stroke-width="2"/>
+  <line x1="923" y1="106" x2="923" y2="114" stroke="#1E7A4C" stroke-width="2"/>
+
+  <!-- stage 1 -->
+  <rect x="37" y="130" width="158" height="115" rx="10" fill="#1F3864"/>
+  <text x="116" y="155" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#FDFCF9">1. SIGNED</text>
+  <text x="116" y="180" text-anchor="middle" font-size="11.5" fill="#FDFCF9">Your wallet signs the</text>
+  <text x="116" y="196" text-anchor="middle" font-size="11.5" fill="#FDFCF9">instruction with your</text>
+  <text x="116" y="212" text-anchor="middle" font-size="11.5" fill="#FDFCF9">private key (Lesson 4)</text>
+
+  <line x1="195" y1="187" x2="207" y2="187" stroke="#1F3864" stroke-width="3"/>
+  <polygon points="207,180 219,187 207,194" fill="#1F3864"/>
+
+  <!-- stage 2 -->
+  <rect x="219" y="130" width="158" height="115" rx="10" fill="#2E5395"/>
+  <text x="298" y="155" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#FDFCF9">2. BROADCAST</text>
+  <text x="298" y="180" text-anchor="middle" font-size="11.5" fill="#FDFCF9">Nodes pass it across</text>
+  <text x="298" y="196" text-anchor="middle" font-size="11.5" fill="#FDFCF9">the peer-to-peer</text>
+  <text x="298" y="212" text-anchor="middle" font-size="11.5" fill="#FDFCF9">network in seconds</text>
+
+  <line x1="377" y1="187" x2="389" y2="187" stroke="#1F3864" stroke-width="3"/>
+  <polygon points="389,180 401,187 389,194" fill="#1F3864"/>
+
+  <!-- stage 3 -->
+  <rect x="401" y="130" width="158" height="115" rx="10" fill="#C99A2E"/>
+  <text x="480" y="155" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#FDFCF9">3. MEMPOOL</text>
+  <text x="480" y="180" text-anchor="middle" font-size="11.5" fill="#FDFCF9">The waiting room:</text>
+  <text x="480" y="196" text-anchor="middle" font-size="11.5" fill="#FDFCF9">seen by the network,</text>
+  <text x="480" y="212" text-anchor="middle" font-size="11.5" fill="#FDFCF9">not yet recorded</text>
+
+  <line x1="559" y1="187" x2="571" y2="187" stroke="#1F3864" stroke-width="3"/>
+  <polygon points="571,180 583,187 571,194" fill="#1F3864"/>
+
+  <!-- stage 4 -->
+  <rect x="583" y="130" width="158" height="115" rx="10" fill="#2E5395"/>
+  <text x="662" y="155" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#FDFCF9">4. IN A BLOCK</text>
+  <text x="662" y="180" text-anchor="middle" font-size="11.5" fill="#FDFCF9">A miner or validator</text>
+  <text x="662" y="196" text-anchor="middle" font-size="11.5" fill="#FDFCF9">selects it into the next</text>
+  <text x="662" y="212" text-anchor="middle" font-size="11.5" fill="#FDFCF9">block (Lessons 2, 3)</text>
+
+  <line x1="741" y1="187" x2="753" y2="187" stroke="#1F3864" stroke-width="3"/>
+  <polygon points="753,180 765,187 753,194" fill="#1F3864"/>
+
+  <!-- stage 5 -->
+  <rect x="765" y="130" width="158" height="115" rx="10" fill="#1E7A4C"/>
+  <text x="844" y="155" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#FDFCF9">5. BURIED</text>
+  <text x="844" y="180" text-anchor="middle" font-size="11.5" fill="#FDFCF9">Each new block adds</text>
+  <text x="844" y="196" text-anchor="middle" font-size="11.5" fill="#FDFCF9">one confirmation</text>
+  <text x="844" y="212" text-anchor="middle" font-size="11.5" fill="#FDFCF9">and more depth</text>
+
+  <!-- fee auction annotation -->
+  <line x1="480" y1="245" x2="330" y2="292" stroke="#C99A2E" stroke-width="2" stroke-dasharray="5,4"/>
+  <rect x="60" y="292" width="520" height="118" rx="10" fill="#FDFCF9" stroke="#C99A2E" stroke-width="2.5" stroke-dasharray="7,5"/>
+  <text x="80" y="318" font-size="13.5" font-weight="bold" fill="#C99A2E">THE FEE AUCTION (happens here)</text>
+  <text x="80" y="340" font-size="12" fill="#1F3864">- Block space is scarce: only so many transactions fit in each block</text>
+  <text x="80" y="359" font-size="12" fill="#1F3864">- Users bid fees; block producers pick the highest-paying first</text>
+  <text x="80" y="378" font-size="12" fill="#1F3864">- When demand spikes, fees spike; a too-low bid can wait for days</text>
+  <text x="80" y="397" font-size="12" fill="#1F3864">- Fees price size and computation, never the amount you move</text>
+
+  <!-- confirmations annotation -->
+  <line x1="844" y1="245" x2="775" y2="292" stroke="#1E7A4C" stroke-width="2" stroke-dasharray="5,4"/>
+  <rect x="620" y="292" width="310" height="118" rx="10" fill="#FDFCF9" stroke="#1E7A4C" stroke-width="2.5"/>
+  <text x="640" y="318" font-size="13.5" font-weight="bold" fill="#1E7A4C">N CONFIRMATIONS</text>
+  <rect x="640" y="330" width="44" height="26" rx="4" fill="#1E7A4C"/>
+  <text x="662" y="347" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#FDFCF9">+1</text>
+  <line x1="684" y1="343" x2="696" y2="343" stroke="#1E7A4C" stroke-width="2.5"/>
+  <rect x="696" y="330" width="44" height="26" rx="4" fill="#1E7A4C"/>
+  <text x="718" y="347" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#FDFCF9">+2</text>
+  <line x1="740" y1="343" x2="752" y2="343" stroke="#1E7A4C" stroke-width="2.5"/>
+  <rect x="752" y="330" width="44" height="26" rx="4" fill="#1E7A4C"/>
+  <text x="774" y="347" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#FDFCF9">+3</text>
+  <line x1="796" y1="343" x2="808" y2="343" stroke="#1E7A4C" stroke-width="2.5"/>
+  <text x="822" y="347" font-size="11.5" font-weight="bold" fill="#1E7A4C">...</text>
+  <text x="640" y="380" font-size="12" fill="#1F3864">Reversing means redoing the work</text>
+  <text x="640" y="398" font-size="12" fill="#1F3864">for every block on top (Lesson 2)</text>
+
+  <text x="480" y="446" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#B23B2E">Check any transaction yourself on a block explorer: status, confirmations, fee.</text>
+</svg>

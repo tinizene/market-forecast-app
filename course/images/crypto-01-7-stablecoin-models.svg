@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 620" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="980" height="620" fill="#FDFCF9"/>
+  <text x="490" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="#1F3864">Three Ways to Hold a $1 Peg</text>
+  <text x="490" y="56" text-anchor="middle" font-size="13" fill="#1F3864">Same target price. Very different mechanisms.</text>
+
+  <!-- ===== PANEL 1: FIAT-BACKED ===== -->
+  <rect x="20" y="78" width="300" height="440" rx="10" fill="#FFFFFF" stroke="#2E5395" stroke-width="2"/>
+  <text x="170" y="106" text-anchor="middle" font-size="16" font-weight="bold" fill="#2E5395">1. Fiat-Backed</text>
+  <text x="170" y="126" text-anchor="middle" font-size="12" fill="#1F3864">USDT, USDC</text>
+
+  <!-- token -->
+  <circle cx="170" cy="176" r="30" fill="#2E5395"/>
+  <text x="170" y="172" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">1 token</text>
+  <text x="170" y="188" text-anchor="middle" font-size="12" fill="#FFFFFF">= $1</text>
+
+  <!-- redeem arrows -->
+  <line x1="150" y1="212" x2="150" y2="268" stroke="#1E7A4C" stroke-width="2.5"/>
+  <polygon points="150,268 144,256 156,256" fill="#1E7A4C"/>
+  <line x1="190" y1="268" x2="190" y2="212" stroke="#1E7A4C" stroke-width="2.5"/>
+  <polygon points="190,212 184,224 196,224" fill="#1E7A4C"/>
+  <text x="170" y="244" text-anchor="middle" font-size="11" fill="#1E7A4C">redeem / issue</text>
+
+  <!-- reserve vault -->
+  <rect x="55" y="272" width="230" height="96" rx="8" fill="#1E7A4C"/>
+  <text x="170" y="298" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFFFFF">Issuer's reserve</text>
+  <text x="170" y="320" text-anchor="middle" font-size="12" fill="#FFFFFF">cash, Treasury bills...</text>
+  <text x="170" y="340" text-anchor="middle" font-size="12" fill="#FFFFFF">held off-chain by a company</text>
+  <text x="170" y="358" text-anchor="middle" font-size="12" fill="#FFFFFF">you must trust and verify</text>
+
+  <text x="170" y="398" text-anchor="middle" font-size="12" fill="#1F3864">Peg holds if the reserve is real,</text>
+  <text x="170" y="415" text-anchor="middle" font-size="12" fill="#1F3864">liquid, and redeemable.</text>
+
+  <rect x="40" y="432" width="260" height="70" rx="8" fill="#C99A2E"/>
+  <text x="170" y="456" text-anchor="middle" font-size="12" font-weight="bold" fill="#FFFFFF">Verify: what IS the reserve?</text>
+  <text x="170" y="474" text-anchor="middle" font-size="12" fill="#FFFFFF">Attested or audited?</text>
+  <text x="170" y="492" text-anchor="middle" font-size="12" fill="#FFFFFF">Can YOU redeem?</text>
+
+  <!-- ===== PANEL 2: CRYPTO-COLLATERALIZED ===== -->
+  <rect x="340" y="78" width="300" height="440" rx="10" fill="#FFFFFF" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="490" y="106" text-anchor="middle" font-size="16" font-weight="bold" fill="#1E7A4C">2. Crypto-Collateralized</text>
+  <text x="490" y="126" text-anchor="middle" font-size="12" fill="#1F3864">DAI (MakerDAO)</text>
+
+  <!-- collateral block -->
+  <rect x="375" y="146" width="230" height="80" rx="8" fill="#1E7A4C"/>
+  <text x="490" y="172" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFFFFF">$150 of ETH locked</text>
+  <text x="490" y="192" text-anchor="middle" font-size="12" fill="#FFFFFF">in a smart contract,</text>
+  <text x="490" y="210" text-anchor="middle" font-size="12" fill="#FFFFFF">visible on-chain</text>
+
+  <!-- mint arrow -->
+  <line x1="490" y1="232" x2="490" y2="280" stroke="#1F3864" stroke-width="2.5"/>
+  <polygon points="490,280 484,268 496,268" fill="#1F3864"/>
+  <text x="545" y="260" text-anchor="middle" font-size="11" fill="#1F3864">mints</text>
+
+  <!-- minted stablecoin -->
+  <circle cx="490" cy="316" r="32" fill="#2E5395"/>
+  <text x="490" y="312" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">$100</text>
+  <text x="490" y="328" text-anchor="middle" font-size="12" fill="#FFFFFF">of DAI</text>
+
+  <text x="490" y="378" text-anchor="middle" font-size="12" fill="#1F3864">The extra $50 is a buffer that</text>
+  <text x="490" y="395" text-anchor="middle" font-size="12" fill="#1F3864">absorbs falls in ETH's price.</text>
+
+  <rect x="360" y="432" width="260" height="70" rx="8" fill="#C99A2E"/>
+  <text x="490" y="456" text-anchor="middle" font-size="12" font-weight="bold" fill="#FFFFFF">If the buffer thins, code</text>
+  <text x="490" y="474" text-anchor="middle" font-size="12" fill="#FFFFFF">auto-liquidates the collateral.</text>
+  <text x="490" y="492" text-anchor="middle" font-size="12" fill="#FFFFFF">Cost: capital locked up.</text>
+
+  <!-- ===== PANEL 3: ALGORITHMIC (fragile) ===== -->
+  <rect x="660" y="78" width="300" height="440" rx="10" fill="#FFFFFF" stroke="#B23B2E" stroke-width="3" stroke-dasharray="9,6"/>
+  <text x="810" y="106" text-anchor="middle" font-size="16" font-weight="bold" fill="#B23B2E">3. Algorithmic</text>
+  <text x="810" y="126" text-anchor="middle" font-size="12" fill="#1F3864">TerraUSD (UST) + LUNA</text>
+
+  <text x="810" y="152" text-anchor="middle" font-size="12" font-weight="bold" fill="#B23B2E">No reserve. Only a swap loop.</text>
+
+  <!-- loop: stablecoin -->
+  <circle cx="735" cy="230" r="34" fill="#2E5395"/>
+  <text x="735" y="226" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">1 UST</text>
+  <text x="735" y="242" text-anchor="middle" font-size="11" fill="#FFFFFF">target $1</text>
+
+  <!-- loop: sister token -->
+  <circle cx="885" cy="230" r="34" fill="#B23B2E"/>
+  <text x="885" y="226" text-anchor="middle" font-size="12" font-weight="bold" fill="#FFFFFF">$1 worth</text>
+  <text x="885" y="242" text-anchor="middle" font-size="12" fill="#FFFFFF">of LUNA</text>
+
+  <!-- loop arrows -->
+  <line x1="772" y1="214" x2="848" y2="214" stroke="#1F3864" stroke-width="2.5"/>
+  <polygon points="848,214 836,208 836,220" fill="#1F3864"/>
+  <line x1="848" y1="248" x2="772" y2="248" stroke="#1F3864" stroke-width="2.5"/>
+  <polygon points="772,248 784,242 784,254" fill="#1F3864"/>
+  <text x="810" y="204" text-anchor="middle" font-size="10" fill="#1F3864">burn, mint</text>
+  <text x="810" y="266" text-anchor="middle" font-size="10" fill="#1F3864">mint, burn</text>
+
+  <text x="810" y="300" text-anchor="middle" font-size="12" fill="#1F3864">Arbitrage on the loop nudges</text>
+  <text x="810" y="317" text-anchor="middle" font-size="12" fill="#1F3864">the price back to $1 -- while</text>
+  <text x="810" y="334" text-anchor="middle" font-size="12" fill="#1F3864">LUNA has value and buyers.</text>
+
+  <!-- death spiral -->
+  <rect x="680" y="352" width="260" height="72" rx="8" fill="#B23B2E"/>
+  <text x="810" y="374" text-anchor="middle" font-size="12" font-weight="bold" fill="#FFFFFF">Under stress the loop reverses:</text>
+  <text x="810" y="392" text-anchor="middle" font-size="11" fill="#FFFFFF">redemptions mint LUNA, LUNA falls,</text>
+  <text x="810" y="409" text-anchor="middle" font-size="11" fill="#FFFFFF">fear grows, more redemptions...</text>
+
+  <rect x="680" y="432" width="260" height="70" rx="8" fill="#B23B2E"/>
+  <text x="810" y="454" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">FRAGILE BY DESIGN</text>
+  <text x="810" y="472" text-anchor="middle" font-size="11" fill="#FFFFFF">May 2022: UST death spiral,</text>
+  <text x="810" y="489" text-anchor="middle" font-size="11" fill="#FFFFFF">~$40B destroyed (Chapter 5, L2)</text>
+
+  <!-- ===== BOTTOM BAND ===== -->
+  <rect x="20" y="538" width="940" height="58" rx="10" fill="#1F3864"/>
+  <text x="490" y="562" text-anchor="middle" font-size="15" font-weight="bold" fill="#FFFFFF">A peg is a promise with a mechanism.</text>
+  <text x="490" y="583" text-anchor="middle" font-size="13" fill="#FFFFFF">Before you rely on the promise, verify the mechanism -- this course has already shown you a "guaranteed" peg break (SNB 2015).</text>
+</svg>

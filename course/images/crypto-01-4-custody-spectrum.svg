@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 560" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="940" height="560" fill="#FDFCF9"/>
+
+  <!-- Title -->
+  <text x="470" y="42" text-anchor="middle" font-size="24" font-weight="bold" fill="#1F3864">The Custody Spectrum: Who Holds the Keys?</text>
+  <text x="470" y="68" text-anchor="middle" font-size="14" fill="#2E5395">Every option trades one risk for another - the choice is which risk, not whether</text>
+
+  <!-- Temperature axis -->
+  <rect x="80" y="100" width="780" height="14" rx="7" fill="#EAE6DD"/>
+  <rect x="80" y="100" width="260" height="14" rx="7" fill="#C99A2E"/>
+  <rect x="600" y="100" width="260" height="14" rx="7" fill="#2E5395"/>
+  <text x="80" y="140" font-size="15" font-weight="bold" fill="#C99A2E">HOT</text>
+  <text x="80" y="158" font-size="12" fill="#1F3864">keys touch the internet</text>
+  <text x="860" y="140" text-anchor="end" font-size="15" font-weight="bold" fill="#2E5395">COLD</text>
+  <text x="860" y="158" text-anchor="end" font-size="12" fill="#1F3864">keys stay offline</text>
+
+  <!-- Station 1: Exchange custody -->
+  <rect x="80" y="185" width="230" height="150" rx="10" fill="#FFFFFF" stroke="#C99A2E" stroke-width="2.5"/>
+  <text x="195" y="215" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F3864">EXCHANGE CUSTODY</text>
+  <line x1="100" y1="228" x2="290" y2="228" stroke="#EAE6DD" stroke-width="1.5"/>
+  <text x="195" y="252" text-anchor="middle" font-size="13" fill="#1F3864">The exchange holds the keys.</text>
+  <text x="195" y="272" text-anchor="middle" font-size="13" fill="#1F3864">Your balance is their IOU.</text>
+  <text x="195" y="300" text-anchor="middle" font-size="12" fill="#1E7A4C">Password resets, support,</text>
+  <text x="195" y="317" text-anchor="middle" font-size="12" fill="#1E7A4C">instant trading</text>
+
+  <!-- Station 2: Hot wallet -->
+  <rect x="355" y="185" width="230" height="150" rx="10" fill="#FFFFFF" stroke="#2E5395" stroke-width="2.5"/>
+  <text x="470" y="215" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F3864">HOT WALLET</text>
+  <line x1="375" y1="228" x2="565" y2="228" stroke="#EAE6DD" stroke-width="1.5"/>
+  <text x="470" y="252" text-anchor="middle" font-size="13" fill="#1F3864">You hold the keys, on a</text>
+  <text x="470" y="272" text-anchor="middle" font-size="13" fill="#1F3864">connected phone or browser.</text>
+  <text x="470" y="300" text-anchor="middle" font-size="12" fill="#1E7A4C">Direct use of the network,</text>
+  <text x="470" y="317" text-anchor="middle" font-size="12" fill="#1E7A4C">no permission needed</text>
+
+  <!-- Station 3: Cold storage -->
+  <rect x="630" y="185" width="230" height="150" rx="10" fill="#FFFFFF" stroke="#1F3864" stroke-width="2.5"/>
+  <text x="745" y="215" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F3864">COLD STORAGE</text>
+  <line x1="650" y1="228" x2="840" y2="228" stroke="#EAE6DD" stroke-width="1.5"/>
+  <text x="745" y="252" text-anchor="middle" font-size="13" fill="#1F3864">You hold the keys, on a</text>
+  <text x="745" y="272" text-anchor="middle" font-size="13" fill="#1F3864">hardware device kept offline.</text>
+  <text x="745" y="300" text-anchor="middle" font-size="12" fill="#1E7A4C">Strongest protection</text>
+  <text x="745" y="317" text-anchor="middle" font-size="12" fill="#1E7A4C">against remote theft</text>
+
+  <!-- Connectors -->
+  <line x1="310" y1="260" x2="355" y2="260" stroke="#1F3864" stroke-width="2"/>
+  <line x1="585" y1="260" x2="630" y2="260" stroke="#1F3864" stroke-width="2"/>
+
+  <!-- Risk label: left end -->
+  <rect x="80" y="370" width="360" height="110" rx="10" fill="#FFFFFF" stroke="#B23B2E" stroke-width="2.5"/>
+  <text x="100" y="398" font-size="14" font-weight="bold" fill="#B23B2E">RISK AT THIS END: COUNTERPARTY</text>
+  <text x="100" y="422" font-size="13" fill="#1F3864">The company can be hacked, freeze</text>
+  <text x="100" y="441" font-size="13" fill="#1F3864">withdrawals, or go broke with your funds.</text>
+  <text x="100" y="465" font-size="12" fill="#B23B2E">Mt. Gox (2014), FTX (2022) - see Chapter 5</text>
+
+  <!-- Risk label: right end -->
+  <rect x="500" y="370" width="360" height="110" rx="10" fill="#FFFFFF" stroke="#B23B2E" stroke-width="2.5"/>
+  <text x="520" y="398" font-size="14" font-weight="bold" fill="#B23B2E">RISK AT THIS END: IRREVERSIBLE LOSS</text>
+  <text x="520" y="422" font-size="13" fill="#1F3864">Lost seed phrase, mistyped address, or</text>
+  <text x="520" y="441" font-size="13" fill="#1F3864">your own error - and no support line exists.</text>
+  <text x="520" y="465" font-size="12" fill="#B23B2E">Nobody can freeze you. Nobody can save you.</text>
+
+  <!-- Bottom takeaway -->
+  <text x="470" y="520" text-anchor="middle" font-size="14" font-weight="bold" fill="#1E7A4C">Match custody to amount, time horizon, and demonstrated competence -</text>
+  <text x="470" y="540" text-anchor="middle" font-size="14" font-weight="bold" fill="#1E7A4C">not to a slogan from either end of the spectrum.</text>
+</svg>

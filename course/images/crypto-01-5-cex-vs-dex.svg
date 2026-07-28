@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="900" height="560" fill="#FDFCF9"/>
+  <text x="450" y="36" text-anchor="middle" font-size="22" font-weight="bold" fill="#1F3864">Where Your Money Actually Goes: CEX vs DEX</text>
+
+  <!-- ===== LEFT PANEL: CEX ===== -->
+  <rect x="30" y="60" width="410" height="440" rx="10" fill="#FFFFFF" stroke="#C99A2E" stroke-width="2"/>
+  <text x="235" y="92" text-anchor="middle" font-size="17" font-weight="bold" fill="#C99A2E">Centralized exchange (CEX)</text>
+  <text x="235" y="112" text-anchor="middle" font-size="13" fill="#1F3864">You deposit. They custody. You trade IOUs.</text>
+
+  <!-- You -->
+  <circle cx="120" cy="170" r="32" fill="#2E5395"/>
+  <text x="120" y="167" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFFFFF">You</text>
+  <text x="120" y="184" text-anchor="middle" font-size="10" fill="#FFFFFF">1 BTC</text>
+
+  <!-- deposit arrow -->
+  <line x1="158" y1="160" x2="270" y2="160" stroke="#1F3864" stroke-width="2.5"/>
+  <polygon points="270,160 254,153 254,167" fill="#1F3864"/>
+  <text x="214" y="148" text-anchor="middle" font-size="12" fill="#1F3864">deposit (on-chain)</text>
+
+  <!-- exchange wallet -->
+  <rect x="275" y="132" width="140" height="60" rx="8" fill="#C99A2E"/>
+  <text x="345" y="156" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">EXCHANGE WALLET</text>
+  <text x="345" y="176" text-anchor="middle" font-size="12" fill="#FFFFFF">THEIR keys hold it</text>
+
+  <!-- arrow down to ledger -->
+  <line x1="345" y1="192" x2="345" y2="228" stroke="#C99A2E" stroke-width="2.5"/>
+  <polygon points="345,228 338,213 352,213" fill="#C99A2E"/>
+
+  <!-- internal ledger -->
+  <rect x="90" y="232" width="330" height="130" rx="8" fill="#1F3864"/>
+  <text x="255" y="258" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">INTERNAL LEDGER (company database)</text>
+  <line x1="110" y1="270" x2="400" y2="270" stroke="#FDFCF9" stroke-width="1"/>
+  <text x="255" y="292" text-anchor="middle" font-size="12" fill="#C99A2E">Your balance: 1 BTC -- an IOU to you</text>
+  <text x="255" y="314" text-anchor="middle" font-size="12" fill="#FFFFFF">Every trade edits rows in this database.</text>
+  <text x="255" y="336" text-anchor="middle" font-size="12" fill="#FFFFFF">The blockchain sees none of it.</text>
+
+  <!-- withdrawal arrow -->
+  <line x1="120" y1="366" x2="120" y2="404" stroke="#1F3864" stroke-width="2.5" stroke-dasharray="6,4"/>
+  <polygon points="120,404 113,389 127,389" fill="#1F3864"/>
+  <text x="196" y="390" text-anchor="middle" font-size="11" fill="#1F3864">withdrawal: on-chain again</text>
+
+  <rect x="55" y="410" width="360" height="72" rx="8" fill="#B23B2E"/>
+  <text x="235" y="436" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">Counterparty risk: hack, freeze, insolvency</text>
+  <text x="235" y="456" text-anchor="middle" font-size="12" fill="#FFFFFF">If the company fails, your claim fails with it.</text>
+  <text x="235" y="472" text-anchor="middle" font-size="11" fill="#FFFFFF">Proof of reserves shows assets, not liabilities.</text>
+
+  <!-- ===== RIGHT PANEL: DEX ===== -->
+  <rect x="460" y="60" width="410" height="440" rx="10" fill="#FFFFFF" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="665" y="92" text-anchor="middle" font-size="17" font-weight="bold" fill="#1E7A4C">Decentralized exchange (DEX)</text>
+  <text x="665" y="112" text-anchor="middle" font-size="13" fill="#1F3864">No deposit. Your wallet trades with a pool.</text>
+
+  <!-- your wallet -->
+  <rect x="545" y="136" width="240" height="60" rx="8" fill="#2E5395"/>
+  <text x="665" y="160" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">YOUR WALLET</text>
+  <text x="665" y="180" text-anchor="middle" font-size="12" fill="#FFFFFF">YOUR keys, before and after the trade</text>
+
+  <!-- two-way arrows -->
+  <line x1="610" y1="196" x2="610" y2="260" stroke="#1E7A4C" stroke-width="2.5"/>
+  <polygon points="610,260 603,245 617,245" fill="#1E7A4C"/>
+  <text x="560" y="232" text-anchor="middle" font-size="11" fill="#1E7A4C">USDC in</text>
+
+  <line x1="720" y1="260" x2="720" y2="196" stroke="#1E7A4C" stroke-width="2.5"/>
+  <polygon points="720,196 713,211 727,211" fill="#1E7A4C"/>
+  <text x="772" y="232" text-anchor="middle" font-size="11" fill="#1E7A4C">ETH out</text>
+
+  <!-- liquidity pool -->
+  <rect x="520" y="264" width="290" height="130" rx="8" fill="#1E7A4C"/>
+  <text x="665" y="290" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">LIQUIDITY POOL (smart contract)</text>
+  <line x1="540" y1="302" x2="790" y2="302" stroke="#FDFCF9" stroke-width="1"/>
+  <text x="665" y="324" text-anchor="middle" font-size="12" fill="#FFFFFF">Reserves: 10 ETH and 20,000 USDC</text>
+  <text x="665" y="346" text-anchor="middle" font-size="12" fill="#C99A2E">Price rule: x * y = k (stays 200,000)</text>
+  <text x="665" y="368" text-anchor="middle" font-size="12" fill="#FFFFFF">Big trade vs small pool = big price impact</text>
+
+  <!-- settlement note -->
+  <rect x="485" y="410" width="360" height="72" rx="8" fill="#2E5395"/>
+  <text x="665" y="436" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">Trade settles on-chain, in one transaction</text>
+  <text x="665" y="456" text-anchor="middle" font-size="12" fill="#FFFFFF">No custodian -- and no support desk, no undo.</text>
+  <text x="665" y="472" text-anchor="middle" font-size="11" fill="#FFFFFF">Anyone can list any token. Verify the contract.</text>
+
+  <!-- footer -->
+  <text x="450" y="530" text-anchor="middle" font-size="12" fill="#1F3864">Same question from Lesson 4 decides which risks you carry: who holds the keys?</text>
+  <text x="450" y="548" text-anchor="middle" font-size="12" fill="#1F3864">CEX: their keys, your IOU. DEX: your keys, your mistakes.</text>
+</svg>

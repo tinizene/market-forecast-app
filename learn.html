@@ -50,6 +50,11 @@
              Previous/Next navigation, instead of one endless scrolling page. -->
         <div id="courseIndexRoot" class="mt-2"></div>
 
+        <!-- Legacy single-page mounts (unused while the TOC above is active,
+             kept so renderFoundationTrack/renderForexTrack/renderCryptoTrack still
+             work if the index is ever swapped back out). -->
+        <div id="cryptoRoot" class="hidden"></div>
+
         <!-- Bridge to the Research Desk — the funnel closes here: the paid course
              teaches the six-pillar framework, the Research Desk shows it applied on
              live markets with an open track record of how past calls turned out. -->
@@ -83,6 +88,7 @@
     <script src="./fund-facts.js"></script>
     <script src="./foundation-content.js"></script>
     <script src="./forex-content.js"></script>
+    <script src="./crypto-content.js"></script>
     <script src="./learn-content.js"></script>
     <script src="./learn.js"></script>
 </body>

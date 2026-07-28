@@ -993,7 +993,289 @@
 
 ## Crypto Track Terms
 
-*(Not yet started. Expect terms like: blockchain, wallet, private key, gas fee, exchange, volatility, market cap, stablecoin.)*
+*Chapter 1 complete (7 lessons). English definitions are locked as written in the lessons that introduce them. **FR/PT/SW translations are outstanding for this section** and are deliberately left blank rather than machine-guessed — per the project standard, Swahili in particular needs native-speaker review before publication. Translations are not yet wired into the app, so this does not block the track shipping.*
+
+### Ledger
+- **EN:** A record of who owns what, and of every transaction that changed it. Modern money mostly lives on ledgers (bank databases), not in vaults; a cryptocurrency's ledger is kept by a network instead of one institution.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Double-Spend Problem
+- **EN:** The risk that the same unit of digital money is spent more than once, because digital information can be copied perfectly at almost no cost. Solved before Bitcoin by trusted central ledgers; solved by Bitcoin with a peer-to-peer shared ledger ordered by proof-of-work.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Cryptocurrency
+- **EN:** A digital currency whose ledger is maintained by a network of computers running shared software rules, secured by cryptography, instead of by a central institution. Bitcoin (2009) was the first working example.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Peer-to-Peer (P2P) Network
+- **EN:** A network where participants connect directly to each other and share the work, instead of all connecting to one central server. In Bitcoin, thousands of computers each keep a full copy of the transaction ledger.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Proof of Work
+- **EN:** A mechanism that makes adding to a cryptocurrency's transaction history require real computational effort, and therefore real cost. Rewriting old history would mean redoing that work faster than the honest network adds new work — economically hard, not physically impossible. (Introduced lightly in Crypto Ch1 L1; taught in depth in Crypto Ch1 L3.)
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Digital Scarcity
+- **EN:** A verifiable, software-enforced limit on how many units of a digital asset can exist (for example, Bitcoin's cap of just under 21 million coins). Scarcity limits supply only — it does not by itself create demand or value.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Block
+- **EN:** A batch of transactions bundled together and added to a cryptocurrency's ledger as one unit (roughly every ten minutes in Bitcoin). Besides its transactions, each block records a hash of the previous block, a timestamp, and a nonce.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Hash Function
+- **EN:** A procedure that takes any digital input and produces a short, fixed-length output called a hash — a fingerprint for data. The same input always produces the same hash; even a tiny change to the input produces a completely different one. Bitcoin uses SHA-256, a public US-standardized hash function from the SHA-2 family (first published 2001).
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Avalanche Effect
+- **EN:** The property of a good hash function that a minimal change to the input — a single character — produces a completely different output, with no resemblance to the original. This is why the smallest tampering with a block is detectable.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Nonce
+- **EN:** A number included in a block purely so it can be varied. Each new nonce value gives the block an entirely different hash; proof-of-work mining is the race through nonce values to find one that gives the block a hash below the network's target. (Introduced in Crypto Ch1 L2; mining mechanics taught in Crypto Ch1 L3.)
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Blockchain
+- **EN:** A ledger built as a sequence of blocks in which each block contains the hash of the block before it. Any change to an old block changes its hash and breaks the link stored in the next block, so tampering anywhere is detectable everywhere downstream. (Note: the word itself does not appear in Nakamoto's 2008 paper, which says "chain of blocks" — flagged in Crypto Ch1 L1.)
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Consensus
+- **EN:** The mechanism by which a decentralized network agrees on a single next block, and therefore one shared history, without a central referee.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Mining
+- **EN:** Competing to add the next block to a Proof of Work blockchain by finding a valid nonce first; the winner earns the block subsidy plus transaction fees.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Block Subsidy
+- **EN:** Newly created coins awarded to the miner of a valid block on a fixed, halving schedule (Bitcoin: 3.125 BTC per block since April 2024).
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Difficulty Adjustment
+- **EN:** Automatic recalibration of the mining puzzle's hardness to hold a target block pace as computing power joins or leaves (Bitcoin: every 2,016 blocks).
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Proof of Stake
+- **EN:** A consensus mechanism where block-proposal rights go to participants who lock the network's token as collateral, and provable cheating destroys part of that collateral.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Staking
+- **EN:** Locking tokens as collateral to participate in Proof of Stake consensus and earn rewards.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Validator
+- **EN:** A staked participant in a Proof of Stake network who proposes new blocks and attests to blocks proposed by others.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Slashing
+- **EN:** The automatic destruction of part of a misbehaving validator's stake, followed by ejection from the validator set.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### 51% Attack
+- **EN:** An attack in which one party controls a majority of a network's deciding resource (hashpower or stake) and uses it to censor, reorganize recent history, and double-spend — but not to steal from arbitrary wallets or mint extra coins.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Wallet
+- **EN:** Software or hardware that creates and stores a user's cryptographic keys and signs transactions with them. A wallet holds no coins — coins are entries on the blockchain's ledger; the wallet holds the keys that control them.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Public Key / Address
+- **EN:** The shareable half of a cryptographic key pair; an address (derived from the public key) identifies where funds can be sent. Like a mailbox slot: anyone who knows it can pay in, and no one can take money out through it.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Private Key
+- **EN:** The secret half of a cryptographic key pair — a very large number that produces the only signature the network accepts for spending from the matching address. Whoever knows the private key controls the funds; a blockchain recognizes no other form of ownership.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Seed Phrase
+- **EN:** A sequence of ordinary words (commonly 12 or 24, drawn from the BIP-39 standard's fixed 2,048-word list) that encodes the master secret from which a wallet regenerates all of its private keys. Anyone holding the phrase can rebuild the wallet on any device; if it is lost, no reset or support process can recover the keys.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Custody
+- **EN:** Who controls the keys to a crypto asset. If a company (such as an exchange) holds the keys and owes the user the balance, the asset is in the company's custody; the user's balance is a claim on that company, not coins under the user's own key.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Self-Custody
+- **EN:** Holding one's own private keys, with no custodian between the owner and the coins. Removes counterparty risk (no company can fail, freeze, or lose the funds) and transfers all operational risk — security, backups, irreversible mistakes — to the owner.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Hot Wallet
+- **EN:** A wallet whose keys are kept on an internet-connected device, such as a mobile app or browser extension. Convenient for frequent use; exposed, through that same connection, to malware and phishing.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Cold Storage
+- **EN:** Keeping private keys on a device that never connects to the internet — most commonly a hardware wallet that signs transactions internally. The strongest protection against remote theft; no protection against physically losing the device and its seed phrase backup.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Centralized Exchange (CEX)
+- **EN:** A company that holds customer crypto deposits in wallets it controls and matches buy and sell orders inside its own internal database; trades there are ledger entries at the company, not blockchain transactions.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Decentralized Exchange (DEX)
+- **EN:** A set of smart contracts on a blockchain that lets users trade tokens directly from their own wallets, with no company holding the funds; trades settle on-chain.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Order Book
+- **EN:** The live list of resting buy orders (bids) and sell orders (asks) for an asset at each price; trades happen when an incoming order matches a resting one. *(Note: the forex track teaches this machinery in Ch1 L4/L7 and Ch2 L6, but the locked forex glossary has no standalone "Order Book" entry — proposing it here since the crypto track names it explicitly. The separate `Stock_Market_Terms_Glossary.md` has a compatible definition.)*
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Automated Market Maker (AMM)
+- **EN:** A smart contract that prices trades with a formula against pooled reserves instead of matching orders in an order book; the constant-product rule x × y = k is the canonical design.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Liquidity Pool
+- **EN:** The pair of token reserves an AMM holds and trades against, supplied by users (liquidity providers) who earn a share of the pool's trading fees in return.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Impermanent Loss
+- **EN:** The loss a liquidity provider can suffer, relative to simply holding the two tokens, when their prices move apart after being deposited into a pool. Named in Ch1 L5 with a one-line gloss only; the course does not teach liquidity provision.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### KYC (Know Your Customer)
+- **EN:** Identity checks (documents, proof of address) that regulated financial firms, including centralized exchanges, must run on their customers before providing services.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Transaction
+- **EN:** A signed instruction to update a blockchain's ledger: move this amount from one address to another, authorized by the sender's private-key signature. A transaction is data recording a transfer — the ledger entries change; no coin travels.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Mempool
+- **EN:** Each node's pool of valid transactions that have been broadcast to the network but not yet included in a block — the queue outside the ledger. A transaction in the mempool has been seen but not recorded, and can still fail, be replaced, or never confirm.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Gas
+- **EN:** Ethereum's unit for measuring computational work. Every operation costs a fixed number of gas units (a simple ETH transfer costs 21,000), and the fee paid is gas used multiplied by the price per gas unit, quoted in gwei (one billionth of an ETH). Since the August 2021 EIP-1559 upgrade, that price splits into a burned base fee and a tip paid to the validator.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Confirmation
+- **EN:** One block added to the chain at or after the block containing a given transaction. Each confirmation buries the transaction deeper, making reversal more expensive. The common "6 confirmations" rule for Bitcoin is a convention derived from the 2008 paper's attacker math, not a rule in the software.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Finality
+- **EN:** The point at which a transaction can no longer be reversed. On proof-of-work chains, finality is probabilistic — reversal grows exponentially more expensive with depth but is never impossible. On proof-of-stake Ethereum, checkpoints finalized by two-thirds of staked ETH (about two epochs, roughly 13 minutes) cannot be reversed unless at least one-third of all staked ETH breaks the rules and is destroyed by slashing.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Block Explorer
+- **EN:** A public website or tool for looking up any transaction, address, or block on a public blockchain — showing status (pending, success, failed), confirmations, and fees. Every major chain has several independent explorers, and no account is needed to use them.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Stablecoin
+- **EN:** A crypto token designed to hold a fixed value, almost always one US dollar. "Stable" describes the target the design aims at, not a guarantee that it will be met — how the peg is held (real reserves, surplus crypto collateral, or an arbitrage loop) is what determines how fragile it is.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Reserve
+- **EN:** The pool of real-world assets an issuer holds to back its tokens. What the reserve actually contains matters as much as its size: cash and short-term government debt behave very differently from commercial paper or loans to affiliates when holders all redeem at once.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Attestation
+- **EN:** An accountant's confirmation that stated reserves existed at one moment — a snapshot, not a full audit. An attestation does not examine liabilities, does not test internal controls, and says nothing about the day after the snapshot was taken.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Overcollateralization
+- **EN:** Backing each token with collateral worth more than its face value, so the peg survives a fall in the collateral's price. A stablecoin backed by 150 dollars of volatile crypto per 100 dollars issued can absorb a one-third collateral drawdown before the backing is impaired; below the required ratio, positions are liquidated automatically.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Algorithmic Stablecoin
+- **EN:** A stablecoin with no reserve, whose peg depends on a swap loop with a sister token: the protocol promises to exchange one unit of the stablecoin for one dollar's worth of the sister token, and vice versa. The design is reflexive — it relies on the sister token holding value, and that value relies on confidence in the peg.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Depeg
+- **EN:** An episode in which a stablecoin trades meaningfully away from its target price. A depeg can be temporary (a liquidity or confidence shock that resolves, as with USDC in March 2023) or terminal (a reflexive collapse with no reserve to redeem against, as with UST in May 2022 — dissected in Chapter 5).
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
 
 ## Stocks / ETFs / Indexes Track Terms
 

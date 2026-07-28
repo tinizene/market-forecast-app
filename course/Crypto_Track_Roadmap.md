@@ -9,15 +9,15 @@
 ## Chapter 1: What a Blockchain Actually Is
 *The mechanics — everything you need to understand before touching a single coin. Counterpart to Forex Chapter 1.*
 
-1. What Is a Cryptocurrency? — digital scarcity, the double-spend problem, and what Bitcoin actually solved (Nakamoto 2008, read honestly)
-2. How a Blockchain Works — blocks, hashes, and why history is hard to rewrite
-3. Consensus: Proof of Work vs Proof of Stake — mining, staking, energy, and the 51% attack
-4. Wallets, Keys & Custody — public/private keys, seed phrases, hot vs cold, and "not your keys, not your coins" taught as a trade-off, not a slogan
-5. Exchanges — CEX vs DEX, order books vs AMMs, and what actually happens to your money on each
-6. Transactions, Fees & Finality — gas, confirmations, why "sent" isn't "settled," and fee spikes
-7. Stablecoins — pegs, reserves, and the difference between "backed" and "algorithmic" (the Terra teaser that Chapter 5 pays off)
+1. What Is a Cryptocurrency? — digital scarcity, the double-spend problem, and what Bitcoin actually solved (Nakamoto 2008, read honestly) — ✅ complete
+2. How a Blockchain Works — blocks, hashes, and why history is hard to rewrite — ✅ complete
+3. Consensus: Proof of Work vs Proof of Stake — mining, staking, energy, and the 51% attack — ✅ complete
+4. Wallets, Keys & Custody — public/private keys, seed phrases, hot vs cold, and "not your keys, not your coins" taught as a trade-off, not a slogan — ✅ complete
+5. Exchanges — CEX vs DEX, order books vs AMMs, and what actually happens to your money on each — ✅ complete
+6. Transactions, Fees & Finality — gas, confirmations, why "sent" isn't "settled," and fee spikes — ✅ complete
+7. Stablecoins — pegs, reserves, and the difference between "backed" and "algorithmic" (the Terra teaser that Chapter 5 pays off) — ✅ complete
 
-**Chapter 1 planned — 7 lessons. None drafted yet.**
+**Chapter 1 in progress — 7 lessons. Lesson 1 drafted (`crypto/01-1-what-is-a-cryptocurrency.en.md`, citations verified live 2026-07-28); Lessons 2–7 not started.**
 
 ## Chapter 2: Reading the Crypto Market
 *Counterpart to Forex Chapter 2, minus re-teaching chart basics (Foundations Ch3) and indicator mechanics (cross-referenced from Forex Ch2 where the student has it; re-taught standalone where they may not).*

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'scere-markets-v6';
+const CACHE_NAME = 'scere-markets-v7';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -10,8 +10,6 @@ const ASSETS_TO_CACHE = [
   './research.js',
   './fx-intelligence.html',
   './fx-intelligence.js',
-  './daily-report.html',
-  './daily-report.js',
   './learn.html',
   './lesson.html',
   './learn.js',
@@ -59,8 +57,7 @@ self.addEventListener('fetch', (event) => {
   // serve a stale cached copy, same reasoning as /api/ below.
   if (
     url.pathname.startsWith('/api/') ||
-    url.pathname.startsWith('/data/fx-reports/') ||
-    url.pathname.startsWith('/data/daily-dashboard/')
+    url.pathname.startsWith('/data/fx-reports/')
   ) {
     event.respondWith(fetch(event.request));
     return;

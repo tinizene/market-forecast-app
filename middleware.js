@@ -28,17 +28,16 @@ export const config = {
   // /data/fx-reports → hard-blocked so the raw report JSON (which contains the
   //                    paid trade theses) can only be reached through the gated
   //                    /api/research endpoint, never fetched directly.
-  matcher: ['/reports', '/reports/:path*', '/data/fx-reports/:path*', '/data/daily-dashboard/:path*'],
+  matcher: ['/reports', '/reports/:path*', '/data/fx-reports/:path*'],
 };
 
 export default function middleware(request) {
   const pathname = new URL(request.url).pathname;
 
-  // Block direct public access to the raw report data. The Research Desk, FX
-  // Intelligence Desk and Daily Dashboard read it through /api/research and
-  // /api/dashboard, which enforce the subscription paywall; the files
-  // themselves must never be publicly fetchable.
-  if (pathname.startsWith('/data/fx-reports/') || pathname.startsWith('/data/daily-dashboard/')) {
+  // Block direct public access to the raw report data. The Research Desk and FX
+  // Intelligence Desk read it through /api/research, which enforces the
+  // subscription paywall; the files themselves must never be publicly fetchable.
+  if (pathname.startsWith('/data/fx-reports/')) {
     return new Response('Not found.', {
       status: 404,
       headers: { 'content-type': 'text/plain', 'cache-control': 'no-store' },

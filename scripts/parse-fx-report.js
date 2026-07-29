@@ -229,6 +229,22 @@ function extractContrarianCheck(section) {
 
 function extractNoTradeZone(section) {
   if (!section) return null;
+
+  // Newer template states the verdict inline, e.g.
+  //   **No-Trade Zone Flag: YES — REINSTATED as of July 28, 2026.** ...
+  //   **No-Trade Zone Flag: NO — LIFTED as of July 27.** ...
+  // This must be checked FIRST: the older regex below would otherwise match the
+  // literal "No" in "No-Trade" and report the exact opposite of the truth.
+  const labelled = section.raw.match(/no-?trade\s+zone[^:\n]*:\s*\**\s*(yes|no)\b/i);
+  if (labelled) {
+    const after = section.raw.slice(labelled.index + labelled[0].length);
+    return {
+      flagged: /yes/i.test(labelled[1]),
+      text: stripMd(after.replace(/^[\s*—–-]*/, '').trim()) || stripMd(section.raw),
+    };
+  }
+
+  // Older template: the section opens with a bare **Yes** / **No** verdict.
   const flagMatch = section.raw.match(/^\*\*(Yes|No)\b[^*]*\*\*\s*([\s\S]*)/i);
   return {
     flagged: flagMatch ? /yes/i.test(flagMatch[1]) : null,
@@ -373,7 +389,11 @@ function parseFxReport(markdown, sourceFile) {
   const contrarianSection = findSection(sections, ['contrarian check']);
   const equityLeaderboardSection = findSection(sections, ['global equity leaderboard']);
   const catalystSection = findSection(sections, ['economic catalyst check']);
-  const noTradeSection = findSection(sections, ['no-trade zone flag']);
+  // Matches both report templates: the pre-20-Jul layout had a dedicated
+  // "No-Trade Zone Flag" section; later runs fold it into a combined
+  // "Risks, Contrarian Check & No-Trade Zone" section. Keyed on the shorter
+  // phrase so both resolve.
+  const noTradeSection = findSection(sections, ['no-trade zone']);
   const keyThemeSection = findSection(sections, ['key theme']);
   const decisionDashboardSection = findSection(sections, ['decision dashboard']);
   const historicalParallelSection = findSection(sections, ['historical parallel']);

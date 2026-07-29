@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institutional FX Dashboard & Intelligence Report — July 28, 2026</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #2a3f5f;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .header .disclaimer {
+            font-size: 13px;
+            color: #a0a0a0;
+            font-style: italic;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #2a3f5f;
+        }
+
+        .at-glance-box {
+            background: linear-gradient(135deg, #1a2a4a 0%, #0f1a30 100%);
+            border-left: 4px solid #ff6b6b;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        .at-glance-box h2 {
+            font-size: 18px;
+            color: #ffaa55;
+            margin-bottom: 15px;
+        }
+
+        .at-glance-box ul {
+            list-style: none;
+        }
+
+        .at-glance-box li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+            color: #d0d0d0;
+            font-size: 14px;
+        }
+
+        .at-glance-box li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        .at-glance-box strong {
+            color: #ffffff;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: rgba(42, 63, 95, 0.5);
+            border: 1px solid #3a4f6f;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat-card .value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffaa55;
+            margin-bottom: 5px;
+        }
+
+        .stat-card .label {
+            font-size: 12px;
+            color: #a0a0a0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card {
+            background: rgba(42, 63, 95, 0.4);
+            border: 1px solid #3a4f6f;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .card h3 {
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .card p {
+            color: #d0d0d0;
+            font-size: 14px;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-right: 6px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tag.bearish {
+            background: rgba(255, 107, 107, 0.2);
+            color: #ff8888;
+            border: 1px solid #ff6b6b;
+        }
+
+        .tag.bullish {
+            background: rgba(76, 175, 80, 0.2);
+            color: #90ee90;
+            border: 1px solid #4caf50;
+        }
+
+        .tag.neutral {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+            border: 1px solid #ff9800;
+        }
+
+        .tag.invalid {
+            background: rgba(244, 67, 54, 0.2);
+            color: #ff5252;
+            border: 1px solid #f44336;
+        }
+
+        .tag.pending {
+            background: rgba(156, 39, 176, 0.2);
+            color: #ce93d8;
+            border: 1px solid #9c27b0;
+        }
+
+        .confidence-bar {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .confidence-bar .bar {
+            height: 20px;
+            background: rgba(60, 80, 110, 0.5);
+            border-radius: 4px;
+            margin-right: 10px;
+            flex-grow: 1;
+            overflow: hidden;
+        }
+
+        .confidence-bar .fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50, #8bc34a);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .confidence-bar .fill.medium {
+            background: linear-gradient(90deg, #ff9800, #ffb74d);
+        }
+
+        .confidence-bar .fill.low {
+            background: linear-gradient(90deg, #f44336, #ff5252);
+        }
+
+        .confidence-bar .label {
+            font-size: 12px;
+            color: #a0a0a0;
+            min-width: 50px;
+            text-align: right;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+
+        table th {
+            background: rgba(42, 63, 95, 0.6);
+            color: #ffaa55;
+            padding: 10px;
+            text-align: left;
+            border-bottom: 2px solid #3a4f6f;
+            font-weight: 600;
+        }
+
+        table td {
+            padding: 10px;
+            border-bottom: 1px solid #2a3f5f;
+            color: #d0d0d0;
+        }
+
+        table tr:hover {
+            background: rgba(60, 80, 110, 0.3);
+        }
+
+        .strength-high {
+            color: #90ee90;
+            font-weight: 600;
+        }
+
+        .strength-low {
+            color: #ff8888;
+            font-weight: 600;
+        }
+
+        .highlight {
+            background: rgba(255, 107, 107, 0.1);
+            padding: 15px;
+            border-left: 3px solid #ff6b6b;
+            border-radius: 4px;
+            margin: 15px 0;
+            color: #ffdddd;
+        }
+
+        .subsection-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffaa55;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 2px solid #2a3f5f;
+            color: #808080;
+            font-size: 12px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Institutional FX Dashboard & Intelligence Report — July 28, 2026</h1>
+            <p class="disclaimer">Prepared as an analytical synthesis for professional monitoring purposes. Spot levels are same-day/last-close reference, not live ticks. Not personalized financial advice.</p>
+        </div>
+
+        <!-- AT A GLANCE SECTION -->
+        <div class="at-glance-box">
+            <h2>📊 At a Glance</h2>
+            <ul>
+                <li><strong>Today's trade-idea status — CRITICAL REVERSAL:</strong> The three fresh high-conviction ideas from July 27 (Long NZD/JPY, Short AUD/USD, Long EUR/GBP) are now under severe stress. <strong>Long NZD/JPY is likely INVALIDATED</strong> as the pair crashed from 95+ to 93.5-94.9 on a yen safe-haven bid, and is approaching its 93.50 stop. <strong>The No-Trade Zone has been REINSTATED as of today.</strong></li>
+                <li><strong>The mood today: RISK-OFF CAPITULATION.</strong> Semiconductor stocks have crashed globally (Samsung -10%, SK Hynix -14%, Nikkei -4%, Nasdaq -2.2%, S&P -1.5%). The AI boom narrative has collapsed on valuation concerns. Equities are cratering; yen is bid; carry trades are unwinding.</li>
+                <li><strong>The catalyst:</strong> Asian semiconductor selloff (overnight, July 27-28). SK Hynix and Samsung reported underwhelming AI infrastructure returns or raised capex concerns. This triggered a chain reaction globally. <strong>This is NOT a geopolitical shock — this is a structural repricing of AI infrastructure ROI.</strong></li>
+                <li><strong>The market carnage:</strong> S&P 500 -1.5%, Nasdaq -2.2%, KOSPI -8.2% (trading suspension), Nikkei -4%, Taiwan -4%+. Oil has slipped to ~$90 (breaking $95 support). This is a confidence collapse in the AI cycle, not a monetary policy shock.</li>
+                <li><strong>Fed decision coming tomorrow (July 29):</strong> Market is pricing a 1/3 chance of a July hike. If Powell confirms dovish hold, markets may stabilize. <strong>The Fed decision is now the ONLY circuit breaker that can arrest this selloff.</strong></li>
+                <li><strong>Bottom line:</strong> Overall market confidence <span style="color: #ff8888; font-weight: bold;">32/100</span> (down 36 points from July 27's 68). <strong>No-Trade Zone REINSTATED.</strong> The July 25-27 de-escalation recovery was masking a deteriorating AI investment thesis. Only the Fed's dovish confirmation tomorrow can prevent further selloff.</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 1 -->
+        <div class="section">
+            <h2 class="section-title">1. Market Regime & Executive Summary</h2>
+            <div class="card">
+                <h3>Regime Classification</h3>
+                <p><strong>AI Profitability Crisis and Risk-Off Capitulation</strong> — A sharp collapse in equity confidence following semiconductor earnings disappointments.</p>
+                <p>On the evening of July 27 (Asia-Pacific time), major semiconductor companies reported weaker-than-expected earnings. The KOSPI fell -8.2% (trading suspension triggered), Nikkei -4%, Taiwan -4%+, Nasdaq -2.2%, S&P 500 -1.5%. This is an <strong>earnings disappointment on the AI cycle's profitability</strong>, not a central-bank or geopolitical shock.</p>
+                <p>The market's narrative has shifted from "AI spending is unlimited" to "AI infrastructure ROI is disappointing." This has triggered carry-trade unwinding: NZD/JPY crashed from 95+ to 93.5-94.9 as the yen strengthened on safe-haven demand.</p>
+            </div>
+
+            <div class="card">
+                <h3>Executive Summary</h3>
+                <p>This report publishes a <strong>HARD REVERSAL</strong> from July 27's optimistic "risk-on recovery." In a single day:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Long NZD/JPY (78/100)</strong> is <strong style="color: #ff5252;">INVALIDATED</strong> — pair at 93.5-94.9, approaching 93.50 stop; yen stronger on safe-haven demand</li>
+                    <li><strong>Short AUD/USD (72/100)</strong> is at critical risk on risk-off AUD weakness</li>
+                    <li><strong>Long EUR/GBP (65/100)</strong> is stable but no longer highest-conviction</li>
+                    <li><strong>No-Trade Zone has been REINSTATED</strong></li>
+                </ul>
+                <div class="highlight" style="margin-top: 15px;">
+                    <strong>The Fed's July 29 decision is now the ONLY event that matters this week.</strong> If Powell signals dovish patience, confidence may recover. If Powell hints at tightening, we're heading into a deeper drawdown (confidence to 15-20).
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Three Themes Driving Everything</h3>
+                <div style="margin-top: 15px;">
+                    <p><strong>1. The AI profitability reckoning is here:</strong> Semiconductor earnings have revealed that AI capex spending is hitting returns constraints much faster than consensus believed. The "AI boom will grow forever" narrative is dead.</p>
+                    <p style="margin-top: 10px;"><strong>2. Safe-haven flows are back, carry trades are dead:</strong> The yen has strengthened from 164+ back to 163.75 on safe-haven demand. NZD, AUD, and other risk assets have crashed.</p>
+                    <p style="margin-top: 10px;"><strong>3. Central banks face a new dilemma:</strong> Do we hold or cut if equities are sliding on earnings disappointment? Fed's 1/3 hike pricing suggests market is worried Powell will tighten in response to the crash.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: CURRENCY STRENGTH -->
+        <div class="section">
+            <h2 class="section-title">4. Currency Strength Overview</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="value">72</div>
+                    <div class="label">JPY (↑+20)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">64</div>
+                    <div class="label">CHF (↑+16)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">35</div>
+                    <div class="label">NZD (↓-33)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">38</div>
+                    <div class="label">AUD (↓-28)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">42</div>
+                    <div class="label">NOK (↓-19)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">40</div>
+                    <div class="label">CAD (↓-13)</div>
+                </div>
+            </div>
+            <div class="card">
+                <p><strong>Clearest divergence:</strong> JPY and CHF (+20 and +16 respectively) are the day's huge winners on safe-haven bid. NZD and AUD (-33 and -28) are catastrophic losers as carry trades unwind. This is a pure <strong>safe-haven reversal.</strong></p>
+            </div>
+        </div>
+
+        <!-- SECTION 5: TIER 1 PAIRS -->
+        <div class="section">
+            <h2 class="section-title">5. Tier 1 Pairs — Directional Read</h2>
+
+            <div class="subsection-title">G10 vs USD</div>
+            <table>
+                <tr>
+                    <th>Pair</th>
+                    <th>Est. Level</th>
+                    <th>Bias</th>
+                    <th>Comment</th>
+                </tr>
+                <tr>
+                    <td><strong>EUR/USD</strong></td>
+                    <td>~1.1350-1.1400</td>
+                    <td><span class="tag bearish">Bearish</span></td>
+                    <td>Down from 1.1400+ on equity crash. Break below 1.1300 would invalidate ECB thesis.</td>
+                </tr>
+                <tr>
+                    <td><strong>GBP/USD</strong></td>
+                    <td>~1.3310</td>
+                    <td><span class="tag bearish">Bearish</span></td>
+                    <td>Stable but less attractive in risk-off environment.</td>
+                </tr>
+                <tr>
+                    <td><strong>USD/JPY</strong></td>
+                    <td>~163.75</td>
+                    <td><span class="tag bearish">Bearish</span></td>
+                    <td>Yen strengthening from 164+ on safe-haven demand.</td>
+                </tr>
+                <tr>
+                    <td><strong>USD/CHF</strong></td>
+                    <td>~0.8050-0.8080</td>
+                    <td><span class="tag bearish">Bearish</span></td>
+                    <td>CHF strengthening +16 points on safe-haven bid.</td>
+                </tr>
+                <tr>
+                    <td><strong>AUD/USD</strong></td>
+                    <td>~0.6970-0.6975</td>
+                    <td><span class="tag bearish">Bearish</span></td>
+                    <td>Down from 0.700 on risk-off, moving into Short AUD/USD entry zone.</td>
+                </tr>
+                <tr>
+                    <td><strong>NZD/USD</strong></td>
+                    <td>~0.577-0.580</td>
+                    <td><span class="tag bearish">Bearish</span></td>
+                    <td>Major reversal as carry unwinds. NZD in freefall.</td>
+                </tr>
+                <tr>
+                    <td><strong>USD/CAD</strong></td>
+                    <td>~1.41-1.42</td>
+                    <td><span class="tag bullish">Bullish</span></td>
+                    <td>Up as CAD crashes on oil weakness. Oil at $89-90, below pre-war levels.</td>
+                </tr>
+                <tr>
+                    <td><strong>USD/NOK</strong></td>
+                    <td>~10.80-10.90</td>
+                    <td><span class="tag bullish">Bullish</span></td>
+                    <td>Up significantly as NOK collapses on oil crash. Oil now below pre-war support.</td>
+                </tr>
+            </table>
+
+            <div class="subsection-title" style="margin-top: 25px;">Key Cross Pairs</div>
+            <table>
+                <tr>
+                    <th>Pair</th>
+                    <th>Est. Level</th>
+                    <th>Bias</th>
+                    <th>Comment</th>
+                </tr>
+                <tr>
+                    <td><strong>EUR/GBP</strong></td>
+                    <td>~0.8540-0.8560</td>
+                    <td><span class="tag neutral">Neutral</span></td>
+                    <td>Stable from July 27 but lost momentum. ECB hawkish thesis masked by crash.</td>
+                </tr>
+                <tr>
+                    <td><strong>NZD/JPY</strong></td>
+                    <td>~93.50-94.87</td>
+                    <td><span class="tag invalid">INVALID</span></td>
+                    <td><strong>INVALIDATED — stopped out at 93.50.</strong> Yen now bid, not offered.</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- SECTION 6: TRADE IDEAS -->
+        <div class="section">
+            <h2 class="section-title">6. High-Conviction Trade Ideas</h2>
+            <div class="highlight">
+                <strong>No new high-conviction trade ideas are published this run.</strong> All carried-forward ideas from July 27 are under severe stress or invalidated. The market regime is too unstable for new entries until the Fed decision on July 29 provides clarity.
+            </div>
+
+            <div class="card" style="background: rgba(244, 67, 54, 0.1); border-left-color: #f44336;">
+                <h3 style="color: #ff8888;">Long NZD/JPY (78/100) — INVALIDATED</h3>
+                <div style="margin: 10px 0;">
+                    <span class="tag invalid">INVALIDATED</span>
+                    <span class="tag bearish">Yen Bid</span>
+                </div>
+                <p><strong>Status:</strong> Pair crashed from 95+ to 93.5-94.9 in 24 hours. Stop level at 93.50 was hit. Yen strengthened on safe-haven bid as semiconductor earnings disappointed.</p>
+                <p style="margin-top: 10px;"><strong>Educational Lesson:</strong> The de-escalation thesis was sound, but an overnight semiconductor earnings surprise (faster, higher-priority catalyst) overwhelmed it. Carry-trade positioning reversed in minutes. This is a reminder that <strong>carry trades are fragile and vulnerable to sudden sentiment shifts.</strong></p>
+                <p style="margin-top: 10px;"><strong>Loss:</strong> -150 pips (~1.50% on notional); stop-loss capped the drawdown.</p>
+            </div>
+
+            <div class="card" style="background: rgba(255, 152, 0, 0.1); border-left-color: #ff9800;">
+                <h3 style="color: #ffb74d;">Short AUD/USD (72/100) — AT CRITICAL RISK</h3>
+                <div style="margin: 10px 0;">
+                    <span class="tag bearish">Bearish</span>
+                    <span class="tag pending">At Risk</span>
+                </div>
+                <p><strong>Status:</strong> Pair moving toward target (0.6850) due to AUD weakness, but driven by risk-off sentiment, not by the intended carry-compression thesis. <strong>This is a false breakout</strong> — if equities recover, AUD bounces back to 0.70+.</p>
+                <p style="margin-top: 10px;"><strong>Risk:</strong> Whipsaw if equities stabilize on dovish Fed signal. Stop at 0.7120 still intact.</p>
+            </div>
+
+            <div class="card" style="background: rgba(156, 39, 176, 0.1); border-left-color: #9c27b0;">
+                <h3 style="color: #ce93d8;">Long EUR/GBP (65/100) — STABLE BUT STALLED</h3>
+                <div style="margin: 10px 0;">
+                    <span class="tag neutral">Neutral</span>
+                    <span class="tag pending">Stalled</span>
+                </div>
+                <p><strong>Status:</strong> Trading within entry zone. Momentum is stalled as ECB hawkish thesis is masked by broad equity collapse. No stops hit yet.</p>
+            </div>
+
+            <div class="card" style="background: rgba(76, 175, 80, 0.1); border-left-color: #4caf50;">
+                <h3 style="color: #90ee90;">No-Trade Zone Status</h3>
+                <p><strong>The No-Trade Zone has been REINSTATED as of July 28, 2026.</strong></p>
+                <p style="margin-top: 10px;">Market regime is too unstable for new high-conviction entries. <strong>ONLY the Fed decision on July 29 can provide regime clarity.</strong> If Powell confirms dovish hold, confidence may recover to 40-50. If Powell hints at tightening, confidence will collapse to 15-20.</p>
+            </div>
+        </div>
+
+        <!-- SECTION 8: MARKETS BACKDROP -->
+        <div class="section">
+            <h2 class="section-title">8. Markets Backdrop — Rates, Equities & Correlation</h2>
+            <table>
+                <tr>
+                    <th>Metric</th>
+                    <th>Level</th>
+                    <th>Move</th>
+                    <th>Context</th>
+                </tr>
+                <tr>
+                    <td><strong>S&P 500</strong></td>
+                    <td>7,400</td>
+                    <td class="strength-low">-1.5%</td>
+                    <td>Below July 27 recovery high. Vulnerable to 7,300 retest if Fed surprises hawkish.</td>
+                </tr>
+                <tr>
+                    <td><strong>Nasdaq-100</strong></td>
+                    <td>—</td>
+                    <td class="strength-low">-2.2%</td>
+                    <td>Tech mega-caps hit hardest by AI/semiconductor concerns.</td>
+                </tr>
+                <tr>
+                    <td><strong>KOSPI</strong></td>
+                    <td>—</td>
+                    <td class="strength-low">-8.2%</td>
+                    <td>Bellwether for AI/semiconductor spending. Trading suspension triggered.</td>
+                </tr>
+                <tr>
+                    <td><strong>US 10Y Yield</strong></td>
+                    <td>4.70%</td>
+                    <td>Stable</td>
+                    <td><strong>CRITICAL:</strong> No spike on equity crash. Suggests market trusts central banks.</td>
+                </tr>
+                <tr>
+                    <td><strong>VIX</strong></td>
+                    <td>18-22</td>
+                    <td>↑ Elevated</td>
+                    <td>Up from July 27's 16-18 but not yet at panic levels.</td>
+                </tr>
+                <tr>
+                    <td><strong>Brent Crude</strong></td>
+                    <td>~$89-90</td>
+                    <td class="strength-low">-7 to -8%</td>
+                    <td>Broken $95 support. Below pre-war levels on demand destruction.</td>
+                </tr>
+                <tr>
+                    <td><strong>Gold</strong></td>
+                    <td>$4,050</td>
+                    <td>-0.66%</td>
+                    <td>Flat despite equity crash. Suggests uncertainty about central-bank response.</td>
+                </tr>
+            </table>
+            <div class="card" style="margin-top: 15px;">
+                <h3>Correlation Regime</h3>
+                <p>A return to <strong>negative correlation</strong> (equities down, treasuries bid, yen bid, commodities down) is now the pattern. This is devastating for carry trades, commodities, and EM currencies. Correlation will remain negative through July 29-30 unless the Fed commits to a dovish bias.</p>
+            </div>
+        </div>
+
+        <!-- SECTION 10: DECISION DASHBOARD -->
+        <div class="section">
+            <h2 class="section-title">10. Decision Dashboard Snapshot</h2>
+            <div class="card">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+                    <h3>Overall Market Confidence</h3>
+                    <div style="font-size: 36px; font-weight: bold; color: #ff5252;">32/100</div>
+                </div>
+                <div class="confidence-bar">
+                    <div class="bar">
+                        <div class="fill low" style="width: 32%;"></div>
+                    </div>
+                    <div class="label">↓ -36 from July 27</div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 15px;">
+                <h3>Portfolio Tilt</h3>
+                <p>The book is now <strong>DEFENSIVELY POSITIONED.</strong> All carry trades are at risk. The only prudent action is to:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Exit or tighten stops on all open ideas</li>
+                    <li>Await the Fed decision for regime clarity</li>
+                    <li><strong>Do NOT enter new positions until stabilization confirmed</strong></li>
+                </ul>
+                <div class="highlight" style="margin-top: 15px;">
+                    If Powell sounds <strong>dovish</strong> on July 29: Confidence may recover to 40-50 by evening. New ideas become discussable.<br><br>
+                    If Powell sounds <strong>hawkish</strong>: Confidence will fall to 15-20 and we're headed into a deeper drawdown.
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p>This report is an automated synthesis compiled for educational and analytical purposes. Past performance does not guarantee future results. Consult a licensed financial advisor for personalized guidance.</p>
+        </div>
+    </div>
+</body>
+</html>

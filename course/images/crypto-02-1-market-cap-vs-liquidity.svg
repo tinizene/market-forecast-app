@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="900" height="620" fill="#FDFCF9"/>
+
+  <text x="450" y="32" text-anchor="middle" font-size="22" font-weight="bold" fill="#1F3864">A Big Market Cap Can Sit On a Thin Order Book</text>
+  <text x="450" y="54" text-anchor="middle" font-size="13" fill="#2E5395">Same market cap. Same 100,000-token sell order. Two different books.</text>
+
+  <!-- ===== MARKET CAP BANNER ===== -->
+  <rect x="130" y="70" width="640" height="58" rx="8" fill="#1F3864"/>
+  <text x="450" y="95" text-anchor="middle" font-size="16" font-weight="bold" fill="#FFFFFF">Market cap = 20,000,000 tokens x $10.00 last trade = $200,000,000</text>
+  <text x="450" y="116" text-anchor="middle" font-size="12" fill="#FFFFFF">One trade set the $10.00. The other 19,999,900 tokens just inherited it.</text>
+
+  <line x1="450" y1="128" x2="450" y2="150" stroke="#1F3864" stroke-width="2.5"/>
+  <polygon points="450,158 443,142 457,142" fill="#1F3864"/>
+
+  <!-- ===== LEFT PANEL: DEEP BOOK ===== -->
+  <rect x="24" y="164" width="416" height="416" rx="10" fill="#FFFFFF" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="232" y="190" text-anchor="middle" font-size="17" font-weight="bold" fill="#1E7A4C">Deep book</text>
+  <text x="232" y="210" text-anchor="middle" font-size="12" fill="#1F3864">$1,596,000 of bids resting within 0.4% of price</text>
+
+  <text x="45" y="234" font-size="11" font-weight="bold" fill="#2E5395">Bid price</text>
+  <text x="130" y="234" font-size="11" font-weight="bold" fill="#2E5395">Tokens wanted at that price</text>
+
+  <rect x="126" y="243" width="137" height="18" fill="#1E7A4C"/>
+  <text x="45" y="257" font-size="12" fill="#1F3864">$9.99</text>
+  <text x="271" y="257" font-size="11" fill="#1F3864">40,000</text>
+
+  <rect x="126" y="273" width="137" height="18" fill="#1E7A4C"/>
+  <text x="45" y="287" font-size="12" fill="#1F3864">$9.98</text>
+  <text x="271" y="287" font-size="11" fill="#1F3864">40,000</text>
+
+  <rect x="126" y="303" width="137" height="18" fill="#1E7A4C"/>
+  <text x="45" y="317" font-size="12" fill="#1F3864">$9.97</text>
+  <text x="271" y="317" font-size="11" fill="#1F3864">40,000</text>
+
+  <rect x="126" y="333" width="137" height="18" fill="#1E7A4C"/>
+  <text x="45" y="347" font-size="12" fill="#1F3864">$9.96</text>
+  <text x="271" y="347" font-size="11" fill="#1F3864">40,000</text>
+
+  <line x1="45" y1="368" x2="419" y2="368" stroke="#2E5395" stroke-width="1"/>
+
+  <text x="45" y="392" font-size="13" font-weight="bold" fill="#1F3864">Sell 100,000 tokens at market -&gt;</text>
+  <text x="45" y="414" font-size="12" fill="#1F3864">Fills: 40,000 at $9.99, 40,000 at $9.98, 20,000 at $9.97</text>
+  <text x="45" y="436" font-size="12" fill="#1F3864">Average fill price: $9.9820</text>
+  <text x="45" y="458" font-size="12" fill="#1F3864">Cash you receive: $998,200</text>
+  <text x="45" y="480" font-size="12" fill="#1F3864">New last price: $9.97 (down 0.30%)</text>
+
+  <rect x="40" y="496" width="380" height="64" rx="6" fill="#FFFFFF" stroke="#1E7A4C" stroke-width="1.5"/>
+  <text x="230" y="519" text-anchor="middle" font-size="13" font-weight="bold" fill="#1E7A4C">Market cap now $199,400,000</text>
+  <text x="230" y="540" text-anchor="middle" font-size="12" fill="#1F3864">$600,000 of notional cap removed</text>
+  <text x="230" y="555" text-anchor="middle" font-size="11" fill="#2E5395">Slippage cost: $1,800 (0.18%)</text>
+
+  <!-- ===== RIGHT PANEL: THIN BOOK ===== -->
+  <rect x="460" y="164" width="416" height="416" rx="10" fill="#FFFFFF" stroke="#B23B2E" stroke-width="2"/>
+  <text x="668" y="190" text-anchor="middle" font-size="17" font-weight="bold" fill="#B23B2E">Thin book</text>
+  <text x="668" y="210" text-anchor="middle" font-size="12" fill="#1F3864">$766,600 of bids in total, all the way down to $7.00</text>
+
+  <text x="481" y="234" font-size="11" font-weight="bold" fill="#2E5395">Bid price</text>
+  <text x="566" y="234" font-size="11" font-weight="bold" fill="#2E5395">Tokens wanted at that price</text>
+
+  <rect x="562" y="243" width="14" height="18" fill="#B23B2E"/>
+  <text x="481" y="257" font-size="12" fill="#1F3864">$9.90</text>
+  <text x="584" y="257" font-size="11" fill="#1F3864">4,000</text>
+
+  <rect x="562" y="269" width="20" height="18" fill="#B23B2E"/>
+  <text x="481" y="283" font-size="12" fill="#1F3864">$9.50</text>
+  <text x="590" y="283" font-size="11" fill="#1F3864">6,000</text>
+
+  <rect x="562" y="295" width="33" height="18" fill="#B23B2E"/>
+  <text x="481" y="309" font-size="12" fill="#1F3864">$9.00</text>
+  <text x="603" y="309" font-size="11" fill="#1F3864">10,000</text>
+
+  <rect x="562" y="321" width="67" height="18" fill="#B23B2E"/>
+  <text x="481" y="335" font-size="12" fill="#1F3864">$8.00</text>
+  <text x="637" y="335" font-size="11" fill="#1F3864">20,000</text>
+
+  <rect x="562" y="347" width="200" height="18" fill="#B23B2E"/>
+  <text x="481" y="361" font-size="12" fill="#1F3864">$7.00</text>
+  <text x="770" y="361" font-size="11" fill="#1F3864">60,000</text>
+
+  <line x1="481" y1="376" x2="855" y2="376" stroke="#2E5395" stroke-width="1"/>
+
+  <text x="481" y="398" font-size="13" font-weight="bold" fill="#1F3864">Sell 100,000 tokens at market -&gt;</text>
+  <text x="481" y="418" font-size="12" fill="#1F3864">Fills: eats every level down to $7.00</text>
+  <text x="481" y="438" font-size="12" fill="#1F3864">Average fill price: $7.6660</text>
+  <text x="481" y="458" font-size="12" fill="#1F3864">Cash you receive: $766,600</text>
+  <text x="481" y="478" font-size="12" fill="#1F3864">New last price: $7.00 (down 30.00%)</text>
+
+  <rect x="476" y="496" width="380" height="64" rx="6" fill="#FFFFFF" stroke="#B23B2E" stroke-width="1.5"/>
+  <text x="666" y="519" text-anchor="middle" font-size="13" font-weight="bold" fill="#B23B2E">Market cap now $140,000,000</text>
+  <text x="666" y="540" text-anchor="middle" font-size="12" fill="#1F3864">$60,000,000 of notional cap removed</text>
+  <text x="666" y="555" text-anchor="middle" font-size="11" fill="#C99A2E">Slippage cost: $233,400 (23.34%)</text>
+
+  <!-- ===== FOOTER ===== -->
+  <text x="450" y="600" text-anchor="middle" font-size="13" font-weight="bold" fill="#1F3864">A $766,600 sale erased $60,000,000 of market cap. Cap is price times supply, not cash in the market.</text>
+</svg>

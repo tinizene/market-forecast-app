@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 640" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="980" height="640" fill="#FDFCF9"/>
+
+  <text x="490" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="#1F3864">The Reflexive Loop</text>
+  <text x="490" y="56" text-anchor="middle" font-size="13" fill="#1F3864">The same circle runs both ways. Nothing about the asset has to change.</text>
+
+  <!-- ================= LEFT PANEL: BOOM ================= -->
+  <rect x="20" y="76" width="460" height="470" rx="10" fill="#FFFFFF" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="250" y="104" text-anchor="middle" font-size="17" font-weight="bold" fill="#1E7A4C">Running forwards: the boom</text>
+
+  <!-- Node 1: story -->
+  <rect x="150" y="122" width="200" height="52" rx="8" fill="#1F3864"/>
+  <text x="250" y="145" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">1. A story spreads</text>
+  <text x="250" y="163" text-anchor="middle" font-size="11.5" fill="#FFFFFF">"this will be worth more"</text>
+
+  <!-- Node 2: buying -->
+  <rect x="300" y="222" width="168" height="52" rx="8" fill="#2E5395"/>
+  <text x="384" y="245" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">2. People buy</text>
+  <text x="384" y="263" text-anchor="middle" font-size="11.5" fill="#FFFFFF">acting on the story</text>
+
+  <!-- Node 3: price up -->
+  <rect x="300" y="342" width="168" height="52" rx="8" fill="#1E7A4C"/>
+  <text x="384" y="365" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">3. Price rises</text>
+  <text x="384" y="383" text-anchor="middle" font-size="11.5" fill="#FFFFFF">because they bought</text>
+
+  <!-- Node 4: validation -->
+  <rect x="90" y="452" width="320" height="52" rx="8" fill="#C99A2E"/>
+  <text x="250" y="475" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">4. The rise is read as proof</text>
+  <text x="250" y="493" text-anchor="middle" font-size="11.5" fill="#FFFFFF">"the chart shows the story is right"</text>
+
+  <!-- arrows: 1 -> 2 -->
+  <line x1="330" y1="176" x2="378" y2="214" stroke="#1F3864" stroke-width="2.5"/>
+  <polygon points="384,219 371,216 379,206" fill="#1F3864"/>
+
+  <!-- 2 -> 3 -->
+  <line x1="384" y1="274" x2="384" y2="334" stroke="#2E5395" stroke-width="2.5"/>
+  <polygon points="384,340 377,326 391,326" fill="#2E5395"/>
+
+  <!-- 3 -> 4 -->
+  <line x1="376" y1="394" x2="330" y2="444" stroke="#1E7A4C" stroke-width="2.5"/>
+  <polygon points="325,450 328,436 338,445" fill="#1E7A4C"/>
+
+  <!-- 4 -> 1 (return leg, up the left side) -->
+  <line x1="96" y1="452" x2="96" y2="156" stroke="#C99A2E" stroke-width="2.5"/>
+  <line x1="96" y1="156" x2="142" y2="150" stroke="#C99A2E" stroke-width="2.5"/>
+  <polygon points="148,149 135,144 137,156" fill="#C99A2E"/>
+  <text x="86" y="310" text-anchor="middle" font-size="11.5" fill="#C99A2E" transform="rotate(-90 86 310)">5. more buying -&gt;</text>
+
+  <!-- ================= RIGHT PANEL: BUST ================= -->
+  <rect x="500" y="76" width="460" height="470" rx="10" fill="#FFFFFF" stroke="#B23B2E" stroke-width="2"/>
+  <text x="730" y="104" text-anchor="middle" font-size="17" font-weight="bold" fill="#B23B2E">Running backwards: the bust</text>
+
+  <!-- Node 1: doubt -->
+  <rect x="630" y="122" width="200" height="52" rx="8" fill="#1F3864"/>
+  <text x="730" y="145" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">1. Doubt spreads</text>
+  <text x="730" y="163" text-anchor="middle" font-size="11.5" fill="#FFFFFF">"maybe the story was wrong"</text>
+
+  <!-- Node 2: selling -->
+  <rect x="780" y="222" width="168" height="52" rx="8" fill="#2E5395"/>
+  <text x="864" y="245" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">2. People sell</text>
+  <text x="864" y="263" text-anchor="middle" font-size="11.5" fill="#FFFFFF">acting on the doubt</text>
+
+  <!-- Node 3: price down -->
+  <rect x="780" y="342" width="168" height="52" rx="8" fill="#B23B2E"/>
+  <text x="864" y="365" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">3. Price falls</text>
+  <text x="864" y="383" text-anchor="middle" font-size="11.5" fill="#FFFFFF">because they sold</text>
+
+  <!-- Node 4: refutation -->
+  <rect x="570" y="452" width="320" height="52" rx="8" fill="#C99A2E"/>
+  <text x="730" y="475" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">4. The fall is read as proof</text>
+  <text x="730" y="493" text-anchor="middle" font-size="11.5" fill="#FFFFFF">"the chart shows the story failed"</text>
+
+  <!-- arrows -->
+  <line x1="810" y1="176" x2="858" y2="214" stroke="#1F3864" stroke-width="2.5"/>
+  <polygon points="864,219 851,216 859,206" fill="#1F3864"/>
+
+  <line x1="864" y1="274" x2="864" y2="334" stroke="#2E5395" stroke-width="2.5"/>
+  <polygon points="864,340 857,326 871,326" fill="#2E5395"/>
+
+  <line x1="856" y1="394" x2="810" y2="444" stroke="#B23B2E" stroke-width="2.5"/>
+  <polygon points="805,450 808,436 818,445" fill="#B23B2E"/>
+
+  <line x1="576" y1="452" x2="576" y2="156" stroke="#C99A2E" stroke-width="2.5"/>
+  <line x1="576" y1="156" x2="622" y2="150" stroke="#C99A2E" stroke-width="2.5"/>
+  <polygon points="628,149 615,144 617,156" fill="#C99A2E"/>
+  <text x="566" y="310" text-anchor="middle" font-size="11.5" fill="#C99A2E" transform="rotate(-90 566 310)">5. more selling -&gt;</text>
+
+  <!-- ================= FOOTER ================= -->
+  <rect x="20" y="562" width="940" height="60" rx="8" fill="#FFFFFF" stroke="#1F3864" stroke-width="1.5"/>
+  <text x="490" y="586" text-anchor="middle" font-size="13" font-weight="bold" fill="#1F3864">Step 3 never tested step 1. The price moved because people acted on the story.</text>
+  <text x="490" y="608" text-anchor="middle" font-size="12" fill="#1F3864">The loop says a move can run far past any sensible valuation, in either direction. It never says when it turns.</text>
+</svg>

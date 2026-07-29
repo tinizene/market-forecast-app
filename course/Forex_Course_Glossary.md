@@ -1277,6 +1277,182 @@
 - **PT:** _(pending review)_
 - **SW:** _(pending review)_ ⚠
 
+*Chapter 2 (Reading the Crypto Market) terms. Same convention as Chapter 1: English locked as written in the lesson that introduces it; FR/PT/SW pending native-speaker review rather than machine-guessed.*
+
+### Market Capitalization (Market Cap)
+- **EN:** The last traded price of an asset multiplied by the number of units in circulation. It is a single multiplication — it is not the amount of money invested in the asset, and it is not the amount that could be realised by selling it.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Circulating Supply
+- **EN:** The number of units of a token currently issued and available to trade, excluding units that are locked, vesting, reserved for the team, or otherwise held back by the project. Often called the float.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Total Supply (and Max Supply)
+- **EN:** Total supply is every unit of a token that has been created, including locked and unvested units. Max supply is the hard ceiling the software will ever permit. Many tokens have a total supply but no max supply.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Fully Diluted Valuation (FDV)
+- **EN:** The last traded price multiplied by a token's total or maximum supply rather than its circulating supply — the market cap the asset would have if every unit that will ever exist already traded at today's price. A low market-cap-to-FDV ratio means most of the supply has yet to reach the market.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Order Book Depth
+- **EN:** How many units are resting as buy and sell orders at each price level on an order book, and therefore how much can be traded before the price has to move. Depth is always stated at a distance from the current price, for example "how much can be sold within 1% of the last price."
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Price Impact
+- **EN:** How far an order moves the price by consuming the resting orders on the other side of the book, or by moving along an automated market maker's pricing formula. Price impact grows with order size relative to available depth, and is the mechanism that produces slippage on large orders.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Wash Trading
+- **EN:** Buying and selling the same asset with oneself, or between parties acting together, so that a transaction is recorded without any real change in ownership or economic risk. It manufactures reported trading volume and can be used to manufacture price. It is illegal in most regulated securities and futures markets and widespread on unregulated crypto venues.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Halving
+- **EN:** The scheduled event where Bitcoin's block subsidy is cut in half, occurring every 210,000 blocks. The full schedule has been fixed in the software rules since 2009, so every halving date is calculable years in advance. Four have occurred: November 2012, July 2016, May 2020 and April 2024, taking the subsidy from 50 BTC per block to 3.125.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Market Cycle
+- **EN:** A repeating sequence of phases a market is said to pass through — accumulation, markup, distribution and markdown — originating in Richard Wyckoff's early-1900s work on stock markets. In crypto the model is commonly tied to the halving schedule; that link rests on four events and is not established evidence.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Stock-to-Flow (S2F)
+- **EN:** A ratio comparing an asset's existing stock to the new supply produced each year; a halving doubles Bitcoin's ratio by halving the flow. A price model built on this ratio (PlanB, 2019) made specific public forecasts and missed them, and peer-reviewed tests found it explains returns in-sample but does not predict them out-of-sample (Shelton 2024; Morillon & Chacon 2022).
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Drawdown
+- **EN:** The fall from a peak price to the lowest point that follows it, expressed as a percentage of the peak. Recovering from an 80% drawdown requires a 400% gain. Bitcoin has recorded three peak-to-trough falls above 70% (2013–2015, 2017–2018, 2021–2022); published magnitudes differ by a few percentage points depending on the exchange and on whether closing or intraday prices are used.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Risk Asset
+- **EN:** An asset whose price depends heavily on investor risk appetite and on financial conditions, rather than on a contractual promise to pay. Equities, corporate credit, and cryptocurrencies are risk assets; cash and short-dated government bonds of a stable issuer are not.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Beta
+- **EN:** A measure of how much an asset moves for a given move in a reference market. A beta of 1 means the asset tends to move roughly one-for-one with that market; a beta above 1 means it tends to move more, in both directions.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### High-Beta Asset
+- **EN:** An asset with a persistently high beta, which magnifies the reference market's moves in both directions. Crypto has behaved as the high-beta end of the risk spectrum through the 2020-2022 cycle.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Rolling Correlation
+- **EN:** Correlation recalculated repeatedly over a moving window of recent data, for example the last 90 days, and then plotted through time. It shows how the relationship between two assets changes instead of collapsing it into one average number.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Crisis Correlation
+- **EN:** The tendency of correlations between assets to rise sharply, toward 1, during severe market-wide selloffs — so holdings that looked independent in calm markets fall together in the crash.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### On-Chain Data
+- **EN:** Measurements produced by reading a public blockchain's own ledger and aggregating it — nothing is surveyed, sampled, or self-reported by a company. The raw ledger is precise, but it records only addresses and amounts: it records no people, intentions, or ownership, so every claim an on-chain metric makes about users is an interpretation added afterwards by an analyst.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Active Addresses
+- **EN:** The count of unique addresses that appeared in at least one successful transaction during a period, as sender or receiver; an address active several times is counted once. It measures addresses, not users: one person's wallet software creates many addresses, one exchange address can represent millions of customers, and routine internal transfers add addresses representing nobody. The two distortions run in opposite directions and cannot be netted out.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Exchange Flows
+- **EN:** The value of coins moving into addresses an analyst has labelled as belonging to a centralized exchange (inflows) or out of them (outflows); net flow is inflows minus outflows. No exchange label exists on the ledger — it is added by the data provider — and the metric underdetermines its own interpretation: an outflow is equally consistent with a holder moving to self-custody, an exchange rotating its own hot and cold wallets, a custody migration, or the settlement leg of an off-chain deal.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Address Clustering
+- **EN:** Grouping addresses that are probably controlled by the same party, using patterns in transaction structure rather than any stated identity — most commonly the rule that addresses used together as inputs to one transaction share an owner, plus a rule for spotting one-time change addresses. The output is an estimate produced by a heuristic, not a fact recorded on the ledger; it can fail in both directions, and different providers' clusterings produce different published figures for the same metric.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Whale
+- **EN:** Informal term for an address, or a cluster of addresses, holding a large amount of a coin. There is no standard threshold, and providers draw their supply-distribution bands differently. The largest addresses on most chains belong to exchanges and custodians holding other people's coins, so a raw list of top holders is mostly a list of institutions, not large individual investors.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Realized Capitalization
+- **EN:** The total value of a coin's supply when each unit is priced at the level it last moved at on-chain, rather than at today's price — a rough estimate of what the market collectively paid for its coins. Introduced in 2018 by Nic Carter and Antoine Le Calvez and published by Coin Metrics; its original purpose was to stop long-dormant, probably-lost coins from being valued at the current price. Compare Market Capitalization (Ch2 L1).
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Narrative
+- **EN:** The shared story a market tells itself about why an asset should be worth more. In crypto a narrative is usually a claim about future adoption or usefulness rather than a measurement of anything happening now, and because most crypto assets have no cash flows, there is no earnings figure for the story to collide with.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Reflexivity
+- **EN:** A feedback loop in which participants' beliefs change prices, and the changed prices are then treated as evidence for those beliefs. The term was popularised for financial markets by George Soros, most fully in his 2013 paper in the Journal of Economic Methodology. The loop is symmetric: it produces booms running one way and collapses running the other, and it never indicates when the direction turns.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Market Sentiment
+- **EN:** The overall mood of participants toward an asset, ranging from fear to greed. Sentiment is an aggregate of how people currently feel, not a fact about the asset, which is why it can shift quickly with nothing else changing. It cannot be measured directly, so all sentiment tools are proxies.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Fear & Greed Index
+- **EN:** A composite sentiment score published daily on a 0 to 100 scale (0 = extreme fear, 100 = extreme greed). The crypto version, published by alternative.me since 2018, weights volatility 25%, market momentum and volume 25%, social media 15%, surveys 15% (currently paused by the publisher), Bitcoin dominance 10%, and Google Trends 10%. It aggregates existing market and attention data; it measures no fundamental property of the assets. Evidence that it predicts returns is contested and unstable across studies.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Perpetual Swap (Perp)
+- **EN:** A derivative contract that tracks an asset's price and never expires. Ordinary futures expire on a set date, which forces their price back toward spot; a perpetual has no expiry, so it uses the funding rate instead to stay tethered to the spot price. Mechanics and liquidation risk are taught in Crypto Chapter 3, Lesson 3.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Funding Rate
+- **EN:** The periodic payment that flows directly between holders of long and short perpetual-swap positions to keep the perpetual price close to spot. Positive funding means longs pay shorts (the perpetual is trading above spot); negative funding means shorts pay longs. On major venues it settles every 8 hours, though some venues settle hourly, and the payment is a transfer between traders rather than an exchange fee.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Positioning
+- **EN:** How market participants are currently arranged between long and short exposure, and how one-sided that arrangement is. Positioning describes the present, not the future: crowded positioning indicates what could unwind violently, never when it will.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
 ## Stocks / ETFs / Indexes Track Terms
 
 *(Not yet started. Expect terms like: share, dividend, index fund, ETF, P/E ratio, diversification, expense ratio.)*

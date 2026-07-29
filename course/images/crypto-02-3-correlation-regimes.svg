@@ -1,0 +1,102 @@
+<svg viewBox="0 0 900 620" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="900" height="620" fill="#FDFCF9"/>
+  <text x="450" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#1F3864">Crypto as a Risk Asset: Where It Sits, and When Correlation Turns</text>
+  <text x="450" y="55" text-anchor="middle" font-size="12" font-style="italic" fill="#6B6B6B">Schematic illustration only -- shapes are drawn to explain the idea, not plotted from data.</text>
+
+  <!-- PANEL A: transmission chain -->
+  <text x="40" y="92" font-size="14" font-weight="bold" fill="#1F3864">Panel A. The transmission chain (Forex Ch6 L3): crypto is the last and highest-beta link</text>
+
+  <rect x="40" y="104" width="146" height="62" rx="8" fill="#EAF0FB" stroke="#2E5395" stroke-width="2"/>
+  <text x="113" y="128" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#2E5395">Interest rates</text>
+  <text x="113" y="146" text-anchor="middle" font-size="10" fill="#333333">the shock starts here</text>
+  <text x="113" y="159" text-anchor="middle" font-size="10" fill="#333333">beta reference: low</text>
+  <text x="193" y="140" font-size="16" fill="#888888">-&gt;</text>
+
+  <rect x="211" y="104" width="146" height="62" rx="8" fill="#EFFAF3" stroke="#1E7A4C" stroke-width="2"/>
+  <text x="284" y="128" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1E7A4C">FX and bonds</text>
+  <text x="284" y="146" text-anchor="middle" font-size="10" fill="#333333">closest to rates</text>
+  <text x="364" y="140" font-size="16" fill="#888888">-&gt;</text>
+
+  <rect x="382" y="104" width="146" height="62" rx="8" fill="#FFF7E6" stroke="#C99A2E" stroke-width="2"/>
+  <text x="455" y="128" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#8A6D1F">Credit, equities</text>
+  <text x="455" y="146" text-anchor="middle" font-size="10" fill="#333333">Nasdaq 2022: about -33%</text>
+  <text x="535" y="140" font-size="16" fill="#888888">-&gt;</text>
+
+  <rect x="553" y="104" width="128" height="62" rx="8" fill="#FFF7E6" stroke="#C99A2E" stroke-width="2"/>
+  <text x="617" y="128" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#8A6D1F">Commodities</text>
+  <text x="617" y="146" text-anchor="middle" font-size="10" fill="#333333">growth-sensitive</text>
+  <text x="688" y="140" font-size="16" fill="#888888">-&gt;</text>
+
+  <rect x="706" y="100" width="154" height="70" rx="8" fill="#FFF3EF" stroke="#B23B2E" stroke-width="3"/>
+  <text x="783" y="124" text-anchor="middle" font-size="13" font-weight="bold" fill="#B23B2E">Crypto</text>
+  <text x="783" y="142" text-anchor="middle" font-size="10" fill="#333333">highest beta in the chain</text>
+  <text x="783" y="156" text-anchor="middle" font-size="10" fill="#333333">BTC 2022: about -64%</text>
+
+  <text x="40" y="192" font-size="11" font-style="italic" fill="#6B6B6B">Same direction as equities, larger amplitude. IMF WP/23/163: a tightening shock moved the crypto factor about -0.15 SD versus about -0.10 SD for equities.</text>
+
+  <!-- PANEL B: correlation schematic -->
+  <text x="40" y="230" font-size="14" font-weight="bold" fill="#1F3864">Panel B. Correlation is a moving number -- and it rises toward 1 in the stress window</text>
+
+  <rect x="40" y="242" width="820" height="250" rx="10" fill="#FFFFFF" stroke="#D8D3C6" stroke-width="1.5"/>
+
+  <!-- stress band -->
+  <rect x="560" y="256" width="180" height="206" fill="#FBEDEA"/>
+  <text x="650" y="274" text-anchor="middle" font-size="11" font-weight="bold" fill="#B23B2E">stress window</text>
+
+  <!-- axes -->
+  <line x1="110" y1="462" x2="840" y2="462" stroke="#1F3864" stroke-width="2"/>
+  <line x1="110" y1="256" x2="110" y2="462" stroke="#1F3864" stroke-width="2"/>
+
+  <!-- y labels -->
+  <text x="102" y="262" text-anchor="end" font-size="11" fill="#1F3864">1.0</text>
+  <text x="102" y="313" text-anchor="end" font-size="11" fill="#1F3864">0.75</text>
+  <text x="102" y="364" text-anchor="end" font-size="11" fill="#1F3864">0.5</text>
+  <text x="102" y="415" text-anchor="end" font-size="11" fill="#1F3864">0.25</text>
+  <text x="102" y="466" text-anchor="end" font-size="11" fill="#1F3864">0.0</text>
+  <text x="58" y="360" text-anchor="middle" font-size="11" font-weight="bold" fill="#1F3864" transform="rotate(-90 58 360)">rolling correlation</text>
+
+  <!-- gridlines -->
+  <line x1="110" y1="256" x2="840" y2="256" stroke="#E3DED2" stroke-width="1"/>
+  <line x1="110" y1="313" x2="840" y2="313" stroke="#E3DED2" stroke-width="1"/>
+  <line x1="110" y1="364" x2="840" y2="364" stroke="#E3DED2" stroke-width="1"/>
+  <line x1="110" y1="415" x2="840" y2="415" stroke="#E3DED2" stroke-width="1"/>
+
+  <!-- schematic correlation path: low and choppy, then rising sharply in stress, then easing -->
+  <polyline points="120,432 155,420 190,438 225,425 260,410 295,428 330,404 365,418 400,396 435,408 470,384 505,395 540,372 560,340 585,300 610,276 640,266 670,262 700,268 730,284 760,300 790,318 820,330"
+            fill="none" stroke="#B23B2E" stroke-width="3"/>
+
+  <!-- calm-period average marker -->
+  <line x1="120" y1="418" x2="545" y2="418" stroke="#2E5395" stroke-width="2" stroke-dasharray="7,5"/>
+  <text x="130" y="410" font-size="10.5" font-weight="bold" fill="#2E5395">calm-period average -- the number the marketing quotes</text>
+
+  <!-- annotations -->
+  <text x="130" y="290" font-size="11.5" font-weight="bold" fill="#1E7A4C">Calm regime</text>
+  <text x="130" y="306" font-size="10.5" fill="#333333">Correlation drifts low and choppy.</text>
+  <text x="130" y="320" font-size="10.5" fill="#333333">This is the window "uncorrelated"</text>
+  <text x="130" y="334" font-size="10.5" fill="#333333">claims are usually measured over.</text>
+
+  <text x="612" y="376" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#B23B2E">Crisis correlation</text>
+  <text x="612" y="392" text-anchor="middle" font-size="10.5" fill="#333333">Correlation runs toward 1</text>
+  <text x="612" y="406" text-anchor="middle" font-size="10.5" fill="#333333">exactly when diversification</text>
+  <text x="612" y="420" text-anchor="middle" font-size="10.5" fill="#333333">was supposed to help.</text>
+
+  <text x="770" y="404" text-anchor="middle" font-size="10.5" font-style="italic" fill="#6B6B6B">eases, but not</text>
+  <text x="770" y="418" text-anchor="middle" font-size="10.5" font-style="italic" fill="#6B6B6B">back to the old level</text>
+
+  <text x="475" y="482" text-anchor="middle" font-size="11" font-weight="bold" fill="#1F3864">time</text>
+
+  <!-- footer facts -->
+  <rect x="40" y="504" width="400" height="78" rx="10" fill="#EAF0FB" stroke="#2E5395" stroke-width="2"/>
+  <text x="60" y="526" font-size="12" font-weight="bold" fill="#2E5395">Same pair, different windows (IMF, Jan 2022)</text>
+  <text x="60" y="546" font-size="11" fill="#333333">BTC vs S&amp;P 500, 2017-2019: correlation 0.01</text>
+  <text x="60" y="562" font-size="11" fill="#333333">BTC vs S&amp;P 500, 2020-2021: correlation 0.36</text>
+  <text x="60" y="576" font-size="10" font-style="italic" fill="#6B6B6B">A correlation with no window attached is not a measurement.</text>
+
+  <rect x="460" y="504" width="400" height="78" rx="10" fill="#FFF3EF" stroke="#B23B2E" stroke-width="2"/>
+  <text x="480" y="526" font-size="12" font-weight="bold" fill="#B23B2E">The asymmetry (Longin and Solnik 2001)</text>
+  <text x="480" y="546" font-size="11" fill="#333333">Linkage is stronger in extreme falls than in</text>
+  <text x="480" y="562" font-size="11" fill="#333333">extreme rises. Diversification is measured in</text>
+  <text x="480" y="576" font-size="11" fill="#333333">calm markets and tested in crashes.</text>
+
+  <text x="450" y="606" text-anchor="middle" font-size="11.5" font-style="italic" fill="#1F3864">Size crypto as the high-beta tail of a risk portfolio, not as protection against one.</text>
+</svg>

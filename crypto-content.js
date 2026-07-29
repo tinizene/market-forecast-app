@@ -1327,6 +1327,1226 @@ window.SCERE_CRYPTO_CONTENT = [
         "def": "An episode in which a stablecoin trades meaningfully away from its target price."
       }
     ]
+  },
+  {
+    "id": "crypto-market-cap-liquidity-and-volume",
+    "lessonNumber": 1,
+    "chapterNumber": 2,
+    "chapterTitle": "Chapter 2: Reading the Crypto Market",
+    "title": "Market Cap, Liquidity & Volume",
+    "keyIdea": "Market cap is one multiplication — the last traded price times circulating supply. It is not money invested, and it is not what you could sell for. What decides that is depth: how many orders are actually resting near the price. Volume, meanwhile, is the number crypto fakes most.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Open any crypto price site. The first column is price. The second is almost always market capitalization, and coins are ranked by it. It is the number that decides whether something is called a large cap or a small cap, and the number most people use to decide whether an asset is still early. Almost nobody who quotes it can say what it actually measures."
+      },
+      {
+        "type": "definition",
+        "term": "Market Capitalization (Market Cap)",
+        "text": "The last traded price multiplied by the number of units in circulation. It is one multiplication, nothing more. It measures what every unit would be worth if every unit could be sold at the most recent price."
+      },
+      {
+        "type": "paragraph",
+        "text": "That last sentence contains the entire problem. Market cap takes the price of the most recent trade, which might have been for 10 tokens, and applies it to every token in existence."
+      },
+      {
+        "type": "example",
+        "text": "A token trades at 0.40 dollars. There are 500,000,000 tokens in circulation. Market cap = 0.40 x 500,000,000 = 200,000,000 dollars. Now look at what actually happened that day. Only 2,000,000 tokens changed hands, which is 0.4% of the supply. At 0.40 dollars each, that is 800,000 dollars of real buying and selling. So 800,000 dollars of trading is being used to price a 200,000,000 dollar valuation. The other 99.6% of the supply never moved. It simply inherited the price set by the last trade."
+      },
+      {
+        "type": "paragraph",
+        "text": "This is not a crypto quirk. Stock market caps work the same way. But two things make the effect far larger in crypto: many tokens have a very small share of supply actually available to trade, and many trade on venues with very little depth. Both are covered below."
+      },
+      {
+        "type": "warning",
+        "text": "Market cap is not money that went in. A 200,000,000 dollar market cap does not mean investors put 200,000,000 dollars into the asset. It does not mean 200,000,000 dollars could come out. It means one recent trade happened at a price, and that price was multiplied by the supply. When a news article says 1 billion dollars was wiped off the crypto market today, it is describing a multiplication changing, not a billion dollars leaving anyone's pocket."
+      },
+      {
+        "type": "paragraph",
+        "text": "The relationship between money going in and market cap moving has been studied directly. Rodney Garratt and Maarten van Oordt developed what they call the crypto multiplier, a measure of how much a cryptocurrency's market capitalization moves in response to money flowing in or out. Their central result is that the multiplier is generally greater than 1: one dollar of net inflow moves market capitalization by more than one dollar. The multiplier is largest when most coins are held as an investment rather than spent, and they find the share of coins actually used for payments is small for the major cryptocurrencies. Their paper appeared as Bank for International Settlements Working Paper No. 1104 in June 2023 and was later published in the Journal of Corporate Finance."
+      },
+      {
+        "type": "paragraph",
+        "text": "Read that finding carefully, because it cuts both ways. It explains why modest inflows can produce large market cap gains. It equally explains why modest outflows can produce large market cap losses. A number that can be levered up by small flows can be levered down by them too."
+      },
+      {
+        "type": "paragraph",
+        "text": "Price times supply hides a second question: which supply?"
+      },
+      {
+        "type": "definition",
+        "term": "Circulating Supply",
+        "text": "The number of units currently issued and available to trade. This excludes tokens that are locked, vesting, reserved for the team, or held back by the project. The circulating share of a token is often called its float."
+      },
+      {
+        "type": "definition",
+        "term": "Total Supply (and Max Supply)",
+        "text": "Total supply is every unit that has been created, including locked and unvested units. Max supply is the hard ceiling the software will ever allow. For Bitcoin, Chapter 1 Lesson 1 showed that ceiling is just under 21 million. Many tokens have no max supply at all."
+      },
+      {
+        "type": "definition",
+        "term": "Fully Diluted Valuation (FDV)",
+        "text": "The last traded price multiplied by the total or maximum supply, rather than the circulating supply. It answers a hypothetical question: what would the market cap be if every token that will ever exist were already trading at today's price?"
+      },
+      {
+        "type": "example",
+        "text": "A token trades at 2.00 dollars. 100,000,000 tokens circulate. Total supply is 1,000,000,000. Market cap = 2.00 x 100,000,000 = 200,000,000 dollars. FDV = 2.00 x 1,000,000,000 = 2,000,000,000 dollars. Market cap divided by FDV = 10%. So 90% of the supply has not reached the market yet, which is 900,000,000 tokens still to come. For the price to stay at 2.00 dollars once they all unlock, buyers must absorb 900,000,000 x 2.00 = 1,800,000,000 dollars of new supply. If instead the total money in the asset stays at 200,000,000 dollars while supply grows to 1,000,000,000 tokens, the price becomes 200,000,000 / 1,000,000,000 = 0.20 dollars. That is a 90% fall, with no change in the story, the technology, or the team."
+      },
+      {
+        "type": "paragraph",
+        "text": "That pattern is common enough to have a name in the industry: low float, high FDV. Binance Research published a study in May 2024 finding that tokens launched in 2024 had an average market cap to FDV ratio of 12.3%, very close to the example above. The same report estimated roughly 155 billion dollars of tokens scheduled to unlock between 2024 and 2030. Treat the numbers as an industry estimate rather than peer-reviewed evidence: Binance is an exchange, and the report is written by an exchange's research arm. The measurement is still specific, dated and checkable, which is why it is worth quoting rather than a vague claim that float is low these days."
+      },
+      {
+        "type": "warning",
+        "text": "A low market cap next to a huge FDV is not a bargain. It is a schedule. It tells you that a large quantity of supply is contracted to arrive later, usually at a cost basis far below yours. Before you use either number, check three things: what the circulating supply is, what the total supply is, and when the difference unlocks."
+      },
+      {
+        "type": "paragraph",
+        "text": "Chapter 1 Lesson 5 taught you the order book: the live list of resting bids and asks at each price, with the spread as the gap between the best bid and the best ask. That lesson ended with a promise, that how deep those books really are and why reported volume can mislead would be covered here. This is that lesson."
+      },
+      {
+        "type": "paragraph",
+        "text": "Liquidity, as the course defines it, is how easily an asset can be bought or sold without significantly moving its price. Notice what that definition does not mention: volume. Volume tells you how much traded. Liquidity tells you what it would cost you to trade now. Those are different questions, and only one of them affects your fill."
+      },
+      {
+        "type": "definition",
+        "term": "Order Book Depth",
+        "text": "How many units are resting as buy and sell orders at each price level, and therefore how much can be traded before the price has to move. A book can be deep close to the current price and vanish a few percent away from it, so depth is always described at a distance: how much can I sell within 1% of the current price?"
+      },
+      {
+        "type": "definition",
+        "term": "Price Impact",
+        "text": "How far your own order moves the price, because it consumes the resting orders on the other side. Price impact grows with the size of your order relative to the depth available. It is the reason large orders receive a worse average price than small ones."
+      },
+      {
+        "type": "paragraph",
+        "text": "Chapter 1 Lesson 5 already showed you this on the other kind of venue. On a decentralized exchange using an automated market maker, your own trade moves the price along a formula, and it moves it more the larger your trade is relative to the pool. On a centralized exchange with an order book, the same thing happens for a different mechanical reason: you eat through resting bids one price level at a time. Both produce slippage, which the Forex track defines in Chapter 1 Lesson 7 as the gap between the price you expected and the price you got."
+      },
+      {
+        "type": "paragraph",
+        "text": "Academics measure crypto liquidity the same way they measure it in other markets, and they do not use volume to do it. Brauneis, Mestel, Riordan and Theissen tested how well low-frequency, easily computed liquidity measures track actual high-frequency liquidity in cryptocurrency markets, in a paper published in the Journal of Banking and Finance, Volume 124, in 2021. Their measures are built from spreads and price impact, not from reported trade counts. When researchers want to know how liquid a crypto market is, they look at what it costs to trade, not at how much volume an exchange claims."
+      },
+      {
+        "type": "image",
+        "svg": "crypto-02-1-market-cap-vs-liquidity",
+        "alt": "Diagram comparing a deep order book and a thin order book supporting the same 200,000,000 dollar market cap, showing that an identical 100,000-token market sell order moves price 0.30 percent in the deep book and 30 percent in the thin book",
+        "caption": "The same market cap on two different books. Depth, not market cap, decides what your order actually gets filled at."
+      },
+      {
+        "type": "paragraph",
+        "text": "Time to compute it. Take one token, one market cap, and two different books. The token last traded at 10.00 dollars. Circulating supply is 20,000,000 tokens, so market cap is 200,000,000 dollars. That figure is identical in both cases below. You want to sell 100,000 tokens with a market order, which is 0.5% of the circulating supply."
+      },
+      {
+        "type": "example",
+        "text": "The deep book. Bids are resting in size close to the price: 40,000 tokens wanted at 9.99, another 40,000 at 9.98, another 40,000 at 9.97, another 40,000 at 9.96. That is 1,596,000 dollars of buying interest within 0.4% of the last price. Your sell order fills 40,000 at 9.99 for 399,600 dollars, 40,000 at 9.98 for 399,200 dollars, and 20,000 at 9.97 for 199,400 dollars. You receive 998,200 dollars and your average fill price is 9.9820. At 10.00 dollars you would have received 1,000,000 dollars, so the trade cost you 1,800 dollars, or 0.18%. The new last price is 9.97, down 0.30%. Market cap is now 199,400,000 dollars."
+      },
+      {
+        "type": "example",
+        "text": "The thin book. Same token, same market cap, same order. But the bids look like this: 4,000 tokens at 9.90, then 6,000 at 9.50, then 10,000 at 9.00, then 20,000 at 8.00, then 60,000 at 7.00. The entire bid side, all the way down to 7.00 dollars, is worth 766,600 dollars. Your sell order eats every level: 4,000 at 9.90 for 39,600 dollars, 6,000 at 9.50 for 57,000 dollars, 10,000 at 9.00 for 90,000 dollars, 20,000 at 8.00 for 160,000 dollars, and 60,000 at 7.00 for 420,000 dollars. You receive 766,600 dollars and your average fill price is 7.6660. Against the 1,000,000 dollars the screen implied, the trade cost you 233,400 dollars, or 23.34%. The new last price is 7.00, down 30.00%. Market cap is now 140,000,000 dollars."
+      },
+      {
+        "type": "paragraph",
+        "text": "Compare the two results, because the contrast is the lesson. The same 200,000,000 dollar market cap, and the same routine-looking 0.5% sale, produced a 1,800 dollar cost in one book and a 233,400 dollar cost in the other. And in the thin book, a sale that moved 766,600 dollars of real cash removed 60,000,000 dollars of market cap. That is the crypto multiplier, visible in a single trade. Nothing on the price page would have warned you. Price was 10.00 in both cases. Market cap was 200,000,000 in both cases. The only number that distinguished them was depth, and depth is not on the price page."
+      },
+      {
+        "type": "practice",
+        "text": "Pick any token outside the ten largest by market cap. Open its order book on a large exchange. Add up the size of the bids sitting within 2% of the current price, and convert that to dollars. Now compare that figure to the token's stated market cap. Write the ratio down. For most small tokens it is a fraction of 1%. That ratio, not the market cap, is what tells you whether you could exit a position."
+      },
+      {
+        "type": "paragraph",
+        "text": "Volume looks like the honest number. It is a count of what traded, and a high figure looks like proof that a market is real and active. That is exactly why it is worth faking."
+      },
+      {
+        "type": "definition",
+        "term": "Wash Trading",
+        "text": "Trading with yourself. The same party, or parties acting together, buys and sells the same asset so that a transaction is recorded without any real change in ownership or economic risk. It manufactures volume, and it can manufacture price. In US futures markets it is explicitly unlawful: Section 4c(a) of the Commodity Exchange Act bans entering into any transaction that is commonly known to the trade as a wash sale or fictitious sale, and the CFTC brings enforcement actions over it. On unregulated crypto venues, nobody is stopping it."
+      },
+      {
+        "type": "paragraph",
+        "text": "Why do it? An exchange with high reported volume ranks higher on data sites, attracts listings, and can charge projects for them. A token project with high reported volume looks like it has demand. And a wash trader can push a price up on a thin book, precisely because the price-impact arithmetic above works in both directions."
+      },
+      {
+        "type": "paragraph",
+        "text": "The measured scale is large, and different studies disagree about how large. That disagreement is worth showing you rather than smoothing over. In March 2019, the asset manager Bitwise presented research to United States Securities and Exchange Commission staff as part of the review of a proposed bitcoin exchange-traded fund. The presentation, filed publicly on the SEC website under File No. SR-NYSEArca-2019-01, argued that roughly 95% of reported bitcoin spot volume was fake or non-economic. Bitwise analysed 81 exchanges reporting more than 1 million dollars of daily volume and concluded that the data from 71 of them was fake or wash traded. Against roughly 6 billion dollars of reported daily volume, they estimated the real figure at roughly 273 million dollars, concentrated on 10 exchanges."
+      },
+      {
+        "type": "warning",
+        "text": "Two honest caveats belong with that famous 95% figure. First, Bitwise had a direct commercial interest in the conclusion: its argument was that the real bitcoin market is small, orderly and therefore suitable for an ETF. Second, the SEC did not accept the overall case. On 9 October 2019 it issued an order disapproving the proposed rule change, finding the applicant had not met its burden to show the market was resistant to fraud and manipulation. The wash-trading research was serious work. The conclusion drawn from it was contested by the regulator it was presented to."
+      },
+      {
+        "type": "paragraph",
+        "text": "Peer-reviewed research has since produced its own estimates using a different method. Lin William Cong, Xi Li, Ke Tang and Yang Yang published Crypto Wash Trading in Management Science, Volume 69, Issue 11, in 2023, pages 6427 to 6454. It circulated earlier as National Bureau of Economic Research Working Paper 30783. Rather than auditing exchanges, they detected fake trades statistically: real trading obeys certain regularities, including a characteristic distribution of leading digits and a characteristic pattern of round-number trade sizes, and manipulated volume does not. Across 29 centralized exchanges, they found regulated exchanges behaved normally while unregulated ones did not. Their estimate for wash trading on unregulated exchanges averaged 77.5% of reported volume, with a median of 79.1%. Scaled against reported volumes, that implied over 4.5 trillion dollars of wash trading in spot markets in the first quarter of 2020 alone."
+      },
+      {
+        "type": "paragraph",
+        "text": "A third estimate, from practitioners rather than academics, is lower. In August 2022, Forbes analysed 157 crypto exchanges and concluded that about 51% of reported daily bitcoin trading volume was likely fake or non-economic, putting real volume near 128 billion dollars against 262 billion dollars reported."
+      },
+      {
+        "type": "paragraph",
+        "text": "Three studies, three numbers: roughly 95%, roughly 77.5%, roughly 51%. They used different methods, different years and different sets of exchanges, so they are not directly comparable and should not be averaged into a single tidy figure. What they agree on is the direction and the order of magnitude: on unregulated venues, a large fraction of reported volume is not real, and the honest range is most of it rather than a bit of it."
+      },
+      {
+        "type": "warning",
+        "text": "Reported volume on an unregulated venue is not evidence of anything. Do not use it to judge whether a token is liquid, whether an exchange is safe, or whether interest is rising. Volume is self-reported by the venue that profits from it looking high. Depth, by contrast, is much harder to fake convincingly, because faked depth has to be real orders that you can actually hit, and if you can hit them, someone can take your money by leaving them there."
+      },
+      {
+        "type": "paragraph",
+        "text": "One argument you will meet constantly deserves taking apart. It runs: this token's market cap is 20 million dollars and that other token's is 20 billion, so this one has 1,000 times the room to grow. Every part of that is a supply-side statement. Market cap is price times circulating supply, so saying the cap is small says only that price times float is small. It says nothing about whether anyone wants the token."
+      },
+      {
+        "type": "warning",
+        "text": "Small cap so it can 10x is a claim about liquidity and float, not a valuation. It is also symmetrical, and people only ever state one half of it. A thin book that lets 766,600 dollars lift a price 30% is the identical thin book that lets 766,600 dollars drop it 30%. A small cap does mean a small amount of money can move the price a long way. That is a description of fragility, not of opportunity."
+      },
+      {
+        "type": "paragraph",
+        "text": "There is a further trap in the comparison itself. Comparing a low-float token's market cap to an established asset's market cap compares two different things, because one of them has 90% of its supply still to arrive. If you want the comparison to mean anything, compare FDV to FDV, and then check the unlock schedule that FDV is quietly assuming. None of this means small assets cannot rise. It means the sentence the cap is small is not a reason. The reason, if one exists, has to be an argument about demand, and Chapter 1 Lesson 1 already set that rule down: scarcity limits supply, value requires demand."
+      },
+      {
+        "type": "paragraph",
+        "text": "What to look for. When someone quotes a market cap, ask what the circulating supply is and what the total supply is; if market cap divided by FDV is well under 50%, most of the supply has not arrived yet. When someone says a number was wiped off a market, remember that a market cap change is a multiplication changing, not that quantity of cash leaving. Before entering a position, add up the resting bids within 1% and 2% of price and compare that to the size you intend to sell; if your intended exit is larger than the depth, you do not have an exit at that price. Treat reported volume on an unregulated venue as a marketing figure. When a token's volume is high but its book is thin, treat the mismatch as a warning rather than as excitement, because that combination is exactly what wash trading produces. And when someone argues from small cap, ask what the demand argument is."
+      }
+    ],
+    "quiz": [
+      {
+        "question": "A token trades at 2.00 dollars with 100,000,000 tokens circulating and 1,000,000,000 total supply. What is its market cap and its FDV?",
+        "options": [
+          "Market cap 2,000,000,000 dollars; FDV 200,000,000 dollars",
+          "Market cap 200,000,000 dollars; FDV 2,000,000,000 dollars",
+          "Market cap 200,000,000 dollars; FDV 200,000,000 dollars",
+          "Market cap 1,000,000,000 dollars; FDV 2,000,000,000 dollars"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — market cap uses circulating supply, so 2.00 x 100,000,000 = 200,000,000 dollars, while FDV uses total supply, so 2.00 x 1,000,000,000 = 2,000,000,000 dollars. Market cap divided by FDV is 10%, meaning 90% of the supply is still to arrive. Absorbing it at 2.00 dollars would take 1,800,000,000 dollars of new buying.",
+        "feedbackWrong": "Not quite — market cap always uses circulating supply and FDV always uses total or maximum supply. Here that is 2.00 x 100,000,000 = 200,000,000 dollars of market cap, and 2.00 x 1,000,000,000 = 2,000,000,000 dollars of FDV. The 10% ratio between them is the warning sign: 90% of the supply has not reached the market yet."
+      },
+      {
+        "question": "Two tokens each have a 200,000,000 dollar market cap and a 10.00 dollar price. In the first, 40,000 tokens are bid at each of 9.99, 9.98, 9.97 and 9.96. In the second, the whole bid side down to 7.00 dollars holds 100,000 tokens worth 766,600 dollars. You sell 100,000 tokens at market in each. What happens?",
+        "options": [
+          "Both fill near 10.00 dollars, because both have the same market cap",
+          "The first fills at an average of 9.9820; the second fills at an average of 7.6660 and drops the price 30%",
+          "The second fills better, because there are more price levels available",
+          "Neither order fills, because 100,000 tokens is too large"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — in the deep book you take 40,000 at 9.99, 40,000 at 9.98 and 20,000 at 9.97, receiving 998,200 dollars, a cost of 1,800 dollars or 0.18%. In the thin book you eat every level down to 7.00 and receive 766,600 dollars, a cost of 233,400 dollars or 23.34%. Market cap was identical. Depth was not, and depth set your fill.",
+        "feedbackWrong": "Not quite — market cap tells you nothing about your fill. The deep book absorbs the order within three levels for 998,200 dollars, an average of 9.9820. The thin book has only 766,600 dollars of bids in total, so the same order eats every level down to 7.00 for an average of 7.6660, a 23.34% cost and a 30% price drop."
+      },
+      {
+        "question": "An exchange reports very high daily volume for a token, but its order book has only a few thousand dollars of bids within 2% of price. What is the most reasonable conclusion?",
+        "options": [
+          "The token is highly liquid, because volume is high",
+          "The high volume proves strong genuine demand",
+          "The reported volume may be wash trading, and the depth is the number to trust",
+          "The exchange is understating its true depth"
+        ],
+        "correctIndex": 2,
+        "feedbackCorrect": "Correct — volume is self-reported by a venue that benefits from it looking high, and wash trading manufactures it with no real change in ownership. Cong, Li, Tang and Yang estimated wash trading averaged 77.5% of reported volume on unregulated exchanges; Bitwise put fake bitcoin spot volume near 95% in 2019; Forbes put it near 51% in 2022. Depth is harder to fake, because resting orders can actually be traded against.",
+        "feedbackWrong": "Not quite — high volume next to a thin book is the signature of wash trading, not of demand. Volume is self-reported and costs nothing to manufacture by trading with yourself. Depth is the number to trust, because a fake bid has to be a real order you could hit, which makes it expensive to leave sitting there."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Market Capitalization (Market Cap)",
+        "def": "The last traded price multiplied by circulating supply — one multiplication, not money invested."
+      },
+      {
+        "term": "Circulating Supply",
+        "def": "The units currently issued and available to trade, excluding locked, vesting or reserved tokens."
+      },
+      {
+        "term": "Total Supply (and Max Supply)",
+        "def": "Total supply is every unit created including locked units; max supply is the hard ceiling the software allows."
+      },
+      {
+        "term": "Fully Diluted Valuation (FDV)",
+        "def": "The last traded price multiplied by total or maximum supply, as if every future unit already traded today."
+      },
+      {
+        "term": "Order Book Depth",
+        "def": "How many units rest as orders at each price level, and therefore how much can trade before price moves."
+      },
+      {
+        "term": "Price Impact",
+        "def": "How far your own order moves the price by consuming the resting orders on the other side."
+      },
+      {
+        "term": "Wash Trading",
+        "def": "Trading with yourself to manufacture volume or price, with no real change in ownership or risk."
+      }
+    ]
+  },
+  {
+    "id": "crypto-cycles-and-halvings",
+    "lessonNumber": 2,
+    "chapterNumber": 2,
+    "chapterTitle": "Chapter 2: Reading the Crypto Market",
+    "title": "Cycles & Halvings",
+    "keyIdea": "The halving is a certain, pre-announced supply schedule; the four-year price cycle built on top of it rests on four events, a window fitted after the fact, and causes that cannot be separated.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Chapter 1, Lesson 3 gave you the mechanics. Miners who add a valid block earn the block subsidy, meaning newly created coins, plus the block's transaction fees. Every 210,000 blocks, the software cuts that subsidy in half. That is the halving. The difficulty adjustment holds the block pace near 10 minutes no matter how much mining power joins, so the schedule advances in blocks, not in calendar time."
+      },
+      {
+        "type": "definition",
+        "term": "Halving",
+        "text": "The scheduled event where Bitcoin's block subsidy is cut in half, every 210,000 blocks. It is written into the software rules, so the entire future schedule has been public since the network started in 2009."
+      },
+      {
+        "type": "paragraph",
+        "text": "Here is the full history, with the resulting supply issuance at the target pace of about 144 blocks a day. At launch in January 2009 the subsidy was 50 coins per block, about 7,200 new coins a day. The first halving on 28 November 2012 cut it to 25, about 3,600 a day. The second on 9 July 2016 cut it to 12.5, about 1,800 a day. The third on 11 May 2020 cut it to 6.25, about 900 a day. The fourth on 20 April 2024 cut it to 3.125, about 450 a day."
+      },
+      {
+        "type": "paragraph",
+        "text": "Sources disagree on the fourth halving by one day. Block 840,000 was mined at roughly 00:09 UTC on 20 April 2024, which was still the evening of 19 April in North American time zones, so you will see both dates published. The block height is the fact; the calendar date is a reporting convention."
+      },
+      {
+        "type": "image",
+        "svg": "crypto-02-2-halving-schedule",
+        "alt": "Diagram of Bitcoin's block subsidy stepping down from 50 to 25 to 12.5 to 6.25 to 3.125 coins per block across the four halvings, annotated to show the schedule was known in advance and that only four halving events have ever occurred",
+        "caption": "The block subsidy steps down on a schedule fixed in software since 2009 - and the entire four-year cycle debate rests on just four such events."
+      },
+      {
+        "type": "paragraph",
+        "text": "The supply effect is real and easy to state. Before April 2024, the network issued about 328,500 new coins a year against a circulating supply near 19.7 million, roughly 1.67% annual growth. After April 2024, it issues about 164,250 a year against a supply that passed 20 million in March 2026, roughly 0.82%. Around 95% of the 21 million cap has already been mined."
+      },
+      {
+        "type": "example",
+        "text": "The subsidy has fallen by a factor of 16 since launch: 50 divided by 3.125 equals 16. That is a large change to the rate of new supply. It is not a change to the existing supply, which is what almost 20 million coins already in circulation represents. Roughly 450 new coins a day enter a market where far more than that trades every hour."
+      },
+      {
+        "type": "paragraph",
+        "text": "Note one detail that the phrase every four years hides. The gaps between the four halvings were 1,319 days, 1,402 days and 1,440 days, which is 3.61, 3.84 and 3.94 years. Blocks arrive faster than 10 minutes when mining power is growing, so the schedule ran ahead of the calendar. The four-year cycle has not once been four years long."
+      },
+      {
+        "type": "paragraph",
+        "text": "Now the claim itself, put as strongly as its supporters put it. This lesson is not a hatchet job. A claim you cannot state fairly is a claim you have not understood. The narrative borrows a four-phase market model from Richard Wyckoff, an American investor who set out his framework in the early 1900s. The four phases are accumulation, markup, distribution and markdown."
+      },
+      {
+        "type": "definition",
+        "term": "Market Cycle",
+        "text": "A repeating sequence of phases a market is said to pass through: accumulation, meaning quiet buying after a crash; markup, a sustained rise; distribution, large holders selling into strength; and markdown, the decline. The model comes from Wyckoff's work on early-1900s stock markets, long before crypto existed."
+      },
+      {
+        "type": "paragraph",
+        "text": "Applied to Bitcoin, the story runs like this. The halving cuts new supply. If demand holds steady while supply growth halves, price should rise. The rise takes time to build, so the cycle top arrives roughly 12 to 18 months after the halving. Then distribution and markdown follow, a deep bear market clears out leveraged holders, and accumulation begins again ahead of the next halving."
+      },
+      {
+        "type": "paragraph",
+        "text": "The timing claim is the specific, checkable part, so check it. Measuring from each halving to the highest price of that cycle: November 2012 to November 2013 was 367 days, or 12.1 months. July 2016 to December 2017 was 525 days, or 17.2 months. May 2020 to November 2021 was 548 days, or 18.0 months. April 2024 to October 2025 was 534 days, or 17.5 months. All four land inside the stated window. That is the strongest form of the case, and it is a genuinely striking result. The rest of this lesson explains why a striking result is not the same as evidence."
+      },
+      {
+        "type": "paragraph",
+        "text": "Problem one is the sample. There have been four halvings. Four. That means three completed halving-to-halving cycles, and a fourth still unfolding as this lesson is written."
+      },
+      {
+        "type": "warning",
+        "text": "Ask what four matching observations would prove in any other setting. Flip a coin four times and get four heads, and nobody concludes the coin is loaded, because four heads happens by chance about one time in sixteen with a perfectly fair coin. Foundations Chapter 3 taught you to interrogate a pattern statistic before believing it. The Bulkowski chart-pattern numbers failed that test because they came from one unreplicated dataset. The four-year cycle fails a harsher version of it: there is barely a dataset at all."
+      },
+      {
+        "type": "paragraph",
+        "text": "Two further problems make the small sample worse than the raw count suggests. First, the window was chosen after seeing the data. Twelve to eighteen months is a six-month target inside a roughly four-year cycle. Nobody published that window before 2013 and then watched it succeed three more times. It was fitted to the observations it now claims to predict. A rule written after the fact is a description, not a forecast. Second, the four cycles are not independent trials. Each one shaped the next. The 2017 boom created the exchanges, the media coverage and the participant base that the 2021 boom ran on. In statistics, four dependent observations carry far less information than four independent ones."
+      },
+      {
+        "type": "paragraph",
+        "text": "Problem two is attribution. Even if the pattern were real, crediting it to the halving requires that nothing else large moved on a similar schedule. Something else always did."
+      },
+      {
+        "type": "example",
+        "text": "The May 2020 halving arrived eight weeks after the Federal Reserve cut its policy rate to a range of 0 to 0.25% on 15 March 2020 and launched a 700 billion dollar asset-purchase program, expanded to open-ended purchases on 23 March. Nearly every risk asset on earth rose from that point. The 2022 crash coincided with the Fed reversing course, lifting rates from near zero to 5.25 to 5.50% between March 2022 and July 2023. The 2024 halving came just over three months after the U.S. Securities and Exchange Commission approved 11 spot Bitcoin exchange-traded funds on 10 January 2024, which opened a distribution channel Bitcoin had never had."
+      },
+      {
+        "type": "paragraph",
+        "text": "Global liquidity conditions, a landmark regulatory approval, and the halving all moved together. That is the identification problem, and it is fatal to a causal claim. When two or more causes change at the same time, the data cannot tell you which one produced the effect. No amount of chart-overlaying fixes it. At least four candidate drivers co-move with the halving cycle: macro liquidity, since central bank policy sets the price of risk everywhere and crypto sits at the far end of that chain; regulatory and access events, since the 2024 spot-ETF approval changed who could buy, not how much was mined; the adoption S-curve, since a new technology's user base grows fastest in its middle years and rising adoption produces rising demand on its own multi-year arc; and leverage cycles, since borrowed money builds up through a rally and unwinds violently in a fall, a mechanism that creates boom-bust shapes in markets with no halving at all."
+      },
+      {
+        "type": "paragraph",
+        "text": "Problem three gets skipped most often. The halving is not news. Its date has been calculable from Bitcoin's source code since 2009. Every participant knows the exact block height and the exact new subsidy, years ahead. The efficient-markets argument says that a fully known future supply change should already be reflected in today's price. Nobody should be able to earn a reliable profit from information everyone already has. This idea is associated with the economist Eugene Fama, whose 1970 review article Efficient Capital Markets: A Review of Theory and Empirical Work, in the Journal of Finance, set out the framework and the evidence for it."
+      },
+      {
+        "type": "warning",
+        "text": "State this honestly: the efficient-markets argument is itself contested, and this course does not present it as settled fact. Decades of research have found anomalies that appear to contradict it, and crypto markets in particular are young, retail-heavy and fragmented in ways that make strong efficiency unlikely. The point is not that markets are perfectly efficient. The point is that anyone claiming the halving mechanically causes a later price rise owes an answer to the question: why did the price not move when everyone learned the schedule?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Academic event studies have tested this directly. A 2025 study by Veloso, Gatsios, Magnani and Lima in the Journal of Risk and Financial Management examined abnormal returns and volatility around all four halvings, and reported that the market response around the 2024 event peaked earlier and faded faster than in 2020, consistent with participants pricing a predictable supply cut in advance rather than reacting to it."
+      },
+      {
+        "type": "paragraph",
+        "text": "The most influential attempt to turn scarcity into a price forecast has a name, an author, a publication date and a public track record. That makes it an excellent teaching case, because you can check every part of it."
+      },
+      {
+        "type": "definition",
+        "term": "Stock-to-Flow (S2F)",
+        "text": "A ratio comparing the existing stock of an asset to the new supply produced each year. A high ratio means new production is small relative to what already exists. Applied to Bitcoin, the halving doubles this ratio overnight, because it halves the flow while the stock keeps growing."
+      },
+      {
+        "type": "paragraph",
+        "text": "In March 2019, a pseudonymous analyst writing as PlanB published Modeling Bitcoin's Value with Scarcity on Medium. The article fitted Bitcoin's market value to its stock-to-flow ratio, reported a very high statistical fit, and made a specific forecast: a market value near 1 trillion dollars after the May 2020 halving, which the article translated to roughly 55,000 dollars per coin. In April 2020, PlanB published a follow-up cross-asset version that put the 2020 to 2024 target near 288,000 dollars. A separate floor model published in 2021 gave month-by-month floors, including about 98,000 dollars for November 2021 and about 135,000 for December 2021."
+      },
+      {
+        "type": "paragraph",
+        "text": "Now the record. Bitcoin did trade above 55,000 dollars in early 2021. It did not reach the later targets. The cycle peaked near 69,000 dollars in November 2021, against a floor-model figure of 135,000 for that December, and closed 2021 near 47,000. PlanB had publicly said in mid-2021 that he would call the model invalidated if Bitcoin had not reached 100,000 dollars by December. When it did not, he attributed the miss to the floor model rather than to stock-to-flow itself, and continued to publish stock-to-flow targets."
+      },
+      {
+        "type": "warning",
+        "text": "Watch the move in that last sentence, because you will see it again everywhere. A model made a falsifiable prediction. The prediction failed. The author redefined which model had failed, and kept the framework. A claim that cannot fail is not a strong claim, it is an unfalsifiable one. The willingness to say in advance what result would change your mind, and then honour it, is what separates a model from a slogan."
+      },
+      {
+        "type": "paragraph",
+        "text": "The peer-reviewed evidence is unusually clear here. Morillon and Chacon (2022), in Studies in Economics and Finance, volume 39 issue 3, built a version of the stock-to-flow model free of look-ahead bias and tested trading on it. A strategy that went long when the model said Bitcoin was undervalued and short when it said overvalued was far less profitable than simply buying and holding. Shelton (2024), in the Journal of Risk and Financial Management, volume 17 issue 10, article 443, tested stock-to-flow alongside Metcalfe's Law, technical analysis and market sentiment. Stock-to-flow helped explain Bitcoin's returns in-sample but had limited to no ability to predict returns out-of-sample."
+      },
+      {
+        "type": "paragraph",
+        "text": "That distinction between in-sample and out-of-sample is the whole lesson in two words. A model can fit history beautifully and still tell you nothing about tomorrow. Practitioner critics reached the same place by a different route, arguing that the fit is largely an artefact of both variables rising with time, which makes the regression statistically spurious."
+      },
+      {
+        "type": "paragraph",
+        "text": "Separate the two columns carefully. Both are honest. The data supports these claims: issuance falls on a known schedule, which is not a forecast but arithmetic from the software rules, with the next halving expected around 2028 at block 1,050,000 taking the subsidy to 1.5625 coins; realized volatility is high, persistently, across the whole history; and very deep declines have happened repeatedly, with three separate peak-to-trough falls exceeding 70% visible in the record."
+      },
+      {
+        "type": "example",
+        "text": "Published figures for the three big drawdowns disagree, because sources use different exchanges and differ on whether they measure closing prices or intraday extremes. Reported honestly as ranges: the 2013 to 2015 decline is reported at roughly 84% to 87%; the 2017 to 2018 decline at roughly 83% to 84%; the 2021 to 2022 decline at roughly 77% to 78%. Every source agrees the falls exceeded 70%. Where they disagree is on the second digit, and this lesson does not pretend otherwise."
+      },
+      {
+        "type": "definition",
+        "term": "Drawdown",
+        "text": "The fall from a peak price to the lowest point that follows, expressed as a percentage of the peak. A 77% drawdown means the price lost more than three-quarters of its value before it stopped falling. Recovering from an 80% drawdown requires a 400% gain."
+      },
+      {
+        "type": "paragraph",
+        "text": "The data does not support these claims: that the halving causes the subsequent price move, because three confounded, dependent cycles cannot separate the halving from macro liquidity, regulatory access or adoption; that there is a reliable, tradeable timing rule, because the strongest published attempt was tested by two peer-reviewed studies and underperformed buying and holding in one and failed out-of-sample in the other; and that the pattern must continue, because it has been checked four times with a window fitted after the fact."
+      },
+      {
+        "type": "warning",
+        "text": "Watch the grammar of cycle claims. The cycle says the top comes 18 months after the halving is not a description of a pattern. It is a prediction, wearing the clothing of an observed regularity. Patterns describe what happened. Predictions claim what will happen. Anyone sliding from one to the other, in a single sentence, without naming the sample size, is doing exactly what Foundations Chapter 3 trained you to catch."
+      },
+      {
+        "type": "paragraph",
+        "text": "Recent history has made the point without any help from this lesson. Bitcoin reached an all-time high near 126,000 dollars on 6 October 2025, inside the 12-to-18-month window, and therefore read by many as the cycle holding. Through the first half of 2026 it fell to the low 60-thousands, more than half off that peak. As this lesson is written in late July 2026, prominent analysts publicly disagree about whether the four-year cycle is intact, stretched or finished. That disagreement is not a failure of the analysts. It is what a genuinely small sample looks like from the inside."
+      },
+      {
+        "type": "practice",
+        "text": "Someone shows you this rule: Bitcoin bottoms about 12 months before each halving, so the pre-halving year is the best time to buy. Do not judge whether it is true. Instead, write down the evidence you would need to believe it. Aim for at least five items. Consider: how many independent observations exist; whether the rule was published before or after the data it describes; what else was happening in each of those pre-halving years; what result would prove the rule wrong; and whether the rule survives after transaction costs and a realistic account of the drawdowns you would have held through. Keep your list. It works on any cycle claim you meet in this market."
+      },
+      {
+        "type": "practice",
+        "text": "What to look for from here. Count the events: when someone shows a crypto cycle chart, ask how many completed cycles it contains, and note that the honest answer is three with a fourth in progress. Ask when the rule was written, because a window fitted after the data is a description of the past dressed as a forecast. Look for the confound: for any halving-driven claim, ask what central banks, regulators and adoption were doing in the same months. Ask what would falsify it, since a cycle claim that survives every outcome is not a strong claim. Separate the certain from the speculative, because the issuance schedule is certain and what price does in response is not. And distrust round numbers with no source, since Bitcoin always drops 80% collapses on contact with the actual published ranges, which disagree with each other."
+      }
+    ],
+    "quiz": [
+      {
+        "question": "There have been four Bitcoin halvings, and all four cycle peaks fell inside the widely quoted 12-to-18-month window. Why is this not strong evidence that the halving causes the peak?",
+        "options": [
+          "The peaks were not really inside the window; the dates are wrong",
+          "Four events is a very small sample, the window was fitted after the data, and other large drivers moved at the same time",
+          "Because Bitcoin's price is random and no pattern can ever exist in it",
+          "Because the halving reduces supply, which should lower the price, not raise it"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct - three problems stack. Four dependent observations carry little statistical weight, the 12-to-18-month window was defined after seeing the outcomes it now claims to anticipate, and macro liquidity, the 2024 spot-ETF approval, adoption growth and leverage cycles all moved on overlapping timelines.",
+        "feedbackWrong": "Not quite - the peaks really did land in the window. The problem is that four dependent observations carry little weight, the window was fitted after the fact, and other large drivers moved at the same time. Note that saying no pattern can ever exist overreaches in the opposite direction: not established is not the same as impossible."
+      },
+      {
+        "question": "What did the peer-reviewed research actually find about the stock-to-flow model?",
+        "options": [
+          "It reliably predicted Bitcoin's price and remains the best available model",
+          "It was never tested academically, so no conclusion is possible",
+          "It explained returns in-sample but had limited to no out-of-sample predictive ability, and a trading strategy built on it underperformed buying and holding",
+          "It proved that Bitcoin's price is entirely driven by supply"
+        ],
+        "correctIndex": 2,
+        "feedbackCorrect": "Correct - Shelton (2024) in the Journal of Risk and Financial Management found stock-to-flow helped explain returns in-sample but had limited to no ability to predict them out-of-sample, and Morillon and Chacon (2022) in Studies in Economics and Finance found that trading on a look-ahead-free version was far less profitable than buying and holding.",
+        "feedbackWrong": "Not quite - the model has been tested academically, and the results were poor. Fitting the past and forecasting the future are different achievements, and stock-to-flow managed only the first."
+      },
+      {
+        "question": "The halving date is calculable from Bitcoin's source code years in advance. What objection does this raise against the claim that the halving will push the price up?",
+        "options": [
+          "None - public information has no effect on prices",
+          "It means the halving cannot happen on schedule",
+          "If the supply change is fully known ahead of time, it should already be reflected in the current price, so a later mechanical rise needs a separate explanation",
+          "It proves that markets are perfectly efficient"
+        ],
+        "correctIndex": 2,
+        "feedbackCorrect": "Correct - this is the efficient-markets objection, associated with Fama's 1970 review in the Journal of Finance. It does not prove the cycle claim is wrong; it places a burden of explanation on anyone claiming a pre-announced supply cut mechanically moves price later.",
+        "feedbackWrong": "Not quite - the objection is that a fully known future supply change should already sit in today's price. Note it does not prove markets are perfectly efficient either; efficiency is genuinely contested, and crypto markets are young and retail-heavy."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Halving",
+        "def": "The scheduled 50% cut to Bitcoin's block subsidy, every 210,000 blocks, fixed in software since 2009."
+      },
+      {
+        "term": "Market Cycle",
+        "def": "The accumulation, markup, distribution and markdown phase model, borrowed from Wyckoff's early-1900s stock market work."
+      },
+      {
+        "term": "Stock-to-Flow (S2F)",
+        "def": "A ratio of existing supply to annual new supply, used in a well-known and unsuccessful Bitcoin price model."
+      },
+      {
+        "term": "Drawdown",
+        "def": "The percentage fall from a peak price to the lowest point that follows it."
+      }
+    ]
+  },
+  {
+    "id": "crypto-as-a-risk-asset",
+    "lessonNumber": 3,
+    "chapterNumber": 2,
+    "chapterTitle": "Chapter 2: Reading the Crypto Market",
+    "title": "Crypto as a Risk Asset",
+    "keyIdea": "Crypto has traded as the high-beta tail of the risk spectrum, not as digital gold: it fell with equities and much harder in the 2022 tightening cycle, and correlation is a moving number that rises toward 1 in exactly the crises diversification is meant to cover.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Crypto marketing makes three claims that are usually presented as one idea. Separating them is the first job of this lesson, because each one is a different testable statement."
+      },
+      {
+        "type": "paragraph",
+        "text": "The first is digital gold — the idea that Bitcoin does what gold is supposed to do, holding purchasing power while currencies weaken. The second is uncorrelated diversifier — the idea that crypto moves independently of stocks and bonds, so adding it smooths a portfolio. The third is inflation hedge — the idea that a capped supply protects you when consumer prices rise."
+      },
+      {
+        "type": "paragraph",
+        "text": "You have already met the vocabulary for testing claims like these. The Foundation of Money and Trade, Chapter 2, Lesson 4 defined three genuinely different things that marketing treats as synonyms: a diversifier, a hedge, and a safe haven. That lesson also locked the definition of correlation this course uses. This lesson does not redefine any of those terms. It takes them and applies them to crypto with dated evidence. Crypto Chapter 1, Lesson 1 already flagged the store-of-value framing as contested rather than settled. This lesson is where that flag gets paid off with numbers."
+      },
+      {
+        "type": "warning",
+        "text": "\"Uncorrelated\" is a claim about a period, not a property of an asset. Correlation is measured over a window of time. Change the window and the number changes. When someone tells you crypto is uncorrelated, the only useful reply is a question: uncorrelated with what, measured over which dates? An answer that cannot name the window is not evidence."
+      },
+      {
+        "type": "definition",
+        "term": "Risk Asset",
+        "text": "An asset whose price depends heavily on investor risk appetite and on financial conditions, rather than on a contractual promise to pay. Equities, corporate credit, and cryptocurrencies are risk assets. Cash and short-dated government bonds of a stable issuer are not."
+      },
+      {
+        "type": "definition",
+        "term": "Beta",
+        "text": "A measure of how much an asset moves for a given move in a reference market. A beta of 1 means the asset tends to move roughly one-for-one with that market. A beta above 1 means it tends to move more, in both directions. An asset with a persistently high beta is described as high-beta: it amplifies whatever the reference market does."
+      },
+      {
+        "type": "paragraph",
+        "text": "The evidence that crypto has behaved as a high-beta risk asset comes from several independent directions. No single study settles it. Together they point the same way."
+      },
+      {
+        "type": "paragraph",
+        "text": "The International Monetary Fund published a blog post on 11 January 2022 by Tobias Adrian, Tara Iyer and Mahvash Qureshi reporting a specific pair of measurements. Over 2017 to 2019, the correlation between Bitcoin returns and the S&P 500 was 0.01 — effectively no relationship. Over 2020 to 2021, the same measure was 0.36. The relationship did not stay constant. It changed after the extraordinary central-bank response of early 2020, when easy financial conditions lifted both crypto and equities together."
+      },
+      {
+        "type": "paragraph",
+        "text": "An accompanying IMF Global Financial Stability Note from January 2022, \"Cryptic Connections: Spillovers between Crypto and Equity Markets\" by Tara Iyer, went further into volatility. It found that the correlation between Bitcoin's price volatility and S&P 500 volatility rose more than fourfold compared with pre-pandemic years, and that Bitcoin's estimated contribution to the variation in S&P 500 volatility increased by roughly 16 percentage points in the post-pandemic period."
+      },
+      {
+        "type": "example",
+        "text": "An IMF working paper from August 2023 — WP/23/163, \"The Crypto Cycle and US Monetary Policy\" by Natasha Che, Alexander Copestake, Davide Furceri and Tammaro Terracciano — put a number on the sensitivity. The authors extract a single common price component, which they call the crypto factor, that explains about 80% of the variation in crypto prices. They then measure what United States monetary tightening does to it. The crypto factor falls by about 0.15 standard deviations after a tightening shock, while the equity factor falls by about 0.1 standard deviations. Crypto did not sit outside the monetary cycle. It responded to it more strongly than equities did — which is what high-beta means in practice."
+      },
+      {
+        "type": "paragraph",
+        "text": "There is one more piece, and it is the one this course has cited before. Forex Chapter 6, Lesson 3 introduced Liu, Tsyvinski and Wu (2022), \"Common Risk Factors in Cryptocurrency,\" published in The Journal of Finance, volume 77, issue 2. The authors show that three factors — a cryptocurrency market factor, size, and momentum — capture the cross-section of expected crypto returns. The point that lesson drew, and this one repeats, is structural: crypto returns are organised by the same kind of factor logic that organises ordinary asset markets, rather than escaping it."
+      },
+      {
+        "type": "warning",
+        "text": "Be precise about what that paper does and does not say. Liu, Tsyvinski and Wu measure crypto's own internal factor structure. They do not publish a beta of Bitcoin against the S&P 500. Anyone who cites them as direct proof that \"crypto is high-beta to equities\" is stretching the paper past its actual result. The equity co-movement evidence comes from the IMF work above. The factor paper tells you something different and still useful: crypto is not a separate financial universe with its own physics."
+      },
+      {
+        "type": "paragraph",
+        "text": "Where does this put crypto on the map Forex Chapter 6, Lesson 3 drew? At the far end. That lesson taught the transmission chain: interest rates move first, then currencies and government bonds, then credit and equities, then commodities, then crypto. Crypto is the last and highest-beta link. A shock that shaves a few percent off equities has repeatedly taken a multiple of that out of crypto."
+      },
+      {
+        "type": "paragraph",
+        "text": "The single most common mistake beginners make with correlation is treating it as a fact about an asset, like its ticker. It is not. It is a statistic computed over a chosen stretch of dates."
+      },
+      {
+        "type": "definition",
+        "term": "Rolling Correlation",
+        "text": "Correlation recalculated repeatedly over a moving window of recent data, for example the last 90 days, and then plotted through time. It shows how the relationship between two assets changes, instead of collapsing it into one average number."
+      },
+      {
+        "type": "paragraph",
+        "text": "Look again at those IMF figures. Bitcoin against the S&P 500 measured 0.01 over 2017 to 2019 and 0.36 over 2020 to 2021. Both numbers are correct. They describe different periods. A person quoting only the first would honestly conclude crypto is uncorrelated. A person quoting only the second would honestly conclude it is not. Neither is lying. Both are answering with a window they did not mention."
+      },
+      {
+        "type": "paragraph",
+        "text": "The disagreement runs wider than one institution. Foundations Chapter 2, Lesson 4 already showed you two careful academic studies of Bitcoin as a safe haven reaching opposite conclusions, one of which put Bitcoin's correlation with United States and European stocks at roughly 0.05 in 2017 rising to somewhere between 0.25 and 0.30 by 2021. That is a lower figure than the IMF's 0.36, over overlapping but not identical periods, using different data. Do not smooth those into one tidy number. The direction of travel is consistent across all of them: upward. The exact level depends on the window, the price feed, and the return frequency."
+      },
+      {
+        "type": "warning",
+        "text": "Never quote a bare correlation number. \"Bitcoin's correlation with stocks is 0.4\" is not a fact until you attach the reference index, the date range, and the return frequency used. A number without its window is a marketing statistic, not a measurement."
+      },
+      {
+        "type": "warning",
+        "text": "Correlation is not causation, and short windows manufacture both. Two series can move together for months because a third thing is driving both, or because of nothing at all. Longin and Solnik, writing in The Journal of Finance in 2001, made this warning explicit for exactly this kind of study: naive comparisons of correlation across calm and volatile periods produce a spurious relationship between correlation and volatility, because volatility itself changes the measurement. That is why they built a method around extreme returns rather than trusting the raw comparison. Apply the same suspicion to any 30-day crypto correlation chart you see on social media."
+      },
+      {
+        "type": "definition",
+        "term": "Crisis Correlation",
+        "text": "The tendency of correlations between assets to rise sharply, toward 1, during severe market-wide selloffs. Holdings that looked independent in calm markets fall together in the crash, which is precisely when their independence was supposed to protect you."
+      },
+      {
+        "type": "paragraph",
+        "text": "Longin and Solnik studied this directly in \"Extreme Correlation of International Equity Markets,\" The Journal of Finance, volume 56, issue 2, 2001, pages 649 to 676. Using extreme value theory on the tails of the return distribution, they found the effect is not symmetric. They rejected the assumption of normal joint behaviour for the negative tail, but not for the positive tail. In plain terms: markets get much more tightly linked in extreme falls than in extreme rises."
+      },
+      {
+        "type": "paragraph",
+        "text": "That is a brutal result for anyone relying on diversification. The correlation you measured in the calm period is not the correlation you get in the crash. The protection weakens exactly when it is needed. You have seen this thread before under a different name. Foundations Chapter 2, Lesson 4 warned that a well-diversified portfolio can still lose money in a broad shock because correlations rise together. The course's fat-tails thread — Mandelbrot in 1963, and the Swiss franc collapse of 2015 in Forex Chapter 1, Lesson 7 — is the same idea from the single-asset side. Extreme events are more common than tidy models predict, and they arrive correlated."
+      },
+      {
+        "type": "image",
+        "svg": "crypto-02-3-correlation-regimes",
+        "alt": "Schematic diagram showing crypto at the far high-beta end of the transmission chain from interest rates through currencies and bonds, credit and equities, and commodities, alongside a second illustrative panel showing correlation between a risk asset and equities drifting low in a calm period and then rising sharply toward 1 during a stress window",
+        "caption": "Schematic only, not plotted data: crypto sits at the highest-beta end of the transmission chain, and correlation runs toward 1 in the stress window."
+      },
+      {
+        "type": "paragraph",
+        "text": "2022 was not a hypothetical. It was the exact scenario the marketing described, and the results are on the record. Inflation arrived. United States consumer prices rose 9.1% over the 12 months ending June 2022, the largest 12-month increase since the period ending November 1981, according to the Bureau of Labor Statistics. If a capped-supply asset protects you from inflation, this was the moment."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tightening arrived with it. The Federal Reserve raised its target rate at seven consecutive meetings between March and December 2022, taking it from near zero to a range of 4.25% to 4.50% — the fastest tightening campaign since the 1980s."
+      },
+      {
+        "type": "example",
+        "text": "Calendar year 2022 returns, from close to close: the S&P 500 fell about 19.4%; the Nasdaq Composite fell about 33.1%; Bitcoin fell about 64%, from roughly 46,300 dollars to roughly 16,500 dollars; and Ether fell roughly 67% to 68%, from roughly 3,700 dollars to roughly 1,200 dollars. Bitcoin's calendar-year fall was roughly 1.9 times the Nasdaq's and roughly 3.3 times the S&P 500's. Sources differ by one or two percentage points on the crypto figures depending on which exchange price feed and which cut-off time they use, so treat these as close ranges rather than exact constants. Measured peak to trough instead of calendar year, the gap is wider. The Nasdaq Composite fell about 36.4% from its record close of 16,057.44 on 19 November 2021 to its cycle closing low of 10,213.29 on 28 December 2022. Bitcoin fell about 77% to 78% from roughly 69,000 dollars in November 2021 to roughly 15,500 dollars on 21 November 2022."
+      },
+      {
+        "type": "paragraph",
+        "text": "Read that carefully. Crypto did not move independently of equities in 2022. It moved in the same direction, in the same window, only much harder. And it fell during the largest inflation surge in 40 years, which is the one environment where the inflation-hedge story predicted it should have risen."
+      },
+      {
+        "type": "warning",
+        "text": "An inflation-hedge claim has to survive an actual inflation episode. 2021 to 2022 was the first serious test of the modern crypto era, and the claim failed it. State that plainly. The honest version of the academic picture is that it is contested and period-dependent, not uniformly negative. Choi and Shin, in Finance Research Letters, volume 46, 2022, found Bitcoin does appreciate against inflation shocks — while separately rejecting the safe-haven claim, because Bitcoin fell in response to financial uncertainty shocks. Rodriguez and Colombo, in the Journal of Economics and Business, volume 133, examined data from August 2010 to January 2023 and also found a positive response to inflation shocks, but reported two important limits: the effect holds for consumer-price shocks specifically, and it comes mainly from the sample period before large institutional participation. That last finding matches the co-movement evidence. The property people are selling belongs to an earlier, smaller, more isolated market than the one you would be buying into."
+      },
+      {
+        "type": "warning",
+        "text": "Notice what this does not prove. Crypto has not been proven to be permanently high-beta any more than it was permanently uncorrelated. Both are statements about periods. What 2022 does prove is narrower and more useful: crypto is fully capable of behaving as a high-beta risk asset through a full tightening cycle, so any plan you build must survive that behaviour. Plan for the behaviour you have observed, not the behaviour you were promised."
+      },
+      {
+        "type": "paragraph",
+        "text": "The practical conclusion is not \"avoid crypto.\" It is \"stop giving it the job of protection.\""
+      },
+      {
+        "type": "definition",
+        "term": "Drawdown",
+        "text": "The fall from a portfolio's or an asset's highest point to its subsequent lowest point, expressed as a percentage. It measures the worst loss an investor holding through the period would have experienced."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deep drawdowns are mathematically punishing, and the arithmetic is worth doing once by hand. A 36.4% fall requires a 57.2% gain to get back to level. A 64.3% fall requires a 180.1% gain. A 77.6% fall requires a 346.4% gain. The recovery required grows much faster than the loss."
+      },
+      {
+        "type": "example",
+        "text": "Work out what a crypto sleeve costs a portfolio in a repeat of 2022, using the 77.6% peak-to-trough fall. A 2% crypto allocation contributes 1.55 percentage points of portfolio drawdown. A 5% allocation contributes 3.88 percentage points. A 10% allocation contributes 7.76 percentage points. A 25% allocation contributes 19.4 percentage points on its own. Now add the correlation problem. Those crypto losses did not offset equity losses, because both fell in the same window. A portfolio holding 60% equities that fell 36.4%, plus a 10% crypto sleeve that fell 77.6%, took roughly 29.6 percentage points of drawdown from those two positions together. The crypto sleeve added to the loss instead of cushioning it."
+      },
+      {
+        "type": "paragraph",
+        "text": "Three rules follow directly. First, treat crypto as the highest-beta link of the transmission chain, which is where Forex Chapter 6, Lesson 3 placed it. If your read is that financial conditions are tightening, crypto is the wrong end of the chain to be adding exposure to, not the safe corner."
+      },
+      {
+        "type": "paragraph",
+        "text": "Second, size the position by what it does in a bad regime, not an average one. The relevant question is not \"what is crypto's average correlation?\" It is \"what happens to this holding when equities fall 35%, and can my plan absorb that?\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Third, do not count a crypto holding as your diversification. If the only thing standing between you and a correlated crash is an asset that fell twice as hard as the Nasdaq in the same window, you do not have a hedge. You have a second, larger version of the same bet."
+      },
+      {
+        "type": "practice",
+        "text": "Pick any article, video, or exchange page that calls crypto an uncorrelated asset, a hedge, or digital gold. Write down three things: (1) which reference market it names, or whether it names one at all; (2) which date range its evidence covers; (3) what its claim would have predicted for calendar year 2022, and what actually happened. Most sources fail at step 1 or step 2. That failure is the finding."
+      }
+    ],
+    "quiz": [
+      {
+        "question": "An analyst says \"Bitcoin's correlation with the S&P 500 is 0.36, so it is a weak diversifier.\" What is the most important thing missing from that statement?",
+        "options": [
+          "The Bitcoin price at the time of the statement",
+          "The measurement window — which dates the 0.36 was calculated over",
+          "The name of the exchange the analyst uses",
+          "Nothing is missing; a correlation number is self-explanatory"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — that 0.36 came from the IMF measuring 2020 to 2021. The same pair measured 0.01 over 2017 to 2019. Correlation is a statistic over a window, not a permanent property of an asset, so a number without its window cannot be checked or compared.",
+        "feedbackWrong": "Not quite — the missing piece is the measurement window. The IMF reported 0.01 for 2017 to 2019 and 0.36 for 2020 to 2021 on the same pair. A correlation with no dates attached cannot be checked."
+      },
+      {
+        "question": "Why does the tendency of correlations to rise during crises matter so much for diversification?",
+        "options": [
+          "It does not matter, because crises are rare",
+          "Because rising correlations increase returns during crashes",
+          "Because the assets you held for independence fall together in the crash, which is exactly when the independence was supposed to protect you",
+          "Because it only affects professional investors, not beginners"
+        ],
+        "correctIndex": 2,
+        "feedbackCorrect": "Correct — Longin and Solnik found the linkage is stronger in extreme falls than in extreme rises. Diversification is measured in calm markets and tested in crashes, and the two numbers are not the same.",
+        "feedbackWrong": "Not quite — the problem is timing. Correlations run toward 1 in severe selloffs, so the holdings you kept for independence fall together exactly when that independence was meant to help."
+      },
+      {
+        "question": "During 2022, United States inflation reached its highest 12-month rate in about 40 years, and the Federal Reserve raised rates at seven consecutive meetings. What happened to crypto relative to equities in that window?",
+        "options": [
+          "Crypto rose while equities fell, confirming the inflation-hedge claim",
+          "Crypto and equities both fell, and crypto fell considerably harder",
+          "Crypto was flat, behaving like cash",
+          "Crypto fell slightly less than the S&P 500"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — the S&P 500 fell about 19.4% and the Nasdaq Composite about 33.1% over calendar 2022, while Bitcoin fell about 64% and Ether roughly 67% to 68%. Crypto moved in the same direction as equities, only with far more amplitude.",
+        "feedbackWrong": "Not quite — both fell, and crypto fell much harder. Calendar 2022: S&P 500 about -19.4%, Nasdaq Composite about -33.1%, Bitcoin about -64%, Ether roughly -67% to -68%. That is high-beta behaviour, not a hedge."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Risk Asset",
+        "def": "An asset whose price depends heavily on investor risk appetite and financial conditions rather than a contractual promise to pay."
+      },
+      {
+        "term": "Beta",
+        "def": "A measure of how much an asset moves for a given move in a reference market; above 1 means it amplifies that market."
+      },
+      {
+        "term": "High-Beta Asset",
+        "def": "An asset with a persistently high beta, which magnifies the reference market's moves in both directions."
+      },
+      {
+        "term": "Rolling Correlation",
+        "def": "Correlation recalculated over a moving window of recent data and plotted through time, showing how a relationship changes."
+      },
+      {
+        "term": "Crisis Correlation",
+        "def": "The tendency of correlations to rise toward 1 in severe selloffs, weakening diversification exactly when it is needed."
+      },
+      {
+        "term": "Drawdown",
+        "def": "The fall from a peak to the subsequent trough, as a percentage — the worst loss a holder would have experienced."
+      }
+    ]
+  },
+  {
+    "id": "crypto-on-chain-data",
+    "lessonNumber": 4,
+    "chapterNumber": 2,
+    "chapterTitle": "Chapter 2: Reading the Crypto Market",
+    "title": "On-Chain Data",
+    "keyIdea": "A public blockchain lets you count everything and identify nobody — so on-chain metrics measure addresses, not people, and almost every headline built on them adds an interpretation the ledger cannot support.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Chapter 1, Lesson 2 established something that sounded like a technical detail and is actually the foundation of this lesson: a public blockchain's ledger is public. Every transaction ever made sits in a file that anyone can download. Lesson 6 gave you the beginner's tool for reading it, the block explorer, which looks up one transaction at a time."
+      },
+      {
+        "type": "paragraph",
+        "text": "On-chain data is what you get when you stop looking up one transaction and start counting all of them."
+      },
+      {
+        "type": "definition",
+        "term": "On-Chain Data",
+        "text": "Measurements produced by reading a public blockchain's own ledger and aggregating it. Nothing is surveyed, estimated from samples, or reported by a company. The raw input is the same file every participant already holds."
+      },
+      {
+        "type": "paragraph",
+        "text": "Stop and notice how strange this is. In the stock market, you cannot see who owns what. Ownership sits inside brokerage records that are private by law and by business practice. Large holdings surface only in delayed regulatory filings, and small holdings never surface at all. In forex, there is no central ledger to look at, because there is no central market."
+      },
+      {
+        "type": "paragraph",
+        "text": "Crypto is different. The complete transaction history of a public chain is downloadable, free, and updated every few minutes. That is a genuinely new kind of visibility, and it is why this data source exists at all."
+      },
+      {
+        "type": "paragraph",
+        "text": "Now here is the honest part, and it runs through the rest of the lesson. The ledger records addresses moving amounts. It does not record people, intentions, ownership, or reasons. Everything a headline on-chain metric claims about people is added afterwards by an analyst, using assumptions. The raw data is precise. The interpretation is not."
+      },
+      {
+        "type": "paragraph",
+        "text": "Before you can judge these numbers you need to know what each one literally counts. Read each definition twice: once for what it includes, once for what it quietly leaves out."
+      },
+      {
+        "type": "definition",
+        "term": "Active Addresses",
+        "text": "The count of unique addresses that appeared in at least one successful transaction during a period, as a sender or a receiver. An address active five times in a day is counted once. Coin Metrics and Glassnode, two of the larger data providers, both define the metric this way in their public documentation."
+      },
+      {
+        "type": "paragraph",
+        "text": "Transaction count is simpler still: how many transactions were included in blocks during the period. It measures usage of block space. It does not measure value, users, or purpose, and one transaction can move a fraction of a cent or a billion dollars."
+      },
+      {
+        "type": "definition",
+        "term": "Exchange Flows",
+        "text": "The value of coins moving into addresses an analyst believes belong to a centralized exchange (inflows), and out of them (outflows). Net flow is inflows minus outflows over a period."
+      },
+      {
+        "type": "paragraph",
+        "text": "Note the phrase \"an analyst believes.\" Nothing in the ledger labels an address as belonging to any exchange. That label is added by the data provider."
+      },
+      {
+        "type": "definition",
+        "term": "Whale",
+        "text": "Informal term for an address, or a cluster of addresses, holding a large amount of a coin. There is no standard threshold. Providers publish supply-distribution bands, such as addresses holding at least 1,000 BTC, and different providers draw the lines differently."
+      },
+      {
+        "type": "paragraph",
+        "text": "One more metric is worth naming because it appears constantly in cycle commentary. Realized capitalization values every coin not at today's price but at the price it last moved at on-chain, then adds those values together. It is a rough estimate of what the market collectively paid for its coins. The idea was introduced in 2018 by Nic Carter and Antoine Le Calvez, and Coin Metrics publishes it as one of its flagship metrics. Its original purpose was modest and sensible: to stop coins that have not moved since 2010, and are probably lost forever, from being valued at today's price."
+      },
+      {
+        "type": "example",
+        "text": "Two different pieces of information about the same day. Metric A: 950,000 unique Bitcoin addresses transacted. Metric B: 12,000 BTC moved into addresses labelled as exchanges. Metric A is a fact about the ledger and requires no assumptions. Metric B requires knowing which addresses belong to exchanges, which the ledger does not say. They look equally solid on a chart. They are not."
+      },
+      {
+        "type": "paragraph",
+        "text": "This is the part to remember if you remember nothing else. Chapter 1, Lesson 4 taught you that a blockchain recognizes no owner other than whoever holds the private key. It checks a signature, not an identity, and not an intent. That is not a limitation of one chain — it is the design. A public blockchain has no concept of a person at all."
+      },
+      {
+        "type": "paragraph",
+        "text": "So every metric built on addresses measures addresses. Turning an address count into a user count requires three separate leaps, and every one of them fails in a predictable direction."
+      },
+      {
+        "type": "paragraph",
+        "text": "First, one person can control thousands of addresses. Modern wallet software generates a fresh address for every incoming payment and a fresh address for every bit of change left over from a transaction. This is standard privacy practice, not evasive behaviour. A single ordinary user can accumulate hundreds of addresses without ever choosing to."
+      },
+      {
+        "type": "paragraph",
+        "text": "Second, one address can hold the money of millions of people. Chapter 1, Lesson 5 showed you what actually happens when you buy on a centralized exchange: the exchange holds the coins in wallets it controls, and your balance is a row in the company's internal database. Your trades never touch the blockchain. So an exchange with ten million customers may show up on-chain as a handful of addresses that transact a few thousand times a day."
+      },
+      {
+        "type": "paragraph",
+        "text": "Third, much of the traffic is internal. Exchanges consolidate deposits, rotate wallets, and move coins between hot and cold storage as routine operations. Every one of those movements creates addresses and transactions that represent no user, no decision and no trade."
+      },
+      {
+        "type": "image",
+        "svg": "crypto-02-4-address-not-person",
+        "alt": "Diagram contrasting one user who controls many addresses on a blockchain with one exchange address that pools the balances of many users, showing that a count of active addresses matches neither the number of people nor the number of accounts",
+        "caption": "One user creates many addresses; one exchange address hides millions of users. The two counting errors run in opposite directions and neither can be measured."
+      },
+      {
+        "type": "paragraph",
+        "text": "The two errors do not cancel out. They run in opposite directions and their sizes are unknown, which is worse than a single known bias. You cannot correct for them, because nobody can measure them."
+      },
+      {
+        "type": "paragraph",
+        "text": "The providers say this themselves, which is worth noticing. Glassnode's documentation explains that its clustering work addresses only one of the two problems — grouping many addresses under one controller — and deliberately does not address the second, where one address holds many people's funds. For that reason the company calls its numbers entities rather than users or individuals. Coin Metrics' documentation makes the parallel point that active addresses are a proxy for usage and a poor proxy for unique people."
+      },
+      {
+        "type": "warning",
+        "text": "When a headline says that adoption hit a record because 1.1 million addresses were active, it has quietly swapped a count of cryptographic identifiers for a count of human beings. The correct reading is narrower and duller: 1.1 million addresses transacted. That is compatible with adoption growing, with one exchange restructuring its wallets, or with a single service batching its payouts differently. The metric cannot tell you which."
+      },
+      {
+        "type": "paragraph",
+        "text": "If the ledger does not say which addresses belong to an exchange, or to one owner, how does any provider publish exchange balances and whale counts? They infer it, using heuristics — rules of thumb that are usually right."
+      },
+      {
+        "type": "definition",
+        "term": "Address Clustering",
+        "text": "Grouping addresses that are probably controlled by the same party, using patterns in transaction structure rather than any stated identity. The output is an estimate produced by a rule, not a fact recorded on the ledger."
+      },
+      {
+        "type": "paragraph",
+        "text": "The foundational academic work here is Meiklejohn, Pomarole, Jordan, Levchenko, McCoy, Voelker and Savage, \"A Fistful of Bitcoins: Characterizing Payments Among Men with No Names,\" published at the ACM Internet Measurement Conference in 2013. It is worth knowing what they did, because every commercial analytics product still rests on the same two ideas."
+      },
+      {
+        "type": "paragraph",
+        "text": "Their first rule: if two addresses are used together as inputs to the same transaction, the same party probably controls both. Applied across the Bitcoin ledger of the time, this collapsed roughly 12 million public keys into about 5.5 million clusters. Their second rule identified one-time change addresses, and applied on top of the first it cut the total to about 3.3 million clusters. They found about 3.5 million change addresses this way, with an estimated false positive rate of 0.17 percent."
+      },
+      {
+        "type": "paragraph",
+        "text": "Then, crucially, they had to make purchases themselves. To attach a real-world name to any cluster, the researchers made their own transactions with exchanges and services, then traced where their coins went. Through that manual work they tagged about 1.9 million public keys, around 16 percent of the total, with a real-world service. The other 84 percent stayed anonymous."
+      },
+      {
+        "type": "warning",
+        "text": "Read that ratio again. In the paper that founded this field, the majority of the ledger could not be attached to any identity, and the identities that were attached came from the researchers physically transacting with services, one at a time. Commercial providers have far more resources and better methods today. They still start from the same position: the ledger volunteers no names."
+      },
+      {
+        "type": "paragraph",
+        "text": "The heuristics have known failure modes, and later academic work measured them. Möser and Narayanan's \"Resurrecting Address Clustering in Bitcoin,\" presented at Financial Cryptography and Data Security in 2022, examined change-address detection against a constructed ground-truth set and developed methods to detect and prevent cluster collapse — the failure in which a single bad link merges two unrelated clusters, then merges their neighbours, until one enormous cluster absorbs entities that have nothing to do with each other. Meanwhile the input-sharing rule is broken deliberately by mixing protocols such as CoinJoin, where unrelated users combine inputs on purpose, and the rule then reports them as one owner."
+      },
+      {
+        "type": "paragraph",
+        "text": "Note also what Meiklejohn's own paper calls an idiom of use. The change-address rule works because wallet software currently behaves a certain way. Change the software convention and the rule degrades, silently, with no error message."
+      },
+      {
+        "type": "paragraph",
+        "text": "There is one more consequence that surprises people. Because labels are continuously revised as clustering improves, the historical series can change. Glassnode's own transparency notice states that its exchange metrics come from verified addresses, external sources and clustering algorithms, that complete accuracy remains out of reach, and that recent data points may be revised as labels update. A chart you screenshot today may not match the same chart next month."
+      },
+      {
+        "type": "paragraph",
+        "text": "Exchange flows are the most heavily traded-on on-chain metric, and the clearest case of a number that underdetermines its own interpretation. The standard story goes: coins leaving exchanges means investors are moving to self-custody to hold long term, which is bullish. Coins arriving at exchanges means investors are preparing to sell, which is bearish."
+      },
+      {
+        "type": "paragraph",
+        "text": "That story is a hypothesis. It is sometimes true. The problem is that the same measurement is equally consistent with several other explanations, and the ledger contains nothing that lets you choose between them."
+      },
+      {
+        "type": "paragraph",
+        "text": "Consider a large outflow from an exchange address. It could be a long-term holder withdrawing to cold storage. It could be the exchange itself rotating coins from a hot wallet to a cold wallet, which is an internal operation with no owner change at all. It could be a custody migration, where an institution moves coins to a different custodian. It could be the exchange's side of an over-the-counter deal that was already agreed and priced off-chain. It could be a provider re-labelling an address that was always the exchange's. Only the first of those is the accumulation story. All five produce the same on-chain measurement."
+      },
+      {
+        "type": "example",
+        "text": "On 14 March 2021, the analytics firm CryptoQuant issued an alert reporting an aggregated inflow of 18,961 BTC — worth about 1.145 billion US dollars, implying a price near 60,400 dollars per coin — to the exchange Gemini, and warned of downside risk from whales selling. Bitcoin fell from roughly 60,500 dollars to roughly 54,000 dollars, a drop of about 11 percent, and many commentators blamed the alert for the panic. The following day the rival firm Glassnode publicly disputed the reading, saying the movement was internal to Gemini rather than a whale depositing. CryptoQuant then said the transfer had come from BlockFi and was technically external, defended its data, and announced it would remove definitive wording such as warnings about dumping from its alerts so users could draw their own conclusions."
+      },
+      {
+        "type": "paragraph",
+        "text": "Look closely at that example, because it demonstrates three things at once. Two of the most respected firms in the industry read the same public ledger and reached opposite conclusions about what had happened. The disagreement was not about arithmetic — it was about attribution, which is inference. And the market moved billions of dollars on the interpretation before the disagreement was resolved."
+      },
+      {
+        "type": "warning",
+        "text": "Cross-source figures for the same metric are not comparable. Providers use different address label sets, different clustering rules, different exchange coverage, and different proprietary adjustments. Two exchange-balance charts that disagree are not evidence that one is lying. They are evidence that you are looking at two different estimates of an unobservable quantity. Never combine numbers from two providers in the same comparison, and always name the provider when you cite a figure."
+      },
+      {
+        "type": "paragraph",
+        "text": "Whale metrics carry the same problem in a sharper form. The largest addresses on most chains are exchange and custodian wallets, so a naive list of top holders is largely a list of institutions holding other people's coins. And whale accumulation narratives are usually built so that no observation can refute them: if the price rises, whales were accumulating; if it falls, whales were distributing; if it moves sideways, whales are quietly accumulating. A story that survives every outcome told you nothing before the outcome arrived."
+      },
+      {
+        "type": "paragraph",
+        "text": "On-chain metrics are marketed as an information advantage. Apply the same test the course applies everywhere else: not whether it is interesting, but whether anyone has tested that it works, on data it was not built on."
+      },
+      {
+        "type": "paragraph",
+        "text": "Start by separating two claims. A descriptive claim says what happened: coins moved, addresses transacted, supply distribution shifted. Those claims are checkable, and within the limits already described they are largely sound. A predictive claim says what happens next. That is a different claim requiring different evidence."
+      },
+      {
+        "type": "paragraph",
+        "text": "Here is the honest state of the evidence, as verified for this lesson. The academic literature on on-chain metrics as return predictors is small and recent, and it is nothing like the decades of testing behind, say, the forward premium puzzle you met in the Forex track. The most specific published result found was Klaus Grobys, Sebastian Näsman and Davide Sandretto, \"Using on-chain data to predict Bitcoin cycles,\" in Research in International Business and Finance in 2026. They tested three well-known on-chain indicators — net unrealized profit and loss, the market-value-to-realized-value Z-score, and cumulative value days destroyed — as simple rule-based strategies over 7 December 2013 to 12 April 2025. They report that the rules beat buying and holding, with the Sharpe ratio rising from 0.45 for buy-and-hold to 1.28 for the best rule, and that the results survive a Monte Carlo comparison against randomly timed entries."
+      },
+      {
+        "type": "paragraph",
+        "text": "That is a real finding from a peer-reviewed journal, and this course does not dismiss findings it dislikes. But read the sample honestly. It covers three complete market cycles. Three cycles is three observations of the thing being predicted, however many daily data points sit between them. The indicator thresholds are evaluated over the same history that made those indicators famous in the first place. No independent replication on later, unseen data was found while preparing this lesson, because there is barely any later data to replicate on."
+      },
+      {
+        "type": "paragraph",
+        "text": "The Forex track named this hazard already. Data snooping is what happens when a rule is selected by searching a history, and then presented as though it had been tested on that history. Every popular on-chain indicator you will encounter was chosen, from a very large space of possible indicators and thresholds, because it looked good on the chart it was built on."
+      },
+      {
+        "type": "warning",
+        "text": "A chart showing an on-chain metric overlaid on price, with arrows at the turning points, proves nothing. It is the same picture that Foundations Chapter 3 taught you to distrust when it was drawn with chart patterns. The questions are unchanged. How many indicators and thresholds were tried before this one was shown to you? What period was it fitted on, and what period was it then tested on? What would it have signalled at the times it was wrong, and are those times on the chart? If a claim cannot survive those four questions, it is a picture, not evidence."
+      },
+      {
+        "type": "practice",
+        "text": "Find any post claiming an on-chain metric called a top or a bottom. Write down four things: (1) which provider's version of the metric is shown, (2) the exact rule that generates the signal, including the numeric threshold, (3) every past instance where that exact rule fired, including the ones that failed, and (4) whether the rule existed before the dates it is being credited for. Most posts fail at step 2, because there is no stated rule, only a chart and an arrow."
+      },
+      {
+        "type": "paragraph",
+        "text": "What to look for from here. Translate every address-based figure back before reacting, because active addresses means addresses transacted and nothing more. Ask which provider produced any exchange flow figure, then list at least three explanations for the flow other than the one being offered. When two sources disagree about the same metric, check whether they use different label sets rather than assuming one is wrong. When an indicator is overlaid on price, ask what period it was fitted on and what period it was tested on. Set aside any narrative that explains every outcome, because a story that cannot be wrong cannot be informative. And treat historical on-chain series as revisable: note the provider and the date whenever you record a figure."
+      }
+    ],
+    "quiz": [
+      {
+        "question": "A report states that active addresses on a chain rose 20 percent last month and calls this proof of rising adoption. What is the most accurate objection?",
+        "options": [
+          "Active addresses are private data and cannot be measured",
+          "Addresses are not people — one user can control many addresses and one exchange address can represent millions of users, so the count is compatible with several explanations",
+          "Active address data is only published quarterly, so the figure is out of date",
+          "Adoption can only be measured by exchange trading volume"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — the count itself is precise and public, but the translation from addresses to human users is the error. Wallet software creates many addresses per person, exchanges pool many people behind few addresses, and routine internal transfers add addresses that represent nobody.",
+        "feedbackWrong": "Not quite — the data is public and accurate as a count. The problem is that it counts addresses, not people, and the two distortions (many addresses per user, many users per exchange address) run in opposite directions and cannot be netted out."
+      },
+      {
+        "question": "An analyst reports a large outflow of coins from a major exchange and concludes that investors are accumulating for the long term. What is the correct assessment of that conclusion?",
+        "options": [
+          "It is proven, because the blockchain is a public and accurate record",
+          "It is false, because exchange outflows are always internal transfers",
+          "It is one hypothesis among several — the same measurement is equally consistent with wallet rotation, custody migration, or an over-the-counter settlement",
+          "It is unverifiable, because exchange data is not recorded on-chain"
+        ],
+        "correctIndex": 2,
+        "feedbackCorrect": "Correct — the movement is real and recorded, but why it happened and whether ownership changed are not. The March 2021 dispute over an 18,961 BTC transfer involving Gemini is the concrete case: two leading firms read the same ledger and disagreed about whether a whale had deposited or an exchange had moved its own coins.",
+        "feedbackWrong": "Not quite — the outflow is genuinely recorded, so it is neither unverifiable nor always internal. The point is that the ledger does not record the reason, so accumulation is only one of several explanations that fit the same measurement."
+      },
+      {
+        "question": "Two analytics providers publish exchange balance charts for the same coin, and the numbers differ substantially. What does this most likely indicate?",
+        "options": [
+          "One provider is falsifying its data",
+          "The blockchain recorded the transactions incorrectly",
+          "The providers use different sets of labelled exchange addresses and different clustering rules, so they are publishing two different estimates of a quantity nobody can observe directly",
+          "One chart is simply older than the other"
+        ],
+        "correctIndex": 2,
+        "feedbackCorrect": "Correct — no exchange label exists on the ledger. Each provider builds its own label set from verified addresses, third-party sources, and clustering heuristics, and revises it over time. Glassnode's own transparency notice states that complete accuracy is out of reach and that recent data points can be revised.",
+        "feedbackWrong": "Not quite — the ledger itself is not in dispute. What differs is the inference layered on top of it: which addresses each provider believes belong to an exchange, which is an estimate that each firm builds and revises differently."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "On-Chain Data",
+        "def": "Measurements produced by reading and aggregating a public blockchain's own ledger."
+      },
+      {
+        "term": "Active Addresses",
+        "def": "The count of unique addresses appearing in at least one successful transaction in a period."
+      },
+      {
+        "term": "Exchange Flows",
+        "def": "Value moving into or out of addresses an analyst has labelled as belonging to an exchange."
+      },
+      {
+        "term": "Address Clustering",
+        "def": "Grouping addresses probably controlled by the same party, using transaction-pattern heuristics rather than stated identity."
+      },
+      {
+        "term": "Whale",
+        "def": "Informal term for an address or cluster holding a large amount of a coin; the threshold is not standardized."
+      },
+      {
+        "term": "Realized Capitalization",
+        "def": "The total value of all coins priced at the level each one last moved at on-chain, rather than at today's price."
+      }
+    ]
+  },
+  {
+    "id": "crypto-sentiment-narratives-and-hype-cycles",
+    "lessonNumber": 5,
+    "chapterNumber": 2,
+    "chapterTitle": "Chapter 2: Reading the Crypto Market",
+    "title": "Sentiment, Narratives & Hype Cycles",
+    "keyIdea": "With no cash flows to anchor value, crypto prices are moved by stories that validate themselves through the price they cause - and the one sentiment tool with real information content is the funding rate, which shows you crowded positioning but never tells you when it unwinds.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Foundations taught you that an asset's value comes from what it does for someone. A company's share is a claim on that company's future profits. A bond pays a coupon. A rental property produces rent. Those payments are not a guarantee of price, but they are an anchor. When a share price runs far ahead of the profits underneath it, an analyst can put a number on the gap and argue about it."
+      },
+      {
+        "type": "paragraph",
+        "text": "Most crypto assets have no such number. A bitcoin pays no dividend. A token issues no earnings report. There is no coupon, no rent, and nothing to discount. Chapter 1, Lesson 1 made this point about supply: a hard cap tells you nobody can print more, and tells you nothing about what one should cost. This lesson makes the matching point about demand."
+      },
+      {
+        "type": "paragraph",
+        "text": "Demand for a crypto asset comes mostly from what people believe it will be worth to someone else later. That belief is carried by a story."
+      },
+      {
+        "type": "definition",
+        "term": "Narrative",
+        "text": "The shared story a market tells itself about why an asset should be worth more. In crypto a narrative is usually a claim about future adoption or future usefulness - not a measurement of anything happening now."
+      },
+      {
+        "type": "paragraph",
+        "text": "Here is the honest consequence. In an equity market, a bad story eventually collides with an earnings statement. In crypto there is nothing for the story to collide with. That does not make crypto worthless, and it does not make every narrative false. It means the usual brake is missing, so stories can run further and last longer before anything contradicts them."
+      },
+      {
+        "type": "warning",
+        "text": "This cuts both ways, and the downside is the part people forget. With no cash flows to argue against a story, there is also nothing to argue against a panic. \"It has fallen 80%, so it must be cheap\" has no more foundation than \"it has doubled, so it must be going higher.\" Both claims need an anchor that is not there."
+      },
+      {
+        "type": "paragraph",
+        "text": "Chapter 2, Lesson 2 already showed you one narrative in detail: the four-year cycle built around the halving, examined against what the data can and cannot support. That lesson taught the specific story. This one teaches the shape that all of them share."
+      },
+      {
+        "type": "paragraph",
+        "text": "Narratives follow a recognisable structure, and the structure repeats even when the subject changes. First, a genuine development happens - a protocol ships something, a regulator says something, an institution buys something. Second, a simple story forms around it, compressing a complicated technical development into one sentence a newcomer can repeat. Third, prices rise and the story spreads, because rising prices attract attention and attention brings buyers."
+      },
+      {
+        "type": "paragraph",
+        "text": "Fourth, capital rotates in. Money moves out of whatever the last story was and into this one, and Chapter 2, Lesson 1's point about thin order books matters here: rotation into a small market moves its price a long way. Fifth, the story stops working and capital rotates out - not because it was disproved, since usually nothing is ever disproved, but because attention moves to the next one."
+      },
+      {
+        "type": "paragraph",
+        "text": "Every cycle in crypto's history has had a rotating cast of themes like this. This course will not tell you which theme is running now, and will never tell you which token expresses it. That is deliberate, and it is worth being clear about why."
+      },
+      {
+        "type": "warning",
+        "text": "Naming the current narrative would date this lesson within months and would function as a recommendation whether or not it was meant as one. What generalises is the structure: a real development, a simplified story, price confirmation, rotation in, rotation out. Learn to recognise the shape, and you can read the next one without being told about it."
+      },
+      {
+        "type": "example",
+        "text": "Notice what a narrative does to the burden of proof. A story explains why an asset should be worth more. Buying pressure then makes the price go up. Nothing about the rising price tested the story - the price rose because people acted on it. But to a newcomer arriving at the point where prices are already rising, the chart looks like evidence. The story and its proof have quietly become the same event."
+      },
+      {
+        "type": "definition",
+        "term": "Reflexivity",
+        "text": "A feedback loop in which participants' beliefs change prices, and the changed prices are then treated as evidence for those beliefs. The market's opinion becomes part of what the market is measuring. The financier George Soros popularised the term for financial markets, most fully in a 2013 paper in the Journal of Economic Methodology."
+      },
+      {
+        "type": "paragraph",
+        "text": "Soros's argument is that prices are not a clean mirror of underlying facts. Participants act on an imperfect understanding of a situation, and their actions then change the situation itself. In his framing markets therefore drift away from equilibrium rather than toward it, because the feedback runs in a self-reinforcing direction for long stretches."
+      },
+      {
+        "type": "paragraph",
+        "text": "You have already seen a pure version of this. In Chapter 1, Lesson 7, an algorithmic stablecoin held its peg because people believed it would hold. Confidence supported the mechanism, and the working mechanism supported confidence. When confidence broke, the same loop ran backwards and destroyed the peg it had been holding up. That was reflexivity in its most extreme form - the belief was the entire backing."
+      },
+      {
+        "type": "image",
+        "svg": "crypto-02-5-reflexivity-loop",
+        "alt": "Diagram of the reflexive loop in a market with no cash flows: a story attracts buying, buying raises the price, the higher price is read as proof of the story, which attracts more buying - and the identical circle running in reverse, where doubt causes selling, falling prices are read as proof the story was wrong, and more selling follows",
+        "caption": "The same loop runs in both directions. The price move never tested the story, because the price moved only because people acted on the story."
+      },
+      {
+        "type": "paragraph",
+        "text": "The loop is symmetric, and that symmetry is the important part. Read the circle one way and you have a boom: story, buying, higher price, apparent validation, more buying. Read the same circle backwards and you have a collapse: doubt, selling, lower price, apparent refutation, more selling. Nothing about the underlying asset needed to change in either direction."
+      },
+      {
+        "type": "warning",
+        "text": "Reflexivity is not a prediction tool. It tells you that a self-reinforcing loop can run much further than a reasonable valuation would suggest - in both directions - and that no part of the loop tells you when it turns. Anyone who claims reflexivity lets them time a top has misunderstood the idea. It describes the mechanism, not the timing."
+      },
+      {
+        "type": "definition",
+        "term": "Market Sentiment",
+        "text": "The overall mood of participants toward an asset, from fear to greed. Sentiment is not a fact about the asset. It is an aggregate of how people currently feel about it, which is why it can change fast without anything else changing."
+      },
+      {
+        "type": "paragraph",
+        "text": "Sentiment cannot be measured directly, so the industry builds proxies for it. The most widely quoted one in crypto is the Crypto Fear & Greed Index, published by the site alternative.me since 2018. It outputs a single number from 0 (extreme fear) to 100 (extreme greed), updated daily."
+      },
+      {
+        "type": "definition",
+        "term": "Fear & Greed Index",
+        "text": "A composite sentiment score, published daily on a 0 to 100 scale, built by combining several market and attention measures into one number. It aggregates existing data; it does not measure any fundamental property of the assets themselves."
+      },
+      {
+        "type": "paragraph",
+        "text": "Beginners often treat it as a reading from an instrument. It is not. It is an arithmetic blend, and knowing the recipe changes how much weight you give the output. The published weights are: volatility 25%, measured against 30-day and 90-day averages; market momentum and volume 25%, measured the same way; social media interaction 15%; surveys 15%, which the publisher currently has paused; Bitcoin dominance 10%; and Google Trends search interest 10%."
+      },
+      {
+        "type": "paragraph",
+        "text": "Now read that list as an engineer rather than a trader. Half the index - volatility and momentum, 25% each - is computed from recent price and volume. Bitcoin dominance is also a market-price quantity. So a majority of the score is a restatement of what prices recently did, wearing the label \"sentiment.\""
+      },
+      {
+        "type": "example",
+        "text": "That composition predicts exactly the criticism the index has attracted, and the research has found it. A 2026 study in the Elsevier journal Finance Research Open, titled \"Do bitcoin returns move sentiment? Evidence from the crypto fear & greed index,\" ran a vector autoregression on daily data from 2018 to 2025. It reported that changes in the index did not Granger-cause Bitcoin returns and gave no out-of-sample forecasting gain - but that returns did Granger-cause changes in the index. A return shock produced a sharp, short-lived swing in the sentiment score, while a sentiment shock had negligible effect on returns. In that data, the arrow runs from price to sentiment, not the other way."
+      },
+      {
+        "type": "paragraph",
+        "text": "Be careful not to accept that as settled either, because the literature genuinely disagrees. Cavalheiro, Vieira and Thue (2024), in Review of Behavioral Finance, applied Granger causality and smooth quantile regression to weekly Bitcoin and Ethereum data from July 2022 to June 2023, and reported that the index did predict returns. Gaies, Nakhli, Sahut and Schweizer (2023), in The North American Journal of Economics and Finance, used a rolling-window bootstrap causality test over May 2018 to December 2020 and found something more interesting than either result: the causality between fear sentiment and Bitcoin prices was not constant. It appeared, disappeared, and changed sign across subperiods, and shifted again around the pandemic."
+      },
+      {
+        "type": "warning",
+        "text": "Put those three findings together and the honest summary is this: the relationship between this index and future returns is unstable across samples, frequencies and periods. That is precisely the condition under which a fixed rule such as \"extreme fear means buy\" cannot be trusted. The contrarian rule is repeated constantly in crypto media. Searching for evidence behind it turns up confident blog claims of large outperformance with no methodology attached, alongside peer-reviewed work that contradicts them. Weak evidence, loudly repeated, is the exact pattern this course teaches you to distrust."
+      },
+      {
+        "type": "paragraph",
+        "text": "The other common family of sentiment tools is social-volume metrics - counts of how often an asset is mentioned, and automated scoring of whether those mentions are positive or negative. Attention does have a measurable relationship with crypto prices. Kristoufek (2013), in Scientific Reports, volume 3, article 3415, compared Bitcoin prices with Google Trends and Wikipedia search volumes and found a strong positive correlation on a log-log scale, roughly 0.88 for Google Trends and 0.83 for Wikipedia. The paper's sharper finding is an asymmetry: rising interest pushed prices further up when the price was already above its trend, and further down when it was below. Attention amplified the direction already in motion rather than pointing in one."
+      },
+      {
+        "type": "paragraph",
+        "text": "Steinert and Herff (2018), in PLOS ONE, went further and reported that short-term altcoin returns could be predicted from Twitter activity and sentiment across 181 altcoins. Treat that as suggestive rather than as a tool. The samples in this literature are short, the platforms have changed enormously since, and social data has a specific contamination problem."
+      },
+      {
+        "type": "warning",
+        "text": "Social volume is the sentiment measure that is easiest to fake. Automated accounts, paid promotion, and coordinated posting all raise mention counts without a single additional person actually believing anything. Studies of crypto discussion on Twitter have flagged meaningful shares of bot-originated posts. A spike in mentions may be a market waking up, or it may be a marketing budget. The metric cannot tell them apart, so you must."
+      },
+      {
+        "type": "paragraph",
+        "text": "Sentiment surveys ask what people say. Funding rates show you what people have actually done with money, which is a much harder thing to fake. To read them you need one piece of market plumbing."
+      },
+      {
+        "type": "definition",
+        "term": "Perpetual Swap (Perp)",
+        "text": "A derivative contract that tracks an asset's price and never expires. Ordinary futures expire on a set date, which forces their price back to the spot price. A perpetual has no such date, so it needs another mechanism to stay tethered to spot."
+      },
+      {
+        "type": "definition",
+        "term": "Funding Rate",
+        "text": "The periodic payment that flows directly between holders of long and short perpetual positions to keep the perpetual price close to the spot price. When the perpetual trades above spot the rate is positive and longs pay shorts. When it trades below spot the rate is negative and shorts pay longs."
+      },
+      {
+        "type": "paragraph",
+        "text": "The logic is a pressure valve. If crowds of buyers push the perpetual above spot, holding a long position starts costing money every few hours and holding a short starts earning it. That cost discourages more longs and attracts shorts, which pulls the perpetual back toward spot. The exchange does not take this money - on major venues it moves between traders, so it is a transfer, not a fee."
+      },
+      {
+        "type": "paragraph",
+        "text": "On Binance, Bybit and OKX, funding settles every 8 hours, at 00:00, 08:00 and 16:00 in the venue's stated time zone. Some venues and some contracts settle far more often - Hyperliquid pays hourly, computing the same 8-hour rate and paying one eighth of it each hour. Check the interval on the venue you are actually looking at, because a rate quoted per 8 hours and a rate quoted per hour are not comparable numbers."
+      },
+      {
+        "type": "example",
+        "text": "Suppose you hold a long perpetual position with 10,000 dollars of notional exposure, and funding is +0.01% per 8-hour period. You pay 10,000 x 0.0001 = 1 dollar at each settlement. There are three settlements a day, so that is 3 dollars a day, or 0.03% of your notional daily. Held for 30 days at the same rate, that is 90 dollars. Annualised without compounding, 0.03% a day is 10.95% a year. Now suppose funding rises to +0.1% per period, which happens in strongly one-sided markets. The same position pays 30 dollars a day - an annualised 109.5%. The price has not moved at all in either case."
+      },
+      {
+        "type": "paragraph",
+        "text": "That example is why the rate is worth watching, but its real use is different from what the number costs you."
+      },
+      {
+        "type": "definition",
+        "term": "Positioning",
+        "text": "How market participants are currently arranged between long and short exposure, and how one-sided that arrangement is. Positioning is a description of the present, not a forecast."
+      },
+      {
+        "type": "paragraph",
+        "text": "Read funding as a positioning proxy. Persistently positive funding means longs are paying to stay long, which means the long side is crowded enough to bid the perpetual above spot and keep it there. Persistently negative funding means the reverse. That is genuinely useful information, because it tells you which side of the market is carrying a cost, and therefore which side has the weaker grip on its position."
+      },
+      {
+        "type": "paragraph",
+        "text": "The theory here is real and recent. Ackerer, Hugonnier and Jermann's \"Perpetual Futures Pricing\" - NBER working paper 32936 (2024), subsequently published in Mathematical Finance - derives no-arbitrage prices for perpetual contracts and shows how the funding payment anchors the perpetual to spot. A separate working paper, He, Manela, Ross and von Wachter's \"Fundamentals of Perpetual Futures\" (arXiv 2212.06888, also on SSRN), derives the same no-arbitrage relationship and measures the deviations empirically, reporting that crypto perpetuals deviate from no-arbitrage prices more than traditional currency markets do, that the deviations move together across currencies, and that they have shrunk over time. Note that this second paper was still circulating as a working paper, not a peer-reviewed journal article, when this lesson was written."
+      },
+      {
+        "type": "warning",
+        "text": "Crowded positioning tells you what could unwind violently. It does not tell you when. Funding can stay extremely positive for weeks while price keeps rising, and traders who shorted \"because funding was too high\" get carried out well before any reversal arrives. Every crowded trade looks obvious afterwards and pays nothing for being early. Treat elevated funding as a statement about fragility, never as an entry trigger."
+      },
+      {
+        "type": "paragraph",
+        "text": "You will meet the rest of this machinery properly in Chapter 3, Lesson 3, which covers perpetuals, margin and liquidation cascades as a risk topic. This lesson gives you only enough to read the number. Reading funding does not require you to trade perpetuals, and for most beginners the sensible use of this tool is exactly that: read it, and stay in spot."
+      },
+      {
+        "type": "warning",
+        "text": "One last caution that applies to every tool in this lesson. A sentiment reading, a mention count and a funding rate are inputs to a question you are asking, never a trigger that acts on your behalf. And treat a compelling narrative as a reason for extra scrutiny rather than less - the more obviously right a story feels, the more people have already bought it. When someone with a large audience promotes an asset, assume they may already hold a position that your buying would benefit, and ask whether they have disclosed it. Chapter 4 covers this failure mode, and outright fraud, in full."
+      },
+      {
+        "type": "practice",
+        "text": "Pick any asset that has moved sharply in the last month and reconstruct its loop on paper. Write down the story being told about it in one sentence. Then ask: what evidence is offered for that story, and how much of that evidence is just the price itself? Next, look up the current funding rate for that asset on any venue that publishes one, note the settlement interval, and write down what the sign tells you about which side is crowded - and then write down, honestly, that it tells you nothing about when. Finally, check the Fear & Greed reading for the same day and ask what it told you that the price chart had not already."
+      }
+    ],
+    "quiz": [
+      {
+        "question": "Why do narratives move crypto prices more than they move the price of an established company's shares?",
+        "options": [
+          "Crypto traders are less intelligent than stock investors",
+          "Crypto has no cash flows, earnings or dividends, so there is no fundamental anchor a story has to collide with",
+          "Crypto markets are open 24 hours a day",
+          "Stories are legally required to be true in stock markets"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct - a share price can be checked against an earnings statement, while most crypto assets produce no cash flows at all. The missing brake is what lets narratives run further, and it cuts both ways: there is equally little to contradict a panic.",
+        "feedbackWrong": "Not quite - the reason is structural, not about who is trading. Most crypto assets produce no cash flows, so a story about future adoption has nothing measurable to collide with. That missing anchor works in both directions, on the way up and on the way down."
+      },
+      {
+        "question": "The Crypto Fear & Greed Index gives volatility a 25% weight and market momentum and volume another 25%. What should a careful reader conclude from that?",
+        "options": [
+          "The index is a direct measurement of investor psychology",
+          "The index is 50% independent of price, so it adds new information",
+          "At least half the score is recomputed from recent price and volume, so much of it restates what the chart already showed",
+          "The index predicts returns because volatility predicts returns"
+        ],
+        "correctIndex": 2,
+        "feedbackCorrect": "Correct - volatility and momentum/volume are both derived from market data, and Bitcoin dominance is too. A 2026 study in Finance Research Open found that returns Granger-caused changes in the index rather than the reverse, which is what a score built largely from prices would look like. Other studies disagree, so the honest reading is that the relationship is unstable rather than settled.",
+        "feedbackWrong": "Not quite - volatility and momentum/volume are computed from market data, so at least half the score is a restatement of recent price action. That is why one study found returns driving the index rather than the index driving returns, though the literature genuinely disagrees on this point."
+      },
+      {
+        "question": "The funding rate on a Bitcoin perpetual swap has been strongly positive for two weeks. What does that tell you?",
+        "options": [
+          "The price is about to fall, so you should open a short position",
+          "Long positions are crowded enough to hold the perpetual above spot, and are paying for the privilege - which says something about fragility, not about timing",
+          "The exchange is charging higher fees this month",
+          "Shorts are currently paying longs"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct - positive funding means longs pay shorts, which happens when the perpetual trades above spot. Persistent positive funding is a positioning proxy: the long side is crowded and carrying a cost. It says nothing about when that crowd unwinds, and funding can stay elevated for weeks while price keeps rising.",
+        "feedbackWrong": "Not quite - positive funding means longs pay shorts because the perpetual is trading above spot, so the long side is crowded. That is a statement about fragility, not a timing signal, and it is a transfer between traders rather than an exchange fee."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Narrative",
+        "def": "The shared story a market tells itself about why an asset should be worth more."
+      },
+      {
+        "term": "Reflexivity",
+        "def": "A loop where beliefs move prices and the price move is then treated as evidence for the belief."
+      },
+      {
+        "term": "Market Sentiment",
+        "def": "The overall mood of participants toward an asset, from fear to greed - a feeling, not a fact about the asset."
+      },
+      {
+        "term": "Fear & Greed Index",
+        "def": "A daily 0 to 100 composite sentiment score built by weighting several market and attention measures."
+      },
+      {
+        "term": "Perpetual Swap (Perp)",
+        "def": "A derivative that tracks an asset's price and never expires."
+      },
+      {
+        "term": "Funding Rate",
+        "def": "The periodic payment between long and short perpetual holders that keeps the perpetual price near spot."
+      },
+      {
+        "term": "Positioning",
+        "def": "How participants are currently arranged between long and short exposure, and how one-sided that is."
+      }
+    ]
   }
 ];
 
@@ -1337,5 +2557,10 @@ window.SCERE_CRYPTO_SVGS = {
   "crypto-01-4-custody-spectrum": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 940 560\" font-family=\"Arial, Helvetica, sans-serif\">\n  <rect x=\"0\" y=\"0\" width=\"940\" height=\"560\" fill=\"#0f172a\"/>\n\n  <!-- Title -->\n  <text x=\"470\" y=\"42\" text-anchor=\"middle\" font-size=\"24\" font-weight=\"bold\" fill=\"#e2e8f0\">The Custody Spectrum: Who Holds the Keys?</text>\n  <text x=\"470\" y=\"68\" text-anchor=\"middle\" font-size=\"14\" fill=\"#3b82f6\">Every option trades one risk for another - the choice is which risk, not whether</text>\n\n  <!-- Temperature axis -->\n  <rect x=\"80\" y=\"100\" width=\"780\" height=\"14\" rx=\"7\" fill=\"#EAE6DD\"/>\n  <rect x=\"80\" y=\"100\" width=\"260\" height=\"14\" rx=\"7\" fill=\"#eab308\"/>\n  <rect x=\"600\" y=\"100\" width=\"260\" height=\"14\" rx=\"7\" fill=\"#3b82f6\"/>\n  <text x=\"80\" y=\"140\" font-size=\"15\" font-weight=\"bold\" fill=\"#eab308\">HOT</text>\n  <text x=\"80\" y=\"158\" font-size=\"12\" fill=\"#e2e8f0\">keys touch the internet</text>\n  <text x=\"860\" y=\"140\" text-anchor=\"end\" font-size=\"15\" font-weight=\"bold\" fill=\"#3b82f6\">COLD</text>\n  <text x=\"860\" y=\"158\" text-anchor=\"end\" font-size=\"12\" fill=\"#e2e8f0\">keys stay offline</text>\n\n  <!-- Station 1: Exchange custody -->\n  <rect x=\"80\" y=\"185\" width=\"230\" height=\"150\" rx=\"10\" fill=\"#0f172a\" stroke=\"#eab308\" stroke-width=\"2.5\"/>\n  <text x=\"195\" y=\"215\" text-anchor=\"middle\" font-size=\"16\" font-weight=\"bold\" fill=\"#e2e8f0\">EXCHANGE CUSTODY</text>\n  <line x1=\"100\" y1=\"228\" x2=\"290\" y2=\"228\" stroke=\"#EAE6DD\" stroke-width=\"1.5\"/>\n  <text x=\"195\" y=\"252\" text-anchor=\"middle\" font-size=\"13\" fill=\"#e2e8f0\">The exchange holds the keys.</text>\n  <text x=\"195\" y=\"272\" text-anchor=\"middle\" font-size=\"13\" fill=\"#e2e8f0\">Your balance is their IOU.</text>\n  <text x=\"195\" y=\"300\" text-anchor=\"middle\" font-size=\"12\" fill=\"#22c55e\">Password resets, support,</text>\n  <text x=\"195\" y=\"317\" text-anchor=\"middle\" font-size=\"12\" fill=\"#22c55e\">instant trading</text>\n\n  <!-- Station 2: Hot wallet -->\n  <rect x=\"355\" y=\"185\" width=\"230\" height=\"150\" rx=\"10\" fill=\"#0f172a\" stroke=\"#3b82f6\" stroke-width=\"2.5\"/>\n  <text x=\"470\" y=\"215\" text-anchor=\"middle\" font-size=\"16\" font-weight=\"bold\" fill=\"#e2e8f0\">HOT WALLET</text>\n  <line x1=\"375\" y1=\"228\" x2=\"565\" y2=\"228\" stroke=\"#EAE6DD\" stroke-width=\"1.5\"/>\n  <text x=\"470\" y=\"252\" text-anchor=\"middle\" font-size=\"13\" fill=\"#e2e8f0\">You hold the keys, on a</text>\n  <text x=\"470\" y=\"272\" text-anchor=\"middle\" font-size=\"13\" fill=\"#e2e8f0\">connected phone or browser.</text>\n  <text x=\"470\" y=\"300\" text-anchor=\"middle\" font-size=\"12\" fill=\"#22c55e\">Direct use of the network,</text>\n  <text x=\"470\" y=\"317\" text-anchor=\"middle\" font-size=\"12\" fill=\"#22c55e\">no permission needed</text>\n\n  <!-- Station 3: Cold storage -->\n  <rect x=\"630\" y=\"185\" width=\"230\" height=\"150\" rx=\"10\" fill=\"#0f172a\" stroke=\"#e2e8f0\" stroke-width=\"2.5\"/>\n  <text x=\"745\" y=\"215\" text-anchor=\"middle\" font-size=\"16\" font-weight=\"bold\" fill=\"#e2e8f0\">COLD STORAGE</text>\n  <line x1=\"650\" y1=\"228\" x2=\"840\" y2=\"228\" stroke=\"#EAE6DD\" stroke-width=\"1.5\"/>\n  <text x=\"745\" y=\"252\" text-anchor=\"middle\" font-size=\"13\" fill=\"#e2e8f0\">You hold the keys, on a</text>\n  <text x=\"745\" y=\"272\" text-anchor=\"middle\" font-size=\"13\" fill=\"#e2e8f0\">hardware device kept offline.</text>\n  <text x=\"745\" y=\"300\" text-anchor=\"middle\" font-size=\"12\" fill=\"#22c55e\">Strongest protection</text>\n  <text x=\"745\" y=\"317\" text-anchor=\"middle\" font-size=\"12\" fill=\"#22c55e\">against remote theft</text>\n\n  <!-- Connectors -->\n  <line x1=\"310\" y1=\"260\" x2=\"355\" y2=\"260\" stroke=\"#e2e8f0\" stroke-width=\"2\"/>\n  <line x1=\"585\" y1=\"260\" x2=\"630\" y2=\"260\" stroke=\"#e2e8f0\" stroke-width=\"2\"/>\n\n  <!-- Risk label: left end -->\n  <rect x=\"80\" y=\"370\" width=\"360\" height=\"110\" rx=\"10\" fill=\"#0f172a\" stroke=\"#ef4444\" stroke-width=\"2.5\"/>\n  <text x=\"100\" y=\"398\" font-size=\"14\" font-weight=\"bold\" fill=\"#ef4444\">RISK AT THIS END: COUNTERPARTY</text>\n  <text x=\"100\" y=\"422\" font-size=\"13\" fill=\"#e2e8f0\">The company can be hacked, freeze</text>\n  <text x=\"100\" y=\"441\" font-size=\"13\" fill=\"#e2e8f0\">withdrawals, or go broke with your funds.</text>\n  <text x=\"100\" y=\"465\" font-size=\"12\" fill=\"#ef4444\">Mt. Gox (2014), FTX (2022) - see Chapter 5</text>\n\n  <!-- Risk label: right end -->\n  <rect x=\"500\" y=\"370\" width=\"360\" height=\"110\" rx=\"10\" fill=\"#0f172a\" stroke=\"#ef4444\" stroke-width=\"2.5\"/>\n  <text x=\"520\" y=\"398\" font-size=\"14\" font-weight=\"bold\" fill=\"#ef4444\">RISK AT THIS END: IRREVERSIBLE LOSS</text>\n  <text x=\"520\" y=\"422\" font-size=\"13\" fill=\"#e2e8f0\">Lost seed phrase, mistyped address, or</text>\n  <text x=\"520\" y=\"441\" font-size=\"13\" fill=\"#e2e8f0\">your own error - and no support line exists.</text>\n  <text x=\"520\" y=\"465\" font-size=\"12\" fill=\"#ef4444\">Nobody can freeze you. Nobody can save you.</text>\n\n  <!-- Bottom takeaway -->\n  <text x=\"470\" y=\"520\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#22c55e\">Match custody to amount, time horizon, and demonstrated competence -</text>\n  <text x=\"470\" y=\"540\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#22c55e\">not to a slogan from either end of the spectrum.</text>\n</svg>\n",
   "crypto-01-5-cex-vs-dex": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 560\" font-family=\"Arial, Helvetica, sans-serif\">\n  <rect x=\"0\" y=\"0\" width=\"900\" height=\"560\" fill=\"#0f172a\"/>\n  <text x=\"450\" y=\"36\" text-anchor=\"middle\" font-size=\"22\" font-weight=\"bold\" fill=\"#e2e8f0\">Where Your Money Actually Goes: CEX vs DEX</text>\n\n  <!-- ===== LEFT PANEL: CEX ===== -->\n  <rect x=\"30\" y=\"60\" width=\"410\" height=\"440\" rx=\"10\" fill=\"#0f172a\" stroke=\"#eab308\" stroke-width=\"2\"/>\n  <text x=\"235\" y=\"92\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"bold\" fill=\"#eab308\">Centralized exchange (CEX)</text>\n  <text x=\"235\" y=\"112\" text-anchor=\"middle\" font-size=\"13\" fill=\"#e2e8f0\">You deposit. They custody. You trade IOUs.</text>\n\n  <!-- You -->\n  <circle cx=\"120\" cy=\"170\" r=\"32\" fill=\"#3b82f6\"/>\n  <text x=\"120\" y=\"167\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#0f172a\">You</text>\n  <text x=\"120\" y=\"184\" text-anchor=\"middle\" font-size=\"10\" fill=\"#0f172a\">1 BTC</text>\n\n  <!-- deposit arrow -->\n  <line x1=\"158\" y1=\"160\" x2=\"270\" y2=\"160\" stroke=\"#e2e8f0\" stroke-width=\"2.5\"/>\n  <polygon points=\"270,160 254,153 254,167\" fill=\"#e2e8f0\"/>\n  <text x=\"214\" y=\"148\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">deposit (on-chain)</text>\n\n  <!-- exchange wallet -->\n  <rect x=\"275\" y=\"132\" width=\"140\" height=\"60\" rx=\"8\" fill=\"#eab308\"/>\n  <text x=\"345\" y=\"156\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">EXCHANGE WALLET</text>\n  <text x=\"345\" y=\"176\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">THEIR keys hold it</text>\n\n  <!-- arrow down to ledger -->\n  <line x1=\"345\" y1=\"192\" x2=\"345\" y2=\"228\" stroke=\"#eab308\" stroke-width=\"2.5\"/>\n  <polygon points=\"345,228 338,213 352,213\" fill=\"#eab308\"/>\n\n  <!-- internal ledger -->\n  <rect x=\"90\" y=\"232\" width=\"330\" height=\"130\" rx=\"8\" fill=\"#e2e8f0\"/>\n  <text x=\"255\" y=\"258\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">INTERNAL LEDGER (company database)</text>\n  <line x1=\"110\" y1=\"270\" x2=\"400\" y2=\"270\" stroke=\"#0f172a\" stroke-width=\"1\"/>\n  <text x=\"255\" y=\"292\" text-anchor=\"middle\" font-size=\"12\" fill=\"#eab308\">Your balance: 1 BTC -- an IOU to you</text>\n  <text x=\"255\" y=\"314\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">Every trade edits rows in this database.</text>\n  <text x=\"255\" y=\"336\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">The blockchain sees none of it.</text>\n\n  <!-- withdrawal arrow -->\n  <line x1=\"120\" y1=\"366\" x2=\"120\" y2=\"404\" stroke=\"#e2e8f0\" stroke-width=\"2.5\" stroke-dasharray=\"6,4\"/>\n  <polygon points=\"120,404 113,389 127,389\" fill=\"#e2e8f0\"/>\n  <text x=\"196\" y=\"390\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e2e8f0\">withdrawal: on-chain again</text>\n\n  <rect x=\"55\" y=\"410\" width=\"360\" height=\"72\" rx=\"8\" fill=\"#ef4444\"/>\n  <text x=\"235\" y=\"436\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">Counterparty risk: hack, freeze, insolvency</text>\n  <text x=\"235\" y=\"456\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">If the company fails, your claim fails with it.</text>\n  <text x=\"235\" y=\"472\" text-anchor=\"middle\" font-size=\"11\" fill=\"#0f172a\">Proof of reserves shows assets, not liabilities.</text>\n\n  <!-- ===== RIGHT PANEL: DEX ===== -->\n  <rect x=\"460\" y=\"60\" width=\"410\" height=\"440\" rx=\"10\" fill=\"#0f172a\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n  <text x=\"665\" y=\"92\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"bold\" fill=\"#22c55e\">Decentralized exchange (DEX)</text>\n  <text x=\"665\" y=\"112\" text-anchor=\"middle\" font-size=\"13\" fill=\"#e2e8f0\">No deposit. Your wallet trades with a pool.</text>\n\n  <!-- your wallet -->\n  <rect x=\"545\" y=\"136\" width=\"240\" height=\"60\" rx=\"8\" fill=\"#3b82f6\"/>\n  <text x=\"665\" y=\"160\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">YOUR WALLET</text>\n  <text x=\"665\" y=\"180\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">YOUR keys, before and after the trade</text>\n\n  <!-- two-way arrows -->\n  <line x1=\"610\" y1=\"196\" x2=\"610\" y2=\"260\" stroke=\"#22c55e\" stroke-width=\"2.5\"/>\n  <polygon points=\"610,260 603,245 617,245\" fill=\"#22c55e\"/>\n  <text x=\"560\" y=\"232\" text-anchor=\"middle\" font-size=\"11\" fill=\"#22c55e\">USDC in</text>\n\n  <line x1=\"720\" y1=\"260\" x2=\"720\" y2=\"196\" stroke=\"#22c55e\" stroke-width=\"2.5\"/>\n  <polygon points=\"720,196 713,211 727,211\" fill=\"#22c55e\"/>\n  <text x=\"772\" y=\"232\" text-anchor=\"middle\" font-size=\"11\" fill=\"#22c55e\">ETH out</text>\n\n  <!-- liquidity pool -->\n  <rect x=\"520\" y=\"264\" width=\"290\" height=\"130\" rx=\"8\" fill=\"#22c55e\"/>\n  <text x=\"665\" y=\"290\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">LIQUIDITY POOL (smart contract)</text>\n  <line x1=\"540\" y1=\"302\" x2=\"790\" y2=\"302\" stroke=\"#0f172a\" stroke-width=\"1\"/>\n  <text x=\"665\" y=\"324\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">Reserves: 10 ETH and 20,000 USDC</text>\n  <text x=\"665\" y=\"346\" text-anchor=\"middle\" font-size=\"12\" fill=\"#eab308\">Price rule: x * y = k (stays 200,000)</text>\n  <text x=\"665\" y=\"368\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">Big trade vs small pool = big price impact</text>\n\n  <!-- settlement note -->\n  <rect x=\"485\" y=\"410\" width=\"360\" height=\"72\" rx=\"8\" fill=\"#3b82f6\"/>\n  <text x=\"665\" y=\"436\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">Trade settles on-chain, in one transaction</text>\n  <text x=\"665\" y=\"456\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">No custodian -- and no support desk, no undo.</text>\n  <text x=\"665\" y=\"472\" text-anchor=\"middle\" font-size=\"11\" fill=\"#0f172a\">Anyone can list any token. Verify the contract.</text>\n\n  <!-- footer -->\n  <text x=\"450\" y=\"530\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">Same question from Lesson 4 decides which risks you carry: who holds the keys?</text>\n  <text x=\"450\" y=\"548\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">CEX: their keys, your IOU. DEX: your keys, your mistakes.</text>\n</svg>\n",
   "crypto-01-6-transaction-lifecycle": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 960 475\" font-family=\"Arial, Helvetica, sans-serif\">\n  <rect x=\"0\" y=\"0\" width=\"960\" height=\"475\" fill=\"#0f172a\"/>\n\n  <text x=\"480\" y=\"40\" text-anchor=\"middle\" font-size=\"25\" font-weight=\"bold\" fill=\"#e2e8f0\">The Life of a Transaction</text>\n  <text x=\"480\" y=\"64\" text-anchor=\"middle\" font-size=\"13.5\" fill=\"#3b82f6\">Five stages from pressing send to settled - and where the fee auction happens</text>\n\n  <!-- zone brackets -->\n  <text x=\"298\" y=\"96\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#ef4444\">SENT is not SETTLED: can still fail, be replaced, or never confirm</text>\n  <line x1=\"37\" y1=\"106\" x2=\"559\" y2=\"106\" stroke=\"#ef4444\" stroke-width=\"2\"/>\n  <line x1=\"37\" y1=\"106\" x2=\"37\" y2=\"114\" stroke=\"#ef4444\" stroke-width=\"2\"/>\n  <line x1=\"559\" y1=\"106\" x2=\"559\" y2=\"114\" stroke=\"#ef4444\" stroke-width=\"2\"/>\n\n  <text x=\"753\" y=\"96\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#22c55e\">SETTLING: deeper = harder to reverse</text>\n  <line x1=\"583\" y1=\"106\" x2=\"923\" y2=\"106\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n  <line x1=\"583\" y1=\"106\" x2=\"583\" y2=\"114\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n  <line x1=\"923\" y1=\"106\" x2=\"923\" y2=\"114\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n\n  <!-- stage 1 -->\n  <rect x=\"37\" y=\"130\" width=\"158\" height=\"115\" rx=\"10\" fill=\"#e2e8f0\"/>\n  <text x=\"116\" y=\"155\" text-anchor=\"middle\" font-size=\"14.5\" font-weight=\"bold\" fill=\"#0f172a\">1. SIGNED</text>\n  <text x=\"116\" y=\"180\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">Your wallet signs the</text>\n  <text x=\"116\" y=\"196\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">instruction with your</text>\n  <text x=\"116\" y=\"212\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">private key (Lesson 4)</text>\n\n  <line x1=\"195\" y1=\"187\" x2=\"207\" y2=\"187\" stroke=\"#e2e8f0\" stroke-width=\"3\"/>\n  <polygon points=\"207,180 219,187 207,194\" fill=\"#e2e8f0\"/>\n\n  <!-- stage 2 -->\n  <rect x=\"219\" y=\"130\" width=\"158\" height=\"115\" rx=\"10\" fill=\"#3b82f6\"/>\n  <text x=\"298\" y=\"155\" text-anchor=\"middle\" font-size=\"14.5\" font-weight=\"bold\" fill=\"#0f172a\">2. BROADCAST</text>\n  <text x=\"298\" y=\"180\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">Nodes pass it across</text>\n  <text x=\"298\" y=\"196\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">the peer-to-peer</text>\n  <text x=\"298\" y=\"212\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">network in seconds</text>\n\n  <line x1=\"377\" y1=\"187\" x2=\"389\" y2=\"187\" stroke=\"#e2e8f0\" stroke-width=\"3\"/>\n  <polygon points=\"389,180 401,187 389,194\" fill=\"#e2e8f0\"/>\n\n  <!-- stage 3 -->\n  <rect x=\"401\" y=\"130\" width=\"158\" height=\"115\" rx=\"10\" fill=\"#eab308\"/>\n  <text x=\"480\" y=\"155\" text-anchor=\"middle\" font-size=\"14.5\" font-weight=\"bold\" fill=\"#0f172a\">3. MEMPOOL</text>\n  <text x=\"480\" y=\"180\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">The waiting room:</text>\n  <text x=\"480\" y=\"196\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">seen by the network,</text>\n  <text x=\"480\" y=\"212\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">not yet recorded</text>\n\n  <line x1=\"559\" y1=\"187\" x2=\"571\" y2=\"187\" stroke=\"#e2e8f0\" stroke-width=\"3\"/>\n  <polygon points=\"571,180 583,187 571,194\" fill=\"#e2e8f0\"/>\n\n  <!-- stage 4 -->\n  <rect x=\"583\" y=\"130\" width=\"158\" height=\"115\" rx=\"10\" fill=\"#3b82f6\"/>\n  <text x=\"662\" y=\"155\" text-anchor=\"middle\" font-size=\"14.5\" font-weight=\"bold\" fill=\"#0f172a\">4. IN A BLOCK</text>\n  <text x=\"662\" y=\"180\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">A miner or validator</text>\n  <text x=\"662\" y=\"196\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">selects it into the next</text>\n  <text x=\"662\" y=\"212\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">block (Lessons 2, 3)</text>\n\n  <line x1=\"741\" y1=\"187\" x2=\"753\" y2=\"187\" stroke=\"#e2e8f0\" stroke-width=\"3\"/>\n  <polygon points=\"753,180 765,187 753,194\" fill=\"#e2e8f0\"/>\n\n  <!-- stage 5 -->\n  <rect x=\"765\" y=\"130\" width=\"158\" height=\"115\" rx=\"10\" fill=\"#22c55e\"/>\n  <text x=\"844\" y=\"155\" text-anchor=\"middle\" font-size=\"14.5\" font-weight=\"bold\" fill=\"#0f172a\">5. BURIED</text>\n  <text x=\"844\" y=\"180\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">Each new block adds</text>\n  <text x=\"844\" y=\"196\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">one confirmation</text>\n  <text x=\"844\" y=\"212\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">and more depth</text>\n\n  <!-- fee auction annotation -->\n  <line x1=\"480\" y1=\"245\" x2=\"330\" y2=\"292\" stroke=\"#eab308\" stroke-width=\"2\" stroke-dasharray=\"5,4\"/>\n  <rect x=\"60\" y=\"292\" width=\"520\" height=\"118\" rx=\"10\" fill=\"#0f172a\" stroke=\"#eab308\" stroke-width=\"2.5\" stroke-dasharray=\"7,5\"/>\n  <text x=\"80\" y=\"318\" font-size=\"13.5\" font-weight=\"bold\" fill=\"#eab308\">THE FEE AUCTION (happens here)</text>\n  <text x=\"80\" y=\"340\" font-size=\"12\" fill=\"#e2e8f0\">- Block space is scarce: only so many transactions fit in each block</text>\n  <text x=\"80\" y=\"359\" font-size=\"12\" fill=\"#e2e8f0\">- Users bid fees; block producers pick the highest-paying first</text>\n  <text x=\"80\" y=\"378\" font-size=\"12\" fill=\"#e2e8f0\">- When demand spikes, fees spike; a too-low bid can wait for days</text>\n  <text x=\"80\" y=\"397\" font-size=\"12\" fill=\"#e2e8f0\">- Fees price size and computation, never the amount you move</text>\n\n  <!-- confirmations annotation -->\n  <line x1=\"844\" y1=\"245\" x2=\"775\" y2=\"292\" stroke=\"#22c55e\" stroke-width=\"2\" stroke-dasharray=\"5,4\"/>\n  <rect x=\"620\" y=\"292\" width=\"310\" height=\"118\" rx=\"10\" fill=\"#0f172a\" stroke=\"#22c55e\" stroke-width=\"2.5\"/>\n  <text x=\"640\" y=\"318\" font-size=\"13.5\" font-weight=\"bold\" fill=\"#22c55e\">N CONFIRMATIONS</text>\n  <rect x=\"640\" y=\"330\" width=\"44\" height=\"26\" rx=\"4\" fill=\"#22c55e\"/>\n  <text x=\"662\" y=\"347\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"bold\" fill=\"#0f172a\">+1</text>\n  <line x1=\"684\" y1=\"343\" x2=\"696\" y2=\"343\" stroke=\"#22c55e\" stroke-width=\"2.5\"/>\n  <rect x=\"696\" y=\"330\" width=\"44\" height=\"26\" rx=\"4\" fill=\"#22c55e\"/>\n  <text x=\"718\" y=\"347\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"bold\" fill=\"#0f172a\">+2</text>\n  <line x1=\"740\" y1=\"343\" x2=\"752\" y2=\"343\" stroke=\"#22c55e\" stroke-width=\"2.5\"/>\n  <rect x=\"752\" y=\"330\" width=\"44\" height=\"26\" rx=\"4\" fill=\"#22c55e\"/>\n  <text x=\"774\" y=\"347\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"bold\" fill=\"#0f172a\">+3</text>\n  <line x1=\"796\" y1=\"343\" x2=\"808\" y2=\"343\" stroke=\"#22c55e\" stroke-width=\"2.5\"/>\n  <text x=\"822\" y=\"347\" font-size=\"11.5\" font-weight=\"bold\" fill=\"#22c55e\">...</text>\n  <text x=\"640\" y=\"380\" font-size=\"12\" fill=\"#e2e8f0\">Reversing means redoing the work</text>\n  <text x=\"640\" y=\"398\" font-size=\"12\" fill=\"#e2e8f0\">for every block on top (Lesson 2)</text>\n\n  <text x=\"480\" y=\"446\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"bold\" fill=\"#ef4444\">Check any transaction yourself on a block explorer: status, confirmations, fee.</text>\n</svg>\n",
-  "crypto-01-7-stablecoin-models": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 980 620\" font-family=\"Arial, Helvetica, sans-serif\">\n  <rect x=\"0\" y=\"0\" width=\"980\" height=\"620\" fill=\"#0f172a\"/>\n  <text x=\"490\" y=\"34\" text-anchor=\"middle\" font-size=\"22\" font-weight=\"bold\" fill=\"#e2e8f0\">Three Ways to Hold a $1 Peg</text>\n  <text x=\"490\" y=\"56\" text-anchor=\"middle\" font-size=\"13\" fill=\"#e2e8f0\">Same target price. Very different mechanisms.</text>\n\n  <!-- ===== PANEL 1: FIAT-BACKED ===== -->\n  <rect x=\"20\" y=\"78\" width=\"300\" height=\"440\" rx=\"10\" fill=\"#0f172a\" stroke=\"#3b82f6\" stroke-width=\"2\"/>\n  <text x=\"170\" y=\"106\" text-anchor=\"middle\" font-size=\"16\" font-weight=\"bold\" fill=\"#3b82f6\">1. Fiat-Backed</text>\n  <text x=\"170\" y=\"126\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">USDT, USDC</text>\n\n  <!-- token -->\n  <circle cx=\"170\" cy=\"176\" r=\"30\" fill=\"#3b82f6\"/>\n  <text x=\"170\" y=\"172\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">1 token</text>\n  <text x=\"170\" y=\"188\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">= $1</text>\n\n  <!-- redeem arrows -->\n  <line x1=\"150\" y1=\"212\" x2=\"150\" y2=\"268\" stroke=\"#22c55e\" stroke-width=\"2.5\"/>\n  <polygon points=\"150,268 144,256 156,256\" fill=\"#22c55e\"/>\n  <line x1=\"190\" y1=\"268\" x2=\"190\" y2=\"212\" stroke=\"#22c55e\" stroke-width=\"2.5\"/>\n  <polygon points=\"190,212 184,224 196,224\" fill=\"#22c55e\"/>\n  <text x=\"170\" y=\"244\" text-anchor=\"middle\" font-size=\"11\" fill=\"#22c55e\">redeem / issue</text>\n\n  <!-- reserve vault -->\n  <rect x=\"55\" y=\"272\" width=\"230\" height=\"96\" rx=\"8\" fill=\"#22c55e\"/>\n  <text x=\"170\" y=\"298\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#0f172a\">Issuer's reserve</text>\n  <text x=\"170\" y=\"320\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">cash, Treasury bills...</text>\n  <text x=\"170\" y=\"340\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">held off-chain by a company</text>\n  <text x=\"170\" y=\"358\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">you must trust and verify</text>\n\n  <text x=\"170\" y=\"398\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">Peg holds if the reserve is real,</text>\n  <text x=\"170\" y=\"415\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">liquid, and redeemable.</text>\n\n  <rect x=\"40\" y=\"432\" width=\"260\" height=\"70\" rx=\"8\" fill=\"#eab308\"/>\n  <text x=\"170\" y=\"456\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#0f172a\">Verify: what IS the reserve?</text>\n  <text x=\"170\" y=\"474\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">Attested or audited?</text>\n  <text x=\"170\" y=\"492\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">Can YOU redeem?</text>\n\n  <!-- ===== PANEL 2: CRYPTO-COLLATERALIZED ===== -->\n  <rect x=\"340\" y=\"78\" width=\"300\" height=\"440\" rx=\"10\" fill=\"#0f172a\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n  <text x=\"490\" y=\"106\" text-anchor=\"middle\" font-size=\"16\" font-weight=\"bold\" fill=\"#22c55e\">2. Crypto-Collateralized</text>\n  <text x=\"490\" y=\"126\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">DAI (MakerDAO)</text>\n\n  <!-- collateral block -->\n  <rect x=\"375\" y=\"146\" width=\"230\" height=\"80\" rx=\"8\" fill=\"#22c55e\"/>\n  <text x=\"490\" y=\"172\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#0f172a\">$150 of ETH locked</text>\n  <text x=\"490\" y=\"192\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">in a smart contract,</text>\n  <text x=\"490\" y=\"210\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">visible on-chain</text>\n\n  <!-- mint arrow -->\n  <line x1=\"490\" y1=\"232\" x2=\"490\" y2=\"280\" stroke=\"#e2e8f0\" stroke-width=\"2.5\"/>\n  <polygon points=\"490,280 484,268 496,268\" fill=\"#e2e8f0\"/>\n  <text x=\"545\" y=\"260\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e2e8f0\">mints</text>\n\n  <!-- minted stablecoin -->\n  <circle cx=\"490\" cy=\"316\" r=\"32\" fill=\"#3b82f6\"/>\n  <text x=\"490\" y=\"312\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">$100</text>\n  <text x=\"490\" y=\"328\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">of DAI</text>\n\n  <text x=\"490\" y=\"378\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">The extra $50 is a buffer that</text>\n  <text x=\"490\" y=\"395\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">absorbs falls in ETH's price.</text>\n\n  <rect x=\"360\" y=\"432\" width=\"260\" height=\"70\" rx=\"8\" fill=\"#eab308\"/>\n  <text x=\"490\" y=\"456\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#0f172a\">If the buffer thins, code</text>\n  <text x=\"490\" y=\"474\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">auto-liquidates the collateral.</text>\n  <text x=\"490\" y=\"492\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">Cost: capital locked up.</text>\n\n  <!-- ===== PANEL 3: ALGORITHMIC (fragile) ===== -->\n  <rect x=\"660\" y=\"78\" width=\"300\" height=\"440\" rx=\"10\" fill=\"#0f172a\" stroke=\"#ef4444\" stroke-width=\"3\" stroke-dasharray=\"9,6\"/>\n  <text x=\"810\" y=\"106\" text-anchor=\"middle\" font-size=\"16\" font-weight=\"bold\" fill=\"#ef4444\">3. Algorithmic</text>\n  <text x=\"810\" y=\"126\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">TerraUSD (UST) + LUNA</text>\n\n  <text x=\"810\" y=\"152\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#ef4444\">No reserve. Only a swap loop.</text>\n\n  <!-- loop: stablecoin -->\n  <circle cx=\"735\" cy=\"230\" r=\"34\" fill=\"#3b82f6\"/>\n  <text x=\"735\" y=\"226\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">1 UST</text>\n  <text x=\"735\" y=\"242\" text-anchor=\"middle\" font-size=\"11\" fill=\"#0f172a\">target $1</text>\n\n  <!-- loop: sister token -->\n  <circle cx=\"885\" cy=\"230\" r=\"34\" fill=\"#ef4444\"/>\n  <text x=\"885\" y=\"226\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#0f172a\">$1 worth</text>\n  <text x=\"885\" y=\"242\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">of LUNA</text>\n\n  <!-- loop arrows -->\n  <line x1=\"772\" y1=\"214\" x2=\"848\" y2=\"214\" stroke=\"#e2e8f0\" stroke-width=\"2.5\"/>\n  <polygon points=\"848,214 836,208 836,220\" fill=\"#e2e8f0\"/>\n  <line x1=\"848\" y1=\"248\" x2=\"772\" y2=\"248\" stroke=\"#e2e8f0\" stroke-width=\"2.5\"/>\n  <polygon points=\"772,248 784,242 784,254\" fill=\"#e2e8f0\"/>\n  <text x=\"810\" y=\"204\" text-anchor=\"middle\" font-size=\"10\" fill=\"#e2e8f0\">burn, mint</text>\n  <text x=\"810\" y=\"266\" text-anchor=\"middle\" font-size=\"10\" fill=\"#e2e8f0\">mint, burn</text>\n\n  <text x=\"810\" y=\"300\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">Arbitrage on the loop nudges</text>\n  <text x=\"810\" y=\"317\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">the price back to $1 -- while</text>\n  <text x=\"810\" y=\"334\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">LUNA has value and buyers.</text>\n\n  <!-- death spiral -->\n  <rect x=\"680\" y=\"352\" width=\"260\" height=\"72\" rx=\"8\" fill=\"#ef4444\"/>\n  <text x=\"810\" y=\"374\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#0f172a\">Under stress the loop reverses:</text>\n  <text x=\"810\" y=\"392\" text-anchor=\"middle\" font-size=\"11\" fill=\"#0f172a\">redemptions mint LUNA, LUNA falls,</text>\n  <text x=\"810\" y=\"409\" text-anchor=\"middle\" font-size=\"11\" fill=\"#0f172a\">fear grows, more redemptions...</text>\n\n  <rect x=\"680\" y=\"432\" width=\"260\" height=\"70\" rx=\"8\" fill=\"#ef4444\"/>\n  <text x=\"810\" y=\"454\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">FRAGILE BY DESIGN</text>\n  <text x=\"810\" y=\"472\" text-anchor=\"middle\" font-size=\"11\" fill=\"#0f172a\">May 2022: UST death spiral,</text>\n  <text x=\"810\" y=\"489\" text-anchor=\"middle\" font-size=\"11\" fill=\"#0f172a\">~$40B destroyed (Chapter 5, L2)</text>\n\n  <!-- ===== BOTTOM BAND ===== -->\n  <rect x=\"20\" y=\"538\" width=\"940\" height=\"58\" rx=\"10\" fill=\"#e2e8f0\"/>\n  <text x=\"490\" y=\"562\" text-anchor=\"middle\" font-size=\"15\" font-weight=\"bold\" fill=\"#0f172a\">A peg is a promise with a mechanism.</text>\n  <text x=\"490\" y=\"583\" text-anchor=\"middle\" font-size=\"13\" fill=\"#0f172a\">Before you rely on the promise, verify the mechanism -- this course has already shown you a \"guaranteed\" peg break (SNB 2015).</text>\n</svg>\n"
+  "crypto-01-7-stablecoin-models": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 980 620\" font-family=\"Arial, Helvetica, sans-serif\">\n  <rect x=\"0\" y=\"0\" width=\"980\" height=\"620\" fill=\"#0f172a\"/>\n  <text x=\"490\" y=\"34\" text-anchor=\"middle\" font-size=\"22\" font-weight=\"bold\" fill=\"#e2e8f0\">Three Ways to Hold a $1 Peg</text>\n  <text x=\"490\" y=\"56\" text-anchor=\"middle\" font-size=\"13\" fill=\"#e2e8f0\">Same target price. Very different mechanisms.</text>\n\n  <!-- ===== PANEL 1: FIAT-BACKED ===== -->\n  <rect x=\"20\" y=\"78\" width=\"300\" height=\"440\" rx=\"10\" fill=\"#0f172a\" stroke=\"#3b82f6\" stroke-width=\"2\"/>\n  <text x=\"170\" y=\"106\" text-anchor=\"middle\" font-size=\"16\" font-weight=\"bold\" fill=\"#3b82f6\">1. Fiat-Backed</text>\n  <text x=\"170\" y=\"126\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">USDT, USDC</text>\n\n  <!-- token -->\n  <circle cx=\"170\" cy=\"176\" r=\"30\" fill=\"#3b82f6\"/>\n  <text x=\"170\" y=\"172\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">1 token</text>\n  <text x=\"170\" y=\"188\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">= $1</text>\n\n  <!-- redeem arrows -->\n  <line x1=\"150\" y1=\"212\" x2=\"150\" y2=\"268\" stroke=\"#22c55e\" stroke-width=\"2.5\"/>\n  <polygon points=\"150,268 144,256 156,256\" fill=\"#22c55e\"/>\n  <line x1=\"190\" y1=\"268\" x2=\"190\" y2=\"212\" stroke=\"#22c55e\" stroke-width=\"2.5\"/>\n  <polygon points=\"190,212 184,224 196,224\" fill=\"#22c55e\"/>\n  <text x=\"170\" y=\"244\" text-anchor=\"middle\" font-size=\"11\" fill=\"#22c55e\">redeem / issue</text>\n\n  <!-- reserve vault -->\n  <rect x=\"55\" y=\"272\" width=\"230\" height=\"96\" rx=\"8\" fill=\"#22c55e\"/>\n  <text x=\"170\" y=\"298\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#0f172a\">Issuer's reserve</text>\n  <text x=\"170\" y=\"320\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">cash, Treasury bills...</text>\n  <text x=\"170\" y=\"340\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">held off-chain by a company</text>\n  <text x=\"170\" y=\"358\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">you must trust and verify</text>\n\n  <text x=\"170\" y=\"398\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">Peg holds if the reserve is real,</text>\n  <text x=\"170\" y=\"415\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">liquid, and redeemable.</text>\n\n  <rect x=\"40\" y=\"432\" width=\"260\" height=\"70\" rx=\"8\" fill=\"#eab308\"/>\n  <text x=\"170\" y=\"456\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#0f172a\">Verify: what IS the reserve?</text>\n  <text x=\"170\" y=\"474\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">Attested or audited?</text>\n  <text x=\"170\" y=\"492\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">Can YOU redeem?</text>\n\n  <!-- ===== PANEL 2: CRYPTO-COLLATERALIZED ===== -->\n  <rect x=\"340\" y=\"78\" width=\"300\" height=\"440\" rx=\"10\" fill=\"#0f172a\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n  <text x=\"490\" y=\"106\" text-anchor=\"middle\" font-size=\"16\" font-weight=\"bold\" fill=\"#22c55e\">2. Crypto-Collateralized</text>\n  <text x=\"490\" y=\"126\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">DAI (MakerDAO)</text>\n\n  <!-- collateral block -->\n  <rect x=\"375\" y=\"146\" width=\"230\" height=\"80\" rx=\"8\" fill=\"#22c55e\"/>\n  <text x=\"490\" y=\"172\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#0f172a\">$150 of ETH locked</text>\n  <text x=\"490\" y=\"192\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">in a smart contract,</text>\n  <text x=\"490\" y=\"210\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">visible on-chain</text>\n\n  <!-- mint arrow -->\n  <line x1=\"490\" y1=\"232\" x2=\"490\" y2=\"280\" stroke=\"#e2e8f0\" stroke-width=\"2.5\"/>\n  <polygon points=\"490,280 484,268 496,268\" fill=\"#e2e8f0\"/>\n  <text x=\"545\" y=\"260\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e2e8f0\">mints</text>\n\n  <!-- minted stablecoin -->\n  <circle cx=\"490\" cy=\"316\" r=\"32\" fill=\"#3b82f6\"/>\n  <text x=\"490\" y=\"312\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">$100</text>\n  <text x=\"490\" y=\"328\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">of DAI</text>\n\n  <text x=\"490\" y=\"378\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">The extra $50 is a buffer that</text>\n  <text x=\"490\" y=\"395\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">absorbs falls in ETH's price.</text>\n\n  <rect x=\"360\" y=\"432\" width=\"260\" height=\"70\" rx=\"8\" fill=\"#eab308\"/>\n  <text x=\"490\" y=\"456\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#0f172a\">If the buffer thins, code</text>\n  <text x=\"490\" y=\"474\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">auto-liquidates the collateral.</text>\n  <text x=\"490\" y=\"492\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">Cost: capital locked up.</text>\n\n  <!-- ===== PANEL 3: ALGORITHMIC (fragile) ===== -->\n  <rect x=\"660\" y=\"78\" width=\"300\" height=\"440\" rx=\"10\" fill=\"#0f172a\" stroke=\"#ef4444\" stroke-width=\"3\" stroke-dasharray=\"9,6\"/>\n  <text x=\"810\" y=\"106\" text-anchor=\"middle\" font-size=\"16\" font-weight=\"bold\" fill=\"#ef4444\">3. Algorithmic</text>\n  <text x=\"810\" y=\"126\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">TerraUSD (UST) + LUNA</text>\n\n  <text x=\"810\" y=\"152\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#ef4444\">No reserve. Only a swap loop.</text>\n\n  <!-- loop: stablecoin -->\n  <circle cx=\"735\" cy=\"230\" r=\"34\" fill=\"#3b82f6\"/>\n  <text x=\"735\" y=\"226\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">1 UST</text>\n  <text x=\"735\" y=\"242\" text-anchor=\"middle\" font-size=\"11\" fill=\"#0f172a\">target $1</text>\n\n  <!-- loop: sister token -->\n  <circle cx=\"885\" cy=\"230\" r=\"34\" fill=\"#ef4444\"/>\n  <text x=\"885\" y=\"226\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#0f172a\">$1 worth</text>\n  <text x=\"885\" y=\"242\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">of LUNA</text>\n\n  <!-- loop arrows -->\n  <line x1=\"772\" y1=\"214\" x2=\"848\" y2=\"214\" stroke=\"#e2e8f0\" stroke-width=\"2.5\"/>\n  <polygon points=\"848,214 836,208 836,220\" fill=\"#e2e8f0\"/>\n  <line x1=\"848\" y1=\"248\" x2=\"772\" y2=\"248\" stroke=\"#e2e8f0\" stroke-width=\"2.5\"/>\n  <polygon points=\"772,248 784,242 784,254\" fill=\"#e2e8f0\"/>\n  <text x=\"810\" y=\"204\" text-anchor=\"middle\" font-size=\"10\" fill=\"#e2e8f0\">burn, mint</text>\n  <text x=\"810\" y=\"266\" text-anchor=\"middle\" font-size=\"10\" fill=\"#e2e8f0\">mint, burn</text>\n\n  <text x=\"810\" y=\"300\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">Arbitrage on the loop nudges</text>\n  <text x=\"810\" y=\"317\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">the price back to $1 -- while</text>\n  <text x=\"810\" y=\"334\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">LUNA has value and buyers.</text>\n\n  <!-- death spiral -->\n  <rect x=\"680\" y=\"352\" width=\"260\" height=\"72\" rx=\"8\" fill=\"#ef4444\"/>\n  <text x=\"810\" y=\"374\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#0f172a\">Under stress the loop reverses:</text>\n  <text x=\"810\" y=\"392\" text-anchor=\"middle\" font-size=\"11\" fill=\"#0f172a\">redemptions mint LUNA, LUNA falls,</text>\n  <text x=\"810\" y=\"409\" text-anchor=\"middle\" font-size=\"11\" fill=\"#0f172a\">fear grows, more redemptions...</text>\n\n  <rect x=\"680\" y=\"432\" width=\"260\" height=\"70\" rx=\"8\" fill=\"#ef4444\"/>\n  <text x=\"810\" y=\"454\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">FRAGILE BY DESIGN</text>\n  <text x=\"810\" y=\"472\" text-anchor=\"middle\" font-size=\"11\" fill=\"#0f172a\">May 2022: UST death spiral,</text>\n  <text x=\"810\" y=\"489\" text-anchor=\"middle\" font-size=\"11\" fill=\"#0f172a\">~$40B destroyed (Chapter 5, L2)</text>\n\n  <!-- ===== BOTTOM BAND ===== -->\n  <rect x=\"20\" y=\"538\" width=\"940\" height=\"58\" rx=\"10\" fill=\"#e2e8f0\"/>\n  <text x=\"490\" y=\"562\" text-anchor=\"middle\" font-size=\"15\" font-weight=\"bold\" fill=\"#0f172a\">A peg is a promise with a mechanism.</text>\n  <text x=\"490\" y=\"583\" text-anchor=\"middle\" font-size=\"13\" fill=\"#0f172a\">Before you rely on the promise, verify the mechanism -- this course has already shown you a \"guaranteed\" peg break (SNB 2015).</text>\n</svg>\n",
+  "crypto-02-1-market-cap-vs-liquidity": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 620\" font-family=\"Arial, Helvetica, sans-serif\">\n  <rect x=\"0\" y=\"0\" width=\"900\" height=\"620\" fill=\"#0f172a\"/>\n\n  <text x=\"450\" y=\"32\" text-anchor=\"middle\" font-size=\"22\" font-weight=\"bold\" fill=\"#e2e8f0\">A Big Market Cap Can Sit On a Thin Order Book</text>\n  <text x=\"450\" y=\"54\" text-anchor=\"middle\" font-size=\"13\" fill=\"#3b82f6\">Same market cap. Same 100,000-token sell order. Two different books.</text>\n\n  <!-- ===== MARKET CAP BANNER ===== -->\n  <rect x=\"130\" y=\"70\" width=\"640\" height=\"58\" rx=\"8\" fill=\"#e2e8f0\"/>\n  <text x=\"450\" y=\"95\" text-anchor=\"middle\" font-size=\"16\" font-weight=\"bold\" fill=\"#0f172a\">Market cap = 20,000,000 tokens x $10.00 last trade = $200,000,000</text>\n  <text x=\"450\" y=\"116\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">One trade set the $10.00. The other 19,999,900 tokens just inherited it.</text>\n\n  <line x1=\"450\" y1=\"128\" x2=\"450\" y2=\"150\" stroke=\"#e2e8f0\" stroke-width=\"2.5\"/>\n  <polygon points=\"450,158 443,142 457,142\" fill=\"#e2e8f0\"/>\n\n  <!-- ===== LEFT PANEL: DEEP BOOK ===== -->\n  <rect x=\"24\" y=\"164\" width=\"416\" height=\"416\" rx=\"10\" fill=\"#0f172a\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n  <text x=\"232\" y=\"190\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"bold\" fill=\"#22c55e\">Deep book</text>\n  <text x=\"232\" y=\"210\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">$1,596,000 of bids resting within 0.4% of price</text>\n\n  <text x=\"45\" y=\"234\" font-size=\"11\" font-weight=\"bold\" fill=\"#3b82f6\">Bid price</text>\n  <text x=\"130\" y=\"234\" font-size=\"11\" font-weight=\"bold\" fill=\"#3b82f6\">Tokens wanted at that price</text>\n\n  <rect x=\"126\" y=\"243\" width=\"137\" height=\"18\" fill=\"#22c55e\"/>\n  <text x=\"45\" y=\"257\" font-size=\"12\" fill=\"#e2e8f0\">$9.99</text>\n  <text x=\"271\" y=\"257\" font-size=\"11\" fill=\"#e2e8f0\">40,000</text>\n\n  <rect x=\"126\" y=\"273\" width=\"137\" height=\"18\" fill=\"#22c55e\"/>\n  <text x=\"45\" y=\"287\" font-size=\"12\" fill=\"#e2e8f0\">$9.98</text>\n  <text x=\"271\" y=\"287\" font-size=\"11\" fill=\"#e2e8f0\">40,000</text>\n\n  <rect x=\"126\" y=\"303\" width=\"137\" height=\"18\" fill=\"#22c55e\"/>\n  <text x=\"45\" y=\"317\" font-size=\"12\" fill=\"#e2e8f0\">$9.97</text>\n  <text x=\"271\" y=\"317\" font-size=\"11\" fill=\"#e2e8f0\">40,000</text>\n\n  <rect x=\"126\" y=\"333\" width=\"137\" height=\"18\" fill=\"#22c55e\"/>\n  <text x=\"45\" y=\"347\" font-size=\"12\" fill=\"#e2e8f0\">$9.96</text>\n  <text x=\"271\" y=\"347\" font-size=\"11\" fill=\"#e2e8f0\">40,000</text>\n\n  <line x1=\"45\" y1=\"368\" x2=\"419\" y2=\"368\" stroke=\"#3b82f6\" stroke-width=\"1\"/>\n\n  <text x=\"45\" y=\"392\" font-size=\"13\" font-weight=\"bold\" fill=\"#e2e8f0\">Sell 100,000 tokens at market -&gt;</text>\n  <text x=\"45\" y=\"414\" font-size=\"12\" fill=\"#e2e8f0\">Fills: 40,000 at $9.99, 40,000 at $9.98, 20,000 at $9.97</text>\n  <text x=\"45\" y=\"436\" font-size=\"12\" fill=\"#e2e8f0\">Average fill price: $9.9820</text>\n  <text x=\"45\" y=\"458\" font-size=\"12\" fill=\"#e2e8f0\">Cash you receive: $998,200</text>\n  <text x=\"45\" y=\"480\" font-size=\"12\" fill=\"#e2e8f0\">New last price: $9.97 (down 0.30%)</text>\n\n  <rect x=\"40\" y=\"496\" width=\"380\" height=\"64\" rx=\"6\" fill=\"#0f172a\" stroke=\"#22c55e\" stroke-width=\"1.5\"/>\n  <text x=\"230\" y=\"519\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#22c55e\">Market cap now $199,400,000</text>\n  <text x=\"230\" y=\"540\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">$600,000 of notional cap removed</text>\n  <text x=\"230\" y=\"555\" text-anchor=\"middle\" font-size=\"11\" fill=\"#3b82f6\">Slippage cost: $1,800 (0.18%)</text>\n\n  <!-- ===== RIGHT PANEL: THIN BOOK ===== -->\n  <rect x=\"460\" y=\"164\" width=\"416\" height=\"416\" rx=\"10\" fill=\"#0f172a\" stroke=\"#ef4444\" stroke-width=\"2\"/>\n  <text x=\"668\" y=\"190\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"bold\" fill=\"#ef4444\">Thin book</text>\n  <text x=\"668\" y=\"210\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">$766,600 of bids in total, all the way down to $7.00</text>\n\n  <text x=\"481\" y=\"234\" font-size=\"11\" font-weight=\"bold\" fill=\"#3b82f6\">Bid price</text>\n  <text x=\"566\" y=\"234\" font-size=\"11\" font-weight=\"bold\" fill=\"#3b82f6\">Tokens wanted at that price</text>\n\n  <rect x=\"562\" y=\"243\" width=\"14\" height=\"18\" fill=\"#ef4444\"/>\n  <text x=\"481\" y=\"257\" font-size=\"12\" fill=\"#e2e8f0\">$9.90</text>\n  <text x=\"584\" y=\"257\" font-size=\"11\" fill=\"#e2e8f0\">4,000</text>\n\n  <rect x=\"562\" y=\"269\" width=\"20\" height=\"18\" fill=\"#ef4444\"/>\n  <text x=\"481\" y=\"283\" font-size=\"12\" fill=\"#e2e8f0\">$9.50</text>\n  <text x=\"590\" y=\"283\" font-size=\"11\" fill=\"#e2e8f0\">6,000</text>\n\n  <rect x=\"562\" y=\"295\" width=\"33\" height=\"18\" fill=\"#ef4444\"/>\n  <text x=\"481\" y=\"309\" font-size=\"12\" fill=\"#e2e8f0\">$9.00</text>\n  <text x=\"603\" y=\"309\" font-size=\"11\" fill=\"#e2e8f0\">10,000</text>\n\n  <rect x=\"562\" y=\"321\" width=\"67\" height=\"18\" fill=\"#ef4444\"/>\n  <text x=\"481\" y=\"335\" font-size=\"12\" fill=\"#e2e8f0\">$8.00</text>\n  <text x=\"637\" y=\"335\" font-size=\"11\" fill=\"#e2e8f0\">20,000</text>\n\n  <rect x=\"562\" y=\"347\" width=\"200\" height=\"18\" fill=\"#ef4444\"/>\n  <text x=\"481\" y=\"361\" font-size=\"12\" fill=\"#e2e8f0\">$7.00</text>\n  <text x=\"770\" y=\"361\" font-size=\"11\" fill=\"#e2e8f0\">60,000</text>\n\n  <line x1=\"481\" y1=\"376\" x2=\"855\" y2=\"376\" stroke=\"#3b82f6\" stroke-width=\"1\"/>\n\n  <text x=\"481\" y=\"398\" font-size=\"13\" font-weight=\"bold\" fill=\"#e2e8f0\">Sell 100,000 tokens at market -&gt;</text>\n  <text x=\"481\" y=\"418\" font-size=\"12\" fill=\"#e2e8f0\">Fills: eats every level down to $7.00</text>\n  <text x=\"481\" y=\"438\" font-size=\"12\" fill=\"#e2e8f0\">Average fill price: $7.6660</text>\n  <text x=\"481\" y=\"458\" font-size=\"12\" fill=\"#e2e8f0\">Cash you receive: $766,600</text>\n  <text x=\"481\" y=\"478\" font-size=\"12\" fill=\"#e2e8f0\">New last price: $7.00 (down 30.00%)</text>\n\n  <rect x=\"476\" y=\"496\" width=\"380\" height=\"64\" rx=\"6\" fill=\"#0f172a\" stroke=\"#ef4444\" stroke-width=\"1.5\"/>\n  <text x=\"666\" y=\"519\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#ef4444\">Market cap now $140,000,000</text>\n  <text x=\"666\" y=\"540\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">$60,000,000 of notional cap removed</text>\n  <text x=\"666\" y=\"555\" text-anchor=\"middle\" font-size=\"11\" fill=\"#eab308\">Slippage cost: $233,400 (23.34%)</text>\n\n  <!-- ===== FOOTER ===== -->\n  <text x=\"450\" y=\"600\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#e2e8f0\">A $766,600 sale erased $60,000,000 of market cap. Cap is price times supply, not cash in the market.</text>\n</svg>\n",
+  "crypto-02-2-halving-schedule": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\" width=\"900\" height=\"600\" role=\"img\" aria-label=\"Bitcoin block subsidy step-down schedule across four halvings\">\n  <rect x=\"0\" y=\"0\" width=\"900\" height=\"600\" fill=\"#0f172a\"/>\n\n  <text x=\"450\" y=\"36\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"21\" font-weight=\"bold\" fill=\"#e2e8f0\">Bitcoin Block Subsidy: A Schedule Known In Advance</text>\n  <text x=\"450\" y=\"60\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"13\" fill=\"#4A5568\">New coins per block, and the resulting daily issuance, after each halving</text>\n\n  <rect x=\"60\" y=\"76\" width=\"780\" height=\"34\" rx=\"5\" fill=\"#EAF3EE\" stroke=\"#22c55e\" stroke-width=\"1.5\"/>\n  <text x=\"450\" y=\"98\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"13\" fill=\"#22c55e\">KNOWN IN ADVANCE: every step below was fixed in Bitcoin's software rules in 2009. No step was a surprise.</text>\n\n  <line x1=\"230\" y1=\"170\" x2=\"230\" y2=\"452\" stroke=\"#ef4444\" stroke-width=\"1.2\" stroke-dasharray=\"5,4\"/>\n  <line x1=\"370\" y1=\"170\" x2=\"370\" y2=\"452\" stroke=\"#ef4444\" stroke-width=\"1.2\" stroke-dasharray=\"5,4\"/>\n  <line x1=\"510\" y1=\"170\" x2=\"510\" y2=\"452\" stroke=\"#ef4444\" stroke-width=\"1.2\" stroke-dasharray=\"5,4\"/>\n  <line x1=\"650\" y1=\"170\" x2=\"650\" y2=\"452\" stroke=\"#ef4444\" stroke-width=\"1.2\" stroke-dasharray=\"5,4\"/>\n\n  <circle cx=\"230\" cy=\"170\" r=\"4\" fill=\"#ef4444\"/>\n  <circle cx=\"370\" cy=\"170\" r=\"4\" fill=\"#ef4444\"/>\n  <circle cx=\"510\" cy=\"170\" r=\"4\" fill=\"#ef4444\"/>\n  <circle cx=\"650\" cy=\"170\" r=\"4\" fill=\"#ef4444\"/>\n\n  <text x=\"230\" y=\"144\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" font-weight=\"bold\" fill=\"#ef4444\">Halving 1</text>\n  <text x=\"230\" y=\"158\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#ef4444\">Nov 2012</text>\n  <text x=\"370\" y=\"144\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" font-weight=\"bold\" fill=\"#ef4444\">Halving 2</text>\n  <text x=\"370\" y=\"158\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#ef4444\">Jul 2016</text>\n  <text x=\"510\" y=\"144\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" font-weight=\"bold\" fill=\"#ef4444\">Halving 3</text>\n  <text x=\"510\" y=\"158\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#ef4444\">May 2020</text>\n  <text x=\"650\" y=\"144\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" font-weight=\"bold\" fill=\"#ef4444\">Halving 4</text>\n  <text x=\"650\" y=\"158\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#ef4444\">Apr 2024</text>\n\n  <rect x=\"92\" y=\"200\" width=\"136\" height=\"240\" fill=\"#3b82f6\"/>\n  <rect x=\"232\" y=\"320\" width=\"136\" height=\"120\" fill=\"#3b82f6\"/>\n  <rect x=\"372\" y=\"380\" width=\"136\" height=\"60\" fill=\"#3b82f6\"/>\n  <rect x=\"512\" y=\"410\" width=\"136\" height=\"30\" fill=\"#3b82f6\"/>\n  <rect x=\"652\" y=\"425\" width=\"136\" height=\"15\" fill=\"#22c55e\"/>\n\n  <text x=\"160\" y=\"222\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"15\" font-weight=\"bold\" fill=\"#0f172a\">50 BTC / block</text>\n  <text x=\"160\" y=\"242\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"12\" fill=\"#0f172a\">about 7,200 / day</text>\n\n  <text x=\"300\" y=\"342\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"15\" font-weight=\"bold\" fill=\"#0f172a\">25 BTC / block</text>\n  <text x=\"300\" y=\"362\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"12\" fill=\"#0f172a\">about 3,600 / day</text>\n\n  <text x=\"440\" y=\"402\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#0f172a\">12.5 BTC / block</text>\n  <text x=\"440\" y=\"422\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#0f172a\">about 1,800 / day</text>\n\n  <text x=\"580\" y=\"398\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#e2e8f0\">6.25 BTC / block</text>\n  <text x=\"580\" y=\"431\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#0f172a\">about 900 / day</text>\n\n  <text x=\"720\" y=\"398\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#22c55e\">3.125 BTC / block</text>\n  <text x=\"720\" y=\"414\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#22c55e\">about 450 / day (now)</text>\n\n  <line x1=\"80\" y1=\"440\" x2=\"810\" y2=\"440\" stroke=\"#e2e8f0\" stroke-width=\"2\"/>\n\n  <text x=\"160\" y=\"458\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#4A5568\">2009 to 2012</text>\n  <text x=\"300\" y=\"458\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#4A5568\">2012 to 2016</text>\n  <text x=\"440\" y=\"458\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#4A5568\">2016 to 2020</text>\n  <text x=\"580\" y=\"458\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#4A5568\">2020 to 2024</text>\n  <text x=\"720\" y=\"458\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#4A5568\">2024 to 2028</text>\n\n  <rect x=\"60\" y=\"482\" width=\"380\" height=\"66\" rx=\"5\" fill=\"#F7E9E6\" stroke=\"#ef4444\" stroke-width=\"1.5\"/>\n  <text x=\"76\" y=\"503\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#ef4444\">n = 4 events</text>\n  <text x=\"76\" y=\"521\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11.5\" fill=\"#ef4444\">Four halvings have ever happened. That is three complete</text>\n  <text x=\"76\" y=\"537\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11.5\" fill=\"#ef4444\">cycles at most, and a fourth still running. Not a sample.</text>\n\n  <rect x=\"460\" y=\"482\" width=\"380\" height=\"66\" rx=\"5\" fill=\"#FBF3DF\" stroke=\"#eab308\" stroke-width=\"1.5\"/>\n  <text x=\"476\" y=\"503\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#8A6A16\">Not actually four years</text>\n  <text x=\"476\" y=\"521\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11.5\" fill=\"#8A6A16\">Gaps between halvings: 3.61, 3.84 and 3.94 years. The</text>\n  <text x=\"476\" y=\"537\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11.5\" fill=\"#8A6A16\">schedule counts blocks, not calendar days.</text>\n\n  <text x=\"450\" y=\"576\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"12\" fill=\"#e2e8f0\">The supply schedule is certain. What price does in response is not.</text>\n</svg>\n",
+  "crypto-02-3-correlation-regimes": "<svg viewBox=\"0 0 900 620\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"Arial, Helvetica, sans-serif\">\n  <rect width=\"900\" height=\"620\" fill=\"#0f172a\"/>\n  <text x=\"450\" y=\"32\" text-anchor=\"middle\" font-size=\"20\" font-weight=\"bold\" fill=\"#e2e8f0\">Crypto as a Risk Asset: Where It Sits, and When Correlation Turns</text>\n  <text x=\"450\" y=\"55\" text-anchor=\"middle\" font-size=\"12\" font-style=\"italic\" fill=\"#6B6B6B\">Schematic illustration only -- shapes are drawn to explain the idea, not plotted from data.</text>\n\n  <!-- PANEL A: transmission chain -->\n  <text x=\"40\" y=\"92\" font-size=\"14\" font-weight=\"bold\" fill=\"#e2e8f0\">Panel A. The transmission chain (Forex Ch6 L3): crypto is the last and highest-beta link</text>\n\n  <rect x=\"40\" y=\"104\" width=\"146\" height=\"62\" rx=\"8\" fill=\"#EAF0FB\" stroke=\"#3b82f6\" stroke-width=\"2\"/>\n  <text x=\"113\" y=\"128\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"bold\" fill=\"#3b82f6\">Interest rates</text>\n  <text x=\"113\" y=\"146\" text-anchor=\"middle\" font-size=\"10\" fill=\"#e2e8f0\">the shock starts here</text>\n  <text x=\"113\" y=\"159\" text-anchor=\"middle\" font-size=\"10\" fill=\"#e2e8f0\">beta reference: low</text>\n  <text x=\"193\" y=\"140\" font-size=\"16\" fill=\"#94a3b8\">-&gt;</text>\n\n  <rect x=\"211\" y=\"104\" width=\"146\" height=\"62\" rx=\"8\" fill=\"#EFFAF3\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n  <text x=\"284\" y=\"128\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"bold\" fill=\"#22c55e\">FX and bonds</text>\n  <text x=\"284\" y=\"146\" text-anchor=\"middle\" font-size=\"10\" fill=\"#e2e8f0\">closest to rates</text>\n  <text x=\"364\" y=\"140\" font-size=\"16\" fill=\"#94a3b8\">-&gt;</text>\n\n  <rect x=\"382\" y=\"104\" width=\"146\" height=\"62\" rx=\"8\" fill=\"#0f172a7E6\" stroke=\"#eab308\" stroke-width=\"2\"/>\n  <text x=\"455\" y=\"128\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"bold\" fill=\"#8A6D1F\">Credit, equities</text>\n  <text x=\"455\" y=\"146\" text-anchor=\"middle\" font-size=\"10\" fill=\"#e2e8f0\">Nasdaq 2022: about -33%</text>\n  <text x=\"535\" y=\"140\" font-size=\"16\" fill=\"#94a3b8\">-&gt;</text>\n\n  <rect x=\"553\" y=\"104\" width=\"128\" height=\"62\" rx=\"8\" fill=\"#0f172a7E6\" stroke=\"#eab308\" stroke-width=\"2\"/>\n  <text x=\"617\" y=\"128\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"bold\" fill=\"#8A6D1F\">Commodities</text>\n  <text x=\"617\" y=\"146\" text-anchor=\"middle\" font-size=\"10\" fill=\"#e2e8f0\">growth-sensitive</text>\n  <text x=\"688\" y=\"140\" font-size=\"16\" fill=\"#94a3b8\">-&gt;</text>\n\n  <rect x=\"706\" y=\"100\" width=\"154\" height=\"70\" rx=\"8\" fill=\"#0f172a3EF\" stroke=\"#ef4444\" stroke-width=\"3\"/>\n  <text x=\"783\" y=\"124\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#ef4444\">Crypto</text>\n  <text x=\"783\" y=\"142\" text-anchor=\"middle\" font-size=\"10\" fill=\"#e2e8f0\">highest beta in the chain</text>\n  <text x=\"783\" y=\"156\" text-anchor=\"middle\" font-size=\"10\" fill=\"#e2e8f0\">BTC 2022: about -64%</text>\n\n  <text x=\"40\" y=\"192\" font-size=\"11\" font-style=\"italic\" fill=\"#6B6B6B\">Same direction as equities, larger amplitude. IMF WP/23/163: a tightening shock moved the crypto factor about -0.15 SD versus about -0.10 SD for equities.</text>\n\n  <!-- PANEL B: correlation schematic -->\n  <text x=\"40\" y=\"230\" font-size=\"14\" font-weight=\"bold\" fill=\"#e2e8f0\">Panel B. Correlation is a moving number -- and it rises toward 1 in the stress window</text>\n\n  <rect x=\"40\" y=\"242\" width=\"820\" height=\"250\" rx=\"10\" fill=\"#0f172a\" stroke=\"#D8D3C6\" stroke-width=\"1.5\"/>\n\n  <!-- stress band -->\n  <rect x=\"560\" y=\"256\" width=\"180\" height=\"206\" fill=\"#FBEDEA\"/>\n  <text x=\"650\" y=\"274\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"bold\" fill=\"#ef4444\">stress window</text>\n\n  <!-- axes -->\n  <line x1=\"110\" y1=\"462\" x2=\"840\" y2=\"462\" stroke=\"#e2e8f0\" stroke-width=\"2\"/>\n  <line x1=\"110\" y1=\"256\" x2=\"110\" y2=\"462\" stroke=\"#e2e8f0\" stroke-width=\"2\"/>\n\n  <!-- y labels -->\n  <text x=\"102\" y=\"262\" text-anchor=\"end\" font-size=\"11\" fill=\"#e2e8f0\">1.0</text>\n  <text x=\"102\" y=\"313\" text-anchor=\"end\" font-size=\"11\" fill=\"#e2e8f0\">0.75</text>\n  <text x=\"102\" y=\"364\" text-anchor=\"end\" font-size=\"11\" fill=\"#e2e8f0\">0.5</text>\n  <text x=\"102\" y=\"415\" text-anchor=\"end\" font-size=\"11\" fill=\"#e2e8f0\">0.25</text>\n  <text x=\"102\" y=\"466\" text-anchor=\"end\" font-size=\"11\" fill=\"#e2e8f0\">0.0</text>\n  <text x=\"58\" y=\"360\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"bold\" fill=\"#e2e8f0\" transform=\"rotate(-90 58 360)\">rolling correlation</text>\n\n  <!-- gridlines -->\n  <line x1=\"110\" y1=\"256\" x2=\"840\" y2=\"256\" stroke=\"#E3DED2\" stroke-width=\"1\"/>\n  <line x1=\"110\" y1=\"313\" x2=\"840\" y2=\"313\" stroke=\"#E3DED2\" stroke-width=\"1\"/>\n  <line x1=\"110\" y1=\"364\" x2=\"840\" y2=\"364\" stroke=\"#E3DED2\" stroke-width=\"1\"/>\n  <line x1=\"110\" y1=\"415\" x2=\"840\" y2=\"415\" stroke=\"#E3DED2\" stroke-width=\"1\"/>\n\n  <!-- schematic correlation path: low and choppy, then rising sharply in stress, then easing -->\n  <polyline points=\"120,432 155,420 190,438 225,425 260,410 295,428 330,404 365,418 400,396 435,408 470,384 505,395 540,372 560,340 585,300 610,276 640,266 670,262 700,268 730,284 760,300 790,318 820,330\"\n            fill=\"none\" stroke=\"#ef4444\" stroke-width=\"3\"/>\n\n  <!-- calm-period average marker -->\n  <line x1=\"120\" y1=\"418\" x2=\"545\" y2=\"418\" stroke=\"#3b82f6\" stroke-width=\"2\" stroke-dasharray=\"7,5\"/>\n  <text x=\"130\" y=\"410\" font-size=\"10.5\" font-weight=\"bold\" fill=\"#3b82f6\">calm-period average -- the number the marketing quotes</text>\n\n  <!-- annotations -->\n  <text x=\"130\" y=\"290\" font-size=\"11.5\" font-weight=\"bold\" fill=\"#22c55e\">Calm regime</text>\n  <text x=\"130\" y=\"306\" font-size=\"10.5\" fill=\"#e2e8f0\">Correlation drifts low and choppy.</text>\n  <text x=\"130\" y=\"320\" font-size=\"10.5\" fill=\"#e2e8f0\">This is the window \"uncorrelated\"</text>\n  <text x=\"130\" y=\"334\" font-size=\"10.5\" fill=\"#e2e8f0\">claims are usually measured over.</text>\n\n  <text x=\"612\" y=\"376\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"bold\" fill=\"#ef4444\">Crisis correlation</text>\n  <text x=\"612\" y=\"392\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#e2e8f0\">Correlation runs toward 1</text>\n  <text x=\"612\" y=\"406\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#e2e8f0\">exactly when diversification</text>\n  <text x=\"612\" y=\"420\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#e2e8f0\">was supposed to help.</text>\n\n  <text x=\"770\" y=\"404\" text-anchor=\"middle\" font-size=\"10.5\" font-style=\"italic\" fill=\"#6B6B6B\">eases, but not</text>\n  <text x=\"770\" y=\"418\" text-anchor=\"middle\" font-size=\"10.5\" font-style=\"italic\" fill=\"#6B6B6B\">back to the old level</text>\n\n  <text x=\"475\" y=\"482\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"bold\" fill=\"#e2e8f0\">time</text>\n\n  <!-- footer facts -->\n  <rect x=\"40\" y=\"504\" width=\"400\" height=\"78\" rx=\"10\" fill=\"#EAF0FB\" stroke=\"#3b82f6\" stroke-width=\"2\"/>\n  <text x=\"60\" y=\"526\" font-size=\"12\" font-weight=\"bold\" fill=\"#3b82f6\">Same pair, different windows (IMF, Jan 2022)</text>\n  <text x=\"60\" y=\"546\" font-size=\"11\" fill=\"#e2e8f0\">BTC vs S&amp;P 500, 2017-2019: correlation 0.01</text>\n  <text x=\"60\" y=\"562\" font-size=\"11\" fill=\"#e2e8f0\">BTC vs S&amp;P 500, 2020-2021: correlation 0.36</text>\n  <text x=\"60\" y=\"576\" font-size=\"10\" font-style=\"italic\" fill=\"#6B6B6B\">A correlation with no window attached is not a measurement.</text>\n\n  <rect x=\"460\" y=\"504\" width=\"400\" height=\"78\" rx=\"10\" fill=\"#0f172a3EF\" stroke=\"#ef4444\" stroke-width=\"2\"/>\n  <text x=\"480\" y=\"526\" font-size=\"12\" font-weight=\"bold\" fill=\"#ef4444\">The asymmetry (Longin and Solnik 2001)</text>\n  <text x=\"480\" y=\"546\" font-size=\"11\" fill=\"#e2e8f0\">Linkage is stronger in extreme falls than in</text>\n  <text x=\"480\" y=\"562\" font-size=\"11\" fill=\"#e2e8f0\">extreme rises. Diversification is measured in</text>\n  <text x=\"480\" y=\"576\" font-size=\"11\" fill=\"#e2e8f0\">calm markets and tested in crashes.</text>\n\n  <text x=\"450\" y=\"606\" text-anchor=\"middle\" font-size=\"11.5\" font-style=\"italic\" fill=\"#e2e8f0\">Size crypto as the high-beta tail of a risk portfolio, not as protection against one.</text>\n</svg>\n",
+  "crypto-02-4-address-not-person": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\" font-family=\"Arial, Helvetica, sans-serif\">\n  <rect x=\"0\" y=\"0\" width=\"900\" height=\"600\" fill=\"#0f172a\"/>\n\n  <text x=\"450\" y=\"34\" text-anchor=\"middle\" font-size=\"22\" font-weight=\"bold\" fill=\"#e2e8f0\">An Address Is Not a Person</text>\n  <text x=\"450\" y=\"58\" text-anchor=\"middle\" font-size=\"13\" fill=\"#e2e8f0\">Two counting errors, running in opposite directions, in every address-based metric</text>\n\n  <!-- ===== LEFT PANEL: one user, many addresses ===== -->\n  <rect x=\"25\" y=\"78\" width=\"410\" height=\"420\" rx=\"10\" fill=\"#0f172a\" stroke=\"#3b82f6\" stroke-width=\"2\"/>\n  <text x=\"230\" y=\"106\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"bold\" fill=\"#3b82f6\">One user, many addresses</text>\n  <text x=\"230\" y=\"126\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">Wallet software makes a fresh address for every</text>\n  <text x=\"230\" y=\"142\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">payment received and every bit of change returned.</text>\n\n  <circle cx=\"112\" cy=\"265\" r=\"34\" fill=\"#3b82f6\"/>\n  <text x=\"112\" y=\"262\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">1 REAL</text>\n  <text x=\"112\" y=\"278\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">PERSON</text>\n\n  <line x1=\"150\" y1=\"265\" x2=\"248\" y2=\"174\" stroke=\"#3b82f6\" stroke-width=\"2\"/>\n  <line x1=\"150\" y1=\"265\" x2=\"248\" y2=\"210\" stroke=\"#3b82f6\" stroke-width=\"2\"/>\n  <line x1=\"150\" y1=\"265\" x2=\"248\" y2=\"246\" stroke=\"#3b82f6\" stroke-width=\"2\"/>\n  <line x1=\"150\" y1=\"265\" x2=\"248\" y2=\"282\" stroke=\"#3b82f6\" stroke-width=\"2\"/>\n  <line x1=\"150\" y1=\"265\" x2=\"248\" y2=\"318\" stroke=\"#3b82f6\" stroke-width=\"2\"/>\n  <line x1=\"150\" y1=\"265\" x2=\"248\" y2=\"354\" stroke=\"#3b82f6\" stroke-width=\"2\"/>\n\n  <rect x=\"250\" y=\"160\" width=\"150\" height=\"28\" rx=\"6\" fill=\"#0f172a\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n  <text x=\"325\" y=\"179\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">address 1</text>\n  <rect x=\"250\" y=\"196\" width=\"150\" height=\"28\" rx=\"6\" fill=\"#0f172a\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n  <text x=\"325\" y=\"215\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">address 2</text>\n  <rect x=\"250\" y=\"232\" width=\"150\" height=\"28\" rx=\"6\" fill=\"#0f172a\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n  <text x=\"325\" y=\"251\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">address 3</text>\n  <rect x=\"250\" y=\"268\" width=\"150\" height=\"28\" rx=\"6\" fill=\"#0f172a\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n  <text x=\"325\" y=\"287\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">address 4</text>\n  <rect x=\"250\" y=\"304\" width=\"150\" height=\"28\" rx=\"6\" fill=\"#0f172a\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n  <text x=\"325\" y=\"323\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">change address</text>\n  <rect x=\"250\" y=\"340\" width=\"150\" height=\"28\" rx=\"6\" fill=\"#0f172a\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n  <text x=\"325\" y=\"359\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">change address</text>\n\n  <text x=\"230\" y=\"392\" text-anchor=\"middle\" font-size=\"12\" fill=\"#eab308\">Internal and change transfers move no money</text>\n  <text x=\"230\" y=\"408\" text-anchor=\"middle\" font-size=\"12\" fill=\"#eab308\">between people, but still add to the count.</text>\n\n  <rect x=\"45\" y=\"420\" width=\"370\" height=\"60\" rx=\"8\" fill=\"#3b82f6\"/>\n  <text x=\"230\" y=\"444\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#0f172a\">Metric says: 6 active addresses</text>\n  <text x=\"230\" y=\"466\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#0f172a\">Reality: 1 user. Count is too high.</text>\n\n  <!-- ===== RIGHT PANEL: one address, many users ===== -->\n  <rect x=\"465\" y=\"78\" width=\"410\" height=\"420\" rx=\"10\" fill=\"#0f172a\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n  <text x=\"670\" y=\"106\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"bold\" fill=\"#22c55e\">One address, many users</text>\n  <text x=\"670\" y=\"126\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">A centralized exchange holds all customer coins in</text>\n  <text x=\"670\" y=\"142\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">wallets it controls. Customer trades are database rows.</text>\n\n  <circle cx=\"528\" cy=\"176\" r=\"16\" fill=\"#22c55e\"/>\n  <circle cx=\"528\" cy=\"220\" r=\"16\" fill=\"#22c55e\"/>\n  <circle cx=\"528\" cy=\"264\" r=\"16\" fill=\"#22c55e\"/>\n  <circle cx=\"528\" cy=\"308\" r=\"16\" fill=\"#22c55e\"/>\n  <circle cx=\"528\" cy=\"352\" r=\"16\" fill=\"#22c55e\"/>\n  <text x=\"528\" y=\"386\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">plus millions</text>\n  <text x=\"528\" y=\"402\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">more customers</text>\n\n  <line x1=\"546\" y1=\"176\" x2=\"712\" y2=\"255\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n  <line x1=\"546\" y1=\"220\" x2=\"712\" y2=\"262\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n  <line x1=\"546\" y1=\"264\" x2=\"712\" y2=\"268\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n  <line x1=\"546\" y1=\"308\" x2=\"712\" y2=\"275\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n  <line x1=\"546\" y1=\"352\" x2=\"712\" y2=\"282\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n\n  <rect x=\"714\" y=\"232\" width=\"146\" height=\"72\" rx=\"8\" fill=\"#22c55e\"/>\n  <text x=\"787\" y=\"258\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">EXCHANGE</text>\n  <text x=\"787\" y=\"277\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">1 pooled address</text>\n  <text x=\"787\" y=\"294\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">holds every balance</text>\n\n  <text x=\"700\" y=\"340\" text-anchor=\"middle\" font-size=\"12\" fill=\"#eab308\">Trades between customers never reach the chain,</text>\n  <text x=\"700\" y=\"356\" text-anchor=\"middle\" font-size=\"12\" fill=\"#eab308\">so they are counted zero times.</text>\n\n  <rect x=\"485\" y=\"420\" width=\"370\" height=\"60\" rx=\"8\" fill=\"#22c55e\"/>\n  <text x=\"670\" y=\"444\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#0f172a\">Metric says: 1 active address</text>\n  <text x=\"670\" y=\"466\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#0f172a\">Reality: millions. Count is too low.</text>\n\n  <!-- ===== BOTTOM BAND ===== -->\n  <rect x=\"25\" y=\"514\" width=\"850\" height=\"64\" rx=\"8\" fill=\"#ef4444\"/>\n  <text x=\"450\" y=\"540\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#0f172a\">Both errors occur at the same time, in opposite directions, and neither can be measured.</text>\n  <text x=\"450\" y=\"562\" text-anchor=\"middle\" font-size=\"14\" fill=\"#0f172a\">So a count of active addresses is a count of addresses. It is not a count of people.</text>\n</svg>\n",
+  "crypto-02-5-reflexivity-loop": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 980 640\" font-family=\"Arial, Helvetica, sans-serif\">\n  <rect x=\"0\" y=\"0\" width=\"980\" height=\"640\" fill=\"#0f172a\"/>\n\n  <text x=\"490\" y=\"34\" text-anchor=\"middle\" font-size=\"22\" font-weight=\"bold\" fill=\"#e2e8f0\">The Reflexive Loop</text>\n  <text x=\"490\" y=\"56\" text-anchor=\"middle\" font-size=\"13\" fill=\"#e2e8f0\">The same circle runs both ways. Nothing about the asset has to change.</text>\n\n  <!-- ================= LEFT PANEL: BOOM ================= -->\n  <rect x=\"20\" y=\"76\" width=\"460\" height=\"470\" rx=\"10\" fill=\"#0f172a\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n  <text x=\"250\" y=\"104\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"bold\" fill=\"#22c55e\">Running forwards: the boom</text>\n\n  <!-- Node 1: story -->\n  <rect x=\"150\" y=\"122\" width=\"200\" height=\"52\" rx=\"8\" fill=\"#e2e8f0\"/>\n  <text x=\"250\" y=\"145\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">1. A story spreads</text>\n  <text x=\"250\" y=\"163\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">\"this will be worth more\"</text>\n\n  <!-- Node 2: buying -->\n  <rect x=\"300\" y=\"222\" width=\"168\" height=\"52\" rx=\"8\" fill=\"#3b82f6\"/>\n  <text x=\"384\" y=\"245\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">2. People buy</text>\n  <text x=\"384\" y=\"263\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">acting on the story</text>\n\n  <!-- Node 3: price up -->\n  <rect x=\"300\" y=\"342\" width=\"168\" height=\"52\" rx=\"8\" fill=\"#22c55e\"/>\n  <text x=\"384\" y=\"365\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">3. Price rises</text>\n  <text x=\"384\" y=\"383\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">because they bought</text>\n\n  <!-- Node 4: validation -->\n  <rect x=\"90\" y=\"452\" width=\"320\" height=\"52\" rx=\"8\" fill=\"#eab308\"/>\n  <text x=\"250\" y=\"475\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">4. The rise is read as proof</text>\n  <text x=\"250\" y=\"493\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">\"the chart shows the story is right\"</text>\n\n  <!-- arrows: 1 -> 2 -->\n  <line x1=\"330\" y1=\"176\" x2=\"378\" y2=\"214\" stroke=\"#e2e8f0\" stroke-width=\"2.5\"/>\n  <polygon points=\"384,219 371,216 379,206\" fill=\"#e2e8f0\"/>\n\n  <!-- 2 -> 3 -->\n  <line x1=\"384\" y1=\"274\" x2=\"384\" y2=\"334\" stroke=\"#3b82f6\" stroke-width=\"2.5\"/>\n  <polygon points=\"384,340 377,326 391,326\" fill=\"#3b82f6\"/>\n\n  <!-- 3 -> 4 -->\n  <line x1=\"376\" y1=\"394\" x2=\"330\" y2=\"444\" stroke=\"#22c55e\" stroke-width=\"2.5\"/>\n  <polygon points=\"325,450 328,436 338,445\" fill=\"#22c55e\"/>\n\n  <!-- 4 -> 1 (return leg, up the left side) -->\n  <line x1=\"96\" y1=\"452\" x2=\"96\" y2=\"156\" stroke=\"#eab308\" stroke-width=\"2.5\"/>\n  <line x1=\"96\" y1=\"156\" x2=\"142\" y2=\"150\" stroke=\"#eab308\" stroke-width=\"2.5\"/>\n  <polygon points=\"148,149 135,144 137,156\" fill=\"#eab308\"/>\n  <text x=\"86\" y=\"310\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#eab308\" transform=\"rotate(-90 86 310)\">5. more buying -&gt;</text>\n\n  <!-- ================= RIGHT PANEL: BUST ================= -->\n  <rect x=\"500\" y=\"76\" width=\"460\" height=\"470\" rx=\"10\" fill=\"#0f172a\" stroke=\"#ef4444\" stroke-width=\"2\"/>\n  <text x=\"730\" y=\"104\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"bold\" fill=\"#ef4444\">Running backwards: the bust</text>\n\n  <!-- Node 1: doubt -->\n  <rect x=\"630\" y=\"122\" width=\"200\" height=\"52\" rx=\"8\" fill=\"#e2e8f0\"/>\n  <text x=\"730\" y=\"145\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">1. Doubt spreads</text>\n  <text x=\"730\" y=\"163\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">\"maybe the story was wrong\"</text>\n\n  <!-- Node 2: selling -->\n  <rect x=\"780\" y=\"222\" width=\"168\" height=\"52\" rx=\"8\" fill=\"#3b82f6\"/>\n  <text x=\"864\" y=\"245\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">2. People sell</text>\n  <text x=\"864\" y=\"263\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">acting on the doubt</text>\n\n  <!-- Node 3: price down -->\n  <rect x=\"780\" y=\"342\" width=\"168\" height=\"52\" rx=\"8\" fill=\"#ef4444\"/>\n  <text x=\"864\" y=\"365\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">3. Price falls</text>\n  <text x=\"864\" y=\"383\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">because they sold</text>\n\n  <!-- Node 4: refutation -->\n  <rect x=\"570\" y=\"452\" width=\"320\" height=\"52\" rx=\"8\" fill=\"#eab308\"/>\n  <text x=\"730\" y=\"475\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">4. The fall is read as proof</text>\n  <text x=\"730\" y=\"493\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">\"the chart shows the story failed\"</text>\n\n  <!-- arrows -->\n  <line x1=\"810\" y1=\"176\" x2=\"858\" y2=\"214\" stroke=\"#e2e8f0\" stroke-width=\"2.5\"/>\n  <polygon points=\"864,219 851,216 859,206\" fill=\"#e2e8f0\"/>\n\n  <line x1=\"864\" y1=\"274\" x2=\"864\" y2=\"334\" stroke=\"#3b82f6\" stroke-width=\"2.5\"/>\n  <polygon points=\"864,340 857,326 871,326\" fill=\"#3b82f6\"/>\n\n  <line x1=\"856\" y1=\"394\" x2=\"810\" y2=\"444\" stroke=\"#ef4444\" stroke-width=\"2.5\"/>\n  <polygon points=\"805,450 808,436 818,445\" fill=\"#ef4444\"/>\n\n  <line x1=\"576\" y1=\"452\" x2=\"576\" y2=\"156\" stroke=\"#eab308\" stroke-width=\"2.5\"/>\n  <line x1=\"576\" y1=\"156\" x2=\"622\" y2=\"150\" stroke=\"#eab308\" stroke-width=\"2.5\"/>\n  <polygon points=\"628,149 615,144 617,156\" fill=\"#eab308\"/>\n  <text x=\"566\" y=\"310\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#eab308\" transform=\"rotate(-90 566 310)\">5. more selling -&gt;</text>\n\n  <!-- ================= FOOTER ================= -->\n  <rect x=\"20\" y=\"562\" width=\"940\" height=\"60\" rx=\"8\" fill=\"#0f172a\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n  <text x=\"490\" y=\"586\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#e2e8f0\">Step 3 never tested step 1. The price moved because people acted on the story.</text>\n  <text x=\"490\" y=\"608\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">The loop says a move can run far past any sensible valuation, in either direction. It never says when it turns.</text>\n</svg>\n"
 };

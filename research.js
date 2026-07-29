@@ -92,12 +92,15 @@ function renderNoTrade(data) {
   const nt = data.noTradeZone;
   const section = document.getElementById('noTradeSection');
   if (!nt || !nt.flagged) { section.classList.add('hidden'); return; }
+  // "partial" means the desk lifted the zone for part of the book only — say so
+  // rather than implying a blanket stand-down.
+  const partial = nt.status === 'partial';
   section.classList.remove('hidden');
   document.getElementById('noTradeFlag').innerHTML = `
     <div class="advisory-card alert-moderate !items-start">
       <span class="advisory-icon">⚠️</span>
       <div>
-        <p class="font-semibold text-sm">No-Trade Zone flagged</p>
+        <p class="font-semibold text-sm">${partial ? 'No-Trade Zone partially lifted' : 'No-Trade Zone flagged'}</p>
         <p class="text-xs opacity-90 mt-0.5">${escapeHtml(nt.text || 'Conditions argue for caution — the desk is flagging elevated risk of whipsaw or event-driven noise.')}</p>
       </div>
     </div>`;

@@ -140,12 +140,45 @@ function extractRegime(section) {
   };
 }
 
+// The performance table's column HEADERS drift between reports: "Idea (as
+// published)" becomes "Idea as published — July 24", "Outcome" becomes "Outcome
+// update", "Status change" becomes "Status on July 29", and the hypothetical P&L
+// column disappears entirely in some runs. The track record is the free, in-the-open
+// section of the Research Desk, so a renamed column must not blank it out. Map
+// whatever arrived onto stable keys, keeping the original keys alongside.
+const PERFORMANCE_ALIASES = [
+  ['idea_as_published', (k) => /^idea/.test(k)],
+  ['outcome', (k) => /^outcome/.test(k)],
+  ['outcome', (k) => /^status/.test(k)],
+  ['hypothetical_p_l_if_followed', (k) => /p_l|pnl|hypothetical/.test(k)],
+  ['key_lesson', (k) => /lesson|notes/.test(k)],
+];
+
+function canonicalizePerformanceRow(row) {
+  const out = Object.assign({}, row);
+  for (const [canonical, matches] of PERFORMANCE_ALIASES) {
+    if (out[canonical]) continue;
+    const hit = Object.keys(row).find((k) => k !== canonical && matches(k) && row[k]);
+    if (hit) out[canonical] = row[hit];
+  }
+  return out;
+}
+
 function extractPerformanceReview(section) {
   if (!section) return null;
   const tables = parseAllTables(section.raw).map(normalizeTable).filter((t) => t.type === 'rows');
-  const ideas = tables.length ? tables[0].rows : [];
-  const hitRateMatch = section.raw.match(/Running Hit Rate:?\*{0,2}\s*([^.\n]+)/i);
-  return { ideas, hitRateSummary: hitRateMatch ? stripMd(hitRateMatch[1].trim()) : null };
+  const ideas = tables.length ? tables[0].rows.map(canonicalizePerformanceRow) : [];
+  // Capture the whole line, plus the date-range parenthetical the label carries in
+  // newer reports. Stopping at the first period truncated the summary mid-number,
+  // since it routinely quotes prices ("stopped out at ~93.50").
+  const hitRateMatch = section.raw.match(/Running Hit Rate\s*([^\n:]*):?\*{0,2}\s*([^\n]+)/i);
+  const range = hitRateMatch ? hitRateMatch[1].replace(/\*/g, '').trim() : '';
+  return {
+    ideas,
+    hitRateSummary: hitRateMatch
+      ? stripMd(((range ? range + ': ' : '') + hitRateMatch[2]).trim())
+      : null,
+  };
 }
 
 function extractGenericTableSection(section) {
@@ -214,12 +247,20 @@ function extractCorrelationCheck(section) {
 function extractContrarianCheck(section) {
   if (!section) return null;
   const primaryRisk = section.raw.match(/\*\*Primary thesis risk:?\*\*\s*([\s\S]*?)(?=\n\n\*\*|\n-\s*\*\*Bull case)/i);
+  // Newer reports drop the single "Primary thesis risk" line for a numbered
+  // "**Primary regime risks:**" list. Take the first item — it is the one the desk
+  // ranks highest — so the morning brief still has a real risk to quote.
+  const regimeRisk = primaryRisk
+    ? null
+    : section.raw.match(/\*\*Primary regime risks?:?\*\*\s*\n+\s*1\.\s*([\s\S]*?)(?=\n\s*2\.\s|\n\n\*\*)/i);
   const invalidation = section.raw.match(/\*\*Overall[- ]view invalidation factor:?\*\*\s*([\s\S]*?)(?=\n\n-\s*\*\*Bull case|\n-\s*\*\*Bull case)/i);
   const bull = section.raw.match(/\*\*Bull case[^:]*:?\*\*\s*([\s\S]*?)(?=\n-\s*\*\*Base case)/i);
   const base = section.raw.match(/\*\*Base case[^:]*:?\*\*\s*([\s\S]*?)(?=\n-\s*\*\*Bear case)/i);
   const bear = section.raw.match(/\*\*Bear case[^:]*:?\*\*\s*([\s\S]*?)$/i);
   return {
-    primaryRisk: primaryRisk ? stripMd(primaryRisk[1].trim()) : null,
+    primaryRisk: primaryRisk
+      ? stripMd(primaryRisk[1].trim())
+      : regimeRisk ? stripMd(regimeRisk[1].trim()) : null,
     invalidationFactor: invalidation ? stripMd(invalidation[1].trim()) : null,
     bullCase: bull ? stripMd(bull[1].trim()) : null,
     baseCase: base ? stripMd(base[1].trim()) : null,
@@ -233,21 +274,45 @@ function extractNoTradeZone(section) {
   // Newer template states the verdict inline, e.g.
   //   **No-Trade Zone Flag: YES — REINSTATED as of July 28, 2026.** ...
   //   **No-Trade Zone Flag: NO — LIFTED as of July 27.** ...
+  //   **No-Trade Zone Flag: PARTIALLY LIFTED.** ...
   // This must be checked FIRST: the older regex below would otherwise match the
   // literal "No" in "No-Trade" and report the exact opposite of the truth.
-  const labelled = section.raw.match(/no-?trade\s+zone[^:\n]*:\s*\**\s*(yes|no)\b/i);
+  const labelled = section.raw.match(
+    /no-?trade\s+zone[^:\n]*:\s*\**\s*(yes|no|partial\w*|lifted|reinstated)\b/i
+  );
   if (labelled) {
-    const after = section.raw.slice(labelled.index + labelled[0].length);
+    const word = labelled[1].toLowerCase();
+    // "Partially lifted" means the zone still binds part of the book — treat it as
+    // flagged so the caution surfaces, but label it distinctly so the UI does not
+    // overstate a blanket stand-down.
+    const status = /^partial/.test(word)
+      ? 'partial'
+      : (word === 'yes' || word === 'reinstated') ? 'flagged' : 'clear';
+
+    // The verdict runs to the end of its own sentence ("NO — LIFTED as of July 27.",
+    // "PARTIALLY LIFTED."). Split it off the body so the prose that follows reads as
+    // prose — otherwise the morning brief quotes "LIFTED." as the day's biggest risk.
+    const rest = section.raw.slice(labelled.index + labelled[0].length);
+    const clause = rest.match(/^[\s*]*([\s\S]{0,160}?[.!?])(?=\s|\*|$)/);
+    const verdict = clause
+      ? stripMd((labelled[1] + ' ' + clause[1]).trim())
+      : stripMd(labelled[1]);
+    const body = clause ? rest.slice(clause[0].length) : rest;
+
     return {
-      flagged: /yes/i.test(labelled[1]),
-      text: stripMd(after.replace(/^[\s*—–-]*/, '').trim()) || stripMd(section.raw),
+      flagged: status !== 'clear',
+      status,
+      verdict,
+      text: stripMd(body.replace(/^[\s*—–-]*/, '').trim()) || stripMd(section.raw),
     };
   }
 
   // Older template: the section opens with a bare **Yes** / **No** verdict.
   const flagMatch = section.raw.match(/^\*\*(Yes|No)\b[^*]*\*\*\s*([\s\S]*)/i);
+  const flagged = flagMatch ? /yes/i.test(flagMatch[1]) : null;
   return {
-    flagged: flagMatch ? /yes/i.test(flagMatch[1]) : null,
+    flagged,
+    status: flagged == null ? null : (flagged ? 'flagged' : 'clear'),
     text: flagMatch ? stripMd(flagMatch[2].trim()) : stripMd(section.raw),
   };
 }
@@ -266,7 +331,10 @@ function extractKeyThemes(section) {
 function extractDecisionDashboard(section) {
   if (!section) return null;
   const confMatch = section.raw.match(/Overall Market Confidence:?\*{0,2}\s*(\d+)\s*\/\s*100[\s*]*(?:\(([^)]*)\))?/i);
-  const tiltMatch = section.raw.match(/\*\*Portfolio Tilt Note:?\*\*\s*([\s\S]*?)$/i);
+  // The heading carries a parenthetical in newer reports — "**Portfolio Tilt Note
+  // (MAJOR INFLECTION vs. July 28):**" — so match up to the closing bold marker
+  // rather than assuming the label ends at the colon.
+  const tiltMatch = section.raw.match(/\*\*Portfolio Tilt Note\b[^*]*\*\*\s*([\s\S]*?)$/i);
   return {
     overallConfidence: confMatch ? parseInt(confMatch[1], 10) : null,
     confidenceDelta: confMatch && confMatch[2] ? confMatch[2].trim() : null,
@@ -345,9 +413,16 @@ function computeDecisionSummary(result) {
     ? result.regime.classification.split(/[—,]/)[0].trim()
     : null;
   const overallConfidence = result.decisionDashboard ? result.decisionDashboard.overallConfidence : null;
-  const riskText = (result.noTradeZone && result.noTradeZone.flagged && result.noTradeZone.text)
-    ? result.noTradeZone.text
-    : (result.contrarianCheck && result.contrarianCheck.primaryRisk);
+  // A fully flagged No-Trade Zone opens with the reason it was flagged, so its first
+  // sentence IS the day's biggest risk. A partially-lifted one opens with what is now
+  // tradeable again — quoting that as "biggest risk" would say the opposite of the
+  // truth, so fall through to the explicit risk list instead.
+  const nt = result.noTradeZone;
+  const riskText = (nt && nt.flagged && nt.status !== 'partial' && nt.text)
+    ? nt.text
+    : ((result.contrarianCheck && result.contrarianCheck.primaryRisk)
+      || (nt && nt.flagged && nt.text)
+      || null);
   const firstSentence = (text) => (text ? text.split(/(?<=[.!?])\s+/)[0] : null);
 
   const briefParts = ['Good morning.'];
@@ -379,7 +454,9 @@ function parseFxReport(markdown, sourceFile) {
 
   const regimeSection = findSection(sections, ['market regime', 'executive summary']);
   const performanceSection = findSection(sections, ['performance review']);
-  const policyRatesSection = findSection(sections, ['central bank policy rates', 'policy rates']);
+  // "Central Bank Policy Rates" was renamed "Central Bank Rates & Calendar" in the
+  // 27 Jul template — keep both spellings so the rates table keeps parsing.
+  const policyRatesSection = findSection(sections, ['central bank policy rates', 'central bank rates', 'policy rates']);
   const currencyStrengthSection = findSection(sections, ['currency strength']);
   const tier1Section = findSection(sections, ['tier 1 pairs', 'tier-1 pairs']);
   const synthesisSection = findSection(sections, ['layer-by-layer synthesis']);

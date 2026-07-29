@@ -14,24 +14,129 @@
         "idea_as_published_july_24": "Long Brent Crude (21 Jul) — Entry $89.50-91.50, Target $102-108, Stop below $93",
         "outcome": "Revised Down to 48/100 — no longer high-conviction. Estimated ~$97.50 on July 27 (from oil recovery searches showing oil down from $101). Hit intraday high of $101 (confirmed), but oil has fallen -3% on de-escalation over past 3 days. Supply story intact but geopolitical premium repricing lower.",
         "status_change": "Intraday target hit (briefly at $101), but reversal on de-escalation kills near-term momentum. Supply constraints (Hormuz, Red Sea) remain multi-month, but traders are repricing \"war premium\" to \"blockade premium.\"",
-        "hypothetical_p_l_if_followed": "Up ~$8.50/bbl from entry mid ~$90.50 vs ~$97.50 current, a +$8.50 or +9.4% unrealized gain, BUT falling away from target. Revised down due to repricing risk."
+        "hypothetical_p_l_if_followed": "Up ~$8.50/bbl from entry mid ~$90.50 vs ~$97.50 current, a +$8.50 or +9.4% unrealized gain, BUT falling away from target. Revised down due to repricing risk.",
+        "idea_as_published": "Long Brent Crude (21 Jul) — Entry $89.50-91.50, Target $102-108, Stop below $93"
       },
       {
         "idea_as_published_july_24": "Long EUR/CHF (04 Jul) — Entry 0.9150-0.9220, Target 0.9350-0.9420, Stop below 0.9080",
         "outcome": "Unchanged — still pending. Estimated ~0.9270 (stable from July 24's ~0.9265 estimate), above entry, holding. De-escalation and risk-on recovery favor the franc weakness vs euro (euro is yield-bid on ECB hawkish messaging).",
         "status_change": "No change; pair likely stabilized above entry on risk-on sentiment.",
-        "hypothetical_p_l_if_followed": "Roughly +85 pips unrealized (entry mid ~0.9185 vs estimated 0.9270), unchanged from July 24. Carry forward."
+        "hypothetical_p_l_if_followed": "Roughly +85 pips unrealized (entry mid ~0.9185 vs estimated 0.9270), unchanged from July 24. Carry forward.",
+        "idea_as_published": "Long EUR/CHF (04 Jul) — Entry 0.9150-0.9220, Target 0.9350-0.9420, Stop below 0.9080"
       },
       {
         "idea_as_published_july_24": "Short AUD/NZD (06 Jul) — Entry 1.2100-1.2170, Target 1.1950-1.1850, Stop close above 1.2250",
         "outcome": "Revoked — recovered on risk-on. Estimated ~1.2203 on July 27 (from search showing AUD/NZD ~1.22032), up from ~1.2080 on July 24. Risk-on recovery has lifted AUD faster than NZD.",
         "status_change": "AUD repriced UP on risk-on recovery, moving away from stop. The underlying thesis (RBNZ hawkish vs RBA hold) remains valid, but risk/reward is now inverted — pair is ~50 pips from target in the wrong direction. Revoke and defer to next run.",
-        "hypothetical_p_l_if_followed": "Down ~3 pips from entry mid (~1.2135 vs ~1.2203) — a LOSS position. Stop no longer at critical risk, but entry thesis is inverted. Do not carry forward."
+        "hypothetical_p_l_if_followed": "Down ~3 pips from entry mid (~1.2135 vs ~1.2203) — a LOSS position. Stop no longer at critical risk, but entry thesis is inverted. Do not carry forward.",
+        "idea_as_published": "Short AUD/NZD (06 Jul) — Entry 1.2100-1.2170, Target 1.1950-1.1850, Stop close above 1.2250"
       }
     ],
-    "hitRateSummary": "(July 24 through July 27): Long Brent (briefly at target, now retreating on de-escalation) / Long EUR/CHF (unchanged, still pending) / Short AUD/NZD (revoked due to AUD recovery) / Three fresh high-conviction ideas published today (Long NZD/JPY, Short AUD/USD, Long EUR/GBP) — out of 3 carried-forward ideas from July 24, one remains valid (EUR/CHF), one is de-escalation repriced (Brent), and one is revoked on risk-on recovery (AUD/NZD)"
+    "hitRateSummary": "(July 24 through July 27): Long Brent (briefly at target, now retreating on de-escalation) / Long EUR/CHF (unchanged, still pending) / Short AUD/NZD (revoked due to AUD recovery) / Three fresh high-conviction ideas published today (Long NZD/JPY, Short AUD/USD, Long EUR/GBP) — out of 3 carried-forward ideas from July 24, one remains valid (EUR/CHF), one is de-escalation repriced (Brent), and one is revoked on risk-on recovery (AUD/NZD)."
   },
-  "policyRates": null,
+  "policyRates": {
+    "type": "rows",
+    "headers": [
+      "Bank",
+      "Rate",
+      "Next Meeting",
+      "Days Away",
+      "Bias & Status"
+    ],
+    "rows": [
+      {
+        "bank": "Fed (United States)",
+        "rate": "3.50-3.75%",
+        "next_meeting": "28-29 Jul 2026",
+        "days_away": "~1-2 days",
+        "bias_status": "CRITICAL STABILIZING CATALYST. Hold at 3.50-3.75% is now 79.5% likely (up from 89% on July 24, but holding steady). De-escalation gives Powell room to signal patience; oil is no longer at $100+, so inflation urgency has eased. Powell will likely state \"data-dependent\" and avoid hawkish language on oil shock. This is a hawkish-hold (stand pat, keep door open for September) rather than a dovish-hold (cut expectations)."
+      },
+      {
+        "bank": "BoE (United Kingdom)",
+        "rate": "3.75%",
+        "next_meeting": "30 Jul 2026",
+        "days_away": "~3 days",
+        "bias_status": "Dovish-hold maintained; June CPI soft at 2.6% provides strong rationale for BoE to hold and avoid any hawkish signaling. De-escalation means BoE can ignore oil inflation risks (Hormuz blockade is supply-constrained, not demand-driven). GBP weakness likely continues."
+      },
+      {
+        "bank": "BoJ (Japan)",
+        "rate": "1.00%",
+        "next_meeting": "30-31 Jul 2026",
+        "days_away": "~3-4 days",
+        "bias_status": "INTERVENTION RISK NOW ELEVATED IN OPPOSITE DIRECTION. On July 24, BoJ worried about yen weakness (USD/JPY above 163). Today, with risk-on recovering and yen weakening further (likely back toward 163+, possibly 164+), BoJ must decide: allow yen to weaken as risk-on resumes, or jawbone/intervene to support currency? If yen breaks below 163.50 (weaker dollar), BoJ may issue guidance. This is the key x-factor for NZD/JPY and carry."
+      },
+      {
+        "bank": "RBA (Australia)",
+        "rate": "4.35%",
+        "next_meeting": "10-11 Aug 2026",
+        "days_away": "~15 days",
+        "bias_status": "Hawkish-hold; holds next week during the big three central bank meetings, so no statement this week. Watch for any RBA officials commenting on oil inflation repricing downward."
+      },
+      {
+        "bank": "Norges Bank (Norway)",
+        "rate": "4.25%",
+        "next_meeting": "13 Aug 2026",
+        "days_away": "~18 days",
+        "bias_status": "Norges Bank benefits from oil remaining >$95 — supports NOK. De-escalation means oil volatility lower, but structural price support from supply constraints remains."
+      },
+      {
+        "bank": "Riksbank (Sweden)",
+        "rate": "1.75%",
+        "next_meeting": "20 Aug 2026",
+        "days_away": "~25 days",
+        "bias_status": "Neutral-hold. Equity recovery favors SEK slightly."
+      },
+      {
+        "bank": "Banxico (Mexico)",
+        "rate": "6.50%",
+        "next_meeting": "Late Aug 2026",
+        "days_away": "~31 days",
+        "bias_status": "Cycle-end. Oil at $97-98 is neutral-to-bullish for Mexico; de-escalation allows Banxico to maintain patience."
+      },
+      {
+        "bank": "SNB (Switzerland)",
+        "rate": "0.00%",
+        "next_meeting": "September 2026",
+        "days_away": "~37 days",
+        "bias_status": "Neutral; CHF weakness on risk-on recovery (franc was bid on July 24 panic, now offered as risk resumes)."
+      },
+      {
+        "bank": "BoC (Canada)",
+        "rate": "2.25%",
+        "next_meeting": "2 Sep 2026",
+        "days_away": "~38 days",
+        "bias_status": "Dovish-hold; oil at $97-98 is still elevated vs pre-war ($76), so Canada's energy sector benefits. De-escalation allows BoC to stay patient."
+      },
+      {
+        "bank": "RBNZ (New Zealand)",
+        "rate": "2.50%",
+        "next_meeting": "2 Sep 2026",
+        "days_away": "~38 days",
+        "bias_status": "Hawkish-hold; NZD repriced down on July 24 panic, now recovering on risk-on. De-escalation is the perfect regime for long-carry NZD/JPY trades. RBNZ guidance is likely \"wait and see\" on global slowdown vs NZ inflation trade-off."
+      },
+      {
+        "bank": "PBoC (China)",
+        "rate": "LPR 3.00% / 3.50%",
+        "next_meeting": "Monthly fixing",
+        "days_away": "~26 days",
+        "bias_status": "Steady-accommodative; CNH remains hard to source, data gap persists."
+      },
+      {
+        "bank": "ECB (Eurozone)",
+        "rate": "Deposit 2.25%",
+        "next_meeting": "5 Sep 2026",
+        "days_away": "~41 days",
+        "bias_status": "Post-hawkish-hold from July 23; Lagarde's September-hike messaging survives de-escalation. Oil inflation less urgent now, but Lagarde's signal that \"some governors asked if we should hike\" remains a September backstop if inflation doesn't cool. EUR/GBP long thesis (ECB hawkish vs BoE dovish) is reinforced."
+      },
+      {
+        "bank": "SARB (South Africa)",
+        "rate": "7.00%",
+        "next_meeting": "September 2026",
+        "days_away": "~34 days",
+        "bias_status": "Post-hold from July 23; de-escalation means lower oil inflation concerns, so SARB can be patient. ZAR likely stabilizes."
+      }
+    ]
+  },
   "currencyStrength": {
     "type": "rows",
     "headers": [
@@ -388,13 +493,15 @@
   "globalEquityLeaderboard": null,
   "noTradeZone": {
     "flagged": false,
-    "text": "LIFTED as of July 27. The market has entered a genuine tradeable regime post-de-escalation. Conviction is now 68/100 (up 22 from July 24's 46). The three new high-conviction ideas published above are defensible and have clear risk/reward setups. Carry trades are working; equities are bid; and central banks are likely to signal patience this week. The prudent approach is to enter new positions with clear stops rather than sitting in cash.\n\nPrimary thesis risk: A Fed hawkish surprise or BoJ intervention jawboning. If Powell signals on 28-29 Jul that tightening is still on the table (despite oil de-escalation), the market will reverse sharply into July 24's panic mode, and all three new carry ideas will hit their stops. Similarly, if BoJ hints at intervention to support yen, Long NZD/JPY is invalidated instantly.\n\nOverall-view invalidation factor: A daily close below 7,300 in S&P 500 would be the invalidation signal (equity recovery has been broken). A break above 4.90 in 10-year yields would also invalidate (real-yield spike). A break below $93 in Brent would invalidate the supply story. Conversely, a break above $4,200 in gold and above 96.50 in NZD/JPY would be confirmation that the de-escalation is durable and carry recovery is intact.\n\nScenarios:\n\n- Bull case (for all three new ideas to extend): Fed signals dovish hold with \"data-dependent\" language on 28-29 Jul; Powell explicitly mentions geopolitical de-escalation as a reason for patience; BoE confirms soft CPI narrative (Bailey dovish); BoJ issues no intervention guidance; real yields fall to 4.50%; S&P 500 breaks above 7,500; oil consolidates at $97-100 on supply constraints. In this case, Long NZD/JPY reaches 96.50, Short AUD/USD reaches 0.6850, Long EUR/GBP reaches 0.8650+. Carry recovery is durable; this becomes a 2-3 week hold.\n\n- Base case: Fed holds and signals data-dependence (as expected); BoE and BoJ issue no surprises; real yields stay at 4.65-4.75%; S&P 500 consolidates 7,400-7,500; oil stays $95-100. New ideas make progress toward targets but require patience. NZD/JPY reaches 95.50-96.00, Short AUD/USD drifts to 0.6920-0.6950, EUR/GBP holds 0.8580-0.8620. This is the most likely outcome and supports holding all three new ideas through August.\n\n- Bear case: Fed sounds hawkish on inflation persistence or oil shock durability; BoJ hints at intervention; geopolitical tensions resume (unlikely but tail risk); oil spikes back above $102; real yields break above 4.80%; S&P 500 crashes back toward 7,200. All three new ideas hit stops or near-stops within days. This is a ~15-20% tail risk, primarily dependent on Fed tone."
+    "status": "clear",
+    "verdict": "NO — LIFTED as of July 27.",
+    "text": "The market has entered a genuine tradeable regime post-de-escalation. Conviction is now 68/100 (up 22 from July 24's 46). The three new high-conviction ideas published above are defensible and have clear risk/reward setups. Carry trades are working; equities are bid; and central banks are likely to signal patience this week. The prudent approach is to enter new positions with clear stops rather than sitting in cash.\n\nPrimary thesis risk: A Fed hawkish surprise or BoJ intervention jawboning. If Powell signals on 28-29 Jul that tightening is still on the table (despite oil de-escalation), the market will reverse sharply into July 24's panic mode, and all three new carry ideas will hit their stops. Similarly, if BoJ hints at intervention to support yen, Long NZD/JPY is invalidated instantly.\n\nOverall-view invalidation factor: A daily close below 7,300 in S&P 500 would be the invalidation signal (equity recovery has been broken). A break above 4.90 in 10-year yields would also invalidate (real-yield spike). A break below $93 in Brent would invalidate the supply story. Conversely, a break above $4,200 in gold and above 96.50 in NZD/JPY would be confirmation that the de-escalation is durable and carry recovery is intact.\n\nScenarios:\n\n- Bull case (for all three new ideas to extend): Fed signals dovish hold with \"data-dependent\" language on 28-29 Jul; Powell explicitly mentions geopolitical de-escalation as a reason for patience; BoE confirms soft CPI narrative (Bailey dovish); BoJ issues no intervention guidance; real yields fall to 4.50%; S&P 500 breaks above 7,500; oil consolidates at $97-100 on supply constraints. In this case, Long NZD/JPY reaches 96.50, Short AUD/USD reaches 0.6850, Long EUR/GBP reaches 0.8650+. Carry recovery is durable; this becomes a 2-3 week hold.\n\n- Base case: Fed holds and signals data-dependence (as expected); BoE and BoJ issue no surprises; real yields stay at 4.65-4.75%; S&P 500 consolidates 7,400-7,500; oil stays $95-100. New ideas make progress toward targets but require patience. NZD/JPY reaches 95.50-96.00, Short AUD/USD drifts to 0.6920-0.6950, EUR/GBP holds 0.8580-0.8620. This is the most likely outcome and supports holding all three new ideas through August.\n\n- Bear case: Fed sounds hawkish on inflation persistence or oil shock durability; BoJ hints at intervention; geopolitical tensions resume (unlikely but tail risk); oil spikes back above $102; real yields break above 4.80%; S&P 500 crashes back toward 7,200. All three new ideas hit stops or near-stops within days. This is a ~15-20% tail risk, primarily dependent on Fed tone."
   },
   "keyThemes": [],
   "decisionDashboard": {
     "overallConfidence": 68,
     "confidenceDelta": "∆ vs last report: +22, up sharply from July 24's 46",
-    "portfolioTiltNote": null
+    "portfolioTiltNote": "The book is now heavily tilted toward risk-on carry trades and equity recovery, a complete 180-degree reversal from July 24's risk-off stance. Long NZD/JPY (78), Short AUD/USD (72), and Long EUR/GBP (65) represent a generational mean-reversion from panic to complacency. The slate has expanded from one surviving idea (Long Brent at 65, now repriced to 48) to four defensible trades, three of which are fresh high-conviction carries. This is a classic end-of-panic setup: July 24 was capitulation (46/100 confidence), July 27 is recovery (68/100 confidence), and next week (post-Fed decision) could be euphoria (75+ confidence) if Powell signals dovish patience. The report publishes three new carry ideas at >65 confidence, with the strongest conviction on Long NZD/JPY (78). Carry positions should be sized at 1-2% risk per trade (standard), with clear stops in place. The No-Trade Zone is lifted.\n\nInformational context only — explicitly not a personalized allocation recommendation."
   },
   "knownIssues": [
     "De-escalation confirmation (July 25-27, NEW): US Central Command suspended strike campaign Friday (July 25) for the first time in two weeks. Iran announced it ended retaliatory strikes and is in talks with Oman. This is the single most important development since July 24 and fully reverses the panic thesis. Diplomatic off-ramp is now the base case, not military escalation. Next run should confirm whether talks progress or whether tensions spike again.",

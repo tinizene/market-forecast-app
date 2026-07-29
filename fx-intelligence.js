@@ -164,11 +164,18 @@ function renderNoTradeZone(data) {
   const nt = data.noTradeZone;
   const section = document.getElementById('noTradeSection');
   if (!nt || nt.flagged == null) { section.classList.add('hidden'); return; }
+  // Three states, not two: the desk can lift the zone for part of the book only.
+  const partial = nt.status === 'partial';
+  const tone = partial ? 'alert-moderate' : (nt.flagged ? 'alert-high' : 'alert-low');
+  const icon = partial ? '⚠️' : (nt.flagged ? '🚧' : '✅');
+  const title = partial
+    ? 'No-Trade Zone: partially lifted'
+    : (nt.flagged ? 'No-Trade Zone: elevated caution' : 'No-Trade Zone: not flagged');
   document.getElementById('noTradeContent').innerHTML = `
-    <div class="advisory-card ${nt.flagged ? 'alert-high' : 'alert-low'}">
-      <span class="advisory-icon">${nt.flagged ? '🚧' : '✅'}</span>
+    <div class="advisory-card ${tone}">
+      <span class="advisory-icon">${icon}</span>
       <div>
-        <p class="font-semibold text-sm">${nt.flagged ? 'No-Trade Zone: elevated caution' : 'No-Trade Zone: not flagged'}</p>
+        <p class="font-semibold text-sm">${title}</p>
         <p class="text-xs opacity-90 mt-0.5">${escapeHtml(nt.text)}</p>
       </div>
     </div>

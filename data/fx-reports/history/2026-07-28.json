@@ -14,36 +14,143 @@
         "idea_as_published_july_27": "Long NZD/JPY (78/100, NEW) — Entry 94.50-95.20, Target 96.50-97.50, Stop below 93.50",
         "outcome": "INVALIDATED — stopped out. Estimated ~93.50-94.87 on July 28 (from search showing range 92.63-93.34 opening 93.30). Yen strengthened on safe-haven bid as semiconductor selloff triggered risk-off.",
         "status_change": "Pair has fallen sharply and is at or AT THE STOP LEVEL OF 93.50. This is the invalidation event. Yen is now bid, not offered. Carry recovery has fully reversed.",
-        "hypothetical_p_l_if_followed": "DOWN ~80-100 pips from entry mid ~95.00 vs. current ~93.50-94.87. LOSS of -80 to -150 pips depending on execution price. If entered at mid 94.85, exit at 93.50 = -135 pips = -1.43% loss on notional position. Stop-loss has capped the drawdown."
+        "hypothetical_p_l_if_followed": "DOWN ~80-100 pips from entry mid ~95.00 vs. current ~93.50-94.87. LOSS of -80 to -150 pips depending on execution price. If entered at mid 94.85, exit at 93.50 = -135 pips = -1.43% loss on notional position. Stop-loss has capped the drawdown.",
+        "idea_as_published": "Long NZD/JPY (78/100, NEW) — Entry 94.50-95.20, Target 96.50-97.50, Stop below 93.50"
       },
       {
         "idea_as_published_july_27": "Short AUD/USD (72/100, NEW) — Entry 0.6980-0.7050, Target 0.6850-0.6750, Stop above 0.7120",
         "outcome": "At Critical Risk of Invalidation — AUD weakening into target, but risk-off selling is stopping momentum. Estimated ~0.6970-0.6980 on July 28 (AUD weak on risk-off). Pair is moving in the right direction but only because AUD is crashing on equities, not because carry compression is working.",
         "status_change": "Pair has not hit target (still above 0.6850) but is also moving through entry zone toward target. However, risk-off is now the driver, not the carry thesis. If AUD stabilizes and equities recover, this will reverse sharply.",
-        "hypothetical_p_l_if_followed": "Currently unrealized gain of ~10-20 pips from entry mid 0.7015 vs. current ~0.6975, BUT this is a false breakdown driven by risk-off, not by the intended thesis. If equities recover, AUD bounces back to 0.70+. High risk of whipsaw."
+        "hypothetical_p_l_if_followed": "Currently unrealized gain of ~10-20 pips from entry mid 0.7015 vs. current ~0.6975, BUT this is a false breakdown driven by risk-off, not by the intended thesis. If equities recover, AUD bounces back to 0.70+. High risk of whipsaw.",
+        "idea_as_published": "Short AUD/USD (72/100, NEW) — Entry 0.6980-0.7050, Target 0.6850-0.6750, Stop above 0.7120"
       },
       {
         "idea_as_published_july_27": "Long EUR/GBP (65/100, NEW) — Entry 0.8530-0.8580, Target 0.8650-0.8750, Stop below 0.8460",
         "outcome": "Stable but under pressure — ECB hawkish thesis is being drowned out by broad equity selloff. Estimated ~0.8540-0.8560 on July 28 (stable from July 27's 0.8585+). EUR has weakened on risk-off (euro is cyclical), but GBP has weakened slightly faster (Bank of England dovish bias is becoming a liability in a risk-off environment where investors want rate-holding central banks, not dovish ones).",
         "status_change": "Pair is trading within entry zone and has not moved materially. No new stops hit. The thesis (ECB hawkish vs BoE dovish) is still valid but is now masked by the broader equity collapse.",
-        "hypothetical_p_l_if_followed": "Unrealized P&L near breakeven to slight loss (entry mid 0.8555 vs current ~0.8550). Momentum is stalled. If equities recover, pair may resume the uptrend. If equities crash further, pair will also weaken."
+        "hypothetical_p_l_if_followed": "Unrealized P&L near breakeven to slight loss (entry mid 0.8555 vs current ~0.8550). Momentum is stalled. If equities recover, pair may resume the uptrend. If equities crash further, pair will also weaken.",
+        "idea_as_published": "Long EUR/GBP (65/100, NEW) — Entry 0.8530-0.8580, Target 0.8650-0.8750, Stop below 0.8460"
       },
       {
         "idea_as_published_july_27": "Long EUR/CHF (50/100, carry-forward) — Entry 0.9150-0.9220, Target 0.9350-0.9420, Stop 0.9080",
         "outcome": "Under Severe Pressure — CHF strengthening on safe-haven bid. Estimated ~0.9200-0.9220 (up slightly from July 27's ~0.9270, though CHF is now bid, meaning EUR/CHF should be weaker). Safe-haven bid for CHF is intense (second to yen in flow terms).",
         "status_change": "CHF's safe-haven strengthening is opposite of the intended thesis (euro strength on ECB hawkishness, franc weakness on risk-on). Pair may approach the stop at 0.9080 if risk-off intensifies further.",
-        "hypothetical_p_l_if_followed": "Estimated loss of ~20-40 pips from entry mid ~0.9185 vs. current ~0.9200. Stop loss at 0.9080 means further downside risk of ~100 pips if risk-off deepens."
+        "hypothetical_p_l_if_followed": "Estimated loss of ~20-40 pips from entry mid ~0.9185 vs. current ~0.9200. Stop loss at 0.9080 means further downside risk of ~100 pips if risk-off deepens.",
+        "idea_as_published": "Long EUR/CHF (50/100, carry-forward) — Entry 0.9150-0.9220, Target 0.9350-0.9420, Stop 0.9080"
       },
       {
         "idea_as_published_july_27": "Long Brent Crude (48/100, carry-forward) — Entry $89.50-91.50, Target $102-108, Stop $93",
         "outcome": "Further Downside — Oil Breaking Support. Estimated ~$89-90 on July 28 (from search showing decline toward $90 from $97-98 on July 27). Oil is now below the July 24 intraday spike level of $101 and is approaching the $88-90 support zone. Supply story (Hormuz, Red Sea) is intact, but demand destruction from equity crash is overwhelming it.",
         "status_change": "Oil has fallen -7 to -8% in a single day from $97-98. This breaks the \"oil will consolidate at $95-100\" thesis published on July 27. If oil breaks $85, the supply story is in doubt.",
-        "hypothetical_p_l_if_followed": "Unrealized loss of ~$7-8/bbl from entry mid ~$90.50 vs current ~$89-90, a -$7-8 loss or -7.7 to -8.8% from entry. Stop at $93 means downside risk of another $3-4/bbl if selling continues."
+        "hypothetical_p_l_if_followed": "Unrealized loss of ~$7-8/bbl from entry mid ~$90.50 vs current ~$89-90, a -$7-8 loss or -7.7 to -8.8% from entry. Stop at $93 means downside risk of another $3-4/bbl if selling continues.",
+        "idea_as_published": "Long Brent Crude (48/100, carry-forward) — Entry $89.50-91.50, Target $102-108, Stop $93"
       }
     ],
-    "hitRateSummary": "(July 27 through July 28): Long NZD/JPY (INVALIDATED on July 28 — stopped out at ~93"
+    "hitRateSummary": "(July 27 through July 28): Long NZD/JPY (INVALIDATED on July 28 — stopped out at ~93.50) / Short AUD/USD (under critical pressure, false breakout on risk-off not thesis) / Long EUR/GBP (stable but momentum stalled) / Long EUR/CHF (under severe pressure, stop risk) / Long Brent (further downside, thesis broken). Out of five open ideas, one is definitely invalidated, two are at critical stop risk, and two are neutral-to-negative. This is a capitulation day for the July 27 slate."
   },
-  "policyRates": null,
+  "policyRates": {
+    "type": "rows",
+    "headers": [
+      "Bank",
+      "Rate",
+      "Next Meeting",
+      "Days Away",
+      "Bias & Status"
+    ],
+    "rows": [
+      {
+        "bank": "Fed (United States)",
+        "rate": "3.50-3.75%",
+        "next_meeting": "28-29 Jul 2026",
+        "days_away": "~0-1 days (DECISION TODAY/TOMORROW)",
+        "bias_status": "CRITICAL WILDCARD. Hold at 3.50-3.75% is still 83-85% likely, but markets are pricing 1/3 chance of hike due to equity crash concerns. Powell will hold, but tone is everything. If Powell sounds hawkish on inflation/equities, markets will panic further (confidence to 15+). If Powell confirms dovish data-dependence, markets may stabilize (confidence to 45+). NO dot plot will be released — this means markets won't get forward guidance, making Powell's tone in Q&A the sole source of clues. This is the pivotal event of the week."
+      },
+      {
+        "bank": "BoE (United Kingdom)",
+        "rate": "3.75%",
+        "next_meeting": "30 Jul 2026",
+        "days_away": "~2 days",
+        "bias_status": "Hold at 3.75% is near-certain. But market pricing has shifted: hawkish hold with dissents is now more likely than dovish hold. June CPI at 2.6% is soft, but services inflation remains elevated, and Bailey may signal caution rather than a rate-cut path. GBP/USD likely to see volatility on BoE tone. EUR/GBP thesis (ECB hawkish vs BoE dovish) may be hurt if Bailey surprises hawkish."
+      },
+      {
+        "bank": "BoJ (Japan)",
+        "rate": "1.00%",
+        "next_meeting": "30-31 Jul 2026",
+        "days_away": "~2-3 days",
+        "bias_status": "Hold at 1.00% is certain. But intervention risk is now the question. On July 27, yen weakness (good for carry). On July 28, yen is strengthening (safe haven bid), and USD/JPY is at 163.75. If USD/JPY breaks above 164.50, BoJ may jawbone or intervene to support yen. Conversely, if yen continues to strengthen (163.50 and below), BoJ will remain quiet. BoJ's silence (or dovish posture) on July 30-31 is what allows carry trades to recover."
+      },
+      {
+        "bank": "RBA (Australia)",
+        "rate": "4.35%",
+        "next_meeting": "10-11 Aug 2026",
+        "days_away": "~15 days",
+        "bias_status": "Holds next week (no statement this week). Watch for any official RBA communications on AUD weakness and capex/equity concerns."
+      },
+      {
+        "bank": "Norges Bank (Norway)",
+        "rate": "4.25%",
+        "next_meeting": "13 Aug 2026",
+        "days_away": "~18 days",
+        "bias_status": "Likely neutral on oil repricing lower. Supply story intact (Hormuz, Red Sea), but demand destruction (equity crash) is the new concern."
+      },
+      {
+        "bank": "Riksbank (Sweden)",
+        "rate": "1.75%",
+        "next_meeting": "20 Aug 2026",
+        "days_away": "~25 days",
+        "bias_status": "Neutral; equity weakness is headwind for SEK."
+      },
+      {
+        "bank": "Banxico (Mexico)",
+        "rate": "6.50%",
+        "next_meeting": "Late Aug 2026",
+        "days_away": "~31 days",
+        "bias_status": "Cycle-end; oil at $89-90 is now lower than pre-war levels, which is a headwind for Mexico's energy sector and will weigh on MXN."
+      },
+      {
+        "bank": "SNB (Switzerland)",
+        "rate": "0.00%",
+        "next_meeting": "September 2026",
+        "days_away": "~37 days",
+        "bias_status": "Franc now bid on safe-haven demand (reversal from July 27 risk-on). CHF is the strongest performer on the sheet this week."
+      },
+      {
+        "bank": "BoC (Canada)",
+        "rate": "2.25%",
+        "next_meeting": "2 Sep 2026",
+        "days_away": "~38 days",
+        "bias_status": "Oil weakness (now $89-90) is a significant headwind. CAD will weaken further if oil breaks $85."
+      },
+      {
+        "bank": "RBNZ (New Zealand)",
+        "rate": "2.50%",
+        "next_meeting": "2 Sep 2026",
+        "days_away": "~38 days",
+        "bias_status": "NZD weakness on carry-trade unwinding (from 68 strength on July 27 to ~40 today on capitulation). RBNZ hold is still expected in September, but hawkish guidance will be questioned by markets if equities continue to crack."
+      },
+      {
+        "bank": "PBoC (China)",
+        "rate": "LPR 3.00% / 3.50%",
+        "next_meeting": "Monthly fixing",
+        "days_away": "~26 days",
+        "bias_status": "Likely to cut or hold steady to support equities. Chinese equities are also in freefall on AI spending concerns. Data gap persists."
+      },
+      {
+        "bank": "ECB (Eurozone)",
+        "rate": "Deposit 2.25%",
+        "next_meeting": "5 Sep 2026",
+        "days_away": "~41 days",
+        "bias_status": "Lagarde's July 23 September-hike signal is now questioned by markets. If equities continue to crash through early August, Lagarde will likely walk back September-hike rhetoric and signal patience. ECB is likely to join the dovish central-bank consensus rather than stay hawkish into a crisis. This is very negative for Long EUR/GBP thesis (published July 27 at 65 confidence)."
+      },
+      {
+        "bank": "SARB (South Africa)",
+        "rate": "7.00%",
+        "next_meeting": "September 2026",
+        "days_away": "~34 days",
+        "bias_status": "ZAR weakness on risk-off. No change to rate path."
+      }
+    ]
+  },
   "currencyStrength": {
     "type": "rows",
     "headers": [
@@ -240,13 +347,15 @@
   "globalEquityLeaderboard": null,
   "noTradeZone": {
     "flagged": true,
-    "text": "REINSTATED as of July 28, 2026. The market has re-entered an unstable regime driven by earnings disappointment and carry-trade unwinding. Long NZD/JPY was invalidated within 24 hours of publication. Short AUD/USD is moving toward its target but on a false catalyst (risk-off, not carry compression), making it a dangerous whipsaw candidate. The prudent approach is to exit or tighten all stops on open carry-trade ideas and await the Fed decision for regime clarity.\n\nPrimary regime risk: Equities cascade lower if Powell hints at tightening. If Powell signals on July 29 that the Fed will maintain a hawkish stance despite the equity crash, markets will interpret this as a commitment to \"tighten into weakness,\" triggering a cascading selloff. S&P 500 could fall to 7,000 (from 7,400 today), and all FX carry trades will hit their stops in quick succession.\n\nOverall-view invalidation factors:\n- S&P 500 below 7,200: Confirms a new bear market is underway; confidence to 10-15.\n- 10-year yields above 4.90%: Real yield spike on risk-off intensity; all carry trades invalidated.\n- Yen breaks below 163.00: Signals BoJ has surrendered to yen weakness again; would be a surprising reversal but would re-enable some carry trades.\n- Oil breaks $85: Confirms demand destruction is severe; supplysupply story in doubt.\n\nScenarios:\n\n- Bull case (for market stabilization): Fed signals dovish hold with explicit acknowledgment that equity weakness does not warrant tightening; Powell states \"data-dependent\" and notes geopolitical de-escalation as supportive; BoE and BoJ follow with dovish-hold signals; S&P 500 stabilizes at 7,300-7,400; real yields fall to 4.50%; carry trades reverse higher. In this case, Long NZD/JPY could be re-entered near 93.00-94.00, Short AUD/USD could resume toward 0.6850, and Long EUR/GBP could re-accelerate toward 0.8650. Conviction recovers to 45-50.\n\n- Base case: Fed holds and signals data-dependence (as expected), but Powell's tone is cautious rather than dovish; BoE and BoJ issue dovish holds; equities consolidate at 7,250-7,350; real yields stabilize at 4.65%; oil finds support at $88-90. In this case, open ideas remain near their stop levels through July 29-30, and a Fed decision window (July 29 afternoon) provides the inflection point. If Powell sounds cautious (not explicitly dovish), carries will struggle to break lower stops. If Powell sounds dovish, carries recover.\n\n- Bear case: Fed surprises hawkish on inflation persistence or takes equities crashes as reason to maintain a higher-for-longer stance; BoJ hints at intervention concern on yen weakness (which would be inconsistent with today's yen strength, but policy can shift); equities crash through 7,000; real yields spike to 4.90%+; oil breaks $85; yen/franc bid even harder. All carry ideas hit stops within 24 hours. Confidence falls to 10-15."
+    "status": "flagged",
+    "verdict": "YES — REINSTATED as of July 28, 2026.",
+    "text": "The market has re-entered an unstable regime driven by earnings disappointment and carry-trade unwinding. Long NZD/JPY was invalidated within 24 hours of publication. Short AUD/USD is moving toward its target but on a false catalyst (risk-off, not carry compression), making it a dangerous whipsaw candidate. The prudent approach is to exit or tighten all stops on open carry-trade ideas and await the Fed decision for regime clarity.\n\nPrimary regime risk: Equities cascade lower if Powell hints at tightening. If Powell signals on July 29 that the Fed will maintain a hawkish stance despite the equity crash, markets will interpret this as a commitment to \"tighten into weakness,\" triggering a cascading selloff. S&P 500 could fall to 7,000 (from 7,400 today), and all FX carry trades will hit their stops in quick succession.\n\nOverall-view invalidation factors:\n- S&P 500 below 7,200: Confirms a new bear market is underway; confidence to 10-15.\n- 10-year yields above 4.90%: Real yield spike on risk-off intensity; all carry trades invalidated.\n- Yen breaks below 163.00: Signals BoJ has surrendered to yen weakness again; would be a surprising reversal but would re-enable some carry trades.\n- Oil breaks $85: Confirms demand destruction is severe; supplysupply story in doubt.\n\nScenarios:\n\n- Bull case (for market stabilization): Fed signals dovish hold with explicit acknowledgment that equity weakness does not warrant tightening; Powell states \"data-dependent\" and notes geopolitical de-escalation as supportive; BoE and BoJ follow with dovish-hold signals; S&P 500 stabilizes at 7,300-7,400; real yields fall to 4.50%; carry trades reverse higher. In this case, Long NZD/JPY could be re-entered near 93.00-94.00, Short AUD/USD could resume toward 0.6850, and Long EUR/GBP could re-accelerate toward 0.8650. Conviction recovers to 45-50.\n\n- Base case: Fed holds and signals data-dependence (as expected), but Powell's tone is cautious rather than dovish; BoE and BoJ issue dovish holds; equities consolidate at 7,250-7,350; real yields stabilize at 4.65%; oil finds support at $88-90. In this case, open ideas remain near their stop levels through July 29-30, and a Fed decision window (July 29 afternoon) provides the inflection point. If Powell sounds cautious (not explicitly dovish), carries will struggle to break lower stops. If Powell sounds dovish, carries recover.\n\n- Bear case: Fed surprises hawkish on inflation persistence or takes equities crashes as reason to maintain a higher-for-longer stance; BoJ hints at intervention concern on yen weakness (which would be inconsistent with today's yen strength, but policy can shift); equities crash through 7,000; real yields spike to 4.90%+; oil breaks $85; yen/franc bid even harder. All carry ideas hit stops within 24 hours. Confidence falls to 10-15."
   },
   "keyThemes": [],
   "decisionDashboard": {
     "overallConfidence": 32,
     "confidenceDelta": "∆ vs last report: -36, down sharply from July 27's 68",
-    "portfolioTiltNote": null
+    "portfolioTiltNote": "The book is now DEFENSIVELY POSITIONED — all carry trades are at risk, and the market is in a flight-to-safety regime. Long NZD/JPY (published July 27 at 78) has been invalidated within 24 hours; Short AUD/USD (72) is at critical risk; Long EUR/GBP (65) has stalled. The only prudent action is to exit or tighten stops on all open ideas and await the Fed decision. No new high-conviction ideas are publishable until the Fed provides clarity on how it will respond to the equity crash. If Powell sounds dovish, confidence may recover to 40-50 by July 29 evening. If Powell sounds hawkish, confidence will fall to 15-20 and we're headed into a deeper drawdown. This is a capitulation setup, not a bottom. The report does NOT recommend entering new positions until the Fed decision is digested and equities stabilize.\n\nInformational context only — explicitly not a personalized allocation recommendation."
   },
   "knownIssues": [
     "Semiconductor earnings disappointment (July 27-28, NEW): SK Hynix, Samsung, and others reported weaker-than-expected AI capex returns or raised concerns about future capex sustainability. This is the structural catalyst for today's selloff. Critical to monitor whether this is an industry-wide repricing of AI capex cycles or a company-specific guidance miss. Next run should confirm whether earnings guidance is being cut across the sector or if this is a buying opportunity for mega-cap AI infrastructure plays.",
@@ -332,6 +441,6 @@
     "avoid": null,
     "nextEvent": "Today, Monday/Tuesday 27-28 Jul (Overnight Catalyst):: Semiconductor earnings disappointment from SK Hynix, Samsung, and others (overnight Asia time, July 27-28 US evening). Reports indicate AI infrastructure capex returns are disappointing",
     "overallConfidence": 32,
-    "morningBrief": "Good morning. Today's regime: AI Profitability Crisis and Risk-Off Capitulation. Overall market confidence is 32/100. Biggest risk to watch: REINSTATED as of July 28, 2026."
+    "morningBrief": "Good morning. Today's regime: AI Profitability Crisis and Risk-Off Capitulation. Overall market confidence is 32/100. Biggest risk to watch: The market has re-entered an unstable regime driven by earnings disappointment and carry-trade unwinding."
   }
 }

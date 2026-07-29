@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institutional FX Dashboard & Intelligence Report — July 27, 2026</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #e0e8f0;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #2d3748;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        .header p {
+            font-size: 13px;
+            color: #cbd5e0;
+            font-style: italic;
+        }
+
+        .at-a-glance {
+            background: linear-gradient(135deg, #1a3a52 0%, #0f2d41 100%);
+            border-left: 4px solid #4fd1c5;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .at-a-glance h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #4fd1c5;
+        }
+
+        .at-a-glance ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .at-a-glance li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(79, 209, 197, 0.1);
+            font-size: 14px;
+        }
+
+        .at-a-glance li:last-child {
+            border-bottom: none;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-box {
+            background: #1a2332;
+            border: 1px solid #2d3748;
+            border-radius: 6px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-box .label {
+            font-size: 12px;
+            color: #a0aec0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .stat-box .value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #4fd1c5;
+        }
+
+        .stat-box.bullish .value {
+            color: #48bb78;
+        }
+
+        .stat-box.bearish .value {
+            color: #f56565;
+        }
+
+        .section {
+            background: #1a2332;
+            border-left: 4px solid #4fd1c5;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .section h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #4fd1c5;
+        }
+
+        .section h3 {
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            color: #cbd5e0;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            color: #cbd5e0;
+            font-size: 14px;
+        }
+
+        .idea-card {
+            background: #0f1823;
+            border: 1px solid #2d3748;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .idea-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .idea-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .idea-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-bullish {
+            background: #2d5a3d;
+            color: #48bb78;
+        }
+
+        .badge-bearish {
+            background: #5a2d2d;
+            color: #f56565;
+        }
+
+        .badge-high {
+            background: #3d4a5a;
+            color: #4fd1c5;
+        }
+
+        .confidence-bar {
+            margin: 15px 0;
+        }
+
+        .confidence-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #a0aec0;
+            margin-bottom: 5px;
+        }
+
+        .confidence-track {
+            background: #0a0e27;
+            border-radius: 4px;
+            height: 8px;
+            overflow: hidden;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #f56565 0%, #ed8936 40%, #ecc94b 70%, #48bb78 100%);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .idea-detail {
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(79, 209, 197, 0.05);
+            border-left: 3px solid #4fd1c5;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #cbd5e0;
+        }
+
+        .idea-detail strong {
+            color: #4fd1c5;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+
+        table th {
+            background: rgba(79, 209, 197, 0.1);
+            color: #4fd1c5;
+            padding: 10px;
+            text-align: left;
+            border-bottom: 2px solid #2d3748;
+            font-weight: bold;
+        }
+
+        table td {
+            padding: 10px;
+            border-bottom: 1px solid #2d3748;
+            color: #cbd5e0;
+        }
+
+        table tr:hover {
+            background: rgba(79, 209, 197, 0.05);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            margin-right: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .tag-green {
+            background: rgba(72, 187, 120, 0.2);
+            color: #48bb78;
+        }
+
+        .tag-red {
+            background: rgba(245, 101, 101, 0.2);
+            color: #f56565;
+        }
+
+        .tag-blue {
+            background: rgba(79, 209, 197, 0.2);
+            color: #4fd1c5;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid #2d3748;
+            color: #718096;
+            font-size: 12px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .section {
+                padding: 15px;
+            }
+
+            .stats-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Institutional FX Dashboard & Intelligence Report</h1>
+            <p>July 27, 2026</p>
+            <p>Spot levels are same-day/last-close reference, not live ticks. Not personalized financial advice.</p>
+        </div>
+
+        <div class="at-a-glance">
+            <h2>📊 At a Glance</h2>
+            <ul>
+                <li><strong>Today's trade ideas (stabilization and recovery):</strong> The No-Trade Zone from July 24 has been lifted. De-escalation is confirmed — US paused strike campaign Friday, Iran ended retaliatory strikes. Oil has fallen from $101 to ~$98 on easing tensions; equities have recovered (+0.57% today); carry trades are now working again. <strong>Three fresh high-conviction ideas published today:</strong> <span class="tag tag-green">Long NZD/JPY (78)</span> <span class="tag tag-green">Short AUD/USD (72)</span> <span class="tag tag-green">Long EUR/GBP (65)</span></li>
+                <li><strong>The mood today:</strong> Risk-on recovery. S&P 500 +0.57%, gold +0.95%, oil down to $97-98 but supply story persists. Volatility has collapsed.</li>
+                <li><strong>The catalyst:</strong> US-Iran de-escalation confirmed Friday-Sunday. US Central Command suspended strikes; Iran ended retaliatory strikes and is in talks with Oman over Strait of Hormuz.</li>
+                <li><strong>Oil's reversal:</strong> Brent fell from $101 to ~$98 (-3%), as geopolitical premium reprices lower but supply constraints remain.</li>
+                <li><strong>Next week's macro:</strong> Fed (28-29 Jul), BoE (30 Jul), BoJ (30-31 Jul) now backstopped by de-escalation narrative, not tightening crisis. Hold expectations are solid.</li>
+                <li><strong>Bottom line:</strong> Overall confidence <span class="tag tag-green">68/100</span> (up 22 from July 24's 46). Regime shift from panic to stabilization. <strong>Carry trades are back; conviction is highest on NZD/JPY long, second on EUR/GBP long, third on short AUD/USD.</strong></li>
+            </ul>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-box bullish">
+                <div class="label">Overall Confidence</div>
+                <div class="value">68<span style="font-size: 18px;">/100</span></div>
+            </div>
+            <div class="stat-box bullish">
+                <div class="label">Ideas Published</div>
+                <div class="value">3<span style="font-size: 18px;"> NEW</span></div>
+            </div>
+            <div class="stat-box">
+                <div class="label">S&P 500</div>
+                <div class="value" style="color: #48bb78;">+0.57%</div>
+            </div>
+            <div class="stat-box">
+                <div class="label">Brent Crude</div>
+                <div class="value">$97.50</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>1. Market Regime & Executive Summary</h2>
+            <p><strong>Regime classification:</strong> De-Escalation and Risk-On Recovery — A Sharp Reversal from the Panic Liquidation of July 24 as Geopolitical Tension Eases and Real Yields Stabilize.</p>
+            <p>On Friday, July 25, the United States Central Command announced it had suspended its strike campaign on Iran for the first time in two weeks — marking a clear shift from the aggressive posture of July 23-24. Iranian officials announced that Tehran has ended its retaliatory strikes and is engaged in diplomatic talks with Oman regarding the Strait of Hormuz. This de-escalation has triggered rapid repricing across all risk assets: S&P 500 recovered to 7,454 (+0.57% today), gold rallied to $4,090.57 (+0.95%), and Brent fell from $100.65 to ~$98, suggesting the geopolitical premium is now repricing lower as the market assesses a lower probability of direct US-Iran military escalation.</p>
+            <p>The 10-year Treasury yield has stabilized at 4.70%, not spiking further as the market recalibrates Fed expectations downward from "must tighten into oil shock" back to "can be patient on data-dependent hold."</p>
+            <h3>The three themes driving everything right now:</h3>
+            <p><strong>1. De-escalation is real, confirmed, and unlocks a 6-month "cold war" commodity play:</strong> US suspension of strikes and Iran's reciprocal ending of retaliatory strikes are not rhetoric—they are action. The Houthi blockade and Strait of Hormuz remain in place (supply constraints persist), but tail risk of direct US-Iran nuclear escalation has collapsed.</p>
+            <p><strong>2. Real yields are now the stability anchor, not the panic trigger:</strong> The 10-year at 4.70% is holding steady. The market has repriced the Fed's reaction function: hold in July, maybe signal data-dependence in September, but no aggressive tightening cycle.</p>
+            <p><strong>3. Central banks are now backstopped by de-escalation narrative:</strong> Fed, BoE, BoJ all meet July 28-31 with a much easier macro backdrop. Oil is falling, equities are rising, and the urgency of "tightening into crisis" has evaporated.</p>
+        </div>
+
+        <div class="section">
+            <h2>2. Performance Review</h2>
+            <p>Two ideas from July 24 are now retired (oil repricing lower, AUD/NZD recovered); one is unchanged; three fresh ideas are published.</p>
+            <table>
+                <tr>
+                    <th>Idea</th>
+                    <th>Status</th>
+                    <th>Change</th>
+                </tr>
+                <tr>
+                    <td>Long Brent Crude</td>
+                    <td>Revised Down to 48/100</td>
+                    <td><span class="tag tag-red">De-escalation Repricing</span></td>
+                </tr>
+                <tr>
+                    <td>Long EUR/CHF</td>
+                    <td>Unchanged — Still Pending</td>
+                    <td>Carry forward at 50/100</td>
+                </tr>
+                <tr>
+                    <td>Short AUD/NZD</td>
+                    <td>Revoked</td>
+                    <td><span class="tag tag-blue">Recovered on Risk-On</span></td>
+                </tr>
+            </table>
+            <p><strong>Running Hit Rate:</strong> Long Brent (briefly at target, now retreating on de-escalation) / Long EUR/CHF (unchanged, still pending) / Short AUD/NZD (revoked due to AUD recovery) / Three fresh high-conviction ideas published today.</p>
+        </div>
+
+        <div class="section">
+            <h2>3. Central Bank Rates & Calendar</h2>
+            <p><strong>Nearest catalysts:</strong> Fed (28-29 Jul) — the single most important event this week. Powell will hold rates at 3.50-3.75% (79.5% odds) but tone and forward guidance are critical.</p>
+            <table>
+                <tr>
+                    <th>Bank</th>
+                    <th>Rate</th>
+                    <th>Next Meeting</th>
+                    <th>Bias</th>
+                </tr>
+                <tr>
+                    <td><strong>Fed (US)</strong></td>
+                    <td>3.50-3.75%</td>
+                    <td><strong>28-29 Jul</strong> (1-2 days)</td>
+                    <td>Hold likely (79.5%); dovish tone expected on de-escalation</td>
+                </tr>
+                <tr>
+                    <td><strong>BoE (UK)</strong></td>
+                    <td>3.75%</td>
+                    <td>30 Jul (3 days)</td>
+                    <td>Dovish-hold; CPI soft at 2.6%</td>
+                </tr>
+                <tr>
+                    <td><strong>BoJ (Japan)</strong></td>
+                    <td>1.00%</td>
+                    <td>30-31 Jul (3-4 days)</td>
+                    <td>Hold; watch for intervention guidance</td>
+                </tr>
+                <tr>
+                    <td>ECB (Eurozone)</td>
+                    <td>2.25%</td>
+                    <td>5 Sep (41 days)</td>
+                    <td>Hawkish-hold; September hike still in play</td>
+                </tr>
+                <tr>
+                    <td>RBA (Australia)</td>
+                    <td>4.35%</td>
+                    <td>10-11 Aug (15 days)</td>
+                    <td>Hawkish-hold</td>
+                </tr>
+                <tr>
+                    <td>RBNZ (NZ)</td>
+                    <td>2.50%</td>
+                    <td>2 Sep (38 days)</td>
+                    <td>Hawkish-hold; NZD carry bid</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>4. Currency Strength Overview</h2>
+            <table>
+                <tr>
+                    <th>Currency</th>
+                    <th>Strength</th>
+                    <th>Change</th>
+                    <th>Driver</th>
+                </tr>
+                <tr>
+                    <td>NZD</td>
+                    <td><span class="tag tag-green">68/100</span></td>
+                    <td>+20</td>
+                    <td>Carry recovery; yen weakness on risk-on; RBNZ hawkish</td>
+                </tr>
+                <tr>
+                    <td>AUD</td>
+                    <td><span class="tag tag-green">66/100</span></td>
+                    <td>+24</td>
+                    <td>Risk-on recovery; RBA hawkish; commodity support</td>
+                </tr>
+                <tr>
+                    <td>EUR</td>
+                    <td>59/100</td>
+                    <td>+14</td>
+                    <td>ECB hawkish messaging reinforced; de-escalation removes urgency</td>
+                </tr>
+                <tr>
+                    <td>NOK</td>
+                    <td>61/100</td>
+                    <td>+4</td>
+                    <td>Oil support ($97-98); equity recovery</td>
+                </tr>
+                <tr>
+                    <td>USD</td>
+                    <td>62/100</td>
+                    <td>-10</td>
+                    <td>Weakening on risk-on; dollar offered</td>
+                </tr>
+                <tr>
+                    <td>JPY</td>
+                    <td>52/100</td>
+                    <td>-19</td>
+                    <td>Weakening on risk-on recovery; yen is no longer bid</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>6. High-Conviction Trade Ideas</h2>
+            <p><strong>Slate at a glance:</strong> Three fresh high-conviction ideas are published today following confirmed de-escalation and central bank patience narrative. The No-Trade Zone from July 24 is lifted.</p>
+
+            <div class="idea-card">
+                <div class="idea-header">
+                    <div class="idea-title">Idea 1: Long NZD/JPY</div>
+                    <span class="idea-badge badge-bullish">BULLISH</span>
+                </div>
+                <p><strong>Theme:</strong> De-escalation unlocks carry-trade recovery; yen weakness on risk-on; RBNZ hawkish hold provides yield support.</p>
+                <div class="idea-detail">
+                    <strong>Entry Zone:</strong> 94.50-95.20 | <strong>Target:</strong> 96.50, then 97.50 | <strong>Stop:</strong> Below 93.50 | <strong>Risk/Reward:</strong> 1:1.8
+                </div>
+                <p><em>Layer read:</em> The July 24 invalidation was driven by risk-off panic. That catalyst has now been neutralized by confirmed de-escalation. The carry thesis (RBNZ 2.50% vs BoJ 1.00%) is still valid and now strengthened because de-escalation removes aggressive Fed tightening narrative. This is a mean-reversion carry trade from July 24 panic lows.</p>
+                <div class="confidence-bar">
+                    <div class="confidence-label">
+                        <span>Confidence Score</span>
+                        <span><strong>78/100</strong></span>
+                    </div>
+                    <div class="confidence-track">
+                        <div class="confidence-fill" style="width: 78%;"></div>
+                    </div>
+                </div>
+                <p style="font-size: 12px; color: #a0aec0; margin-top: 10px;"><strong>Confirmation to watch:</strong> BoJ decision (30-31 Jul) must not include hawkish intervention guidance. Yen must stay offered through 96.50. Biggest risk: BoJ surprise intervention.</p>
+            </div>
+
+            <div class="idea-card">
+                <div class="idea-header">
+                    <div class="idea-title">Idea 2: Short AUD/USD</div>
+                    <span class="idea-badge badge-bearish">BEARISH</span>
+                </div>
+                <p><strong>Theme:</strong> RBA hawkish hold vs Fed dovish patience narrative; real-rate divergence narrows; carry compression play.</p>
+                <div class="idea-detail">
+                    <strong>Entry Zone:</strong> 0.6980-0.7050 | <strong>Target:</strong> 0.6850, then 0.6750 | <strong>Stop:</strong> Above 0.7120 | <strong>Risk/Reward:</strong> 1:2.5
+                </div>
+                <p><em>Layer read:</em> AUD rallied hard on July 25-27 (+3-4%), but fundamental case is weakening. RBA on hold indefinitely; Fed also on hold but will signal patience. The carry advantage (4.35% vs 3.50-3.75%) is being repriced lower as Fed signals dovish patience. AUD overbought on short-term technicals (resistance at 0.7050). Mean-reversion into 0.6850-0.6900 is likely once risk-on fervor cools.</p>
+                <div class="confidence-bar">
+                    <div class="confidence-label">
+                        <span>Confidence Score</span>
+                        <span><strong>72/100</strong></span>
+                    </div>
+                    <div class="confidence-track">
+                        <div class="confidence-fill" style="width: 72%;"></div>
+                    </div>
+                </div>
+                <p style="font-size: 12px; color: #a0aec0; margin-top: 10px;"><strong>Confirmation to watch:</strong> Fed decision on 28-29 Jul must confirm dovish hold. Biggest risk: RBA surprise tightening or Fed hawkish hold.</p>
+            </div>
+
+            <div class="idea-card">
+                <div class="idea-header">
+                    <div class="idea-title">Idea 3: Long EUR/GBP</div>
+                    <span class="idea-badge badge-bullish">BULLISH</span>
+                </div>
+                <p><strong>Theme:</strong> ECB hawkish messaging survives de-escalation; BoE dovish CPI persists; monetary policy divergence widening.</p>
+                <div class="idea-detail">
+                    <strong>Entry Zone:</strong> 0.8530-0.8580 | <strong>Target:</strong> 0.8650, then 0.8750 | <strong>Stop:</strong> Below 0.8460 | <strong>Risk/Reward:</strong> 1:1.5
+                </div>
+                <p><em>Layer read:</em> EUR fell on July 24 risk-off, but the ECB's hawkish message is durable, not just noise. De-escalation removes urgency narrative and allows ECB to follow through on core inflation concerns. BoE remains dovish (June CPI 2.6%, no hawkish signal). The spread (ECB hawkish vs BoE dovish) is widening, favoring long EUR/GBP. This is a monetary policy divergence play.</p>
+                <div class="confidence-bar">
+                    <div class="confidence-label">
+                        <span>Confidence Score</span>
+                        <span><strong>65/100</strong></span>
+                    </div>
+                    <div class="confidence-track">
+                        <div class="confidence-fill" style="width: 65%;"></div>
+                    </div>
+                </div>
+                <p style="font-size: 12px; color: #a0aec0; margin-top: 10px;"><strong>Confirmation to watch:</strong> BoE decision (30 Jul) must not signal hawkish surprise. ECB messaging must remain hawkish on September hikes. Biggest risk: BoE hawkish surprise or Lagarde dovish reversal.</p>
+            </div>
+
+            <div class="idea-card">
+                <div class="idea-header">
+                    <div class="idea-title">Carry-Forward: Long EUR/CHF</div>
+                    <span class="idea-badge badge-high">STABLE</span>
+                </div>
+                <p><strong>Entry Zone:</strong> 0.9150-0.9220 | <strong>Target:</strong> 0.9350-0.9420 | <strong>Stop:</strong> Below 0.9080 | <strong>Estimated Current:</strong> ~0.9270</p>
+                <p>Unchanged from July 24. De-escalation and risk-on recovery slightly weaken the franc (safe-haven bid evaporates), which is favorable. Carry forward at 50/100 confidence — no new catalyst, just waiting for targets.</p>
+            </div>
+
+            <div class="idea-card">
+                <div class="idea-header">
+                    <div class="idea-title">Revised Down: Long Brent Crude</div>
+                    <span class="idea-badge badge-bearish">REPRICING</span>
+                </div>
+                <p><strong>Entry Zone:</strong> $89.50-91.50 | <strong>Target:</strong> $102-108 | <strong>Stop:</strong> Below $93 | <strong>Revised Confidence:</strong> 48/100 (down from 65)</p>
+                <p>Brent fell from $100.65 (July 24) to ~$97.50 on de-escalation. Supply story (Hormuz + Red Sea) remains intact, but geopolitical war premium is repricing into "blockade premium." Consolidation at $95-100 likely for 2-3 weeks. Publish as legacy trade surviving repricing but not as high-conviction call.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>7. Risks, Contrarian Check & No-Trade Zone</h2>
+            <p><strong>No-Trade Zone Flag: NO — LIFTED as of July 27.</strong> The market has entered a genuine tradeable regime post-de-escalation. Conviction is now 68/100 (up 22 from July 24's 46). The three new high-conviction ideas are defensible with clear stops.</p>
+            <p><strong>Primary thesis risk:</strong> A Fed hawkish surprise or BoJ intervention jawboning. If Powell signals on 28-29 Jul that tightening is still on the table, the market will reverse sharply into July 24's panic mode, and all three new carry ideas will hit their stops.</p>
+            <h3>Scenarios:</h3>
+            <p><strong>Bull case:</strong> Fed signals dovish hold; BoE confirms soft CPI narrative; BoJ issues no intervention guidance; real yields fall to 4.50%; S&P 500 breaks above 7,500; oil consolidates at $97-100. All three ideas extend toward targets.</p>
+            <p><strong>Base case:</strong> Fed holds and signals data-dependence; BoE and BoJ no surprises; real yields stay 4.65-4.75%; equities consolidate 7,400-7,500; oil stays $95-100. New ideas make progress but require patience.</p>
+            <p><strong>Bear case:</strong> Fed sounds hawkish on inflation; BoJ hints at intervention; geopolitical tensions resume; oil spikes above $102; real yields break 4.80%; S&P 500 crashes. All three ideas hit stops. ~15-20% tail risk.</p>
+        </div>
+
+        <div class="section">
+            <h2>8. Markets Backdrop — Rates, Equities & Correlation</h2>
+            <p><strong>Correlation read:</strong> Risk-On Recovery with Stabilized Real Yields. Markets now exhibit classic "de-escalation and carry recovery" setup: equities up, oil stable, real yields stable, gold up. This is extremely favorable for carry trades, EM currencies, and equities. The risk is binary: stabilization holds through Fed decision (bull case) or hawkish Fed signal re-triggers panic (bear case).</p>
+            <table>
+                <tr>
+                    <th>Metric</th>
+                    <th>Level & Move</th>
+                    <th>Context</th>
+                </tr>
+                <tr>
+                    <td>10-Year Yield</td>
+                    <td>4.70% (stable)</td>
+                    <td>Highest since Jan 2025, but holding steady (not spiking)</td>
+                </tr>
+                <tr>
+                    <td>VIX</td>
+                    <td>~16-18 (down from 18-22)</td>
+                    <td>Volatility collapsed; favors carry trades</td>
+                </tr>
+                <tr>
+                    <td>S&P 500</td>
+                    <td>7,454 (+0.57%)</td>
+                    <td>Recovering from July 24's -1.21% crash</td>
+                </tr>
+                <tr>
+                    <td>Gold</td>
+                    <td>$4,090.57 (+0.95%)</td>
+                    <td>Recovered from $4,040 as real yields stabilized</td>
+                </tr>
+                <tr>
+                    <td>Brent Crude</td>
+                    <td>$97.50-98.00 (-3%)</td>
+                    <td>Supply story intact but geopolitical premium repricing</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>9. Economic Catalysts</h2>
+            <p><strong>Today, July 27 (overnight update):</strong> US-Iran de-escalation confirmed — US Central Command suspended strike campaign Friday (July 25); Iran announced it ended retaliatory strikes and is in talks with Oman regarding Strait of Hormuz. <strong>This is the critical catalyst that reversed the July 24 panic.</strong></p>
+            <p><strong>This week ahead:</strong></p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li><strong>Fed (28-29 Jul):</strong> Hold at 3.50-3.75% (79.5% odds). Powell's tone on inflation, oil, and September rate path will determine carry recovery durability.</li>
+                <li><strong>BoE (30 Jul):</strong> Bailey will hold at 3.75% (near-certain). CPI soft at 2.6%. Watch for any hawkish language (unlikely).</li>
+                <li><strong>BoJ (30-31 Jul):</strong> Likely hold at 1.00%. Watch for intervention guidance — if BoJ hints at action, NZD/JPY invalidated.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>10. Decision Dashboard Snapshot</h2>
+            <p><strong>Overall Market Confidence: 68/100</strong> (∆ vs July 24: +22, up sharply)</p>
+            <p>A dramatic repricing on the back of confirmed US-Iran de-escalation and central bank patience narrative.</p>
+            <p><strong>Portfolio Tilt (Major Adjustment):</strong> The book is now heavily tilted toward risk-on carry trades and equity recovery, a complete 180-degree reversal from July 24's risk-off stance. Long NZD/JPY (78), Short AUD/USD (72), and Long EUR/GBP (65) represent a generational mean-reversion from panic to complacency. This is a classic end-of-panic setup: July 24 was capitulation (46/100), July 27 is recovery (68/100), and next week could be euphoria (75+) if Powell signals dovish patience.</p>
+            <p><em>Informational context only — not personalized allocation advice.</em></p>
+        </div>
+
+        <div class="section">
+            <h2>11. Historical Parallel Watch</h2>
+            <p>The current regime mirrors the March 2026 Iran escalation aftermath: a sharp conflict event followed by elevated tension and oil price elevation, which then stabilized into a "cold war with economic friction." The parallel suggests that the $97-100 level may be the durable "cold war oil price" — above pre-conflict ($80), but below direct-war scenario ($110+). If this parallel holds, the energy shock is now priced and accepted, allowing central banks and equities to recover. The market is betting on the 2026 March <em>containment parallel</em>, not the 2011 crisis parallel.</p>
+        </div>
+
+        <div class="footer">
+            <p>Appelton Intelligent Trading | Scere Markets / FX-Reports Workflow</p>
+            <p>Report generated: July 27, 2026 | For educational purposes</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -58,7 +58,9 @@ function toPublic(data) {
       overallConfidence: ds.overallConfidence != null ? ds.overallConfidence : null,
       topIdea: top ? { label: top.label, pair: top.pair, direction: top.direction, confidence: top.confidence, delta: top.delta } : null,
     },
-    noTradeZone: data.noTradeZone ? { flagged: !!data.noTradeZone.flagged, text: data.noTradeZone.text || '' } : { flagged: false, text: '' },
+    noTradeZone: data.noTradeZone
+      ? { flagged: !!data.noTradeZone.flagged, status: data.noTradeZone.status || null, text: data.noTradeZone.text || '' }
+      : { flagged: false, status: 'clear', text: '' },
     // track record is explicitly free and in the open.
     performanceReview: {
       hitRateSummary: pr.hitRateSummary || '',

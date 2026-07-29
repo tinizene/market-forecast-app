@@ -1354,6 +1354,10 @@ function renderSingleLesson() {
   if (e.id === 'investing-vs-gambling') tools = renderCountryPanelShell();
   if (e.id === 'expense-ratios') tools = renderFeeTable();
   if (e.id === 'dollar-cost-averaging') tools = renderDcaCalculatorShell();
+  // Interactive crypto labs (crypto-labs.js) — real SHA-256 hashing, nonce mining and
+  // a tamperable chain, attached to the lessons that teach those mechanics.
+  const labs = window.SCERE_CRYPTO_LABS;
+  if (labs && labs.hasLab(e.id)) tools += labs.render(e.id);
 
   const navBtn = (l, dir) => l
     ? `<a class="lesson-nav-btn ${dir}" href="${lessonHref(l.id)}"><span class="lnav-dir">${dir === 'prev' ? '← Previous' : 'Next →'}</span><span class="lnav-title">${escapeHtml(l.title)}</span></a>`
@@ -1366,6 +1370,7 @@ function renderSingleLesson() {
   const calcBtn = document.getElementById('dcaCalculate');
   if (calcBtn) calcBtn.addEventListener('click', runDcaCalculation);
   if (e.id === 'investing-vs-gambling') loadCountryList();
+  if (labs && labs.hasLab(e.id)) labs.wire(e.id, root);
   initSpeechControls();
 
   document.title = `${e.title} — Scere Markets`;

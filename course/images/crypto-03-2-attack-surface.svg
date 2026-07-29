@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="960" height="720" fill="#FDFCF9"/>
+
+  <!-- Title -->
+  <text x="480" y="40" text-anchor="middle" font-size="24" font-weight="bold" fill="#1F3864">The Attack Surface Around a Crypto Holder</text>
+  <text x="480" y="66" text-anchor="middle" font-size="14" fill="#2E5395">Five ways in. None of them is price risk. Each one has a specific fix.</text>
+
+  <!-- Connector lines drawn first so boxes sit on top -->
+  <line x1="165" y1="255" x2="330" y2="345" stroke="#B23B2E" stroke-width="2" stroke-dasharray="5,4"/>
+  <line x1="480" y1="255" x2="480" y2="330" stroke="#B23B2E" stroke-width="2" stroke-dasharray="5,4"/>
+  <line x1="795" y1="255" x2="630" y2="345" stroke="#B23B2E" stroke-width="2" stroke-dasharray="5,4"/>
+  <line x1="330" y1="415" x2="240" y2="470" stroke="#B23B2E" stroke-width="2" stroke-dasharray="5,4"/>
+  <line x1="630" y1="415" x2="720" y2="470" stroke="#B23B2E" stroke-width="2" stroke-dasharray="5,4"/>
+
+  <!-- Panel 1: Exchange account -->
+  <rect x="30" y="95" width="270" height="160" rx="10" fill="#FFFFFF" stroke="#2E5395" stroke-width="2.5"/>
+  <text x="165" y="124" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F3864">1. EXCHANGE ACCOUNT</text>
+  <line x1="50" y1="136" x2="280" y2="136" stroke="#EAE6DD" stroke-width="1.5"/>
+  <text x="50" y="160" font-size="12" font-weight="bold" fill="#B23B2E">Attack</text>
+  <text x="50" y="178" font-size="12" fill="#1F3864">Platform is hacked, freezes, or</text>
+  <text x="50" y="194" font-size="12" fill="#1F3864">fails. Your balance is its IOU.</text>
+  <text x="50" y="218" font-size="12" font-weight="bold" fill="#1E7A4C">Fix</text>
+  <text x="50" y="236" font-size="12" fill="#1F3864">Hold only what you trade soon.</text>
+  <text x="50" y="250" font-size="12" fill="#1F3864">Withdrawal allowlist. App 2FA.</text>
+
+  <!-- Panel 2: Phone number and SIM -->
+  <rect x="345" y="95" width="270" height="160" rx="10" fill="#FFFFFF" stroke="#2E5395" stroke-width="2.5"/>
+  <text x="480" y="124" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F3864">2. PHONE NUMBER / SIM</text>
+  <line x1="365" y1="136" x2="595" y2="136" stroke="#EAE6DD" stroke-width="1.5"/>
+  <text x="365" y="160" font-size="12" font-weight="bold" fill="#B23B2E">Attack</text>
+  <text x="365" y="178" font-size="12" fill="#1F3864">SIM swap moves your number.</text>
+  <text x="365" y="194" font-size="12" fill="#1F3864">SMS codes go to the attacker.</text>
+  <text x="365" y="218" font-size="12" font-weight="bold" fill="#1E7A4C">Fix</text>
+  <text x="365" y="236" font-size="12" fill="#1F3864">Authenticator app or security</text>
+  <text x="365" y="250" font-size="12" fill="#1F3864">key, not SMS. Port-out PIN.</text>
+
+  <!-- Panel 3: Browser and approvals -->
+  <rect x="660" y="95" width="270" height="160" rx="10" fill="#FFFFFF" stroke="#2E5395" stroke-width="2.5"/>
+  <text x="795" y="124" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F3864">3. BROWSER / APPROVALS</text>
+  <line x1="680" y1="136" x2="910" y2="136" stroke="#EAE6DD" stroke-width="1.5"/>
+  <text x="680" y="160" font-size="12" font-weight="bold" fill="#B23B2E">Attack</text>
+  <text x="680" y="178" font-size="12" fill="#1F3864">Fake site, or an old unlimited</text>
+  <text x="680" y="194" font-size="12" fill="#1F3864">approval drained months later.</text>
+  <text x="680" y="218" font-size="12" font-weight="bold" fill="#1E7A4C">Fix</text>
+  <text x="680" y="236" font-size="12" fill="#1F3864">Bookmarks only. Revoke unused</text>
+  <text x="680" y="250" font-size="12" fill="#1F3864">approvals monthly. Cap limits.</text>
+
+  <!-- Centre: the holder -->
+  <rect x="330" y="330" width="300" height="85" rx="12" fill="#1F3864" stroke="#1F3864" stroke-width="2"/>
+  <text x="480" y="360" text-anchor="middle" font-size="18" font-weight="bold" fill="#FDFCF9">YOU</text>
+  <text x="480" y="382" text-anchor="middle" font-size="12.5" fill="#FDFCF9">your keys, your accounts,</text>
+  <text x="480" y="400" text-anchor="middle" font-size="12.5" fill="#FDFCF9">your devices, your phone number</text>
+
+  <!-- Panel 4: Device and clipboard -->
+  <rect x="105" y="470" width="270" height="160" rx="10" fill="#FFFFFF" stroke="#2E5395" stroke-width="2.5"/>
+  <text x="240" y="499" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F3864">4. DEVICE / CLIPBOARD</text>
+  <line x1="125" y1="511" x2="355" y2="511" stroke="#EAE6DD" stroke-width="1.5"/>
+  <text x="125" y="535" font-size="12" font-weight="bold" fill="#B23B2E">Attack</text>
+  <text x="125" y="553" font-size="12" fill="#1F3864">Malware swaps the address you</text>
+  <text x="125" y="569" font-size="12" fill="#1F3864">pasted. Lookalikes in history.</text>
+  <text x="125" y="593" font-size="12" font-weight="bold" fill="#1E7A4C">Fix</text>
+  <text x="125" y="611" font-size="12" fill="#1F3864">Verify on the device screen.</text>
+  <text x="125" y="625" font-size="12" fill="#1F3864">Check the middle. Test send.</text>
+
+  <!-- Panel 5: Seed phrase backup -->
+  <rect x="585" y="470" width="270" height="160" rx="10" fill="#FFFFFF" stroke="#2E5395" stroke-width="2.5"/>
+  <text x="720" y="499" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F3864">5. SEED PHRASE BACKUP</text>
+  <line x1="605" y1="511" x2="835" y2="511" stroke="#EAE6DD" stroke-width="1.5"/>
+  <text x="605" y="535" font-size="12" font-weight="bold" fill="#B23B2E">Attack</text>
+  <text x="605" y="553" font-size="12" fill="#1F3864">Photographed, typed into a site,</text>
+  <text x="605" y="569" font-size="12" fill="#1F3864">or supplied with a fake device.</text>
+  <text x="605" y="593" font-size="12" font-weight="bold" fill="#1E7A4C">Fix</text>
+  <text x="605" y="611" font-size="12" fill="#1F3864">Offline on paper or metal. Buy</text>
+  <text x="605" y="625" font-size="12" fill="#1F3864">direct. Generate it yourself.</text>
+
+  <!-- Footer band -->
+  <rect x="30" y="655" width="900" height="46" rx="8" fill="#FBF2DC" stroke="#C99A2E" stroke-width="2"/>
+  <text x="480" y="676" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#B23B2E">Every path above ends in one irreversible transfer.</text>
+  <text x="480" y="693" text-anchor="middle" font-size="12.5" fill="#1F3864">There is no chargeback, no fraud department, and no undo. Security in crypto is preventive only.</text>
+</svg>

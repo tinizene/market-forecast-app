@@ -33,11 +33,11 @@
 ## Chapter 3: Risk Management for Crypto
 *Counterpart to Forex Chapter 3. Same math, harsher inputs: volatility multiples of FX, 24/7 markets with no circuit breakers, and a whole risk class forex doesn't have — losing the asset itself.*
 
-1. Position Sizing When Volatility Is 5× Forex — the same formula (Forex Ch3 L1), recomputed for crypto's realized volatility; why "1–2% risk" produces much smaller positions here
-2. Custody & Security Risk — hacks, phishing, SIM swaps, approvals/permissions; the risk that isn't price risk, and the checklist that mitigates it
-3. Leverage, Perpetuals & Funding — perps taught mechanically (funding rates, liquidation cascades), margin math carried over from Forex Ch1 L6/Ch3 L2, and why liquidation, not being wrong, is how most leveraged crypto accounts die
+1. Position Sizing When Volatility Is 5× Forex — the same formula (Forex Ch3 L1), recomputed for crypto's realized volatility; why "1–2% risk" produces much smaller positions here — ✅ complete
+2. Custody & Security Risk — hacks, phishing, SIM swaps, approvals/permissions; the risk that isn't price risk, and the checklist that mitigates it — ✅ complete
+3. Leverage, Perpetuals & Funding — perps taught mechanically (funding rates, liquidation cascades), margin math carried over from Forex Ch1 L6/Ch3 L2, and why liquidation, not being wrong, is how most leveraged crypto accounts die — ✅ complete
 
-**Chapter 3 planned — 3 lessons.**
+**Chapter 3 COMPLETE — 3/3 lessons drafted, compiled into `crypto-content.js`, and live in the app.**
 
 ## Chapter 4: Psychology, Scams & Building a Plan
 *Counterpart to Forex Chapter 4, with a lesson forex didn't need: fraud recognition as a core competency, because in crypto the counterparty is often the risk.*

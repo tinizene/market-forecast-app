@@ -1,12 +1,11 @@
 // Curriculum content for the Crypto track (paid) of the Scere Markets course.
 // Compiled from the markdown lessons in course/crypto/*.en.md into the same typed-block
-// model as foundation-content.js and forex-content.js (paragraph / definition / example /
-// warning / practice / image blocks, plus interactive quiz and keyTerms). Rendered by
-// renderCryptoTrack() in learn.js into #cryptoRoot. Diagrams resolve via
-// window.SCERE_CRYPTO_SVGS (dark-theme variants, defined at the bottom of this file).
+// model as foundation-content.js and forex-content.js. Rendered by renderCryptoTrack()
+// in learn.js into #cryptoRoot; diagrams resolve via window.SCERE_CRYPTO_SVGS
+// (dark-theme variants, defined at the bottom of this file).
 //
-// Shown fully open with a "Paid track" badge; the Research Desk subscription gate is a
-// separate system (see PAYMENTS.md) and does not currently gate course content.
+// Chapters 1-2 lessons also carry interactive labs (crypto-labs.js) that run real
+// SHA-256 hashing and proof-of-work mining in the browser.
 
 window.SCERE_CRYPTO_TRACK = {
   trackTitle: 'Crypto',
@@ -2547,6 +2546,862 @@ window.SCERE_CRYPTO_CONTENT = [
         "def": "How participants are currently arranged between long and short exposure, and how one-sided that is."
       }
     ]
+  },
+  {
+    "id": "crypto-position-sizing-for-volatility",
+    "lessonNumber": 1,
+    "chapterNumber": 3,
+    "chapterTitle": "Chapter 3: Risk Management for Crypto",
+    "title": "Position Sizing When Volatility Is Not Forex",
+    "keyIdea": "The position-sizing formula is identical to forex — risk budget divided by stop distance — but crypto's much larger daily range forces a much wider stop, and a wider stop in the denominator produces a much smaller position for the same 1% risk.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Start with the reassuring part. Nothing you learned about position sizing is now wrong. Forex Chapter 3, Lesson 1 gave you the sizing formula, and Foundations Chapter 2 gave you the 1% to 2% rule it feeds on. The formula is arithmetic, not a forex convention. It works on any instrument that has a price and a stop."
+      },
+      {
+        "type": "paragraph",
+        "text": "Position size = (the money you are willing to lose) / (the distance from entry to your stop). The numerator is your decision. The denominator is the market's. That split is the entire lesson."
+      },
+      {
+        "type": "warning",
+        "text": "Everything that changes in crypto lives in the denominator. Your risk per trade stays at 1% to 2% of the account, exactly as before, because that number is a statement about your survival and not about the asset. What changes is how far away a sensible stop has to sit — and because the stop distance is divided into your risk budget, a wider stop mechanically produces a smaller position. Not a slightly smaller one. In the example computed later in this lesson, it is smaller by a factor of about 14."
+      },
+      {
+        "type": "paragraph",
+        "text": "That is the counterintuitive part, and it is worth saying plainly before the arithmetic. Many beginners arrive at crypto expecting the higher volatility to justify a bigger, bolder position. The mathematics says the opposite. The more an asset moves, the less of it you can hold for the same fixed risk."
+      },
+      {
+        "type": "paragraph",
+        "text": "This chapter's roadmap entry carries a headline: crypto volatility is about 5 times forex. That claim deserves the same treatment this course gives every other claim, which is to go and check it rather than repeat it. First, the term itself."
+      },
+      {
+        "type": "definition",
+        "term": "Realized Volatility",
+        "text": "A measurement of how much an asset's price actually moved over a past window, calculated as the standard deviation of its returns and usually scaled up to an annual figure so different assets can be compared. It is backward-looking and descriptive. It says nothing about what the price will do next, and it is not the same thing as implied volatility, which is what options prices suggest traders expect ahead."
+      },
+      {
+        "type": "paragraph",
+        "text": "A realized volatility figure is meaningless without three attachments: the window it was measured over, the return frequency used, and the date the window ended. Crypto Chapter 2, Lesson 3 made the same demand of correlation numbers. Apply it here with equal force."
+      },
+      {
+        "type": "paragraph",
+        "text": "On the crypto side, Bitcoin's annualized realized volatility has been running in the low-to-mid 40s in percentage terms in recent years. Fidelity Digital Assets, in its research note A Closer Look at Bitcoin's Volatility, reported Bitcoin's 90-day realized volatility averaging in the mid-40s over the two years to 2024 to 2025. BlackRock's iShares published a higher figure of roughly 54% for a window ending near the start of 2025, alongside 15.1% for gold and 10.5% for global equities. The two figures differ because the windows and the ending dates differ, which is exactly the point. Treat both as commercial research from firms that sell exposure to these assets, and note that they agree on the range even where they disagree on the second digit."
+      },
+      {
+        "type": "paragraph",
+        "text": "On the forex side, volatility in the major pairs has been in single digits. CME Group's 2024 review of its own CVOL family reported the G5 currency implied volatility index averaging 7.3 in 2024, down from 10.6 in 2022. Separately, the benchmark one-month implied volatility on EUR/USD moved through a range of roughly 6.25 to 9.0 during 2024. The J.P. Morgan G7 FX volatility index has at times printed even lower, reaching a record low near 5.2 in January 2020."
+      },
+      {
+        "type": "example",
+        "text": "Put those side by side and the honest answer is a range, not a number. Take the middle of each recent measurement. Bitcoin at roughly 46% annualized against major-currency volatility at roughly 7% gives 46 / 7 = 6.6 times. Take the friendliest combination for crypto — a calm crypto window near 40% against a stressed forex year near 11% — and the ratio falls to about 3.6 times. Take the harshest — a volatile crypto window near 55% against forex at its record low near 5.2 — and it rises to about 10.6 times."
+      },
+      {
+        "type": "paragraph",
+        "text": "Peer-reviewed work lands at the top of that range for an earlier period. Dirk G. Baur and Thomas Dimpfl published The volatility of Bitcoin and its role as a medium of exchange and a store of value in Empirical Economics, volume 61, issue 5, in 2021, pages 2663 to 2683. Using data from January 2014 to January 2017 across six Bitcoin markets and two foreign exchange markets, they report that Bitcoin's volatility is extreme and almost 10 times higher than the volatility of the major exchange rates they measured, the US dollar against the euro and against the yen. Their conclusion is that this excess volatility is what stops Bitcoin functioning as a medium of exchange."
+      },
+      {
+        "type": "warning",
+        "text": "So the roadmap's \"5 times\" is defensible as a rough floor, and it is not a fact. The verified range across the sources checked for this lesson runs from roughly 4 times to roughly 10 times, depending on which crypto window, which currency benchmark, and which years you pick. The academic measurement over 2014 to 2017 sits near 10 times; the recent commercial measurements sit nearer 5 to 7. Crypto's volatility has also fallen over the past decade, so an old multiple overstates today and a calm-period multiple understates a stress period. Never quote a bare multiple. Quote the window with it, or quote the range."
+      },
+      {
+        "type": "paragraph",
+        "text": "For the arithmetic in the rest of this lesson, this course uses roughly 46% annualized for Bitcoin and roughly 7% for a major currency pair, and states that choice openly so you can redo the sums with your own figures."
+      },
+      {
+        "type": "paragraph",
+        "text": "An annualized percentage is not something you can place a stop against. Convert it to a daily figure, because a stop lives inside a day or two of price movement. The conversion is the square root of time. Divide the annual figure by the square root of the number of trading periods in a year. Forex uses about 252 trading days, because the market closes at the weekend. Crypto uses 365, because it never closes at all."
+      },
+      {
+        "type": "example",
+        "text": "A major currency pair at 7% annualized: 7 / square root of 252 = 0.44% per day. Bitcoin at 46% annualized: 46 / square root of 365 = 2.41% per day. The daily ratio is 2.41 / 0.44 = 5.5 times. On these inputs, an ordinary day in Bitcoin covers about five and a half times as much ground, in percentage terms, as an ordinary day in a major currency pair."
+      },
+      {
+        "type": "paragraph",
+        "text": "Now put a familiar forex stop next to that. A 50-pip stop on EUR/USD at 1.0800 is a distance of 0.0050 / 1.0800 = 0.463% of the price. Against a daily move of 0.44%, that stop sits at about 1.05 days of typical movement. It is a normal, workable forex stop. Move the same 0.463% stop onto Bitcoin at 60,000 dollars and it becomes a distance of 278 dollars. Bitcoin's typical daily move on these inputs is 2.41% of 60,000, which is about 1,445 dollars. The stop is now at 0.19 days of typical movement."
+      },
+      {
+        "type": "warning",
+        "text": "A stop set at one-fifth of a normal day's movement is not a risk control. It is a coin flip with a fee attached. Ordinary noise — the movement that happens with no news, no trend, and no reason — will reach it, and reach it repeatedly. You have not reduced your risk. You have converted a position with a chance of working into a position that closes at a loss almost immediately, over and over, while paying spread and fees each time."
+      },
+      {
+        "type": "paragraph",
+        "text": "Standard deviation of returns is the right idea, but it is awkward to compute on a chart. Traders use a simpler measure built for exactly this job, and it is older than crypto by three decades. J. Welles Wilder Jr. introduced it in his book New Concepts in Technical Trading Systems, published by Trend Research in Greensboro, North Carolina, in 1978 — the same book that introduced the Relative Strength Index you met in Forex Chapter 2, Lesson 2, and the Average Directional Index. Wilder was writing about commodity futures, which gap between sessions, so he needed a range measure that did not ignore the gap."
+      },
+      {
+        "type": "definition",
+        "term": "True Range",
+        "text": "The largest of three distances for a single bar: today's high minus today's low; the absolute difference between today's high and yesterday's close; and the absolute difference between yesterday's close and today's low. Taking the largest of the three means an overnight gap is counted as real movement rather than being missed."
+      },
+      {
+        "type": "definition",
+        "term": "Average True Range (ATR)",
+        "text": "The average of the true range over a set number of recent bars. Wilder used 14 periods and his own running average, in which each new value is the previous ATR multiplied by 13, plus today's true range, divided by 14. ATR is quoted in the price's own units, not as a percentage, so an ATR of 1,900 dollars on Bitcoin means the typical daily bar covers about 1,900 dollars of ground."
+      },
+      {
+        "type": "example",
+        "text": "Here is the calculation on five daily Bitcoin bars, using a plain average of the five true ranges. The closing price before the first bar was 60,000 dollars. Day 1: high 61,200, low 59,400, close 60,800 — true range 1,800. Day 2: high 62,000, low 60,300, close 61,500 — true range 1,700. Day 3: high 61,800, low 59,900, close 60,200 — true range 1,900. Day 4: high 60,500, low 58,200, close 58,600 — true range 2,300. Day 5: high 59,900, low 58,100, close 59,700 — true range 1,800. Check day 3 by hand. High minus low is 61,800 - 59,900 = 1,900. High minus the previous close is 61,800 - 61,500 = 300. The previous close minus the low is 61,500 - 59,900 = 1,600. The largest is 1,900, so the true range is 1,900. The five true ranges add to 9,500. ATR = 9,500 / 5 = 1,900 dollars. At a price of 60,000 dollars, that is 1,900 / 60,000 = 3.17% of price per day."
+      },
+      {
+        "type": "definition",
+        "term": "Volatility-Adjusted Position Size",
+        "text": "A position size calculated from a stop placed at a multiple of a volatility measure such as ATR, rather than at a fixed number of points or a fixed percentage. Because the stop widens automatically when the market becomes more volatile, the position size shrinks automatically, and the money at risk stays constant."
+      },
+      {
+        "type": "paragraph",
+        "text": "Common practice places the stop at somewhere between 1.5 and 3 times ATR away from entry. There is no correct multiple, and this course will not pretend there is one. A smaller multiple gets you stopped out by noise more often; a larger one forces a smaller position for the same risk. The multiple is a choice you write into your plan and then apply consistently, so that your results measure your strategy rather than your improvisation. This lesson uses 2 times ATR. On the numbers above, that is a stop 2 x 1,900 = 3,800 dollars away, which is 3,800 / 60,000 = 6.33% of the price."
+      },
+      {
+        "type": "paragraph",
+        "text": "Now run both trades. One account, one risk rule, two markets. The account holds 5,000 dollars. The rule is 1% risk per trade, so the money at risk is 5,000 x 0.01 = 50 dollars. That 50 dollars is identical in both trades and never moves."
+      },
+      {
+        "type": "example",
+        "text": "The forex trade. EUR/USD, a 50-pip stop, a US-dollar account. Forex Chapter 3, Lesson 1 established that pip value on a standard lot is exactly 10 dollars when the quote currency is your account currency, which is Case A. Position size = 50 / (50 pips x 10 dollars) = 0.10 standard lots, which is 10,000 euro. At a rate of 1.0800, that is 10,800 dollars of notional exposure. The stop distance is 0.463% of price. Check the risk: 0.463% of 10,800 dollars = 50 dollars."
+      },
+      {
+        "type": "example",
+        "text": "The Bitcoin trade. Bitcoin at 60,000 dollars, with the 2 x ATR stop computed above, which is 3,800 dollars away. Position size = 50 / 3,800 = 0.01316 Bitcoin. At 60,000 dollars, that is 789 dollars of notional exposure. The stop distance is 6.33% of price. Check the risk: 0.01316 x 3,800 = 50 dollars."
+      },
+      {
+        "type": "paragraph",
+        "text": "Compare the two positions. The forex trade carries 10,800 dollars of exposure. The Bitcoin trade carries 789 dollars. That is a factor of 13.7, and it is an order of magnitude apart. Notice where the 13.7 came from, because it is not mysterious. The Bitcoin stop is 6.33% of price and the forex stop is 0.463% of price, and 6.33 / 0.463 = 13.7. The position ratio is the stop ratio, inverted. Nothing else in the formula moved."
+      },
+      {
+        "type": "image",
+        "svg": "crypto-03-1-position-sizing",
+        "alt": "Diagram showing one 50 dollar risk budget from a 5,000 dollar account producing three very different position sizes as the stop distance widens, with a EUR/USD 50-pip stop at 0.46 percent of price giving 10,800 dollars of exposure, a Bitcoin 2 x ATR stop at 6.33 percent giving 789 dollars, and a forex-sized 0.46 percent stop on Bitcoin giving 10,800 dollars but sitting at one-seventh of a single day's average true range",
+        "caption": "The same $50 risk budget, three stop distances: a wider stop divides into the same money and leaves a much smaller position."
+      },
+      {
+        "type": "paragraph",
+        "text": "One honest qualification belongs here. Part of that 13.7 is crypto's volatility and part of it is the fact that the two stops were set at different multiples of daily movement. The 50-pip forex stop sat at about 1.05 daily moves; the 2 x ATR Bitcoin stop sat at about 2.6 daily moves. Set them like for like and the gap narrows to exactly the volatility ratio."
+      },
+      {
+        "type": "example",
+        "text": "Put both stops at 2 times the daily move computed earlier. Forex: 2 x 0.44% = 0.88% of price, which is about 95 pips. Position = 50 / 0.0088 = 5,669 dollars of exposure. Bitcoin: 2 x 2.41% = 4.82% of price. Position = 50 / 0.0482 = 1,038 dollars of exposure. The ratio is 5,669 / 1,038 = 5.5 times — the same 5.5 from the daily volatility comparison. Position size scales inversely with volatility. Everything above that comes from your choice of stop multiple, not from the asset."
+      },
+      {
+        "type": "paragraph",
+        "text": "That second example is the more useful one to carry with you. The rule underneath both is simple: for a fixed risk budget, doubling the volatility halves the position."
+      },
+      {
+        "type": "practice",
+        "text": "Do this with your own numbers before you trade anything. Take an account of 2,000 dollars and a risk rule of 1.5% per trade. The asset trades at 3,200 dollars, and its 14-period daily ATR is 96 dollars. You have decided on a 2.5 x ATR stop. Work through it in four steps. What is the money at risk? What is the stop distance in dollars? What position size does the formula give? What is that position worth at the current price? The answers, so you can check yourself: the money at risk is 2,000 x 0.015 = 30 dollars. The stop distance is 2.5 x 96 = 240 dollars, which is 7.5% of the price. The position is 30 / 240 = 0.125 units. That is 0.125 x 3,200 = 400 dollars of exposure. Verify it the way this lesson keeps verifying things: 7.5% of 400 dollars is 30 dollars, which is what you decided to risk. Now redo it with the real ATR of an asset you are actually watching. If the position it produces looks embarrassingly small, the formula is working."
+      },
+      {
+        "type": "paragraph",
+        "text": "Read the last section again and you will see the temptation. A 789-dollar position feels like nothing. The obvious fix seems to be to tighten the stop, because a tighter stop puts a smaller number in the denominator and a bigger position comes out. Do the arithmetic on that idea."
+      },
+      {
+        "type": "example",
+        "text": "Same 5,000-dollar account, same 50 dollars at risk, same Bitcoin at 60,000 dollars. But now use the forex-sized stop: 0.463% of price, which is 278 dollars. Position size = 50 / 278 = 0.18 Bitcoin. At 60,000 dollars, that is 10,800 dollars of exposure — the same size as the forex trade, achieved exactly as hoped. Now measure that stop against the market instead of against your ambition. The ATR was 1,900 dollars. The stop is 278 / 1,900 = 0.146 of one ATR, or about one-seventh of a single average day. On the five bars used to compute that ATR, the smallest true range was 1,700 dollars, which is 6.1 times the stop distance. On every one of those five days, price travelled more than six times the distance to your stop."
+      },
+      {
+        "type": "warning",
+        "text": "Tightening the stop to justify a bigger position does not reduce risk. It relocates it. You have kept the 50 dollars of stated risk per trade and multiplied the number of times you will lose it, because you have placed the exit inside the range the price covers routinely, in both directions, for no reason at all. Forex Chapter 3, Lesson 3 gives the arithmetic that finishes this off: break-even win rate is 1 / (1 + R), so at a 1-to-2 risk-to-reward ratio you must win a third of your trades just to stay level. A stop that ordinary noise reaches several times a day will not deliver that win rate. It will deliver a slow, orderly transfer of your account into spread and fees."
+      },
+      {
+        "type": "paragraph",
+        "text": "There is a second version of the same error that is harder to spot. It is to keep the correct wide stop, and then quietly raise the risk per trade from 1% to 5% so that the position feels meaningful again. That is not a sizing decision. It is an abandonment of the sizing rule, and it runs straight into the risk-of-ruin result from Forex Chapter 3, Lesson 1: the fraction risked per trade is the dominant lever on the probability of blowing up, ahead of win rate. Ralph Vince's fixed-fractional framework in The Mathematics of Money Management (Wiley, 1992) formalises what the classical gambler's-ruin problem already implied. A strategy with a genuine edge still has a high probability of ruin if it is over-sized."
+      },
+      {
+        "type": "paragraph",
+        "text": "Crypto Chapter 2, Lesson 2 gives you the reason this matters more here than in forex. Bitcoin has recorded three peak-to-trough falls above 70%, reported at roughly 84% to 87%, 83% to 84%, and 77% to 78%. An asset that has done that three times is an asset your position size has to be able to survive, not one your position size can afford to be brave about."
+      },
+      {
+        "type": "paragraph",
+        "text": "Two structural features of crypto make the wider stop a requirement rather than a preference. The first is that nothing stops the market. United States equity markets run market-wide circuit breakers: if the S&P 500 falls 7% or 13% during the trading day, trading halts for 15 minutes, and a 20% fall closes the market for the day. Those rules exist because of the 1987 crash, and they buy participants time to think. Crypto has no equivalent, and structurally cannot have one. There is no single venue, no shared session, no open and no close to measure a daily threshold against, and no authority able to pause dozens of independent exchanges at once. Individual exchanges can halt their own markets, which is not the same protection at all."
+      },
+      {
+        "type": "paragraph",
+        "text": "The second is that the market runs while you sleep. Forex closes at the weekend and gaps over it, which is its own hazard. Crypto never closes, so there is no gap — instead there is a continuous stream of price you are not watching for roughly a third of every day. A move of one ATR overnight is not an unusual event. It is the average event."
+      },
+      {
+        "type": "warning",
+        "text": "Your stop order is a request, not a guarantee. Foundations and Forex Chapter 1, Lesson 7 defined slippage as the gap between the price you expected and the price you got. In a fast crypto move on a thin book — and Crypto Chapter 2, Lesson 1 showed you exactly how thin those books can be away from the top of the market — a stop can fill well past its level. Size on the assumption that your actual loss may exceed your planned loss, rather than on the assumption that the stop will hold."
+      },
+      {
+        "type": "paragraph",
+        "text": "There is a final piece of evidence worth putting next to all of this, because it describes the population you are joining. The Bank for International Settlements published Working Paper No. 1049, Crypto trading and Bitcoin prices: evidence from a new database of retail adoption, by Raphael Auer, Giulio Cornelli, Sebastian Doerr, Jon Frost and Leonardo Gambacorta, built from daily data on crypto exchange app use across 95 countries over 2015 to 2022. Their estimate is that between 73% and 81% of users are likely to have lost money on their Bitcoin investments. They also find that new users arrive after prices rise, and that when prices rise, larger holders sell — probably to those arriving users."
+      },
+      {
+        "type": "paragraph",
+        "text": "Read that as a statement about sizing rather than about crypto. Roughly three-quarters of participants losing money is what a market looks like when most people in it are sized for the market they hoped for instead of the one that exists."
+      },
+      {
+        "type": "practice",
+        "text": "Run these checks before every crypto trade. Do you know the current ATR of this asset, in the asset's own price units? Have you expressed your stop as a percentage of price, so it can be compared honestly with a forex stop? What do you get when you divide your intended stop distance by the ATR — and if the answer is below about 1, what will ordinary daily movement do to it? When the position looks too small to be worth taking, is that the sizing rule doing its job? And does the position still survive if the stop fills worse than its level in a fast move?"
+      }
+    ],
+    "quiz": [
+      {
+        "question": "Your account is 5,000 dollars and your rule is 1% risk. Bitcoin trades at 60,000 dollars with a daily ATR of 1,900 dollars, and you set a stop at 2 x ATR. What position size does the formula give?",
+        "options": [
+          "0.18 Bitcoin, worth 10,800 dollars",
+          "0.01316 Bitcoin, worth about 789 dollars",
+          "0.0833 Bitcoin, worth 5,000 dollars",
+          "1 Bitcoin, because the stop distance does not affect size"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — the money at risk is 5,000 x 0.01 = 50 dollars, the stop distance is 2 x 1,900 = 3,800 dollars, and 50 / 3,800 = 0.01316 Bitcoin, which is 789 dollars of exposure at 60,000 dollars.",
+        "feedbackWrong": "Not quite — the money at risk is 5,000 x 0.01 = 50 dollars and the stop distance is 2 x 1,900 = 3,800 dollars, so the size is 50 / 3,800 = 0.01316 Bitcoin, or about 789 dollars of exposure. The 0.18 Bitcoin answer is what a 278-dollar stop gives, which is the classic tight-stop error."
+      },
+      {
+        "question": "Two traders both risk 1% of the same account. One uses a stop 6.33% of price away, the other uses a stop 0.463% away. How do their position sizes compare?",
+        "options": [
+          "They are the same, because the risk percentage is the same",
+          "The wider stop gives a position about 13.7 times larger",
+          "The wider stop gives a position about 13.7 times smaller",
+          "The comparison cannot be made without knowing the win rate"
+        ],
+        "correctIndex": 2,
+        "feedbackCorrect": "Correct — stop distance sits in the denominator, so position size moves inversely to it. 6.33 / 0.463 = 13.7, so the trader with the wider stop holds about one-fourteenth as much, while both still lose the same money if stopped out.",
+        "feedbackWrong": "Not quite — the stop distance is the denominator of the formula, so a wider stop produces a smaller position, not a larger one. 6.33 / 0.463 = 13.7, so the wider-stop trader holds about one-fourteenth as much. Both lose the same amount of money if stopped out, which is the point of the formula."
+      },
+      {
+        "question": "Why is a stop placed at one-seventh of an asset's daily ATR a poor risk control?",
+        "options": [
+          "Because brokers do not accept stops that close to the entry price",
+          "Because ordinary daily movement covers that distance repeatedly, so the position is stopped out by noise rather than by being wrong",
+          "Because it makes the position size too small to be worth trading",
+          "Because ATR cannot be calculated on assets that trade 24 hours a day"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct — ATR measures the distance price typically covers in a day, so a stop well inside that distance is reached by movement that carries no information. In the worked example the smallest of five daily true ranges was 6.1 times the stop distance.",
+        "feedbackWrong": "Not quite — the problem is not the broker or the size. ATR measures how far price typically travels in a day, so a stop at one-seventh of an ATR is reached by ordinary noise. In the worked example the smallest of five daily true ranges was 6.1 times the stop distance, so price crossed it on every one of those days."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Realized Volatility",
+        "def": "The standard deviation of an asset's past returns, usually annualized — always quoted with its measurement window."
+      },
+      {
+        "term": "True Range",
+        "def": "The largest of today's high-low range, today's high minus yesterday's close, and yesterday's close minus today's low."
+      },
+      {
+        "term": "Average True Range (ATR)",
+        "def": "The average true range over a set number of recent bars, quoted in the price's own units (Wilder, 1978)."
+      },
+      {
+        "term": "Volatility-Adjusted Position Size",
+        "def": "A position size derived from a stop set at a multiple of ATR, so the size shrinks automatically as volatility rises."
+      }
+    ]
+  },
+  {
+    "id": "crypto-custody-and-security-risk",
+    "lessonNumber": 2,
+    "chapterNumber": 3,
+    "chapterTitle": "Chapter 3: Risk Management for Crypto",
+    "title": "Custody & Security Risk",
+    "keyIdea": "This is the risk that is not price risk. You can be completely right about the market and still lose everything to a compromised key, a SIM swap, or a spending permission you granted months ago and forgot. Position sizing does not touch it, and there is no chargeback - so the whole defence is preventive, and most of it is free.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Lesson 1 of this chapter gave you the arithmetic for price risk. You size a position so that a move against you costs a known, survivable amount. That machinery works. It also has one blind spot, and the blind spot is total. You can be completely right about the market and still lose everything."
+      },
+      {
+        "type": "paragraph",
+        "text": "Position sizing assumes the asset stays yours while the price moves. Security risk breaks that assumption. A compromised key, a stolen exchange account, or a permission you granted eleven months ago does not reduce your position by 2%. It takes the position. The stop-loss is irrelevant, because the loss did not arrive through the price."
+      },
+      {
+        "type": "paragraph",
+        "text": "First, the boundary. Security risk means attacks aimed at your access: your keys, your accounts, your devices, your phone number. It is not the same thing as investment fraud, meaning the fake project, the guaranteed-yield scheme, the rug pull. Those are attacks on your judgment rather than your access, and Chapter 4 Lesson 2 handles them as a separate skill. The two overlap at the edges, and both end with your money gone. But the defences are different, so the lessons are separate."
+      },
+      {
+        "type": "paragraph",
+        "text": "Now the scale, stated as carefully as the sources allow. The blockchain-analytics firm Chainalysis publishes an annual Crypto Crime Report. Its 2026 edition, covering calendar year 2025, estimated that just over 3.4 billion dollars was stolen from crypto services and individuals in hacks during 2025. A single incident, the February 2025 breach of the exchange Bybit, accounted for roughly 1.5 billion dollars of that figure, the largest crypto theft recorded to date. The same report estimated that North Korea-linked actors were responsible for 2.02 billion dollars of the year's total."
+      },
+      {
+        "type": "paragraph",
+        "text": "Two honest caveats attach to that number. Chainalysis is a commercial firm selling blockchain-analytics products, not a peer-reviewed body, and its figures are estimates built from on-chain tracing. And other firms measuring the same year got different totals: CertiK reported roughly 3.35 billion dollars for 2025, while PeckShield, using a wider definition of what counts, reported roughly 4.04 billion. The disagreement is the useful part. Three serious measurement efforts land between 3.3 and 4.1 billion dollars for one year, which tells you the order of magnitude is real and the precision is not."
+      },
+      {
+        "type": "paragraph",
+        "text": "The figure that matters more to you personally is smaller and more specific. Within that 2025 total, Chainalysis counted around 158,000 separate compromises of personal wallets, affecting at least 80,000 distinct victims, for roughly 713 million dollars. Note what that arithmetic implies. The average personal loss was a few thousand dollars, not a headline. The people in that number were not exchanges with security teams. They were individuals, and the number of them rose sharply even as the dollar total fell."
+      },
+      {
+        "type": "warning",
+        "text": "Every failure in this lesson ends the same way: an irreversible transfer. Chapter 1 Lesson 6 established when gone becomes true. Once a transaction is buried under enough proof-of-work or finalized by proof-of-stake, no bank, no support ticket and no court order can rewrite the ledger. There is no chargeback in crypto. There is no fraud department to call. Card networks let you dispute a payment because a referee keeps the ledger, and this system removed the referee on purpose. Security in crypto is entirely preventive, because there is no cure."
+      },
+      {
+        "type": "image",
+        "svg": "crypto-03-2-attack-surface",
+        "alt": "Diagram of the five attack surfaces around a crypto holder - exchange account, phone number and SIM, browser and token approvals, device and clipboard, and physical seed phrase backup - each labelled with its attack and its mitigation, over a footer noting that every path ends in an irreversible transfer",
+        "caption": "Five ways in, none of them price risk. Each surface has one specific mitigation, and all five end at the same irreversible transfer."
+      },
+      {
+        "type": "paragraph",
+        "text": "Start with the place most beginners keep everything. Chapter 1 Lesson 5 established what an exchange balance actually is. When you deposit, the coin moves to a wallet the exchange controls, and the blockchain now records the exchange as the owner. Your balance is a row in the exchange's internal database, which is the exchange's IOU to you. Every trade you make there is a database update, not a blockchain transaction. That structure creates a risk that has nothing to do with price. If the exchange is hacked, becomes insolvent, or freezes withdrawals, the chain still shows the coins where they always were. What fails is your claim on them."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mt. Gox collapsed in 2014 with roughly 850,000 bitcoin missing. FTX failed in November 2022 with an estimated 8 billion dollars of customer funds gone. One sentence each is all they get here, because Chapter 5 takes both apart properly. The 2025 Bybit breach is worth slightly more space, because it teaches something the older cases do not."
+      },
+      {
+        "type": "example",
+        "text": "On 21 February 2025, Bybit was moving funds from a cold multisignature wallet to a hot wallet. That is a routine operation, performed by professionals, using a well-regarded multisignature tool. Public analyses converged on the mechanism: a developer machine belonging to the wallet-software provider was compromised, and the interface shown to Bybit's signers was altered. The signers saw a normal internal transfer on their screens. What they actually authorized was a transaction handing control of the wallet to the attacker. Roughly 1.5 billion dollars left in a single operation. Nobody guessed a private key. Nobody broke any cryptography. The signature was valid, and the ledger did exactly what a valid signature told it to do. The attack was on what the humans were shown."
+      },
+      {
+        "type": "paragraph",
+        "text": "That example is the reason this lesson sits in a risk-management chapter rather than a technical one. Almost every large crypto loss runs through a person approving something, not through mathematics failing."
+      },
+      {
+        "type": "paragraph",
+        "text": "Practically, exchange custody is a decision about quantity and duration, not a yes-or-no. Chapter 1 Lesson 4 gave you the framework: match custody to the amount, the horizon, and your demonstrated competence. The security-specific version is narrower. Keep on an exchange only what you are actually trading in the near term, and treat everything above that as a balance you are lending to a company for no interest. Turn on two-factor authentication that is not SMS. Turn on a withdrawal address allowlist if the exchange offers one, so that a stolen session cannot send funds to a new address without a waiting period."
+      },
+      {
+        "type": "definition",
+        "term": "Phishing",
+        "text": "An attack that gets you to hand over a secret or authorize an action yourself, by impersonating something you trust: a wallet, an exchange, a support agent, a well-known project. The attacker does not break into anything. You open the door, believing you are dealing with someone legitimate."
+      },
+      {
+        "type": "paragraph",
+        "text": "Phishing is the dominant way individuals lose crypto, and it works because it targets recognition rather than technology. The shapes it takes are worth naming, because recognising the shape is most of the defence. A fake website is the oldest form: the address differs from the real one by a character or two, or it is a paid advertisement sitting above the genuine search result, and the page looks correct because it was copied from the real one."
+      },
+      {
+        "type": "paragraph",
+        "text": "A fake support agent is the most productive form. You post a problem in a public channel, and within minutes someone with a helpful name and a matching profile picture sends you a private message. They are attentive, patient and technically fluent. They eventually need you to restore, validate, sync or verify your wallet. A malicious link is the fastest-growing form. An unexpected token appears in your wallet, or a message announces an airdrop, a refund, or a compensation claim from a project you recognise. The link leads to a site that asks you to connect your wallet and sign something."
+      },
+      {
+        "type": "paragraph",
+        "text": "Academic work has documented how industrialised this has become. Bowen He and co-authors presented a study of what they call Drainer-as-a-Service at the ACM Internet Measurement Conference in October 2025. The picture they describe is a division of labour: specialist operators build and maintain the theft toolkits, while separate affiliates run the phishing sites and split the proceeds through automated profit-sharing contracts. Their dataset covered thousands of affiliate accounts and tens of thousands of profit-sharing transactions. The finding worth carrying away is not any single number. It is that the person targeting you is very unlikely to be improvising."
+      },
+      {
+        "type": "definition",
+        "term": "Wallet Drainer",
+        "text": "A ready-made toolkit that produces the malicious page and the malicious transaction request used to empty a victim's wallet once they connect it and sign. Drainers are rented or licensed to affiliates in exchange for a share of the proceeds, which is why phishing pages across unrelated scams often behave identically."
+      },
+      {
+        "type": "warning",
+        "text": "Never type your seed phrase into anything. Not a website, not an app, not a form, not a chat, not a support ticket, not a spreadsheet, not a photo. No legitimate service will ever ask for it, because no legitimate technical operation requires it. There is no exception for an official-looking page, a padlock icon, an urgent security alert, or a person who has been helpful for an hour. The request itself is the proof of the attack. Your seed phrase is only ever typed into a wallet you are deliberately restoring, on a device you control, and never in response to anyone contacting you."
+      },
+      {
+        "type": "paragraph",
+        "text": "Three habits do most of the remaining work. Reach sites through your own bookmarks, typed manually the first time and saved, never through a search advertisement, a message link, or a link in a social post. Treat all inbound contact as hostile by default, because real support does not message you first; if you need help, you go to the support channel yourself, from your own bookmark. And ignore unexpected tokens, because a token you did not buy that appears in your wallet is not a gift, and the site it points you to is not a claim page."
+      },
+      {
+        "type": "definition",
+        "term": "Two-Factor Authentication (2FA)",
+        "text": "A login that requires a second proof beyond the password: a code from an app, a tap on a registered device, or a physical security key. The point is that stealing the password alone should not be enough."
+      },
+      {
+        "type": "paragraph",
+        "text": "Two-factor authentication is genuinely effective, and you should have it everywhere. But the different kinds are not equally strong, and crypto users get attacked specifically at the weakest one."
+      },
+      {
+        "type": "definition",
+        "term": "SIM Swap",
+        "text": "An attack in which your mobile phone number is transferred to a SIM card the attacker controls. From that point, calls and text messages intended for you arrive on their device. Any account that sends security codes or password resets by text message becomes reachable, without your password ever being guessed."
+      },
+      {
+        "type": "paragraph",
+        "text": "The mechanics you need are only these: phone numbers are reassigned by carrier staff following a customer-service process, and that process can be defeated. The attacker convinces or bribes someone at a carrier to move the number. You need to know that this is possible and routine. You do not need the script, and this lesson will not provide one."
+      },
+      {
+        "type": "paragraph",
+        "text": "The evidence that it is routine is unusually good. In January 2020, Kevin Lee, Benjamin Kaiser, Jonathan Mayer and Arvind Narayanan of Princeton University published an empirical study of carrier authentication for SIM swaps, later presented at the USENIX Symposium on Usable Privacy and Security in 2020. The researchers opened 50 prepaid accounts, 10 at each of five major United States carriers, and then called in to request a SIM swap on each. Roughly 80% of their attempts succeeded. They also surveyed websites that relied on phone-based recovery and identified 17 on which an account could be taken over by a SIM swap alone, with no password compromise at all."
+      },
+      {
+        "type": "example",
+        "text": "On 9 January 2024, a post appeared on the official X account of the United States Securities and Exchange Commission announcing approval of spot bitcoin exchange-traded funds. The announcement was false. Bitcoin jumped by more than 1,000 dollars, then fell back when the agency corrected the record. The agency later confirmed the account had been taken over through a SIM swap of the phone number attached to it. It also disclosed that multi-factor authentication on the account had been disabled some months earlier, at staff request, after access problems. In May 2025, Eric Council Jr. was sentenced to 14 months in prison for his role in the conspiracy, after pleading guilty in the United States District Court for the District of Columbia. Court filings put his earnings from SIM-swap work at around 50,000 dollars."
+      },
+      {
+        "type": "paragraph",
+        "text": "Read that example for what it proves. The victim was a national securities regulator. The account was high-profile. The attack still worked, because the security of the account had been reduced to the security of a phone number. The same mechanism has taken individual crypto holdings. In one of the most-litigated cases, investor Michael Terpin lost roughly 24 million dollars in tokens in 2018 after a SIM swap defeated the two-factor authentication protecting an account; a teenager and an accomplice obtained the swap through an employee at his carrier. Terpin's litigation against the carrier was still moving through the United States appeal courts years later. The relevant detail for you is not the lawsuit. It is that his second factor was a text message."
+      },
+      {
+        "type": "paragraph",
+        "text": "Standards bodies have caught up with this. The United States National Institute of Standards and Technology, in the fourth revision of its Digital Identity Guidelines, Special Publication 800-63B, classifies one-time passcodes delivered over the public telephone network as a restricted authenticator. The stated reasons include exactly this attack, namely the demonstrated ability of attackers to have telephone numbers reassigned to devices they control, alongside known weaknesses in telecom signalling that allow message interception."
+      },
+      {
+        "type": "paragraph",
+        "text": "Restricted does not mean useless, and the measured difference matters. A 2019 study by Google with New York University and the University of California San Diego tested login challenges against real attack traffic on Google accounts. An SMS code blocked 100% of automated bot attacks and 96% of bulk phishing, but only 76% of targeted attacks aimed at a specific person. A physical security key blocked 100% of all three categories in the same study."
+      },
+      {
+        "type": "warning",
+        "text": "SMS two-factor authentication is much better than no two-factor authentication, and much worse than the alternatives. Its weakness is precise: it is strong against automated attacks and weak against someone who has chosen you. Crypto holders are, by definition, sometimes chosen. If a crypto account offers only SMS, use it, and treat that account as one you should not keep much value in."
+      },
+      {
+        "type": "paragraph",
+        "text": "What to do instead, in order of strength. Use an authenticator app that generates codes on your device, because the code never travels over the phone network and a SIM swap does not reach it. Use a hardware security key or a passkey where the service supports it, because that is the option that scored 100% against targeted attacks in the Google study. Remove your phone number as a recovery method on any account that lets you, especially email, since your email account is usually the master key to everything else. And ask your mobile carrier for a port-out PIN or a number lock, which is a free phone call that adds a step the attacker has to defeat."
+      },
+      {
+        "type": "paragraph",
+        "text": "This next part is the section most beginners have never been taught, and it is the one that produces losses long after the mistake. To trade on a decentralized exchange, or use most on-chain applications, you do not send your tokens to the application. You grant its smart contract permission to move a token out of your wallet on your behalf. That permission is a separate transaction, and it is recorded on the blockchain as its own standing fact."
+      },
+      {
+        "type": "definition",
+        "term": "Token Approval",
+        "text": "A permission recorded on-chain that authorizes a specific smart contract to move a specific token from your wallet, up to a stated limit. It is granted by its own transaction, it stays in force until you change or remove it, and it is completely independent of whether you are currently using the application."
+      },
+      {
+        "type": "paragraph",
+        "text": "Three properties of that definition cause the damage. First, the limit is frequently unlimited, because many interfaces default to the maximum possible amount to save the user from re-approving on every future trade. You approved a 50 dollar swap; the permission covers every unit of that token your wallet will ever hold. Second, the permission persists. Closing the tab does nothing. Clicking disconnect wallet does nothing to it, because disconnecting is a browser-session action while the approval lives on the blockchain. Uninstalling the application does nothing. It remains until you send a transaction that revokes it. Third, the permission does not care who controls the contract later. If the contract you approved is exploited, upgraded maliciously, or was never honest, the holder of that permission can move your tokens without asking you for anything further. You already signed."
+      },
+      {
+        "type": "example",
+        "text": "In March you use a new exchange application to swap 200 dollars of a stablecoin. The interface asks you to approve the token. You click through, because the swap will not proceed otherwise, and the default is an unlimited allowance. You use the site twice more, then forget it exists. By November your wallet holds 6,000 dollars of that same stablecoin, accumulated for entirely different reasons. That month the application's contract is exploited. The attacker does not need your seed phrase, your password, or your device. The approval you granted in March authorizes the contract to move that token, in any amount, at any time. All 6,000 dollars leaves in one transaction. You are not online. You find out later."
+      },
+      {
+        "type": "paragraph",
+        "text": "This is not hypothetical, and the largest documented case shows the mechanism cleanly. In December 2021, users of the decentralized finance project BadgerDAO lost roughly 120 million dollars. The project's smart contracts were not broken. Instead, the project's website front end was compromised, and it silently inserted extra approval requests into transactions that users were already expecting to sign. Post-incident analyses found the malicious approvals had begun accumulating from around 20 November, and that hundreds of wallets granted them. The actual draining happened on 2 December, days or weeks after most victims had signed. Between signing and losing, nothing on their screens indicated anything was wrong."
+      },
+      {
+        "type": "warning",
+        "text": "An approval you granted once can drain your wallet months later, without any further action from you and without any warning. This is the failure mode that catches careful people, because the harmful click and the loss are separated in time. If you have used any on-chain application, you almost certainly hold approvals you have forgotten. Assume you do, and go and look."
+      },
+      {
+        "type": "paragraph",
+        "text": "The defences are concrete. Review and revoke: approval-checking tools exist for every major chain, including one built into most block explorers, and wallet software increasingly lists your permissions directly; open the list and remove every approval belonging to a site you are not actively using. Revoking costs a small network fee and is otherwise harmless, since you can always re-approve later. Set a limit rather than accepting unlimited, because most wallets let you edit the approval amount at the moment you grant it. Separate your wallets: keep one for interacting with new applications, funded with only what you are willing to lose, and keep your main holdings in a wallet that never connects to a site at all, since a permission can only reach the wallet that granted it. And put the review on a schedule, once a month, not when you remember. Chapter 4 Lesson 3 will build this into a written custody plan."
+      },
+      {
+        "type": "paragraph",
+        "text": "You verified the address before sending. That is not quite the same as verifying that the address you verified is the one that got sent."
+      },
+      {
+        "type": "definition",
+        "term": "Clipboard Hijacking (Clipper Malware)",
+        "text": "Malicious software that watches your device's clipboard for anything shaped like a crypto address, and silently replaces it with the attacker's address at the moment you paste. You copy the correct address. Something else arrives in the field."
+      },
+      {
+        "type": "paragraph",
+        "text": "Clipper malware is old, effective and quiet. Kaspersky researchers documented one campaign in 2023 that spread through modified installers of a popular privacy browser, distributed outside official channels. They identified more than 15,000 affected users across 52 countries and estimated roughly 400,000 dollars stolen. Their analysis makes the key operational point: this class of malware produces no network traffic and shows no symptoms. It can sit on a machine for years, doing nothing at all, until the day an address appears on the clipboard."
+      },
+      {
+        "type": "definition",
+        "term": "Address Poisoning",
+        "text": "An attacker sends a tiny or zero-value transaction to your wallet from an address deliberately generated to match the first and last characters of an address you have used before. Their address now appears in your transaction history, looking familiar. The attack is complete when you later copy an address from your own history instead of from the source."
+      },
+      {
+        "type": "paragraph",
+        "text": "The defences here are physical and boring, which is why people skip them. Verify the address on your hardware wallet's own screen, not on the computer's, because that is the entire reason the device has a screen: malware can control what your computer displays, but it cannot control what the signing device displays, and if the two disagree the device is right and you should stop. Check the middle of the address, not only the ends, since checking the first and last four characters is exactly the check that address poisoning is built to pass. Send a small test transaction first whenever the amount matters, and wait for it to confirm before sending the rest. Never copy an address out of your own transaction history; get it from the recipient, or from the exchange's deposit page, each time."
+      },
+      {
+        "type": "paragraph",
+        "text": "And read what you are signing. If your wallet shows you a transaction summary and you cannot tell what it does, that is a reason to reject it, not a reason to proceed. The Bybit signers lost 1.5 billion dollars by approving something whose real contents they could not see. The same discipline scales down to a 50 dollar swap."
+      },
+      {
+        "type": "definition",
+        "term": "Supply Chain Attack",
+        "text": "An attack that compromises something you rely on before it reaches you: a device in transit, a software update, or a code library that a site you trust has built into itself. You are attacked through a component you never chose to evaluate."
+      },
+      {
+        "type": "paragraph",
+        "text": "The last surface is the one people assume is safe, because it is the one they bought specifically to be safe. Two documented cases show both halves. The hardware half: Kaspersky researchers examined a counterfeit hardware wallet bought by a victim from a seller on a classifieds site. The device was a convincing physical copy of a well-known model, sealed in packaging with the manufacturer's holographic labels, showing no external sign of tampering. Inside, the firmware had been replaced. The security checks that would normally reject unofficial firmware had been removed, and the recovery phrase the device produced was fixed in advance. The attacker knew the keys before the victim opened the box. There was nothing for the victim to notice and no moment at which the device behaved oddly."
+      },
+      {
+        "type": "paragraph",
+        "text": "The software half: on 14 December 2023, an attacker obtained access to the software-publishing account of the hardware-wallet manufacturer Ledger, through a phishing attack on a former employee, and published malicious versions of a widely used code library. Sites that included that library, several well-known decentralized exchanges and, with some irony, an approval-revoking tool, began serving a wallet drainer to their own users. The malicious file was live for around five hours. Reported losses were roughly 600,000 dollars, with early estimates varying as the incident was traced. The users affected had done nothing wrong. They visited sites they had used many times before."
+      },
+      {
+        "type": "warning",
+        "text": "A hardware wallet that arrives with a recovery phrase already written down, printed on a card, or shown as your phrase during setup is not a wallet. It is a trap. A genuine device generates your phrase on the device itself, in front of you, the first time you set it up, and the manufacturer never knows it. Any phrase supplied to you is a phrase someone else already has."
+      },
+      {
+        "type": "paragraph",
+        "text": "The rules that follow are short. Buy hardware wallets directly from the manufacturer's own website and from nowhere else: not a marketplace listing, not a classifieds site, not a discounted third-party seller, and never secondhand. Set the device up yourself and generate your own recovery phrase on it, never accepting a supplied one. Update firmware only through the manufacturer's official application, which verifies the update's signature. And accept that no device makes you immune to token approvals. The Ledger case and the Bybit case were both signed by hardware. A hardware wallet protects your key from being copied. It does not protect you from authorizing a transaction you did not understand."
+      },
+      {
+        "type": "practice",
+        "text": "The checklist for this week. Work through these in order; most people can finish the first five in one evening. 1. Move your email account to app-based or hardware two-factor authentication, and remove your phone number as a recovery method if the provider allows it, because your email resets everything else. Save the backup codes offline. 2. Replace SMS two-factor authentication with an authenticator app on every exchange account you hold, or a hardware security key or passkey where supported. Save the backup codes offline. 3. Call your mobile carrier and add a port-out PIN or number lock to your account. 4. Open a token-approval checker for each chain you have used, and revoke every approval belonging to a site you are not actively using this week, including chains you used only once. Put a monthly reminder in your calendar to repeat this. 5. Decide what is on-exchange and write the number down: keep only what you are trading in the next few weeks, move the rest out, and turn on a withdrawal address allowlist where one is offered. 6. Check where your seed phrase currently lives. If it exists as a photo, a screenshot, a note in your phone, a password manager entry, a cloud document, or an email to yourself, it is already exposed to anything that reads those. Write it on paper or metal, store it offline, and delete every digital copy. 7. Create a second wallet for connecting to new applications, funded only with what you are willing to lose, and stop connecting your main wallet to sites entirely. 8. Do the restore drill from Chapter 1 Lesson 4 if you have never done it: send a small amount to a self-custody wallet, delete the wallet, and restore it from your written phrase on a different device. 9. Bookmark every crypto site you use, and reach them only from bookmarks from now on. 10. Write one sentence and keep it where you will see it: nobody legitimate will ever ask for my seed phrase, and I will never type it into anything I did not open myself."
+      },
+      {
+        "type": "paragraph",
+        "text": "What to look for. Anyone asking for your seed phrase is attacking you, with no exception, and support agent remains the most common costume. Anyone who contacts you first about a crypto problem is suspect by default, however helpful and technically fluent they are. An unexpected token, airdrop notice, refund claim or compensation offer in your wallet is a lure, not a windfall. When you connect a wallet to any site, look at what the approval actually asks for, and edit the limit before signing if it is unlimited. When your wallet asks you to sign something you cannot read or explain, reject it, because not being able to tell what a transaction does is the warning and not an inconvenience. When an account offers only SMS two-factor authentication, treat it as an account that should not hold much value. When a hardware wallet arrives with a recovery phrase already provided, or was bought anywhere other than the manufacturer, do not use it. And when a security figure is quoted at you, ask who published it, for which year, and by what method: the 2025 stolen-funds total ranged from roughly 3.35 billion to 4.04 billion dollars across three firms measuring the same thing."
+      }
+    ],
+    "quiz": [
+      {
+        "question": "In March you approve a new exchange application to spend a stablecoin, accepting the default unlimited allowance for a 200 dollar swap. You use it twice, then never return. In November your wallet holds 6,000 dollars of that token and the application's contract is exploited. What is your exposure?",
+        "options": [
+          "200 dollars, because that is the amount you actually traded",
+          "Nothing, because you stopped using the application and closed the tab months ago",
+          "The full 6,000 dollars, because the approval is unlimited, is recorded on-chain, and persists until revoked",
+          "Nothing, because the exploit is the application's problem and not yours"
+        ],
+        "correctIndex": 2,
+        "feedbackCorrect": "Correct - a token approval authorizes a contract to move a token, not an amount you traded, and not for a period you were active. Disconnecting a wallet is a browser action; the approval lives on the blockchain and stays in force until a revoke transaction removes it. This is exactly the BadgerDAO pattern from December 2021, where approvals harvested from around 20 November were drained on 2 December, and roughly 120 million dollars left wallets whose owners had signed nothing that day.",
+        "feedbackWrong": "Not quite - the approval is not tied to the 200 dollars you swapped, and it does not expire when you stop using the site. An unlimited allowance covers every unit of that token your wallet ever holds, and it is recorded on the blockchain until a revoke transaction removes it. Closing the tab or clicking disconnect changes nothing on-chain. Your exposure is the full 6,000 dollars."
+      },
+      {
+        "question": "Your exchange account is protected by a strong, unique password and by two-factor authentication delivered as a text message to your phone. An attacker has your password. Why is this still a serious problem?",
+        "options": [
+          "It is not - the second factor means the password alone is useless",
+          "A SIM swap can move your phone number to the attacker's device, after which the codes and password resets arrive with them",
+          "Text messages are encrypted, so only the exchange can be at fault",
+          "The attacker would still need your seed phrase to log in"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct - a SIM swap transfers your number to a SIM the attacker controls, and everything sent to that number follows. The Princeton study presented at USENIX SOUPS in 2020 found roughly 80% of its 50 SIM-swap attempts across five carriers succeeded, and identified 17 sites that could be taken over by a SIM swap alone. The SEC's own X account was taken over this way in January 2024. NIST now classifies telephone-network one-time codes as a restricted authenticator. An authenticator app or hardware security key removes the phone number from the attack path entirely.",
+        "feedbackWrong": "Not quite - the weak point is the phone number itself. A SIM swap has your number reassigned to a SIM the attacker controls, so the second factor is delivered straight to them and no password guessing is needed. Princeton researchers succeeded in roughly 80% of their SIM-swap attempts across five carriers, and the SEC's own X account fell to this in January 2024. Note also that an exchange account has no seed phrase, because the exchange holds the keys."
+      },
+      {
+        "question": "You buy a hardware wallet at a discount from a marketplace seller. It arrives sealed, with holographic labels, and setup produces a recovery phrase on a printed card in the box. What should you conclude?",
+        "options": [
+          "It is fine - the sealed packaging and holographic labels confirm it is genuine",
+          "It is fine - the printed card is a convenience so you do not have to write the phrase down",
+          "The device should not be used, because a supplied recovery phrase means someone else already knows your keys",
+          "It is fine as long as you change the device PIN immediately"
+        ],
+        "correctIndex": 2,
+        "feedbackCorrect": "Correct - a genuine device generates the recovery phrase on the device, in front of you, at first setup, and nobody else ever sees it. A supplied phrase is a phrase the supplier holds, so the coins are spendable by them from the moment you fund it. Kaspersky documented exactly this: a counterfeit of a well-known model, with convincing packaging and holographic seals, whose replaced firmware produced a recovery phrase fixed in advance. Buy direct from the manufacturer, and generate your own phrase.",
+        "feedbackWrong": "Not quite - packaging is the easiest part of a hardware wallet to copy, and Kaspersky documented a counterfeit that reproduced the seals and holographic labels convincingly. The decisive detail is the supplied recovery phrase. A real device generates your phrase on the device at first setup and nobody else ever sees it, so a phrase provided in the box is a phrase the attacker already holds. Changing the PIN does not help, because the keys were never yours."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Phishing",
+        "def": "An attack that impersonates something you trust to make you surrender a secret or authorize an action yourself."
+      },
+      {
+        "term": "Wallet Drainer",
+        "def": "A ready-made toolkit that produces the malicious page and transaction request used to empty a wallet once the victim signs."
+      },
+      {
+        "term": "Two-Factor Authentication (2FA)",
+        "def": "A login requiring a second proof beyond the password, so a stolen password alone is not enough."
+      },
+      {
+        "term": "SIM Swap",
+        "def": "Transferring a victim's phone number to an attacker's SIM, so that calls, texts and reset codes arrive with the attacker."
+      },
+      {
+        "term": "Token Approval",
+        "def": "An on-chain permission letting a specific contract move a specific token from your wallet, in force until revoked."
+      },
+      {
+        "term": "Clipboard Hijacking (Clipper Malware)",
+        "def": "Malware that silently replaces a copied crypto address with the attacker's at the moment you paste."
+      },
+      {
+        "term": "Address Poisoning",
+        "def": "Seeding your transaction history with a lookalike address so you later copy the attacker's address from your own records."
+      },
+      {
+        "term": "Supply Chain Attack",
+        "def": "Compromising a device, update or code library before it reaches you, so you are attacked through a component you never evaluated."
+      }
+    ]
+  },
+  {
+    "id": "crypto-leverage-perpetuals-and-liquidation",
+    "lessonNumber": 3,
+    "chapterNumber": 3,
+    "chapterTitle": "Chapter 3: Risk Management for Crypto",
+    "title": "Leverage, Perpetuals & Liquidation",
+    "keyIdea": "On a leveraged perpetual the distance from entry to liquidation is set by leverage and almost nothing else - roughly 1 divided by leverage - so at 50x that distance is 1.6% while bitcoin's ordinary daily standard deviation is about 2.4%, which means what ends most leveraged accounts is not being wrong about direction but being closed out before direction has a chance to matter.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Chapter 2, Lesson 5 introduced two terms and then stopped short on purpose. It defined the perpetual swap as a derivative that tracks an asset's price and never expires. It defined the funding rate as the periodic payment that flows between long and short holders to keep the perpetual price near spot. It taught you to read that rate as a positioning proxy: persistently positive funding means the long side is crowded and paying to stay there."
+      },
+      {
+        "type": "paragraph",
+        "text": "Then it said this: the rest of the machinery would be covered in Chapter 3, Lesson 3, as a risk topic. This is that lesson. Both terms stay exactly as Chapter 2 defined them. Nothing here redefines them. What changes is the question being asked. Chapter 2 asked what the funding rate tells you about other people. This lesson asks what the whole instrument does to you."
+      },
+      {
+        "type": "paragraph",
+        "text": "The short answer is the one this lesson exists to make precise: on a leveraged perpetual position, the thing that ends most accounts is not being wrong about direction. It is being closed out before direction has a chance to matter."
+      },
+      {
+        "type": "warning",
+        "text": "This lesson is not a guide to trading perpetuals. It is a guide to understanding what they are before someone offers you 100x on one. Chapter 2 ended with the sensible use of funding data for a beginner: read it, and stay in spot. Nothing in this lesson changes that recommendation. What follows is the arithmetic that justifies it."
+      },
+      {
+        "type": "paragraph",
+        "text": "Start with the ordinary futures contract, because the perpetual is defined by what it removes. An ordinary futures contract has an expiry date. On that date the contract settles against the spot price, and that forced convergence is what keeps futures prices tethered to spot. Traders who buy the future far above spot know the gap must close by expiry, so they do not pay the gap."
+      },
+      {
+        "type": "paragraph",
+        "text": "A perpetual has no expiry date. That removes the tether. So the venue installs a different one: a recurring cash payment between the two sides of the market, sized to punish whichever side has pushed the perpetual price away from spot. That payment is the funding rate. When the perpetual trades above spot, funding is positive and longs pay shorts. When it trades below spot, funding is negative and shorts pay longs. On Binance, Bybit and OKX the settlement interval is every 8 hours; some venues, including Hyperliquid, settle hourly. On major venues the money moves between traders, not to the exchange."
+      },
+      {
+        "type": "definition",
+        "term": "Notional Value",
+        "text": "The full size of the exposure a position controls, measured in the underlying asset's currency. It is not the money you posted. A position with 500 dollars of margin at 20x leverage has a notional value of 10,000 dollars, and every percentage move, every fee and every funding payment is computed against the 10,000, not the 500."
+      },
+      {
+        "type": "paragraph",
+        "text": "Notional is the number that does everything to you. Your margin is the number that runs out. Funding is charged on notional, not on margin, and that is what makes it dangerous at high leverage."
+      },
+      {
+        "type": "paragraph",
+        "text": "One more mechanical point. Exchanges do not liquidate positions off the last traded price on their own order book, because a single large order on a thin book can push that price around. They liquidate off a mark price, typically built from an index of several spot venues plus a funding adjustment. This is a genuine protection and it is not a complete one - the mark price still follows the market down in a real move, and a wick on one venue's own book can still fill orders at prices the mark price never reached."
+      },
+      {
+        "type": "paragraph",
+        "text": "Chapter 2 computed funding on a 10,000 dollar notional long at plus 0.01% per 8-hour period: 1 dollar per settlement, 3 dollars a day, 0.03% of notional a day. Now put leverage next to it, because the same payment looks completely different when measured against the money you actually posted."
+      },
+      {
+        "type": "example",
+        "text": "You post 200 dollars of margin and open a long perpetual at 50x. Notional is 200 x 50 = 10,000 dollars. Funding is plus 0.01% per 8-hour period, which is the ordinary, unremarkable level. Cost per day = 10,000 x 0.0001 x 3 = 3 dollars. Against notional that is 0.03% a day, which is trivial. Against your 200 dollars of margin it is 1.5% a day. Nothing has happened to the price. You are simply paying 1.5% of your posted capital every day to keep the position open. Now raise funding to plus 0.1% per period, which occurs in strongly one-sided markets. Cost per day = 10,000 x 0.001 x 3 = 30 dollars. That is 15% of your margin, per day, with the price completely unchanged."
+      },
+      {
+        "type": "paragraph",
+        "text": "The general rule takes one multiplication. Funding cost as a percentage of your margin, per day, equals the daily funding rate on notional multiplied by your leverage. At 10x, funding of 0.01% per 8 hours costs 0.3% of margin per day. At 50x the same funding costs 1.5% of margin per day. At 100x it costs 3.0% of margin per day."
+      },
+      {
+        "type": "warning",
+        "text": "Funding is not a fee you pay when you are wrong. It is a fee you pay for being on the crowded side, and it accrues while the price does nothing at all. A position that is exactly flat on price can still be down 15% of its margin after ten days at ordinary funding and 50x leverage. In spot, time is free. In a leveraged perpetual, time has a price, and the crowd sets it."
+      },
+      {
+        "type": "paragraph",
+        "text": "There is a second-order point that connects back to Chapter 2. Funding rises precisely when one side is crowded. So the cost of holding is highest exactly when the position is most popular, which is exactly when the crowd is most vulnerable to being unwound. You pay the most to hold at the moment the position is most fragile. That is not a coincidence. It is the mechanism working as designed."
+      },
+      {
+        "type": "paragraph",
+        "text": "Everything in Forex Chapter 1, Lesson 6 and Forex Chapter 3, Lesson 2 carries over intact. Leverage is borrowed buying power, margin is your own capital held as collateral, and the two are inverses: at 50x the margin requirement is 1 divided by 50, which is 2% of the position. Equity is balance plus or minus floating profit and loss. Free margin is equity minus used margin. Effective leverage is total position size divided by equity, and it, not the venue's advertised maximum, sets your distance to trouble. The crypto venue changes the vocabulary and one piece of the arithmetic. There is no broker phoning you. There is a threshold, and a bot."
+      },
+      {
+        "type": "definition",
+        "term": "Maintenance Margin",
+        "text": "The minimum equity a position must retain, expressed as a percentage of its notional value, before the venue closes it. It is set by the exchange in tiers: larger positions carry higher maintenance margin percentages. A common figure for a small position in a major contract is around 0.4% to 0.5%."
+      },
+      {
+        "type": "definition",
+        "term": "Liquidation",
+        "text": "The forced closure of a leveraged position by the exchange when its equity falls to the maintenance margin. It is not a warning and not a request. It is the Forex track's stop-out level from Chapter 3, Lesson 2, with no margin call in front of it and no human in the loop."
+      },
+      {
+        "type": "definition",
+        "term": "Liquidation Price",
+        "text": "The price of the underlying asset at which a position's equity falls to its maintenance margin, so the exchange closes it. For a long position it sits below the entry price; for a short, above. It can be computed before you open the trade, and it should be."
+      },
+      {
+        "type": "paragraph",
+        "text": "The formula the major venues publish reduces, for a simple single position in isolated margin, to this. Liquidation price for a long = entry price x (1 - 1 divided by leverage + maintenance margin rate). Which means the adverse move that liquidates you, as a percentage of entry, is approximately 1 divided by leverage, minus the maintenance margin rate. Read that carefully, because it is the whole lesson in one expression. The distance to your liquidation is set by your leverage and almost nothing else. It is not set by your skill, your analysis, your conviction, or how right you turn out to be three days later."
+      },
+      {
+        "type": "example",
+        "text": "Bitcoin is at 100,000 dollars. You go long. Maintenance margin is 0.4%. Here is the liquidation price and the adverse move that reaches it, at each leverage level. At 2x, liquidation at 50,400 dollars, a fall of 49.6%. At 5x, liquidation at 80,400 dollars, a fall of 19.6%. At 10x, liquidation at 90,400 dollars, a fall of 9.6%. At 25x, liquidation at 96,400 dollars, a fall of 3.6%. At 50x, liquidation at 98,400 dollars, a fall of 1.6%. At 100x, liquidation at 99,400 dollars, a fall of 0.6%. Fees and funding shorten every one of these distances further, because both eat the equity standing between you and the maintenance margin."
+      },
+      {
+        "type": "image",
+        "svg": "crypto-03-3-liquidation-distance",
+        "alt": "Two-panel chart showing the adverse move from entry to liquidation at 2x, 5x, 10x, 25x, 50x and 100x leverage, with a shaded band marking one and two standard deviations of a typical bitcoin day at 2.41% per day, so that the 25x, 50x and 100x liquidation levels all fall inside or close to the range that ordinary daily movement covers",
+        "caption": "The distance from entry to liquidation is roughly 1 divided by leverage. At 25x it is about one average daily bar away; at 50x and 100x it is a fraction of one."
+      },
+      {
+        "type": "paragraph",
+        "text": "A distance means nothing on its own. It means something when you set it against how far the asset routinely travels. Lesson 1 of this chapter did that measurement and settled on a working figure. It compared Fidelity Digital Assets' 90-day realized volatility for bitcoin, averaging in the mid-40s over the two years to 2024 and 2025, with BlackRock's iShares figure of roughly 54% for a window ending near the start of 2025, alongside 15.1% for gold and 10.5% for global equities. It then adopted roughly 46% annualised for bitcoin, stating the choice openly. This lesson uses the same number, so the two lessons stay comparable."
+      },
+      {
+        "type": "example",
+        "text": "Convert it to a single day. Crypto trades every day, so divide by the square root of 365. 46 divided by 19.105 = 2.41% per day. So a typical, unremarkable, no-news day in bitcoin has a standard deviation of about 2.41%. The full high-to-low range of a day is wider still: Lesson 1's worked average true range was 1,900 dollars on a 60,000 dollar price, which is 3.17% of price covered by the average daily bar. Now set both figures beside the liquidation distances. At 10x, liquidation is 9.6% away, about 4.0 daily standard deviations or about 3.0 average daily ranges. At 25x it is 3.6% away, about 1.5 standard deviations or about 1.1 average daily ranges. At 50x it is 1.6% away, about 0.66 standard deviations, or about half of one average daily range. At 100x it is 0.6% away, about 0.25 standard deviations of a day, which is roughly one and a quarter hours of typical movement."
+      },
+      {
+        "type": "paragraph",
+        "text": "Read the 25x figure again, because it is the quietest and the most damning. At 25x the distance to your liquidation is about 1.1 average daily bars. A single day that runs slightly wider than average covers it. Not a crash, not a news event, just a day. You can also estimate how likely a random price path is to touch that level. Using a driftless random walk with a 2.41% daily standard deviation, the probability of touching the liquidation level at least once is roughly: at 10x, near zero in a day, 13% in a week, 47% in a month. At 25x, 13% in a day, 57% in a week, 79% in a month. At 50x, 51% in a day, 80% in a week, 90% in a month. At 100x, 80% in a day, 93% in a week, 96% in a month."
+      },
+      {
+        "type": "paragraph",
+        "text": "Two honest warnings about those numbers. First, they assume no drift and no fees, so they describe pure noise and nothing else. Second, and more importantly, they assume returns are normally distributed, and the whole course has been telling you they are not. Foundations Chapter 3 introduced fat tails; Forex Chapter 5 showed two events no normal distribution would have permitted. Treat the figures above as a floor, not an estimate. That is not a rhetorical claim. It is a measured one."
+      },
+      {
+        "type": "example",
+        "text": "Zhiyong Cheng, Jun Deng, Tianyi Wang and Mei Yu studied forced liquidations directly on BitMEX perpetual bitcoin futures, using generalised extreme value theory to model the tails rather than assuming normality. Their paper is \"Liquidation, leverage and optimal margin in bitcoin futures markets,\" published in Applied Economics, Volume 53, Issue 47, in 2021, and circulated earlier as arXiv preprint 2102.04591. Daily forced liquidations ran at 3.51% of outstanding long positions and 1.89% of outstanding short positions, every day, at the venue's prevailing margin rules. Traders who were liquidated had been running average leverage of 60x. To bring the daily liquidation probability down to 1%, the authors calculated the exchange would need to raise its 1% margin requirement to 33%, which is 3x leverage for longs, and to 20%, which is 5x for shorts. They also found that assuming normally distributed returns significantly underestimates the margin actually required."
+      },
+      {
+        "type": "warning",
+        "text": "Leverage does not increase your edge. If you have no edge, leverage multiplies zero. If you have a small edge, leverage does not enlarge it - it enlarges the variance around it, so the edge has less time to express itself before an unlucky stretch removes your capital. What leverage buys is speed: the same distribution of outcomes, resolved faster and with a hard floor at zero. Speed is not an advantage when one of the outcomes is elimination."
+      },
+      {
+        "type": "warning",
+        "text": "At 50x and 100x you are not trading a view. The liquidation level sits inside the range that ordinary noise covers within hours, so the outcome is decided by which direction the noise happens to wander first. That is a lottery ticket with a near-certain expiry date, priced in funding payments. Calling it a trade does not change what it is."
+      },
+      {
+        "type": "paragraph",
+        "text": "Everything above treats price as something that happens to your position. In a leveraged market, the causation runs the other way as well."
+      },
+      {
+        "type": "definition",
+        "term": "Liquidation Cascade",
+        "text": "A self-reinforcing sequence in which forced closures push the price further in the same direction, which pushes more positions past their liquidation levels, which forces more closures. The selling is not a choice made by anyone. It is a mechanical consequence of the previous selling."
+      },
+      {
+        "type": "paragraph",
+        "text": "The mechanism needs Chapter 2, Lesson 1. That lesson taught order book depth and price impact: a market order eats resting orders one price level at a time, and in a thin book the same order that costs 0.18% in a deep book costs 23% instead. A liquidation is a market order. It is an unusually urgent, price-insensitive market order, placed by a bot with no discretion about whether to place it. So the loop runs: price falls enough to reach a cluster of long liquidation levels; the exchange sends market sell orders for those positions; those orders consume the resting bids and price falls further; the lower price reaches the next cluster; repeat. The loop is worst exactly when the book is thinnest, and the book is thinnest exactly when volatility spikes, because market makers widen their quotes or withdraw entirely when they cannot price risk. The two effects arrive together."
+      },
+      {
+        "type": "example",
+        "text": "On 10 October 2025, crypto markets ran the loop at record scale. The trigger was outside crypto: an announcement of new United States tariffs on Chinese imports set off cross-asset selling, and crypto entered that shock with open interest near record highs and heavily one-sided long positioning. The reported figures, from the derivatives data firm CoinGlass: roughly 19.1 to 19.5 billion dollars of leveraged positions liquidated within 24 hours, across roughly 1.62 million accounts, with longs approximately 85% to 90% of the total. That is the largest single-day liquidation total on record, more than twice the roughly 8 to 8.6 billion dollars liquidated on 19 May 2021, which had held the record until then. Sources disagree on bitcoin's exact intraday path, and it is worth saying so rather than picking the most dramatic number: reports place the fall at roughly 15% to 18% within hours, from a starting point variously given as about 122,000 to 126,300 dollars down to about 103,300 to 106,600 dollars. Smaller tokens fell far harder, with several major altcoins printing intraday falls in the 60% to 80% range. The depth collapse was the amplifier: analysis of exchange order books during the event found top-of-book depth on major venues falling by well over 90%, with bids reappearing only 4% and 10% away from the mid price. CoinDesk reported in November 2025 that depth remained well below early-October levels a month later."
+      },
+      {
+        "type": "warning",
+        "text": "The reported liquidation total is a floor, not a measurement, and the data providers say so themselves. CoinGlass has stated that Binance's public liquidation feed transmits only one liquidation order per second per contract, so during a burst the great majority of forced closures never enter the public data at all. CoinGlass put the resulting undercount at 10 to 20 times for that venue, and Hyperliquid's co-founder suggested it could be worse under some conditions. Estimates of the true October 2025 total run to 30 to 40 billion dollars. Treat every published liquidation figure, including the ones in this lesson, as the visible part of a larger number."
+      },
+      {
+        "type": "paragraph",
+        "text": "Two earlier events show the same structure. On 12 March 2020, during the initial COVID-19 market panic, bitcoin on BitMEX fell from roughly 7,939 dollars to roughly 4,346 dollars, about 45%, with roughly 700 million dollars of liquidations on that venue alone, and the exchange then went offline for about 25 minutes. On 19 May 2021, after a Chinese regulatory announcement, bitcoin fell from roughly 43,000 dollars to below 31,000 dollars intraday, with roughly 8 billion dollars liquidated across venues."
+      },
+      {
+        "type": "paragraph",
+        "text": "The course has taught this shape twice already in another market. Forex Chapter 5, Lesson 1 showed the Swiss franc floor breaking in 2015: stop-losses triggered correctly and filled hundreds of pips away, because buyers vanished at the exact moment the sell orders arrived. Forex Chapter 5, Lesson 2 showed the 2008 yen carry unwind: a crowded, leveraged position that everyone was forced to exit at once, so the exit itself moved the price against every person exiting."
+      },
+      {
+        "type": "warning",
+        "text": "A stop-loss does not protect you from a cascade, and neither does the exchange's liquidation engine. Both become market orders when they fire, and a market order needs a buyer. Forex Chapter 5, Lesson 1 is the definitive case: correctly placed stops and correctly functioning broker stop-outs both failed in 2015, and accounts went negative anyway. If your plan depends on exiting at a specific price during a violent move, you do not have a plan. You have a hope about liquidity."
+      },
+      {
+        "type": "definition",
+        "term": "Isolated Margin",
+        "text": "A mode in which only the margin explicitly assigned to a position can be used to support it. If the position is liquidated, the loss is capped at that assigned margin and the rest of the account is untouched. The position is also easier to liquidate, because it cannot draw on the rest of your balance to survive."
+      },
+      {
+        "type": "definition",
+        "term": "Cross Margin",
+        "text": "A mode in which the whole account balance backs every open position. A position can absorb a much larger adverse move before liquidation, because it draws on the entire balance. The cost is that a single bad position can consume the whole account, and positions become linked: a loss on one reduces the cushion under all the others."
+      },
+      {
+        "type": "paragraph",
+        "text": "The trade is straightforward once stated plainly. Isolated margin risks a defined amount and liquidates sooner. Cross margin survives longer and risks everything. Beginners frequently choose cross margin because it feels safer, since the position lasts longer, and that is exactly the misreading. It lasts longer by putting more of your money behind it."
+      },
+      {
+        "type": "warning",
+        "text": "Cross margin does not reduce risk. It relocates it, from a defined loss on one position to an undefined loss across the account. A trader using cross margin on a 50x position has not made the position safer; they have volunteered the entire balance as its collateral. Chapter 3, Lesson 1 built you a risk budget. Cross margin is the setting that quietly overrides it."
+      },
+      {
+        "type": "paragraph",
+        "text": "Behind both modes sit two exchange mechanisms most people meet only when they are on the wrong end of them. When a position is liquidated, the exchange tries to close it in the market. If the fill is worse than the bankruptcy price, which is the price at which the position's margin is exactly exhausted, the position has produced a loss with no capital behind it, and someone has to absorb it. The venue's insurance fund is the first line: a reserve built up from liquidations that closed better than their bankruptcy price, used to cover the ones that close worse. When the insurance fund cannot cover the shortfall, exchanges use auto-deleveraging."
+      },
+      {
+        "type": "definition",
+        "term": "Auto-Deleveraging (ADL)",
+        "text": "The exchange's last-resort mechanism: it forcibly closes profitable positions on the opposite side of a bankrupt position, at the bankruptcy price, to make the books balance. Traders are ranked for auto-deleveraging by profitability and effective leverage, so the most profitable and most leveraged winners are taken first."
+      },
+      {
+        "type": "paragraph",
+        "text": "Here is the honest paragraph on those two mechanisms. The insurance fund is a genuine protection and it usually works, which is why most traders never hear of it. Auto-deleveraging is not a protection for you. It is a protection for the exchange's solvency, paid for by closing correct positions without consent. It is documented openly in the risk pages of Binance, Bybit, OKX and the major decentralised venues, so it is not a hidden term. But it means that on a leveraged perpetual, even a completely correct position can be closed early and at a price you did not choose, because someone on the other side defaulted and the fund ran dry. Reports from the October 2025 event describe exactly this happening across several venues. If you take one structural fact from this section, take that one: on a perpetual, being right does not guarantee you get paid in full."
+      },
+      {
+        "type": "paragraph",
+        "text": "Start with what the venues offer, because the gap between that and what regulators permit is the single most useful fact in this section. At the time of writing, the largest crypto derivatives venues advertise maximum leverage roughly as follows. Binance lists up to 125x on its bitcoin perpetual, but only for small position sizes, with the maximum falling as notional rises; new futures accounts are also capped lower, around 20x, until the account has aged. OKX advertises up to 125x on some derivatives products and lower ceilings on others. Bybit lists up to 100x on selected pairs. Hyperliquid, a decentralised venue, caps at roughly 40x to 50x."
+      },
+      {
+        "type": "warning",
+        "text": "Treat every one of those numbers as a snapshot, not a fact. Venue maximums change frequently, they are tiered so the headline figure applies only to small positions, they often depend on how old your account is, and they are simply unavailable to retail users in several jurisdictions. Check the venue's own current documentation rather than any article, including this one. What does not change is the arithmetic: whatever number you select, the distance to liquidation is approximately 1 divided by it."
+      },
+      {
+        "type": "paragraph",
+        "text": "Now put those figures next to the regulatory ones, because the claim that most retail leveraged traders lose money gets asserted constantly and sourced almost never. There is real evidence. It is not crypto-specific, and the honest thing is to say so and explain why it still matters."
+      },
+      {
+        "type": "example",
+        "text": "The European Securities and Markets Authority restricted contracts for difference sold to retail investors in 2018 and published the analysis behind it. Drawing on data collected by national regulators across the European Union, ESMA reported that 74% to 89% of retail CFD accounts typically lose money, with average losses per client ranging from 1,600 to 29,000 euros. The measures were agreed on 23 March 2018 and applied to CFDs from 1 August 2018. The leverage caps ESMA imposed were graded by the volatility of the underlying: 30 to 1 for major currency pairs, 20 to 1 for non-major pairs, gold and major indices, and, at the bottom of the scale, 2 to 1 for cryptocurrencies. The United Kingdom's Financial Conduct Authority separately requires CFD firms to display the percentage of their own retail accounts that lost money over the previous 12 months, and its own sampling put that figure above 80%."
+      },
+      {
+        "type": "paragraph",
+        "text": "Two caveats belong with that, stated plainly. This is CFD and forex data, not crypto data. And a contract for difference is not a perpetual swap: different product, different venues, different regulator. It is still the most relevant regulator-grade measurement available, for two reasons. First, it measures the thing in question, which is retail accounts using leverage, rather than retail accounts generally. Second, the same regulator, looking at the same evidence, rated cryptocurrency as the most dangerous underlying on its entire list, capping it at 2 to 1 where major currencies got 30 to 1. That is a fifteen-fold difference, and the stated reason was the volatility of the underlying plus the difficulty of valuing it. If 74% to 89% of accounts lose at 30 to 1 on major currencies, there is no version of the argument in which crypto at 50x is the safer proposition."
+      },
+      {
+        "type": "paragraph",
+        "text": "The Financial Conduct Authority went further than a cap. It banned the sale of crypto derivatives to retail consumers entirely, effective 6 January 2021, on the grounds that they cannot be reliably valued by retail consumers. That ban was still in force in 2025, and remained in force even when the regulator separately allowed retail access to crypto exchange-traded notes from 8 October 2025."
+      },
+      {
+        "type": "example",
+        "text": "There is also causal evidence that capping leverage helps, which Forex Chapter 1, Lesson 6 already covered. Rawley Heimer and Alp Simsek, in \"Should retail investors' leverage be limited?\", Journal of Financial Economics, Volume 132, Issue 3, 2019, pages 1 to 21, used the 2010 United States cap on retail forex leverage as a natural experiment, comparing capped American traders against still-uncapped European ones. They found the constraint reduced trading volume by 23% and alleviated high-leverage traders' losses by about 40%. The trading the cap removed was disproportionately speculative rather than informed."
+      },
+      {
+        "type": "paragraph",
+        "text": "For crypto specifically, the closest measurement is about spot buying rather than leverage, and it is worth quoting with that limitation attached. In Bank for International Settlements Working Paper No 1049, \"Crypto trading and Bitcoin prices: evidence from a new database of retail adoption,\" published in November 2022 and later in the IMF Economic Review, the authors used daily crypto-app usage data across 95 countries from 2015 to 2022. Under the assumption that each new user bought 100 dollars of bitcoin in the month they downloaded the app and in every month after, 81% would have lost money; across their range of assumptions, an estimated 73% to 81% of retail investors likely lost money on their investment. That study used no leverage at all. It measures what buying spot at the times retail typically buys produced. Adding a liquidation price to that behaviour does not improve it."
+      },
+      {
+        "type": "paragraph",
+        "text": "Chapter 3, Lesson 1 gave you a position-sizing rule: decide the fraction of the account you are willing to lose on one idea, and size the position so that reaching your invalidation level costs exactly that. Leverage does not alter that budget. It alters how quickly you arrive at it."
+      },
+      {
+        "type": "example",
+        "text": "You have a 1,000 dollar account and you are willing to risk 1% of it, which is 10 dollars, on one idea. You have decided that a 5% adverse move in the asset would prove you wrong. Correct sizing: notional = 10 divided by 0.05 = 200 dollars. On a 1,000 dollar account that is effective leverage of 0.2x. You are using less than one times your capital. That is what a 1% risk budget with a 5% invalidation level actually produces in an asset this volatile, and it is why Chapter 3, Lesson 1 warned that crypto's volatility makes correct positions look uncomfortably small. Now the reverse. Suppose you open 50x instead: 50,000 dollars of notional on the same 1,000 dollar account. How far can the price move before you have lost your 10 dollar budget? 10 divided by 50,000 = 0.02%. Two hundredths of one percent. Your entire risk budget is consumed by the bid-ask spread and a moment of noise."
+      },
+      {
+        "type": "paragraph",
+        "text": "That is the cleanest statement of the whole lesson. At high leverage there is no position size at which the risk budget and the liquidation level are compatible. The budget says you may lose 10 dollars. The instrument says the smallest unit of loss it can deliver is most of your margin."
+      },
+      {
+        "type": "practice",
+        "text": "Take any leveraged position you have seen described online, or invent one. Write down four numbers before anything else: the notional value, the margin posted, the liquidation price computed from the formula in this lesson, and the adverse move that reaches it as a percentage. Then look up the asset's largest single-day move over the past 12 months and write that down as a fifth number. If number five is larger than number four, the position was already decided before it was opened. Do this for 5x, 25x and 100x on the same asset and keep the sheet."
+      },
+      {
+        "type": "paragraph",
+        "text": "What to look for. Compute the liquidation price before you open any leveraged position, not after; if you cannot state it as a number and as a percentage move, you do not know what the position is. Compare that percentage to the asset's ordinary daily range, not to your expectation of where price is going. Check the funding rate and the settlement interval, then multiply by your leverage to get the daily cost as a share of your margin. Know which margin mode you are in, because cross margin collateralises the position with your whole balance. Treat published liquidation totals as floors, since the public feeds throttle during exactly the events you would want to measure. Never rely on a stop-loss to define your worst case in a leveraged crypto position. And if a venue's marketing leads with the maximum leverage available, read that as a statement about the venue's revenue model, not about your opportunity."
+      }
+    ],
+    "quiz": [
+      {
+        "question": "Bitcoin is at 100,000 dollars and you open a long at 50x with a maintenance margin rate of 0.4%. Roughly what adverse move liquidates the position, and what does that distance depend on?",
+        "options": [
+          "About 50%, and it depends mainly on how much margin you posted",
+          "About 1.6%, and it depends almost entirely on the leverage chosen",
+          "About 2%, and it depends on how accurate your analysis is",
+          "There is no fixed distance, because the exchange decides case by case"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct - the adverse move to liquidation is approximately 1 divided by leverage minus the maintenance margin rate: 2% minus 0.4% = 1.6%, so liquidation sits at 100,000 x (1 - 0.02 + 0.004) = 98,400 dollars. Bitcoin's one-day standard deviation at the 46% annualised figure this chapter uses is about 2.41%, so 1.6% is well inside a normal day's wandering.",
+        "feedbackWrong": "Not quite - use 1 divided by leverage minus the maintenance margin rate. That is 2% minus 0.4%, which is 1.6%, putting liquidation at 98,400 dollars. Notice what does not appear in the formula: your analysis, your conviction, or how right you turn out to be later."
+      },
+      {
+        "question": "Funding on a perpetual is plus 0.01% per 8-hour period, an ordinary level. You hold a long with 200 dollars of margin at 50x, so notional is 10,000 dollars. The price does not move at all for ten days. What has happened to your account?",
+        "options": [
+          "Nothing, because funding is only charged when a position is losing",
+          "You have paid about 3 dollars in total, since funding is charged on your margin",
+          "You have paid about 30 dollars, which is 15% of your margin, because funding is charged on notional",
+          "You have earned funding, because the price did not move"
+        ],
+        "correctIndex": 2,
+        "feedbackCorrect": "Correct - funding is charged on notional value, not on posted margin. 10,000 x 0.0001 = 1 dollar per settlement, three settlements a day, so 3 dollars a day and 30 dollars over ten days. That is 15% of a 200 dollar margin with the price completely unchanged.",
+        "feedbackWrong": "Not quite - funding is computed on notional value, not on the margin you posted. On 10,000 dollars of notional at 0.01% per 8-hour period that is 3 dollars a day, so 30 dollars over ten days, which is 15% of a 200 dollar margin. The general rule: daily cost as a share of margin equals the daily rate on notional multiplied by leverage."
+      },
+      {
+        "question": "During the October 2025 cascade, roughly 19 billion dollars of positions were liquidated in 24 hours and order book depth on major venues fell by well over 90%. Why does the depth collapse matter for someone holding a stop-loss?",
+        "options": [
+          "It does not matter, because a stop-loss guarantees the exit price",
+          "A stop-loss becomes a market order when it fires, and in a collapsed book it fills far from its level or feeds the cascade itself",
+          "Stop-losses are converted into limit orders during high volatility to protect traders",
+          "The exchange suspends all stop-losses during a cascade"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct - a triggered stop is a market order, and a market order needs resting bids to fill against. When depth collapses, those bids sit 4% or 10% away instead of a few basis points away, so the fill arrives far below the stop level and the order itself consumes what depth remains. This is the same failure Forex Chapter 5, Lesson 1 documented when the Swiss franc floor broke in 2015.",
+        "feedbackWrong": "Not quite - a stop-loss guarantees a trigger, not a fill. Once triggered it becomes a market order, and a market order needs resting bids. In October 2025 top-of-book depth fell by well over 90%, with bids reappearing only 4% and 10% away from the mid price, so stops filled far from their levels and added to the cascade."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Notional Value",
+        "def": "The full exposure a position controls, against which fees, funding and percentage moves are computed - not the margin posted."
+      },
+      {
+        "term": "Maintenance Margin",
+        "def": "The minimum equity a position must retain, as a percentage of notional, before the exchange closes it."
+      },
+      {
+        "term": "Liquidation",
+        "def": "The forced closure of a leveraged position by the exchange when equity falls to the maintenance margin."
+      },
+      {
+        "term": "Liquidation Price",
+        "def": "The asset price at which a position's equity reaches maintenance margin, computable before the trade is opened."
+      },
+      {
+        "term": "Liquidation Cascade",
+        "def": "A self-reinforcing loop where forced closures push price further, triggering more forced closures in a thinning book."
+      },
+      {
+        "term": "Isolated Margin",
+        "def": "A mode where only the margin assigned to a position backs it - loss is capped, liquidation comes sooner."
+      },
+      {
+        "term": "Cross Margin",
+        "def": "A mode where the whole account balance backs every position - liquidation comes later, and the whole balance is at risk."
+      },
+      {
+        "term": "Auto-Deleveraging (ADL)",
+        "def": "The exchange's last resort: forcibly closing profitable opposing positions at the bankruptcy price when the insurance fund cannot cover a shortfall."
+      }
+    ]
   }
 ];
 
@@ -2562,5 +3417,8 @@ window.SCERE_CRYPTO_SVGS = {
   "crypto-02-2-halving-schedule": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\" width=\"900\" height=\"600\" role=\"img\" aria-label=\"Bitcoin block subsidy step-down schedule across four halvings\">\n  <rect x=\"0\" y=\"0\" width=\"900\" height=\"600\" fill=\"#0f172a\"/>\n\n  <text x=\"450\" y=\"36\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"21\" font-weight=\"bold\" fill=\"#e2e8f0\">Bitcoin Block Subsidy: A Schedule Known In Advance</text>\n  <text x=\"450\" y=\"60\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"13\" fill=\"#4A5568\">New coins per block, and the resulting daily issuance, after each halving</text>\n\n  <rect x=\"60\" y=\"76\" width=\"780\" height=\"34\" rx=\"5\" fill=\"#EAF3EE\" stroke=\"#22c55e\" stroke-width=\"1.5\"/>\n  <text x=\"450\" y=\"98\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"13\" fill=\"#22c55e\">KNOWN IN ADVANCE: every step below was fixed in Bitcoin's software rules in 2009. No step was a surprise.</text>\n\n  <line x1=\"230\" y1=\"170\" x2=\"230\" y2=\"452\" stroke=\"#ef4444\" stroke-width=\"1.2\" stroke-dasharray=\"5,4\"/>\n  <line x1=\"370\" y1=\"170\" x2=\"370\" y2=\"452\" stroke=\"#ef4444\" stroke-width=\"1.2\" stroke-dasharray=\"5,4\"/>\n  <line x1=\"510\" y1=\"170\" x2=\"510\" y2=\"452\" stroke=\"#ef4444\" stroke-width=\"1.2\" stroke-dasharray=\"5,4\"/>\n  <line x1=\"650\" y1=\"170\" x2=\"650\" y2=\"452\" stroke=\"#ef4444\" stroke-width=\"1.2\" stroke-dasharray=\"5,4\"/>\n\n  <circle cx=\"230\" cy=\"170\" r=\"4\" fill=\"#ef4444\"/>\n  <circle cx=\"370\" cy=\"170\" r=\"4\" fill=\"#ef4444\"/>\n  <circle cx=\"510\" cy=\"170\" r=\"4\" fill=\"#ef4444\"/>\n  <circle cx=\"650\" cy=\"170\" r=\"4\" fill=\"#ef4444\"/>\n\n  <text x=\"230\" y=\"144\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" font-weight=\"bold\" fill=\"#ef4444\">Halving 1</text>\n  <text x=\"230\" y=\"158\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#ef4444\">Nov 2012</text>\n  <text x=\"370\" y=\"144\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" font-weight=\"bold\" fill=\"#ef4444\">Halving 2</text>\n  <text x=\"370\" y=\"158\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#ef4444\">Jul 2016</text>\n  <text x=\"510\" y=\"144\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" font-weight=\"bold\" fill=\"#ef4444\">Halving 3</text>\n  <text x=\"510\" y=\"158\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#ef4444\">May 2020</text>\n  <text x=\"650\" y=\"144\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" font-weight=\"bold\" fill=\"#ef4444\">Halving 4</text>\n  <text x=\"650\" y=\"158\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#ef4444\">Apr 2024</text>\n\n  <rect x=\"92\" y=\"200\" width=\"136\" height=\"240\" fill=\"#3b82f6\"/>\n  <rect x=\"232\" y=\"320\" width=\"136\" height=\"120\" fill=\"#3b82f6\"/>\n  <rect x=\"372\" y=\"380\" width=\"136\" height=\"60\" fill=\"#3b82f6\"/>\n  <rect x=\"512\" y=\"410\" width=\"136\" height=\"30\" fill=\"#3b82f6\"/>\n  <rect x=\"652\" y=\"425\" width=\"136\" height=\"15\" fill=\"#22c55e\"/>\n\n  <text x=\"160\" y=\"222\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"15\" font-weight=\"bold\" fill=\"#0f172a\">50 BTC / block</text>\n  <text x=\"160\" y=\"242\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"12\" fill=\"#0f172a\">about 7,200 / day</text>\n\n  <text x=\"300\" y=\"342\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"15\" font-weight=\"bold\" fill=\"#0f172a\">25 BTC / block</text>\n  <text x=\"300\" y=\"362\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"12\" fill=\"#0f172a\">about 3,600 / day</text>\n\n  <text x=\"440\" y=\"402\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#0f172a\">12.5 BTC / block</text>\n  <text x=\"440\" y=\"422\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#0f172a\">about 1,800 / day</text>\n\n  <text x=\"580\" y=\"398\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#e2e8f0\">6.25 BTC / block</text>\n  <text x=\"580\" y=\"431\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#0f172a\">about 900 / day</text>\n\n  <text x=\"720\" y=\"398\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#22c55e\">3.125 BTC / block</text>\n  <text x=\"720\" y=\"414\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#22c55e\">about 450 / day (now)</text>\n\n  <line x1=\"80\" y1=\"440\" x2=\"810\" y2=\"440\" stroke=\"#e2e8f0\" stroke-width=\"2\"/>\n\n  <text x=\"160\" y=\"458\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#4A5568\">2009 to 2012</text>\n  <text x=\"300\" y=\"458\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#4A5568\">2012 to 2016</text>\n  <text x=\"440\" y=\"458\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#4A5568\">2016 to 2020</text>\n  <text x=\"580\" y=\"458\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#4A5568\">2020 to 2024</text>\n  <text x=\"720\" y=\"458\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11\" fill=\"#4A5568\">2024 to 2028</text>\n\n  <rect x=\"60\" y=\"482\" width=\"380\" height=\"66\" rx=\"5\" fill=\"#F7E9E6\" stroke=\"#ef4444\" stroke-width=\"1.5\"/>\n  <text x=\"76\" y=\"503\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#ef4444\">n = 4 events</text>\n  <text x=\"76\" y=\"521\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11.5\" fill=\"#ef4444\">Four halvings have ever happened. That is three complete</text>\n  <text x=\"76\" y=\"537\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11.5\" fill=\"#ef4444\">cycles at most, and a fourth still running. Not a sample.</text>\n\n  <rect x=\"460\" y=\"482\" width=\"380\" height=\"66\" rx=\"5\" fill=\"#FBF3DF\" stroke=\"#eab308\" stroke-width=\"1.5\"/>\n  <text x=\"476\" y=\"503\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#8A6A16\">Not actually four years</text>\n  <text x=\"476\" y=\"521\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11.5\" fill=\"#8A6A16\">Gaps between halvings: 3.61, 3.84 and 3.94 years. The</text>\n  <text x=\"476\" y=\"537\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"11.5\" fill=\"#8A6A16\">schedule counts blocks, not calendar days.</text>\n\n  <text x=\"450\" y=\"576\" text-anchor=\"middle\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"12\" fill=\"#e2e8f0\">The supply schedule is certain. What price does in response is not.</text>\n</svg>\n",
   "crypto-02-3-correlation-regimes": "<svg viewBox=\"0 0 900 620\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"Arial, Helvetica, sans-serif\">\n  <rect width=\"900\" height=\"620\" fill=\"#0f172a\"/>\n  <text x=\"450\" y=\"32\" text-anchor=\"middle\" font-size=\"20\" font-weight=\"bold\" fill=\"#e2e8f0\">Crypto as a Risk Asset: Where It Sits, and When Correlation Turns</text>\n  <text x=\"450\" y=\"55\" text-anchor=\"middle\" font-size=\"12\" font-style=\"italic\" fill=\"#6B6B6B\">Schematic illustration only -- shapes are drawn to explain the idea, not plotted from data.</text>\n\n  <!-- PANEL A: transmission chain -->\n  <text x=\"40\" y=\"92\" font-size=\"14\" font-weight=\"bold\" fill=\"#e2e8f0\">Panel A. The transmission chain (Forex Ch6 L3): crypto is the last and highest-beta link</text>\n\n  <rect x=\"40\" y=\"104\" width=\"146\" height=\"62\" rx=\"8\" fill=\"#EAF0FB\" stroke=\"#3b82f6\" stroke-width=\"2\"/>\n  <text x=\"113\" y=\"128\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"bold\" fill=\"#3b82f6\">Interest rates</text>\n  <text x=\"113\" y=\"146\" text-anchor=\"middle\" font-size=\"10\" fill=\"#e2e8f0\">the shock starts here</text>\n  <text x=\"113\" y=\"159\" text-anchor=\"middle\" font-size=\"10\" fill=\"#e2e8f0\">beta reference: low</text>\n  <text x=\"193\" y=\"140\" font-size=\"16\" fill=\"#94a3b8\">-&gt;</text>\n\n  <rect x=\"211\" y=\"104\" width=\"146\" height=\"62\" rx=\"8\" fill=\"#EFFAF3\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n  <text x=\"284\" y=\"128\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"bold\" fill=\"#22c55e\">FX and bonds</text>\n  <text x=\"284\" y=\"146\" text-anchor=\"middle\" font-size=\"10\" fill=\"#e2e8f0\">closest to rates</text>\n  <text x=\"364\" y=\"140\" font-size=\"16\" fill=\"#94a3b8\">-&gt;</text>\n\n  <rect x=\"382\" y=\"104\" width=\"146\" height=\"62\" rx=\"8\" fill=\"#0f172a7E6\" stroke=\"#eab308\" stroke-width=\"2\"/>\n  <text x=\"455\" y=\"128\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"bold\" fill=\"#8A6D1F\">Credit, equities</text>\n  <text x=\"455\" y=\"146\" text-anchor=\"middle\" font-size=\"10\" fill=\"#e2e8f0\">Nasdaq 2022: about -33%</text>\n  <text x=\"535\" y=\"140\" font-size=\"16\" fill=\"#94a3b8\">-&gt;</text>\n\n  <rect x=\"553\" y=\"104\" width=\"128\" height=\"62\" rx=\"8\" fill=\"#0f172a7E6\" stroke=\"#eab308\" stroke-width=\"2\"/>\n  <text x=\"617\" y=\"128\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"bold\" fill=\"#8A6D1F\">Commodities</text>\n  <text x=\"617\" y=\"146\" text-anchor=\"middle\" font-size=\"10\" fill=\"#e2e8f0\">growth-sensitive</text>\n  <text x=\"688\" y=\"140\" font-size=\"16\" fill=\"#94a3b8\">-&gt;</text>\n\n  <rect x=\"706\" y=\"100\" width=\"154\" height=\"70\" rx=\"8\" fill=\"#0f172a3EF\" stroke=\"#ef4444\" stroke-width=\"3\"/>\n  <text x=\"783\" y=\"124\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#ef4444\">Crypto</text>\n  <text x=\"783\" y=\"142\" text-anchor=\"middle\" font-size=\"10\" fill=\"#e2e8f0\">highest beta in the chain</text>\n  <text x=\"783\" y=\"156\" text-anchor=\"middle\" font-size=\"10\" fill=\"#e2e8f0\">BTC 2022: about -64%</text>\n\n  <text x=\"40\" y=\"192\" font-size=\"11\" font-style=\"italic\" fill=\"#6B6B6B\">Same direction as equities, larger amplitude. IMF WP/23/163: a tightening shock moved the crypto factor about -0.15 SD versus about -0.10 SD for equities.</text>\n\n  <!-- PANEL B: correlation schematic -->\n  <text x=\"40\" y=\"230\" font-size=\"14\" font-weight=\"bold\" fill=\"#e2e8f0\">Panel B. Correlation is a moving number -- and it rises toward 1 in the stress window</text>\n\n  <rect x=\"40\" y=\"242\" width=\"820\" height=\"250\" rx=\"10\" fill=\"#0f172a\" stroke=\"#D8D3C6\" stroke-width=\"1.5\"/>\n\n  <!-- stress band -->\n  <rect x=\"560\" y=\"256\" width=\"180\" height=\"206\" fill=\"#FBEDEA\"/>\n  <text x=\"650\" y=\"274\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"bold\" fill=\"#ef4444\">stress window</text>\n\n  <!-- axes -->\n  <line x1=\"110\" y1=\"462\" x2=\"840\" y2=\"462\" stroke=\"#e2e8f0\" stroke-width=\"2\"/>\n  <line x1=\"110\" y1=\"256\" x2=\"110\" y2=\"462\" stroke=\"#e2e8f0\" stroke-width=\"2\"/>\n\n  <!-- y labels -->\n  <text x=\"102\" y=\"262\" text-anchor=\"end\" font-size=\"11\" fill=\"#e2e8f0\">1.0</text>\n  <text x=\"102\" y=\"313\" text-anchor=\"end\" font-size=\"11\" fill=\"#e2e8f0\">0.75</text>\n  <text x=\"102\" y=\"364\" text-anchor=\"end\" font-size=\"11\" fill=\"#e2e8f0\">0.5</text>\n  <text x=\"102\" y=\"415\" text-anchor=\"end\" font-size=\"11\" fill=\"#e2e8f0\">0.25</text>\n  <text x=\"102\" y=\"466\" text-anchor=\"end\" font-size=\"11\" fill=\"#e2e8f0\">0.0</text>\n  <text x=\"58\" y=\"360\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"bold\" fill=\"#e2e8f0\" transform=\"rotate(-90 58 360)\">rolling correlation</text>\n\n  <!-- gridlines -->\n  <line x1=\"110\" y1=\"256\" x2=\"840\" y2=\"256\" stroke=\"#E3DED2\" stroke-width=\"1\"/>\n  <line x1=\"110\" y1=\"313\" x2=\"840\" y2=\"313\" stroke=\"#E3DED2\" stroke-width=\"1\"/>\n  <line x1=\"110\" y1=\"364\" x2=\"840\" y2=\"364\" stroke=\"#E3DED2\" stroke-width=\"1\"/>\n  <line x1=\"110\" y1=\"415\" x2=\"840\" y2=\"415\" stroke=\"#E3DED2\" stroke-width=\"1\"/>\n\n  <!-- schematic correlation path: low and choppy, then rising sharply in stress, then easing -->\n  <polyline points=\"120,432 155,420 190,438 225,425 260,410 295,428 330,404 365,418 400,396 435,408 470,384 505,395 540,372 560,340 585,300 610,276 640,266 670,262 700,268 730,284 760,300 790,318 820,330\"\n            fill=\"none\" stroke=\"#ef4444\" stroke-width=\"3\"/>\n\n  <!-- calm-period average marker -->\n  <line x1=\"120\" y1=\"418\" x2=\"545\" y2=\"418\" stroke=\"#3b82f6\" stroke-width=\"2\" stroke-dasharray=\"7,5\"/>\n  <text x=\"130\" y=\"410\" font-size=\"10.5\" font-weight=\"bold\" fill=\"#3b82f6\">calm-period average -- the number the marketing quotes</text>\n\n  <!-- annotations -->\n  <text x=\"130\" y=\"290\" font-size=\"11.5\" font-weight=\"bold\" fill=\"#22c55e\">Calm regime</text>\n  <text x=\"130\" y=\"306\" font-size=\"10.5\" fill=\"#e2e8f0\">Correlation drifts low and choppy.</text>\n  <text x=\"130\" y=\"320\" font-size=\"10.5\" fill=\"#e2e8f0\">This is the window \"uncorrelated\"</text>\n  <text x=\"130\" y=\"334\" font-size=\"10.5\" fill=\"#e2e8f0\">claims are usually measured over.</text>\n\n  <text x=\"612\" y=\"376\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"bold\" fill=\"#ef4444\">Crisis correlation</text>\n  <text x=\"612\" y=\"392\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#e2e8f0\">Correlation runs toward 1</text>\n  <text x=\"612\" y=\"406\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#e2e8f0\">exactly when diversification</text>\n  <text x=\"612\" y=\"420\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#e2e8f0\">was supposed to help.</text>\n\n  <text x=\"770\" y=\"404\" text-anchor=\"middle\" font-size=\"10.5\" font-style=\"italic\" fill=\"#6B6B6B\">eases, but not</text>\n  <text x=\"770\" y=\"418\" text-anchor=\"middle\" font-size=\"10.5\" font-style=\"italic\" fill=\"#6B6B6B\">back to the old level</text>\n\n  <text x=\"475\" y=\"482\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"bold\" fill=\"#e2e8f0\">time</text>\n\n  <!-- footer facts -->\n  <rect x=\"40\" y=\"504\" width=\"400\" height=\"78\" rx=\"10\" fill=\"#EAF0FB\" stroke=\"#3b82f6\" stroke-width=\"2\"/>\n  <text x=\"60\" y=\"526\" font-size=\"12\" font-weight=\"bold\" fill=\"#3b82f6\">Same pair, different windows (IMF, Jan 2022)</text>\n  <text x=\"60\" y=\"546\" font-size=\"11\" fill=\"#e2e8f0\">BTC vs S&amp;P 500, 2017-2019: correlation 0.01</text>\n  <text x=\"60\" y=\"562\" font-size=\"11\" fill=\"#e2e8f0\">BTC vs S&amp;P 500, 2020-2021: correlation 0.36</text>\n  <text x=\"60\" y=\"576\" font-size=\"10\" font-style=\"italic\" fill=\"#6B6B6B\">A correlation with no window attached is not a measurement.</text>\n\n  <rect x=\"460\" y=\"504\" width=\"400\" height=\"78\" rx=\"10\" fill=\"#0f172a3EF\" stroke=\"#ef4444\" stroke-width=\"2\"/>\n  <text x=\"480\" y=\"526\" font-size=\"12\" font-weight=\"bold\" fill=\"#ef4444\">The asymmetry (Longin and Solnik 2001)</text>\n  <text x=\"480\" y=\"546\" font-size=\"11\" fill=\"#e2e8f0\">Linkage is stronger in extreme falls than in</text>\n  <text x=\"480\" y=\"562\" font-size=\"11\" fill=\"#e2e8f0\">extreme rises. Diversification is measured in</text>\n  <text x=\"480\" y=\"576\" font-size=\"11\" fill=\"#e2e8f0\">calm markets and tested in crashes.</text>\n\n  <text x=\"450\" y=\"606\" text-anchor=\"middle\" font-size=\"11.5\" font-style=\"italic\" fill=\"#e2e8f0\">Size crypto as the high-beta tail of a risk portfolio, not as protection against one.</text>\n</svg>\n",
   "crypto-02-4-address-not-person": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\" font-family=\"Arial, Helvetica, sans-serif\">\n  <rect x=\"0\" y=\"0\" width=\"900\" height=\"600\" fill=\"#0f172a\"/>\n\n  <text x=\"450\" y=\"34\" text-anchor=\"middle\" font-size=\"22\" font-weight=\"bold\" fill=\"#e2e8f0\">An Address Is Not a Person</text>\n  <text x=\"450\" y=\"58\" text-anchor=\"middle\" font-size=\"13\" fill=\"#e2e8f0\">Two counting errors, running in opposite directions, in every address-based metric</text>\n\n  <!-- ===== LEFT PANEL: one user, many addresses ===== -->\n  <rect x=\"25\" y=\"78\" width=\"410\" height=\"420\" rx=\"10\" fill=\"#0f172a\" stroke=\"#3b82f6\" stroke-width=\"2\"/>\n  <text x=\"230\" y=\"106\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"bold\" fill=\"#3b82f6\">One user, many addresses</text>\n  <text x=\"230\" y=\"126\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">Wallet software makes a fresh address for every</text>\n  <text x=\"230\" y=\"142\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">payment received and every bit of change returned.</text>\n\n  <circle cx=\"112\" cy=\"265\" r=\"34\" fill=\"#3b82f6\"/>\n  <text x=\"112\" y=\"262\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">1 REAL</text>\n  <text x=\"112\" y=\"278\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">PERSON</text>\n\n  <line x1=\"150\" y1=\"265\" x2=\"248\" y2=\"174\" stroke=\"#3b82f6\" stroke-width=\"2\"/>\n  <line x1=\"150\" y1=\"265\" x2=\"248\" y2=\"210\" stroke=\"#3b82f6\" stroke-width=\"2\"/>\n  <line x1=\"150\" y1=\"265\" x2=\"248\" y2=\"246\" stroke=\"#3b82f6\" stroke-width=\"2\"/>\n  <line x1=\"150\" y1=\"265\" x2=\"248\" y2=\"282\" stroke=\"#3b82f6\" stroke-width=\"2\"/>\n  <line x1=\"150\" y1=\"265\" x2=\"248\" y2=\"318\" stroke=\"#3b82f6\" stroke-width=\"2\"/>\n  <line x1=\"150\" y1=\"265\" x2=\"248\" y2=\"354\" stroke=\"#3b82f6\" stroke-width=\"2\"/>\n\n  <rect x=\"250\" y=\"160\" width=\"150\" height=\"28\" rx=\"6\" fill=\"#0f172a\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n  <text x=\"325\" y=\"179\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">address 1</text>\n  <rect x=\"250\" y=\"196\" width=\"150\" height=\"28\" rx=\"6\" fill=\"#0f172a\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n  <text x=\"325\" y=\"215\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">address 2</text>\n  <rect x=\"250\" y=\"232\" width=\"150\" height=\"28\" rx=\"6\" fill=\"#0f172a\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n  <text x=\"325\" y=\"251\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">address 3</text>\n  <rect x=\"250\" y=\"268\" width=\"150\" height=\"28\" rx=\"6\" fill=\"#0f172a\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n  <text x=\"325\" y=\"287\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">address 4</text>\n  <rect x=\"250\" y=\"304\" width=\"150\" height=\"28\" rx=\"6\" fill=\"#0f172a\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n  <text x=\"325\" y=\"323\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">change address</text>\n  <rect x=\"250\" y=\"340\" width=\"150\" height=\"28\" rx=\"6\" fill=\"#0f172a\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n  <text x=\"325\" y=\"359\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">change address</text>\n\n  <text x=\"230\" y=\"392\" text-anchor=\"middle\" font-size=\"12\" fill=\"#eab308\">Internal and change transfers move no money</text>\n  <text x=\"230\" y=\"408\" text-anchor=\"middle\" font-size=\"12\" fill=\"#eab308\">between people, but still add to the count.</text>\n\n  <rect x=\"45\" y=\"420\" width=\"370\" height=\"60\" rx=\"8\" fill=\"#3b82f6\"/>\n  <text x=\"230\" y=\"444\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#0f172a\">Metric says: 6 active addresses</text>\n  <text x=\"230\" y=\"466\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#0f172a\">Reality: 1 user. Count is too high.</text>\n\n  <!-- ===== RIGHT PANEL: one address, many users ===== -->\n  <rect x=\"465\" y=\"78\" width=\"410\" height=\"420\" rx=\"10\" fill=\"#0f172a\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n  <text x=\"670\" y=\"106\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"bold\" fill=\"#22c55e\">One address, many users</text>\n  <text x=\"670\" y=\"126\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">A centralized exchange holds all customer coins in</text>\n  <text x=\"670\" y=\"142\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">wallets it controls. Customer trades are database rows.</text>\n\n  <circle cx=\"528\" cy=\"176\" r=\"16\" fill=\"#22c55e\"/>\n  <circle cx=\"528\" cy=\"220\" r=\"16\" fill=\"#22c55e\"/>\n  <circle cx=\"528\" cy=\"264\" r=\"16\" fill=\"#22c55e\"/>\n  <circle cx=\"528\" cy=\"308\" r=\"16\" fill=\"#22c55e\"/>\n  <circle cx=\"528\" cy=\"352\" r=\"16\" fill=\"#22c55e\"/>\n  <text x=\"528\" y=\"386\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">plus millions</text>\n  <text x=\"528\" y=\"402\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">more customers</text>\n\n  <line x1=\"546\" y1=\"176\" x2=\"712\" y2=\"255\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n  <line x1=\"546\" y1=\"220\" x2=\"712\" y2=\"262\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n  <line x1=\"546\" y1=\"264\" x2=\"712\" y2=\"268\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n  <line x1=\"546\" y1=\"308\" x2=\"712\" y2=\"275\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n  <line x1=\"546\" y1=\"352\" x2=\"712\" y2=\"282\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n\n  <rect x=\"714\" y=\"232\" width=\"146\" height=\"72\" rx=\"8\" fill=\"#22c55e\"/>\n  <text x=\"787\" y=\"258\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">EXCHANGE</text>\n  <text x=\"787\" y=\"277\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">1 pooled address</text>\n  <text x=\"787\" y=\"294\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">holds every balance</text>\n\n  <text x=\"700\" y=\"340\" text-anchor=\"middle\" font-size=\"12\" fill=\"#eab308\">Trades between customers never reach the chain,</text>\n  <text x=\"700\" y=\"356\" text-anchor=\"middle\" font-size=\"12\" fill=\"#eab308\">so they are counted zero times.</text>\n\n  <rect x=\"485\" y=\"420\" width=\"370\" height=\"60\" rx=\"8\" fill=\"#22c55e\"/>\n  <text x=\"670\" y=\"444\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#0f172a\">Metric says: 1 active address</text>\n  <text x=\"670\" y=\"466\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#0f172a\">Reality: millions. Count is too low.</text>\n\n  <!-- ===== BOTTOM BAND ===== -->\n  <rect x=\"25\" y=\"514\" width=\"850\" height=\"64\" rx=\"8\" fill=\"#ef4444\"/>\n  <text x=\"450\" y=\"540\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#0f172a\">Both errors occur at the same time, in opposite directions, and neither can be measured.</text>\n  <text x=\"450\" y=\"562\" text-anchor=\"middle\" font-size=\"14\" fill=\"#0f172a\">So a count of active addresses is a count of addresses. It is not a count of people.</text>\n</svg>\n",
-  "crypto-02-5-reflexivity-loop": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 980 640\" font-family=\"Arial, Helvetica, sans-serif\">\n  <rect x=\"0\" y=\"0\" width=\"980\" height=\"640\" fill=\"#0f172a\"/>\n\n  <text x=\"490\" y=\"34\" text-anchor=\"middle\" font-size=\"22\" font-weight=\"bold\" fill=\"#e2e8f0\">The Reflexive Loop</text>\n  <text x=\"490\" y=\"56\" text-anchor=\"middle\" font-size=\"13\" fill=\"#e2e8f0\">The same circle runs both ways. Nothing about the asset has to change.</text>\n\n  <!-- ================= LEFT PANEL: BOOM ================= -->\n  <rect x=\"20\" y=\"76\" width=\"460\" height=\"470\" rx=\"10\" fill=\"#0f172a\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n  <text x=\"250\" y=\"104\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"bold\" fill=\"#22c55e\">Running forwards: the boom</text>\n\n  <!-- Node 1: story -->\n  <rect x=\"150\" y=\"122\" width=\"200\" height=\"52\" rx=\"8\" fill=\"#e2e8f0\"/>\n  <text x=\"250\" y=\"145\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">1. A story spreads</text>\n  <text x=\"250\" y=\"163\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">\"this will be worth more\"</text>\n\n  <!-- Node 2: buying -->\n  <rect x=\"300\" y=\"222\" width=\"168\" height=\"52\" rx=\"8\" fill=\"#3b82f6\"/>\n  <text x=\"384\" y=\"245\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">2. People buy</text>\n  <text x=\"384\" y=\"263\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">acting on the story</text>\n\n  <!-- Node 3: price up -->\n  <rect x=\"300\" y=\"342\" width=\"168\" height=\"52\" rx=\"8\" fill=\"#22c55e\"/>\n  <text x=\"384\" y=\"365\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">3. Price rises</text>\n  <text x=\"384\" y=\"383\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">because they bought</text>\n\n  <!-- Node 4: validation -->\n  <rect x=\"90\" y=\"452\" width=\"320\" height=\"52\" rx=\"8\" fill=\"#eab308\"/>\n  <text x=\"250\" y=\"475\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">4. The rise is read as proof</text>\n  <text x=\"250\" y=\"493\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">\"the chart shows the story is right\"</text>\n\n  <!-- arrows: 1 -> 2 -->\n  <line x1=\"330\" y1=\"176\" x2=\"378\" y2=\"214\" stroke=\"#e2e8f0\" stroke-width=\"2.5\"/>\n  <polygon points=\"384,219 371,216 379,206\" fill=\"#e2e8f0\"/>\n\n  <!-- 2 -> 3 -->\n  <line x1=\"384\" y1=\"274\" x2=\"384\" y2=\"334\" stroke=\"#3b82f6\" stroke-width=\"2.5\"/>\n  <polygon points=\"384,340 377,326 391,326\" fill=\"#3b82f6\"/>\n\n  <!-- 3 -> 4 -->\n  <line x1=\"376\" y1=\"394\" x2=\"330\" y2=\"444\" stroke=\"#22c55e\" stroke-width=\"2.5\"/>\n  <polygon points=\"325,450 328,436 338,445\" fill=\"#22c55e\"/>\n\n  <!-- 4 -> 1 (return leg, up the left side) -->\n  <line x1=\"96\" y1=\"452\" x2=\"96\" y2=\"156\" stroke=\"#eab308\" stroke-width=\"2.5\"/>\n  <line x1=\"96\" y1=\"156\" x2=\"142\" y2=\"150\" stroke=\"#eab308\" stroke-width=\"2.5\"/>\n  <polygon points=\"148,149 135,144 137,156\" fill=\"#eab308\"/>\n  <text x=\"86\" y=\"310\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#eab308\" transform=\"rotate(-90 86 310)\">5. more buying -&gt;</text>\n\n  <!-- ================= RIGHT PANEL: BUST ================= -->\n  <rect x=\"500\" y=\"76\" width=\"460\" height=\"470\" rx=\"10\" fill=\"#0f172a\" stroke=\"#ef4444\" stroke-width=\"2\"/>\n  <text x=\"730\" y=\"104\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"bold\" fill=\"#ef4444\">Running backwards: the bust</text>\n\n  <!-- Node 1: doubt -->\n  <rect x=\"630\" y=\"122\" width=\"200\" height=\"52\" rx=\"8\" fill=\"#e2e8f0\"/>\n  <text x=\"730\" y=\"145\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">1. Doubt spreads</text>\n  <text x=\"730\" y=\"163\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">\"maybe the story was wrong\"</text>\n\n  <!-- Node 2: selling -->\n  <rect x=\"780\" y=\"222\" width=\"168\" height=\"52\" rx=\"8\" fill=\"#3b82f6\"/>\n  <text x=\"864\" y=\"245\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">2. People sell</text>\n  <text x=\"864\" y=\"263\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">acting on the doubt</text>\n\n  <!-- Node 3: price down -->\n  <rect x=\"780\" y=\"342\" width=\"168\" height=\"52\" rx=\"8\" fill=\"#ef4444\"/>\n  <text x=\"864\" y=\"365\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">3. Price falls</text>\n  <text x=\"864\" y=\"383\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">because they sold</text>\n\n  <!-- Node 4: refutation -->\n  <rect x=\"570\" y=\"452\" width=\"320\" height=\"52\" rx=\"8\" fill=\"#eab308\"/>\n  <text x=\"730\" y=\"475\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">4. The fall is read as proof</text>\n  <text x=\"730\" y=\"493\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">\"the chart shows the story failed\"</text>\n\n  <!-- arrows -->\n  <line x1=\"810\" y1=\"176\" x2=\"858\" y2=\"214\" stroke=\"#e2e8f0\" stroke-width=\"2.5\"/>\n  <polygon points=\"864,219 851,216 859,206\" fill=\"#e2e8f0\"/>\n\n  <line x1=\"864\" y1=\"274\" x2=\"864\" y2=\"334\" stroke=\"#3b82f6\" stroke-width=\"2.5\"/>\n  <polygon points=\"864,340 857,326 871,326\" fill=\"#3b82f6\"/>\n\n  <line x1=\"856\" y1=\"394\" x2=\"810\" y2=\"444\" stroke=\"#ef4444\" stroke-width=\"2.5\"/>\n  <polygon points=\"805,450 808,436 818,445\" fill=\"#ef4444\"/>\n\n  <line x1=\"576\" y1=\"452\" x2=\"576\" y2=\"156\" stroke=\"#eab308\" stroke-width=\"2.5\"/>\n  <line x1=\"576\" y1=\"156\" x2=\"622\" y2=\"150\" stroke=\"#eab308\" stroke-width=\"2.5\"/>\n  <polygon points=\"628,149 615,144 617,156\" fill=\"#eab308\"/>\n  <text x=\"566\" y=\"310\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#eab308\" transform=\"rotate(-90 566 310)\">5. more selling -&gt;</text>\n\n  <!-- ================= FOOTER ================= -->\n  <rect x=\"20\" y=\"562\" width=\"940\" height=\"60\" rx=\"8\" fill=\"#0f172a\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n  <text x=\"490\" y=\"586\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#e2e8f0\">Step 3 never tested step 1. The price moved because people acted on the story.</text>\n  <text x=\"490\" y=\"608\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">The loop says a move can run far past any sensible valuation, in either direction. It never says when it turns.</text>\n</svg>\n"
+  "crypto-02-5-reflexivity-loop": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 980 640\" font-family=\"Arial, Helvetica, sans-serif\">\n  <rect x=\"0\" y=\"0\" width=\"980\" height=\"640\" fill=\"#0f172a\"/>\n\n  <text x=\"490\" y=\"34\" text-anchor=\"middle\" font-size=\"22\" font-weight=\"bold\" fill=\"#e2e8f0\">The Reflexive Loop</text>\n  <text x=\"490\" y=\"56\" text-anchor=\"middle\" font-size=\"13\" fill=\"#e2e8f0\">The same circle runs both ways. Nothing about the asset has to change.</text>\n\n  <!-- ================= LEFT PANEL: BOOM ================= -->\n  <rect x=\"20\" y=\"76\" width=\"460\" height=\"470\" rx=\"10\" fill=\"#0f172a\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n  <text x=\"250\" y=\"104\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"bold\" fill=\"#22c55e\">Running forwards: the boom</text>\n\n  <!-- Node 1: story -->\n  <rect x=\"150\" y=\"122\" width=\"200\" height=\"52\" rx=\"8\" fill=\"#e2e8f0\"/>\n  <text x=\"250\" y=\"145\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">1. A story spreads</text>\n  <text x=\"250\" y=\"163\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">\"this will be worth more\"</text>\n\n  <!-- Node 2: buying -->\n  <rect x=\"300\" y=\"222\" width=\"168\" height=\"52\" rx=\"8\" fill=\"#3b82f6\"/>\n  <text x=\"384\" y=\"245\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">2. People buy</text>\n  <text x=\"384\" y=\"263\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">acting on the story</text>\n\n  <!-- Node 3: price up -->\n  <rect x=\"300\" y=\"342\" width=\"168\" height=\"52\" rx=\"8\" fill=\"#22c55e\"/>\n  <text x=\"384\" y=\"365\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">3. Price rises</text>\n  <text x=\"384\" y=\"383\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">because they bought</text>\n\n  <!-- Node 4: validation -->\n  <rect x=\"90\" y=\"452\" width=\"320\" height=\"52\" rx=\"8\" fill=\"#eab308\"/>\n  <text x=\"250\" y=\"475\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">4. The rise is read as proof</text>\n  <text x=\"250\" y=\"493\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">\"the chart shows the story is right\"</text>\n\n  <!-- arrows: 1 -> 2 -->\n  <line x1=\"330\" y1=\"176\" x2=\"378\" y2=\"214\" stroke=\"#e2e8f0\" stroke-width=\"2.5\"/>\n  <polygon points=\"384,219 371,216 379,206\" fill=\"#e2e8f0\"/>\n\n  <!-- 2 -> 3 -->\n  <line x1=\"384\" y1=\"274\" x2=\"384\" y2=\"334\" stroke=\"#3b82f6\" stroke-width=\"2.5\"/>\n  <polygon points=\"384,340 377,326 391,326\" fill=\"#3b82f6\"/>\n\n  <!-- 3 -> 4 -->\n  <line x1=\"376\" y1=\"394\" x2=\"330\" y2=\"444\" stroke=\"#22c55e\" stroke-width=\"2.5\"/>\n  <polygon points=\"325,450 328,436 338,445\" fill=\"#22c55e\"/>\n\n  <!-- 4 -> 1 (return leg, up the left side) -->\n  <line x1=\"96\" y1=\"452\" x2=\"96\" y2=\"156\" stroke=\"#eab308\" stroke-width=\"2.5\"/>\n  <line x1=\"96\" y1=\"156\" x2=\"142\" y2=\"150\" stroke=\"#eab308\" stroke-width=\"2.5\"/>\n  <polygon points=\"148,149 135,144 137,156\" fill=\"#eab308\"/>\n  <text x=\"86\" y=\"310\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#eab308\" transform=\"rotate(-90 86 310)\">5. more buying -&gt;</text>\n\n  <!-- ================= RIGHT PANEL: BUST ================= -->\n  <rect x=\"500\" y=\"76\" width=\"460\" height=\"470\" rx=\"10\" fill=\"#0f172a\" stroke=\"#ef4444\" stroke-width=\"2\"/>\n  <text x=\"730\" y=\"104\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"bold\" fill=\"#ef4444\">Running backwards: the bust</text>\n\n  <!-- Node 1: doubt -->\n  <rect x=\"630\" y=\"122\" width=\"200\" height=\"52\" rx=\"8\" fill=\"#e2e8f0\"/>\n  <text x=\"730\" y=\"145\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">1. Doubt spreads</text>\n  <text x=\"730\" y=\"163\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">\"maybe the story was wrong\"</text>\n\n  <!-- Node 2: selling -->\n  <rect x=\"780\" y=\"222\" width=\"168\" height=\"52\" rx=\"8\" fill=\"#3b82f6\"/>\n  <text x=\"864\" y=\"245\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">2. People sell</text>\n  <text x=\"864\" y=\"263\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">acting on the doubt</text>\n\n  <!-- Node 3: price down -->\n  <rect x=\"780\" y=\"342\" width=\"168\" height=\"52\" rx=\"8\" fill=\"#ef4444\"/>\n  <text x=\"864\" y=\"365\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">3. Price falls</text>\n  <text x=\"864\" y=\"383\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">because they sold</text>\n\n  <!-- Node 4: refutation -->\n  <rect x=\"570\" y=\"452\" width=\"320\" height=\"52\" rx=\"8\" fill=\"#eab308\"/>\n  <text x=\"730\" y=\"475\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#0f172a\">4. The fall is read as proof</text>\n  <text x=\"730\" y=\"493\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">\"the chart shows the story failed\"</text>\n\n  <!-- arrows -->\n  <line x1=\"810\" y1=\"176\" x2=\"858\" y2=\"214\" stroke=\"#e2e8f0\" stroke-width=\"2.5\"/>\n  <polygon points=\"864,219 851,216 859,206\" fill=\"#e2e8f0\"/>\n\n  <line x1=\"864\" y1=\"274\" x2=\"864\" y2=\"334\" stroke=\"#3b82f6\" stroke-width=\"2.5\"/>\n  <polygon points=\"864,340 857,326 871,326\" fill=\"#3b82f6\"/>\n\n  <line x1=\"856\" y1=\"394\" x2=\"810\" y2=\"444\" stroke=\"#ef4444\" stroke-width=\"2.5\"/>\n  <polygon points=\"805,450 808,436 818,445\" fill=\"#ef4444\"/>\n\n  <line x1=\"576\" y1=\"452\" x2=\"576\" y2=\"156\" stroke=\"#eab308\" stroke-width=\"2.5\"/>\n  <line x1=\"576\" y1=\"156\" x2=\"622\" y2=\"150\" stroke=\"#eab308\" stroke-width=\"2.5\"/>\n  <polygon points=\"628,149 615,144 617,156\" fill=\"#eab308\"/>\n  <text x=\"566\" y=\"310\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#eab308\" transform=\"rotate(-90 566 310)\">5. more selling -&gt;</text>\n\n  <!-- ================= FOOTER ================= -->\n  <rect x=\"20\" y=\"562\" width=\"940\" height=\"60\" rx=\"8\" fill=\"#0f172a\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n  <text x=\"490\" y=\"586\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#e2e8f0\">Step 3 never tested step 1. The price moved because people acted on the story.</text>\n  <text x=\"490\" y=\"608\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e2e8f0\">The loop says a move can run far past any sensible valuation, in either direction. It never says when it turns.</text>\n</svg>\n",
+  "crypto-03-1-position-sizing": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\" font-family=\"Arial, Helvetica, sans-serif\">\n  <rect x=\"0\" y=\"0\" width=\"900\" height=\"600\" fill=\"#0f172a\"/>\n\n  <text x=\"450\" y=\"34\" text-anchor=\"middle\" font-size=\"22\" font-weight=\"bold\" fill=\"#e2e8f0\">One Risk Budget, Three Stop Distances</text>\n  <text x=\"450\" y=\"56\" text-anchor=\"middle\" font-size=\"13\" fill=\"#3b82f6\">The formula never changes. Only the denominator does.</text>\n\n  <!-- ===== RISK BUDGET BANNER ===== -->\n  <rect x=\"120\" y=\"72\" width=\"660\" height=\"56\" rx=\"8\" fill=\"#e2e8f0\"/>\n  <text x=\"450\" y=\"96\" text-anchor=\"middle\" font-size=\"16\" font-weight=\"bold\" fill=\"#0f172a\">Account $5,000 -&gt; risk 1% -&gt; $50 at risk</text>\n  <text x=\"450\" y=\"117\" text-anchor=\"middle\" font-size=\"12\" fill=\"#0f172a\">The same $50 in all three rows below. It never moves.</text>\n\n  <line x1=\"450\" y1=\"128\" x2=\"450\" y2=\"146\" stroke=\"#e2e8f0\" stroke-width=\"2.5\"/>\n  <polygon points=\"450,154 443,138 457,138\" fill=\"#e2e8f0\"/>\n\n  <rect x=\"220\" y=\"158\" width=\"460\" height=\"34\" rx=\"6\" fill=\"#0f172a\" stroke=\"#3b82f6\" stroke-width=\"2\"/>\n  <text x=\"450\" y=\"180\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#3b82f6\">Position size = $50 at risk / stop distance</text>\n\n  <!-- column headers -->\n  <text x=\"24\" y=\"222\" font-size=\"12\" font-weight=\"bold\" fill=\"#3b82f6\">Trade</text>\n  <text x=\"250\" y=\"222\" font-size=\"12\" font-weight=\"bold\" fill=\"#3b82f6\">Stop distance, as a percent of price</text>\n  <text x=\"700\" y=\"222\" font-size=\"12\" font-weight=\"bold\" fill=\"#3b82f6\">Position you can hold</text>\n\n  <line x1=\"24\" y1=\"230\" x2=\"876\" y2=\"230\" stroke=\"#3b82f6\" stroke-width=\"1\"/>\n\n  <!-- ===== ROW 1: EUR/USD ===== -->\n  <text x=\"24\" y=\"256\" font-size=\"14\" font-weight=\"bold\" fill=\"#e2e8f0\">EUR/USD</text>\n  <text x=\"24\" y=\"274\" font-size=\"11\" fill=\"#e2e8f0\">50-pip stop at 1.0800</text>\n  <text x=\"24\" y=\"290\" font-size=\"11\" fill=\"#e2e8f0\">about 1.0 daily moves</text>\n\n  <rect x=\"250\" y=\"248\" width=\"28\" height=\"26\" fill=\"#3b82f6\"/>\n  <text x=\"286\" y=\"266\" font-size=\"12\" fill=\"#e2e8f0\">0.46% of price</text>\n\n  <rect x=\"640\" y=\"244\" width=\"170\" height=\"34\" rx=\"5\" fill=\"#3b82f6\"/>\n  <text x=\"725\" y=\"266\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#0f172a\">$10,800</text>\n  <text x=\"725\" y=\"292\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e2e8f0\">0.10 standard lots</text>\n\n  <line x1=\"24\" y1=\"308\" x2=\"876\" y2=\"308\" stroke=\"#3b82f6\" stroke-width=\"0.7\"/>\n\n  <!-- ===== ROW 2: BTC 2 x ATR ===== -->\n  <text x=\"24\" y=\"336\" font-size=\"14\" font-weight=\"bold\" fill=\"#22c55e\">Bitcoin at $60,000</text>\n  <text x=\"24\" y=\"354\" font-size=\"11\" fill=\"#e2e8f0\">stop = 2 x ATR = $3,800</text>\n  <text x=\"24\" y=\"370\" font-size=\"11\" fill=\"#e2e8f0\">about 2.6 daily moves</text>\n\n  <rect x=\"250\" y=\"328\" width=\"380\" height=\"26\" fill=\"#22c55e\"/>\n  <text x=\"440\" y=\"346\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#0f172a\">6.33% of price</text>\n\n  <rect x=\"640\" y=\"324\" width=\"12\" height=\"34\" rx=\"3\" fill=\"#22c55e\"/>\n  <text x=\"725\" y=\"346\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#22c55e\">$789</text>\n  <text x=\"725\" y=\"372\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e2e8f0\">0.01316 BTC</text>\n\n  <line x1=\"24\" y1=\"388\" x2=\"876\" y2=\"388\" stroke=\"#3b82f6\" stroke-width=\"0.7\"/>\n\n  <!-- ===== ROW 3: the error ===== -->\n  <text x=\"24\" y=\"416\" font-size=\"14\" font-weight=\"bold\" fill=\"#ef4444\">Bitcoin, forex-sized stop</text>\n  <text x=\"24\" y=\"434\" font-size=\"11\" fill=\"#e2e8f0\">stop = $278, the classic error</text>\n  <text x=\"24\" y=\"450\" font-size=\"11\" fill=\"#e2e8f0\">about 0.19 daily moves</text>\n\n  <rect x=\"250\" y=\"408\" width=\"28\" height=\"26\" fill=\"#ef4444\"/>\n  <text x=\"286\" y=\"426\" font-size=\"12\" fill=\"#e2e8f0\">0.46% of price</text>\n\n  <rect x=\"640\" y=\"404\" width=\"170\" height=\"34\" rx=\"5\" fill=\"#ef4444\"/>\n  <text x=\"725\" y=\"426\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#0f172a\">$10,800</text>\n  <text x=\"725\" y=\"452\" text-anchor=\"middle\" font-size=\"11\" fill=\"#ef4444\">stopped out by noise</text>\n\n  <line x1=\"24\" y1=\"468\" x2=\"876\" y2=\"468\" stroke=\"#3b82f6\" stroke-width=\"1\"/>\n\n  <!-- ===== FOOTER NOTES ===== -->\n  <rect x=\"24\" y=\"482\" width=\"414\" height=\"98\" rx=\"8\" fill=\"#0f172a\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n  <text x=\"231\" y=\"504\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#22c55e\">The arithmetic</text>\n  <text x=\"38\" y=\"526\" font-size=\"11.5\" fill=\"#e2e8f0\">Stop 13.7x wider -&gt; position 13.7x smaller.</text>\n  <text x=\"38\" y=\"544\" font-size=\"11.5\" fill=\"#e2e8f0\">6.33 / 0.46 = 13.7, and 10,800 / 789 = 13.7.</text>\n  <text x=\"38\" y=\"562\" font-size=\"11.5\" fill=\"#e2e8f0\">Same $50 lost if either stop is hit.</text>\n\n  <rect x=\"462\" y=\"482\" width=\"414\" height=\"98\" rx=\"8\" fill=\"#0f172a\" stroke=\"#ef4444\" stroke-width=\"2\"/>\n  <text x=\"669\" y=\"504\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#ef4444\">Why row 3 fails</text>\n  <text x=\"476\" y=\"526\" font-size=\"11.5\" fill=\"#e2e8f0\">$278 is one-seventh of one day's ATR ($1,900).</text>\n  <text x=\"476\" y=\"544\" font-size=\"11.5\" fill=\"#e2e8f0\">The smallest of the five daily true ranges was</text>\n  <text x=\"476\" y=\"562\" font-size=\"11.5\" fill=\"#e2e8f0\">$1,700 - about 6.1 times the stop distance.</text>\n</svg>\n",
+  "crypto-03-2-attack-surface": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 960 720\" font-family=\"Arial, Helvetica, sans-serif\">\n  <rect x=\"0\" y=\"0\" width=\"960\" height=\"720\" fill=\"#0f172a\"/>\n\n  <!-- Title -->\n  <text x=\"480\" y=\"40\" text-anchor=\"middle\" font-size=\"24\" font-weight=\"bold\" fill=\"#e2e8f0\">The Attack Surface Around a Crypto Holder</text>\n  <text x=\"480\" y=\"66\" text-anchor=\"middle\" font-size=\"14\" fill=\"#3b82f6\">Five ways in. None of them is price risk. Each one has a specific fix.</text>\n\n  <!-- Connector lines drawn first so boxes sit on top -->\n  <line x1=\"165\" y1=\"255\" x2=\"330\" y2=\"345\" stroke=\"#ef4444\" stroke-width=\"2\" stroke-dasharray=\"5,4\"/>\n  <line x1=\"480\" y1=\"255\" x2=\"480\" y2=\"330\" stroke=\"#ef4444\" stroke-width=\"2\" stroke-dasharray=\"5,4\"/>\n  <line x1=\"795\" y1=\"255\" x2=\"630\" y2=\"345\" stroke=\"#ef4444\" stroke-width=\"2\" stroke-dasharray=\"5,4\"/>\n  <line x1=\"330\" y1=\"415\" x2=\"240\" y2=\"470\" stroke=\"#ef4444\" stroke-width=\"2\" stroke-dasharray=\"5,4\"/>\n  <line x1=\"630\" y1=\"415\" x2=\"720\" y2=\"470\" stroke=\"#ef4444\" stroke-width=\"2\" stroke-dasharray=\"5,4\"/>\n\n  <!-- Panel 1: Exchange account -->\n  <rect x=\"30\" y=\"95\" width=\"270\" height=\"160\" rx=\"10\" fill=\"#0f172a\" stroke=\"#3b82f6\" stroke-width=\"2.5\"/>\n  <text x=\"165\" y=\"124\" text-anchor=\"middle\" font-size=\"15\" font-weight=\"bold\" fill=\"#e2e8f0\">1. EXCHANGE ACCOUNT</text>\n  <line x1=\"50\" y1=\"136\" x2=\"280\" y2=\"136\" stroke=\"#EAE6DD\" stroke-width=\"1.5\"/>\n  <text x=\"50\" y=\"160\" font-size=\"12\" font-weight=\"bold\" fill=\"#ef4444\">Attack</text>\n  <text x=\"50\" y=\"178\" font-size=\"12\" fill=\"#e2e8f0\">Platform is hacked, freezes, or</text>\n  <text x=\"50\" y=\"194\" font-size=\"12\" fill=\"#e2e8f0\">fails. Your balance is its IOU.</text>\n  <text x=\"50\" y=\"218\" font-size=\"12\" font-weight=\"bold\" fill=\"#22c55e\">Fix</text>\n  <text x=\"50\" y=\"236\" font-size=\"12\" fill=\"#e2e8f0\">Hold only what you trade soon.</text>\n  <text x=\"50\" y=\"250\" font-size=\"12\" fill=\"#e2e8f0\">Withdrawal allowlist. App 2FA.</text>\n\n  <!-- Panel 2: Phone number and SIM -->\n  <rect x=\"345\" y=\"95\" width=\"270\" height=\"160\" rx=\"10\" fill=\"#0f172a\" stroke=\"#3b82f6\" stroke-width=\"2.5\"/>\n  <text x=\"480\" y=\"124\" text-anchor=\"middle\" font-size=\"15\" font-weight=\"bold\" fill=\"#e2e8f0\">2. PHONE NUMBER / SIM</text>\n  <line x1=\"365\" y1=\"136\" x2=\"595\" y2=\"136\" stroke=\"#EAE6DD\" stroke-width=\"1.5\"/>\n  <text x=\"365\" y=\"160\" font-size=\"12\" font-weight=\"bold\" fill=\"#ef4444\">Attack</text>\n  <text x=\"365\" y=\"178\" font-size=\"12\" fill=\"#e2e8f0\">SIM swap moves your number.</text>\n  <text x=\"365\" y=\"194\" font-size=\"12\" fill=\"#e2e8f0\">SMS codes go to the attacker.</text>\n  <text x=\"365\" y=\"218\" font-size=\"12\" font-weight=\"bold\" fill=\"#22c55e\">Fix</text>\n  <text x=\"365\" y=\"236\" font-size=\"12\" fill=\"#e2e8f0\">Authenticator app or security</text>\n  <text x=\"365\" y=\"250\" font-size=\"12\" fill=\"#e2e8f0\">key, not SMS. Port-out PIN.</text>\n\n  <!-- Panel 3: Browser and approvals -->\n  <rect x=\"660\" y=\"95\" width=\"270\" height=\"160\" rx=\"10\" fill=\"#0f172a\" stroke=\"#3b82f6\" stroke-width=\"2.5\"/>\n  <text x=\"795\" y=\"124\" text-anchor=\"middle\" font-size=\"15\" font-weight=\"bold\" fill=\"#e2e8f0\">3. BROWSER / APPROVALS</text>\n  <line x1=\"680\" y1=\"136\" x2=\"910\" y2=\"136\" stroke=\"#EAE6DD\" stroke-width=\"1.5\"/>\n  <text x=\"680\" y=\"160\" font-size=\"12\" font-weight=\"bold\" fill=\"#ef4444\">Attack</text>\n  <text x=\"680\" y=\"178\" font-size=\"12\" fill=\"#e2e8f0\">Fake site, or an old unlimited</text>\n  <text x=\"680\" y=\"194\" font-size=\"12\" fill=\"#e2e8f0\">approval drained months later.</text>\n  <text x=\"680\" y=\"218\" font-size=\"12\" font-weight=\"bold\" fill=\"#22c55e\">Fix</text>\n  <text x=\"680\" y=\"236\" font-size=\"12\" fill=\"#e2e8f0\">Bookmarks only. Revoke unused</text>\n  <text x=\"680\" y=\"250\" font-size=\"12\" fill=\"#e2e8f0\">approvals monthly. Cap limits.</text>\n\n  <!-- Centre: the holder -->\n  <rect x=\"330\" y=\"330\" width=\"300\" height=\"85\" rx=\"12\" fill=\"#e2e8f0\" stroke=\"#e2e8f0\" stroke-width=\"2\"/>\n  <text x=\"480\" y=\"360\" text-anchor=\"middle\" font-size=\"18\" font-weight=\"bold\" fill=\"#0f172a\">YOU</text>\n  <text x=\"480\" y=\"382\" text-anchor=\"middle\" font-size=\"12.5\" fill=\"#0f172a\">your keys, your accounts,</text>\n  <text x=\"480\" y=\"400\" text-anchor=\"middle\" font-size=\"12.5\" fill=\"#0f172a\">your devices, your phone number</text>\n\n  <!-- Panel 4: Device and clipboard -->\n  <rect x=\"105\" y=\"470\" width=\"270\" height=\"160\" rx=\"10\" fill=\"#0f172a\" stroke=\"#3b82f6\" stroke-width=\"2.5\"/>\n  <text x=\"240\" y=\"499\" text-anchor=\"middle\" font-size=\"15\" font-weight=\"bold\" fill=\"#e2e8f0\">4. DEVICE / CLIPBOARD</text>\n  <line x1=\"125\" y1=\"511\" x2=\"355\" y2=\"511\" stroke=\"#EAE6DD\" stroke-width=\"1.5\"/>\n  <text x=\"125\" y=\"535\" font-size=\"12\" font-weight=\"bold\" fill=\"#ef4444\">Attack</text>\n  <text x=\"125\" y=\"553\" font-size=\"12\" fill=\"#e2e8f0\">Malware swaps the address you</text>\n  <text x=\"125\" y=\"569\" font-size=\"12\" fill=\"#e2e8f0\">pasted. Lookalikes in history.</text>\n  <text x=\"125\" y=\"593\" font-size=\"12\" font-weight=\"bold\" fill=\"#22c55e\">Fix</text>\n  <text x=\"125\" y=\"611\" font-size=\"12\" fill=\"#e2e8f0\">Verify on the device screen.</text>\n  <text x=\"125\" y=\"625\" font-size=\"12\" fill=\"#e2e8f0\">Check the middle. Test send.</text>\n\n  <!-- Panel 5: Seed phrase backup -->\n  <rect x=\"585\" y=\"470\" width=\"270\" height=\"160\" rx=\"10\" fill=\"#0f172a\" stroke=\"#3b82f6\" stroke-width=\"2.5\"/>\n  <text x=\"720\" y=\"499\" text-anchor=\"middle\" font-size=\"15\" font-weight=\"bold\" fill=\"#e2e8f0\">5. SEED PHRASE BACKUP</text>\n  <line x1=\"605\" y1=\"511\" x2=\"835\" y2=\"511\" stroke=\"#EAE6DD\" stroke-width=\"1.5\"/>\n  <text x=\"605\" y=\"535\" font-size=\"12\" font-weight=\"bold\" fill=\"#ef4444\">Attack</text>\n  <text x=\"605\" y=\"553\" font-size=\"12\" fill=\"#e2e8f0\">Photographed, typed into a site,</text>\n  <text x=\"605\" y=\"569\" font-size=\"12\" fill=\"#e2e8f0\">or supplied with a fake device.</text>\n  <text x=\"605\" y=\"593\" font-size=\"12\" font-weight=\"bold\" fill=\"#22c55e\">Fix</text>\n  <text x=\"605\" y=\"611\" font-size=\"12\" fill=\"#e2e8f0\">Offline on paper or metal. Buy</text>\n  <text x=\"605\" y=\"625\" font-size=\"12\" fill=\"#e2e8f0\">direct. Generate it yourself.</text>\n\n  <!-- Footer band -->\n  <rect x=\"30\" y=\"655\" width=\"900\" height=\"46\" rx=\"8\" fill=\"#FBF2DC\" stroke=\"#eab308\" stroke-width=\"2\"/>\n  <text x=\"480\" y=\"676\" text-anchor=\"middle\" font-size=\"13.5\" font-weight=\"bold\" fill=\"#ef4444\">Every path above ends in one irreversible transfer.</text>\n  <text x=\"480\" y=\"693\" text-anchor=\"middle\" font-size=\"12.5\" fill=\"#e2e8f0\">There is no chargeback, no fraud department, and no undo. Security in crypto is preventive only.</text>\n</svg>\n",
+  "crypto-03-3-liquidation-distance": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 620\" font-family=\"Arial, Helvetica, sans-serif\">\n  <rect x=\"0\" y=\"0\" width=\"900\" height=\"620\" fill=\"#0f172a\"/>\n\n  <text x=\"450\" y=\"30\" text-anchor=\"middle\" font-size=\"21\" font-weight=\"bold\" fill=\"#e2e8f0\">How Far Is Liquidation? It Depends on Leverage, and Almost Nothing Else</text>\n  <text x=\"450\" y=\"52\" text-anchor=\"middle\" font-size=\"12.5\" fill=\"#3b82f6\">Adverse move from entry to liquidation = 1 / leverage - maintenance margin (0.4% assumed). Entry 100,000 dollars.</text>\n\n  <!-- ================= PANEL A: FULL SCALE ================= -->\n  <rect x=\"20\" y=\"66\" width=\"860\" height=\"252\" rx=\"10\" fill=\"#0f172a\" stroke=\"#e2e8f0\" stroke-width=\"1.6\"/>\n  <text x=\"36\" y=\"88\" font-size=\"14\" font-weight=\"bold\" fill=\"#e2e8f0\">Full scale: 0% to 50% adverse move</text>\n\n  <!-- typical one-day band -->\n  <rect x=\"170\" y=\"100\" width=\"32.8\" height=\"180\" fill=\"#eab308\" opacity=\"0.30\"/>\n  <line x1=\"202.8\" y1=\"100\" x2=\"202.8\" y2=\"280\" stroke=\"#eab308\" stroke-width=\"1.5\"/>\n  <text x=\"209\" y=\"98\" font-size=\"10.5\" fill=\"#eab308\">one typical day (1 standard deviation = 2.4%)</text>\n\n  <!-- baseline -->\n  <line x1=\"170\" y1=\"100\" x2=\"170\" y2=\"280\" stroke=\"#e2e8f0\" stroke-width=\"2\"/>\n  <line x1=\"170\" y1=\"280\" x2=\"860\" y2=\"280\" stroke=\"#e2e8f0\" stroke-width=\"1.4\"/>\n\n  <!-- ticks -->\n  <line x1=\"170\" y1=\"280\" x2=\"170\" y2=\"286\" stroke=\"#e2e8f0\" stroke-width=\"1.4\"/>\n  <text x=\"170\" y=\"299\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#e2e8f0\">0%</text>\n  <line x1=\"306\" y1=\"280\" x2=\"306\" y2=\"286\" stroke=\"#e2e8f0\" stroke-width=\"1.4\"/>\n  <text x=\"306\" y=\"299\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#e2e8f0\">10%</text>\n  <line x1=\"442\" y1=\"280\" x2=\"442\" y2=\"286\" stroke=\"#e2e8f0\" stroke-width=\"1.4\"/>\n  <text x=\"442\" y=\"299\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#e2e8f0\">20%</text>\n  <line x1=\"578\" y1=\"280\" x2=\"578\" y2=\"286\" stroke=\"#e2e8f0\" stroke-width=\"1.4\"/>\n  <text x=\"578\" y=\"299\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#e2e8f0\">30%</text>\n  <line x1=\"714\" y1=\"280\" x2=\"714\" y2=\"286\" stroke=\"#e2e8f0\" stroke-width=\"1.4\"/>\n  <text x=\"714\" y=\"299\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#e2e8f0\">40%</text>\n  <line x1=\"850\" y1=\"280\" x2=\"850\" y2=\"286\" stroke=\"#e2e8f0\" stroke-width=\"1.4\"/>\n  <text x=\"850\" y=\"299\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#e2e8f0\">50%</text>\n\n  <text x=\"36\" y=\"116\" font-size=\"10.5\" fill=\"#3b82f6\">entry price</text>\n\n  <!-- rows: 2x -->\n  <text x=\"162\" y=\"128\" text-anchor=\"end\" font-size=\"12\" font-weight=\"bold\" fill=\"#e2e8f0\">2x</text>\n  <rect x=\"170\" y=\"117\" width=\"674.6\" height=\"14\" rx=\"3\" fill=\"#22c55e\"/>\n  <text x=\"838\" y=\"128\" text-anchor=\"end\" font-size=\"11\" font-weight=\"bold\" fill=\"#0f172a\">49.6% away  (liq. 50,400)</text>\n\n  <!-- 5x -->\n  <text x=\"162\" y=\"156\" text-anchor=\"end\" font-size=\"12\" font-weight=\"bold\" fill=\"#e2e8f0\">5x</text>\n  <rect x=\"170\" y=\"145\" width=\"266.6\" height=\"14\" rx=\"3\" fill=\"#22c55e\"/>\n  <text x=\"444\" y=\"156\" font-size=\"11\" fill=\"#e2e8f0\">19.6% away  (liq. 80,400)</text>\n\n  <!-- 10x -->\n  <text x=\"162\" y=\"184\" text-anchor=\"end\" font-size=\"12\" font-weight=\"bold\" fill=\"#e2e8f0\">10x</text>\n  <rect x=\"170\" y=\"173\" width=\"130.6\" height=\"14\" rx=\"3\" fill=\"#3b82f6\"/>\n  <text x=\"308\" y=\"184\" font-size=\"11\" fill=\"#e2e8f0\">9.6% away  (liq. 90,400)</text>\n\n  <!-- 25x -->\n  <text x=\"162\" y=\"212\" text-anchor=\"end\" font-size=\"12\" font-weight=\"bold\" fill=\"#e2e8f0\">25x</text>\n  <rect x=\"170\" y=\"201\" width=\"49\" height=\"14\" rx=\"3\" fill=\"#eab308\"/>\n  <text x=\"226\" y=\"212\" font-size=\"11\" fill=\"#e2e8f0\">3.6% away  (liq. 96,400)</text>\n\n  <!-- 50x -->\n  <text x=\"162\" y=\"240\" text-anchor=\"end\" font-size=\"12\" font-weight=\"bold\" fill=\"#e2e8f0\">50x</text>\n  <rect x=\"170\" y=\"229\" width=\"21.8\" height=\"14\" rx=\"3\" fill=\"#ef4444\"/>\n  <text x=\"199\" y=\"240\" font-size=\"11\" fill=\"#ef4444\">1.6% away  (liq. 98,400)</text>\n\n  <!-- 100x -->\n  <text x=\"162\" y=\"268\" text-anchor=\"end\" font-size=\"12\" font-weight=\"bold\" fill=\"#e2e8f0\">100x</text>\n  <rect x=\"170\" y=\"257\" width=\"8.2\" height=\"14\" rx=\"3\" fill=\"#ef4444\"/>\n  <text x=\"186\" y=\"268\" font-size=\"11\" fill=\"#ef4444\">0.6% away  (liq. 99,400)</text>\n\n  <!-- ================= PANEL B: ZOOM ================= -->\n  <rect x=\"20\" y=\"330\" width=\"860\" height=\"212\" rx=\"10\" fill=\"#0f172a\" stroke=\"#ef4444\" stroke-width=\"1.6\"/>\n  <text x=\"36\" y=\"352\" font-size=\"14\" font-weight=\"bold\" fill=\"#ef4444\">Zoomed into the first 10%: where ordinary noise already reaches</text>\n\n  <!-- bands -->\n  <rect x=\"170\" y=\"362\" width=\"327.5\" height=\"140\" fill=\"#eab308\" opacity=\"0.16\"/>\n  <rect x=\"170\" y=\"362\" width=\"163.8\" height=\"140\" fill=\"#eab308\" opacity=\"0.30\"/>\n  <line x1=\"333.8\" y1=\"362\" x2=\"333.8\" y2=\"502\" stroke=\"#eab308\" stroke-width=\"1.5\"/>\n  <line x1=\"497.5\" y1=\"362\" x2=\"497.5\" y2=\"502\" stroke=\"#eab308\" stroke-width=\"1.2\" stroke-dasharray=\"5,4\"/>\n  <text x=\"340\" y=\"376\" font-size=\"10.5\" fill=\"#eab308\">1 standard deviation of one day = 2.4%</text>\n  <text x=\"503\" y=\"376\" font-size=\"10.5\" fill=\"#eab308\">2 standard deviations = 4.8%</text>\n\n  <line x1=\"170\" y1=\"362\" x2=\"170\" y2=\"502\" stroke=\"#e2e8f0\" stroke-width=\"2\"/>\n  <line x1=\"170\" y1=\"502\" x2=\"860\" y2=\"502\" stroke=\"#e2e8f0\" stroke-width=\"1.4\"/>\n\n  <line x1=\"170\" y1=\"502\" x2=\"170\" y2=\"508\" stroke=\"#e2e8f0\" stroke-width=\"1.4\"/>\n  <text x=\"170\" y=\"521\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#e2e8f0\">0%</text>\n  <line x1=\"306\" y1=\"502\" x2=\"306\" y2=\"508\" stroke=\"#e2e8f0\" stroke-width=\"1.4\"/>\n  <text x=\"306\" y=\"521\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#e2e8f0\">2%</text>\n  <line x1=\"442\" y1=\"502\" x2=\"442\" y2=\"508\" stroke=\"#e2e8f0\" stroke-width=\"1.4\"/>\n  <text x=\"442\" y=\"521\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#e2e8f0\">4%</text>\n  <line x1=\"578\" y1=\"502\" x2=\"578\" y2=\"508\" stroke=\"#e2e8f0\" stroke-width=\"1.4\"/>\n  <text x=\"578\" y=\"521\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#e2e8f0\">6%</text>\n  <line x1=\"714\" y1=\"502\" x2=\"714\" y2=\"508\" stroke=\"#e2e8f0\" stroke-width=\"1.4\"/>\n  <text x=\"714\" y=\"521\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#e2e8f0\">8%</text>\n  <line x1=\"850\" y1=\"502\" x2=\"850\" y2=\"508\" stroke=\"#e2e8f0\" stroke-width=\"1.4\"/>\n  <text x=\"850\" y=\"521\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#e2e8f0\">10%</text>\n\n  <!-- 10x -->\n  <text x=\"162\" y=\"396\" text-anchor=\"end\" font-size=\"12\" font-weight=\"bold\" fill=\"#e2e8f0\">10x</text>\n  <rect x=\"170\" y=\"385\" width=\"652.8\" height=\"14\" rx=\"3\" fill=\"#3b82f6\"/>\n  <text x=\"816\" y=\"396\" text-anchor=\"end\" font-size=\"11\" font-weight=\"bold\" fill=\"#0f172a\">9.6%: about 4 daily moves away</text>\n\n  <!-- 25x -->\n  <text x=\"162\" y=\"426\" text-anchor=\"end\" font-size=\"12\" font-weight=\"bold\" fill=\"#e2e8f0\">25x</text>\n  <rect x=\"170\" y=\"415\" width=\"244.8\" height=\"14\" rx=\"3\" fill=\"#eab308\"/>\n  <text x=\"422\" y=\"426\" font-size=\"11\" fill=\"#e2e8f0\">3.6%: about 1.1 average daily bars</text>\n\n  <!-- 50x -->\n  <text x=\"162\" y=\"456\" text-anchor=\"end\" font-size=\"12\" font-weight=\"bold\" fill=\"#e2e8f0\">50x</text>\n  <rect x=\"170\" y=\"445\" width=\"108.8\" height=\"14\" rx=\"3\" fill=\"#ef4444\"/>\n  <text x=\"286\" y=\"456\" font-size=\"11\" font-weight=\"bold\" fill=\"#ef4444\">1.6%: half of one average daily bar</text>\n\n  <!-- 100x -->\n  <text x=\"162\" y=\"486\" text-anchor=\"end\" font-size=\"12\" font-weight=\"bold\" fill=\"#e2e8f0\">100x</text>\n  <rect x=\"170\" y=\"475\" width=\"40.8\" height=\"14\" rx=\"3\" fill=\"#ef4444\"/>\n  <text x=\"218\" y=\"486\" font-size=\"11\" font-weight=\"bold\" fill=\"#ef4444\">0.6%: about 75 minutes of typical movement</text>\n\n  <!-- ================= FOOTER ================= -->\n  <rect x=\"20\" y=\"552\" width=\"860\" height=\"52\" rx=\"8\" fill=\"#e2e8f0\"/>\n  <text x=\"450\" y=\"573\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"bold\" fill=\"#0f172a\">Daily band computed from the 46% annualised volatility Lesson 1 adopted: 46 / square root of 365 = 2.41% per day.</text>\n  <text x=\"450\" y=\"592\" text-anchor=\"middle\" font-size=\"11.5\" fill=\"#0f172a\">Real returns have fatter tails than this, so the band understates how often the level is reached. Fees and funding shorten every bar.</text>\n</svg>\n"
 };

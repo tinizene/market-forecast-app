@@ -482,3 +482,88 @@
 .lnav-dir { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #93c5fd; }
 .lnav-title { font-size: 0.82rem; color: #cbd5e1; line-height: 1.35; }
 @media (max-width: 380px) { .lesson-nav { grid-template-columns: 1fr; } .lesson-nav-btn.next { text-align: left; } }
+
+/* ============================================================
+   Interactive crypto labs (crypto-labs.js)
+   Hands-on widgets embedded in Crypto lessons: real SHA-256 hashing,
+   nonce mining, and a tamperable block chain.
+   ============================================================ */
+
+.lab-card { border-color: rgba(59, 130, 246, 0.35); background: rgba(30, 41, 59, 0.55); }
+.lab-head { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 0.35rem; }
+.lab-badge {
+  font-size: 0.6rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+  background: linear-gradient(90deg, #3b82f6, #6366f1); color: #fff;
+  padding: 0.18rem 0.5rem; border-radius: 9999px;
+}
+
+/* hash / result readouts */
+.lab-out {
+  background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(51, 65, 85, 0.8);
+  border-radius: 0.6rem; padding: 0.6rem 0.75rem;
+}
+.lab-out-label {
+  display: block; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.07em;
+  color: #64748b; margin-bottom: 0.25rem;
+}
+.lab-hash {
+  display: block; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.72rem; line-height: 1.5; color: #93c5fd; word-break: break-all;
+}
+
+/* mining stat tiles */
+.lab-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+.lab-stat {
+  background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(51, 65, 85, 0.7);
+  border-radius: 0.6rem; padding: 0.55rem 0.6rem; text-align: center;
+}
+.lab-stat-n {
+  display: block; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-variant-numeric: tabular-nums; font-size: 1rem; font-weight: 700; color: #e2e8f0;
+}
+.lab-stat-l {
+  display: block; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.05em;
+  color: #64748b; margin-top: 0.15rem;
+}
+
+.lab-ok { color: #4ade80; font-weight: 700; }
+.lab-bad { color: #f87171; font-weight: 700; }
+
+/* chain tamper lab */
+.chain-block {
+  border: 1px solid rgba(34, 197, 94, 0.4); border-left: 3px solid #22c55e;
+  background: rgba(15, 23, 42, 0.6); border-radius: 0.7rem;
+  padding: 0.7rem 0.85rem; margin-bottom: 0.6rem;
+  transition: border-color 0.15s ease;
+}
+.chain-block.is-broken { border-color: rgba(239, 68, 68, 0.5); border-left-color: #ef4444; }
+.chain-block-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.4rem; }
+.chain-idx { font-size: 0.8rem; font-weight: 700; color: #e2e8f0; }
+.chain-state {
+  font-size: 0.6rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 0.15rem 0.45rem; border-radius: 9999px;
+  background: rgba(34, 197, 94, 0.15); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.35);
+}
+.chain-block.is-broken .chain-state {
+  background: rgba(239, 68, 68, 0.15); color: #fca5a5; border-color: rgba(239, 68, 68, 0.4);
+}
+.chain-meta {
+  display: grid; grid-template-columns: auto 1fr; gap: 0.2rem 0.6rem;
+  align-items: baseline; margin-top: 0.5rem;
+}
+.chain-meta-l { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; }
+.chain-hash {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.68rem; color: #94a3b8; word-break: break-all;
+}
+.chain-remine {
+  margin-top: 0.55rem; font-size: 0.7rem; font-weight: 600;
+  background: rgba(51, 65, 85, 0.8); color: #e2e8f0;
+  border: 1px solid rgba(71, 85, 105, 0.9); border-radius: 0.5rem;
+  padding: 0.3rem 0.7rem; cursor: pointer; transition: background-color 0.15s ease;
+}
+.chain-remine:hover:not(:disabled) { background: rgba(71, 85, 105, 0.9); }
+.chain-remine:disabled { opacity: 0.6; cursor: default; }
+.lab-card :focus-visible, .chain-block :focus-visible { outline: 2px solid #60a5fa; outline-offset: 2px; }
+
+@media (max-width: 380px) { .lab-stats { grid-template-columns: 1fr; } }

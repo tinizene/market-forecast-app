@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="900" height="620" fill="#FDFCF9"/>
+
+  <text x="450" y="30" text-anchor="middle" font-size="21" font-weight="bold" fill="#1F3864">How Far Is Liquidation? It Depends on Leverage, and Almost Nothing Else</text>
+  <text x="450" y="52" text-anchor="middle" font-size="12.5" fill="#2E5395">Adverse move from entry to liquidation = 1 / leverage - maintenance margin (0.4% assumed). Entry 100,000 dollars.</text>
+
+  <!-- ================= PANEL A: FULL SCALE ================= -->
+  <rect x="20" y="66" width="860" height="252" rx="10" fill="#FFFFFF" stroke="#1F3864" stroke-width="1.6"/>
+  <text x="36" y="88" font-size="14" font-weight="bold" fill="#1F3864">Full scale: 0% to 50% adverse move</text>
+
+  <!-- typical one-day band -->
+  <rect x="170" y="100" width="32.8" height="180" fill="#C99A2E" opacity="0.30"/>
+  <line x1="202.8" y1="100" x2="202.8" y2="280" stroke="#C99A2E" stroke-width="1.5"/>
+  <text x="209" y="98" font-size="10.5" fill="#C99A2E">one typical day (1 standard deviation = 2.4%)</text>
+
+  <!-- baseline -->
+  <line x1="170" y1="100" x2="170" y2="280" stroke="#1F3864" stroke-width="2"/>
+  <line x1="170" y1="280" x2="860" y2="280" stroke="#1F3864" stroke-width="1.4"/>
+
+  <!-- ticks -->
+  <line x1="170" y1="280" x2="170" y2="286" stroke="#1F3864" stroke-width="1.4"/>
+  <text x="170" y="299" text-anchor="middle" font-size="10.5" fill="#1F3864">0%</text>
+  <line x1="306" y1="280" x2="306" y2="286" stroke="#1F3864" stroke-width="1.4"/>
+  <text x="306" y="299" text-anchor="middle" font-size="10.5" fill="#1F3864">10%</text>
+  <line x1="442" y1="280" x2="442" y2="286" stroke="#1F3864" stroke-width="1.4"/>
+  <text x="442" y="299" text-anchor="middle" font-size="10.5" fill="#1F3864">20%</text>
+  <line x1="578" y1="280" x2="578" y2="286" stroke="#1F3864" stroke-width="1.4"/>
+  <text x="578" y="299" text-anchor="middle" font-size="10.5" fill="#1F3864">30%</text>
+  <line x1="714" y1="280" x2="714" y2="286" stroke="#1F3864" stroke-width="1.4"/>
+  <text x="714" y="299" text-anchor="middle" font-size="10.5" fill="#1F3864">40%</text>
+  <line x1="850" y1="280" x2="850" y2="286" stroke="#1F3864" stroke-width="1.4"/>
+  <text x="850" y="299" text-anchor="middle" font-size="10.5" fill="#1F3864">50%</text>
+
+  <text x="36" y="116" font-size="10.5" fill="#2E5395">entry price</text>
+
+  <!-- rows: 2x -->
+  <text x="162" y="128" text-anchor="end" font-size="12" font-weight="bold" fill="#1F3864">2x</text>
+  <rect x="170" y="117" width="674.6" height="14" rx="3" fill="#1E7A4C"/>
+  <text x="838" y="128" text-anchor="end" font-size="11" font-weight="bold" fill="#FFFFFF">49.6% away  (liq. 50,400)</text>
+
+  <!-- 5x -->
+  <text x="162" y="156" text-anchor="end" font-size="12" font-weight="bold" fill="#1F3864">5x</text>
+  <rect x="170" y="145" width="266.6" height="14" rx="3" fill="#1E7A4C"/>
+  <text x="444" y="156" font-size="11" fill="#1F3864">19.6% away  (liq. 80,400)</text>
+
+  <!-- 10x -->
+  <text x="162" y="184" text-anchor="end" font-size="12" font-weight="bold" fill="#1F3864">10x</text>
+  <rect x="170" y="173" width="130.6" height="14" rx="3" fill="#2E5395"/>
+  <text x="308" y="184" font-size="11" fill="#1F3864">9.6% away  (liq. 90,400)</text>
+
+  <!-- 25x -->
+  <text x="162" y="212" text-anchor="end" font-size="12" font-weight="bold" fill="#1F3864">25x</text>
+  <rect x="170" y="201" width="49" height="14" rx="3" fill="#C99A2E"/>
+  <text x="226" y="212" font-size="11" fill="#1F3864">3.6% away  (liq. 96,400)</text>
+
+  <!-- 50x -->
+  <text x="162" y="240" text-anchor="end" font-size="12" font-weight="bold" fill="#1F3864">50x</text>
+  <rect x="170" y="229" width="21.8" height="14" rx="3" fill="#B23B2E"/>
+  <text x="199" y="240" font-size="11" fill="#B23B2E">1.6% away  (liq. 98,400)</text>
+
+  <!-- 100x -->
+  <text x="162" y="268" text-anchor="end" font-size="12" font-weight="bold" fill="#1F3864">100x</text>
+  <rect x="170" y="257" width="8.2" height="14" rx="3" fill="#B23B2E"/>
+  <text x="186" y="268" font-size="11" fill="#B23B2E">0.6% away  (liq. 99,400)</text>
+
+  <!-- ================= PANEL B: ZOOM ================= -->
+  <rect x="20" y="330" width="860" height="212" rx="10" fill="#FFFFFF" stroke="#B23B2E" stroke-width="1.6"/>
+  <text x="36" y="352" font-size="14" font-weight="bold" fill="#B23B2E">Zoomed into the first 10%: where ordinary noise already reaches</text>
+
+  <!-- bands -->
+  <rect x="170" y="362" width="327.5" height="140" fill="#C99A2E" opacity="0.16"/>
+  <rect x="170" y="362" width="163.8" height="140" fill="#C99A2E" opacity="0.30"/>
+  <line x1="333.8" y1="362" x2="333.8" y2="502" stroke="#C99A2E" stroke-width="1.5"/>
+  <line x1="497.5" y1="362" x2="497.5" y2="502" stroke="#C99A2E" stroke-width="1.2" stroke-dasharray="5,4"/>
+  <text x="340" y="376" font-size="10.5" fill="#C99A2E">1 standard deviation of one day = 2.4%</text>
+  <text x="503" y="376" font-size="10.5" fill="#C99A2E">2 standard deviations = 4.8%</text>
+
+  <line x1="170" y1="362" x2="170" y2="502" stroke="#1F3864" stroke-width="2"/>
+  <line x1="170" y1="502" x2="860" y2="502" stroke="#1F3864" stroke-width="1.4"/>
+
+  <line x1="170" y1="502" x2="170" y2="508" stroke="#1F3864" stroke-width="1.4"/>
+  <text x="170" y="521" text-anchor="middle" font-size="10.5" fill="#1F3864">0%</text>
+  <line x1="306" y1="502" x2="306" y2="508" stroke="#1F3864" stroke-width="1.4"/>
+  <text x="306" y="521" text-anchor="middle" font-size="10.5" fill="#1F3864">2%</text>
+  <line x1="442" y1="502" x2="442" y2="508" stroke="#1F3864" stroke-width="1.4"/>
+  <text x="442" y="521" text-anchor="middle" font-size="10.5" fill="#1F3864">4%</text>
+  <line x1="578" y1="502" x2="578" y2="508" stroke="#1F3864" stroke-width="1.4"/>
+  <text x="578" y="521" text-anchor="middle" font-size="10.5" fill="#1F3864">6%</text>
+  <line x1="714" y1="502" x2="714" y2="508" stroke="#1F3864" stroke-width="1.4"/>
+  <text x="714" y="521" text-anchor="middle" font-size="10.5" fill="#1F3864">8%</text>
+  <line x1="850" y1="502" x2="850" y2="508" stroke="#1F3864" stroke-width="1.4"/>
+  <text x="850" y="521" text-anchor="middle" font-size="10.5" fill="#1F3864">10%</text>
+
+  <!-- 10x -->
+  <text x="162" y="396" text-anchor="end" font-size="12" font-weight="bold" fill="#1F3864">10x</text>
+  <rect x="170" y="385" width="652.8" height="14" rx="3" fill="#2E5395"/>
+  <text x="816" y="396" text-anchor="end" font-size="11" font-weight="bold" fill="#FFFFFF">9.6%: about 4 daily moves away</text>
+
+  <!-- 25x -->
+  <text x="162" y="426" text-anchor="end" font-size="12" font-weight="bold" fill="#1F3864">25x</text>
+  <rect x="170" y="415" width="244.8" height="14" rx="3" fill="#C99A2E"/>
+  <text x="422" y="426" font-size="11" fill="#1F3864">3.6%: about 1.1 average daily bars</text>
+
+  <!-- 50x -->
+  <text x="162" y="456" text-anchor="end" font-size="12" font-weight="bold" fill="#1F3864">50x</text>
+  <rect x="170" y="445" width="108.8" height="14" rx="3" fill="#B23B2E"/>
+  <text x="286" y="456" font-size="11" font-weight="bold" fill="#B23B2E">1.6%: half of one average daily bar</text>
+
+  <!-- 100x -->
+  <text x="162" y="486" text-anchor="end" font-size="12" font-weight="bold" fill="#1F3864">100x</text>
+  <rect x="170" y="475" width="40.8" height="14" rx="3" fill="#B23B2E"/>
+  <text x="218" y="486" font-size="11" font-weight="bold" fill="#B23B2E">0.6%: about 75 minutes of typical movement</text>
+
+  <!-- ================= FOOTER ================= -->
+  <rect x="20" y="552" width="860" height="52" rx="8" fill="#1F3864"/>
+  <text x="450" y="573" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#FFFFFF">Daily band computed from the 46% annualised volatility Lesson 1 adopted: 46 / square root of 365 = 2.41% per day.</text>
+  <text x="450" y="592" text-anchor="middle" font-size="11.5" fill="#FFFFFF">Real returns have fatter tails than this, so the band understates how often the level is reached. Fees and funding shorten every bar.</text>
+</svg>

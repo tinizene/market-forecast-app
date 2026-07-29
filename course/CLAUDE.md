@@ -115,11 +115,12 @@ Content is written English-first. Glossary holds locked EN/FR/PT/SW translations
 - Chapter 5 (Real-World Case Studies): 3/3 complete — SNB 2015, yen carry unwind 2008, sterling flash crash 2016
 - Chapter 6 (Building a Professional Trade Process): 4/4 complete — the paid trade-thesis service is mentioned plainly once, at the end of Lesson 4, per the plan
 
-**Crypto track (paid) — IN PROGRESS: Chapters 1-2 complete (12 lessons), live in the app.**
+**Crypto track (paid) — IN PROGRESS: Chapters 1-3 complete (15 lessons), live in the app.**
 - Chapter 1 (What a Blockchain Actually Is): 7/7 complete — cryptocurrency & double-spend, blockchain mechanics, PoW vs PoS, wallets & custody, exchanges (CEX/DEX), fees & finality, stablecoins
 - Chapter 2 (Reading the Crypto Market): 5/5 complete — market cap & liquidity, cycles & halvings, crypto as a risk asset, on-chain data, sentiment & narratives
-- Chapters 3-6 planned in `course/Crypto_Track_Roadmap.md` (24 lessons total when complete)
-- Glossary: 76 crypto terms added (EN locked; FR/PT/SW pending native review, deliberately not machine-guessed)
+- Chapter 3 (Risk Management for Crypto): 3/3 complete — position sizing at crypto volatility, custody & security risk, leverage/perpetuals/liquidation
+- Chapters 4-6 planned in `course/Crypto_Track_Roadmap.md` (24 lessons total when complete)
+- Glossary: 96 crypto terms added (EN locked; FR/PT/SW pending native review, deliberately not machine-guessed)
 
 **Not started:** Stocks track, Advanced Forex Course.
 

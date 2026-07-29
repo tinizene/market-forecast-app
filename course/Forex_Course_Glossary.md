@@ -1453,6 +1453,128 @@
 - **PT:** _(pending review)_
 - **SW:** _(pending review)_ ⚠
 
+*Chapter 3 (Risk Management for Crypto) terms. English locked as written in the lesson that introduces it; FR/PT/SW pending native-speaker review.*
+
+### Realized Volatility
+- **EN:** A measurement of how much an asset's price actually moved over a past window, calculated as the standard deviation of its returns and usually scaled to an annual figure so different assets can be compared. It is backward-looking and descriptive, and it is not the same as implied volatility, which is what options prices suggest traders expect ahead. A realized volatility figure means nothing without three attachments: the length of the window, the return frequency used, and the date the window ended. Measured across recent years, Bitcoin's annualized realized volatility has run roughly 4 to 10 times that of major currency pairs, depending on the windows compared — quote the range or the window, never a bare multiple.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### True Range
+- **EN:** The largest of three distances measured on a single price bar: the bar's high minus its low; the absolute difference between the bar's high and the previous close; and the absolute difference between the previous close and the bar's low. Taking the largest of the three counts an overnight gap as real movement instead of missing it. Introduced by J. Welles Wilder Jr. in New Concepts in Technical Trading Systems (Trend Research, 1978).
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Average True Range (ATR)
+- **EN:** The average of the true range over a set number of recent bars, used as a practical measure of how far a price typically travels in one period. Wilder used 14 periods and a running average in which each new value is the previous ATR multiplied by 13, plus the current true range, divided by 14. ATR is quoted in the price's own units rather than as a percentage, so it must be divided by the price to be compared across assets. Introduced alongside True Range in Wilder (1978).
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Volatility-Adjusted Position Size
+- **EN:** A position size calculated from a stop placed at a multiple of a volatility measure such as ATR, rather than at a fixed number of pips, points, or percent. Because the stop widens automatically when the market becomes more volatile, the resulting size shrinks automatically and the money at risk stays constant. It is the same fixed-fractional rule already defined under Position Sizing, applied with a denominator that moves with the market.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Phishing
+- **EN:** An attack that gets a victim to hand over a secret or authorize an action themselves, by impersonating something they trust — a wallet, an exchange, a support agent, or a well-known project. Nothing is broken into; the victim opens the door believing the other party is legitimate.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Wallet Drainer
+- **EN:** A ready-made toolkit that produces the malicious page and the malicious transaction request used to empty a victim's wallet once they connect it and sign. Drainers are rented or licensed to affiliates for a share of the proceeds, which is why phishing pages across unrelated scams often behave identically.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Two-Factor Authentication (2FA)
+- **EN:** A login that requires a second proof beyond the password: a code from an authenticator app, a tap on a registered device, or a physical security key. The purpose is that a stolen password alone is not enough. The kinds are not equally strong — codes delivered by text message are the weakest common option.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### SIM Swap
+- **EN:** An attack in which a victim's mobile phone number is transferred to a SIM card the attacker controls, so that calls and text messages intended for the victim arrive on the attacker's device. Any account that sends security codes or password resets by text message becomes reachable, with no password compromise required.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Token Approval
+- **EN:** A permission recorded on-chain that authorizes a specific smart contract to move a specific token out of a wallet, up to a stated limit. It is granted by its own transaction, frequently defaults to an unlimited amount, and stays in force until explicitly revoked — independently of whether the wallet is still connected to the application.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Clipboard Hijacking (Clipper Malware)
+- **EN:** Malicious software that watches a device's clipboard for anything shaped like a crypto address and silently substitutes the attacker's address at the moment of pasting. The victim copies the correct address and a different one arrives in the field.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Address Poisoning
+- **EN:** An attack in which a tiny or zero-value transaction is sent to a victim's wallet from an address deliberately generated to match the first and last characters of an address the victim has used before. The lookalike address then sits in the victim's own transaction history, ready to be copied by mistake.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Supply Chain Attack
+- **EN:** An attack that compromises something the victim relies on before it reaches them — a device in transit, a software update, or a code library built into a site they trust. The victim is reached through a component they never chose to evaluate.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Notional Value
+- **EN:** The full size of the exposure a leveraged position controls, measured in the underlying asset's currency, as opposed to the margin posted to open it. Fees, funding payments and percentage price moves are all computed against notional value, not against margin — which is why a small posted margin at high leverage carries large absolute costs.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Maintenance Margin
+- **EN:** The minimum equity a leveraged position must retain, expressed as a percentage of its notional value, before the exchange closes it. Venues set it in tiers, with larger positions carrying higher percentages; a small position in a major contract commonly sits around 0.4% to 0.5%. It is the crypto-venue equivalent of the threshold behind a stop-out level.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Liquidation
+- **EN:** The forced closure of a leveraged position by the exchange when its equity falls to the maintenance margin. It is automatic and gives no warning: unlike a forex margin call, there is no request for more funds before the position is closed. The loss is realized at whatever price the market provides at that moment, not at a price the trader chose.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Liquidation Price
+- **EN:** The price of the underlying asset at which a leveraged position's equity falls to its maintenance margin, so the exchange closes it. Below entry for a long position, above entry for a short. For a single isolated-margin position it is approximately entry price x (1 - 1/leverage + maintenance margin rate), so the adverse move that reaches it is roughly 1/leverage minus the maintenance margin rate — set by the leverage chosen and almost nothing else.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Liquidation Cascade
+- **EN:** A self-reinforcing sequence in which forced closures push the price further in the same direction, carrying more positions past their liquidation levels and forcing more closures. Each liquidation is executed as a market order, so it consumes order book depth and worsens the move that caused it. Cascades are most severe when depth is thinnest, which is when volatility is highest.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Isolated Margin
+- **EN:** A margin mode in which only the collateral explicitly assigned to a position can support it. The maximum loss is capped at that assigned amount and the rest of the account is untouched, but the position is liquidated sooner because it cannot draw on the remaining balance.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Cross Margin
+- **EN:** A margin mode in which the entire account balance backs every open position. A position survives a larger adverse move before liquidation because it draws on the whole balance, at the cost of exposing the whole balance to a single position and linking positions together, so a loss on one reduces the cushion under all the others.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Auto-Deleveraging (ADL)
+- **EN:** An exchange's last-resort mechanism for balancing its books when a liquidated position's loss exceeds its margin and the venue's insurance fund cannot cover the shortfall: profitable positions on the opposite side are forcibly closed at the bankruptcy price. Traders are ranked for auto-deleveraging by profitability and effective leverage, so the most profitable and most leveraged winners are taken first. It protects the exchange's solvency, not the trader's position.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
 ## Stocks / ETFs / Indexes Track Terms
 
 *(Not yet started. Expect terms like: share, dividend, index fund, ETF, P/E ratio, diversification, expense ratio.)*

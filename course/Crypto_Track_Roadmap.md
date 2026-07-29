@@ -22,13 +22,13 @@
 ## Chapter 2: Reading the Crypto Market
 *Counterpart to Forex Chapter 2, minus re-teaching chart basics (Foundations Ch3) and indicator mechanics (cross-referenced from Forex Ch2 where the student has it; re-taught standalone where they may not).*
 
-1. Market Cap, Liquidity & Volume — why "price × supply" misleads, wash trading, and how thin books move prices
-2. Cycles & Halvings — the four-year narrative examined honestly: what the data shows, what it can't
-3. Crypto as a Risk Asset — correlation with equities, the high-beta regime read (ties to Forex Ch6 L3's transmission chain), and what "diversification" actually did in 2022
-4. On-Chain Data — what wallets-on-chain can and can't tell you (active addresses, exchange flows), and the evidence limits of on-chain analytics
-5. Sentiment, Narratives & Hype Cycles — how narratives move a market with no cash flows to anchor it, and reading funding rates as a positioning proxy
+1. Market Cap, Liquidity & Volume — why "price × supply" misleads, wash trading, and how thin books move prices — ✅ complete
+2. Cycles & Halvings — the four-year narrative examined honestly: what the data shows, what it can't — ✅ complete
+3. Crypto as a Risk Asset — correlation with equities, the high-beta regime read (ties to Forex Ch6 L3's transmission chain), and what "diversification" actually did in 2022 — ✅ complete
+4. On-Chain Data — what wallets-on-chain can and can't tell you (active addresses, exchange flows), and the evidence limits of on-chain analytics — ✅ complete
+5. Sentiment, Narratives & Hype Cycles — how narratives move a market with no cash flows to anchor it, and reading funding rates as a positioning proxy — ✅ complete
 
-**Chapter 2 planned — 5 lessons.**
+**Chapter 2 COMPLETE — 5/5 lessons drafted, compiled into `crypto-content.js`, and live in the app.**
 
 ## Chapter 3: Risk Management for Crypto
 *Counterpart to Forex Chapter 3. Same math, harsher inputs: volatility multiples of FX, 24/7 markets with no circuit breakers, and a whole risk class forex doesn't have — losing the asset itself.*

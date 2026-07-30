@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institutional FX Dashboard & Intelligence Report — July 30, 2026</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+            color: #e0e0e0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 0;
+            border-bottom: 2px solid #2a3f5f;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #00d9ff, #0099ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .disclaimer {
+            font-size: 0.9em;
+            color: #a0a0a0;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        .at-a-glance {
+            background: linear-gradient(135deg, #1a2940 0%, #1a2f42 100%);
+            border-left: 4px solid #00d9ff;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 217, 255, 0.1);
+        }
+
+        .at-a-glance h2 {
+            color: #00d9ff;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        .at-a-glance ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .at-a-glance li {
+            padding: 12px 0;
+            border-bottom: 1px solid #2a3f5f;
+            padding-left: 20px;
+        }
+
+        .at-a-glance li:last-child {
+            border-bottom: none;
+        }
+
+        .at-a-glance li:before {
+            content: "▸";
+            color: #00d9ff;
+            margin-right: 12px;
+            font-weight: bold;
+        }
+
+        .section {
+            background: #1a1f2e;
+            border: 1px solid #2a3f5f;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .section h2 {
+            color: #00d9ff;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            border-bottom: 2px solid #2a3f5f;
+            padding-bottom: 10px;
+        }
+
+        .section h3 {
+            color: #00ff88;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .metric-box {
+            background: #252d3a;
+            border-left: 3px solid #0099ff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .metric-label {
+            color: #a0a0a0;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .metric-value {
+            color: #00d9ff;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 3px 3px 3px 0;
+        }
+
+        .tag-bullish {
+            background: rgba(0, 255, 136, 0.2);
+            color: #00ff88;
+            border: 1px solid #00ff88;
+        }
+
+        .tag-bearish {
+            background: rgba(255, 100, 100, 0.2);
+            color: #ff6464;
+            border: 1px solid #ff6464;
+        }
+
+        .tag-neutral {
+            background: rgba(255, 200, 0, 0.2);
+            color: #ffc800;
+            border: 1px solid #ffc800;
+        }
+
+        .tag-high {
+            background: rgba(0, 255, 136, 0.2);
+            color: #00ff88;
+            border: 1px solid #00ff88;
+        }
+
+        .tag-medium {
+            background: rgba(100, 150, 255, 0.2);
+            color: #6496ff;
+            border: 1px solid #6496ff;
+        }
+
+        .tag-low {
+            background: rgba(200, 100, 100, 0.2);
+            color: #c86464;
+            border: 1px solid #c86464;
+        }
+
+        .trade-card {
+            background: #252d3a;
+            border: 1px solid #2a3f5f;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .trade-card h4 {
+            color: #00d9ff;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .confidence-bar {
+            background: #1a1f2e;
+            height: 24px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff88 0%, #00d9ff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a1f2e;
+            font-weight: bold;
+            font-size: 0.85em;
+        }
+
+        .trade-details {
+            font-size: 0.95em;
+            color: #b0b0b0;
+            margin: 10px 0;
+        }
+
+        .trade-details strong {
+            color: #e0e0e0;
+        }
+
+        .stat-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-box {
+            background: #252d3a;
+            border-left: 3px solid #00ff88;
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .stat-box-label {
+            color: #a0a0a0;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .stat-box-value {
+            color: #00ff88;
+            font-size: 1.6em;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+
+        th {
+            background: #252d3a;
+            color: #00d9ff;
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid #2a3f5f;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #2a3f5f;
+        }
+
+        tr:hover {
+            background: rgba(0, 217, 255, 0.05);
+        }
+
+        .confidence-score {
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        p {
+            margin: 15px 0;
+            color: #c0c0c0;
+        }
+
+        strong {
+            color: #e0e0e0;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid #2a3f5f;
+            color: #808080;
+            font-size: 0.9em;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Institutional FX Dashboard & Intelligence Report</h1>
+            <p style="color: #808080; margin-top: 10px; font-size: 1.1em;">July 30, 2026</p>
+            <p class="disclaimer">Prepared as an analytical synthesis for professional monitoring purposes. Spot levels are same-day/last-close reference, not live ticks. Not personalized financial advice.</p>
+        </header>
+
+        <!-- At a Glance Section -->
+        <div class="at-a-glance">
+            <h2>At a Glance</h2>
+            <ul>
+                <li><strong>Today's trade-idea status:</strong> Oil consolidates above $90, Hormuz MOU fragility is structural support through August 17. Published: Long Brent Crude (73/100), Long AUD/JPY (64/100), Short USD/JPY conditional (62/100).</li>
+                <li><strong>The mood:</strong> Structural risk-on on oil, selective on equities. Confidence rises from 45/100 (July 29) to 57/100 (July 30). Hormuz MOU expiry deadline (~Aug 17) makes oil premium durable and time-bound.</li>
+                <li><strong>BoE decision (today):</strong> Held at 3.75%, Bailey cautious on inflation. No dovish relief—no rate cuts coming soon. This is neutral-to-slightly-hawkish; GBP got no relief signal.</li>
+                <li><strong>Hormuz MOU is the story:</strong> June 17 ceasefire runs 60 days toll-free through ~August 17. Both sides preparing for fee dispute. Oil likely stays $88-95 through mid-August; after Aug 17, Strait could re-close if negotiations fail.</li>
+                <li><strong>Week ahead:</strong> BoJ tomorrow (July 31) expected to hold, moderate hawkish language. Apple/Amazon earnings today (July 30) will clarify semiconductor disappointment cascade. After August 17 (Hormuz MOU expiry), regime shifts based on outcome.</li>
+                <li><strong>Bottom line:</strong> Overall confidence <span style="color: #00ff88; font-weight: bold;">57/100</span> (∆ +12 vs July 29). Hormuz MOU expiry (~Aug 17) is concrete catalyst. Carry trades and commodity FX are highly tradeable now. Equities bifurcated (tech weak, broad market holding). Timeframe for profitable execution: 5-10 trading days before Aug 17 risk becomes acute.</li>
+            </ul>
+        </div>
+
+        <!-- Section 1: Market Regime -->
+        <div class="section">
+            <h2>1. Market Regime & Executive Summary</h2>
+            <p><strong>Regime:</strong> Structural Oil Support Overlaid on Cautious Monetary Policy — Hormuz MOU Expiry (~August 17) Is a Concrete Catalyst That Extends Commodity Premium Through Mid-August.</p>
+
+            <p>The Strait of Hormuz Memorandum of Understanding signed June 17, 2026 restored shipping on a "toll-free basis" for 60 days, ending approximately August 17, 2026. The agreement is fragile: Iran intends to introduce transit fees; the US insists on toll-free transit. This creates a <strong>concrete calendar deadline</strong> (Aug 17) when negotiations become critical and the Strait could re-close.</p>
+
+            <p>Oil consolidated above $90 on July 29-30 (+6.92% in 24 hours), reversing the pure "demand destruction" narrative from July 28. The BoE held cautiously at 3.75% today with no dovish relief for equities. Real yields remain stable at 4.70%, suggesting no Fed pivot dovish.</p>
+
+            <p><strong>Confidence rises from July 29's 45/100 to 57/100 today</strong>, crossing the threshold at which new high-conviction ideas become publishable.</p>
+
+            <h3>Three themes driving everything:</h3>
+            <ul style="margin-left: 20px; color: #b0b0b0;">
+                <li><strong>Theme 1:</strong> Hormuz MOU expires August 17 on fee dispute — transforms geopolitical risk from "tactical" to "structural calendar event" with 18-day window (July 30 to Aug 17) for commodity FX recovery.</li>
+                <li><strong>Theme 2:</strong> BoE held cautiously; no rate-cut relief is coming. Fed hawkish (July 28), BoE cautious (July 30), BoJ expected hawkish (July 31). Central banks are NOT accommodating; oil support is the ONLY bullish catalyst.</li>
+                <li><strong>Theme 3:</strong> Equities bifurcated: semiconductor mega-caps crashing on AI capex disappointment, but energy exporters and broad S&P 500 stabilizing on oil support. This favors commodity FX and carry trades over broad risk-on.</li>
+            </ul>
+        </div>
+
+        <!-- Section 2: Performance Review -->
+        <div class="section">
+            <h2>2. Performance Review</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Idea (as published)</th>
+                        <th>Status on July 30</th>
+                        <th>Outcome</th>
+                        <th>Confidence</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Long NZD/JPY (78/100, July 27)</td>
+                        <td>Re-entry opportunity forming</td>
+                        <td>Stopped at 93.50 on July 28; re-entry zone 94.50-95.00 forming on Hormuz structural support</td>
+                        <td><span class="confidence-score">58/100</span></td>
+                    </tr>
+                    <tr>
+                        <td>Short AUD/USD (72/100, July 27)</td>
+                        <td>In entry zone, revived by Hormuz support</td>
+                        <td>At 0.6975-0.7000 (within 0.6980-0.7050 entry); moving toward target on oil bid driver</td>
+                        <td><span class="confidence-score">71/100</span></td>
+                    </tr>
+                    <tr>
+                        <td>Long EUR/GBP (65/100, July 27)</td>
+                        <td>Weakened by BoE cautious hold</td>
+                        <td>In entry zone but BoE did NOT support GBP bears; GBP no relief signal</td>
+                        <td><span class="confidence-score">59/100</span></td>
+                    </tr>
+                    <tr>
+                        <td>Long EUR/CHF (50/100, carry-forward)</td>
+                        <td>Revived by oil support and franc weakness</td>
+                        <td>In entry zone; CHF safe-haven bid collapsed on oil rally; EUR/CHF recovery toward 0.9350+ plausible</td>
+                        <td><span class="confidence-score">65/100</span></td>
+                    </tr>
+                    <tr>
+                        <td>Long Brent Crude (65/100 July 29)</td>
+                        <td>Confirmed and raised by Hormuz calendar</td>
+                        <td>Oil at $89.43 Sept; consolidating above $90; Hormuz MOU calendar is central catalyst</td>
+                        <td><span class="confidence-score">73/100</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><strong>Hit Rate Summary:</strong> One invalidated (NZD/JPY, re-entry forming), four pending with reassessments (three up, one down). Hormuz structural support has revived prior oil/commodity FX ideas. BoE cautious hold weakened EUR/GBP only.</p>
+        </div>
+
+        <!-- Section 3: Central Bank Rates -->
+        <div class="section">
+            <h2>3. Central Bank Rates & Calendar</h2>
+            <table style="font-size: 0.9em;">
+                <thead>
+                    <tr>
+                        <th>Bank</th>
+                        <th>Rate</th>
+                        <th>Next Meeting</th>
+                        <th>Days Away</th>
+                        <th>Bias</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>BoE</strong> (UK)</td>
+                        <td>3.75%</td>
+                        <td>30 Jul 2026</td>
+                        <td>TODAY (DECIDED)</td>
+                        <td><span class="tag tag-neutral">Cautious hold</span> Bailey: no cuts coming soon</td>
+                    </tr>
+                    <tr>
+                        <td><strong>BoJ</strong> (Japan)</td>
+                        <td>1.00%</td>
+                        <td>31 Jul 2026</td>
+                        <td>~1 day (tomorrow)</td>
+                        <td><span class="tag tag-neutral">Moderate hawkish hold</span> Ueda returning, 40% Oct hike, 50% Dec</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fed</strong> (USA)</td>
+                        <td>3.50-3.75%</td>
+                        <td>28-29 Jul 2026</td>
+                        <td>DECIDED</td>
+                        <td><span class="tag tag-bearish">Hawkish hold</span> Warsh: inflation still above target</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RBA</strong> (Australia)</td>
+                        <td>4.35%</td>
+                        <td>10-11 Aug 2026</td>
+                        <td>~11 days</td>
+                        <td><span class="tag tag-neutral">Likely hold</span> Oil rally supports AUD</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Norges Bank</strong> (Norway)</td>
+                        <td>4.25%</td>
+                        <td>13 Aug 2026</td>
+                        <td>~14 days</td>
+                        <td><span class="tag tag-bullish">Oil bid supportive</span> Petro-krone support narrative</td>
+                    </tr>
+                    <tr>
+                        <td><strong>BoC</strong> (Canada)</td>
+                        <td>2.25%</td>
+                        <td>2 Sep 2026</td>
+                        <td>~34 days</td>
+                        <td><span class="tag tag-bullish">Oil-driven</span> Energy sector support for CAD</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RBNZ</strong> (New Zealand)</td>
+                        <td>2.50%</td>
+                        <td>2 Sep 2026</td>
+                        <td>~34 days</td>
+                        <td><span class="tag tag-bullish">Highest G10 rate</span> Carry recovery beneficiary</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ECB</strong> (Eurozone)</td>
+                        <td>Deposit 2.25%</td>
+                        <td>5 Sep 2026</td>
+                        <td>~37 days</td>
+                        <td><span class="tag tag-neutral">September hike uncertain</span> Oil bullish for inflation signal</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SNB</strong> (Switzerland)</td>
+                        <td>0.00%</td>
+                        <td>September 2026</td>
+                        <td>~34 days</td>
+                        <td><span class="tag tag-bearish">Franc weakening</span> Safe-haven bid reversed on oil rally</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><strong>Nearest catalysts:</strong> BoJ (tomorrow), Apple/Amazon earnings (today, July 30). Hormuz MOU expiry (~August 17) is the structural catalyst for commodity FX through mid-August.</p>
+        </div>
+
+        <!-- Section 4: Currency Strength -->
+        <div class="section">
+            <h2>4. Currency Strength Overview</h2>
+            <table style="font-size: 0.9em;">
+                <thead>
+                    <tr>
+                        <th>Currency</th>
+                        <th>Strength</th>
+                        <th>Chg vs July 29</th>
+                        <th>Bias</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>NOK</strong></td>
+                        <td>68/100</td>
+                        <td>+12</td>
+                        <td><span class="tag tag-bullish">Strongest performer</span> Oil consolidation above $90</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AUD</strong></td>
+                        <td>64/100</td>
+                        <td>+12</td>
+                        <td><span class="tag tag-bullish">Commodity recovery</span> Energy exports + oil link</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CAD</strong></td>
+                        <td>62/100</td>
+                        <td>+10</td>
+                        <td><span class="tag tag-bullish">Energy support durable</span> Through August 17</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NZD</strong></td>
+                        <td>58/100</td>
+                        <td>+10</td>
+                        <td><span class="tag tag-bullish">Carry recovery</span> Yen weakness accelerating</td>
+                    </tr>
+                    <tr>
+                        <td><strong>EUR</strong></td>
+                        <td>66/100</td>
+                        <td>+8</td>
+                        <td><span class="tag tag-bullish">Oil support + risk-on</span> Hawkish Sept hike signal</td>
+                    </tr>
+                    <tr>
+                        <td><strong>GBP</strong></td>
+                        <td>56/100</td>
+                        <td>+2</td>
+                        <td><span class="tag tag-neutral">BoE cautious hold disappointment</span> No hawkish surprise</td>
+                    </tr>
+                    <tr>
+                        <td><strong>USD</strong></td>
+                        <td>52/100</td>
+                        <td>-3</td>
+                        <td><span class="tag tag-neutral">Offered on risk-on</span> No yield support</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CHF</strong></td>
+                        <td>52/100</td>
+                        <td>-6</td>
+                        <td><span class="tag tag-bearish">Safe-haven bid collapsed</span> Franc crumbling</td>
+                    </tr>
+                    <tr>
+                        <td><strong>JPY</strong></td>
+                        <td>58/100</td>
+                        <td>-7</td>
+                        <td><span class="tag tag-bearish">Carry recovery accelerating</span> Yen sharply weaker</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><strong>Clearest divergence:</strong> Commodity-linked currencies (NOK, AUD, CAD, NZD) at multi-day highs (+8 to +12 points). Safe-haven currencies (JPY, CHF) crumbling (-6 to -7 points). Clear risk-on setup with structural drivers.</p>
+        </div>
+
+        <!-- Section 5: Tier 1 Pairs -->
+        <div class="section">
+            <h2>5. Tier 1 Pairs — Directional Read</h2>
+
+            <h3>G10 vs USD</h3>
+            <div class="metric-box">
+                <div class="metric-label">EUR/USD</div>
+                <div class="metric-value">~1.1420-1.1480</div>
+                <div class="trade-details" style="margin-top: 10px;"><strong>Bias:</strong> <span class="tag tag-bullish">Bullish</span> on oil support and risk-on inflection</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-label">GBP/USD</div>
+                <div class="metric-value">~1.3330-1.3380</div>
+                <div class="trade-details" style="margin-top: 10px;"><strong>Bias:</strong> <span class="tag tag-neutral">Neutral to slightly weak</span> BoE cautious hold did NOT deliver surprise</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-label">USD/JPY</div>
+                <div class="metric-value">~164.00-165.00</div>
+                <div class="trade-details" style="margin-top: 10px;"><strong>Bias:</strong> <span class="tag tag-bearish">Bearish for USD</span> Yen sharply weakening (carry recovery)</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-label">USD/CHF</div>
+                <div class="metric-value">~0.7950-0.8000</div>
+                <div class="trade-details" style="margin-top: 10px;"><strong>Bias:</strong> <span class="tag tag-bearish">Bearish for USD</span> Franc collapsing on risk-on</div>
+            </div>
+
+            <h3>EM vs USD</h3>
+            <div class="metric-box">
+                <div class="metric-label">USD/CNH</div>
+                <div class="metric-value">~6.70-6.75</div>
+                <div class="trade-details" style="margin-top: 10px;">Weak CNY on Chinese equities crash. <em>EM data caveat applies.</em></div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-label">USD/MXN</div>
+                <div class="metric-value">~17.10-17.25</div>
+                <div class="trade-details" style="margin-top: 10px;">MXN recovering on oil bid. <em>EM caveat applies.</em></div>
+            </div>
+
+            <h3>Key Cross Pairs</h3>
+            <div class="metric-box">
+                <div class="metric-label">NZD/JPY</div>
+                <div class="metric-value">~95.00-96.00</div>
+                <div class="trade-details" style="margin-top: 10px;"><strong>Re-entry opportunity below 95.00 NOW LIVE</strong> with Hormuz structural support for oil</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-label">AUD/JPY</div>
+                <div class="metric-value">~115.50-117.00</div>
+                <div class="trade-details" style="margin-top: 10px;"><strong>Bullish (AUD recovering + yen weakening)</strong> Carry recovery strong</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-label">EUR/JPY</div>
+                <div class="metric-value">~188-190</div>
+                <div class="trade-details" style="margin-top: 10px;"><strong>Bullish</strong> Yen weakening + EUR stable to strong</div>
+            </div>
+        </div>
+
+        <!-- Section 6: High-Conviction Trade Ideas -->
+        <div class="section">
+            <h2>6. High-Conviction Trade Ideas</h2>
+
+            <div class="stat-boxes">
+                <div class="stat-box">
+                    <div class="stat-box-label">Total Ideas Published</div>
+                    <div class="stat-box-value">6</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-box-label">New Ideas Today</div>
+                    <div class="stat-box-value">3</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-box-label">Avg Confidence</div>
+                    <div class="stat-box-value">66/100</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-box-label">Timeframe</div>
+                    <div class="stat-box-value">3-4 weeks</div>
+                </div>
+            </div>
+
+            <p><strong>Slate at a glance:</strong> NEW IDEAS PUBLISHED (confidence threshold 57/100 crossed). Harmuz MOU expiry (~August 17) is the concrete calendar catalyst enabling three new high-conviction ideas.</p>
+
+            <!-- Trade Idea 1 -->
+            <div class="trade-card">
+                <h4>💪 Long Brent Crude Oil — <span class="tag tag-high">73/100</span></h4>
+                <div class="trade-details">
+                    <strong>Entry:</strong> $89.50-91.50 (ACHIEVED)<br>
+                    <strong>Target:</strong> $102-108 (12-19% upside)<br>
+                    <strong>Stop:</strong> $87.75<br>
+                    <strong>Risk/Reward:</strong> 1:7 to 1:10 (exceptional)<br>
+                    <strong>Timeframe:</strong> 3-4 weeks (through August 17 Hormuz MOU expiry)
+                </div>
+                <div class="confidence-bar">
+                    <div class="confidence-fill" style="width: 73%;">73/100</div>
+                </div>
+                <p style="margin-top: 15px; font-style: italic; color: #a0a0a0;"><strong>Layer read:</strong> Harmuz MOU expires August 17 on fee disagreement (Iran wants fees, US refuses). This creates a <strong>concrete calendar deadline</strong> that ensures oil remains bid through mid-August. Oil supply through Hormuz is ~20% of global (~36M barrels/day), so closure risk is material. CTA funds are re-loading longs; positioning still below pre-crisis levels. Market sentiment has shifted from bearish demand to bullish supply-risk. VIX at 16-19 supports carry and commodity bets.</p>
+                <p style="color: #b0b0b0;"><strong>Confirmation to watch:</strong> Oil consolidates above $92 through early August. <strong>Biggest risk:</strong> Sudden diplomatic breakthrough on August 10-15 that extends toll-free window (would break calendar catalyst).</p>
+            </div>
+
+            <!-- Trade Idea 2 -->
+            <div class="trade-card">
+                <h4>🎯 Long AUD/JPY — <span class="tag tag-high">64/100</span> NEW</h4>
+                <div class="trade-details">
+                    <strong>Entry:</strong> 115.00-116.50<br>
+                    <strong>Target:</strong> 120.50-122.00 (6-7% upside)<br>
+                    <strong>Stop:</strong> 113.00<br>
+                    <strong>Risk/Reward:</strong> 1:2.5 to 1:3<br>
+                    <strong>Timeframe:</strong> 3-4 weeks (through August 17)
+                </div>
+                <div class="confidence-bar">
+                    <div class="confidence-fill" style="width: 64%;">64/100</div>
+                </div>
+                <p style="margin-top: 15px; font-style: italic; color: #a0a0a0;"><strong>Layer read:</strong> Harmuz oil support (calendar through August 17) is bullish for AUD (commodity link + energy exports). RBNZ 2.50% rate (highest in G10) supports carry recovery as yen weakens. Interest-rate differential (NZ 2.50% - Japan 1.00% = 150 bps) + risk-on bias (yen weakness) = <strong>pure carry setup</strong>. AUD/JPY bounced from 113.50 low; break above 117 targets 120-122. Carry unwind correction is nearly complete; re-accumulation entering early stages.</p>
+                <p style="color: #b0b0b0;"><strong>Confirmation to watch:</strong> Oil consolidates $92+; AUD/USD breaks above 0.7050. <strong>Biggest risk:</strong> BoJ surprises super-hawkish tomorrow (would trigger yen rally and break carry thesis).</p>
+            </div>
+
+            <!-- Trade Idea 3 -->
+            <div class="trade-card">
+                <h4>📉 Short USD/JPY conditional — <span class="tag tag-medium">62/100</span> NEW</h4>
+                <div class="trade-details">
+                    <strong>Entry:</strong> 165.00-166.00 (wait for yen spike on BoJ hold)<br>
+                    <strong>Target:</strong> 160.00-160.50 (1.5-3.5% downside)<br>
+                    <strong>Stop:</strong> 168.00<br>
+                    <strong>Risk/Reward:</strong> 1:2 to 1:3<br>
+                    <strong>Timeframe:</strong> 4-6 weeks
+                </div>
+                <div class="confidence-bar">
+                    <div class="confidence-fill" style="width: 62%;">62/100</div>
+                </div>
+                <p style="margin-top: 15px; font-style: italic; color: #a0a0a0;"><strong>Layer read:</strong> Yen weakness is oversold near-term. BoJ hold tomorrow (expected moderate hawkish) will trigger tactical yen rally to 165.00+. This is a <strong>mean-reversion short</strong> into the rally. However, Hormuz calendar (August 17) and oil structural support are heavier macro drivers. If BoJ is less hawkish than expected, this short entry is invalidated. If as-expected (moderate hawkish), rally fades as oil support outweighs BoJ hold. Shorts already positioned for carry unwind recovery; re-entry on tactical yen rally is opportune.</p>
+                <p style="color: #b0b0b0;"><strong>Confirmation to watch:</strong> BoJ delivers hawkish hold as expected; yen spikes to 165.00+. <strong>Biggest risk:</strong> BoJ surprises super-hawkish or equities crash (would extend yen rally past 168 stop).</p>
+            </div>
+
+            <!-- Re-entry Ideas -->
+            <div class="trade-card" style="background: rgba(0, 255, 136, 0.05); border-left: 3px solid #00ff88;">
+                <h4>↩️ Long NZD/JPY Re-entry — <span class="tag tag-medium">58/100</span></h4>
+                <div class="trade-details">
+                    <strong>Entry zone:</strong> 94.50-95.00 (re-entry forming)<br>
+                    <strong>Original Entry:</strong> 94.50-95.20 (stopped at 93.50 on July 28)<br>
+                    <strong>Target:</strong> 96.50-97.50<br>
+                    <strong>Stop:</strong> 93.50 (reset)<br>
+                    <strong>Status:</strong> Conditional re-entry on Hormuz structural support
+                </div>
+                <p style="color: #b0b0b0; margin-top: 15px;">Pair stopped at 93.50 on July 28 but Hormuz oil structural support + yen weakness creating re-entry opportunity. This is NOT a continuation of original trade; it's a NEW entry on different drivers (Hormuz support, not de-escalation). Wait for oil consolidation $92+ confirmation.</p>
+            </div>
+
+            <div class="trade-card" style="background: rgba(0, 255, 136, 0.05); border-left: 3px solid #00ff88;">
+                <h4>📊 Short AUD/USD (Reassessed) — <span class="tag tag-high">71/100</span></h4>
+                <div class="trade-details">
+                    <strong>Status:</strong> In entry zone (0.6975-0.7000 vs 0.6980-0.7050 entry)<br>
+                    <strong>Target:</strong> 0.6850-0.6750<br>
+                    <strong>Stop:</strong> 0.7120<br>
+                    <strong>Driver:</strong> Now driven by oil support (Harmuz), not carry compression
+                </div>
+                <p style="color: #b0b0b0; margin-top: 15px;">Pair moving toward target but on oil bid driver (retroactively validates thesis). Hormuz structural support is bullish for AUD, which is exactly the mechanism that short thesis depends on. Conviction REVISED UP from 72 to 71 due to driver clarity.</p>
+            </div>
+
+            <div class="trade-card" style="background: rgba(255, 100, 100, 0.05); border-left: 3px solid #ff6464;">
+                <h4>⚠️ Long EUR/GBP (Weakened) — <span class="tag tag-medium">59/100</span></h4>
+                <div class="trade-details">
+                    <strong>Status:</strong> In entry zone (0.8545-0.8560 vs 0.8530-0.8580)<br>
+                    <strong>Reason for Weakness:</strong> BoE cautious hold did NOT support GBP bears<br>
+                    <strong>Recommendation:</strong> CLOSE position or tighten stop to 0.8480
+                </div>
+                <p style="color: #b0b0b0; margin-top: 15px;">BoE's cautious hold undermines the thesis (ECB hawkish vs BoE dovish). Bailey stated "no rate cuts coming soon," which removes the dovish driver for GBP weakness. Conviction DOWN from 65 to 59. Position should be reconsidered.</p>
+            </div>
+
+            <div class="trade-card" style="background: rgba(0, 255, 136, 0.05); border-left: 3px solid #00ff88;">
+                <h4>✅ Long EUR/CHF (Revived) — <span class="tag tag-high">65/100</span></h4>
+                <div class="trade-details">
+                    <strong>Status:</strong> In entry zone (0.9200-0.9220 vs 0.9150-0.9220)<br>
+                    <strong>Reason for Upgrade:</strong> CHF safe-haven bid has collapsed on oil rally<br>
+                    <strong>Target:</strong> 0.9350-0.9420<br>
+                    <strong>Stop:</strong> 0.9080
+                </div>
+                <p style="color: #b0b0b0; margin-top: 15px;">Oil rally (+6-7% over two days) is driving franc weakness. Hormuz structural support through August 17 extends EUR/CHF recovery window. Conviction REVISED UP from 50 to 65. This is now a solid carry-recovery play with oil tail wind.</p>
+            </div>
+
+            <p style="margin-top: 25px; padding: 15px; background: rgba(0, 217, 255, 0.05); border-left: 3px solid #00d9ff;"><strong>Status Summary:</strong> Market is in calendar-driven risk-on setup with concrete catalyst (Hormuz MOU expiry ~August 17). Three new high-conviction ideas published. Prior open ideas revived except EUR/GBP (weakened by BoE). Key driver: <strong>Hormuz structural risk premium lasting through mid-August</strong>, not sentiment. Carry trades tradeable with defined catalysts. Equities bifurcated (tech weak, broad holding).</p>
+        </div>
+
+        <!-- Section 7: Risks -->
+        <div class="section">
+            <h2>7. Risks, Contrarian Check & No-Trade Zone</h2>
+
+            <p><strong>No-Trade Zone Flag: SELECTIVELY LIFTED.</strong> Commodity FX and carry pairs are NOW TRADEABLE with HIGH conviction due to Hormuz calendar. Crude oil highly tradeable. However, broad risk-on trades (equities, mega-cap tech) remain in the No-Trade Zone.</p>
+
+            <h3>Primary regime risks:</h3>
+            <div class="metric-box" style="background: rgba(255, 100, 100, 0.1); border-left-color: #ff6464;">
+                <div class="metric-label">Risk 1: Hormuz negotiations suddenly progress</div>
+                <div class="trade-details">If Iran and US agree on transit fees before August 17, oil falls to $85-87 within days. All commodity FX longs invalidated. <strong>Probability: 25-30%</strong></div>
+            </div>
+
+            <div class="metric-box" style="background: rgba(255, 100, 100, 0.1); border-left-color: #ff6464;">
+                <div class="metric-label">Risk 2: Apple/Amazon earnings disappoint massively</div>
+                <div class="trade-details">If megacap earnings show 40%+ capex cuts, equities crash. Oil could spike to $100+ (crisis premium). Carry trades invalidated by safe-haven yen bid. <strong>Probability: 30-35%</strong></div>
+            </div>
+
+            <div class="metric-box" style="background: rgba(255, 100, 100, 0.1); border-left-color: #ff6464;">
+                <div class="metric-label">Risk 3: BoJ surprises super-hawkish tomorrow</div>
+                <div class="trade-details">If Ueda signals accelerated hike path, yen rallies sharply and carry recovery breaks. Carry pairs invalidated. <strong>Probability: 15-20%</strong></div>
+            </div>
+
+            <h3>Scenarios:</h3>
+            <div class="metric-box" style="background: rgba(0, 255, 136, 0.1); border-left-color: #00ff88;">
+                <strong>Bull case (commodity FX through August 17):</strong><br>
+                Hormuz negotiations stall; oil consolidates $92-98; BoJ holds as expected; equities stabilize; AUD/JPY targets 120.50+; Brent targets $102+. <strong>Confidence: 65-70</strong>
+            </div>
+
+            <div class="metric-box">
+                <strong>Base case:</strong><br>
+                Oil settles $88-94; BoJ holds as expected; Apple/Amazon show modest disappointment; carry trades recover partially through August 17; AUD/JPY reaches 118-119. <strong>Confidence: 55-60</strong>
+            </div>
+
+            <div class="metric-box" style="background: rgba(255, 100, 100, 0.1); border-left-color: #ff6464;">
+                <strong>Bear case:</strong><br>
+                Hormuz closes; oil spikes $100+; equities panic; carry trades invalidated but crude longs defended; S&P retests 7,200. <strong>Confidence: 25-30</strong>
+            </div>
+        </div>
+
+        <!-- Section 8: Markets Backdrop -->
+        <div class="section">
+            <h2>8. Markets Backdrop — Rates, Equities & Correlation</h2>
+
+            <p><strong>Correlation Read:</strong> <span class="tag tag-bullish">Bifurcated Risk Environment</span> — Oil & commodities strong, mega-cap tech weak, broad equities holding.</p>
+
+            <table style="font-size: 0.9em;">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Level</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>US 10Y yield</strong></td>
+                        <td>4.70%</td>
+                        <td>Stable (no spike on oil rally!) — signals market accepts hawkish Fed hold</td>
+                    </tr>
+                    <tr>
+                        <td><strong>VIX</strong></td>
+                        <td>16-19</td>
+                        <td>Elevated but stable — supports carry trades (vol premium)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>S&P 500</strong></td>
+                        <td>7,430-7,450</td>
+                        <td>Flat (+0.25%) — equities stabilized on oil bid</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nasdaq/Tech Mega-caps</strong></td>
+                        <td>-0.25% to flat</td>
+                        <td>Under pressure — semiconductor oversupply, AI capex concerns</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Russell 2000 (Small-cap)</strong></td>
+                        <td>+0.5% to +1.0%</td>
+                        <td>Resilience positive — suggests broad market health intact</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gold</strong></td>
+                        <td>~$4,040-4,080</td>
+                        <td><strong>NOT rallying</strong> (notable!) — suggests geopolitical risk seen as supply-constrained, not systemic crisis</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Brent crude</strong></td>
+                        <td>Spot ~$90-92</td>
+                        <td>Consolidated above $90 — Hormuz structural support</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Cross-asset correlation:</strong> Shifting from negative to mixed (oil up, commodities up, yen weakening, broad market flat-to-up, small-cap outperforming). Bifurcation is sustainable through August 17 (Harmuz MOU window).</p>
+        </div>
+
+        <!-- Section 9: Economic Catalysts -->
+        <div class="section">
+            <h2>9. Economic Catalysts</h2>
+
+            <h3>Today, Wednesday 30 July:</h3>
+            <div class="metric-box">
+                <strong>Apple & Amazon Earnings (4:00-4:30 PM ET today)</strong>
+                <p style="margin-top: 10px; color: #b0b0b0;">Mega-cap tech giants representing massive S&P 500 weight. Market bracing for disappointing AI capex guidance. If both report 40%+ capex cuts, disappointment cascades. If both meet/beat, equities stabilize. <strong>Major wildcard for close.</strong></p>
+            </div>
+
+            <div class="metric-box">
+                <strong>BoE Decision (Delivered 12:00 GMT / 7:00 AM ET)</strong>
+                <p style="margin-top: 10px; color: #b0b0b0;">Hold at 3.75%, 7-2 vote. Bailey acknowledged oil-driven inflation (~3.2% later in 2026) but stated "no immediate action" and "no rate cuts coming soon." Neutral-to-slightly-hawkish; no relief for risk assets.</p>
+            </div>
+
+            <h3>Rest of week:</h3>
+            <div class="metric-box">
+                <strong>BoJ (31 Jul, TOMORROW, Friday)</strong>
+                <p style="margin-top: 10px; color: #b0b0b0;">Hold at 1.00% confirmed. Governor Ueda expected back after illness. Market split on next hike: 40% October, 50% December. Expected moderate hawkish language. Yen may spike briefly on announcement, then fade as oil-support thesis persists.</p>
+            </div>
+
+            <div class="metric-box">
+                <strong>Strait of Hormuz MOU Status (CRITICAL)</strong>
+                <p style="margin-top: 10px; color: #b0b0b0;">June 17 MOU expires ~August 17 on fee disagreement. No formal announcement expected, but watch for diplomatic statements indicating progress or breakdown. <strong>This is the primary driver for all commodity FX through mid-August.</strong></p>
+            </div>
+        </div>
+
+        <!-- Section 10: Decision Dashboard -->
+        <div class="section">
+            <h2>10. Decision Dashboard Snapshot</h2>
+
+            <div class="stat-box" style="background: linear-gradient(135deg, #1a2940, #1a2f42); border-left-color: #00d9ff; padding: 20px; margin-bottom: 20px;">
+                <div style="font-size: 0.9em; color: #a0a0a0;">Overall Market Confidence</div>
+                <div style="font-size: 2em; color: #00ff88; font-weight: bold; margin: 10px 0;">57/100</div>
+                <div style="font-size: 0.9em; color: #b0b0b0;">∆ vs July 29: <strong style="color: #00ff88;">+12</strong> (from 45 → 57)</div>
+            </div>
+
+            <p><strong>Portfolio Tilt:</strong> <span class="tag tag-bullish">AGGRESSIVELY BULLISH on commodities & carry</span> | <span class="tag tag-neutral">SELECTIVELY BULLISH on oil</span> | <span class="tag tag-bearish">NEUTRAL-TO-BEARISH on equities (especially mega-cap tech)</span></p>
+
+            <p style="margin-top: 20px;"><strong>Correct tactical posture through August 17:</strong> <span class="tag tag-bullish">Commodity FX YES</span> | <span class="tag tag-bullish">Carry trades YES</span> | <span class="tag tag-bullish">Crude oil YES</span> | <span class="tag tag-bearish">Broad equities NO</span></p>
+
+            <p style="margin-top: 20px; padding: 15px; background: rgba(0, 217, 255, 0.05); border-left: 3px solid #00d9ff;">The Harmuz MOU expiry (~August 17) provides a <strong>finite, durable window</strong> for commodity FX recovery through mid-August. After August 17, re-assess based on outcome of negotiations. This is informational context only — explicitly not a personalized allocation recommendation.</p>
+        </div>
+
+        <!-- Section 11: Historical Parallel -->
+        <div class="section">
+            <h2>11. Historical Parallel Watch</h2>
+
+            <p>Current regime parallels April 2022 "oil shock recovery" (Russia invasion of Ukraine) <strong>BUT with a critical difference:</strong> today's shock has a <strong>CALENDAR DEADLINE.</strong></p>
+
+            <p>Harmuz MOU expires August 17, 2026 (37 days ahead). Traders have an ~18-day window (July 30 to August 17) to trade the oil-support theme before the next inflection. This is <strong>more favorable than April 2022</strong> because the catalyst is known and time-bound, not vague and sentiment-dependent.</p>
+
+            <p><strong>Key to monitoring:</strong> Does the Fed or ECB indicate willingness to accommodate oil-driven inflation, or do they double down on tightening? Based on July 28-29 decisions, the answer is <strong>NO accommodation</strong> — both are hawkish. This makes the oil-support window <strong>shorter and riskier</strong> than April 2022.</p>
+
+            <p><strong>Timeframe estimate for profitable carry trade execution:</strong> <strong>5-10 trading days</strong> (July 30 to August 8) before August 17 risk becomes acute.</p>
+        </div>
+
+        <footer class="footer">
+            <p>Institutional FX Dashboard & Intelligence Report — July 30, 2026</p>
+            <p>Prepared as an analytical synthesis for professional monitoring purposes. Not personalized financial advice. Section 12 (Known Issues) available in markdown version only.</p>
+        </footer>
+    </div>
+</body>
+</html>

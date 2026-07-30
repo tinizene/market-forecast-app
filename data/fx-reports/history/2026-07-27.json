@@ -372,7 +372,7 @@
         },
         "totalConfidence": 78,
         "confidenceDelta": "NEW this run, recovered from July 24 invalidation score of -invalid; if we had scored July 24's invalidation it would have been ~15/100 on panic, now re-enabled to 78 on recovery and de-escalation confirmation",
-        "confirmationCriteria": null
+        "confirmationCriteria": "BoJ decision (30-31 Jul) must not include hawkish intervention jawboning; yen must stay offered through 96.50; equities must hold recovery gains above 7,400 (S&P 500)."
       },
       {
         "headline": "Idea 2: Short AUD/USD — Bearish (FRESH IDEA, RBA hawkish hold vs Fed dovish-patience narrative).",
@@ -425,7 +425,7 @@
         },
         "totalConfidence": 72,
         "confidenceDelta": "NEW this run; this is a \"Fed dovish hold confirms carry compression\" trade, highest conviction on the Fed event next week",
-        "confirmationCriteria": null
+        "confirmationCriteria": "Fed decision on 28-29 Jul must confirm dovish hold (no new tightening guidance); RBA must issue cautious forward guidance (Aug hold expected); AUD must not rally above 0.7050 into Fed event."
       },
       {
         "headline": "Idea 3: Long EUR/GBP — Bullish (FRESH IDEA, ECB hawkish messaging vs BoE dovish CPI narrative).",
@@ -478,7 +478,7 @@
         },
         "totalConfidence": 65,
         "confidenceDelta": "NEW this run; this is a \"ECB September hike confidence grows\" trade, third-most-confident on the slate",
-        "confirmationCriteria": null
+        "confirmationCriteria": "BoE decision (30 Jul) must not signal any hawkish surprise; if Bailey hints at future hikes, this idea is invalidated. ECB messaging (via Lagarde rhetoric in media) must remain hawkish on September hikes. EUR must hold above 0.8550."
       }
     ],
     "excluded": null

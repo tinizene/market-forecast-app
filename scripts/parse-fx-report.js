@@ -171,14 +171,25 @@ function extractPerformanceReview(section) {
   // Capture the whole line, plus the date-range parenthetical the label carries in
   // newer reports. Stopping at the first period truncated the summary mid-number,
   // since it routinely quotes prices ("stopped out at ~93.50").
-  const hitRateMatch = section.raw.match(/Running Hit Rate\s*([^\n:]*):?\*{0,2}\s*([^\n]+)/i);
-  const range = hitRateMatch ? hitRateMatch[1].replace(/\*/g, '').trim() : '';
-  return {
-    ideas,
-    hitRateSummary: hitRateMatch
-      ? stripMd(((range ? range + ': ' : '') + hitRateMatch[2]).trim())
-      : null,
-  };
+  const hitRateMatch = section.raw.match(/Running Hit Rate\s*([^\n:]*):?\*{0,2}([^\n]*)\n?([\s\S]*)/i);
+  let summary = null;
+  if (hitRateMatch) {
+    const range = hitRateMatch[1].replace(/\*/g, '').trim();
+    let body = hitRateMatch[2].trim();
+    // 30 Jul puts the summary on the lines BELOW the label as a bullet list rather
+    // than inline. Gather those bullets instead of grabbing only the first one.
+    if (!body) {
+      const bullets = [];
+      for (const line of hitRateMatch[3].split('\n')) {
+        if (/^\s*[-*]\s+/.test(line)) bullets.push(line.replace(/^\s*[-*]\s+/, '').trim());
+        else if (bullets.length) break;
+        else if (line.trim()) break;
+      }
+      body = bullets.join(' / ');
+    }
+    if (body) summary = stripMd(((range ? range + ': ' : '') + body).trim());
+  }
+  return { ideas, hitRateSummary: summary };
 }
 
 function extractGenericTableSection(section) {
@@ -202,27 +213,73 @@ function extractTier1Pairs(section) {
   return { format: 'bullets', items };
 }
 
+// Setup fields arrive either as a two-column table (27 Jul) or as a bullet list
+// under a "**Setup:**" heading (30 Jul): "- **Entry zone:** 115.00-116.50".
+function parseFieldBullets(chunk) {
+  const fields = {};
+  const re = /^\s*[-*]\s+\*\*([^*:]+):?\*\*[:\s]*(.+)$/gm;
+  let m;
+  while ((m = re.exec(chunk))) {
+    const key = m[1].trim();
+    if (key) fields[key] = stripMd(m[2].trim());
+  }
+  return fields;
+}
+
+// The six-pillar score arrives either as a table (27 Jul) or inline in the prose
+// layer read (30 Jul): "**Macro (35%, score 32/35):** reasoning...". Normalised to
+// the same {component, weight, contribution, reasoning} row shape either way, so
+// the free score bars on the Research Desk keep rendering.
+function parseInlineScoring(chunk) {
+  const re = /\*\*([A-Za-z][A-Za-z /&-]*?)\s*\((\d+)%\s*,\s*score\s*([\d.]+\s*\/\s*[\d.]+)\)\s*:?\*\*\s*([\s\S]*?)(?=\*\*[A-Za-z][A-Za-z /&-]*?\s*\(\d+%\s*,\s*score|\n\*\*Total Confidence|$)/g;
+  const rows = [];
+  let m;
+  while ((m = re.exec(chunk))) {
+    rows.push({
+      component: `${m[1].trim()} (${m[2]}%)`,
+      weight: `${m[2]}%`,
+      contribution: m[3].replace(/\s+/g, ''),
+      reasoning: stripMd(m[4].trim()).slice(0, 800),
+    });
+  }
+  return rows;
+}
+
 function extractTradeIdeas(section) {
   if (!section) return null;
   const raw = section.raw;
-  const ideaSplitRe = /\*\*Idea\s+\d+[:.][^\n*]*\*\*/g;
+  // Idea headings have appeared as "**Idea 1: ...**" (27 Jul) and as
+  // "### New Idea #1: ..." (30 Jul). Match both.
+  const ideaSplitRe = /(?:\*\*(?:New\s+)?Idea\s*#?\s*\d+\s*[:.][^\n*]*\*\*|^#{2,4}\s*(?:New\s+)?Idea\s*#?\s*\d+\s*[:.][^\n]*)/gim;
   const marks = [];
   let m;
-  while ((m = ideaSplitRe.exec(raw))) marks.push({ index: m.index, headline: stripMd(m[0]) });
+  while ((m = ideaSplitRe.exec(raw))) {
+    marks.push({ index: m.index, headline: stripMd(m[0].replace(/^#+\s*/, '').trim()) });
+  }
 
   const ideas = marks.map((mark, i) => {
-    const end = i + 1 < marks.length ? marks[i + 1].index : raw.length;
+    // Bound the last idea at the next non-idea heading ("### Considered and
+    // Excluded This Run") so its chunk does not swallow the rest of the section.
+    let end = i + 1 < marks.length ? marks[i + 1].index : raw.length;
+    if (i + 1 === marks.length) {
+      const tail = raw.slice(mark.index + 1).search(/\n#{2,4}\s+/);
+      if (tail !== -1) end = mark.index + 1 + tail;
+    }
     const chunk = raw.slice(mark.index, end);
     const tables = parseAllTables(chunk).map(normalizeTable);
     const keyValueTables = tables.filter((t) => t.type === 'keyValue');
     const mergedFields = Object.assign({}, ...keyValueTables.map((t) => t.pairs));
+    const fields = Object.keys(mergedFields).length ? mergedFields : parseFieldBullets(chunk);
     const scoreTable = tables.find((t) => t.type === 'rows');
+    const inlineRows = scoreTable ? null : parseInlineScoring(chunk);
     const confMatch = chunk.match(/Total Confidence:?\*{0,2}\s*(\d+)\s*\/\s*100[\s*]*(?:\(([^)]*)\))?/i);
-    const confirmMatch = chunk.match(/Confirmation Criteria[^:]*:?\*{0,2}\s*([\s\S]*?)(?=\n\||\n\n\*\*|\|---|\n\*\*Total Confidence)/i);
+    const confirmMatch = chunk.match(/Confirmation (?:Criteria|to watch(?:\s+for)?)[^:]*:?\*{0,2}\s*([\s\S]*?)(?=\n\||\n\n\*\*|\|---|\n\*\*Total Confidence|\*\*Biggest risk)/i);
     return {
       headline: mark.headline,
-      fields: mergedFields,
-      scoring: scoreTable ? { headers: scoreTable.headers, rows: scoreTable.rows } : null,
+      fields,
+      scoring: scoreTable
+        ? { headers: scoreTable.headers, rows: scoreTable.rows }
+        : (inlineRows && inlineRows.length ? { headers: ['Component', 'Weight', 'Contribution', 'Reasoning'], rows: inlineRows } : null),
       totalConfidence: confMatch ? parseInt(confMatch[1], 10) : null,
       confidenceDelta: confMatch && confMatch[2] ? confMatch[2].trim() : null,
       confirmationCriteria: confirmMatch ? stripMd(confirmMatch[1].trim()).slice(0, 600) : null,
@@ -268,39 +325,51 @@ function extractContrarianCheck(section) {
   };
 }
 
+// Classify a No-Trade Zone verdict clause into flagged / partial / clear.
+// "Partial" covers any verdict that lifts the zone for part of the book only
+// ("partially lifted", "selectively lifted") — the zone still binds elsewhere, so
+// it must not read as a blanket all-clear. Returns null when the wording is
+// genuinely unrecognised, which is honest and visible rather than a wrong boolean.
+function classifyNoTradeVerdict(verdict) {
+  const t = String(verdict || '').toLowerCase();
+  if (/partial|selective|mixed|bifurcat/.test(t)) return 'partial';
+  const lead = t.match(/^\**\s*(yes|no|reinstated|reimposed|lifted|clear\w*|active|in\s+effect)\b/);
+  if (lead) {
+    const word = lead[1].replace(/\s+/g, ' ');
+    if (/^(yes|reinstated|reimposed|active|in effect)$/.test(word)) return 'flagged';
+    return 'clear';
+  }
+  if (/\breinstated|reimposed|remains? in effect\b/.test(t)) return 'flagged';
+  if (/\blifted\b/.test(t)) return 'clear';
+  return null;
+}
+
 function extractNoTradeZone(section) {
   if (!section) return null;
 
-  // Newer template states the verdict inline, e.g.
-  //   **No-Trade Zone Flag: YES — REINSTATED as of July 28, 2026.** ...
-  //   **No-Trade Zone Flag: NO — LIFTED as of July 27.** ...
-  //   **No-Trade Zone Flag: PARTIALLY LIFTED.** ...
-  // This must be checked FIRST: the older regex below would otherwise match the
-  // literal "No" in "No-Trade" and report the exact opposite of the truth.
-  const labelled = section.raw.match(
-    /no-?trade\s+zone[^:\n]*:\s*\**\s*(yes|no|partial\w*|lifted|reinstated)\b/i
-  );
+  // Newer template states the verdict inline. Every run so far has invented new
+  // wording for it:
+  //   **No-Trade Zone Flag: NO — LIFTED as of July 27.**        (27 Jul)
+  //   **No-Trade Zone Flag: YES — REINSTATED as of July 28.**   (28 Jul)
+  //   **No-Trade Zone Flag: PARTIALLY LIFTED.**                 (29 Jul)
+  //   **No-Trade Zone Flag: SELECTIVELY LIFTED.**               (30 Jul)
+  // So do NOT enumerate the vocabulary in the match — grab whatever clause is
+  // there and classify it afterwards. Enumerating meant an unrecognised verdict
+  // fell through to the legacy pattern below, which matches the literal "No" in
+  // "No-Trade" and reports the exact opposite of the truth.
+  const labelled = section.raw.match(/no-?trade\s+zone[^:\n]*:\s*\**\s*([^\n]+)/i);
   if (labelled) {
-    const word = labelled[1].toLowerCase();
-    // "Partially lifted" means the zone still binds part of the book — treat it as
-    // flagged so the caution surfaces, but label it distinctly so the UI does not
-    // overstate a blanket stand-down.
-    const status = /^partial/.test(word)
-      ? 'partial'
-      : (word === 'yes' || word === 'reinstated') ? 'flagged' : 'clear';
+    // The verdict runs to the end of its own sentence. Split it off the body so the
+    // prose that follows reads as prose — otherwise the morning brief quotes
+    // "LIFTED." as the day's biggest risk.
+    const rest = labelled[1];
+    const clause = rest.match(/^([\s\S]{0,160}?[.!?])(?=\s|\*|$)/);
+    const verdict = stripMd((clause ? clause[1] : rest).trim());
+    const body = clause ? rest.slice(clause[0].length) + section.raw.slice(labelled.index + labelled[0].length) : '';
 
-    // The verdict runs to the end of its own sentence ("NO — LIFTED as of July 27.",
-    // "PARTIALLY LIFTED."). Split it off the body so the prose that follows reads as
-    // prose — otherwise the morning brief quotes "LIFTED." as the day's biggest risk.
-    const rest = section.raw.slice(labelled.index + labelled[0].length);
-    const clause = rest.match(/^[\s*]*([\s\S]{0,160}?[.!?])(?=\s|\*|$)/);
-    const verdict = clause
-      ? stripMd((labelled[1] + ' ' + clause[1]).trim())
-      : stripMd(labelled[1]);
-    const body = clause ? rest.slice(clause[0].length) : rest;
-
+    const status = classifyNoTradeVerdict(verdict);
     return {
-      flagged: status !== 'clear',
+      flagged: status == null ? null : status !== 'clear',
       status,
       verdict,
       text: stripMd(body.replace(/^[\s*—–-]*/, '').trim()) || stripMd(section.raw),
@@ -373,12 +442,17 @@ function toIsoDate(label) {
 // second, independent judgment layered on top of the analyst desk's own numbers.
 
 function extractIdeaLabel(headline) {
-  const m = headline.match(/Idea\s*\d+[:.]\s*(Short|Long)\s+([A-Za-z]{3}\/[A-Za-z]{3})/i);
+  // Headings run "Idea 1: ..." (27 Jul) or "New Idea #1: ..." (30 Jul).
+  const prefix = /^(?:New\s+)?Idea\s*#?\s*\d+\s*[:.]\s*/i;
+  const m = headline.match(/(?:New\s+)?Idea\s*#?\s*\d+\s*[:.]\s*(Short|Long)\s+([A-Za-z]{3}\/[A-Za-z]{3})/i);
   if (m) return { direction: m[1], pair: m[2].toUpperCase(), short: `${m[1]} ${m[2].toUpperCase()}` };
   const cleaned = headline
-    .replace(/^Idea\s*\d+[:.]\s*/i, '')
+    .replace(prefix, '')
     .split(/\s*\(theme/i)[0]
     .split(/\s*—/)[0]
+    // A trailing "(Revised 73/100)" / "(NEW, 64/100)" is score metadata, not part of
+    // the idea's name — confidence is rendered separately, so drop it.
+    .replace(/\s*\([^)]*\d+\s*\/\s*100[^)]*\)\s*$/i, '')
     .trim();
   return { direction: null, pair: null, short: cleaned };
 }
@@ -538,4 +612,12 @@ function main() {
 
 if (require.main === module) main();
 
-module.exports = { parseFxReport, parseAllTables, normalizeTable };
+module.exports = {
+  parseFxReport,
+  parseAllTables,
+  normalizeTable,
+  // Exported so the verdict logic can be regression-tested against the raw text of
+  // reports whose source markdown is no longer on hand.
+  extractNoTradeZone,
+  classifyNoTradeVerdict,
+};

@@ -46,7 +46,7 @@ jobs:
         run: |
           git config user.name "fx-report-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add reports-source data/fx-reports data/daily-dashboard
+          git add reports-source data/fx-reports
           if git diff --cached --quiet; then
             echo "No changes to commit (report already existed, or generation produced nothing new)."
           else

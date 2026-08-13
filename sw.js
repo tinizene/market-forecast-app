@@ -1,9 +1,14 @@
-// v13 narrows the app to three surfaces: the intro page, the course, and the ideas
+// v14 drops the course bundles: lesson content now lives server-side and is fetched
+// per lesson from /api/course, which enforces entitlement. Precaching the old public
+// bundles would have kept serving the entire paid course from cache to anyone who
+// had visited before the change — the version bump is what actually evicts them.
+//
+// v13 narrowed the app to three surfaces: the intro page, the course, and the ideas
 // desk. Due Diligence, FX Intelligence and the standalone manifesto are retired —
 // their routes redirect home (see vercel.json) and precaching them would keep
 // serving dead pages to anyone who had already visited. The version bump is what
 // evicts them from existing installs.
-const CACHE_NAME = 'scere-markets-v13';
+const CACHE_NAME = 'scere-markets-v14';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -13,10 +18,7 @@ const ASSETS_TO_CACHE = [
   './learn.html',
   './lesson.html',
   './learn.js',
-  './learn-content.js',
-  './foundation-content.js',
-  './forex-content.js',
-  './crypto-content.js',
+  './country-indicator-copy.js',
   './crypto-labs.js',
   './instruments.js',
   './fund-facts.js',

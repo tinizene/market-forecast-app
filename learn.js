@@ -461,7 +461,15 @@ function renderLessonBlock(block, idBase, index) {
         </div>`;
 
     case 'image': {
-      const svgMarkup = FOUNDATION_SVGS[block.svg] || (window.SCERE_FOREX_SVGS || {})[block.svg] || (window.SCERE_CRYPTO_SVGS || {})[block.svg] || '';
+      // Diagrams arrive inlined on the block from /api/course — the build step
+      // resolves them — so a paid diagram cannot leak via a public lookup table.
+      // The window.* maps stay as a fallback for the legacy single-page render
+      // paths that still read the old static bundles.
+      const svgMarkup = block.svgMarkup
+        || (typeof FOUNDATION_SVGS !== 'undefined' ? FOUNDATION_SVGS[block.svg] : '')
+        || (window.SCERE_FOREX_SVGS || {})[block.svg]
+        || (window.SCERE_CRYPTO_SVGS || {})[block.svg]
+        || '';
       return `
         <figure class="lesson-image-card">
           ${svgMarkup}
@@ -1233,48 +1241,66 @@ function renderLessons() {
 // list across all three tracks, reusing the lesson renderers above.
 // ============================================================
 
-// Canonical order: free Foundation → paid Forex → Stocks & ETFs. Each entry
-// carries the metadata both the index and the viewer (breadcrumb, prev/next) need.
-function buildCourseIndex() {
-  const out = [];
-  const ft = window.SCERE_FOUNDATION_TRACK || {};
-  (window.SCERE_FOUNDATION_CONTENT || []).forEach((l) => out.push({
-    track: 'foundation', trackTitle: ft.trackTitle || 'The Foundation of Money and Trade',
-    tagline: ft.trackTagline || '', badge: 'Free', badgeClass: 'foundation-badge',
-    id: l.id, chapterNumber: l.chapterNumber, chapterTitle: l.chapterTitle,
-    lessonNumber: l.lessonNumber, title: l.title, keyIdea: l.keyIdea, type: 'structured', ref: l,
+// The syllabus comes from /api/course?fn=index — metadata only, and public, so the
+// course stays browsable before payment. Lesson BODIES are fetched one at a time and
+// are what the paywall actually guards. Order is fixed server-side (free Foundation
+// first, then the paid tracks) so the index and the viewer agree on prev/next.
+let courseIndexCache = null;
+
+async function fetchCourseIndex() {
+  if (courseIndexCache) return courseIndexCache;
+  const res = await fetch('/api/course?fn=index');
+  if (!res.ok) throw new Error(`course index failed: ${res.status}`);
+  const data = await res.json();
+  courseIndexCache = (data.lessons || []).map((l) => ({
+    track: l.track,
+    trackTitle: l.trackTitle,
+    tagline: l.trackTagline || '',
+    free: !!l.free,
+    badge: l.free ? 'Free' : 'Course',
+    badgeClass: l.free ? 'foundation-badge' : 'paid-badge',
+    id: l.id,
+    chapterNumber: l.chapterNumber,
+    chapterTitle: l.chapterTitle,
+    lessonNumber: l.lessonNumber,
+    title: l.title,
+    keyIdea: l.keyIdea,
+    type: l.type,
   }));
-  const xt = window.SCERE_FOREX_TRACK || {};
-  (window.SCERE_FOREX_CONTENT || []).forEach((l) => out.push({
-    track: 'forex', trackTitle: xt.trackTitle || 'Forex',
-    tagline: xt.trackTagline || '', badge: 'Paid track', badgeClass: 'paid-badge',
-    id: l.id, chapterNumber: l.chapterNumber, chapterTitle: l.chapterTitle,
-    lessonNumber: l.lessonNumber, title: l.title, keyIdea: l.keyIdea, type: 'structured', ref: l,
-  }));
-  const ct = window.SCERE_CRYPTO_TRACK || {};
-  (window.SCERE_CRYPTO_CONTENT || []).forEach((l) => out.push({
-    track: 'crypto', trackTitle: ct.trackTitle || 'Crypto',
-    tagline: ct.trackTagline || '', badge: 'Paid track', badgeClass: 'paid-badge',
-    id: l.id, chapterNumber: l.chapterNumber, chapterTitle: l.chapterTitle,
-    lessonNumber: l.lessonNumber, title: l.title, keyIdea: l.keyIdea, type: 'structured', ref: l,
-  }));
-  (window.SCERE_LEARN_CONTENT || []).forEach((l, i) => out.push({
-    track: 'stocks', trackTitle: 'Stocks & ETFs — a beginner’s guide',
-    tagline: 'Free — the safest way into index funds and ETFs, for a complete beginner.',
-    badge: 'Free', badgeClass: 'foundation-badge',
-    id: l.id, chapterNumber: null, chapterTitle: null,
-    lessonNumber: i + 1, title: l.title, keyIdea: l.keyIdea, type: 'body', ref: l, localIndex: i,
-  }));
-  return out;
+  return courseIndexCache;
+}
+
+// Returns { lesson, locked }. A 402 is an expected outcome, not an error: it means
+// the lesson exists and is simply not paid for, and it still carries enough metadata
+// to render a useful locked state.
+async function fetchLesson(id) {
+  const res = await fetch(`/api/course?fn=lesson&id=${encodeURIComponent(id)}`);
+  if (res.status === 402) {
+    const data = await res.json().catch(() => ({}));
+    return { lesson: data.lesson || null, locked: true };
+  }
+  if (!res.ok) throw new Error(`lesson failed: ${res.status}`);
+  const data = await res.json();
+  return { lesson: data.lesson, locked: false };
 }
 
 function lessonHref(id) { return `./lesson.html?id=${encodeURIComponent(id)}`; }
 
 // ---------- learn.html: table of contents ----------
-function renderCourseIndex() {
+async function renderCourseIndex() {
   const root = document.getElementById('courseIndexRoot');
   if (!root) return;
-  const index = buildCourseIndex();
+  let index;
+  try {
+    index = await fetchCourseIndex();
+  } catch (err) {
+    root.innerHTML = `
+      <div class="current-card bg-slate-800 rounded-2xl p-6 text-center">
+        <p class="text-slate-300 mb-1">The syllabus could not be loaded.</p>
+        <p class="text-xs text-slate-500">Check your connection and refresh.</p>
+      </div>`;
+    return;
+  }
 
   const tracks = [];
   index.forEach((e) => {
@@ -1292,6 +1318,9 @@ function renderCourseIndex() {
         lastChapter = e.chapterNumber;
       }
       const label = e.chapterNumber != null ? `${e.chapterNumber}.${e.lessonNumber}` : `${e.lessonNumber}`;
+      // Paid rows stay clickable — the lesson page shows what the lesson covers and
+      // how to unlock it. Hiding them would make the course impossible to evaluate.
+      const lock = e.free ? '→' : '🔒';
       return divider + `
         <a class="toc-row" href="${lessonHref(e.id)}">
           <span class="toc-num">${escapeHtml(label)}</span>
@@ -1299,7 +1328,7 @@ function renderCourseIndex() {
             <span class="toc-title">${escapeHtml(e.title)}</span>
             <span class="toc-key">${escapeHtml(e.keyIdea || '')}</span>
           </span>
-          <span class="toc-go" aria-hidden="true">→</span>
+          <span class="toc-go" aria-hidden="true">${lock}</span>
         </a>`;
     }).join('');
     return `
@@ -1315,12 +1344,42 @@ function renderCourseIndex() {
   }).join('');
 }
 
+// Shown in place of a lesson body the visitor has not paid for. It deliberately
+// still says what the lesson covers — someone deciding whether to buy the course
+// needs to be able to see what they would be buying.
+function renderLockedLesson(e) {
+  return `
+    <section class="current-card bg-slate-800 rounded-2xl p-6 shadow-lg text-center">
+      <span class="paid-badge">Part of the course</span>
+      <h2 class="text-xl font-bold mt-3 mb-1">${escapeHtml(e.title)}</h2>
+      ${e.keyIdea ? `<p class="text-sm text-slate-400 leading-relaxed max-w-md mx-auto">${escapeHtml(e.keyIdea)}</p>` : ''}
+      <p class="text-xs text-slate-500 mt-4 max-w-sm mx-auto">
+        This lesson is part of the course — Crypto, Forex and Stocks &amp; ETFs. One payment, yours permanently, and it includes three months of daily high-conviction ideas.
+      </p>
+      <a href="./research.html" class="upgrade-btn inline-block mt-4">Get the course</a>
+      <p class="mt-4 text-xs text-slate-500">
+        <a href="./learn.html" class="underline decoration-slate-600 underline-offset-2 hover:text-sky-400">Browse the free Foundation track</a>
+      </p>
+    </section>`;
+}
+
 // ---------- lesson.html: single lesson + prev/next ----------
-function renderSingleLesson() {
+async function renderSingleLesson() {
   const root = document.getElementById('lessonRoot');
   if (!root) return;
   const id = new URLSearchParams(window.location.search).get('id');
-  const index = buildCourseIndex();
+
+  let index;
+  try {
+    index = await fetchCourseIndex();
+  } catch (err) {
+    root.innerHTML = `
+      <div class="current-card bg-slate-800 rounded-2xl p-6 text-center">
+        <p class="text-slate-300 mb-1">This lesson could not be loaded.</p>
+        <p class="text-xs text-slate-500">Check your connection and refresh.</p>
+      </div>`;
+    return;
+  }
   const pos = index.findIndex((e) => e.id === id);
 
   if (pos < 0) {
@@ -1346,18 +1405,38 @@ function renderSingleLesson() {
       <span class="lesson-crumb-count">Lesson ${pos + 1} of ${index.length}</span>
     </div>`;
 
-  const lessonHtml = e.type === 'structured'
-    ? renderFoundationLessonCard(e.ref)
-    : renderLessonCard(e.ref, e.localIndex);
+  // The body is fetched separately from the index: the index is public metadata,
+  // this call is the one the paywall guards.
+  let fetched;
+  try {
+    fetched = await fetchLesson(id);
+  } catch (err) {
+    root.innerHTML = breadcrumb + `
+      <div class="current-card bg-slate-800 rounded-2xl p-6 text-center">
+        <p class="text-slate-300 mb-1">This lesson could not be loaded.</p>
+        <p class="text-xs text-slate-500">Check your connection and refresh.</p>
+      </div>`;
+    return;
+  }
 
+  let lessonHtml;
   let tools = '';
-  if (e.id === 'investing-vs-gambling') tools = renderCountryPanelShell();
-  if (e.id === 'expense-ratios') tools = renderFeeTable();
-  if (e.id === 'dollar-cost-averaging') tools = renderDcaCalculatorShell();
-  // Interactive crypto labs (crypto-labs.js) — real SHA-256 hashing, nonce mining and
-  // a tamperable chain, attached to the lessons that teach those mechanics.
+  if (fetched.locked) {
+    lessonHtml = renderLockedLesson(e);
+  } else {
+    lessonHtml = e.type === 'structured'
+      ? renderFoundationLessonCard(fetched.lesson)
+      : renderLessonCard(fetched.lesson, (fetched.lesson.lessonNumber || 1) - 1);
+
+    if (e.id === 'investing-vs-gambling') tools = renderCountryPanelShell();
+    if (e.id === 'expense-ratios') tools = renderFeeTable();
+    if (e.id === 'dollar-cost-averaging') tools = renderDcaCalculatorShell();
+    // Interactive crypto labs (crypto-labs.js) — real SHA-256 hashing, nonce mining and
+    // a tamperable chain, attached to the lessons that teach those mechanics.
+    const labsAvailable = window.SCERE_CRYPTO_LABS;
+    if (labsAvailable && labsAvailable.hasLab(e.id)) tools += labsAvailable.render(e.id);
+  }
   const labs = window.SCERE_CRYPTO_LABS;
-  if (labs && labs.hasLab(e.id)) tools += labs.render(e.id);
 
   const navBtn = (l, dir) => l
     ? `<a class="lesson-nav-btn ${dir}" href="${lessonHref(l.id)}"><span class="lnav-dir">${dir === 'prev' ? '← Previous' : 'Next →'}</span><span class="lnav-title">${escapeHtml(l.title)}</span></a>`
@@ -1366,12 +1445,16 @@ function renderSingleLesson() {
 
   root.innerHTML = breadcrumb + lessonHtml + tools + nav;
 
-  wireQuizInteractivity(root);
-  const calcBtn = document.getElementById('dcaCalculate');
-  if (calcBtn) calcBtn.addEventListener('click', runDcaCalculation);
-  if (e.id === 'investing-vs-gambling') loadCountryList();
-  if (labs && labs.hasLab(e.id)) labs.wire(e.id, root);
-  initSpeechControls();
+  // Interactive wiring only applies to a body that actually rendered — a locked
+  // lesson has no quiz, no calculator and no lab to attach to.
+  if (!fetched.locked) {
+    wireQuizInteractivity(root);
+    const calcBtn = document.getElementById('dcaCalculate');
+    if (calcBtn) calcBtn.addEventListener('click', runDcaCalculation);
+    if (e.id === 'investing-vs-gambling') loadCountryList();
+    if (labs && labs.hasLab(e.id)) labs.wire(e.id, root);
+    initSpeechControls();
+  }
 
   document.title = `${e.title} — Scere Markets`;
 }

@@ -28,16 +28,20 @@ export const config = {
   // /data/fx-reports → hard-blocked so the raw report JSON (which contains the
   //                    paid trade theses) can only be reached through the gated
   //                    /api/research endpoint, never fetched directly.
-  matcher: ['/reports', '/reports/:path*', '/data/fx-reports/:path*'],
+  // /data/course     → hard-blocked for the same reason: the lesson bodies are the
+  //                    paid product, and /api/course is the only route to them.
+  matcher: ['/reports', '/reports/:path*', '/data/fx-reports/:path*', '/data/course/:path*'],
 };
 
 export default function middleware(request) {
   const pathname = new URL(request.url).pathname;
 
-  // Block direct public access to the raw report data. The Research Desk and FX
-  // Intelligence Desk read it through /api/research, which enforces the
-  // subscription paywall; the files themselves must never be publicly fetchable.
-  if (pathname.startsWith('/data/fx-reports/')) {
+  // Block direct public access to the paid source data. Reports are read through
+  // /api/research and lessons through /api/course, both of which enforce
+  // entitlement; the files themselves must never be publicly fetchable. Without
+  // this, moving the course server-side would achieve nothing — the JSON would
+  // simply be a new public URL in place of the old public script.
+  if (pathname.startsWith('/data/fx-reports/') || pathname.startsWith('/data/course/')) {
     return new Response('Not found.', {
       status: 404,
       headers: { 'content-type': 'text/plain', 'cache-control': 'no-store' },

@@ -3,7 +3,10 @@
     "api/research.js": { "includeFiles": "data/fx-reports/**" }
   },
   "redirects": [
-    { "source": "/daily-report.html", "destination": "/fx-intelligence.html", "permanent": false }
+    { "source": "/daily-report.html", "destination": "/", "permanent": false },
+    { "source": "/fx-intelligence.html", "destination": "/", "permanent": false },
+    { "source": "/due-diligence.html", "destination": "/", "permanent": false },
+    { "source": "/manifesto.html", "destination": "/", "permanent": false }
   ],
   "rewrites": [
     { "source": "/api/quote", "destination": "/api/markets-hub?fn=quote" },

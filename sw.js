@@ -1,15 +1,15 @@
-const CACHE_NAME = 'scere-markets-v12';
+// v13 narrows the app to three surfaces: the intro page, the course, and the ideas
+// desk. Due Diligence, FX Intelligence and the standalone manifesto are retired —
+// their routes redirect home (see vercel.json) and precaching them would keep
+// serving dead pages to anyone who had already visited. The version bump is what
+// evicts them from existing installs.
+const CACHE_NAME = 'scere-markets-v13';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
-  './app.js',
   './nav.js',
-  './instruments.js',
-  './market-advisories.js',
   './research.html',
   './research.js',
-  './fx-intelligence.html',
-  './fx-intelligence.js',
   './learn.html',
   './lesson.html',
   './learn.js',
@@ -18,13 +18,8 @@ const ASSETS_TO_CACHE = [
   './forex-content.js',
   './crypto-content.js',
   './crypto-labs.js',
-  './due-diligence.html',
-  './due-diligence.js',
-  './due-diligence-content.js',
-  './legend.js',
-  './legend-content.js',
+  './instruments.js',
   './fund-facts.js',
-  './manifesto.html',
   './styles.css',
   './manifest.json',
   'https://cdn.tailwindcss.com'

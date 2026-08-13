@@ -4,7 +4,7 @@
   "reportDate": "2026-08-13",
   "reportDateLabel": "August 13, 2026",
   "regime": {
-    "classification": null,
+    "classification": "Structural Risk-On with Elevated Geopolitical Premium — Low Volatility Belies Oil-Driven Uncertainty",
     "justification": null,
     "executiveSummary": "Oil's sustained bid through mid-August validates the structural theme flagged in the July 30 report: the Hormuz MOU negotiations (not a resolution) are the calendar catalyst. Iran and Oman describe talks as \"positive and constructive,\" but Iran's foreign minister said reopening \"would still be subject to other conditions,\" including compensation from the US. This keeps the floor under oil and supports commodity currencies (AUD, NZD), while safe-haven CHF and JPY face two-way pressure — yen weakness from carry-trade recovery, franc weakness from risk-on tones offsetting oil-driven inflation fears.\n\nThe ECB's deposit rate remains at 2.0% since June, with no cuts expected due to persistent inflation and improved growth; rate hikes could begin late 2026 or 2027. On June 11, 2026, the ECB raised the deposit rate to 2.25% (effective June 17), the first Western central bank to reverse from easing back to tightening. At its July 23, 2026 meeting, the ECB left rates unchanged at 2.25%, following a June hike of 0.25pp due to higher inflation from the Middle East conflict. The Bank of England recently lowered its key rate to 3.75%. The Fed is expected to remain on hold or deliver 1–2 modest cuts through year-end, but robust growth data and persistent inflation may delay early-year cuts; markets anticipate 1–2 cuts of 25bp each.\n\nOverall Market Confidence: 61/100 (∆ +4 vs. July 30's 57/100)  \nThe uptick reflects improved clarity on the ECB's hawkish pivot (September hike signal is now confirmed via June action and July hold), oil's consolidation above $90 (validating structural support), and reduced tail risk from the Hormuz standoff (negotiations ongoing, even if stalled). However, confidence remains below 65/100 due to: (1) unresolved Hormuz endgame (Iran's new conditions extend timeline); (2) conflicting central bank trajectories creating FX cross-currents; and (3) low VIX masking genuine geopolitical risk (complacency flag).\n\n---"
   },
@@ -437,7 +437,7 @@
     "excluded": null
   },
   "contrarianCheck": {
-    "primaryRisk": null,
+    "primaryRisk": "Sudden Hormuz Resolution:  \n   Iran and Oman are \"very close\" to a deal; talks described as \"positive and constructive\". If a breakthrough occurs (e.g., US agrees to concessions, Iran reopens the strait), oil could crash below $85 within days, unwinding commodity longs (AUD/USD, NZD/USD, AUD/JPY) and reversing the risk-on bias. This is a low-probability, high-impact tail risk. Hedge: Tighten stops on oil-linked positions; consider short-dated oil puts as portfolio insurance.",
     "invalidationFactor": null,
     "bullCase": null,
     "baseCase": null,
@@ -445,10 +445,10 @@
   },
   "globalEquityLeaderboard": null,
   "noTradeZone": {
-    "flagged": null,
-    "status": null,
-    "verdict": "1.",
-    "text": "EUR/USD 1.14–1.16 Range: Pair is oscillating within this 200-pip range. Breakout above 1.16 or below 1.14 is required for directional conviction. Until then, range-trading only (buy 1.14 support, sell 1.16 resistance).\n2. USD/JPY 157–160 Range: Mid-range at 159.34 with no catalyst for breakout. Avoid new directional trades; wait for break above 160 (bullish USD/JPY) or below 157 (bearish).\n3. August 25 – September 9 (Pre-ECB Blackout): As September 10 ECB decision approaches, volatility will compress (traders wait for decision). Avoid new large positions August 25+; existing positions should be sized conservatively.\n\nWhen to Re-Engage:  \nPost-ECB (September 10) and post-Fed/BoE (September 17), volatility will spike and new trends will emerge. Re-assess all positions and publish fresh ideas after September 17.\n\nRecommendation:  \nNew traders or lower-risk mandates should stand aside August 25 – September 10 unless a clear breakout occurs (EUR/USD above 1.16, oil above $95, or VIX above 18). Existing positions can be held with tightened stops.\n\n---"
+    "flagged": false,
+    "status": "clear",
+    "verdict": "NOT in a no-trade zone",
+    "text": "but approaching one.\n\nReasoning:  \nThe market is in a consolidation phase ahead of the critical September 10–17 event window (ECB, Fed, BoE decisions). EUR/USD at 1.1524, up 1.25% over the past month — modest gain, not trending strongly. GBP/USD at 1.3507, up 1.19% over the past month — similarly range-bound. USD/JPY at 159.34 — mid-range (157–160), no clear direction. Oil at $91.60 — consolidating within $89–92 range for weeks.\n\nNo-Trade Zones to Watch:\n1. EUR/USD 1.14–1.16 Range: Pair is oscillating within this 200-pip range. Breakout above 1.16 or below 1.14 is required for directional conviction. Until then, range-trading only (buy 1.14 support, sell 1.16 resistance).\n2. USD/JPY 157–160 Range: Mid-range at 159.34 with no catalyst for breakout. Avoid new directional trades; wait for break above 160 (bullish USD/JPY) or below 157 (bearish).\n3. August 25 – September 9 (Pre-ECB Blackout): As September 10 ECB decision approaches, volatility will compress (traders wait for decision). Avoid new large positions August 25+; existing positions should be sized conservatively.\n\nWhen to Re-Engage:  \nPost-ECB (September 10) and post-Fed/BoE (September 17), volatility will spike and new trends will emerge. Re-assess all positions and publish fresh ideas after September 17.\n\nRecommendation:  \nNew traders or lower-risk mandates should stand aside August 25 – September 10 unless a clear breakout occurs (EUR/USD above 1.16, oil above $95, or VIX above 18). Existing positions can be held with tightened stops.\n\n---"
   },
   "keyThemes": [
     "Commodity currencies (AUD, NZD) outperform due to oil-driven commodity bid + hawkish central banks (RBA 4.35%, RBNZ assumed 2.50%).",
@@ -457,8 +457,8 @@
     "USD is mixed : weak vs. EUR/GBP (central bank divergence), weak vs. AUD/NZD (commodity support), but range-bound vs. JPY (carry flows offsetting rate differentials)."
   ],
   "decisionDashboard": {
-    "overallConfidence": null,
-    "confidenceDelta": null,
+    "overallConfidence": 61,
+    "confidenceDelta": "∆ +4 vs. July 30's 57/100",
     "portfolioTiltNote": null
   },
   "knownIssues": [
@@ -612,7 +612,7 @@
       "source": "lowest-confidence"
     },
     "nextEvent": "Upcoming High-Impact Events (August 13 – September 17, 2026):: 1. ECB Policy Decision (September 10, 2026):",
-    "overallConfidence": null,
-    "morningBrief": "Good morning. The strongest idea on the desk today is Long AUD/JPY, confidence 67/100."
+    "overallConfidence": 61,
+    "morningBrief": "Good morning. Today's regime: Structural Risk-On with Elevated Geopolitical Premium. Overall market confidence is 61/100. The strongest idea on the desk today is Long AUD/JPY, confidence 67/100. Biggest risk to watch: Sudden Hormuz Resolution:  \n   Iran and Oman are \"very close\" to a deal; talks described as \"positive and constructive\"."
   }
 }

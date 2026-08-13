@@ -130,7 +130,11 @@ function boldSentence(text, labelPattern) {
 
 function extractRegime(section) {
   if (!section) return null;
-  const classification = boldSentence(section.raw, 'Regime classification');
+  // Two templates in circulation: the Cowork reports label this "Regime
+  // classification:", the generator's 17-section template just "Regime:". Try the
+  // specific label first so it wins where both would match.
+  const classification = boldSentence(section.raw, 'Regime classification')
+    || boldSentence(section.raw, 'Regime');
   const justificationMatch = section.raw.match(/Justification:\s*([\s\S]*?)(?=\n\*\*Executive Summary|\n\n\*\*|$)/i);
   const execMatch = section.raw.match(/\*\*Executive Summary:?\*\*\s*([\s\S]*)/i);
   return {
@@ -309,7 +313,9 @@ function extractContrarianCheck(section) {
   // ranks highest — so the morning brief still has a real risk to quote.
   const regimeRisk = primaryRisk
     ? null
-    : section.raw.match(/\*\*Primary regime risks?:?\*\*\s*\n+\s*1\.\s*([\s\S]*?)(?=\n\s*2\.\s|\n\n\*\*)/i);
+    : section.raw.match(
+      /\*\*(?:Primary regime risks?|Contrarian Scenarios[^*\n]*)\s*:?\*\*\s*\n+\s*1\.\s*([\s\S]*?)(?=\n\s*2\.\s|\n\n\*\*)/i
+    );
   const invalidation = section.raw.match(/\*\*Overall[- ]view invalidation factor:?\*\*\s*([\s\S]*?)(?=\n\n-\s*\*\*Bull case|\n-\s*\*\*Bull case)/i);
   const bull = section.raw.match(/\*\*Bull case[^:]*:?\*\*\s*([\s\S]*?)(?=\n-\s*\*\*Base case)/i);
   const base = section.raw.match(/\*\*Base case[^:]*:?\*\*\s*([\s\S]*?)(?=\n-\s*\*\*Bear case)/i);
@@ -357,7 +363,15 @@ function extractNoTradeZone(section) {
   // there and classify it afterwards. Enumerating meant an unrecognised verdict
   // fell through to the legacy pattern below, which matches the literal "No" in
   // "No-Trade" and reports the exact opposite of the truth.
-  const labelled = section.raw.match(/no-?trade\s+zone[^:\n]*:\s*\**\s*([^\n]+)/i);
+  // Anchored to the start of a line: this is the section's verdict HEADING, not any
+  // passing mention. Unanchored, it matched the tail of a mid-paragraph sentence in
+  // the 17-section template and returned "1." as the verdict.
+  // ...and accept the labelled form ONLY when the clause it captures actually
+  // classifies. Headings can look like verdict labels without being one — the
+  // 17-section template carries "**No-Trade Zones to Watch:**" above a numbered
+  // watchlist, which otherwise wins this match and yields a verdict of "1.".
+  // A verdict we cannot classify is not a verdict; fall through and try the others.
+  const labelled = section.raw.match(/^\s*\**\s*no-?trade\s+zone[^:\n]*:\s*\**\s*([^\n]+)/im);
   if (labelled) {
     // The verdict runs to the end of its own sentence. Split it off the body so the
     // prose that follows reads as prose — otherwise the morning brief quotes
@@ -368,11 +382,26 @@ function extractNoTradeZone(section) {
     const body = clause ? rest.slice(clause[0].length) + section.raw.slice(labelled.index + labelled[0].length) : '';
 
     const status = classifyNoTradeVerdict(verdict);
+    if (status != null) {
+      return {
+        flagged: status !== 'clear',
+        status,
+        verdict,
+        text: stripMd(body.replace(/^[\s*—–-]*/, '').trim()) || stripMd(section.raw),
+      };
+    }
+  }
+
+  // The 17-section template states it as prose instead of a labelled verdict:
+  // "**Current Market Conditions:** **NOT in a no-trade zone**, but approaching one."
+  const phrased = section.raw.match(/\b(not\s+(?:currently\s+)?in|(?:currently\s+)?in)\s+an?\s+no-?trade\s+zone\b/i);
+  if (phrased) {
+    const clear = /^not\b/i.test(phrased[1].trim());
     return {
-      flagged: status == null ? null : status !== 'clear',
-      status,
-      verdict,
-      text: stripMd(body.replace(/^[\s*—–-]*/, '').trim()) || stripMd(section.raw),
+      flagged: !clear,
+      status: clear ? 'clear' : 'flagged',
+      verdict: stripMd(phrased[0].trim()),
+      text: stripMd(section.raw.slice(phrased.index + phrased[0].length).replace(/^[\s*,—–-]*/, '').trim()) || stripMd(section.raw),
     };
   }
 
@@ -399,7 +428,12 @@ function extractKeyThemes(section) {
 
 function extractDecisionDashboard(section) {
   if (!section) return null;
-  const confMatch = section.raw.match(/Overall Market Confidence:?\*{0,2}\s*(\d+)\s*\/\s*100[\s*]*(?:\(([^)]*)\))?/i);
+  // "Overall Market Confidence: 57/100 (…)" in the Cowork template, but
+  // "**Overall Confidence Delta:** **61/100 (…)**" in the 17-section one — same
+  // figure, different label and an extra bold run before the number.
+  const confMatch = section.raw.match(
+    /Overall\s+(?:Market\s+)?Confidence[^:\n]{0,20}:?\*{0,2}\s*\*{0,2}\s*(\d+)\s*\/\s*100[\s*]*(?:\(([^)]*)\))?/i
+  );
   // The heading carries a parenthetical in newer reports — "**Portfolio Tilt Note
   // (MAJOR INFLECTION vs. July 28):**" — so match up to the closing bold marker
   // rather than assuming the label ends at the colon.

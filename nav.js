@@ -1,16 +1,19 @@
 // Shared top navigation for Scere Markets.
-// Each page includes <div id="siteNav" data-active="home|learn|research|manifesto"></div>
+// Each page includes <div id="siteNav" data-active="home|learn|research"></div>
 // and this script fills it with a consistent nav bar, highlighting the active section.
 // Kept deliberately dependency-free (no build step) to match the rest of the app.
+//
+// The surface is deliberately three items. Due Diligence and FX Intelligence are
+// retired (their routes redirect home) and the manifesto now lives inside the intro
+// page as its mission section, so there is nothing else to link to.
 (function () {
   var el = document.getElementById('siteNav');
   if (!el) return;
   var active = el.getAttribute('data-active') || '';
   var links = [
     { key: 'home', label: 'Home', href: './index.html' },
-    { key: 'learn', label: 'Learn', href: './learn.html' },
-    { key: 'research', label: 'Research', href: './research.html' },
-    { key: 'manifesto', label: 'Manifesto', href: './manifesto.html' },
+    { key: 'learn', label: 'Course', href: './learn.html' },
+    { key: 'research', label: 'Ideas', href: './research.html' },
   ];
   var linksHtml = links
     .map(function (l) {

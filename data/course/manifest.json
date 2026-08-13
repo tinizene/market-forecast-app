@@ -1,0 +1,22 @@
+[
+  {
+    "track": "foundation",
+    "free": true,
+    "lessons": 10
+  },
+  {
+    "track": "crypto",
+    "free": false,
+    "lessons": 15
+  },
+  {
+    "track": "forex",
+    "free": false,
+    "lessons": 26
+  },
+  {
+    "track": "stocks",
+    "free": false,
+    "lessons": 7
+  }
+]

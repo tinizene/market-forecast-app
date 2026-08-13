@@ -1,6 +1,7 @@
 {
   "functions": {
-    "api/research.js": { "includeFiles": "data/fx-reports/**" }
+    "api/research.js": { "includeFiles": "data/fx-reports/**" },
+    "api/course.js": { "includeFiles": "data/course/*.json" }
   },
   "redirects": [
     { "source": "/daily-report.html", "destination": "/", "permanent": false },

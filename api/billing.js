@@ -14,7 +14,7 @@
 
 const {
   paywallActive, priceId, stripeRequest,
-  checkEntitlement, issueEntitlement, clearCookie,
+  checkEntitlement, issueEntitlement, deriveFromStripe, clearCookie,
   ENT_COOKIE, CUS_COOKIE,
 } = require('../lib/entitlement.js');
 
@@ -56,17 +56,25 @@ module.exports = async function handler(req, res) {
       } catch (e) {
         console.error('price fetch failed:', e.message);
       }
-      const { entitled } = await checkEntitlement(req, res);
+      const ent = await checkEntitlement(req, res);
       res.setHeader('Cache-Control', 'private, max-age=0, must-revalidate');
-      res.status(200).json({ configured: true, priceLabel, interval, entitled });
+      res.status(200).json({ configured: true, priceLabel, interval, entitled: ent.ideasActive, ownsCourse: ent.ownsCourse });
       return;
     }
 
     // ---- status: is this visitor entitled right now? ----
     if (fn === 'status') {
-      const { entitled, paywallActive: active } = await checkEntitlement(req, res);
+      // Both facts, separately — the two products are bought and lost independently.
+      const ent = await checkEntitlement(req, res);
       res.setHeader('Cache-Control', 'private, max-age=0, must-revalidate');
-      res.status(200).json({ entitled, paywallActive: active });
+      res.status(200).json({
+        entitled: ent.ideasActive,
+        ownsCourse: ent.ownsCourse,
+        ideasActive: ent.ideasActive,
+        ideasUntil: ent.ideasUntil,
+        ideasSource: ent.ideasSource,
+        paywallActive: ent.paywallActive,
+      });
       return;
     }
 
@@ -92,11 +100,17 @@ module.exports = async function handler(req, res) {
       const sessionId = body.session_id || req.query.session_id;
       if (!sessionId) { res.status(400).json({ error: 'missing_session_id' }); return; }
       const session = await stripeRequest('GET', `/v1/checkout/sessions/${sessionId}`, { 'expand': ['subscription'] });
-      const sub = session.subscription;
-      const active = sub && (sub.status === 'active' || sub.status === 'trialing');
-      if (session.status === 'complete' && active) {
-        issueEntitlement(res, sub.id, sub.current_period_end, session.customer);
-        res.status(200).json({ entitled: true });
+      // A completed session can be either product now, so re-derive the customer's
+      // whole entitlement from Stripe instead of reading one subscription off this
+      // session. That is also what makes a course purchase grant its included ideas.
+      if (session.status !== 'complete' || !session.customer) {
+        res.status(402).json({ entitled: false, error: 'not_complete' });
+        return;
+      }
+      const derived = await deriveFromStripe(session.customer);
+      if (derived.ownsCourse || derived.ideasActive) {
+        issueEntitlement(res, derived, session.customer);
+        res.status(200).json({ entitled: derived.ideasActive, ownsCourse: derived.ownsCourse, ideasUntil: derived.ideasUntil });
       } else {
         res.status(402).json({ entitled: false, error: 'not_active' });
       }
@@ -111,13 +125,14 @@ module.exports = async function handler(req, res) {
       const customers = await stripeRequest('GET', '/v1/customers', { email, limit: 1 });
       const customer = customers && customers.data && customers.data[0];
       if (!customer) { res.status(404).json({ entitled: false, error: 'no_customer' }); return; }
-      const subs = await stripeRequest('GET', '/v1/subscriptions', { customer: customer.id, status: 'active', limit: 1 });
-      const sub = subs && subs.data && subs.data[0];
-      if (sub && (sub.status === 'active' || sub.status === 'trialing')) {
-        issueEntitlement(res, sub.id, sub.current_period_end, customer.id);
-        res.status(200).json({ entitled: true });
+      // Course ownership counts as something to restore even with no live
+      // subscription — that is the whole point of a product you own permanently.
+      const derived = await deriveFromStripe(customer.id);
+      if (derived.ownsCourse || derived.ideasActive) {
+        issueEntitlement(res, derived, customer.id);
+        res.status(200).json({ entitled: derived.ideasActive, ownsCourse: derived.ownsCourse, ideasUntil: derived.ideasUntil });
       } else {
-        res.status(404).json({ entitled: false, error: 'no_subscription' });
+        res.status(404).json({ entitled: false, error: 'nothing_to_restore' });
       }
       return;
     }

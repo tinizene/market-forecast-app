@@ -114,7 +114,9 @@ module.exports = async function handler(req, res) {
       let active = false;
       if (!free) {
         const check = await checkEntitlement(req, res);
-        entitled = check.entitled;
+        // Course lessons gate on ownership, which never expires. Deliberately NOT
+        // ideasActive: someone whose ideas subscription lapsed still owns the course.
+        entitled = check.ownsCourse;
         active = check.paywallActive;
         if (active && !entitled) {
           // Enough for the page to render a useful locked state without the body.

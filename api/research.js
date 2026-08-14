@@ -94,17 +94,33 @@ module.exports = async function handler(req, res) {
     }
 
     if (fn === 'public') {
-      const { entitled, paywallActive: active } = await checkEntitlement(req, res);
+      // Ideas gate on ideasActive, which is true whether access comes from the
+      // 90 days included with the course or from a monthly subscription. The extra
+      // fields let the page say WHY someone has access and when it runs out.
+      const ent = await checkEntitlement(req, res);
       res.setHeader('Cache-Control', 'private, max-age=0, must-revalidate');
-      res.status(200).json({ ...toPublic(data), entitled, paywallActive: active });
+      res.status(200).json({
+        ...toPublic(data),
+        entitled: ent.ideasActive,
+        ownsCourse: ent.ownsCourse,
+        ideasUntil: ent.ideasUntil,
+        ideasSource: ent.ideasSource,
+        paywallActive: ent.paywallActive,
+      });
       return;
     }
 
     if (fn === 'full') {
       if (paywallActive()) {
-        const { entitled } = await checkEntitlement(req, res);
-        if (!entitled) {
-          res.status(402).json({ error: 'subscription_required', message: 'An active subscription is required to view the full research.' });
+        const ent = await checkEntitlement(req, res);
+        if (!ent.ideasActive) {
+          res.status(402).json({
+            error: 'ideas_access_required',
+            message: ent.ownsCourse
+              ? 'Your three months of included ideas have ended. Subscribe to keep receiving them.'
+              : 'The daily ideas are included with the course for three months, or available monthly on their own.',
+            ownsCourse: ent.ownsCourse,
+          });
           return;
         }
       }

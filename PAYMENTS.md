@@ -94,6 +94,41 @@ Use `sk_test_...` + test-mode prices, then buy with Stripe's
 expiry, any CVC). Worth walking the whole path once: buy the course, confirm the
 lessons unlock **and** the ideas open, then swap in the live keys.
 
+### 4b. Discount codes
+
+Both Checkout Sessions are created with `allow_promotion_codes`, so the payment page
+already shows an **Add promotion code** field. Creating codes needs no code change:
+
+1. Stripe Dashboard → **Product catalogue → Coupons** → create a coupon (percentage or
+   fixed amount, and for the subscription a **duration**: once, repeating for N months,
+   or forever).
+2. On that coupon → **Promotion codes** → create the customer-facing code (`LAUNCH50`).
+   Optional restrictions worth using: expiry date, maximum redemptions, first-time
+   customers only, and a minimum order amount.
+
+A few things specific to how this app grants access:
+
+- **A 100%-off code is a different shape of session.** When the total comes to zero,
+  Stripe sets `payment_status` to `no_payment_required` (not `paid`) and creates **no
+  PaymentIntent**. `deriveFromStripe` accepts both statuses, so a comped course grants
+  the course and its 90 included days exactly like a paid one. Matching only `paid`
+  would have let someone redeem a full-discount code, complete Checkout, and be granted
+  nothing — with no error anywhere to explain it.
+- **A comped course still expires its ideas at 90 days.** The included window runs from
+  the purchase date regardless of what was paid.
+- **A discounted purchase can still be refunded.** Refunds are compared against the
+  session's `amount_total`, which is the *discounted* amount — so fully refunding a
+  €100 half-price sale correctly revokes the course. A zero-amount order has nothing to
+  refund and can never be revoked this way.
+- **Fixed-amount coupons must be in EUR** to apply to these prices.
+- **On the subscription**, a `forever` coupon keeps the subscription `active` at a lower
+  price; entitlement follows subscription status, not the amount, so nothing changes.
+
+Not built: **auto-applying a code from a link** (e.g. `/learn.html?code=LAUNCH50`), which
+converts better for campaigns than asking people to type it. It needs the `discounts`
+parameter instead of `allow_promotion_codes` — the two are mutually exclusive — plus a
+lookup of the code before creating the session.
+
 ### 5. (Optional but recommended) Prompt revocation — webhook + KV
 
 Without this, a cancellation, failed payment or refund stops access at the next

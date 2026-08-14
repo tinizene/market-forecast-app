@@ -1,3 +1,8 @@
+// v16 adds ui.js (accessible dialogs, live regions, skeletons, offline banner) and
+// changes every page's markup to add landmarks and skip links. An install still
+// serving v15 would keep the old pages, which reference a ui.js it has not cached —
+// the bump is what keeps the two in step.
+//
 // v15 ships the two purchase flows. learn.js, research.js and styles.css all changed
 // to render buy buttons and per-product access states; without the bump, an existing
 // install would keep the cached copies and show a course that cannot be bought.
@@ -12,10 +17,11 @@
 // their routes redirect home (see vercel.json) and precaching them would keep
 // serving dead pages to anyone who had already visited. The version bump is what
 // evicts them from existing installs.
-const CACHE_NAME = 'scere-markets-v15';
+const CACHE_NAME = 'scere-markets-v16';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
+  './ui.js',
   './nav.js',
   './research.html',
   './research.js',

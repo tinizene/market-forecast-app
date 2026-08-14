@@ -7,6 +7,7 @@
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#0f172a">
     <meta name="description" content="Learn how money and markets actually work — the foundations free, the full course on Crypto, Forex and Stocks when you're ready. Educational only, not financial advice.">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -19,8 +20,9 @@
     </script>
 </head>
 <body class="bg-slate-900 text-white font-sans min-h-screen p-4">
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
     <div class="app-bg" aria-hidden="true"></div>
-    <div class="relative z-10 max-w-2xl mx-auto pb-8">
+    <main class="relative z-10 max-w-2xl mx-auto pb-8" id="mainContent" tabindex="-1">
 
         <div id="siteNav" data-active="home"></div>
 
@@ -127,8 +129,9 @@
             ·
             <a href="./research.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">High-Conviction Ideas</a>
         </footer>
-    </div>
+    </main>
 
+    <script src="./ui.js"></script>
     <script src="./nav.js"></script>
     <script>
         // The intro page is static content — no market data, no API keys, no app.js.

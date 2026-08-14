@@ -1,68 +1,104 @@
-# Payments — Research Desk subscription gate
+# Payments — the two products
 
-The Research Desk's live trade theses are gated behind a **monthly Stripe
-subscription**, enforced on the server. This doc covers what it is, how to turn
-it on, and how it behaves.
+Scere Markets sells two things, and they are bought and lost independently:
+
+| Product | Price | Payment | Access |
+| --- | --- | --- | --- |
+| **The course** — Crypto, Forex, Stocks & ETFs | €200 | one payment | **forever**, plus 90 days of the daily ideas included |
+| **The daily high-conviction ideas** | €70 / month | subscription | while the subscription is live |
+
+Buying the course therefore grants *both*, but on different clocks. Ninety days
+later the included ideas lapse while the course is untouched, and the buyer can
+subscribe to keep receiving them. Someone who only wants the ideas can subscribe
+without ever buying the course.
+
+The free Foundation track is open to everyone and always has been.
 
 > **Safe by default:** with no Stripe environment variables set, the paywall is
-> **inactive** and the whole app behaves as if it were never added — the
-> Research Desk and FX Intelligence Desk are fully open. Setting the three env
-> vars below (and redeploying) is what turns enforcement on. Removing them turns
-> it back off.
+> **inactive** and the whole app behaves as if it were never added — every lesson
+> and every report is open. Setting the env vars below (and redeploying) is what
+> turns enforcement on. Removing them turns it back off.
 
 ---
 
 ## What is gated
 
-| Surface | Free (always) | Paid (subscription) |
+| Surface | Free (always) | Paid |
 | --- | --- | --- |
-| **Research Desk** (`research.html`) | Regime headline, top idea, overall confidence, the full **track record** (wins / invalidations), each live idea's **headline + six-pillar score bars** | Entry, targets, stop/invalidation, per-pillar reasoning, confirmation criteria |
-| **FX Intelligence Desk** (`fx-intelligence.html`) | — | The entire daily report |
+| **Course** (`learn.html`, `lesson.html`) | The whole **syllabus** — every track, chapter, lesson title and key idea — plus the entire Foundation track | The lesson **bodies** of Crypto, Forex and Stocks & ETFs (**the course**) |
+| **Ideas** (`research.html`) | Regime headline, top idea, overall confidence, the full **track record** (wins / invalidations), each live idea's **headline + six-pillar score bars** | Entry, targets, stop/invalidation, per-pillar reasoning, confirmation criteria (**the ideas**) |
 
-The paid content is **withheld server-side** and never sent to an unsubscribed
-browser — this is real enforcement, not CSS hiding. The raw data under
-`/data/fx-reports/*` is blocked from direct public access by `middleware.js`;
-the only way to it is through the gated `/api/research` endpoint.
+Paid content is **withheld server-side** and never sent to an unentitled browser
+— this is real enforcement, not CSS hiding. `middleware.js` blocks direct access
+to `/data/course/*` and `/data/fx-reports/*`; the only routes in are the gated
+`/api/course` and `/api/research` endpoints.
+
+Which fact gates which surface matters:
+
+- `api/course.js` gates on **`ownsCourse`** — never on the ideas. A lapsed ideas
+  subscription must not lock someone out of a course they bought outright.
+- `api/research.js` gates on **`ideasActive`** — true whether access comes from
+  the 90 included days or from a live subscription.
 
 ---
 
 ## Turn it on (one-time setup)
 
-### 1. Create the subscription in Stripe
-- In the [Stripe Dashboard](https://dashboard.stripe.com/) create a **Product**
-  with a **recurring monthly Price** (you choose the amount and currency).
-- Copy the **Price ID** (looks like `price_1AbC...`).
-- Copy your **Secret key** (`sk_live_...`, or `sk_test_...` to trial first) from
-  Developers → API keys.
+### 1. Create the two products in Stripe
+
+In the [Stripe Dashboard](https://dashboard.stripe.com/) → Products:
+
+| Product | Price to create | Copy the Price ID into |
+| --- | --- | --- |
+| Scere Markets — The Course | **€200.00 EUR, One-off** | `STRIPE_COURSE_PRICE_ID` |
+| Scere Markets — Daily Ideas | **€70.00 EUR, Recurring · Monthly** | `STRIPE_IDEAS_PRICE_ID` |
+
+Price IDs look like `price_1AbC...`. Also copy your **Secret key**
+(`sk_live_...`, or `sk_test_...` to trial first) from Developers → API keys.
+
+The prices shown in the app are read from Stripe at request time — they are not
+written anywhere in this repo, so changing a price in the Dashboard changes it on
+the site with no deploy.
 
 ### 2. Set environment variables in Vercel
+
 Project → **Settings → Environment Variables** (add to **Production**, and
 Preview if you want to test there):
 
 | Variable | Value |
 | --- | --- |
 | `STRIPE_SECRET_KEY` | your `sk_live_...` (or `sk_test_...`) |
-| `STRIPE_PRICE_ID` | the `price_...` from step 1 |
+| `STRIPE_COURSE_PRICE_ID` | the one-off `price_...` (€200) |
+| `STRIPE_IDEAS_PRICE_ID` | the monthly `price_...` (€70) |
 | `ENTITLEMENT_SECRET` | any long random string — e.g. `openssl rand -hex 32` |
 
-All three must be present for the paywall to activate
-(`paywallActive()` in `lib/entitlement.js`).
+`STRIPE_PRICE_ID` is the name the single-product version used. It is still
+honoured as the **ideas** price, so an existing deployment keeps working
+untouched; `STRIPE_IDEAS_PRICE_ID` takes precedence if both are set.
+
+Enforcement needs the key, the secret, and **at least one** price
+(`paywallActive()` in `lib/entitlement.js`). A product with no price configured
+is simply not offered for sale — no buy button appears for it — rather than
+producing a broken checkout.
 
 ### 3. Redeploy
+
 Vercel → Deployments → ⋯ → **Redeploy** (or push any commit). Enforcement is now
-live: the Research Desk shows "Subscribe · $X/mo", Checkout runs, and access
-unlocks on return.
+live: locked lessons show "Get the course · €200", the ideas page shows both
+paths, Checkout runs, and access unlocks on return.
 
 ### 4. (Recommended) Trial in test mode first
-Use `sk_test_...` + a test-mode `price_...`, then subscribe with Stripe's
+
+Use `sk_test_...` + test-mode prices, then buy with Stripe's
 [test card](https://docs.stripe.com/testing) `4242 4242 4242 4242` (any future
-expiry, any CVC). Confirm the theses unlock, then swap in the live keys.
+expiry, any CVC). Worth walking the whole path once: buy the course, confirm the
+lessons unlock **and** the ideas open, then swap in the live keys.
 
-### 5. (Optional but recommended) Instant revocation — webhook + KV
+### 5. (Optional but recommended) Prompt revocation — webhook + KV
 
-Without this, a cancellation or failed payment stops access at the end of the
-paid period (up to one billing cycle of lag). Add a webhook + a small KV
-denylist to make revocation **immediate**.
+Without this, a cancellation, failed payment or refund stops access at the next
+cookie refresh (up to 30 days of lag). Add a webhook + a small KV store to cut
+that to the customer's very next request.
 
 1. **Provision a KV store.** Vercel → **Storage → KV** (create a database and
    connect it to this project — it injects `KV_REST_API_URL` and
@@ -71,57 +107,76 @@ denylist to make revocation **immediate**.
 2. **Register the webhook** in Stripe → Developers → Webhooks → Add endpoint:
    - URL: `https://<your-domain>/api/stripe-webhook`
    - Events: `customer.subscription.updated`, `customer.subscription.deleted`,
-     `invoice.payment_failed`, `invoice.paid`
+     `invoice.payment_failed`, `invoice.paid`, `charge.refunded`,
+     `charge.dispute.created`
    - Copy the endpoint's **Signing secret** (`whsec_...`).
 3. **Set** `STRIPE_WEBHOOK_SECRET` = that `whsec_...` in Vercel env vars, and
    **redeploy**.
 
-Now cancelling a subscription (or a failed renewal) revokes access on the
-subscriber's very next request. The webhook always re-checks the subscription's
-status directly with Stripe, so a forged event can never grant or wrongly revoke
-access — only trigger a re-check.
+The flag the webhook writes means *"this customer's cookie is stale, re-derive
+from Stripe"* — **not** *"this customer has nothing."* That distinction is the
+whole point: cancelling a €70/month subscription must leave a €200 course
+untouched. The re-derivation is what then correctly drops the ideas and keeps the
+course. The webhook always re-checks status directly with Stripe, so a forged
+event can never grant or wrongly revoke access — only trigger a re-check.
 
 ---
 
 ## How it works
 
-- **Checkout.** The client calls `POST /api/billing?fn=createCheckout`, which
-  creates a Stripe Checkout Session (`mode: subscription`) and returns its URL.
-  The browser is sent to Stripe, then back to
-  `research.html?sub=success&session_id=...`.
-- **Activation.** On return, the client calls `POST /api/billing?fn=activate`,
-  which verifies the session with Stripe and, if the subscription is active,
-  sets two signed **HttpOnly** cookies:
-  - `scere_ent` — short-lived entitlement, expires at the subscription's
-    current period end.
+- **Checkout.** The client calls `POST /api/billing?fn=createCheckout` with
+  `{ product: 'course' | 'ideas' }`. The course creates a `mode: payment`
+  session tagged `metadata.product = 'course'`; the ideas create a
+  `mode: subscription` session. The browser goes to Stripe and comes back to
+  `learn.html?buy=success&session_id=...` or
+  `research.html?sub=success&session_id=...` (the return page is chosen
+  server-side, so it can never be turned into an open redirect).
+- **That metadata tag is load-bearing.** `metadata.product === 'course'` on a
+  paid Checkout Session is the *only* thing that establishes ownership. A course
+  payment without it grants nothing.
+- **One customer, not several.** If the visitor already has a `scere_cus` cookie,
+  its customer id is passed to Checkout. Without this, someone who buys the course
+  and subscribes three months later would become a *second* Stripe customer, and
+  the course they own would become invisible to the entitlement check.
+- **Activation.** On return the client calls `POST /api/billing?fn=activate`,
+  which verifies the session, re-derives the customer's whole entitlement from
+  Stripe, and sets two signed **HttpOnly** cookies:
+  - `scere_ent` — `{ course, cAt, iUntil, iSrc, sub, exp }`. `exp` is a
+    **re-derivation horizon** (30 days), not the entitlement's lifetime.
   - `scere_cus` — long-lived (~400d) signed customer id.
-- **Enforcement.** `GET /api/research?fn=full` (used by the Research Desk when
-  unlocked, and by the FX Intelligence Desk) returns the report only if
-  `scere_ent` is valid. `fn=public` always returns the free subset.
-- **Renewals.** When `scere_ent` expires, `checkEntitlement()` re-checks Stripe
-  using `scere_cus`: an active subscription silently re-issues `scere_ent`.
-- **Revocation.** Without the webhook, a cancellation drops access when the
-  entitlement cookie expires (up to one billing period). With the webhook + KV
-  (step 5), `api/stripe-webhook.js` writes a `revoked:<customer>` denylist entry
-  that `checkEntitlement()` checks on every request, so access is cut off
-  **immediately** — even while the cookie is still valid. An active event clears
-  the entry (self-heal).
+- **Deriving the two facts.** `deriveFromStripe()` reads the customer's Checkout
+  Sessions and subscriptions:
+  - `ownsCourse` — the earliest paid, non-refunded session tagged as the course.
+    Earliest wins, so buying twice cannot quietly extend the included window.
+  - `ideasActive` — true until `max(courseAt + 90 days, subscription period end)`.
+    `ideasSource` records which of the two is granting it, so the page can say
+    *"included with your course until 13 October"* rather than a bare "active".
+- **Refunds.** Stripe leaves a session's `payment_status` at `paid` after a
+  refund, so ownership is checked against the refunds recorded on its
+  PaymentIntent. A **full** refund undoes the sale; a **partial** one (a goodwill
+  adjustment) leaves the course owned. A failed refund lookup never revokes —
+  a transient error must not cost a paying customer their course.
+- **Guards.** Checkout refuses to sell the course to someone who owns it, or a
+  month of ideas to someone whose 90 included days are still running (returning
+  the date they end instead). Selling either would be indefensible.
 - **Restore on a new device.** "Restore access" calls
-  `POST /api/billing?fn=restore` with the subscriber's email; if Stripe has an
-  active subscription for that email, the cookies are re-issued.
+  `POST /api/billing?fn=restore` with the email paid with. Owning the course
+  counts as a successful restore even with no live subscription.
 
 ### Endpoints
 
+- `GET  /api/course?fn=index` — the whole syllabus as metadata (public)
+- `GET  /api/course?fn=lesson&id=…` — one lesson body (402 without the course)
 - `GET  /api/research?fn=index` — available report dates (public)
-- `GET  /api/research?fn=public` — free subset + `{ entitled, paywallActive }`
-- `GET  /api/research?fn=full` — entire report (402 if not subscribed)
-- `GET  /api/billing?fn=config` — `{ configured, priceLabel, interval, entitled }`
-- `GET  /api/billing?fn=status` — `{ entitled, paywallActive }`
-- `POST /api/billing?fn=createCheckout` — `{ url }`
+- `GET  /api/research?fn=public` — free subset + `{ entitled, ownsCourse, ideasUntil, ideasSource, paywallActive }`
+- `GET  /api/research?fn=full` — entire report (402 without active ideas)
+- `GET  /api/billing?fn=config` — `{ configured, course: {…}, ideas: {…}, ownsCourse, ideasActive, ideasUntil, ideasSource }`
+- `GET  /api/billing?fn=status` — the same entitlement facts, without the prices
+- `POST /api/billing?fn=createCheckout` — `{ product }` → `{ url }`
 - `POST /api/billing?fn=activate` — `{ session_id }` → sets cookies
-- `POST /api/billing?fn=restore` — `{ email }` → sets cookies if subscribed
+- `POST /api/billing?fn=restore` — `{ email }` → sets cookies if anything is owned
 - `POST /api/billing?fn=logout` — clears cookies
-- `POST /api/stripe-webhook` — Stripe events → KV revocation denylist (instant revocation)
+- `POST /api/stripe-webhook` — Stripe events → KV flag → prompt re-derivation
 
 ---
 
@@ -130,14 +185,21 @@ access — only trigger a re-check.
 - **No npm dependencies.** Stripe is called over its REST API with `fetch`,
   matching `api/markets-hub.js`. There is no `stripe` package and no build step.
 - **No database.** Entitlement lives entirely in the signed cookies; Stripe is
-  the source of truth, re-checked as cookies expire.
+  the source of truth, re-derived whenever a cookie expires or is flagged.
 - **Secrets never reach the client.** Only `lib/entitlement.js` (server) holds
   the Stripe key and signing secret.
+- **Two facts, never one flag.** Collapsing `ownsCourse` and `ideasActive` back
+  into a single "entitled" boolean is exactly what would let a lapsed €70
+  subscription take away a €200 course.
 
 ## Not included (possible follow-ups)
 
-- **Customer portal.** Add a Stripe Billing Portal link so subscribers can
-  manage or cancel their plan in-app.
+- **Email recovery for course access.** Permanent access currently depends on the
+  `scere_cus` cookie surviving, or on the buyer remembering which email they paid
+  with. For a product sold as *"yours forever"* that is not good enough — a
+  magic-link sign-in is the fix, and it is load-bearing rather than optional.
+- **Customer portal.** A Stripe Billing Portal link so subscribers can manage or
+  cancel the ideas subscription in-app.
 
 ---
 
@@ -147,4 +209,4 @@ These already exist in the project:
 
 - `ALPHA_VANTAGE_API_KEY` — market quotes/series via `api/markets-hub.js`.
 - `REPORTS_PASSWORD` / `REPORTS_USER` — HTTP Basic Auth for the `/reports/*`
-  path (`middleware.js`), separate from the subscription gate.
+  path (`middleware.js`), separate from the payment gate.

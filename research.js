@@ -255,7 +255,7 @@ function renderLiveIdeasLocked(liveIdeas) {
           </div>
           <div class="lock-over">
             <div class="lock-ic">🔒</div>
-            <p class="lock-msg">Entry, targets, invalidation and the full scorecard unlock with a subscription.</p>
+            <p class="lock-msg">Entry, targets, invalidation and the full scorecard unlock with the course, or on their own monthly.</p>
           </div>
         </div>
       </div>`).join('');
@@ -263,8 +263,29 @@ function renderLiveIdeasLocked(liveIdeas) {
 
 // ---- access / subscription state ----------------------------------------
 
-const access = { paywallActive: false, entitled: false, configured: false, priceLabel: null };
+// Two products, so a single "entitled" flag is not enough to describe this visitor:
+// the page must be able to say WHY the ideas are open (included with the course, or
+// a live subscription) and what changes when that reason runs out.
+const access = {
+  paywallActive: false,
+  entitled: false,          // = ideas are readable right now, whatever the reason
+  ownsCourse: false,
+  ideasUntil: null,
+  ideasSource: null,        // 'included' | 'subscription' | null
+  configured: false,
+  course: { available: false, priceLabel: null },
+  ideas: { available: false, priceLabel: null },
+};
 let selectedDate = null;
+
+function formatDate(unixSeconds) {
+  if (!unixSeconds) return '';
+  try {
+    return new Date(unixSeconds * 1000).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' });
+  } catch (e) {
+    return '';
+  }
+}
 
 async function fetchJson(url, opts) {
   const res = await fetch(url, opts);
@@ -287,54 +308,107 @@ function renderAccess() {
     return;
   }
 
+  const idealPrice = access.ideas.priceLabel ? escapeHtml(access.ideas.priceLabel) : '';
+  const coursePrice = access.course.priceLabel ? escapeHtml(access.course.priceLabel) : '';
+  const signOut = '<button id="logoutBtn" type="button" class="underline hover:text-slate-200">Sign out</button>';
+
   if (access.entitled) {
-    status.textContent = '✓ Subscription active';
-    status.className = 'text-xs font-semibold text-emerald-300';
-    bar.innerHTML = `<div class="flex items-center gap-3 text-xs text-slate-400">
-        <span>You have full access to every live thesis.</span>
-        <button id="logoutBtn" type="button" class="underline hover:text-slate-200">Sign out</button>
-      </div>`;
+    // Included with the course vs. paid for monthly are different situations and the
+    // page should not pretend otherwise — one of them is going to end on a known date.
+    if (access.ideasSource === 'included') {
+      const until = formatDate(access.ideasUntil);
+      status.textContent = '✓ Included with your course';
+      status.className = 'text-xs font-semibold text-emerald-300';
+      bar.innerHTML = `<div class="flex flex-wrap items-center gap-3 text-xs text-slate-400">
+          <span>The daily ideas come with your course${until ? ` until <strong class="text-slate-200">${escapeHtml(until)}</strong>` : ''}. After that they are optional${idealPrice ? `, at ${idealPrice}` : ''} — your course access is untouched either way.</span>
+          ${signOut}
+        </div>`;
+    } else {
+      status.textContent = '✓ Subscription active';
+      status.className = 'text-xs font-semibold text-emerald-300';
+      bar.innerHTML = `<div class="flex items-center gap-3 text-xs text-slate-400">
+          <span>You have full access to every live thesis.</span>
+          ${signOut}
+        </div>`;
+    }
     const lo = document.getElementById('logoutBtn'); if (lo) lo.onclick = doLogout;
     return;
   }
 
   status.textContent = '🔒 Locked';
   status.className = 'text-xs font-semibold text-amber-300';
-  const price = access.priceLabel ? escapeHtml(access.priceLabel) : '';
-  bar.innerHTML = `
-    <div class="paywall-card">
-      <div class="paywall-icon">🔒</div>
-      <p class="text-sm text-slate-200 font-semibold mb-1">Unlock every live thesis${price ? ` — ${price}` : ''}</p>
-      <p class="text-xs text-slate-400 mb-1 max-w-sm mx-auto">Full entries, targets, invalidation and the weighted six-pillar scorecard, updated daily. The track record above stays free, always.</p>
-      <button id="subscribeBtn" type="button" class="upgrade-btn">Subscribe${price ? ` · ${price}` : ''}</button>
-      <p class="text-[11px] text-slate-500 mt-3">Already subscribed? <button id="restoreBtn" type="button" class="underline hover:text-slate-300">Restore access</button></p>
-    </div>`;
-  document.getElementById('subscribeBtn').onclick = doSubscribe;
+
+  // A course owner whose included months have run out is not a stranger being asked to
+  // buy — they are being asked to continue. Only the subscription is offered.
+  if (access.ownsCourse) {
+    bar.innerHTML = `
+      <div class="paywall-card">
+        <div class="paywall-icon">🔒</div>
+        <p class="text-sm text-slate-200 font-semibold mb-1">Your three included months have ended</p>
+        <p class="text-xs text-slate-400 mb-1 max-w-sm mx-auto">Your course is unaffected and stays yours. To keep receiving the daily ideas${idealPrice ? `, they are ${idealPrice}` : ''}. The track record above stays free, always.</p>
+        ${access.ideas.available ? `<button id="subscribeBtn" type="button" class="upgrade-btn">Keep the daily ideas${idealPrice ? ` · ${idealPrice}` : ''}</button>` : ''}
+        <p class="text-[11px] text-slate-500 mt-3">Already subscribed? <button id="restoreBtn" type="button" class="underline hover:text-slate-300">Restore access</button></p>
+      </div>`;
+  } else {
+    // Never bought anything: lead with the course, since it is the better deal for
+    // anyone who wants both, and keep the ideas-only path plainly available.
+    bar.innerHTML = `
+      <div class="paywall-card">
+        <div class="paywall-icon">🔒</div>
+        <p class="text-sm text-slate-200 font-semibold mb-1">Unlock every live thesis</p>
+        <p class="text-xs text-slate-400 mb-3 max-w-sm mx-auto">Full entries, targets, invalidation and the weighted six-pillar scorecard, updated daily. The track record above stays free, always.</p>
+        ${access.course.available ? `
+          <button id="buyCourseBtn" type="button" class="upgrade-btn">Get the course${coursePrice ? ` · ${coursePrice}` : ''}</button>
+          <p class="text-[11px] text-slate-400 mt-2 max-w-sm mx-auto">Yours permanently, and it includes three months of these ideas.</p>` : ''}
+        ${access.ideas.available ? `
+          <p class="text-[11px] text-slate-500 mt-3">Just want the ideas? <button id="subscribeBtn" type="button" class="underline hover:text-slate-300">Subscribe${idealPrice ? ` · ${idealPrice}` : ''}</button></p>` : ''}
+        <p class="text-[11px] text-slate-500 mt-2">Already paid? <button id="restoreBtn" type="button" class="underline hover:text-slate-300">Restore access</button></p>
+      </div>`;
+  }
+  const sub = document.getElementById('subscribeBtn'); if (sub) sub.onclick = doSubscribe;
+  const buy = document.getElementById('buyCourseBtn'); if (buy) buy.onclick = doBuyCourse;
   document.getElementById('restoreBtn').onclick = doRestore;
 }
 
-async function doSubscribe() {
-  const btn = document.getElementById('subscribeBtn');
+// Shared by both buy buttons — the only difference is which product is requested and
+// which page Stripe returns to, and the server decides the latter.
+async function startCheckout(btn, product, unavailableMsg) {
+  const original = btn ? btn.textContent : '';
   if (btn) { btn.disabled = true; btn.textContent = 'Redirecting…'; }
   try {
-    const res = await postJson('/api/billing?fn=createCheckout', {});
-    const d = await res.json();
-    if (d && d.url) { window.location.href = d.url; return; }
-    alert('Subscriptions aren’t available right now. Please try again later.');
+    const res = await postJson('/api/billing?fn=createCheckout', { product });
+    const d = await res.json().catch(() => ({}));
+    if (res.ok && d.url) { window.location.href = d.url; return; }
+    // These mean the page is simply out of date about what this visitor already has.
+    if (d.error === 'already_owned' || d.error === 'already_included' || d.error === 'already_subscribed') {
+      loadReport(selectedDate);
+      return;
+    }
+    alert(unavailableMsg);
   } catch (e) {
     alert('Could not start checkout. Please try again.');
   }
-  if (btn) { btn.disabled = false; btn.textContent = 'Subscribe' + (access.priceLabel ? ` · ${access.priceLabel}` : ''); }
+  if (btn) { btn.disabled = false; btn.textContent = original; }
+}
+
+function doSubscribe() {
+  return startCheckout(document.getElementById('subscribeBtn'), 'ideas', 'Subscriptions aren’t available right now. Please try again later.');
+}
+
+function doBuyCourse() {
+  return startCheckout(document.getElementById('buyCourseBtn'), 'course', 'The course isn’t available to buy right now. Please try again shortly.');
 }
 
 async function doRestore() {
-  const email = window.prompt('Enter the email address you subscribed with:');
+  const email = window.prompt('Enter the email address you paid with:');
   if (!email) return;
   try {
     const res = await postJson('/api/billing?fn=restore', { email });
     const d = await res.json();
-    if (res.ok && d.entitled) { loadReport(selectedDate); }
-    else alert('No active subscription was found for that email.');
+    // Owning the course counts as a successful restore even with no live
+    // subscription — the ideas stay locked, but the course comes back.
+    if (res.ok && (d.entitled || d.ownsCourse)) { loadReport(selectedDate); }
+    else alert('No course purchase or active subscription was found for that email.');
   } catch (e) {
     alert('Could not restore access right now. Please try again.');
   }
@@ -359,7 +433,8 @@ async function loadBillingConfig() {
   try {
     const c = await fetchJson('/api/billing?fn=config');
     access.configured = !!c.configured;
-    access.priceLabel = c.priceLabel || null;
+    access.course = c.course || { available: false, priceLabel: null };
+    access.ideas = c.ideas || { available: false, priceLabel: null };
   } catch (e) { /* leave defaults; paywall treated as inactive */ }
 }
 
@@ -375,6 +450,9 @@ async function loadReport(dateKey) {
     const pub = await fetchJson(`/api/research?fn=public${q}`);
     access.paywallActive = !!pub.paywallActive;
     access.entitled = !!pub.entitled;
+    access.ownsCourse = !!pub.ownsCourse;
+    access.ideasUntil = pub.ideasUntil || null;
+    access.ideasSource = pub.ideasSource || null;
 
     renderRegimeHero(pub);
     renderNoTrade(pub);

@@ -32,34 +32,120 @@ function originOf(req) {
   return req.headers.origin || `${proto}://${host}`;
 }
 
+const SYMBOLS = { USD: '$', EUR: '€', GBP: '£', NGN: '₦', KES: 'KSh', ZAR: 'R' };
+
+function formatMoney(minorUnits, currency, interval) {
+  const amount = minorUnits / 100;
+  const cur = (currency || 'usd').toUpperCase();
+  const sym = SYMBOLS[cur] || `${cur} `;
+  const nice = Number.isInteger(amount) ? amount.toString() : amount.toFixed(2);
+  if (!interval) return `${sym}${nice}`;
+  const per = interval === 'month' ? 'mo' : interval === 'year' ? 'yr' : interval;
+  return `${sym}${nice}/${per}`;
+}
+
 // Handles both shapes: a recurring price reads "€70/mo", a one-time price reads
 // "€200" with no interval — writing "/mo" on a product you buy once would be a lie.
 function formatPrice(price) {
   if (!price || price.unit_amount == null) return null;
-  const amount = price.unit_amount / 100;
-  const cur = (price.currency || 'usd').toUpperCase();
-  const symbols = { USD: '$', EUR: '€', GBP: '£', NGN: '₦', KES: 'KSh', ZAR: 'R' };
-  const sym = symbols[cur] || `${cur} `;
-  const nice = Number.isInteger(amount) ? amount.toString() : amount.toFixed(2);
-  if (!price.recurring) return { label: `${sym}${nice}`, interval: null };
-  const interval = price.recurring.interval || 'month';
-  const per = interval === 'month' ? 'mo' : interval === 'year' ? 'yr' : interval;
-  return { label: `${sym}${nice}/${per}`, interval };
+  const interval = price.recurring ? (price.recurring.interval || 'month') : null;
+  return { label: formatMoney(price.unit_amount, price.currency, interval), interval };
 }
 
 // A missing price is a configuration state, not an error: the UI simply does not
 // offer that product. A price that fails to load is treated the same way, so a Stripe
 // blip cannot produce a buy button with no price on it.
 async function describeProduct(id) {
-  if (!id) return { available: false, priceLabel: null, interval: null };
+  const none = { available: false, priceLabel: null, interval: null, amount: null, currency: null, product: null };
+  if (!id) return none;
   try {
-    const f = formatPrice(await stripeRequest('GET', `/v1/prices/${id}`));
-    if (!f) return { available: false, priceLabel: null, interval: null };
-    return { available: true, priceLabel: f.label, interval: f.interval };
+    const price = await stripeRequest('GET', `/v1/prices/${id}`);
+    const f = formatPrice(price);
+    if (!f) return none;
+    return {
+      available: true,
+      priceLabel: f.label,
+      interval: f.interval,
+      // Kept so a promotion code can be previewed against this price without a
+      // second round trip.
+      amount: price.unit_amount,
+      currency: price.currency,
+      product: typeof price.product === 'string' ? price.product : (price.product && price.product.id) || null,
+    };
   } catch (e) {
     console.error('price fetch failed:', e.message);
-    return { available: false, priceLabel: null, interval: null };
+    return none;
   }
+}
+
+// ---- promotion codes ------------------------------------------------------
+//
+// Codes can be typed on Stripe's page (allow_promotion_codes), but a campaign link
+// that arrives with the discount already applied converts far better than asking
+// someone to remember and retype one. Resolving the code here lets the site show the
+// real discounted price BEFORE checkout, rather than making it a surprise on Stripe's
+// page — and lets us say plainly when a code is expired or does not apply.
+
+const CODE_RE = /^[A-Za-z0-9_-]{1,64}$/;
+
+async function resolvePromotionCode(raw) {
+  const code = String(raw || '').trim();
+  if (!code || !CODE_RE.test(code)) return null;
+  const find = async (c) => {
+    const list = await stripeRequest('GET', '/v1/promotion_codes', { code: c, active: 'true', limit: 1 });
+    return (list && list.data && list.data[0]) || null;
+  };
+  try {
+    // Stripe stores codes uppercased unless the operator forced a case, and the list
+    // filter is an exact match — so try what the link said, then the uppercased form.
+    let pc = await find(code);
+    if (!pc && code !== code.toUpperCase()) pc = await find(code.toUpperCase());
+    if (!pc || !pc.coupon || pc.coupon.valid === false) return null;
+    return pc;
+  } catch (e) {
+    console.error('promotion code lookup failed:', e.message);
+    return null;
+  }
+}
+
+// What this coupon does to one specific price. Returns null when it does not apply,
+// which is a normal answer — a course-only code simply has nothing to say about the
+// subscription.
+function previewDiscount(pc, prod) {
+  if (!pc || !prod || !prod.available || prod.amount == null) return null;
+  const coupon = pc.coupon || {};
+  const restrictions = pc.restrictions || {};
+
+  // A coupon may be restricted to particular products.
+  const only = coupon.applies_to && Array.isArray(coupon.applies_to.products) ? coupon.applies_to.products : null;
+  if (only && only.length && (!prod.product || only.indexOf(prod.product) === -1)) return null;
+
+  // …and to a minimum order value.
+  if (restrictions.minimum_amount != null) {
+    const mc = restrictions.minimum_amount_currency;
+    if ((!mc || mc === prod.currency) && prod.amount < restrictions.minimum_amount) return null;
+  }
+
+  let discounted;
+  if (coupon.percent_off) {
+    discounted = Math.round((prod.amount * (100 - coupon.percent_off)) / 100);
+  } else if (coupon.amount_off != null) {
+    // A fixed-amount coupon in another currency cannot apply to this price.
+    if (coupon.currency && coupon.currency !== prod.currency) return null;
+    discounted = Math.max(0, prod.amount - coupon.amount_off);
+  } else {
+    return null;
+  }
+
+  return {
+    label: formatMoney(discounted, prod.currency, prod.interval),
+    wasLabel: prod.priceLabel,
+    free: discounted === 0,
+    // Stripe is the authority at checkout — per-customer limits like
+    // first_time_transaction cannot be evaluated from here — so this is a preview,
+    // and createCheckout falls back gracefully if Stripe disagrees.
+    firstTimeOnly: !!restrictions.first_time_transaction,
+  };
 }
 
 module.exports = async function handler(req, res) {
@@ -84,11 +170,31 @@ module.exports = async function handler(req, res) {
         describeProduct(ideasPriceId()),
         checkEntitlement(req, res),
       ]);
+
+      // A ?code= on the landing URL is previewed here so the page can show the real
+      // discounted price on the button. An unknown or expired code is reported as
+      // such rather than silently ignored — silently dropping it is how someone pays
+      // full price believing their code was applied.
+      const rawCode = (req.query && req.query.code) || '';
+      let promo = null;
+      if (rawCode) {
+        const pc = await resolvePromotionCode(rawCode);
+        promo = pc
+          ? {
+            code: pc.code,
+            valid: true,
+            course: previewDiscount(pc, course),
+            ideas: previewDiscount(pc, ideas),
+          }
+          : { code: String(rawCode).slice(0, 64), valid: false, course: null, ideas: null };
+      }
+
       res.setHeader('Cache-Control', 'private, max-age=0, must-revalidate');
       res.status(200).json({
         configured: true,
         course,
         ideas,
+        promo,
         // priceLabel/interval at the top level remain the IDEAS price, which is what
         // the single-product client read. Kept so a stale cached client keeps working.
         priceLabel: ideas.priceLabel,
@@ -168,6 +274,19 @@ module.exports = async function handler(req, res) {
         // course. Without it a completed payment grants nothing.
         metadata: { product },
       };
+
+      // A code carried in from a campaign link is applied up front, so the buyer sees
+      // the discounted total on Stripe's page without typing anything. `discounts` and
+      // `allow_promotion_codes` are mutually exclusive, so one replaces the other.
+      let codeApplied = null;
+      if (body.code) {
+        const pc = await resolvePromotionCode(body.code);
+        if (pc) {
+          params.discounts = [{ promotion_code: pc.id }];
+          delete params.allow_promotion_codes;
+          codeApplied = pc.code;
+        }
+      }
       if (known) {
         params.customer = known;
       } else if (product === 'course') {
@@ -179,8 +298,23 @@ module.exports = async function handler(req, res) {
         params['payment_intent_data'] = { metadata: { product: 'course' } };
       }
 
-      const session = await stripeRequest('POST', '/v1/checkout/sessions', params);
-      res.status(200).json({ url: session.url, product });
+      let session;
+      try {
+        session = await stripeRequest('POST', '/v1/checkout/sessions', params);
+      } catch (err) {
+        // Stripe is the authority on whether a code may be used — per-customer limits
+        // and redemption caps cannot be evaluated up front. If it refuses the code, go
+        // through WITHOUT it rather than failing: a bad discount code must never be
+        // the reason someone cannot buy. They can still type a different one on the
+        // Stripe page.
+        if (!params.discounts) throw err;
+        console.error('promotion code rejected, retrying without it:', err.message);
+        delete params.discounts;
+        params.allow_promotion_codes = 'true';
+        codeApplied = null;
+        session = await stripeRequest('POST', '/v1/checkout/sessions', params);
+      }
+      res.status(200).json({ url: session.url, product, codeApplied });
       return;
     }
 

@@ -124,10 +124,36 @@ A few things specific to how this app grants access:
 - **On the subscription**, a `forever` coupon keeps the subscription `active` at a lower
   price; entitlement follows subscription status, not the amount, so nothing changes.
 
-Not built: **auto-applying a code from a link** (e.g. `/learn.html?code=LAUNCH50`), which
-converts better for campaigns than asking people to type it. It needs the `discounts`
-parameter instead of `allow_promotion_codes` — the two are mutually exclusive — plus a
-lookup of the code before creating the session.
+#### Campaign links (`?code=`)
+
+Any page accepts `?code=LAUNCH50`, so a campaign email, ad or affiliate link can arrive
+with the discount already applied — no typing, and no code to forget:
+
+```
+https://<your-domain>/learn.html?code=LAUNCH50
+https://<your-domain>/research.html?code=LAUNCH50
+```
+
+What happens:
+
+- The code is remembered for the **visit** (`sessionStorage`, not `localStorage` — a
+  discount from a link belongs to that visit, not permanently to that browser), so it
+  survives the walk from the syllabus into a free lesson and on to checkout. Someone who
+  clicks a link, reads two lessons and then buys still gets what they were promised.
+- The site shows the **real discounted price on the button** — "Get the course · €100",
+  with €200 struck through — because the code is resolved server-side against Stripe
+  before rendering. Showing €200 and then €100 on Stripe's page would be a pleasant
+  surprise once and a trust problem thereafter.
+- Checkout is created with `discounts` rather than `allow_promotion_codes` (the two are
+  mutually exclusive), so the discount is already applied when the buyer arrives.
+- **A code that does not apply says so.** Expired, unknown, wrong currency, wrong
+  product, below a minimum order — each is stated next to the price rather than silently
+  ignored. A code that is quietly dropped is how someone pays full price believing it
+  worked.
+- **A bad code can never block a sale.** Stripe is the authority on limits that cannot
+  be evaluated up front (per-customer caps, `first_time_transaction`, redemption
+  limits). If it refuses the code, checkout is retried *without* it and the buyer still
+  reaches the payment page, where they can type a different one.
 
 ### 5. (Optional but recommended) Prompt revocation — webhook + KV
 

@@ -568,9 +568,9 @@ This is deliberately an MVP — the single-page forecast + news screen only, mat
 what was scoped. Not built in this pass, same "don't build it before there's a real
 decision behind it" discipline the weather app's roadmap docs used:
 
-- **Real Pro paywall/payment.** The modal is UI-only. Wiring a real one (Stripe is the
-  natural fit for a US-facing finance app, unlike the weather app's WhatsApp/mobile-money
-  flow) is a follow-up, not assumed here.
+- ~~**Real Pro paywall/payment.**~~ **Built since.** Two Stripe products, enforced
+  server-side: the course (one payment, permanent) and the daily ideas (monthly). See
+  [PAYMENTS.md](PAYMENTS.md).
 - **Accounts / saved multi-instrument watchlist.** The weather app's org-accounts
   Supabase layer isn't ported. Today's app supports one saved instrument via
   localStorage, same scope as the weather app's pre-Phase-4 single-city model.

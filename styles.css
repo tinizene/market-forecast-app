@@ -438,6 +438,24 @@
    ============================================================ */
 
 /* --- learn.html table of contents --- */
+
+/* The purchase offer, sitting between the free track and the paid ones. Dashed to
+   match .paywall-card, so "this is the boundary you pay to cross" reads the same
+   everywhere it appears. */
+.toc-offer {
+  background: linear-gradient(160deg, rgba(30, 64, 175, 0.25), rgba(15, 23, 42, 0.4));
+  border: 1px dashed rgba(96, 165, 250, 0.4);
+  border-radius: 1rem;
+  padding: 1.25rem 1.25rem 1.35rem;
+  margin-bottom: 1.75rem;
+}
+.toc-offer.is-owned {
+  background: rgba(16, 185, 129, 0.08);
+  border-style: solid;
+  border-color: rgba(16, 185, 129, 0.35);
+  padding-bottom: 1.25rem;
+}
+
 .toc-track { margin-bottom: 2rem; }
 .toc-head { margin-bottom: 0.75rem; }
 .toc-head .toc-track-title { font-size: 1.15rem; font-weight: 700; color: #f1f5f9; margin: 0.5rem 0 0.15rem; }

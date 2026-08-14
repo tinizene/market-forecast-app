@@ -1309,7 +1309,12 @@ async function renderCourseIndex() {
     t.lessons.push(e);
   });
 
-  root.innerHTML = tracks.map((t) => {
+  // The offer goes immediately before the first paid track: after the free lessons
+  // have made the case, and before the locked ones ask for payment.
+  const firstPaid = tracks.findIndex((t) => t.lessons.length && !t.lessons[0].free);
+
+  root.innerHTML = tracks.map((t, ti) => {
+    const offer = ti === firstPaid ? renderCourseOffer() : '';
     let lastChapter = null;
     const rows = t.lessons.map((e) => {
       let divider = '';
@@ -1331,7 +1336,7 @@ async function renderCourseIndex() {
           <span class="toc-go" aria-hidden="true">${lock}</span>
         </a>`;
     }).join('');
-    return `
+    return offer + `
       <section class="toc-track">
         <div class="toc-head">
           <span class="${t.badgeClass}">${escapeHtml(t.badge)}</span>
@@ -1342,6 +1347,113 @@ async function renderCourseIndex() {
         ${rows}
       </section>`;
   }).join('');
+
+  wireCourseButtons(root);
+}
+
+// ---------- buying the course ----------
+//
+// The course is sold from wherever someone meets a locked lesson, because that is the
+// moment they have decided they want it. The price is read from Stripe via
+// /api/billing rather than written here, so there is exactly one place it can be wrong.
+
+const courseAccess = { configured: false, available: false, priceLabel: null, ownsCourse: false };
+
+async function loadCourseBilling() {
+  try {
+    const res = await fetch('/api/billing?fn=config');
+    if (!res.ok) return;
+    const c = await res.json();
+    courseAccess.configured = !!c.configured;
+    courseAccess.ownsCourse = !!c.ownsCourse;
+    const course = c.course || {};
+    courseAccess.available = !!course.available;
+    courseAccess.priceLabel = course.priceLabel || null;
+  } catch (e) {
+    // Leave the defaults: the locked state still renders and still explains itself,
+    // it just cannot show a price or a buy button.
+  }
+}
+
+function courseBuyLabel() {
+  return courseAccess.priceLabel ? `Get the course · ${courseAccess.priceLabel}` : 'Get the course';
+}
+
+async function startCourseCheckout(btn) {
+  const original = btn ? btn.textContent : '';
+  if (btn) { btn.disabled = true; btn.textContent = 'Redirecting…'; }
+  try {
+    const res = await fetch('/api/billing?fn=createCheckout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ product: 'course' }),
+    });
+    const d = await res.json().catch(() => ({}));
+    if (res.ok && d.url) { window.location.href = d.url; return; }
+    // Already bought it in another tab or on another device — the page is simply out
+    // of date, so reload into the unlocked view rather than showing an error.
+    if (d.error === 'already_owned') { window.location.reload(); return; }
+    window.alert('The course isn’t available to buy right now. Please try again shortly.');
+  } catch (e) {
+    window.alert('Could not start checkout. Please try again.');
+  }
+  if (btn) { btn.disabled = false; btn.textContent = original || courseBuyLabel(); }
+}
+
+function wireCourseButtons(root) {
+  (root || document).querySelectorAll('[data-buy-course]').forEach((btn) => {
+    btn.addEventListener('click', () => startCourseCheckout(btn));
+  });
+}
+
+// Coming back from Stripe: verify the session so the entitlement cookie is set BEFORE
+// anything re-reads the lesson, then strip only our own query keys — on lesson.html
+// the ?id= must survive, or the redirect would land on "lesson not found".
+async function handleCourseCheckoutReturn() {
+  const p = new URLSearchParams(window.location.search);
+  const buy = p.get('buy');
+  if (buy === 'success' && p.get('session_id')) {
+    try {
+      await fetch('/api/billing?fn=activate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session_id: p.get('session_id') }),
+      });
+    } catch (e) {
+      // Not fatal: the customer cookie lets any later request re-derive entitlement.
+    }
+  }
+  if (buy) {
+    p.delete('buy');
+    p.delete('session_id');
+    const qs = p.toString();
+    window.history.replaceState({}, '', window.location.pathname + (qs ? `?${qs}` : ''));
+  }
+}
+
+// The offer, shown on the syllabus above the paid tracks. Someone browsing the
+// contents needs a way to buy without first walking into a locked lesson.
+function renderCourseOffer() {
+  if (!courseAccess.configured) return '';
+  if (courseAccess.ownsCourse) {
+    return `
+      <div class="toc-offer is-owned">
+        <p class="text-sm font-semibold text-emerald-300">✓ You own the course</p>
+        <p class="text-xs text-slate-400 mt-1">Every lesson below is yours permanently.</p>
+      </div>`;
+  }
+  if (!courseAccess.available) return '';
+  const price = courseAccess.priceLabel ? escapeHtml(courseAccess.priceLabel) : '';
+  return `
+    <div class="toc-offer">
+      <p class="text-sm font-semibold text-white">The course${price ? ` — ${price}` : ''}</p>
+      <p class="text-xs text-slate-400 mt-1 mb-3 max-w-md">
+        Crypto, Forex and Stocks &amp; ETFs. One payment, yours permanently — and it includes
+        three months of the daily high-conviction ideas so you can watch the method work while
+        you learn it.
+      </p>
+      <button type="button" data-buy-course class="upgrade-btn">${escapeHtml(courseBuyLabel())}</button>
+    </div>`;
 }
 
 // Shown in place of a lesson body the visitor has not paid for. It deliberately
@@ -1356,7 +1468,9 @@ function renderLockedLesson(e) {
       <p class="text-xs text-slate-500 mt-4 max-w-sm mx-auto">
         This lesson is part of the course — Crypto, Forex and Stocks &amp; ETFs. One payment, yours permanently, and it includes three months of daily high-conviction ideas.
       </p>
-      <a href="./research.html" class="upgrade-btn inline-block mt-4">Get the course</a>
+      ${courseAccess.available
+        ? `<button type="button" data-buy-course class="upgrade-btn inline-block mt-4">${escapeHtml(courseBuyLabel())}</button>`
+        : ''}
       <p class="mt-4 text-xs text-slate-500">
         <a href="./learn.html" class="underline decoration-slate-600 underline-offset-2 hover:text-sky-400">Browse the free Foundation track</a>
       </p>
@@ -1445,6 +1559,8 @@ async function renderSingleLesson() {
 
   root.innerHTML = breadcrumb + lessonHtml + tools + nav;
 
+  if (fetched.locked) wireCourseButtons(root);
+
   // Interactive wiring only applies to a body that actually rendered — a locked
   // lesson has no quiz, no calculator and no lab to attach to.
   if (!fetched.locked) {
@@ -1459,9 +1575,17 @@ async function renderSingleLesson() {
   document.title = `${e.title} — Scere Markets`;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   // Page-aware dispatch. Legacy single-page render (#foundationRoot etc.) still
   // works if those mounts are present, so nothing else that includes learn.js breaks.
+  const sellingPage = document.getElementById('lessonRoot') || document.getElementById('courseIndexRoot');
+  if (sellingPage) {
+    // Order matters: activate the Checkout session first so the entitlement cookie
+    // exists before the lesson is fetched, or a buyer would land back on the locked
+    // view they just paid to leave.
+    await handleCourseCheckoutReturn();
+    await loadCourseBilling();
+  }
   if (document.getElementById('lessonRoot')) { renderSingleLesson(); return; }
   if (document.getElementById('courseIndexRoot')) { renderCourseIndex(); return; }
   renderFoundationTrack();

@@ -1,13 +1,19 @@
-// Stripe webhook — instant revocation.
+// Stripe webhook — prompt re-derivation.
 //
-// On subscription/payment events, this looks up the CURRENT status from Stripe
-// (authoritative — a forged payload can't grant or wrongly revoke access) and
-// writes/removes a KV denylist entry that checkEntitlement() honours on every
-// request. Register this URL in the Stripe Dashboard:
+// On subscription, payment and refund events, this looks up the CURRENT status from
+// Stripe (authoritative — a forged payload can't grant or wrongly revoke access) and
+// writes/removes a KV flag that checkEntitlement() honours on every request.
+//
+// The flag means "this customer's cookie is stale, re-derive from Stripe", NOT "this
+// customer has nothing" — cancelling the €70/month ideas subscription must leave a
+// €200 course untouched. lib/entitlement.js is where that distinction is enforced.
+//
+// Register this URL in the Stripe Dashboard:
 //
 //   https://<your-domain>/api/stripe-webhook
 //   Events: customer.subscription.updated, customer.subscription.deleted,
-//           invoice.payment_failed, invoice.paid
+//           invoice.payment_failed, invoice.paid,
+//           charge.refunded, charge.dispute.created
 //
 // Env: STRIPE_WEBHOOK_SECRET (signature check, recommended) and a KV store
 // (KV_REST_API_URL/TOKEN or UPSTASH_REDIS_REST_URL/TOKEN) for the denylist.
@@ -60,6 +66,16 @@ module.exports = async function handler(req, res) {
       : (typeof obj.subscription === 'string' ? obj.subscription : (obj.subscription && obj.subscription.id));
 
     if (!storeConfigured()) { res.status(200).json({ received: true, note: 'no KV store — revocation not recorded' }); return; }
+
+    // A refund or chargeback on the one-time course payment has no subscription to
+    // look up. Flagging the customer is enough: the flag makes checkEntitlement
+    // re-derive, and deriveFromStripe checks refunds against the course purchase, so
+    // a fully refunded course stops granting access on the very next request.
+    if (type === 'charge.refunded' || type === 'charge.dispute.created' || type === 'charge.refund.updated') {
+      if (customerFromEvent) await markRevoked(customerFromEvent);
+      res.status(200).json({ received: true });
+      return;
+    }
 
     if (subId) {
       // Authoritative: ask Stripe for the subscription's current status.

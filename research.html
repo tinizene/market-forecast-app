@@ -6,6 +6,7 @@
     <title>The Research Desk — Scere Markets</title>
     <meta name="theme-color" content="#0f172a">
     <meta name="description" content="High-conviction ideas, scored daily with a weighted six-pillar framework — with an open track record of how past calls actually turned out. Educational only, not financial advice.">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -16,8 +17,9 @@
     </script>
 </head>
 <body class="bg-slate-900 text-white font-sans min-h-screen p-4">
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
     <div class="app-bg" aria-hidden="true"></div>
-    <div class="relative z-10 max-w-2xl mx-auto pb-8">
+    <main class="relative z-10 max-w-2xl mx-auto pb-8" id="mainContent" tabindex="-1">
 
         <div id="siteNav" data-active="research"></div>
 
@@ -26,7 +28,7 @@
             <h1 class="text-2xl font-bold tracking-wide">High-Conviction Ideas</h1>
             <p class="text-slate-400 text-sm mt-1">Real due-diligence research, scored daily — with the receipts</p>
             <div class="absolute top-0 right-0">
-                <select id="historySelect" aria-label="Report date" class="text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white px-2 py-1.5 rounded-lg transition outline-none border border-slate-700"></select>
+                <select id="historySelect" aria-label="Choose report date" class="text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white px-2 py-1.5 rounded-lg transition outline-none border border-slate-700"></select>
             </div>
         </header>
 
@@ -45,8 +47,8 @@
             </div>
         </div>
 
-        <div id="loadingState" class="text-slate-400 text-sm text-center py-8">Loading the desk…</div>
-        <div id="errorState" class="hidden text-red-300 text-sm text-center py-8 bg-red-900/20 border border-red-600/40 rounded-xl"></div>
+        <div id="loadingState" role="status" aria-live="polite" class="py-2"></div>
+        <div id="errorState" role="alert" class="hidden"></div>
 
         <div id="researchRoot" class="hidden space-y-8">
 
@@ -102,8 +104,9 @@
             ·
             <a href="./index.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Why we exist</a>
         </footer>
-    </div>
+    </main>
 
+    <script src="./ui.js"></script>
     <script src="./nav.js"></script>
     <script src="./research.js"></script>
 </body>

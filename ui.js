@@ -1,0 +1,326 @@
+// Shared UX primitives for Scere Markets — accessible dialogs, live-region
+// announcements, busy states, skeletons and offline detection.
+//
+// Why this file exists: the app was using window.prompt() and window.alert() for the
+// two things that matter most commercially — restoring access and reporting a failed
+// checkout. Those are unstylable, unlabelled, untranslatable, block the main thread,
+// and on mobile Safari can be suppressed entirely, which means a paying customer can
+// hit a dead end with no visible reason. Everything here replaces them.
+//
+// Deliberately zero-dependency and no build step, matching the rest of the repo. The
+// modal is the native <dialog> element, which gives focus trapping, Escape-to-close,
+// an inert background and focus restoration for free — all things a hand-rolled modal
+// gets wrong.
+//
+// All user-facing text lives in SCERE_UI_STRINGS so a translation layer has one place
+// to override, rather than strings baked into markup.
+
+(function () {
+  'use strict';
+
+  var STRINGS = {
+    close: 'Close',
+    cancel: 'Cancel',
+    dismiss: 'Dismiss',
+    offline: 'You’re offline. Some things won’t load until the connection returns.',
+    backOnline: 'Back online.',
+    loading: 'Loading…',
+    required: 'This field is required.',
+    invalidEmail: 'Enter a valid email address, e.g. name@example.com.',
+    working: 'Working…',
+    skipToContent: 'Skip to main content',
+  };
+  window.SCERE_UI_STRINGS = Object.assign(STRINGS, window.SCERE_UI_STRINGS || {});
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  // ---- live-region announcements ------------------------------------------
+  // Screen readers get no notification when a region is re-rendered by fetch. One
+  // polite region for progress, one assertive for failures — both created once and
+  // reused, because a live region added to the DOM at the same moment as its text is
+  // frequently missed entirely.
+
+  var politeEl = null;
+  var assertiveEl = null;
+
+  function liveRegion(kind) {
+    var el = document.createElement('div');
+    el.setAttribute('role', kind === 'assertive' ? 'alert' : 'status');
+    el.setAttribute('aria-live', kind);
+    el.setAttribute('aria-atomic', 'true');
+    el.className = 'sr-only';
+    document.body.appendChild(el);
+    return el;
+  }
+
+  // Both regions are created at mount, BEFORE any message exists. Creating a live
+  // region and filling it in the same tick is the classic way to have the first
+  // announcement — usually the most important one, like a payment result — silently
+  // dropped, because the region was not being observed when the text arrived.
+  function mountLiveRegions() {
+    if (!politeEl) politeEl = liveRegion('polite');
+    if (!assertiveEl) assertiveEl = liveRegion('assertive');
+  }
+
+  function say(message, urgent) {
+    if (!document.body) return;
+    mountLiveRegions();
+    var el = urgent ? assertiveEl : politeEl;
+    // Clearing first makes a repeated identical message announce again rather than
+    // being treated as "no change".
+    el.textContent = '';
+    window.setTimeout(function () { el.textContent = message; }, 30);
+  }
+
+  // ---- busy state on a control --------------------------------------------
+  // A button that silently swaps its own label tells a sighted user something is
+  // happening and tells everyone else nothing. This disables it (so the action can't
+  // be fired twice — double-charging risk on a checkout button), marks aria-busy, and
+  // announces the change.
+
+  function setBusy(btn, label) {
+    if (!btn) return function () {};
+    var prevHtml = btn.innerHTML;
+    var prevDisabled = btn.disabled;
+    btn.disabled = true;
+    btn.setAttribute('aria-busy', 'true');
+    btn.innerHTML = '<span class="btn-spinner" aria-hidden="true"></span>' + esc(label || STRINGS.working);
+    say(label || STRINGS.working);
+    return function restore() {
+      btn.innerHTML = prevHtml;
+      btn.disabled = prevDisabled;
+      btn.removeAttribute('aria-busy');
+    };
+  }
+
+  // ---- modal dialog --------------------------------------------------------
+
+  var openDialogEl = null;
+
+  function buildDialog(opts) {
+    var d = document.createElement('dialog');
+    d.className = 'ui-dialog' + (opts.tone ? ' tone-' + opts.tone : '');
+    var titleId = 'uidlg-title';
+    var descId = 'uidlg-desc';
+    d.setAttribute('aria-labelledby', titleId);
+    if (opts.message) d.setAttribute('aria-describedby', descId);
+
+    var html = '<form class="ui-dialog-form" novalidate>';
+    html += '<h2 class="ui-dialog-title" id="' + titleId + '">' + esc(opts.title) + '</h2>';
+    if (opts.message) html += '<p class="ui-dialog-msg" id="' + descId + '">' + esc(opts.message) + '</p>';
+
+    if (opts.field) {
+      var f = opts.field;
+      html += '<div class="ui-field">';
+      html += '<label class="ui-label" for="uidlg-input">' + esc(f.label) + '</label>';
+      html += '<input class="ui-input" id="uidlg-input" name="value"' +
+        ' type="' + esc(f.type || 'text') + '"' +
+        (f.autocomplete ? ' autocomplete="' + esc(f.autocomplete) + '"' : '') +
+        (f.inputmode ? ' inputmode="' + esc(f.inputmode) + '"' : '') +
+        (f.placeholder ? ' placeholder="' + esc(f.placeholder) + '"' : '') +
+        ' aria-describedby="' + (f.hint ? 'uidlg-hint ' : '') + 'uidlg-err">';
+      if (f.hint) html += '<p class="ui-hint" id="uidlg-hint">' + esc(f.hint) + '</p>';
+      // The error node exists from the start and is empty. Injecting it on failure
+      // would change what aria-describedby points at mid-interaction, which some
+      // screen readers simply do not re-read.
+      html += '<p class="ui-error" id="uidlg-err" role="alert"></p>';
+      html += '</div>';
+    }
+
+    html += '<div class="ui-dialog-actions">';
+    html += '<button type="button" class="ui-btn ui-btn-ghost" data-ui-cancel>' + esc(opts.cancelLabel || STRINGS.cancel) + '</button>';
+    html += '<button type="submit" class="ui-btn ui-btn-primary">' + esc(opts.submitLabel || 'OK') + '</button>';
+    html += '</div></form>';
+    d.innerHTML = html;
+    return d;
+  }
+
+  // Returns a promise resolving to the submitted value, or null if dismissed.
+  // onSubmit may return a rejected promise / throw with .message to keep the dialog
+  // open and show an inline error — the failure stays attached to the field that
+  // caused it instead of replacing the whole dialog with an error screen.
+  function openDialog(opts) {
+    return new Promise(function (resolve) {
+      if (openDialogEl) { try { openDialogEl.close(); } catch (e) {} }
+      var restoreFocusTo = document.activeElement;
+      var d = buildDialog(opts);
+      document.body.appendChild(d);
+      openDialogEl = d;
+
+      var form = d.querySelector('form');
+      var input = d.querySelector('#uidlg-input');
+      var errEl = d.querySelector('#uidlg-err');
+      var submitBtn = d.querySelector('button[type=submit]');
+      var settled = null;
+
+      function showError(msg) {
+        if (!errEl) return;
+        errEl.textContent = msg;
+        if (input) {
+          input.setAttribute('aria-invalid', 'true');
+          input.focus();          // put the cursor where the fix has to happen
+          try { input.select(); } catch (e) {}
+        }
+      }
+
+      function clearError() {
+        if (errEl) errEl.textContent = '';
+        if (input) input.removeAttribute('aria-invalid');
+      }
+
+      function finish(value) {
+        settled = value;
+        try { d.close(); } catch (e) { cleanup(); }
+      }
+
+      function cleanup() {
+        d.remove();
+        if (openDialogEl === d) openDialogEl = null;
+        // Native <dialog> restores focus in modern browsers, but not reliably when
+        // the dialog is removed from the DOM in the same tick.
+        if (restoreFocusTo && document.contains(restoreFocusTo)) {
+          try { restoreFocusTo.focus(); } catch (e) {}
+        }
+        resolve(settled === undefined ? null : settled);
+      }
+
+      d.addEventListener('close', cleanup);
+      // Escape fires 'cancel'; treat it exactly like pressing Cancel.
+      d.addEventListener('cancel', function () { settled = null; });
+      d.querySelector('[data-ui-cancel]').addEventListener('click', function () { finish(null); });
+      if (input) input.addEventListener('input', clearError);
+
+      form.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        var value = input ? input.value.trim() : true;
+        if (opts.field && opts.field.required !== false && !value) { showError(STRINGS.required); return; }
+        if (opts.field && opts.field.validate) {
+          var problem = opts.field.validate(value);
+          if (problem) { showError(problem); return; }
+        }
+        if (!opts.onSubmit) { finish(value); return; }
+        clearError();
+        var restore = setBusy(submitBtn, opts.busyLabel);
+        Promise.resolve()
+          .then(function () { return opts.onSubmit(value); })
+          .then(function () { restore(); finish(value); })
+          .catch(function (err) {
+            restore();
+            showError((err && err.message) || 'Something went wrong. Please try again.');
+          });
+      });
+
+      if (typeof d.showModal === 'function') {
+        d.showModal();
+      } else {
+        // No <dialog> support: fall back to a non-modal panel rather than silently
+        // doing nothing. Rare, but a dead button is worse than a plain one.
+        d.setAttribute('open', '');
+        d.classList.add('is-fallback');
+      }
+      if (input) input.focus();
+    });
+  }
+
+  // A message with no decision to make still needs a real, focusable, dismissible
+  // surface — and needs to be announced, which alert() never is.
+  function alertDialog(opts) {
+    var d = document.createElement('dialog');
+    d.className = 'ui-dialog' + (opts.tone ? ' tone-' + opts.tone : '');
+    d.setAttribute('aria-labelledby', 'uidlg-title');
+    d.setAttribute('aria-describedby', 'uidlg-desc');
+    d.innerHTML =
+      '<form method="dialog" class="ui-dialog-form">' +
+      '<h2 class="ui-dialog-title" id="uidlg-title">' + esc(opts.title) + '</h2>' +
+      '<p class="ui-dialog-msg" id="uidlg-desc">' + esc(opts.message) + '</p>' +
+      '<div class="ui-dialog-actions"><button class="ui-btn ui-btn-primary" value="ok">' +
+      esc(opts.dismissLabel || STRINGS.dismiss) + '</button></div></form>';
+
+    var restoreFocusTo = document.activeElement;
+    document.body.appendChild(d);
+    d.addEventListener('close', function () {
+      d.remove();
+      if (restoreFocusTo && document.contains(restoreFocusTo)) { try { restoreFocusTo.focus(); } catch (e) {} }
+    });
+    if (typeof d.showModal === 'function') d.showModal(); else d.setAttribute('open', '');
+    say(opts.title + '. ' + opts.message, true);
+    var btn = d.querySelector('button');
+    if (btn) btn.focus();
+    return d;
+  }
+
+  // ---- skeletons -----------------------------------------------------------
+  // Shown while content loads. A skeleton communicates SHAPE — how much is coming and
+  // roughly what it looks like — which a spinner cannot, and it prevents the layout
+  // shift that a spinner-then-content swap causes.
+
+  function skeleton(rows, kind) {
+    var out = '<div class="skeleton-wrap" role="status" aria-live="polite" aria-label="' + esc(STRINGS.loading) + '">';
+    for (var i = 0; i < (rows || 3); i++) {
+      out += '<div class="skeleton-row' + (kind ? ' skeleton-' + kind : '') + '" aria-hidden="true">' +
+        '<span class="skeleton-bar w-40"></span><span class="skeleton-bar w-80"></span></div>';
+    }
+    return out + '</div>';
+  }
+
+  // ---- offline awareness ---------------------------------------------------
+  // The service worker means pages still open offline while every API call fails.
+  // Without this, that reads as "the app is broken" rather than "you have no signal".
+
+  function mountOfflineBanner() {
+    if (document.getElementById('uiOfflineBanner')) return;
+    var b = document.createElement('div');
+    b.id = 'uiOfflineBanner';
+    b.className = 'ui-offline';
+    b.setAttribute('role', 'status');
+    b.hidden = true;
+    b.textContent = STRINGS.offline;
+    document.body.appendChild(b);
+
+    function sync(initial) {
+      var off = navigator.onLine === false;
+      b.hidden = !off;
+      if (!initial) say(off ? STRINGS.offline : STRINGS.backOnline, off);
+    }
+    window.addEventListener('online', function () { sync(false); });
+    window.addEventListener('offline', function () { sync(false); });
+    sync(true);
+  }
+
+  // Focus the heading of a freshly rendered region. Without this, activating a link
+  // that re-renders content in place leaves focus on the old element (or on <body>),
+  // so a keyboard or screen-reader user has no idea anything changed and has to
+  // traverse the whole page again to find it.
+  function focusHeading(container) {
+    if (!container) return;
+    var h = container.querySelector('h1, h2, [data-focus-target]');
+    if (!h) return;
+    if (!h.hasAttribute('tabindex')) h.setAttribute('tabindex', '-1');
+    try { h.focus({ preventScroll: false }); } catch (e) { h.focus(); }
+  }
+
+  function isEmail(v) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(v || '').trim());
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    mountLiveRegions();
+    mountOfflineBanner();
+  });
+
+  window.SCERE_UI = {
+    say: say,
+    setBusy: setBusy,
+    openDialog: openDialog,
+    alertDialog: alertDialog,
+    skeleton: skeleton,
+    focusHeading: focusHeading,
+    isEmail: isEmail,
+    strings: STRINGS,
+    escapeHtml: esc,
+  };
+})();

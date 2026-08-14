@@ -1,6 +1,7 @@
 // Shared top navigation for Scere Markets.
 // Each page includes <div id="siteNav" data-active="home|learn|research"></div>
-// and this script fills it with a consistent nav bar, highlighting the active section.
+// and this script replaces it with a real <nav> landmark, highlighting the active
+// section.
 // Kept deliberately dependency-free (no build step) to match the rest of the app.
 //
 // The surface is deliberately three items. Due Diligence and FX Intelligence are
@@ -22,10 +23,19 @@
       return '<a class="' + cls + '" href="' + l.href + '"' + current + '>' + l.label + '</a>';
     })
     .join('');
-  el.className = 'site-nav';
-  el.innerHTML =
-    '<a class="nav-brand" href="./index.html">Scere<span class="nav-dot">.</span>Markets</a>' +
+  // A real landmark, not a styled div: it is what lets assistive tech jump straight to
+  // navigation, and what makes the skip link's "main content" target meaningful.
+  var nav = document.createElement('nav');
+  nav.id = el.id;
+  nav.className = 'site-nav';
+  nav.setAttribute('aria-label', 'Primary');
+  nav.innerHTML =
+    '<a class="nav-brand" href="./index.html">Scere<span class="nav-dot" aria-hidden="true">.</span>Markets</a>' +
     '<div class="nav-links">' + linksHtml + '</div>' +
     '<span class="nav-spacer"></span>' +
-    '<a class="nav-access" href="./research.html">🔒 Get access</a>';
+    // The padlock is decoration. Hiding it stops screen readers announcing "locked"
+    // ahead of the label, which reads as a warning rather than a way in.
+    '<a class="nav-access" href="./research.html"><span aria-hidden="true">🔒</span> Get access</a>';
+
+  el.parentNode.replaceChild(nav, el);
 })();

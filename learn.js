@@ -1130,7 +1130,10 @@ function ttsSpeakCurrent() {
 function ttsStart(rootEl) {
   if (!TTS_SUPPORTED) return;
   window.speechSynthesis.cancel();
-  const scope = rootEl || document.getElementById('mainReadScope') || document.getElementById('lessonsRoot') || document;
+  // learn.html's read scope is now the <main> landmark itself (the wrapper became a
+  // real landmark and cannot carry two ids); lesson.html still has its own
+  // #mainReadScope around just the lesson body.
+  const scope = rootEl || document.getElementById('mainReadScope') || document.getElementById('mainContent') || document.getElementById('lessonsRoot') || document;
   const units = Array.from(scope.querySelectorAll('[data-read-unit]'));
   if (!units.length) return;
 
@@ -1189,7 +1192,7 @@ function initSpeechControls() {
     // Foundation lessons and the Stocks/ETF lessons in one continuous pass,
     // in document order. Per-lesson "Listen" buttons are unaffected — they
     // already scope to their own [data-lesson-section] via ttsStart(section).
-    playBtn.addEventListener('click', () => ttsTogglePlayPause(document.getElementById('mainReadScope')));
+    playBtn.addEventListener('click', () => ttsTogglePlayPause(document.getElementById('mainReadScope') || document.getElementById('mainContent')));
   }
 
   const stopBtn = document.getElementById('speechStopBtn');
@@ -1291,14 +1294,24 @@ async function renderCourseIndex() {
   const root = document.getElementById('courseIndexRoot');
   if (!root) return;
   let index;
+  // A skeleton, not an empty region: the syllabus is 58 rows fetched over the network,
+  // and an empty page for that second reads as "there is no course here".
+  root.innerHTML = ui.skeleton(5);
   try {
     index = await fetchCourseIndex();
   } catch (err) {
-    root.innerHTML = `
-      <div class="current-card bg-slate-800 rounded-2xl p-6 text-center">
-        <p class="text-slate-300 mb-1">The syllabus could not be loaded.</p>
-        <p class="text-xs text-slate-500">Check your connection and refresh.</p>
-      </div>`;
+    root.innerHTML = failureState({
+      title: 'The syllabus could not be loaded',
+      // Offline and server-error are different problems with different fixes, and
+      // telling someone to "check your connection" when their connection is fine is
+      // how a temporary blip turns into a lost visitor.
+      message: navigator.onLine === false
+        ? 'You appear to be offline. The lesson list will load once your connection returns.'
+        : 'Something went wrong at our end. Trying again usually fixes it.',
+      retry: 'Try again',
+    });
+    wireRetry(root, renderCourseIndex);
+    ui.say('The syllabus could not be loaded.', true);
     return;
   }
 
@@ -1313,7 +1326,7 @@ async function renderCourseIndex() {
   // have made the case, and before the locked ones ask for payment.
   const firstPaid = tracks.findIndex((t) => t.lessons.length && !t.lessons[0].free);
 
-  root.innerHTML = tracks.map((t, ti) => {
+  root.innerHTML = renderPurchaseOutcome() + tracks.map((t, ti) => {
     const offer = ti === firstPaid ? renderCourseOffer() : '';
     let lastChapter = null;
     const rows = t.lessons.map((e) => {
@@ -1325,12 +1338,18 @@ async function renderCourseIndex() {
       const label = e.chapterNumber != null ? `${e.chapterNumber}.${e.lessonNumber}` : `${e.lessonNumber}`;
       // Paid rows stay clickable — the lesson page shows what the lesson covers and
       // how to unlock it. Hiding them would make the course impossible to evaluate.
+      //
+      // The padlock used to be the ONLY signal that a lesson was locked, and it was
+      // marked aria-hidden — so a screen-reader user got no indication whatsoever and
+      // would have to open lesson after lesson to discover it. The icon stays
+      // decorative; the fact now travels as text inside the link's accessible name.
       const lock = e.free ? '→' : '🔒';
+      const lockedNote = e.free ? '' : '<span class="sr-only"> — locked, part of the paid course</span>';
       return divider + `
         <a class="toc-row" href="${lessonHref(e.id)}">
-          <span class="toc-num">${escapeHtml(label)}</span>
+          <span class="toc-num"><span class="sr-only">Lesson </span>${escapeHtml(label)}</span>
           <span class="toc-body">
-            <span class="toc-title">${escapeHtml(e.title)}</span>
+            <span class="toc-title">${escapeHtml(e.title)}${lockedNote}</span>
             <span class="toc-key">${escapeHtml(e.keyIdea || '')}</span>
           </span>
           <span class="toc-go" aria-hidden="true">${lock}</span>
@@ -1349,6 +1368,8 @@ async function renderCourseIndex() {
   }).join('');
 
   wireCourseButtons(root);
+  if (purchaseOutcome === 'success') ui.say('Payment received. The whole course is unlocked.', true);
+  else ui.say(`Syllabus loaded — ${index.length} lessons.`);
 }
 
 // ---------- buying the course ----------
@@ -1358,6 +1379,31 @@ async function renderCourseIndex() {
 // /api/billing rather than written here, so there is exactly one place it can be wrong.
 
 const courseAccess = { configured: false, available: false, priceLabel: null, ownsCourse: false };
+
+// ui.js loads before this file. The fallback exists only so a stale service-worker
+// cache that misses ui.js degrades to a plain page instead of a blank one.
+const ui = window.SCERE_UI || {
+  say() {}, setBusy() { return function () {}; }, skeleton() { return ''; },
+  alertDialog(o) { window.alert(o.message); }, openDialog() { return Promise.resolve(null); },
+  focusHeading() {}, isEmail() { return true; },
+};
+
+// Every failure gets the same shape: what happened, what it means, and a way out.
+// A dead end with no action is the state people abandon the product from.
+function failureState({ title, message, retry }) {
+  return `
+    <div class="state-card is-error">
+      <span class="state-icon" aria-hidden="true">⚠️</span>
+      <p class="state-title">${escapeHtml(title)}</p>
+      <p class="state-msg">${escapeHtml(message)}</p>
+      ${retry ? `<button type="button" class="ui-btn ui-btn-primary" data-retry>${escapeHtml(retry)}</button>` : ''}
+    </div>`;
+}
+
+function wireRetry(root, fn) {
+  const btn = root.querySelector('[data-retry]');
+  if (btn) btn.addEventListener('click', () => { fn(); });
+}
 
 async function loadCourseBilling() {
   try {
@@ -1380,8 +1426,10 @@ function courseBuyLabel() {
 }
 
 async function startCourseCheckout(btn) {
-  const original = btn ? btn.textContent : '';
-  if (btn) { btn.disabled = true; btn.textContent = 'Redirecting…'; }
+  // setBusy disables the button as well as relabelling it. The old version only
+  // swapped the text, so a double-click could open two Checkout Sessions — and the
+  // change was invisible to anyone not looking at the button.
+  const restore = ui.setBusy(btn, 'Taking you to checkout…');
   try {
     const res = await fetch('/api/billing?fn=createCheckout', {
       method: 'POST',
@@ -1389,15 +1437,26 @@ async function startCourseCheckout(btn) {
       body: JSON.stringify({ product: 'course' }),
     });
     const d = await res.json().catch(() => ({}));
-    if (res.ok && d.url) { window.location.href = d.url; return; }
+    if (res.ok && d.url) { window.location.href = d.url; return; }  // leave it busy; we're navigating away
     // Already bought it in another tab or on another device — the page is simply out
     // of date, so reload into the unlocked view rather than showing an error.
     if (d.error === 'already_owned') { window.location.reload(); return; }
-    window.alert('The course isn’t available to buy right now. Please try again shortly.');
+    restore();
+    ui.alertDialog({
+      tone: 'error',
+      title: 'Checkout is unavailable',
+      message: 'We couldn’t open the payment page just now. Nothing has been charged. Please try again in a moment.',
+    });
   } catch (e) {
-    window.alert('Could not start checkout. Please try again.');
+    restore();
+    ui.alertDialog({
+      tone: 'error',
+      title: navigator.onLine === false ? 'You’re offline' : 'Couldn’t start checkout',
+      message: navigator.onLine === false
+        ? 'Reconnect and try again — nothing has been charged.'
+        : 'Something went wrong before we reached the payment page. Nothing has been charged.',
+    });
   }
-  if (btn) { btn.disabled = false; btn.textContent = original || courseBuyLabel(); }
 }
 
 function wireCourseButtons(root) {
@@ -1409,18 +1468,28 @@ function wireCourseButtons(root) {
 // Coming back from Stripe: verify the session so the entitlement cookie is set BEFORE
 // anything re-reads the lesson, then strip only our own query keys — on lesson.html
 // the ?id= must survive, or the redirect would land on "lesson not found".
+// What the buyer sees on return. Paying €200 and landing on a page that simply looks
+// slightly different is the moment doubt sets in ("did that work? was I charged?"),
+// so the outcome is stated explicitly rather than implied by the absence of padlocks.
+let purchaseOutcome = null; // 'success' | 'cancelled' | 'unconfirmed'
+
 async function handleCourseCheckoutReturn() {
   const p = new URLSearchParams(window.location.search);
   const buy = p.get('buy');
+  if (buy === 'cancelled' || buy === 'cancel') purchaseOutcome = 'cancelled';
   if (buy === 'success' && p.get('session_id')) {
     try {
-      await fetch('/api/billing?fn=activate', {
+      const res = await fetch('/api/billing?fn=activate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ session_id: p.get('session_id') }),
       });
+      const d = await res.json().catch(() => ({}));
+      // "Unconfirmed" is not "failed". Stripe has the money either way; the cookie can
+      // lag. Saying so beats implying the payment did not happen.
+      purchaseOutcome = res.ok && (d.ownsCourse || d.entitled) ? 'success' : 'unconfirmed';
     } catch (e) {
-      // Not fatal: the customer cookie lets any later request re-derive entitlement.
+      purchaseOutcome = 'unconfirmed';
     }
   }
   if (buy) {
@@ -1429,6 +1498,30 @@ async function handleCourseCheckoutReturn() {
     const qs = p.toString();
     window.history.replaceState({}, '', window.location.pathname + (qs ? `?${qs}` : ''));
   }
+}
+
+function renderPurchaseOutcome() {
+  if (!purchaseOutcome) return '';
+  if (purchaseOutcome === 'success') {
+    return `
+      <div class="state-card toc-offer is-owned" role="status">
+        <span class="state-icon" aria-hidden="true">✓</span>
+        <p class="state-title">You own the course</p>
+        <p class="state-msg">Payment received. Every lesson is unlocked permanently, and the daily high-conviction ideas are included for the next three months.</p>
+      </div>`;
+  }
+  if (purchaseOutcome === 'cancelled') {
+    return `
+      <div class="state-card" role="status">
+        <p class="state-title">Checkout cancelled</p>
+        <p class="state-msg">Nothing was charged. The free Foundation track is still open, and the course is here whenever you want it.</p>
+      </div>`;
+  }
+  return `
+    <div class="state-card" role="status">
+      <p class="state-title">Payment received — still unlocking</p>
+      <p class="state-msg">Your payment went through, but we couldn’t confirm access on this device just yet. Refresh in a moment, or use “Restore access” on the Ideas page with the email you paid with.</p>
+    </div>`;
 }
 
 // The offer, shown on the syllabus above the paid tracks. Someone browsing the
@@ -1483,26 +1576,35 @@ async function renderSingleLesson() {
   if (!root) return;
   const id = new URLSearchParams(window.location.search).get('id');
 
+  root.innerHTML = ui.skeleton(4);
+
   let index;
   try {
     index = await fetchCourseIndex();
   } catch (err) {
-    root.innerHTML = `
-      <div class="current-card bg-slate-800 rounded-2xl p-6 text-center">
-        <p class="text-slate-300 mb-1">This lesson could not be loaded.</p>
-        <p class="text-xs text-slate-500">Check your connection and refresh.</p>
-      </div>`;
+    root.innerHTML = failureState({
+      title: 'This lesson could not be loaded',
+      message: navigator.onLine === false
+        ? 'You appear to be offline. The lesson will load once your connection returns.'
+        : 'Something went wrong at our end. Trying again usually fixes it.',
+      retry: 'Try again',
+    });
+    wireRetry(root, renderSingleLesson);
+    ui.say('This lesson could not be loaded.', true);
     return;
   }
   const pos = index.findIndex((e) => e.id === id);
 
   if (pos < 0) {
     root.innerHTML = `
-      <div class="current-card bg-slate-800 rounded-2xl p-6 text-center">
-        <p class="text-slate-300 mb-1">That lesson could not be found.</p>
-        <p class="text-xs text-slate-500 mb-4">It may have been renamed or moved.</p>
+      <div class="state-card">
+        <span class="state-icon" aria-hidden="true">🔍</span>
+        <p class="state-title">That lesson could not be found</p>
+        <p class="state-msg">It may have been renamed or moved. The full syllabus lists every lesson currently available.</p>
         <a href="./learn.html" class="upgrade-btn">Back to all lessons</a>
       </div>`;
+    ui.say('That lesson could not be found.', true);
+    document.title = 'Lesson not found — Scere Markets';
     return;
   }
 
@@ -1525,11 +1627,15 @@ async function renderSingleLesson() {
   try {
     fetched = await fetchLesson(id);
   } catch (err) {
-    root.innerHTML = breadcrumb + `
-      <div class="current-card bg-slate-800 rounded-2xl p-6 text-center">
-        <p class="text-slate-300 mb-1">This lesson could not be loaded.</p>
-        <p class="text-xs text-slate-500">Check your connection and refresh.</p>
-      </div>`;
+    root.innerHTML = breadcrumb + failureState({
+      title: 'This lesson could not be loaded',
+      message: navigator.onLine === false
+        ? 'You appear to be offline. The lesson will load once your connection returns.'
+        : 'Something went wrong at our end. Trying again usually fixes it.',
+      retry: 'Try again',
+    });
+    wireRetry(root, renderSingleLesson);
+    ui.say('This lesson could not be loaded.', true);
     return;
   }
 
@@ -1557,7 +1663,7 @@ async function renderSingleLesson() {
     : '<span class="lesson-nav-btn is-empty" aria-hidden="true"></span>';
   const nav = `<nav class="lesson-nav">${navBtn(prev, 'prev')}${navBtn(next, 'next')}</nav>`;
 
-  root.innerHTML = breadcrumb + lessonHtml + tools + nav;
+  root.innerHTML = renderPurchaseOutcome() + breadcrumb + lessonHtml + tools + nav;
 
   if (fetched.locked) wireCourseButtons(root);
 
@@ -1573,6 +1679,12 @@ async function renderSingleLesson() {
   }
 
   document.title = `${e.title} — Scere Markets`;
+  // Announce the outcome. The region fills in after page load, so without this a
+  // screen-reader user who has already read past it never learns it arrived — and,
+  // for a locked lesson, never learns why there is no lesson text.
+  if (purchaseOutcome === 'success') ui.say('Payment received. The whole course is unlocked.', true);
+  else if (fetched.locked) ui.say(`${e.title}. This lesson is locked — it is part of the paid course.`);
+  else ui.say(`${e.title} loaded. Lesson ${pos + 1} of ${index.length}.`);
 }
 
 document.addEventListener('DOMContentLoaded', async () => {

@@ -6,6 +6,7 @@
     <title>Lesson — Scere Markets</title>
     <meta name="theme-color" content="#0f172a">
     <meta name="description" content="A single lesson from the Scere Markets course — Foundation, Forex, or Stocks &amp; ETFs. Educational only, not financial advice.">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -16,8 +17,9 @@
     </script>
 </head>
 <body class="bg-slate-900 text-white font-sans min-h-screen p-4">
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
     <div class="app-bg" aria-hidden="true"></div>
-    <div class="relative z-10 max-w-2xl mx-auto pb-8">
+    <main class="relative z-10 max-w-2xl mx-auto pb-8" id="mainContent" tabindex="-1">
 
         <div id="siteNav" data-active="learn"></div>
 
@@ -52,7 +54,7 @@
              ?id= in the URL, with its own breadcrumb and Previous/Next navigation.
              #mainReadScope is the read-aloud scope for "Listen to this lesson". -->
         <div id="mainReadScope">
-            <div id="lessonRoot" class="space-y-6"></div>
+            <div id="lessonRoot" class="space-y-6" role="status" aria-live="polite"></div>
         </div>
 
         <footer class="mt-10 text-center text-xs text-slate-500">
@@ -68,8 +70,9 @@
             ·
             <a href="./index.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Why we exist</a>
         </footer>
-    </div>
+    </main>
 
+    <script src="./ui.js"></script>
     <script src="./nav.js"></script>
     <script src="./instruments.js"></script>
     <script src="./fund-facts.js"></script>

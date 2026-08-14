@@ -278,6 +278,14 @@ const access = {
 };
 let selectedDate = null;
 
+// ui.js loads before this file. The fallback exists only so a stale service-worker
+// cache that misses ui.js degrades to a plain page rather than a blank one.
+const ui = window.SCERE_UI || {
+  say() {}, setBusy() { return function () {}; }, skeleton() { return ''; },
+  alertDialog(o) { window.alert(o.message); }, openDialog() { return Promise.resolve(null); },
+  focusHeading() {}, isEmail() { return true; }, strings: { invalidEmail: 'Enter a valid email address.' },
+};
+
 function formatDate(unixSeconds) {
   if (!unixSeconds) return '';
   try {
@@ -373,22 +381,35 @@ function renderAccess() {
 // Shared by both buy buttons — the only difference is which product is requested and
 // which page Stripe returns to, and the server decides the latter.
 async function startCheckout(btn, product, unavailableMsg) {
-  const original = btn ? btn.textContent : '';
-  if (btn) { btn.disabled = true; btn.textContent = 'Redirecting…'; }
+  // Disabling matters as much as relabelling: two clicks on a checkout button used to
+  // mean two Checkout Sessions.
+  const restore = ui.setBusy(btn, 'Taking you to checkout…');
   try {
     const res = await postJson('/api/billing?fn=createCheckout', { product });
     const d = await res.json().catch(() => ({}));
-    if (res.ok && d.url) { window.location.href = d.url; return; }
-    // These mean the page is simply out of date about what this visitor already has.
+    if (res.ok && d.url) { window.location.href = d.url; return; }  // stay busy; navigating away
+    // These mean the page is simply out of date about what this visitor already has —
+    // not an error to apologise for. Re-read and say what actually changed.
     if (d.error === 'already_owned' || d.error === 'already_included' || d.error === 'already_subscribed') {
-      loadReport(selectedDate);
+      restore();
+      await loadReport(selectedDate);
+      ui.say(d.error === 'already_included'
+        ? 'You already have the daily ideas — they are included with your course.'
+        : 'You already have this. The page has been updated.', true);
       return;
     }
-    alert(unavailableMsg);
+    restore();
+    ui.alertDialog({ tone: 'error', title: 'Checkout is unavailable', message: unavailableMsg + ' Nothing has been charged.' });
   } catch (e) {
-    alert('Could not start checkout. Please try again.');
+    restore();
+    ui.alertDialog({
+      tone: 'error',
+      title: navigator.onLine === false ? 'You’re offline' : 'Couldn’t start checkout',
+      message: navigator.onLine === false
+        ? 'Reconnect and try again — nothing has been charged.'
+        : 'Something went wrong before we reached the payment page. Nothing has been charged.',
+    });
   }
-  if (btn) { btn.disabled = false; btn.textContent = original; }
 }
 
 function doSubscribe() {
@@ -399,19 +420,54 @@ function doBuyCourse() {
   return startCheckout(document.getElementById('buyCourseBtn'), 'course', 'The course isn’t available to buy right now. Please try again shortly.');
 }
 
+// Restoring access is the recovery path for someone who has already paid and cannot
+// get in — the single highest-stakes interaction in the app. It used to be a
+// window.prompt(): no label, no validation, no error text, no way to correct a typo
+// without starting over, unstyleable, untranslatable, and suppressed outright by some
+// mobile browsers. It is now a real labelled form whose errors stay attached to the
+// field, so a mistyped address is a correction rather than a dead end.
 async function doRestore() {
-  const email = window.prompt('Enter the email address you paid with:');
-  if (!email) return;
-  try {
-    const res = await postJson('/api/billing?fn=restore', { email });
-    const d = await res.json();
-    // Owning the course counts as a successful restore even with no live
-    // subscription — the ideas stay locked, but the course comes back.
-    if (res.ok && (d.entitled || d.ownsCourse)) { loadReport(selectedDate); }
-    else alert('No course purchase or active subscription was found for that email.');
-  } catch (e) {
-    alert('Could not restore access right now. Please try again.');
-  }
+  await ui.openDialog({
+    title: 'Restore your access',
+    message: 'Enter the email address you paid with and we’ll find your purchase.',
+    submitLabel: 'Restore access',
+    busyLabel: 'Looking you up…',
+    field: {
+      label: 'Email address',
+      type: 'email',
+      inputmode: 'email',
+      autocomplete: 'email',
+      placeholder: 'name@example.com',
+      hint: 'The address on your Stripe receipt.',
+      validate: (v) => (ui.isEmail(v) ? null : ui.strings.invalidEmail),
+    },
+    // Throwing keeps the dialog open with the message inline, next to the field the
+    // person needs to change — rather than closing and leaving them to guess.
+    onSubmit: async (email) => {
+      let d;
+      try {
+        const res = await postJson('/api/billing?fn=restore', { email });
+        d = await res.json().catch(() => ({}));
+        // Owning the course counts as a successful restore even with no live
+        // subscription — the ideas stay locked, but the course comes back.
+        if (!res.ok || !(d.entitled || d.ownsCourse)) {
+          throw new Error('We couldn’t find a purchase for that address. Check for a typo, or try the other address you might have used.');
+        }
+      } catch (err) {
+        if (err instanceof TypeError || navigator.onLine === false) {
+          throw new Error('Couldn’t reach us just now. Check your connection and try again.');
+        }
+        throw err;
+      }
+      await loadReport(selectedDate);
+      ui.say(d.ownsCourse && !d.entitled
+        ? 'Access restored. Your course is unlocked; the daily ideas are not currently active.'
+        : 'Access restored. The full ideas are unlocked.', true);
+      // An explicit user action changed what is on the page, so move focus to the
+      // content it unlocked instead of leaving it on a button that is now gone.
+      ui.focusHeading(document.getElementById('researchRoot'));
+    },
+  });
 }
 
 async function doLogout() {
@@ -442,7 +498,12 @@ async function loadBillingConfig() {
 
 async function loadReport(dateKey) {
   selectedDate = dateKey || null;
-  document.getElementById('loadingState').classList.remove('hidden');
+  const loadingEl = document.getElementById('loadingState');
+  // A shaped placeholder rather than the words "Loading the desk…": it holds the
+  // layout so the report appears in place instead of shoving the page down, and it
+  // shows how much is coming.
+  loadingEl.innerHTML = ui.skeleton(4);
+  loadingEl.classList.remove('hidden');
   document.getElementById('researchRoot').classList.add('hidden');
   document.getElementById('errorState').classList.add('hidden');
   try {
@@ -468,14 +529,36 @@ async function loadReport(dateKey) {
     }
     renderAccess();
 
-    document.getElementById('loadingState').classList.add('hidden');
+    // Empty it as well as hide it: a role="status" region left holding stale skeleton
+    // markup stays in the accessibility tree and can be read out as if it were content.
+    loadingEl.innerHTML = '';
+    loadingEl.classList.add('hidden');
     document.getElementById('researchRoot').classList.remove('hidden');
+    ui.say(pub.reportDateLabel ? `Report for ${pub.reportDateLabel} loaded.` : 'Report loaded.');
   } catch (err) {
     console.error('Failed to load research data:', err);
-    document.getElementById('loadingState').classList.add('hidden');
+    loadingEl.innerHTML = '';
+    loadingEl.classList.add('hidden');
     const errEl = document.getElementById('errorState');
-    errEl.textContent = 'No research data found yet. The daily pipeline writes to data/fx-reports/ — check back after the next scheduled run.';
+    // Three genuinely different situations that used to share one message. Telling a
+    // reader "no data yet" when they are simply offline, or handing them an internal
+    // file path as an explanation, is not an error message — it is a shrug.
+    const offline = navigator.onLine === false;
+    const missing = err && err.status === 404;
+    errEl.innerHTML = `
+      <div class="state-card is-error">
+        <span class="state-icon" aria-hidden="true">${offline ? '📡' : missing ? '📭' : '⚠️'}</span>
+        <p class="state-title">${offline ? 'You’re offline' : missing ? 'No report for that date' : 'The desk could not be loaded'}</p>
+        <p class="state-msg">${offline
+          ? 'Reconnect and we’ll pick up where you left off. Lessons you have already opened are still available.'
+          : missing
+            ? 'Nothing was published for that day. Pick another date above — the most recent report is selected by default.'
+            : 'Something went wrong at our end. Trying again usually fixes it.'}</p>
+        <button type="button" class="ui-btn ui-btn-primary" data-retry>Try again</button>
+      </div>`;
     errEl.classList.remove('hidden');
+    const retry = errEl.querySelector('[data-retry]');
+    if (retry) retry.addEventListener('click', () => loadReport(selectedDate));
   }
 }
 

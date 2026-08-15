@@ -3402,6 +3402,2340 @@ window.SCERE_CRYPTO_CONTENT = [
         "def": "The exchange's last resort: forcibly closing profitable opposing positions at the bankruptcy price when the insurance fund cannot cover a shortfall."
       }
     ]
+  },
+  {
+    "id": "crypto-fomo-and-unit-bias",
+    "lessonNumber": 1,
+    "chapterNumber": 4,
+    "chapterTitle": "Psychology, Scams & Building a Plan",
+    "title": "FOMO, Unit Bias and the Hype Cycle",
+    "keyIdea": "The evidence says most retail crypto investors lose money, and that they arrive after the price has already risen. The mechanism is not stupidity — it is that attention itself follows price.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Foundations Chapter 2 established that being right often is not the same as trading well. The Forex track showed what that costs in a market that closes every Friday. This chapter covers what it costs in a market that never closes, where the asset has no cash flows to anchor it and the counterparty is sometimes the risk."
+      },
+      {
+        "type": "paragraph",
+        "text": "Start with the evidence, because it is unusually good and unusually blunt."
+      },
+      {
+        "type": "paragraph",
+        "text": "Auer, Cornelli, Doerr, Frost and Gambacorta assembled a database of retail crypto exchange app use at daily frequency, covering 95 countries from 2015 to 2022. The work was published as Bank for International Settlements Working Paper number 1049 in November 2022, and later in the IMF Economic Review."
+      },
+      {
+        "type": "paragraph",
+        "text": "They found three things worth stating separately, because they are usually collapsed into one."
+      },
+      {
+        "type": "paragraph",
+        "text": "First, an estimated 73 to 81% of retail investors had likely lost money on their initial investment. Second, new users entered after the price rose, not before. Third, and least comfortable, when prices rose the largest holders were selling into the buying that the smaller users were doing."
+      },
+      {
+        "type": "example",
+        "text": "About three quarters of the new investors in their data downloaded a crypto exchange app after the Bitcoin price had already passed 20,000 dollars in December 2020. They did not arrive and then the price rose. The price rose, and then they arrived."
+      },
+      {
+        "type": "warning",
+        "text": "That sequence is the whole lesson, and it is not a claim about anyone's intelligence. Attention is a function of price. Nobody writes an article about an asset that has done nothing. The reporting, the group chat, the advertisement and the friend who mentions it are all downstream of a price rise that has already happened, which means the ordinary experience of hearing about crypto is the experience of hearing about it late."
+      },
+      {
+        "type": "definition",
+        "term": "Fear of missing out (FOMO)",
+        "text": "The pressure to enter a position because others appear to be profiting, rather than because the position meets a standard you set in advance."
+      },
+      {
+        "type": "paragraph",
+        "text": "FOMO is usually described as an emotion, which makes it sound like a character flaw you could resolve by being calmer. It is more useful to treat it as a structural feature of how information reaches you."
+      },
+      {
+        "type": "paragraph",
+        "text": "You are not comparing an investment against alternatives. You are comparing a decision made now against a return that already happened to somebody else. The second is always more vivid, and it is never available."
+      },
+      {
+        "type": "paragraph",
+        "text": "Two crypto-specific distortions sit on top of the universal ones, and both are about the number on the screen rather than about the asset."
+      },
+      {
+        "type": "definition",
+        "term": "Unit bias",
+        "text": "The tendency to treat one unit of something as the natural and appropriate amount, regardless of how large a unit is."
+      },
+      {
+        "type": "paragraph",
+        "text": "The term comes from Geier, Rozin and Doros, writing in Psychological Science in 2006, who demonstrated it with food: people ate substantially more when the unit offered was larger, whether that was a larger pretzel or a larger serving spoon, even when they could freely take as many units as they wanted."
+      },
+      {
+        "type": "warning",
+        "text": "Be careful with how that study is used here, including by this course. It is a finding about food portions. Applying it to token prices is an analogy, not a result — nobody has run the pretzel experiment on crypto buyers. The analogy is offered because it names the pattern well, and you should hold it as a description rather than as evidence."
+      },
+      {
+        "type": "paragraph",
+        "text": "The pattern it names is this. A token priced at 0.0001 offers you a million units for a hundred dollars. Bitcoin at 60,000 offers you 0.001667 of one unit for the same money. The first feels like owning something and the second feels like owning a fragment, and the two purchases are identical in every respect that matters."
+      },
+      {
+        "type": "example",
+        "text": "A buyer says a token could easily reach one dollar, because one dollar is a small number. Chapter 2 Lesson 1 gave the arithmetic that makes this checkable. If the token has one trillion units in supply, a price of one dollar is a market capitalisation of one trillion dollars. The claim was never about the price. It was about the size the whole thing would have to become, and stated that way most people withdraw it."
+      },
+      {
+        "type": "paragraph",
+        "text": "This is denominator blindness, and it is the single most reliable way to sober up a token thesis. The price of one unit tells you nothing without the supply, and the supply is published."
+      },
+      {
+        "type": "warning",
+        "text": "Watch for supply that is not fixed. A token can have a modest circulating supply today and a much larger total supply scheduled to unlock over the following years. Buying at the current price while the future supply arrives is buying into a denominator that grows while you hold. The unlock schedule is normally in the documentation, and almost nobody reads it before buying."
+      },
+      {
+        "type": "paragraph",
+        "text": "The second distortion is about time, and it is the one forex traders notice first when they arrive."
+      },
+      {
+        "type": "paragraph",
+        "text": "Equity and currency markets close. The close is not a courtesy; it is a structural interruption that forces a pause between the impulse and the trade. Crypto has no close, no weekend and no holiday. Every hour is an hour in which you can act on a feeling, and the feeling is at its strongest at exactly the hours when your judgement is at its weakest."
+      },
+      {
+        "type": "example",
+        "text": "A price moves sharply at two in the morning in your time zone. In equities, nothing can be done until the exchange opens, and by then the move is several hours old and you have slept. In crypto the position can be opened immediately, at the worst spread of the day, by a person who has just woken up and is reading a chart on a phone."
+      },
+      {
+        "type": "paragraph",
+        "text": "The absence of a close is genuinely useful for someone with a plan and genuinely dangerous for someone without one. It removes the one piece of friction that used to protect people from themselves."
+      },
+      {
+        "type": "paragraph",
+        "text": "The disposition effect, which Forex Chapter 4 Lesson 1 covered, behaves the same way here but faster."
+      },
+      {
+        "type": "definition",
+        "term": "Disposition effect",
+        "text": "The documented tendency to sell winning positions too early and hold losing positions too long."
+      },
+      {
+        "type": "paragraph",
+        "text": "Odean established this in the Journal of Finance in 1998, volume 53, issue 5, pages 1775 to 1798, examining thousands of individual brokerage accounts. Investors showed a strong preference for realising gains over losses, and for taxable accounts this made them worse off after tax rather than better."
+      },
+      {
+        "type": "paragraph",
+        "text": "Crypto does not change the mechanism. It changes the speed at which you can act on it, and the size of the moves you are acting on. A position that has halved in a week produces the same reluctance to sell as one that has halved in a year, with far less time to think."
+      },
+      {
+        "type": "paragraph",
+        "text": "One more idea deserves attention, mostly to be labelled correctly."
+      },
+      {
+        "type": "warning",
+        "text": "The hype cycle — the curve running from a peak of inflated expectations, through a trough of disillusionment, to a plateau of productivity — is a model published by the consultancy Gartner. It is a useful shape for describing what enthusiasm does over time. It is not an empirical finding, it has no predictive precision, and it cannot tell you where on the curve you currently are. Anyone using it to argue that a fall is merely the trough before the plateau is using a diagram as a forecast."
+      },
+      {
+        "type": "paragraph",
+        "text": "That does not mean narratives are unimportant. Chapter 2 Lesson 5 made the case that in a market with no cash flows, narrative does much of the work that earnings do elsewhere. The point is narrower: a named curve is a way of describing what happened, not a way of knowing what happens next."
+      },
+      {
+        "type": "paragraph",
+        "text": "There is a second selection effect running alongside the first, and it operates on the people rather than on the prices."
+      },
+      {
+        "type": "definition",
+        "term": "Reporting bias",
+        "text": "The distortion created when successful outcomes are shared far more often than unsuccessful ones, so that the visible sample stops resembling the real one."
+      },
+      {
+        "type": "paragraph",
+        "text": "People post gains. They very rarely post losses, and almost nobody posts the position they held quietly for two years and closed slightly down. The result is that any group chat, forum or social feed shows you a sample that has been filtered twice: once by which assets rose, and again by which people are willing to talk about them."
+      },
+      {
+        "type": "example",
+        "text": "Ten people each buy the same token. Two do well and post screenshots. Six lose money and say nothing. Two lose a great deal and leave the group entirely. A newcomer reading that chat sees a two-out-of-two success rate on a position that actually went badly for eight people out of ten. Nothing in the chat was fabricated."
+      },
+      {
+        "type": "warning",
+        "text": "This is why an impression that everyone is making money is not evidence about returns. It is evidence about what people choose to say, and the BIS finding that 73 to 81% of retail investors had likely lost money is the population that impression is drawn from. The silence is the data you are missing."
+      },
+      {
+        "type": "paragraph",
+        "text": "Two more distortions are worth naming because they operate after you own something rather than before."
+      },
+      {
+        "type": "definition",
+        "term": "Anchoring to the high",
+        "text": "Treating the highest price a holding has reached as its real value, so that any lower price feels like a temporary discount rather than the current price."
+      },
+      {
+        "type": "paragraph",
+        "text": "A position bought at 100, which rose to 400 and now trades at 150, feels like a loss of 250 to the person holding it. It is a gain of 50. The 400 was a price that existed on one day and was never realised, and it is doing more work in that person's reasoning than the price they actually paid."
+      },
+      {
+        "type": "paragraph",
+        "text": "The practical damage is that the anchor sets an exit condition nobody chose. People decide to sell when it gets back to 400, which is a decision made by a number on a chart rather than by any view of the asset, and it can keep a position open for years."
+      },
+      {
+        "type": "definition",
+        "term": "Averaging down",
+        "text": "Buying more of a holding after it falls, reducing the average price paid."
+      },
+      {
+        "type": "warning",
+        "text": "Averaging down is defensible when the reason for owning the asset is unchanged and the position stays within its written size limit. It is not defensible as a way to recover a loss, and from the inside the two feel identical. The test that separates them: would you open this position, at this size, today, knowing nothing about what you paid before? If the honest answer is no, the purchase is about the loss rather than about the asset."
+      },
+      {
+        "type": "paragraph",
+        "text": "All of this suggests that the useful response to crypto psychology is not to try harder to be rational in the moment. The moment is precisely when you will not be."
+      },
+      {
+        "type": "definition",
+        "term": "Precommitment",
+        "text": "Making a decision in advance, in a form that is hard to reverse later, so that a future version of you with worse judgement has fewer options."
+      },
+      {
+        "type": "paragraph",
+        "text": "This is the whole logic of the written plan in Lesson 3, and it is worth understanding why it works. A rule written on a calm Sunday is not smarter than you are at two in the morning. It was simply written by someone who was not looking at a price at the time, and that turns out to be the entire advantage."
+      },
+      {
+        "type": "example",
+        "text": "Practical forms of precommitment that cost nothing. A fixed maximum position size written down before you look at any asset. A rule that no new position is opened within some hours of first hearing about it. A standing decision that purchases happen on a schedule rather than in response to a move. None of these require willpower at the moment of temptation, which is the point — they require it once, in advance, when it is cheap."
+      },
+      {
+        "type": "paragraph",
+        "text": "The absence of a market close makes this more important here than in any other track. In equities the exchange supplies the pause. In crypto you have to install it yourself, and a rule is how that is done."
+      },
+      {
+        "type": "image",
+        "svg": "crypto-04-1-attention-follows-price",
+        "alt": "A price line rising and falling with a second line showing new user arrivals lagging behind it, marked with the finding that about three quarters of new investors in the BIS data downloaded an exchange app after Bitcoin had already passed 20,000 dollars in December 2020, and that 73 to 81 percent of retail investors likely lost money on their initial investment.",
+        "caption": "New users arrive after the price rises, not before. That is what makes the ordinary experience of hearing about crypto an experience of hearing about it late."
+      },
+      {
+        "type": "paragraph",
+        "text": "What to look for, in yourself rather than in the market. Notice how you came to hear about any position you are considering, and whether the answer is that it went up. Check the supply and the unlock schedule before the price. Ask whether you would open this position at this size if it had fallen 40% rather than risen 40%, since the honest answer tells you which of the two numbers you are actually responding to."
+      },
+      {
+        "type": "paragraph",
+        "text": "Notice the hour. A decision taken outside the times you would normally trade is a decision the market's lack of a close made available to you, and it deserves more scrutiny rather than less."
+      },
+      {
+        "type": "practice",
+        "text": "Take the last three crypto purchases you made or seriously considered. For each, write down two things: the date, and what the asset had done over the previous month. Then write down where you first heard about it. If the pattern is that you heard about things after they rose, you have measured the BIS finding on your own behaviour, which is more persuasive than any published number."
+      },
+      {
+        "type": "practice",
+        "text": "Pick any token with a unit price below one cent and find three figures in its own documentation: circulating supply, total supply, and the unlock schedule. Then calculate the market capitalisation implied by the price target you have heard people repeat. Write that number down next to the market capitalisation of a company you have heard of. The comparison is usually the end of the thesis."
+      }
+    ],
+    "quiz": [
+      {
+        "question": "The BIS study of retail crypto app use across 95 countries found that new users tended to arrive after prices had risen. Why does this matter more than it first appears?",
+        "options": [
+          "Because it proves that crypto prices are manipulated",
+          "Because attention follows price — coverage, group chats and advertisements are all downstream of a rise that already happened, so the ordinary way of hearing about crypto is hearing about it late",
+          "Because new users are less intelligent than existing ones",
+          "Because it shows crypto prices always fall after new users arrive"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. The sequence is structural rather than a comment on anyone's judgement. Nobody writes about an asset that has done nothing, so the information reaches you only after the move. The same study estimated that 73 to 81% of retail investors had likely lost money, and found the largest holders selling into the buying that smaller users were doing.",
+        "feedbackWrong": "Not quite. The finding is not about manipulation, intelligence, or a guaranteed fall. It is that coverage and word of mouth are triggered by price rises, so by the time an asset reaches your attention the rise that made it interesting has already happened."
+      },
+      {
+        "question": "Someone argues that a token priced at 0.0001 \"could easily reach one dollar\". What is the correct first response?",
+        "options": [
+          "Agree, since one dollar is a small number",
+          "Multiply the target price by the supply to see what market capitalisation the claim implies — with a trillion units in supply, one dollar means a one trillion dollar valuation",
+          "Point out that tokens under one cent are always scams",
+          "Check whether the token is listed on a major exchange"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. The unit price carries no information without the supply. Restating the claim as the total size the thing would have to become usually ends the discussion, and the supply figure is published. Check the unlock schedule too, since a denominator that grows while you hold is a separate problem.",
+        "feedbackWrong": "Not quite. A low unit price is not itself evidence of fraud, and an exchange listing does not address the claim. The claim is about price, and price only means something multiplied by supply — which converts \"one dollar\" into a valuation you can compare against real companies."
+      },
+      {
+        "question": "How should the hype cycle — the curve from inflated expectations through disillusionment to a plateau — be treated?",
+        "options": [
+          "As an empirical finding that predicts where a market is heading",
+          "As a consultancy model that usefully describes what enthusiasm does over time, but has no predictive precision and cannot tell you where on the curve you are",
+          "As irrelevant, since narratives do not affect crypto prices",
+          "As a technical indicator to be traded directly"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. It is a Gartner model, not a research result. Narratives do matter in a market with no cash flows to anchor prices, as Chapter 2 Lesson 5 argued — but a named curve describes what happened rather than telling you what happens next. Anyone arguing a fall is \"just the trough before the plateau\" is using a diagram as a forecast.",
+        "feedbackWrong": "Not quite. Narratives are genuinely important in crypto, so the curve is not irrelevant. What it is not is evidence: it has no predictive precision, cannot locate your position on it, and is not something to trade."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Fear of missing out (FOMO)",
+        "def": "Entering a position because others appear to be profiting, rather than because it meets a standard set in advance."
+      },
+      {
+        "term": "Unit bias",
+        "def": "Treating one unit as the natural amount regardless of unit size. Named from a 2006 food-portion study; its application to token prices is an analogy."
+      },
+      {
+        "term": "Denominator blindness",
+        "def": "Judging a token by its unit price while ignoring supply, which is what converts a price into a valuation."
+      },
+      {
+        "term": "Disposition effect",
+        "def": "Selling winners too early and holding losers too long. Documented by Odean in 1998."
+      },
+      {
+        "term": "Unlock schedule",
+        "def": "The timetable on which tokens not yet circulating enter the supply."
+      }
+    ]
+  },
+  {
+    "id": "crypto-recognizing-scams",
+    "lessonNumber": 2,
+    "chapterNumber": 4,
+    "chapterTitle": "Psychology, Scams & Building a Plan",
+    "title": "Recognizing Scams",
+    "keyIdea": "In crypto the counterparty is frequently the risk. Fraud recognition is not an add-on to the skill set — it is part of it, and it runs on structural markers rather than on instinct.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "No other track in this course needs a lesson like this one. In equities and currencies the instrument is regulated, the venue is supervised, and the main way to lose money is to be wrong. In crypto you can be entirely right about the asset and lose everything to the person or contract standing between you and it."
+      },
+      {
+        "type": "paragraph",
+        "text": "That makes fraud recognition a core competency rather than a footnote, and the good news is that it is a learnable one. Scams are not infinitely varied. They reuse a small number of structures, and the structures have markers you can check."
+      },
+      {
+        "type": "paragraph",
+        "text": "Start with scale, from a primary source rather than from industry marketing."
+      },
+      {
+        "type": "paragraph",
+        "text": "The United States Federal Trade Commission reported that consumers lost 5.7 billion dollars to investment scams in 2024, a rise of 24% on the previous year. In the same year, consumers reported losing more money to scams paid by bank transfer or cryptocurrency than to all other payment methods combined. In its 2025 data, investment scams were the largest single loss category at 7.9 billion dollars."
+      },
+      {
+        "type": "warning",
+        "text": "Read the last of those figures carefully, because it is the operationally useful one. Crypto is not merely a thing people are defrauded about. It is a preferred settlement rail for fraud generally, because a completed transfer cannot be reversed. Chapter 1 Lesson 6 taught finality as a feature. This is finality as an attack surface, and it is the same property."
+      },
+      {
+        "type": "paragraph",
+        "text": "Now the structures. Six cover the overwhelming majority of what you will meet."
+      },
+      {
+        "type": "definition",
+        "term": "Rug pull",
+        "text": "A token is created and promoted, buyers provide liquidity, and the creators then withdraw that liquidity or dump their holdings, leaving a token that cannot be sold at any meaningful price."
+      },
+      {
+        "type": "paragraph",
+        "text": "The academic work here is specific enough to be useful. Xia and colleagues, in a paper titled Trade or Trick, published in the Proceedings of the ACM on Measurement and Analysis of Computing Systems in 2021, examined tokens listed on the Uniswap decentralised exchange. They identified more than ten thousand scam tokens, and estimated that roughly half of all tokens listed there were scam tokens created for exactly this purpose."
+      },
+      {
+        "type": "example",
+        "text": "The same study traced at least 16 million dollars of profit taken from 39,762 potential victims, and found thousands of addresses colluding with the token creators to make the trading look organic. The wallets buying alongside you were frequently the same people selling to you."
+      },
+      {
+        "type": "warning",
+        "text": "Half is not a rate you can manage by being careful. If roughly one in two listings on a venue is a scam, then browsing new listings on that venue is not investing with some risk attached. It is a game whose base rate you already know, and the correct response to a base rate that bad is usually to stop playing rather than to play more attentively."
+      },
+      {
+        "type": "definition",
+        "term": "Yield scheme",
+        "text": "A product offering a fixed, high and supposedly reliable return on deposits, funded not by any activity that produces a return but by the deposits of later participants."
+      },
+      {
+        "type": "paragraph",
+        "text": "This is the oldest structure in finance wearing new vocabulary, and it has one test that works every time."
+      },
+      {
+        "type": "paragraph",
+        "text": "Ask where the yield comes from, and keep asking until you reach an activity. Lending to borrowers who pay interest is an activity. Providing liquidity and earning fees from traders is an activity, with its own risks. Staking, which Chapter 1 Lesson 3 covered, is an activity, and it pays what the protocol pays. If the chain of answers terminates in the platform's own token, in \"our trading strategy\", or in nothing at all, you have found the answer."
+      },
+      {
+        "type": "warning",
+        "text": "The next lesson but one examines a case where roughly 20% a year was paid on billions of dollars of deposits, in public, for months, and where the answer to where does the yield come from was that it was being paid out of a reserve until the reserve ran out. It was not hidden. It was disclosed, discussed, and widely rationalised, and it still ended the way the arithmetic said it had to."
+      },
+      {
+        "type": "definition",
+        "term": "Pig butchering",
+        "text": "A long-running fraud in which the victim is befriended, often through a dating application or a wrong-number message, then gradually introduced to an investment platform that shows fabricated profits before the money proves impossible to withdraw."
+      },
+      {
+        "type": "paragraph",
+        "text": "Griffin and Mei, at the University of Texas, traced crypto flows from more than four thousand victim addresses in a study titled How Do Crypto Flows Finance Slavery: The Economics of Pig Butchering, first posted in 2024. They followed funds from victims to networks largely based in Southeast Asia, and found that the money was most often converted into Tether, accounting for about 84% of the traced transaction volume."
+      },
+      {
+        "type": "warning",
+        "text": "Their headline estimate is that these networks moved more than 75 billion dollars to crypto exchanges between January 2020 and February 2024. The same paper reports that under a looser clustering assumption the figure could be as high as 237 billion. A three-fold range driven by a methodological choice is not a reason to dismiss the work, and it is a reason to quote it honestly. The paper has also been publicly criticised over its methods. What is not in dispute is the mechanism and the scale of the industry behind it."
+      },
+      {
+        "type": "paragraph",
+        "text": "The recognisable feature of this structure is that the relationship comes first and the investment comes second. Nobody who contacts you unprompted, builds rapport over weeks, and then mentions an opportunity is doing those things in that order by accident."
+      },
+      {
+        "type": "definition",
+        "term": "Withdrawal-fee scam",
+        "text": "A platform that shows growing profits and permits small early withdrawals, then demands a tax, fee or deposit before releasing a larger balance — a demand that repeats."
+      },
+      {
+        "type": "paragraph",
+        "text": "This is the tell that ends the ambiguity. A genuine platform deducts fees from the balance it holds. A fraudulent one requires new money from outside to release money it claims to be holding, because the balance it is showing you does not exist."
+      },
+      {
+        "type": "example",
+        "text": "A user has a displayed balance of 40,000 and is told a 5,000 tax must be paid before withdrawal. If the 40,000 were real, the tax could be taken from it. The request itself is the proof, and every further payment is made to recover money that was never there."
+      },
+      {
+        "type": "definition",
+        "term": "Approval draining",
+        "text": "A wallet is connected to a site that requests permission to spend its tokens, and the permission — once granted — is used to remove them later, without any further action by the owner."
+      },
+      {
+        "type": "paragraph",
+        "text": "This one deserves particular attention because it does not feel like a transfer. You are not sending anything. You are signing an approval, often an unlimited one, and the signature is the loss. Chapter 3 Lesson 2 covered approvals as a standing security practice; the point here is that this is the single most common way a technically competent person loses funds."
+      },
+      {
+        "type": "definition",
+        "term": "Impersonation and giveaway fraud",
+        "text": "A well-known person, project or support channel is imitated, and the imitation asks you to send funds, connect a wallet, or reveal a recovery phrase."
+      },
+      {
+        "type": "warning",
+        "text": "One rule removes this entire category and admits no exceptions. Nobody legitimate will ever ask for your recovery phrase — not support, not a developer, not a wallet provider, not a hardware manufacturer. There is no situation in which a real person needs it. Anyone asking is stealing from you, and the request is complete proof of that regardless of how plausible everything around it looks."
+      },
+      {
+        "type": "paragraph",
+        "text": "A separate category of marker deserves attention, because it is the one that fools careful people: the signals that look like verification and are not."
+      },
+      {
+        "type": "definition",
+        "term": "Verification theatre",
+        "text": "Signals that appear to constitute independent checking — audits, listings, endorsements, published team identities — but that do not establish the thing the reader assumes they establish."
+      },
+      {
+        "type": "paragraph",
+        "text": "Take a smart contract audit, the most commonly cited of these. An audit is a review of whether the code does what its authors say it does, performed at a point in time on a particular version. It is genuinely useful for finding bugs."
+      },
+      {
+        "type": "warning",
+        "text": "It does not establish that the design is sound, that the team will not act against you, or that the deployed contract is the version reviewed. A contract can be audited and still contain a documented function letting the owner mint unlimited tokens, because that function is not a bug — it is a feature the auditors correctly reported and the reader never read. Audited is a statement about code review, not a statement about safety."
+      },
+      {
+        "type": "paragraph",
+        "text": "The same applies to the other reassurance signals, and each fails in a specific way worth knowing."
+      },
+      {
+        "type": "paragraph",
+        "text": "An exchange listing is a commercial decision, and on some venues a token can be listed by anyone who creates a market for it — which is precisely the Uniswap finding above. A named team with real photographs establishes that people exist, not that they are honest, and impersonated identities are common. Total value locked measures deposits, which rise fastest during exactly the schemes that are attracting deposits fastest. Institutional investment establishes that other people also made a judgement, which the previous lesson's case studies show is not much."
+      },
+      {
+        "type": "paragraph",
+        "text": "The second thing worth learning is how you come to be selected, because the mechanics are duller than people expect."
+      },
+      {
+        "type": "paragraph",
+        "text": "Wallet addresses are public. Anyone can see which addresses interacted with a given protocol, in what size, and when. That makes it straightforward to assemble a list of addresses holding meaningful balances and to target them — with tokens airdropped into the wallet that lead to a malicious site, or with messages elsewhere if the address can be linked to an identity."
+      },
+      {
+        "type": "warning",
+        "text": "Never interact with a token that appears in your wallet without your having acquired it. Attempting to sell an unsolicited token frequently means approving a contract written by whoever sent it, and the approval is the attack. Chapter 3 Lesson 2 covered approvals; this is the delivery mechanism most people meet them through."
+      },
+      {
+        "type": "paragraph",
+        "text": "There is also a distinction that this lesson has to make carefully, because collapsing it makes the whole subject useless."
+      },
+      {
+        "type": "definition",
+        "term": "Fraud versus risk",
+        "text": "Fraud is a scheme designed so that the operator gains and you lose. Risk is a genuine activity that can lose money because the activity itself can fail."
+      },
+      {
+        "type": "paragraph",
+        "text": "A lending protocol whose borrowers default is not a scam. A liquidity position that loses money to price movement is not a scam. An honest project whose token falls 90% is not a scam. Treating every loss as fraud is as unhelpful as treating none of them as fraud, and it prevents you from learning anything from the losses that were simply losses."
+      },
+      {
+        "type": "paragraph",
+        "text": "The distinguishing question is whether the losing outcome was a possibility the structure disclosed, or the purpose the structure was built for."
+      },
+      {
+        "type": "paragraph",
+        "text": "Finally, the part almost no material covers: what to do if it has already happened."
+      },
+      {
+        "type": "warning",
+        "text": "Expect a second approach. People who have been defrauded are contacted again by supposed recovery services, investigators or lawyers offering to trace and return the funds for an upfront fee. This is frequently the same operation or one that bought the victim list, and it works because the target is now desperate rather than merely hopeful. No legitimate recovery service asks for payment in crypto, and nobody can reverse a settled transaction — Chapter 1 Lesson 6 established that finality is not negotiable by anyone."
+      },
+      {
+        "type": "paragraph",
+        "text": "The useful steps are unglamorous. Move any remaining funds to a new wallet with a newly generated recovery phrase, since the old one must be assumed compromised. Revoke every outstanding approval on the affected wallet. Record the transaction hashes and addresses, which are permanent and public and are what any investigator would actually work from. Report it to the relevant national fraud authority and to the exchange the funds moved to, both of which can occasionally act. Then treat further payment of any kind as the second scam it almost always is."
+      },
+      {
+        "type": "image",
+        "svg": "crypto-04-2-scam-markers",
+        "alt": "Six scam structures shown as panels — rug pull, yield scheme, pig butchering, withdrawal-fee scam, approval draining, and impersonation — beside a list of structural markers including guaranteed returns, an unexplained source of yield, unsolicited contact, withdrawal friction, urgency and any request for a recovery phrase.",
+        "caption": "Six structures cover almost everything you will meet, and each has a marker you can check rather than a feeling you have to trust."
+      },
+      {
+        "type": "paragraph",
+        "text": "Underneath all six sit markers that do not depend on knowing the particular scheme. These are worth memorising, because they work on structures nobody has invented yet."
+      },
+      {
+        "type": "paragraph",
+        "text": "A guaranteed or fixed return on a volatile asset. An unexplained source of yield. Contact that you did not initiate. Any pressure to act before a deadline. A referral or recruitment component in the returns. Friction that appears only when you try to withdraw. And any request for a recovery phrase, private key, or remote access to your device."
+      },
+      {
+        "type": "warning",
+        "text": "Note what is not on that list: how professional the website looks, whether there is a whitepaper, whether well-known names appear as advisers or investors, and whether other people you know are already in. Every one of those is cheap to fabricate, and the last is the mechanism by which these schemes grow rather than evidence that they are sound."
+      },
+      {
+        "type": "paragraph",
+        "text": "What to look for before committing money to anything in this asset class. Establish who holds the asset and what happens to it if that party fails, which is Chapter 1 Lessons 4 and 5. Establish where any promised return is generated, in terms of an activity. Test the withdrawal path early with a small amount, and treat any friction as decisive. Check what approvals your wallet currently has outstanding and revoke the ones you no longer need."
+      },
+      {
+        "type": "paragraph",
+        "text": "And apply the base rate. In a category where a peer-reviewed study found roughly half of the listings on a major venue to be scam tokens, the prior probability that an unfamiliar new token is legitimate is not high, and it is your job to move it — not the promoter's job to be reassuring."
+      },
+      {
+        "type": "practice",
+        "text": "Take any yield-bearing crypto product you have seen advertised and write the chain of answers to where does this return come from. Keep going until you reach an activity that produces value, or until the chain stops. Write down where it stopped. That single sentence is a better filter than any amount of reading about the team."
+      },
+      {
+        "type": "practice",
+        "text": "Open the approvals or permissions screen for any wallet you use and list every contract that currently has permission to spend your tokens. For each one, write down whether you still use it. Revoke the rest. Most people doing this for the first time find approvals they granted years ago to sites that no longer exist, and each of those is a standing key to their funds."
+      }
+    ],
+    "quiz": [
+      {
+        "question": "A platform shows you a balance of 40,000 and says you must pay a 5,000 tax before you can withdraw. What does this tell you?",
+        "options": [
+          "That the platform is complying with tax law and the payment is normal",
+          "That the balance does not exist — a genuine platform would deduct any fee from the balance it holds, so requiring outside money to release it is proof the money is not there",
+          "That the withdrawal will succeed once the tax is paid",
+          "That the platform has a liquidity problem but the funds are safe"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. The request is itself the evidence. If the 40,000 were real, the 5,000 could be taken from it. Requiring new money from outside to release money supposedly held is the defining marker of this structure, and each further payment is made chasing funds that never existed.",
+        "feedbackWrong": "Not quite. No legitimate platform needs new money from you to release money it already holds — it would simply net the fee off the balance. The demand is not a tax obligation or a liquidity issue; it is proof the displayed balance is fabricated."
+      },
+      {
+        "question": "Xia and colleagues found that roughly half the tokens listed on Uniswap were scam tokens created for rug pulls. What is the appropriate response to a base rate that high?",
+        "options": [
+          "Research each new listing more carefully before buying",
+          "Recognise that at a one-in-two base rate the activity is not investing with some risk attached, and that the sensible response is usually to stop rather than to be more attentive",
+          "Only buy tokens that have a professional website and a whitepaper",
+          "Buy smaller amounts of many different new tokens"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. Care does not fix a base rate that bad, and the same study found thousands of colluding addresses making the trading look organic — so the evidence you would use to be careful is itself manufactured. Websites and whitepapers are cheap to fabricate, and spreading small amounts across many listings simply buys the base rate more times.",
+        "feedbackWrong": "Not quite. Diligence, presentation checks and diversification across listings all fail against a one-in-two base rate — particularly when colluding wallets are manufacturing the appearance of genuine trading. The useful conclusion is about whether to participate at all."
+      },
+      {
+        "question": "Which of these is a structural marker of fraud that works even on schemes nobody has invented yet?",
+        "options": [
+          "A website that looks unprofessional",
+          "An absent whitepaper",
+          "An unexplained source of yield — a promised return whose chain of answers never reaches an activity that produces value",
+          "A token with a very low unit price"
+        ],
+        "correctIndex": 2,
+        "feedbackCorrect": "Correct. Ask where the return comes from and keep asking until you reach an activity: lending to borrowers who pay interest, fees from traders, protocol staking rewards. If the chain terminates in the platform's own token, in \"our trading strategy\", or in nothing, you have your answer — and this test does not require you to recognise the particular scheme.",
+        "feedbackWrong": "Not quite. Presentation quality, documentation and unit price are all cheap to control and tell you very little in either direction. The durable markers are structural: an unexplained yield source, unsolicited contact, withdrawal friction, guaranteed returns on a volatile asset, and any request for a recovery phrase."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Rug pull",
+        "def": "Creators withdraw liquidity or dump holdings after promoting a token, leaving it unsellable."
+      },
+      {
+        "term": "Yield scheme",
+        "def": "A fixed high return funded by later deposits rather than by any value-producing activity."
+      },
+      {
+        "term": "Pig butchering",
+        "def": "A long-running fraud where a relationship is built first and a fake investment platform introduced later."
+      },
+      {
+        "term": "Withdrawal-fee scam",
+        "def": "A platform demanding outside money before releasing a balance it claims to hold."
+      },
+      {
+        "term": "Approval draining",
+        "def": "Funds removed later using a spending permission the owner signed earlier."
+      },
+      {
+        "term": "Impersonation fraud",
+        "def": "A known person, project or support channel imitated to solicit funds or a recovery phrase."
+      }
+    ]
+  },
+  {
+    "id": "crypto-trading-and-custody-plan",
+    "lessonNumber": 3,
+    "chapterNumber": 4,
+    "chapterTitle": "Psychology, Scams & Building a Plan",
+    "title": "A Crypto Trading and Custody Plan",
+    "keyIdea": "A crypto plan needs everything a trading plan needs, plus a section no other asset requires: where the asset physically lives, and what happens to it if you are not there.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Forex Chapter 4 Lesson 2 built a trading plan around expectancy: the average result of a repeated process rather than the outcome of any single trade. Everything in that lesson transfers. This one adds the part that is specific to an asset you can hold yourself, and therefore lose yourself."
+      },
+      {
+        "type": "definition",
+        "term": "Written plan",
+        "text": "A document setting out what you will hold, how much, under what rules, where it is stored, and under what conditions you will act. Written while calm, consulted while not."
+      },
+      {
+        "type": "paragraph",
+        "text": "A usable crypto plan has seven sections. The first four are the standard ones, compressed here because earlier lessons did the work. The last three do not exist in any other track."
+      },
+      {
+        "type": "paragraph",
+        "text": "One: the allocation. How much of your total wealth is in this asset class at all, expressed as a percentage and decided before you look at any individual token."
+      },
+      {
+        "type": "warning",
+        "text": "Decide this number in a form you would repeat out loud. Chapter 2 Lesson 3 showed that crypto behaves as a high-beta risk asset rather than as a diversifier, and that the diversification argument largely failed in 2022 when it was needed. An allocation you would be embarrassed to say to someone whose judgement you respect is a signal, and it is usually a reliable one."
+      },
+      {
+        "type": "paragraph",
+        "text": "Two: position sizing within that allocation. Chapter 3 Lesson 1 recomputed the standard risk formula at crypto volatility and showed that the same 1 to 2% risk rule produces much smaller positions here than in currencies. That arithmetic goes in the plan as a number, not as a principle."
+      },
+      {
+        "type": "paragraph",
+        "text": "Three: leverage. For most readers the correct entry is a single word, and the word is none. Chapter 3 Lesson 3 showed that liquidation, rather than being wrong, is how most leveraged crypto accounts end. If the entry is not none, it needs a maximum and the price at which a liquidation occurs, written in advance."
+      },
+      {
+        "type": "paragraph",
+        "text": "Four: entry and exit conditions. What has to be true for you to buy, and what has to be true for you to sell. Chapter 6 gives the thesis framework that fills this section properly."
+      },
+      {
+        "type": "paragraph",
+        "text": "Now the three sections this asset class requires and no other does."
+      },
+      {
+        "type": "paragraph",
+        "text": "Five: the custody map. Chapter 1 Lessons 4 and 5 taught the trade-off between holding your own keys and letting somebody else hold them. The plan turns that trade-off into thresholds."
+      },
+      {
+        "type": "definition",
+        "term": "Custody map",
+        "text": "A written statement of which holdings sit on an exchange, which sit in a wallet you control, and the amount at which a holding moves from the first to the second."
+      },
+      {
+        "type": "example",
+        "text": "A workable default. Anything you are actively trading stays on the exchange, capped at an amount you would be prepared to lose entirely if that exchange failed. Everything above that cap moves to self-custody within a stated period, such as a week. The cap is a number, written down, and it is reviewed when the portfolio grows rather than when the news is bad."
+      },
+      {
+        "type": "warning",
+        "text": "The purpose of the cap is that it forces the question in advance. Every person who lost funds in the collapses in the next chapter had an implicit answer to how much do I leave on this exchange, and the implicit answer was almost always everything. Chapter 5 covers three cases where the implicit answer was tested."
+      },
+      {
+        "type": "paragraph",
+        "text": "Six: the recovery plan. This is the section that separates a crypto plan from every other plan in this course, and it is the one most often skipped."
+      },
+      {
+        "type": "paragraph",
+        "text": "Self-custody moves the failure mode from counterparty risk to you. That is usually the better trade, and it is not a free one. A recovery phrase written on paper can be lost, destroyed, photographed, or found. The plan needs to say where it is, how many copies exist, where they are, and what physically happens to them in a fire or a flood."
+      },
+      {
+        "type": "warning",
+        "text": "Two rules admit no exceptions and are worth stating plainly. A recovery phrase is never typed into anything connected to the internet, and it is never photographed. A phrase that has been in a photo library, a password manager, a note application or a cloud backup should be treated as compromised, and the correct response is to move the funds to a newly generated wallet rather than to hope."
+      },
+      {
+        "type": "paragraph",
+        "text": "Seven: succession. Who else knows this exists, and what would happen to it if you did not."
+      },
+      {
+        "type": "paragraph",
+        "text": "This is uncomfortable and it is the single most neglected item in personal crypto. An asset secured so that only you can reach it is, by construction, an asset nobody else can reach. If you are the only person who knows a holding exists and where the recovery phrase is, then your death or incapacity destroys it as effectively as any hack."
+      },
+      {
+        "type": "example",
+        "text": "A minimum version that takes an afternoon. A sealed written record of what exists and where the recovery material is kept, held by a person or institution you trust, with instructions that it is opened under specific circumstances. It does not have to be elaborate. It has to exist, and one other human being has to know that it does."
+      },
+      {
+        "type": "paragraph",
+        "text": "A plan does not need to be long. Here is a complete one, so the exercise stops being abstract."
+      },
+      {
+        "type": "example",
+        "text": "Allocation: crypto is at most 5% of total wealth. Sizing: no single asset above 1% of total wealth; largest two together no more than 3%. Leverage: none. Entry: purchases on the first of the month, fixed amount, regardless of price. Exit: sell only to restore the 5% band, or if the reason recorded for holding an asset no longer applies. Custody map: at most 500 on any exchange at any time, everything else in a hardware wallet within seven days of purchase. Recovery: two paper copies of the phrase, one at home and one at a named relative's house, never photographed and never typed into a connected device. Succession: a sealed letter with my will, and one named person who knows it exists. Reviewed on the first Saturday of each quarter."
+      },
+      {
+        "type": "paragraph",
+        "text": "That is nine lines and it answers everything this lesson asks. Its main virtue is that a version of you in a violent week can read it and see that a version of you in a calm one had already considered this."
+      },
+      {
+        "type": "paragraph",
+        "text": "Two components deserve more detail, because they are where plans usually fail in practice rather than in principle."
+      },
+      {
+        "type": "paragraph",
+        "text": "The first is how you choose which exchange to use at all, given the cap does not tell you that."
+      },
+      {
+        "type": "definition",
+        "term": "Proof of reserves",
+        "text": "A published attestation that an exchange holds assets matching customer balances, usually verified against on-chain holdings at a point in time."
+      },
+      {
+        "type": "warning",
+        "text": "Proof of reserves is a genuine improvement over nothing, and it is much weaker than it sounds. It typically shows assets and not liabilities, which means an exchange can display holdings while owing far more than it holds. It is a snapshot, so assets can be borrowed for the measurement date. And it says nothing about whether those assets are encumbered. It raises the cost of one specific deception; it does not make an exchange safe, and it is not a substitute for the cap."
+      },
+      {
+        "type": "paragraph",
+        "text": "The practical criteria are duller and more useful. How long has the venue operated, and through how many downturns. Does it operate under a regulator whose rules you could look up. Have withdrawals worked, for you, recently and repeatedly. Is your own withdrawal path tested rather than assumed. Nothing here identifies a sound institution reliably, which is exactly why it sits under a cap rather than replacing one."
+      },
+      {
+        "type": "paragraph",
+        "text": "The second component is record keeping, which is boring and becomes urgent at the worst moment."
+      },
+      {
+        "type": "paragraph",
+        "text": "Most jurisdictions treat disposals of crypto as taxable events, and in many a swap from one token to another is a disposal even though no conventional currency was involved. This course cannot tell you your local rules and will not invent them. What it can tell you is that the record you need is created at the moment of the transaction and is very difficult to reconstruct years later, particularly across exchanges that may no longer exist."
+      },
+      {
+        "type": "example",
+        "text": "A minimum record, kept as a single file: date, asset, amount, price in your home currency, the venue, and the transaction hash where there is one. Written at the time, this takes under a minute per transaction. Reconstructed four years later from an exchange that has since shut down, it can be impossible, and the assumption a tax authority makes in that situation is rarely the one you would prefer."
+      },
+      {
+        "type": "paragraph",
+        "text": "It is worth being explicit about why plans fail, since writing one is not the same as having one."
+      },
+      {
+        "type": "warning",
+        "text": "Plans fail in three ways, and only one of them is dramatic. They are silent on the situation that actually arrives, so you improvise at the worst moment. They contain a rule that is unusable in practice, which teaches you that the document is optional. Or they are quietly amended during a strong move — the allocation raised, the cap lifted, the leverage entry changed — with the amendment justified by the very conditions that make it dangerous."
+      },
+      {
+        "type": "paragraph",
+        "text": "The third is the common one and it has a simple defence. Any change to the plan takes effect at the next scheduled review, not today. That single rule preserves your ability to improve the document while removing the ability to rewrite it in the middle of a move, and it costs nothing when the change is genuinely a good idea."
+      },
+      {
+        "type": "paragraph",
+        "text": "Where a decision genuinely cannot be made in advance, write down that you have decided to do nothing. That is still a rule, and it is a considerably better one than an unwritten instinct arriving at three in the morning."
+      },
+      {
+        "type": "paragraph",
+        "text": "One question sits underneath the whole plan and is easiest to answer first, because every other number depends on it."
+      },
+      {
+        "type": "paragraph",
+        "text": "How would you find out that something had gone wrong?"
+      },
+      {
+        "type": "paragraph",
+        "text": "For an exchange holding your funds, the honest answer is usually that you would find out when a withdrawal failed, which is after the fact. For a self-custodied wallet, you would find out when you next looked, which might be months. For an approval you signed two years ago, you would find out when the funds were gone."
+      },
+      {
+        "type": "warning",
+        "text": "A plan that only describes what you will do assumes you will know when to do it. Add a detection line to each section: how often you check, and what specifically you check. Checking an exchange balance monthly is a detection mechanism. Intending to keep an eye on things is not."
+      },
+      {
+        "type": "paragraph",
+        "text": "The detection interval also sets a ceiling on how bad an outcome can get, which is the same logic as position sizing applied to time rather than to amount. A wallet checked quarterly can be drained for three months before you notice; one checked weekly cannot."
+      },
+      {
+        "type": "image",
+        "svg": "crypto-04-3-custody-plan",
+        "alt": "A seven-section plan diagram: allocation, position sizing, leverage, entry and exit conditions, then three crypto-specific sections — a custody map showing an exchange cap above which holdings move to self-custody, a recovery plan covering where the recovery phrase lives, and succession covering who else knows the holding exists.",
+        "caption": "Four sections any trading plan needs, and three that only an asset you can hold yourself requires."
+      },
+      {
+        "type": "paragraph",
+        "text": "A note on rebalancing, because crypto makes it both harder and more necessary than anywhere else in this course."
+      },
+      {
+        "type": "definition",
+        "term": "Rebalancing band",
+        "text": "A rule returning a holding to its target weight once it drifts beyond a set distance from it, rather than on a calendar date."
+      },
+      {
+        "type": "example",
+        "text": "A portfolio holds 5% crypto and 95% everything else. Crypto rises fourfold while the rest is flat. The crypto slice is now about 17.4% of the portfolio, and nobody decided that. If it then falls 80% — an ordinary crypto drawdown, not a catastrophe — the portfolio ends at about 99% of where it peaked, having given back essentially the entire gain. A band that restored 5% at the top would have taken about 14 of those units off the table as a rule rather than as a forecast."
+      },
+      {
+        "type": "warning",
+        "text": "Rebalancing out of a rising crypto position is the most emotionally difficult routine action described in this course. It requires selling the thing that is working, during the period when everyone is loudest about it being different this time. That difficulty is exactly why the rule has to be written before the rise, and why the discomfort is evidence the mechanism is doing its job rather than that it is broken."
+      },
+      {
+        "type": "paragraph",
+        "text": "What to look for when you review the plan, which should be a fixed date rather than a reaction. Check whether the exchange balance has crept above the cap, because it always creeps. Check whether the allocation has drifted past the band. Check that you can still access every wallet you own, by actually accessing it rather than by assuming. Confirm the recovery material is where the document says it is."
+      },
+      {
+        "type": "paragraph",
+        "text": "And check the plan against what you actually did. Where the two differ, write down which one was wrong. Both happen, and only one of them is a reason to change the document."
+      },
+      {
+        "type": "practice",
+        "text": "Write the seven sections on one page and date it. For the custody map, put an actual number on the exchange cap rather than a principle. Then look at your current exchange balance and note whether it is already above that number. For most readers it is, and the gap between the two figures is the exact work this lesson is asking for."
+      },
+      {
+        "type": "practice",
+        "text": "Test the recovery path rather than assuming it. Using a small amount, restore one of your wallets from its recovery phrase onto a clean device, confirm the funds appear, and then put everything back. A recovery phrase you have never tested is a hypothesis. The people who discover it was written down incorrectly discover it at the worst possible moment, and this exercise moves that discovery to a Tuesday afternoon."
+      }
+    ],
+    "quiz": [
+      {
+        "question": "What does a custody map add to a plan that a standard trading plan does not have?",
+        "options": [
+          "A list of which coins to buy and in what order",
+          "A written threshold stating how much stays on an exchange and the amount above which holdings move to self-custody",
+          "A schedule of when to check prices",
+          "A record of the fees each exchange charges"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. It forces the question in advance and answers it with a number. Everyone who lost funds in the collapses covered in the next chapter had an implicit answer to how much to leave on an exchange, and the implicit answer was almost always everything. A cap set while calm is what stops that from being the default.",
+        "feedbackWrong": "Not quite. A custody map is not about selection, timing or costs. It is about where the asset physically lives — how much sits with a counterparty who could fail, and the threshold above which it moves into your own custody."
+      },
+      {
+        "question": "A portfolio holding 5% crypto sees that slice rise fourfold while everything else is flat, reaching about 17.4% of the total. It then falls 80%. What is the outcome, and what would a rebalancing band have done?",
+        "options": [
+          "The portfolio keeps most of the gain, and rebalancing would have made no difference",
+          "The portfolio ends at about 99% of its peak, having given back essentially the whole gain; a band restoring 5% at the top would have taken roughly 14 units off the table as a rule rather than a forecast",
+          "The portfolio is wiped out, and rebalancing would not have helped",
+          "The crypto slice returns to exactly 5% on its own, so no action was needed"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. An 80% crypto drawdown is ordinary rather than catastrophic, and by the time it arrives the position has grown to more than three times its intended weight without anyone deciding that. The band is not a forecast that crypto will fall — it is a rule keeping the risk where you chose to put it.",
+        "feedbackWrong": "Not quite. Drift means the fall lands on a much larger position than the one you chose: the portfolio finishes at roughly 99% of its peak, giving back essentially the entire gain. The position does return to about 5% afterwards, but only by losing the money first."
+      },
+      {
+        "question": "Why does a crypto plan need a succession section when a share portfolio does not?",
+        "options": [
+          "Because crypto is taxed differently on death",
+          "Because an asset secured so that only you can reach it is, by construction, an asset nobody else can reach — so your incapacity destroys it as effectively as a hack",
+          "Because exchanges require a named beneficiary",
+          "Because recovery phrases expire after a fixed period"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. Self-custody moves the failure mode from a counterparty to you, which is usually the better trade and is not a free one. If nobody else knows the holding exists or where the recovery material is kept, there is no institution to appeal to and no record to find. A sealed written record held by someone you trust is the minimum version.",
+        "feedbackWrong": "Not quite. Recovery phrases do not expire, and the issue is not a tax rule or an exchange requirement. It is structural: the same property that stops anyone else from taking your funds stops anyone else from recovering them."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Written plan",
+        "def": "A document of holdings, sizing, rules, storage and conditions, written while calm."
+      },
+      {
+        "term": "Custody map",
+        "def": "Which holdings sit on an exchange, which in self-custody, and the threshold between them."
+      },
+      {
+        "term": "Recovery plan",
+        "def": "Where the recovery phrase lives, how many copies exist, and what happens to them physically."
+      },
+      {
+        "term": "Succession",
+        "def": "Who else knows a holding exists and can reach it if you cannot."
+      },
+      {
+        "term": "Rebalancing band",
+        "def": "A rule restoring a target weight once drift exceeds a set distance."
+      }
+    ]
+  },
+  {
+    "id": "crypto-case-mt-gox",
+    "lessonNumber": 1,
+    "chapterNumber": 5,
+    "chapterTitle": "Real-World Case Studies",
+    "title": "Mt. Gox (2014)",
+    "keyIdea": "The coins were gone for years before anyone noticed. What collapsed in February 2014 was not the balance — it was the belief that the number on the screen described anything real.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "By 2013 Mt. Gox was handling a very large share of global Bitcoin trading. It was the venue most people used, and for many it was the only one they had ever used. Then, over three weeks in early 2014, it stopped."
+      },
+      {
+        "type": "paragraph",
+        "text": "Here is the sequence, with dates, because the dates are where the lesson lives."
+      },
+      {
+        "type": "example",
+        "text": "On 7 February 2014, Mt. Gox halted withdrawals.\nOn 28 February 2014, it filed in Tokyo for civil rehabilitation, a form of bankruptcy protection, disclosing the loss of 850,000 bitcoin — of which 750,000 belonged to customers.\nOn 9 March 2014, it filed for bankruptcy protection in the United States.\nOn 20 March 2014, it announced that roughly 200,000 bitcoin had been found in an old wallet last used before June 2011, reducing the net loss to about 650,000.\nRepayments to creditors began in July 2024, slightly over a decade later."
+      },
+      {
+        "type": "paragraph",
+        "text": "Now the fact that reframes all of it. The theft was not an event in February 2014. It had been running, undetected, since 2011."
+      },
+      {
+        "type": "warning",
+        "text": "For roughly three years, customers logged in and saw balances. They deposited, traded, and watched numbers change. Those numbers were accurate as records of what the exchange said it owed them, and progressively less accurate as records of what the exchange actually held. The screen never once indicated a problem, because a screen cannot. It displays a database entry, and a database entry is a claim."
+      },
+      {
+        "type": "definition",
+        "term": "Claim versus asset",
+        "text": "A balance shown by a custodian is a claim on that custodian. The asset is what the custodian actually holds. The two are the same thing right up until they are not, and nothing in the interface distinguishes them."
+      },
+      {
+        "type": "paragraph",
+        "text": "This is Chapter 1 Lesson 5 stated as history rather than as theory. That lesson explained what happens to your money on a centralised exchange: the exchange holds the coins and credits you with an entry. Mt. Gox is what that arrangement looks like when the second half stops being true and the first half keeps rendering."
+      },
+      {
+        "type": "paragraph",
+        "text": "The finding that the 200,000 were sitting in a wallet nobody had checked since 2011 deserves its own moment."
+      },
+      {
+        "type": "warning",
+        "text": "An exchange holding hundreds of thousands of customer bitcoin did not know what was in its own wallets. That is not sophisticated fraud or an advanced attack. It is an absence of the most basic control in custody, which is knowing what you are holding. The people trusting it with their savings could not have discovered this, because nothing they could see would have shown it."
+      },
+      {
+        "type": "paragraph",
+        "text": "Which raises the question this course has to answer honestly: what could a careful user actually have done?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Not much by way of detection. There were warning signs — long-standing withdrawal delays, particularly in dollar withdrawals, and a general reputation for operational chaos — and those signs were visible and widely discussed. But they were also present at times when nothing was wrong, and plenty of people who noticed them stayed. Treating withdrawal friction as decisive is the correct rule, and Chapter 4 Lesson 2 gives it, but honesty requires admitting that applying it perfectly in advance would have meant leaving many exchanges that turned out to be fine."
+      },
+      {
+        "type": "paragraph",
+        "text": "What was fully available was the response that does not require detection."
+      },
+      {
+        "type": "example",
+        "text": "A user holding 20 bitcoin who kept 2 on the exchange for trading and 18 in self-custody lost 10% of their holding and kept 90%. A user holding the same 20 on the exchange because that is where they had bought them lost everything. Neither user knew anything the other did not. One had a custody rule and the other had a habit."
+      },
+      {
+        "type": "paragraph",
+        "text": "That is why the previous lesson put the custody map in the plan as a number. It works without foresight. It does not require you to identify which exchange will fail, which nobody reliably does, and it converts a total loss into a survivable one."
+      },
+      {
+        "type": "paragraph",
+        "text": "There is a further part of this story that belongs in a course about verifying claims, because the exchange offered an explanation and researchers checked it."
+      },
+      {
+        "type": "paragraph",
+        "text": "When withdrawals were halted in February 2014, Mt. Gox attributed the problem to a known quirk of the Bitcoin protocol."
+      },
+      {
+        "type": "definition",
+        "term": "Transaction malleability",
+        "text": "A property of early Bitcoin whereby a transaction's identifier could be altered before confirmation without changing its effect, so a poorly built system could be tricked into believing a payment had failed and sending it again."
+      },
+      {
+        "type": "paragraph",
+        "text": "The claim was plausible. The quirk was real, it was documented, and it could in principle cause an exchange to pay out twice. It also placed the blame on the protocol rather than on the exchange, which made it a convenient explanation as well as a technical one."
+      },
+      {
+        "type": "paragraph",
+        "text": "Decker and Wattenhofer tested it directly, in a paper titled Bitcoin Transaction Malleability and MtGox, published in 2014 and presented at the ESORICS conference. Because the blockchain is public, they could examine the entire network history rather than take anyone's word for it."
+      },
+      {
+        "type": "example",
+        "text": "They found that malleability attacks existed but were not widespread before the closure. Across the whole period they analysed, all successful attacks together accounted for at most tens of thousands of bitcoin — and in the window between January 2013 and the February 2014 withdrawal halt there was nothing like enough activity to account for 750,000 customer coins. Even attributing every malleability attack on the entire network to Mt. Gox left the overwhelming majority of the loss unexplained."
+      },
+      {
+        "type": "warning",
+        "text": "This is the course's method demonstrated on a live claim. A technically detailed explanation was offered by the party with the most to gain from it being believed, was widely repeated, and was checkable against a public record that anyone could read. Two researchers read it. The explanation did not survive, and it took about six weeks."
+      },
+      {
+        "type": "paragraph",
+        "text": "Keep that shape in mind for the next two case studies, because it recurs. In each, the reassuring account was available, was repeated by people with no bad intent, and was contradicted by information that was public at the time."
+      },
+      {
+        "type": "paragraph",
+        "text": "One structural observation before leaving this case, about why the exchange was so large in the first place."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mt. Gox was not dominant because it was the best. It was dominant because it was early, and because liquidity concentrates. Chapter 2 Lesson 1 explained why traders go where other traders already are: a venue with more participants has tighter spreads and deeper books, which attracts more participants. That is a genuine advantage for users and it produces a market structure in which an enormous share of an entire asset class can end up sitting at one company."
+      },
+      {
+        "type": "warning",
+        "text": "This is worth noticing because it has not changed. Liquidity still concentrates, users still benefit from concentration, and the resulting structure still means that a single failure can affect a very large share of the market at once. The industry replaced Mt. Gox with other dominant venues rather than with a system that does not have dominant venues, which is why the next case study in this chapter is a larger version of the same shape."
+      },
+      {
+        "type": "paragraph",
+        "text": "A last point on what the decade of proceedings actually involved, because it is the part nobody plans for."
+      },
+      {
+        "type": "paragraph",
+        "text": "Creditors did not simply wait. They filed claims, verified them, tracked a process conducted in Japanese under Japanese insolvency law, and made decisions about whether to sell their claims to third parties at a discount along the way — many did, at a fraction of what those claims eventually paid. The administrative burden of being a creditor is real, it lasts as long as the process does, and it falls on people who in most cases simply wanted to hold an asset."
+      },
+      {
+        "type": "paragraph",
+        "text": "It is worth being precise about what a customer of this exchange actually owned, because the answer is not what most of them believed."
+      },
+      {
+        "type": "paragraph",
+        "text": "They did not own bitcoin. They owned a contractual claim against a Japanese company for the delivery of bitcoin, recorded in that company's private database. The blockchain, which is public and verifiable and which the entire asset class exists to provide, recorded nothing about them at all."
+      },
+      {
+        "type": "warning",
+        "text": "That gap is the central irony of the case and it recurs throughout this chapter. An asset class built specifically so that ownership could be verified without trusting an institution was, in practice, mostly held through institutions that had to be trusted. The technology worked exactly as designed. Almost nobody was using it."
+      },
+      {
+        "type": "paragraph",
+        "text": "This is also why the phrase from Chapter 1 Lesson 4 has the shape it does. Not your keys, not your coins is not a claim that exchanges are dishonest. It is a description of what you are holding: a claim rather than an asset, enforceable only through whatever legal process the custodian's jurisdiction provides, which in this case took over ten years."
+      },
+      {
+        "type": "paragraph",
+        "text": "Two operational details from the case are worth carrying forward, because both are checkable today."
+      },
+      {
+        "type": "paragraph",
+        "text": "The first is that withdrawal problems preceded the collapse by months and were publicly discussed. They were rationalised as banking difficulties, regulatory friction and operational growing pains — all of which were plausible and some of which were true. The second is that the exchange never demonstrated control of the coins it claimed to hold, and at the time nobody expected it to, because the practice of proving reserves did not yet exist."
+      },
+      {
+        "type": "image",
+        "svg": "crypto-05-1-mt-gox-timeline",
+        "alt": "A timeline showing the theft running undetected from 2011, then the compressed sequence of February and March 2014: withdrawals halted on 7 February, Tokyo civil rehabilitation filing on 28 February disclosing 850,000 bitcoin lost including 750,000 belonging to customers, United States filing on 9 March, and about 200,000 bitcoin found on 20 March in a wallet last used before June 2011.",
+        "caption": "The collapse took three weeks. The loss took three years, and was invisible for all of them."
+      },
+      {
+        "type": "paragraph",
+        "text": "Two further points, both of which recur in the next two case studies."
+      },
+      {
+        "type": "paragraph",
+        "text": "The first is about how long recovery takes even when it happens. Repayments began in July 2024. Creditors waited more than ten years, and for that entire period the funds were neither lost nor available, which is its own category of harm. Anyone who needed that money in 2015 did not have it, regardless of what was eventually recovered."
+      },
+      {
+        "type": "warning",
+        "text": "There is a particular trap in the recovery figures, and it catches people who think they are being sophisticated. Creditors were repaid in bitcoin, and bitcoin was worth vastly more in 2024 than in 2014, which is sometimes presented as things working out. It was not a return on an investment decision. It was a decade of holding an asset you could not sell, could not use as collateral, and could not have abandoned if you wanted to. Being unable to lose is not the same as choosing to hold."
+      },
+      {
+        "type": "paragraph",
+        "text": "The second is about concentration of a different kind from the sort Chapter 3 discussed."
+      },
+      {
+        "type": "paragraph",
+        "text": "A user might have held several different cryptocurrencies and felt diversified. If all of them were on Mt. Gox, the diversification was between assets and the exposure was to a single counterparty. Chapter 2 Lesson 3 made the point that correlations converge in crises; this is a harder version of it. Venue risk is not correlated with anything. It is a single point of failure sitting underneath every position at once."
+      },
+      {
+        "type": "definition",
+        "term": "Venue risk",
+        "text": "The risk that the place holding your assets fails, independent of what those assets do. It applies identically to every holding at that venue, so it cannot be diversified away by holding more assets there."
+      },
+      {
+        "type": "paragraph",
+        "text": "What to look for, applied to any exchange you currently use. Ask what the withdrawal experience has been recently, in practice rather than in principle, and treat delays as information. Ask what proportion of your total crypto sits at this one venue, and answer it as a percentage. Ask what would remain if this venue returned nothing, tomorrow, without warning."
+      },
+      {
+        "type": "paragraph",
+        "text": "And notice that none of those questions require you to have an opinion about the exchange. That is deliberate. A rule that depends on correctly judging which institution is sound is a rule that failed for almost everybody in this chapter."
+      },
+      {
+        "type": "practice",
+        "text": "Write down the current balance you hold at each exchange, and next to each, the number that would remain if that exchange stopped responding tomorrow. Then compare the largest of those balances against the cap you wrote in your custody map last lesson. If you have not written the cap yet, this exercise is the argument for doing it."
+      },
+      {
+        "type": "practice",
+        "text": "Withdraw a small amount from every exchange where you hold funds, today, and note how long each takes to arrive. You are not testing whether you can withdraw your whole balance — you cannot test that without doing it. You are establishing a baseline for normal, so that abnormal is something you can recognise later rather than rationalise."
+      }
+    ],
+    "quiz": [
+      {
+        "question": "The Mt. Gox theft ran undetected from 2011 until the collapse in February 2014. What does that establish about exchange balances?",
+        "options": [
+          "That exchange interfaces are usually inaccurate",
+          "That a displayed balance is a claim on the custodian, not evidence of what the custodian holds — and nothing in the interface can distinguish the two",
+          "That customers should have checked the blockchain themselves",
+          "That the loss would have been visible to anyone paying attention"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. For roughly three years customers saw accurate records of what the exchange said it owed them, and progressively inaccurate records of what it held. A screen displays a database entry. The exchange itself did not know what was in its own wallets — 200,000 bitcoin turned up in one last used before June 2011.",
+        "feedbackWrong": "Not quite. Interfaces are not generally wrong, customers had no way to map their balance to specific on-chain holdings, and the loss was precisely what was not visible. The point is the gap between a claim and an asset, which no interface shows."
+      },
+      {
+        "question": "Two users each held 20 bitcoin. One kept 2 on Mt. Gox and 18 in self-custody; the other kept all 20 on the exchange. What separated them?",
+        "options": [
+          "The first user recognised warning signs the second missed",
+          "A custody rule that works without foresight — neither user knew anything the other did not, but one had converted a total loss into a 10% loss in advance",
+          "The first user withdrew after the trading halt on 7 February",
+          "The first user held a more diversified set of cryptocurrencies"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. This is why the custody map is written as a number rather than a principle. It does not require identifying which exchange will fail, which almost nobody did, and it converts an unrecoverable outcome into a survivable one. Withdrawals were halted on 7 February, so acting after that was not available.",
+        "feedbackWrong": "Not quite. Withdrawals were already halted by 7 February, and holding several different coins would not have helped — they would all have been at the same venue. The difference was a rule set in advance, not superior judgement or timing."
+      },
+      {
+        "question": "Why can holding several different cryptocurrencies on one exchange not be described as diversified?",
+        "options": [
+          "Because cryptocurrencies are all perfectly correlated with each other",
+          "Because venue risk applies identically to every holding at that venue, so it sits underneath all positions at once and cannot be diversified away by adding more of them",
+          "Because exchanges only insure one asset per customer",
+          "Because diversification requires at least thirty holdings"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. Diversification across assets addresses asset risk. It does nothing about the single point of failure holding all of them. Venue risk is not correlated with market conditions at all — it depends on whether one institution keeps functioning, which is a separate question from anything the assets do.",
+        "feedbackWrong": "Not quite. Crypto assets are highly but not perfectly correlated, and the number of holdings is beside the point. The issue is that every one of them depends on the same custodian continuing to exist, which no amount of spreading within that custodian changes."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Claim versus asset",
+        "def": "A displayed balance is a claim on a custodian; the asset is what the custodian actually holds."
+      },
+      {
+        "term": "Venue risk",
+        "def": "The risk that the place holding your assets fails, applying to every holding there at once."
+      },
+      {
+        "term": "Civil rehabilitation",
+        "def": "The Japanese bankruptcy-protection process Mt. Gox filed under on 28 February 2014."
+      }
+    ]
+  },
+  {
+    "id": "crypto-case-terra-luna",
+    "lessonNumber": 2,
+    "chapterNumber": 5,
+    "chapterTitle": "Real-World Case Studies",
+    "title": "Terra and Luna (May 2022)",
+    "keyIdea": "Roughly 20% a year was paid on billions of dollars, in public, for months. The mechanism was disclosed the whole time. It ended in six days.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Chapter 1 Lesson 7 distinguished a stablecoin backed by reserves from one held to its peg by an algorithm and a second token. It ended by noting that the algorithmic design has a specific failure mode, and promised the case study. This is it."
+      },
+      {
+        "type": "paragraph",
+        "text": "The design, briefly, because the failure follows directly from it."
+      },
+      {
+        "type": "definition",
+        "term": "Algorithmic stablecoin",
+        "text": "A token intended to hold a fixed value without holding reserves of that value, maintained instead by a mechanism that lets holders exchange it for a fixed value of a second, freely floating token."
+      },
+      {
+        "type": "paragraph",
+        "text": "UST was intended to be worth one dollar. Whenever it traded below a dollar, anyone could exchange one UST for a dollar's worth of newly created LUNA, and sell that LUNA. The buying pressure this created was supposed to restore the peg. In calm conditions it worked, and it worked for long enough that a great many careful people concluded it was sound."
+      },
+      {
+        "type": "paragraph",
+        "text": "The demand for UST, however, was not primarily coming from people who wanted a dollar-equivalent to transact in. It was coming from a yield."
+      },
+      {
+        "type": "example",
+        "text": "The Anchor Protocol offered roughly 20% a year on UST deposits. At the peak, close to 75% of all UST in existence was sitting in Anchor. The stablecoin was not being used as a stablecoin. It was the ticket required to collect the yield."
+      },
+      {
+        "type": "warning",
+        "text": "Apply the test from Chapter 4 Lesson 2 here. Where did that 20% come from? Not from borrowers, because borrowing demand never came close to funding it. It came from a reserve that had been topped up to keep the rate attractive. That is a rate being paid out of capital, which can continue exactly as long as the capital lasts and not one day longer. The arithmetic was public, discussed at the time, and widely rationalised."
+      },
+      {
+        "type": "paragraph",
+        "text": "On roughly 14 billion dollars of deposits, a 20% rate is about 2.8 billion dollars a year. Nobody needed inside information to work out that this was not being generated by lending activity. The information required was arithmetic and a willingness to ask an unwelcome question."
+      },
+      {
+        "type": "paragraph",
+        "text": "Then the sequence, which took six days."
+      },
+      {
+        "type": "example",
+        "text": "On 7 May 2022, two large addresses withdrew 375 million UST from Anchor, and UST traded below one dollar that evening.\nThe redemption mechanism worked as designed: UST was exchanged for newly minted LUNA, which was sold.\nThat selling drove LUNA down, which meant each UST redemption required minting more LUNA, which drove it down further.\nBy 13 May 2022 LUNA had gone from about 87 dollars on 5 May to below 0.00005 dollars, and UST was trading around 20 cents.\nRoughly 60 billion dollars of value was gone inside a week."
+      },
+      {
+        "type": "definition",
+        "term": "Death spiral",
+        "text": "A feedback loop in which the mechanism intended to restore a peg makes the underlying problem worse, so that each corrective step accelerates the collapse."
+      },
+      {
+        "type": "paragraph",
+        "text": "It is worth being precise about what failed, because the usual summary is wrong in an instructive way."
+      },
+      {
+        "type": "warning",
+        "text": "The mechanism did not stop working. It worked exactly as specified, all the way down. Every redemption did what the documentation said it would do. The design was not defeated by an attack or a bug — it was executing correctly while destroying the thing it was executing on. A system can be functioning perfectly and be catastrophic, and those are not contradictory statements."
+      },
+      {
+        "type": "paragraph",
+        "text": "The dependency underneath it was reflexivity, which Chapter 2 Lesson 5 introduced in the context of narratives."
+      },
+      {
+        "type": "definition",
+        "term": "Reflexivity",
+        "text": "A condition in which beliefs about a price affect the fundamentals that are supposed to justify the price, so that confidence is not a response to the system but a component of it."
+      },
+      {
+        "type": "paragraph",
+        "text": "UST's stability required LUNA to be valuable. LUNA was valuable largely because it underpinned UST. Each supported the other, and neither was anchored to anything outside the pair. While confidence held, this was invisible. When it went, there was nothing underneath to arrest the fall, because the thing underneath was the same thing falling."
+      },
+      {
+        "type": "paragraph",
+        "text": "There is a chapter within this collapse that deserves separate treatment, because it was a deliberate attempt at defence and it failed in an instructive way."
+      },
+      {
+        "type": "paragraph",
+        "text": "The mechanism's weakness was understood before May 2022. The response had been to build a reserve of assets outside the system, so that a peg defence would not have to rely solely on minting LUNA. That reserve was held largely in Bitcoin by an organisation called the Luna Foundation Guard."
+      },
+      {
+        "type": "example",
+        "text": "The reserve held about 80,394 bitcoin. Between roughly 8 and 12 May 2022 essentially all of it was deployed to defend the peg. By 16 May the holding was around 313 bitcoin. The peg was not restored."
+      },
+      {
+        "type": "warning",
+        "text": "Several billion dollars of genuinely external, genuinely liquid assets were sold into the market and had minimal effect on UST's price. That is worth sitting with. The reserve was not a token, not reflexive, and not dependent on confidence in Terra. It was the strongest form of backing available, and the run was larger than it."
+      },
+      {
+        "type": "paragraph",
+        "text": "The defence also did something that the people running it presumably did not intend, and it is the clearest example of contagion in this course."
+      },
+      {
+        "type": "definition",
+        "term": "Contagion",
+        "text": "The transmission of stress from one asset or institution to others, through forced selling, shared exposures or shared counterparties, rather than through anything wrong with the assets receiving it."
+      },
+      {
+        "type": "paragraph",
+        "text": "Selling 80,000 bitcoin into an already nervous market pushed the Bitcoin price down — it fell from around 39,000 to around 28,000 dollars over that week. Someone holding only Bitcoin, who had never touched Terra, had never heard of Anchor, and had made no error of any kind, was harmed by a mechanism failing in a system they had deliberately avoided."
+      },
+      {
+        "type": "warning",
+        "text": "This is why the diversification finding from Chapter 2 Lesson 3 matters more than it first appears. It is not merely that crypto assets happen to move together. It is that the failure of one large structure forces the sale of whatever the failing structure held, and what it held was the most liquid assets available — which is to say, the ones everybody else also owns."
+      },
+      {
+        "type": "paragraph",
+        "text": "One further point, about a word that was doing a great deal of work at the time."
+      },
+      {
+        "type": "paragraph",
+        "text": "Terra was described as decentralised, and in a technical sense parts of it were. The observable behaviour during the collapse was that a foundation held a reserve, made a decision about when and how to deploy it, and executed that decision over a few days. Whatever the architecture said, the defence of the peg was a discretionary act by a small number of people."
+      },
+      {
+        "type": "warning",
+        "text": "Treat decentralised as a claim to be checked rather than a property to be assumed, and check it by asking a specific question: who could stop this, change this, or spend this if they decided to? If the answer is a foundation, a multi-signature wallet controlled by a known group, or a team with an upgrade key, then the system has a control point, and the risks that follow from a control point apply regardless of the label."
+      },
+      {
+        "type": "paragraph",
+        "text": "Finally, the aftermath, because it establishes something about scale that the numbers alone do not."
+      },
+      {
+        "type": "paragraph",
+        "text": "The collapse did not stop at Terra. Institutions that had lent against LUNA, held UST, or built strategies assuming Anchor's yield were damaged in the following weeks, and several failed over the following months. Each failure removed a lender or counterparty other firms depended on, which is contagion running through balance sheets rather than through prices."
+      },
+      {
+        "type": "paragraph",
+        "text": "For an individual holder, the practical implication is uncomfortable and simple. An asset can be harmed by the failure of something you do not own, through a chain of counterparties you cannot see and were never told about. That is not a reason for paralysis. It is a reason the position is sized so that its complete loss is survivable, which is what Chapter 3 Lesson 1 and Chapter 4 Lesson 3 have both been building toward."
+      },
+      {
+        "type": "paragraph",
+        "text": "One question is worth answering directly, because it separates this case from ordinary market losses: was this predictable, or only explicable afterwards?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Parts of it were genuinely predictable, and this course should say which parts rather than claiming hindsight as foresight."
+      },
+      {
+        "type": "paragraph",
+        "text": "Predictable: that a yield paid from a reserve rather than from activity would end when the reserve did. That was arithmetic, it was public, and it required no view on the mechanism. Also predictable: that a design with no external anchor could fail catastrophically rather than gradually, since that follows from the structure and was discussed publicly well before May 2022."
+      },
+      {
+        "type": "warning",
+        "text": "Not predictable: when. Critics had been making the structural argument for over a year while the system grew, and anyone who acted on that argument early watched it appear wrong for a long time. Being right about a mechanism and being right about a date are different skills, and only one of them is available. That is precisely why the response taught in this course is sizing rather than timing."
+      },
+      {
+        "type": "paragraph",
+        "text": "The distinction matters because it generalises. You will frequently be able to identify that something cannot work indefinitely, and almost never be able to say when it stops. A position sized so that either outcome is survivable is the only response that does not require the second skill."
+      },
+      {
+        "type": "image",
+        "svg": "crypto-05-2-terra-spiral",
+        "alt": "A loop diagram showing UST trading below one dollar, being redeemed for newly minted LUNA, that LUNA being sold, the LUNA price falling, and each subsequent redemption requiring more LUNA to be minted — with a timeline marking 7 May 2022 when 375 million UST left Anchor and 13 May when LUNA had fallen from about 87 dollars to below 0.00005.",
+        "caption": "The mechanism did not fail. It executed correctly, all the way down."
+      },
+      {
+        "type": "paragraph",
+        "text": "The arithmetic of the fall is worth stating because percentages stop being meaningful at this magnitude."
+      },
+      {
+        "type": "example",
+        "text": "LUNA fell from about 87 dollars to below 0.00005 dollars, a decline of roughly 99.99994%. To return to 87 from there requires a rise of about 1,740,000 times. Chapter 3 Lesson 1 gave the recovery arithmetic; past a certain depth it stops being a recovery calculation and becomes a way of saying the position is over."
+      },
+      {
+        "type": "paragraph",
+        "text": "What could a reader of this course have done? Unusually for a case study, quite a lot, and without any special insight."
+      },
+      {
+        "type": "paragraph",
+        "text": "The yield question from Chapter 4 Lesson 2 answered this one before the collapse. The chain of answers ran out at a reserve, and a reserve is not an activity. That single test did not require knowing when, and it did not require being right about the mechanism's design."
+      },
+      {
+        "type": "warning",
+        "text": "The rationalisations at the time are worth remembering, because you will hear their equivalents again. That the rate was a marketing cost to bootstrap adoption. That the reserve would be replenished by growth. That the founders were credible and well-funded. That an enormous amount of capital was already committed, so it could not simply be wrong. Each of these is a reason to believe rather than an answer to the question, and the question was where does the money come from."
+      },
+      {
+        "type": "paragraph",
+        "text": "One more general lesson, and it applies well beyond this case."
+      },
+      {
+        "type": "paragraph",
+        "text": "The word stable was doing work that the design did not support. A label is not a property. UST was called a stablecoin because of what it was intended to do, and that intention was widely mistaken for a description of what it was. Chapter 1 Lesson 7 distinguished backed from algorithmic for exactly this reason: the two share a category name and do not share a failure mode."
+      },
+      {
+        "type": "paragraph",
+        "text": "What to look for whenever a product offers a yield you would like to accept. Trace the yield to an activity, and stop when the chain stops. Ask what proportion of the asset's demand exists only because of that yield, since demand that is renting itself will leave when the rate does. Ask what the product depends on that is not anchored outside itself, which is the reflexivity test. And treat the size of the thing as no evidence at all, since 60 billion dollars of value disappeared here in six days."
+      },
+      {
+        "type": "practice",
+        "text": "Find any current crypto product advertising a fixed yield above what a bank pays. Write the chain of answers to where it comes from, exactly as in Chapter 4 Lesson 2, and then write one further sentence: what happens to demand for this asset if the yield goes to zero tomorrow. If the honest answer is that demand largely disappears, you have identified the same structure this lesson describes, whatever the product is called."
+      },
+      {
+        "type": "practice",
+        "text": "Write out, in two sentences, what any stablecoin you hold is actually backed by, and where you verified it. If the answer is a reserve, note who attests to that reserve and how often. If the answer is a mechanism involving a second token, you are holding the structure in this lesson, and the position deserves the size that implies."
+      }
+    ],
+    "quiz": [
+      {
+        "question": "Anchor paid roughly 20% a year on UST deposits, with close to 75% of all UST sitting in it. What did the yield test from Chapter 4 reveal?",
+        "options": [
+          "That the yield came from lending to borrowers at a higher rate",
+          "That the chain of answers ended at a reserve being topped up — capital, not an activity — which can continue exactly as long as the capital lasts",
+          "That the yield was fraudulent and hidden from users",
+          "That the yield was generated by transaction fees on the network"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. Borrowing demand never came close to funding the rate. On roughly 14 billion dollars of deposits, 20% is about 2.8 billion a year — a figure nobody needed inside information to check. The mechanism was disclosed and discussed throughout; what was missing was the willingness to ask an unwelcome question.",
+        "feedbackWrong": "Not quite. The rate was not concealed and was not funded by borrowers or fees. It was paid from a reserve that had to be replenished, which is a rate paid out of capital — sustainable precisely until the capital runs out."
+      },
+      {
+        "question": "What is the most accurate description of what happened to the UST mechanism between 7 and 13 May 2022?",
+        "options": [
+          "It was defeated by an attack that exploited a bug in the code",
+          "It stopped working under stress and had to be halted",
+          "It executed exactly as designed, all the way down — each redemption minted more LUNA, whose sale drove the price lower, requiring still more LUNA for the next redemption",
+          "It was overwhelmed by a regulatory intervention"
+        ],
+        "correctIndex": 2,
+        "feedbackCorrect": "Correct. Every redemption did what the documentation said it would. The design was not broken; it was destroying the thing it was executing on. A system can be functioning perfectly and be catastrophic — LUNA went from about 87 dollars on 5 May to below 0.00005 by 13 May, a fall of roughly 99.99994%.",
+        "feedbackWrong": "Not quite. There was no bug, no halt and no regulatory trigger. The mechanism operated correctly throughout, which is precisely what makes the case instructive: correct execution and catastrophe are not mutually exclusive."
+      },
+      {
+        "question": "What made the UST and LUNA pair reflexive?",
+        "options": [
+          "Both tokens were traded on the same exchanges",
+          "UST's stability required LUNA to be valuable, while LUNA was valuable largely because it underpinned UST — so confidence was a component of the system rather than a response to it",
+          "The tokens were issued by the same company",
+          "Both tokens had a fixed maximum supply"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. Neither side was anchored to anything outside the pair. While confidence held this was invisible; when it went there was nothing underneath to arrest the fall, because the thing underneath was the same thing falling. That is the reflexivity test worth applying to any structure.",
+        "feedbackWrong": "Not quite. Shared venues, a common issuer or supply schedules are not what created the loop. Reflexivity here means each token's value depended on the other's, with no external anchor — so belief was part of the mechanism rather than an opinion about it."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Algorithmic stablecoin",
+        "def": "A token holding a fixed value without reserves, maintained by exchange with a second floating token."
+      },
+      {
+        "term": "Death spiral",
+        "def": "A loop where the peg-restoring mechanism accelerates the collapse it is meant to prevent."
+      },
+      {
+        "term": "Reflexivity",
+        "def": "Beliefs about a price affecting the fundamentals meant to justify it, making confidence part of the system."
+      }
+    ]
+  },
+  {
+    "id": "crypto-case-ftx",
+    "lessonNumber": 3,
+    "chapterNumber": 5,
+    "chapterTitle": "Real-World Case Studies",
+    "title": "FTX (November 2022)",
+    "keyIdea": "A balance sheet showing 9 billion in liabilities against 900 million in assets was published by a journalist. Nine days later the exchange was in bankruptcy, and \"not your keys, not your coins\" stopped being a slogan.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Mt. Gox failed through incompetence at a venue that had a reputation for chaos. FTX failed at a venue widely regarded as the responsible one — regulated-adjacent, institutionally backed, and run by a founder who was a fixture of financial media. That difference is the entire reason this case study exists."
+      },
+      {
+        "type": "paragraph",
+        "text": "The sequence, with dates."
+      },
+      {
+        "type": "example",
+        "text": "On 2 November 2022, CoinDesk published a report on the balance sheet of Alameda Research, the trading firm affiliated with FTX. It showed a very large position in FTT, the token FTX itself had issued.\nOn 6 November 2022, Binance announced it would sell its holdings of FTT.\nWithin about 72 hours, roughly 5 billion dollars of withdrawal requests arrived at FTX.\nOn 8 November 2022, Binance said it would buy FTX. On 9 November it withdrew.\nOn 11 November 2022, FTX filed for Chapter 11 bankruptcy protection in the United States.\nThe shortfall was around 8 billion dollars: about 9 billion of liabilities against roughly 900 million of assets that could readily be sold."
+      },
+      {
+        "type": "paragraph",
+        "text": "Sam Bankman-Fried was convicted on seven counts in November 2023 and sentenced to 25 years in March 2024."
+      },
+      {
+        "type": "paragraph",
+        "text": "Two mechanisms did the damage, and they are separate."
+      },
+      {
+        "type": "definition",
+        "term": "Commingling",
+        "text": "Mixing customer assets with the firm's own assets, so that customer funds are available to the firm for its own purposes."
+      },
+      {
+        "type": "paragraph",
+        "text": "Customer deposits were not sitting in customer accounts. They were available to an affiliated trading firm and were used. Everything else follows from that: once customer money has been spent, the exchange is solvent only for as long as customers do not all ask for it at once."
+      },
+      {
+        "type": "definition",
+        "term": "Self-issued collateral",
+        "text": "A firm backing its balance sheet with a token it created itself, whose value depends on confidence in that same firm."
+      },
+      {
+        "type": "warning",
+        "text": "This is the Terra structure in a corporate wrapper, and it is worth seeing that the two cases share a shape despite looking nothing alike. FTT was valuable because FTX was successful. FTX appeared solvent because it held FTT. Each supported the other, and neither was anchored outside the pair. Reflexivity does not require an algorithm — it only requires that the collateral and the thing being collateralised depend on the same belief."
+      },
+      {
+        "type": "paragraph",
+        "text": "The nine days between publication and bankruptcy are the clearest illustration in this course of a run."
+      },
+      {
+        "type": "definition",
+        "term": "Bank run dynamics",
+        "text": "When an institution's ability to pay depends on most people not asking at once, the rational individual decision is to ask first — which makes the collective outcome certain."
+      },
+      {
+        "type": "paragraph",
+        "text": "Once the balance sheet was public, withdrawing was the correct decision for every individual customer regardless of what they believed about the firm. If it was fine, withdrawing cost nothing. If it was not, withdrawing was the only thing that helped. That asymmetry is why runs complete in days."
+      },
+      {
+        "type": "paragraph",
+        "text": "The industry's response to FTX is worth examining, because it shows both what improved and what did not."
+      },
+      {
+        "type": "paragraph",
+        "text": "Within weeks, major exchanges began publishing proof of reserves, and this was presented as the answer to the problem FTX had revealed."
+      },
+      {
+        "type": "definition",
+        "term": "Proof of reserves",
+        "text": "A published attestation that an exchange holds assets matching customer balances, typically verified against on-chain holdings at a point in time."
+      },
+      {
+        "type": "warning",
+        "text": "It is a real improvement and it does not solve the problem it was offered as solving. FTX did hold assets. What it also had was liabilities far exceeding them, and a reserves attestation generally shows one side of that. An exchange can publish a genuine proof of reserves while owing several times what it holds. The measurement is also a snapshot, so assets can be present on the measurement date and not otherwise, and it does not establish whether those assets are already pledged to somebody else."
+      },
+      {
+        "type": "paragraph",
+        "text": "A meaningful version would attest to assets and liabilities together, verified by an independent party with access to the full books. Some venues have moved toward this. The point for a reader is narrower: when a venue publishes reassurance, check which of the two sides it covers, because the side FTX failed on is usually the side that is missing."
+      },
+      {
+        "type": "paragraph",
+        "text": "The second industry response was consolidation, and its effect was the opposite of reassuring."
+      },
+      {
+        "type": "paragraph",
+        "text": "Users left smaller venues for the largest ones, on the reasonable theory that scale implies survival. The result is a market where a larger share of activity sits at fewer institutions than before. Chapter 5 Lesson 1 noted that liquidity concentrates for genuine reasons and that this concentration is what makes a single failure systemic. That structure did not change after FTX. It intensified."
+      },
+      {
+        "type": "paragraph",
+        "text": "Third, the contagion, which followed the same pattern as Terra six months earlier."
+      },
+      {
+        "type": "definition",
+        "term": "Contagion",
+        "text": "The transmission of stress from one institution to others through shared exposures, forced selling, or counterparties who cannot pay."
+      },
+      {
+        "type": "paragraph",
+        "text": "Firms that had funds on FTX, lent to Alameda, or held FTT as collateral were damaged in the following weeks, and several lenders halted withdrawals or failed in the months after. Customers of those firms had, in most cases, never used FTX. They had deposited with a lender that had deposited with someone else, and the chain was not visible to them at any point."
+      },
+      {
+        "type": "warning",
+        "text": "This is the practical meaning of counterparty risk in an industry where the counterparties are counterparties to each other. Knowing where your assets sit is necessary and insufficient; you also need to know what the institution holding them does with them, and in most cases that information is not published. Where it is not published, the cap from Chapter 4 Lesson 3 is the only defence available."
+      },
+      {
+        "type": "paragraph",
+        "text": "A note on regulation, because the case is used to argue two opposite conclusions and both are overstated."
+      },
+      {
+        "type": "paragraph",
+        "text": "FTX was not an unregulated shadow operation, and it was not a fully supervised one either. It held licences in several jurisdictions, and the entity most customers dealt with was structured offshore. The failure was not caused by an absence of rules in the abstract; it was caused by customer assets being spent, which is prohibited essentially everywhere and was concealed."
+      },
+      {
+        "type": "warning",
+        "text": "Rules that are broken and concealed are not much protection at the moment they are broken, and the enforcement arrives afterwards — a conviction on seven counts in November 2023 and a 25-year sentence in March 2024. That is justice, and it is not restitution. For a customer deciding where to keep funds, a licence is a reason for mild comfort, not a reason to remove the cap."
+      },
+      {
+        "type": "paragraph",
+        "text": "The last thing worth extracting is about time, and it is the same lesson Mt. Gox taught in a different decade."
+      },
+      {
+        "type": "paragraph",
+        "text": "Bankruptcy is not an event but a process, measured in years. Customers became unsecured creditors, filed claims, waited, and made decisions about whether to sell those claims to specialist buyers at a discount. Many sold, because they needed the money or could not tolerate the uncertainty, and they crystallised a loss that later recoveries would have partly reversed. None of that shows on a chart, and all of it is what a counterparty failure actually costs the person it happens to."
+      },
+      {
+        "type": "paragraph",
+        "text": "One detail of the collapse is worth isolating, because it is the part with the clearest instruction attached."
+      },
+      {
+        "type": "paragraph",
+        "text": "In the days before the bankruptcy, withdrawals slowed and then stopped. Users who attempted to withdraw early got their funds. Users who waited to see whether the situation resolved did not. The window between the first sign and the closure was measured in days."
+      },
+      {
+        "type": "warning",
+        "text": "The instruction is uncomfortable and worth stating plainly: withdrawal friction at an exchange is not a customer service problem to be escalated. It is the single most reliable early signal available, it appeared in this case and in Mt. Gox, and the correct response is to withdraw everything immediately and ask questions afterwards. Being wrong costs you a transaction fee. Being right and slow costs you the balance."
+      },
+      {
+        "type": "paragraph",
+        "text": "That rule is cheap enough to apply every time, which is what makes it usable. You do not need to distinguish a genuine technical problem from an insolvency — you need only notice that you cannot tell the difference, and act as though it were the second."
+      },
+      {
+        "type": "paragraph",
+        "text": "It is also the rule that the custody cap exists to make unnecessary. A user holding 500 on an exchange has no urgent decision to make when withdrawals slow. A user holding everything has minutes, at three in the morning, on incomplete information."
+      },
+      {
+        "type": "image",
+        "svg": "crypto-05-3-ftx-run",
+        "alt": "A nine-day timeline from 2 November 2022, when CoinDesk published the Alameda balance sheet showing a large FTT position, through Binance announcing FTT sales on 6 November, roughly 5 billion dollars of withdrawal requests within 72 hours, the failed rescue on 8 and 9 November, to the Chapter 11 filing on 11 November — alongside a panel showing about 9 billion of liabilities against roughly 900 million of readily saleable assets.",
+        "caption": "Nine days from a published balance sheet to bankruptcy. The shortfall was about 8 billion dollars."
+      },
+      {
+        "type": "paragraph",
+        "text": "What makes FTX genuinely difficult is that the usual defences did not fire."
+      },
+      {
+        "type": "warning",
+        "text": "The signals people rely on all pointed the right way. Prominent venture funds had invested. The founder testified before legislators and was profiled admiringly. There was advertising during major sporting events and celebrity endorsement. Withdrawals worked normally until they did not. A user applying reasonable judgement about institutional credibility would have concluded that this was the safe venue, and many sophisticated institutions concluded exactly that."
+      },
+      {
+        "type": "paragraph",
+        "text": "So the honest conclusion is not that you should have judged better. It is that judging the counterparty is a weak defence, and this case is the evidence for that claim rather than an exception to it."
+      },
+      {
+        "type": "paragraph",
+        "text": "The defence that worked was structural, and it is the same one from the Mt. Gox lesson. Assets in self-custody were unaffected. Not less affected: unaffected. The failure of the exchange had no mechanism by which to reach them."
+      },
+      {
+        "type": "example",
+        "text": "Two users each held the equivalent of 50,000. One kept it all on FTX because it was reputable and convenient. The other kept 5,000 there for trading and 45,000 in a wallet they controlled. The first became an unsecured creditor in a bankruptcy that would take years. The second lost 10% and still had 45,000 the following morning. Neither of them predicted anything."
+      },
+      {
+        "type": "paragraph",
+        "text": "This is the moment where the slogan from Chapter 1 Lesson 4 stops being a slogan."
+      },
+      {
+        "type": "warning",
+        "text": "That lesson deliberately taught not your keys, not your coins as a trade-off rather than a commandment, because self-custody has real costs and real failure modes — as Chapter 4 Lesson 3 set out at length. Nothing here changes that. What changes is the weight on one side: the counterparty failure it protects against is not hypothetical, it arrives without warning, and it has now happened at both the chaotic venue and the respectable one."
+      },
+      {
+        "type": "paragraph",
+        "text": "A note on what the bankruptcy did and did not deliver, because it is often misreported."
+      },
+      {
+        "type": "paragraph",
+        "text": "Customers became unsecured creditors, which means claims on whatever the estate could recover, resolved over years. Recoveries in dollar terms were substantial. But claims were valued in dollars as at the bankruptcy date, in a period when crypto prices were near their lows — so a customer who held one bitcoin received a claim based on its November 2022 value, not one bitcoin. Being made whole in the accounting sense and being made whole in the sense you meant are different things."
+      },
+      {
+        "type": "paragraph",
+        "text": "Set the three case studies side by side, because the pattern across them is the point of the chapter."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mt. Gox: the balance was a claim, and the claim had been hollow for years. Terra: the mechanism worked correctly and destroyed itself, and the yield question would have told you. FTX: the counterparty looked institutional and was not, and no amount of judging it would have helped. Three completely different failures, and one defence that worked in all three, which was holding the asset yourself and capping what sits anywhere else."
+      },
+      {
+        "type": "paragraph",
+        "text": "What to look for, given all three. Ask what proportion of your crypto could be destroyed by a single institution failing overnight, and answer as a number. Ask whether any yield you receive has a source you can name. Ask whether your defence depends on someone being trustworthy, and downgrade it if it does. And notice that none of these questions require you to forecast anything."
+      },
+      {
+        "type": "practice",
+        "text": "List every institution that currently holds any of your crypto, and beside each the amount. Then write one sentence per institution answering: what evidence do I have that this entity holds what it says it holds, and would that evidence have distinguished FTX from a sound exchange in October 2022? For almost everyone the honest answer is that it would not, which is why the cap exists rather than the assessment."
+      },
+      {
+        "type": "practice",
+        "text": "Re-read your custody map from Chapter 4 Lesson 3 with these three cases in mind, and check whether the exchange cap you wrote is a number you would still accept if that exchange failed tonight. If you would not, lower it today rather than at the next review. Every person in this chapter had time to do this and did not, because there was never an obvious day on which to act."
+      }
+    ],
+    "quiz": [
+      {
+        "question": "Why did FTT function as the same structure as LUNA, despite one being a corporate token and the other part of an algorithmic stablecoin?",
+        "options": [
+          "Both were issued on the same blockchain",
+          "FTT was valuable because FTX was successful, while FTX appeared solvent because it held FTT — collateral and the thing collateralised depending on the same belief, with no external anchor",
+          "Both had unlimited supply",
+          "Both were used to pay transaction fees"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. Reflexivity does not require an algorithm. It only requires that the collateral and the thing being collateralised rest on the same confidence. When CoinDesk published the Alameda balance sheet on 2 November 2022, that shared belief was what came apart, and the two sides fell together because they were the same side.",
+        "feedbackWrong": "Not quite. The shared shape is not technical — it is not about chains, supply schedules or fee usage. It is that each side's value depended on the other's, so there was nothing outside the pair to arrest a fall."
+      },
+      {
+        "question": "Once the Alameda balance sheet was public, why did withdrawing become the correct decision for every individual customer regardless of what they believed?",
+        "options": [
+          "Because withdrawal fees were about to increase",
+          "Because the payoff is asymmetric — if the firm was fine, withdrawing cost nothing; if it was not, withdrawing was the only thing that helped",
+          "Because regulators had instructed customers to withdraw",
+          "Because FTT holders were given priority in the queue"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. That asymmetry is what makes a run complete in days rather than months: roughly 5 billion dollars of withdrawal requests arrived within about 72 hours. When an institution can only pay if most people do not ask at once, the rational individual choice makes the collective outcome certain.",
+        "feedbackWrong": "Not quite. There was no regulatory instruction, no fee change and no priority queue. The dynamic is structural — withdrawing is free if you are wrong about the firm and decisive if you are right, so everyone withdraws."
+      },
+      {
+        "question": "What is the honest conclusion from the fact that FTX had prominent venture backing, celebrity endorsement and a founder who testified before legislators?",
+        "options": [
+          "That customers should have researched the institution more thoroughly",
+          "That judging the counterparty is a weak defence — the credibility signals all pointed the right way, and sophisticated institutions reached the same wrong conclusion",
+          "That only regulated exchanges should ever be used",
+          "That the warning signs were visible to anyone paying attention"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. Withdrawals worked normally until they did not, and a user applying reasonable judgement would have concluded this was the safe venue. That is the evidence for the claim rather than an exception to it. The defence that worked was structural: assets in self-custody were not less affected, they were unaffected.",
+        "feedbackWrong": "Not quite. More research would have surfaced the same reassuring signals, and the failure was not visible in advance to ordinary users. The lesson is that a defence which depends on correctly assessing an institution is weak, and should be replaced by one that does not."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Commingling",
+        "def": "Mixing customer assets with the firm's own, making customer funds available for the firm's use."
+      },
+      {
+        "term": "Self-issued collateral",
+        "def": "Backing a balance sheet with a token you created, whose value depends on confidence in you."
+      },
+      {
+        "term": "Bank run dynamics",
+        "def": "When solvency depends on most people not asking at once, asking first is individually rational and collectively decisive."
+      },
+      {
+        "term": "Unsecured creditor",
+        "def": "What an exchange customer becomes in a bankruptcy: a claimant on the estate, resolved over years."
+      }
+    ]
+  },
+  {
+    "id": "crypto-six-pillar-thesis",
+    "lessonNumber": 1,
+    "chapterNumber": 6,
+    "chapterTitle": "A Professional Crypto Process",
+    "title": "The Six-Pillar Thesis, Adapted for Crypto",
+    "keyIdea": "Four pillars transfer intact. One has to be rebuilt because there are no cash flows to value, and one has to be replaced by something that only looks like carry.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Forex Chapter 6 Lesson 1 replaced a strong feeling with a written thesis scored against six pillars: fundamentals, valuation, catalyst, positioning, momentum and carry. The Stocks track adapted it for an asset with cash flows. This chapter adapts it for an asset that has none, which is a harder problem and an honest one."
+      },
+      {
+        "type": "definition",
+        "term": "Trade thesis",
+        "text": "A written, structured argument for why a specific position should work, built from several independent lines of evidence rather than a single opinion."
+      },
+      {
+        "type": "paragraph",
+        "text": "Before adapting anything, it is worth knowing what the evidence says actually explains crypto returns, because the answer is narrower than most commentary implies."
+      },
+      {
+        "type": "paragraph",
+        "text": "Liu, Tsyvinski and Wu published Common Risk Factors in Cryptocurrency in the Journal of Finance in 2022, volume 77, issue 2, pages 1133 to 1177. They examined the cross-section of cryptocurrency returns and found that three factors — the crypto market itself, size, and momentum — captured expected returns across the assets they studied. They tested ten characteristics that formed profitable long-short strategies, and found all of them accounted for by that three-factor model."
+      },
+      {
+        "type": "warning",
+        "text": "Read what that does and does not say. It says the excess returns from a range of apparently distinct crypto strategies mostly collapse into three exposures, so a portfolio of clever-sounding crypto strategies is probably one exposure wearing several names. It does not say those factors will persist, and it says nothing about any individual token. It is a description of a cross-section over a sample period, which is the strongest form of evidence this asset class currently has and is weaker than what equities offer."
+      },
+      {
+        "type": "paragraph",
+        "text": "Now the six pillars, in their crypto form."
+      },
+      {
+        "type": "paragraph",
+        "text": "Fundamentals. In equities this is the three financial statements. In currencies it is growth, inflation and policy. Crypto has neither, and pretending otherwise is where most token analysis goes wrong."
+      },
+      {
+        "type": "paragraph",
+        "text": "What exists instead is on-chain activity, and Chapter 2 Lesson 4 was deliberately careful about its limits. Active addresses, transaction counts and exchange flows are real measurements of real things, and they are not accounting. An address is not a person. A transaction is not a sale. The measurement can be inflated deliberately and often is."
+      },
+      {
+        "type": "example",
+        "text": "A weak fundamentals pillar says on-chain activity is growing. A usable one says fee revenue paid by users has grown across three consecutive quarters, that this is not explained by a single application or a token incentive programme, and that here is what I expect the figure to be next quarter if I am right. The first cannot be wrong on a date. The second can."
+      },
+      {
+        "type": "paragraph",
+        "text": "Valuation. This is the pillar that does not survive the transfer, and the honest move is to say so rather than to construct a substitute that sounds rigorous."
+      },
+      {
+        "type": "warning",
+        "text": "A share has cash flows, so its price implies a forecast you can disagree with specifically. Most crypto assets have no cash flows at all, which means there is no calculation that produces a value the price can be compared against. Ratios built from on-chain data can be useful for comparing an asset against its own history. They are not valuations, and treating them as though they were is how a narrative gets dressed up as analysis."
+      },
+      {
+        "type": "paragraph",
+        "text": "What replaces it is supply arithmetic, which is the closest thing to a hard constraint available. Chapter 4 Lesson 1 covered this as denominator blindness: the unit price is meaningless without the supply, the total supply and the unlock schedule are published, and the implied market capitalisation of a price target is a number you can compare against things that exist."
+      },
+      {
+        "type": "paragraph",
+        "text": "Catalyst. This transfers well and is often stronger here than in other markets, because so much of the calendar is known in advance: protocol upgrades, halvings, unlock dates, exchange listings, regulatory decisions with published timetables."
+      },
+      {
+        "type": "warning",
+        "text": "The recurring trap is that a widely known and long-scheduled event is not a catalyst in the sense the thesis means. Everyone can read the same calendar. Chapter 2 Lesson 2 made this point about halvings specifically: an event known years ahead has had years to be priced. A catalyst has to be something whose outcome is genuinely uncertain, not merely something whose date is certain."
+      },
+      {
+        "type": "paragraph",
+        "text": "Positioning and sentiment. This transfers unusually well, because crypto exposes positioning data that other markets keep private."
+      },
+      {
+        "type": "definition",
+        "term": "Funding rate",
+        "text": "The periodic payment between long and short holders of a perpetual futures contract, which turns positive when longs are crowded and negative when shorts are."
+      },
+      {
+        "type": "paragraph",
+        "text": "Chapter 3 Lesson 3 taught funding as a cost of holding a leveraged position. As a positioning signal it is the cleanest one in this course: a persistently high positive funding rate is a directly observable statement that leveraged long positioning is crowded, and crowded leverage is what liquidation cascades are made of."
+      },
+      {
+        "type": "paragraph",
+        "text": "Momentum. This has the strongest support of any pillar here, since it is one of the three factors Liu, Tsyvinski and Wu identified. It also has the shortest half-life. Crypto momentum operates over weeks rather than the three-to-twelve-month horizons documented in equities, and a pillar that decays that fast is one you must be willing to see reverse without treating the reversal as a personal failure."
+      },
+      {
+        "type": "paragraph",
+        "text": "Carry. This is the pillar most often misrepresented, and it needs care."
+      },
+      {
+        "type": "paragraph",
+        "text": "In currencies, carry is an interest rate differential paid in the currency you hold. In equities it is dividend or shareholder yield. The apparent crypto equivalents are staking rewards and funding payments, and neither behaves the way carry is supposed to."
+      },
+      {
+        "type": "warning",
+        "text": "Staking rewards are usually paid in the same token being staked. A 6% reward on an asset that falls 60% is not income; it is more units of something worth less, and the reward often comes partly from issuing new supply — which dilutes every holder including you. Ask whether the reward is funded by fees users actually pay or by new issuance, because only the first is a return in the sense the pillar means."
+      },
+      {
+        "type": "paragraph",
+        "text": "Funding payments are a genuine cash flow, and they are also unstable by construction: the rate exists to balance the two sides, so it moves against whichever side becomes crowded. Chapter 4 Lesson 2's test applies here as much as anywhere. Trace the yield to an activity, and note which activity it is."
+      },
+      {
+        "type": "paragraph",
+        "text": "Scoring the pillars is what turns the framework from a checklist into a decision, so here it is worked through on a realistic example."
+      },
+      {
+        "type": "example",
+        "text": "A worked thesis. Fundamentals: fee revenue paid by users has risen for three consecutive quarters and is not attributable to a single application or an incentive programme — supportive, and checkable next quarter. Valuation: replaced by supply arithmetic — circulating supply is 60% of total, with the remainder unlocking over 24 months, so the effective supply grows about 2.7% a month while I hold — against. Catalyst: a protocol change with an uncertain outcome scheduled within two months — supportive, with a date. Positioning: funding has been mildly negative for three weeks, meaning leveraged positioning leans short rather than crowded long — supportive. Momentum: price below its level three months ago — against. Carry: staking pays 4%, of which the published split shows most comes from fees rather than issuance — mildly supportive."
+      },
+      {
+        "type": "paragraph",
+        "text": "That is three supportive pillars, one mildly supportive, two against, and a dated catalyst. It is a real thesis rather than a strong one, and the two pillars against are exactly the sort a person who wanted to buy would have quietly omitted."
+      },
+      {
+        "type": "warning",
+        "text": "Note the unlock schedule appearing as a pillar against. Supply growing 2.7% a month while you hold is a headwind the price has to overcome before anything else you believe becomes relevant, and it is published. Most token theses never mention it, which tells you how many of them have been through this exercise."
+      },
+      {
+        "type": "paragraph",
+        "text": "Once a thesis exists, two things have to be attached to it before it becomes a position."
+      },
+      {
+        "type": "definition",
+        "term": "Invalidation condition",
+        "text": "The specific, checkable circumstance under which the thesis is proven wrong and the reason for holding no longer exists."
+      },
+      {
+        "type": "paragraph",
+        "text": "Forex Chapter 6 Lesson 2 placed the stop at the invalidation level rather than at an arbitrary distance. In crypto the invalidation is usually not a price at all, because prices here move far enough on liquidity alone to trigger any sensible price-based level without anything having changed."
+      },
+      {
+        "type": "example",
+        "text": "Usable invalidation conditions for the thesis above: fee revenue falls for two consecutive quarters; the protocol change is delayed indefinitely or ships and is not adopted; the unlock schedule is altered to release supply faster; funding turns persistently and strongly positive, meaning the crowd has arrived. Each of these can be checked against a fact on a date. None of them is \"the price went down\", which is a description rather than a condition."
+      },
+      {
+        "type": "paragraph",
+        "text": "The second attachment is size, and this is where the framework connects to everything in Chapter 3."
+      },
+      {
+        "type": "warning",
+        "text": "A thesis with four supportive pillars does not earn a larger position than the plan allows. Conviction determines whether you take a position at all; the written size limit determines how large it is, and the two must not be allowed to negotiate. Chapter 3 Lesson 1 showed that crypto volatility already forces small positions from the standard risk formula, and a strong thesis does not reduce volatility."
+      },
+      {
+        "type": "paragraph",
+        "text": "It is worth being explicit about how often this process should produce a position, because the honest answer surprises people."
+      },
+      {
+        "type": "paragraph",
+        "text": "Rarely. Most assets, most of the time, will show two or three pillars pointing the same way and the rest neutral or contradictory, which is not a thesis but a preference. The framework earns its value by making that visible, since the alternative is the same preference held with the same confidence and no record of how thin it was."
+      },
+      {
+        "type": "definition",
+        "term": "Falsifiable claim",
+        "text": "A statement specific enough that a future observation could show it to be wrong."
+      },
+      {
+        "type": "paragraph",
+        "text": "Write the thesis down with its date, its pillars and its invalidation conditions, and keep it after the position closes. A file of past theses, each with what you expected and what happened, is the only instrument that reliably improves judgement in this asset class. Chapter 6 Lesson 3 explains why memory cannot do this job here: the moves are large enough that outcomes carry almost no information about whether the reasoning was sound."
+      },
+      {
+        "type": "image",
+        "svg": "crypto-06-1-six-pillars",
+        "alt": "Six pillars shown with their crypto adaptation: fundamentals become on-chain activity with stated limits, valuation is marked as not transferring because there are no cash flows and is replaced by supply arithmetic, catalyst transfers with a warning about scheduled events, positioning is strengthened by funding rates, momentum is supported by the Liu Tsyvinski and Wu three-factor finding but decays in weeks, and carry is qualified because staking rewards are often paid in the same falling token and funded by new issuance.",
+        "caption": "Four pillars transfer, one is replaced by supply arithmetic, and one only resembles carry."
+      },
+      {
+        "type": "paragraph",
+        "text": "Scoring works the same way it does everywhere else, and the same error dominates."
+      },
+      {
+        "type": "warning",
+        "text": "Independence is the whole source of the framework's value. A price that has risen produces positive momentum, positive sentiment, high funding and enthusiastic on-chain activity all at once. That is one observation recorded four times, and it produces a thesis that looks strongly supported at exactly the moment it is most crowded. Before counting a pillar, ask what would have to be different for it to disagree with the others."
+      },
+      {
+        "type": "paragraph",
+        "text": "A final honest note about what this framework is for in this asset class."
+      },
+      {
+        "type": "paragraph",
+        "text": "In equities, running the process well can identify a company the market has mispriced. Here, with no cash flows and one of the strongest documented findings being that most strategies collapse into three factors, the realistic output is narrower. The process mostly tells you when not to have a position, and that is a genuinely valuable output rather than a consolation. Chapter 3 established that survival is the constraint that dominates in this asset class, and a framework that keeps you out of crowded, unsupported positions is doing the work that matters."
+      },
+      {
+        "type": "paragraph",
+        "text": "What to look for before acting on any crypto thesis. Check that each pillar rests on different evidence rather than on the same price move. Check that the valuation pillar has been replaced by supply arithmetic rather than quietly filled with a narrative. Check that any carry is funded by fees rather than issuance. And write down what would falsify the thesis, with a date, because a thesis that cannot be wrong cannot teach you anything."
+      },
+      {
+        "type": "practice",
+        "text": "Take any crypto asset you hold or have considered and score all six pillars in writing, one sentence of evidence each. Then strike out every pillar whose evidence is downstream of the price having moved. Count what is left. Most first attempts lose three or four pillars at this step, and the remaining count is the honest strength of the case."
+      },
+      {
+        "type": "practice",
+        "text": "For any asset paying you a staking reward, find out what proportion of that reward comes from fees paid by users and what proportion from newly issued supply. Both figures are normally published. If the answer is mostly issuance, write down what your holding is as a percentage of total supply before and after a year of rewards, and note whether it actually rose."
+      }
+    ],
+    "quiz": [
+      {
+        "question": "Liu, Tsyvinski and Wu found that three factors — market, size and momentum — accounted for the returns of ten apparently distinct crypto long-short strategies. What follows?",
+        "options": [
+          "That crypto returns are predictable using those three factors",
+          "That a portfolio of several clever-sounding crypto strategies is probably one exposure wearing several names — though the finding describes a sample period and says nothing about any individual token",
+          "That momentum is the only strategy that works in crypto",
+          "That crypto markets are fully efficient"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. The value of the finding is that it collapses apparent variety into a few exposures, which matters when you believe you hold several independent bets. It is the strongest evidence this asset class currently has, and it is weaker than the equity equivalents: a cross-sectional description over a sample, not a promise about persistence or about any one asset.",
+        "feedbackWrong": "Not quite. The paper does not establish predictability, does not single out momentum as the only workable strategy, and makes no efficiency claim. It shows that a range of distinct-looking strategies share underlying exposures."
+      },
+      {
+        "question": "Why does the valuation pillar not transfer from equities to most crypto assets?",
+        "options": [
+          "Because crypto prices are too volatile to model",
+          "Because most crypto assets have no cash flows, so there is no calculation producing a value the price can be compared against — on-chain ratios compare an asset to its own history but are not valuations",
+          "Because valuation only applies to regulated instruments",
+          "Because crypto supply figures are not published"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. A share price implies a cash-flow forecast you can disagree with specifically; most tokens offer nothing equivalent. What replaces the pillar is supply arithmetic — total supply, unlock schedule, and the market capitalisation implied by a price target, which is a number you can compare against things that exist.",
+        "feedbackWrong": "Not quite. Volatility and regulation are not the obstacle, and supply figures are published — indeed they are what replaces the pillar. The problem is the absence of cash flows, which removes the thing a valuation would be calculated from."
+      },
+      {
+        "question": "A token pays a 6% staking reward, funded largely by newly issued supply. Why is this not carry in the sense the framework means?",
+        "options": [
+          "Because 6% is too small to matter",
+          "Because the reward is paid in the same token and funded by issuance that dilutes every holder — so it can increase your unit count without increasing your share of the asset",
+          "Because staking rewards are taxed differently from interest",
+          "Because carry only applies to currency positions"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. Carry is meant to be a return that does not require the market to agree with you. More units of something worth less is not that, and if the units come from new issuance rather than from fees users actually pay, your proportional ownership may not have risen at all. The test is which activity funds the reward.",
+        "feedbackWrong": "Not quite. The size of the rate and its tax treatment are beside the point, and carry has an equity form too. The issue is that the reward is denominated in the falling asset and may be funded by dilution rather than by any value-producing activity."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Trade thesis",
+        "def": "A written argument for a position built from several independent lines of evidence."
+      },
+      {
+        "term": "Funding rate",
+        "def": "The periodic payment between longs and shorts in perpetual futures; a direct positioning signal."
+      },
+      {
+        "term": "Supply arithmetic",
+        "def": "Total supply, unlock schedule and implied market capitalisation — what replaces valuation where there are no cash flows."
+      },
+      {
+        "term": "Issuance-funded reward",
+        "def": "A staking return paid from newly created supply, which dilutes holders rather than paying them."
+      }
+    ]
+  },
+  {
+    "id": "crypto-regime-mapping",
+    "lessonNumber": 2,
+    "chapterNumber": 6,
+    "chapterTitle": "A Professional Crypto Process",
+    "title": "Regime Mapping for Crypto",
+    "keyIdea": "Crypto sits at the far end of the transmission chain, which means it is usually reacting to something that was decided in a bond market weeks earlier. Reading the regime tells you which pillar has any power — and often that none does.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Forex Chapter 6 Lesson 3 introduced the transmission chain: a policy change moves through interest rates first, then currencies and bonds, then credit and equities, then commodities and other risk assets. Crypto sits at the end of that chain, and the position explains most of what feels arbitrary about its moves."
+      },
+      {
+        "type": "definition",
+        "term": "Market regime",
+        "text": "The prevailing environment: whether risk appetite is rising or falling, whether volatility is low or high, and whether prices are trending or ranging."
+      },
+      {
+        "type": "definition",
+        "term": "Transmission chain",
+        "text": "The path by which a policy change moves across markets — rates, then currencies and bonds, then credit and equities, then commodities and crypto."
+      },
+      {
+        "type": "paragraph",
+        "text": "Chapter 2 Lesson 3 established the evidence that crypto trades as a high-beta risk asset rather than as an independent one, and that the diversification argument largely failed in 2022 when it was needed. This lesson is what to do with that fact."
+      },
+      {
+        "type": "definition",
+        "term": "High beta",
+        "text": "Moving in the same direction as a broader risk market, but by a larger amount in both directions."
+      },
+      {
+        "type": "paragraph",
+        "text": "The practical consequence is that a great deal of crypto price action is not about crypto. Liquidity conditions are set elsewhere, and crypto receives them amplified."
+      },
+      {
+        "type": "example",
+        "text": "A central bank signals tighter policy for longer. Government bond yields rise first. Currencies adjust. Credit spreads widen. Equities fall, and the longest-duration equities — companies valued on distant profits — fall hardest. Crypto, which has no cash flows at all and therefore the longest duration of anything, falls hardest of all. Nothing happened on-chain. The regime changed several links up the chain and arrived here magnified."
+      },
+      {
+        "type": "warning",
+        "text": "Someone watching only crypto charts during that sequence sees an unexplained fall and looks for a crypto explanation. There usually is one available — a hack, an outflow, a regulatory headline — and it will be reported as the cause. The chain was the cause, and the on-chain story was a coincidence with good timing."
+      },
+      {
+        "type": "paragraph",
+        "text": "Three regimes cover most of what a reader will meet, and each favours a different pillar from the previous lesson."
+      },
+      {
+        "type": "paragraph",
+        "text": "A risk-on trending regime, with rising risk appetite and low volatility elsewhere, is where momentum works and where the factor evidence has most force. It is also where funding rates climb and leverage accumulates, which is the same condition described from the other side."
+      },
+      {
+        "type": "paragraph",
+        "text": "A stressed regime, with falling risk appetite and high volatility, is where correlations converge and any diversification argument stops working. Momentum reverses violently. Crypto typically falls further than the risk assets above it in the chain, and the liquidation mechanics from Chapter 3 Lesson 3 do the rest."
+      },
+      {
+        "type": "paragraph",
+        "text": "A ranging regime, with no clear trend and no genuine catalyst, is where most forced positions are taken and most accounts are slowly worn down by fees, funding and spreads."
+      },
+      {
+        "type": "definition",
+        "term": "No-trade regime",
+        "text": "A market with no clear trend, no imminent catalyst and no pillar strongly aligned. The correct position is often none."
+      },
+      {
+        "type": "warning",
+        "text": "In crypto the no-trade regime is harder to observe than anywhere else in this course, because the market never closes and there is always something happening somewhere. A 24-hour market manufactures the appearance of opportunity continuously. Nothing aligning is a legitimate and common state, and the absence of an enforced pause means you have to supply it yourself."
+      },
+      {
+        "type": "paragraph",
+        "text": "There is one crypto-specific regime signal that has no equivalent in the other tracks, and it is worth watching."
+      },
+      {
+        "type": "paragraph",
+        "text": "Aggregate open interest in perpetual futures, together with the funding rate, is a direct measurement of how much leverage is in the system and which way it leans. When open interest is elevated and funding has been persistently positive for a sustained period, the market is carrying crowded leveraged long positioning. That is not a prediction that prices will fall. It is a statement that the conditions for a liquidation cascade are present, and Chapter 3 Lesson 3 described what happens when one starts."
+      },
+      {
+        "type": "paragraph",
+        "text": "A worked reading makes the chain concrete, and shows what it does and does not tell you."
+      },
+      {
+        "type": "example",
+        "text": "Over the last two months, government bond yields have risen sharply, credit spreads have widened, and equity leadership has narrowed to a handful of very large companies. You are considering a position in a small token whose case rests entirely on adoption arriving over the next several years. The chain says every one of those observations works against a long-duration risk asset, and crypto is the longest-duration risk asset available. That does not mean the token is bad or that the price must fall. It means your thesis now owes an explanation for why this asset is an exception, and if you do not have one, you are trading against the regime without having noticed there was one."
+      },
+      {
+        "type": "paragraph",
+        "text": "There are two signals specific to this asset class that have no equivalent in the other tracks, and both are publicly observable."
+      },
+      {
+        "type": "definition",
+        "term": "Stablecoin supply",
+        "text": "The total outstanding quantity of major stablecoins, which approximates the amount of capital positioned inside the crypto system and ready to be deployed."
+      },
+      {
+        "type": "paragraph",
+        "text": "Stablecoins are how money waits inside crypto. A sustained expansion in their aggregate supply indicates capital arriving and staying; a sustained contraction indicates capital leaving the system rather than rotating within it. It is a coarse measure, it can be distorted by a single large issuer's decisions, and it is still one of the few readings available that describes the system as a whole rather than one asset."
+      },
+      {
+        "type": "warning",
+        "text": "Treat it as context, not as a trigger. Chapter 2 Lesson 4 was careful about the limits of on-chain measurement and the same caution applies here: this is an aggregate that moves for many reasons, including reasons that have nothing to do with appetite for risk, such as an issuer redeeming for regulatory purposes."
+      },
+      {
+        "type": "paragraph",
+        "text": "The second is the one this course has already taught from the other direction."
+      },
+      {
+        "type": "paragraph",
+        "text": "Aggregate open interest in perpetual futures, read together with funding, measures how much leverage is in the system and which way it leans. Chapter 3 Lesson 3 described the mechanics of a liquidation cascade. As a regime reading, elevated open interest with persistently positive funding says the fuel is present, and that a fall which would otherwise be ordinary has the potential to become mechanical and self-accelerating."
+      },
+      {
+        "type": "paragraph",
+        "text": "There is also a category of event that is genuinely internal to crypto, and it deserves a caveat rather than enthusiasm."
+      },
+      {
+        "type": "warning",
+        "text": "Halvings, large protocol upgrades and product approvals are crypto-native events with known dates, and Chapter 2 Lesson 2 examined the halving narrative in detail. The finding there applies to all of them: an event that everybody can see in advance has had as long as everybody has had to be priced. The uncertainty is never the date. It is the response, and the response is what nobody can schedule."
+      },
+      {
+        "type": "paragraph",
+        "text": "A practical note on what regime reading is for at the level of a portfolio rather than a trade."
+      },
+      {
+        "type": "paragraph",
+        "text": "For a reader following the plan from Chapter 4 Lesson 3, with a fixed allocation and scheduled purchases, the regime should change almost nothing. That is deliberate. Scheduled contributions are not a position taken on a regime, and stopping them because conditions look poor is the error Chapter 4 Lesson 1 documented — retail entries clustering after rises, which is the same behaviour seen from the other side."
+      },
+      {
+        "type": "warning",
+        "text": "Where regime reading earns its place is in discretionary decisions: the additional position you were about to open, the size you were about to increase, the leverage you were about to use. Applied there it is protection. Applied to a long-term contribution schedule it becomes market timing wearing a more respectable name, and the evidence on retail market timing is in Chapter 4 Lesson 1 and is not encouraging."
+      },
+      {
+        "type": "paragraph",
+        "text": "One further limit, stated plainly because the whole chapter depends on it. Everything described here is visible to everybody. Bond yields, credit spreads, funding rates and open interest are public and watched by people with far better tools than yours. Reading them correctly is not an edge over professionals, and this course will not pretend it is. It is protection against a specific and common error: buying a story that the wider market priced out weeks ago, in the asset class that receives that pricing last and hardest."
+      },
+      {
+        "type": "paragraph",
+        "text": "A short note on how this differs from what most crypto commentary offers, since the vocabulary overlaps and the substance does not."
+      },
+      {
+        "type": "paragraph",
+        "text": "Commentary generally supplies a directional call attached to a reason: the cycle says this, the chart says that, an approval is coming. Regime mapping supplies neither a direction nor a target. It answers a narrower question — given the conditions that already exist, which kinds of evidence currently have any power, and which are noise?"
+      },
+      {
+        "type": "example",
+        "text": "In a trending risk-on regime, momentum evidence has power and a valuation-style argument has almost none, because nothing is being valued. In a stressed regime, positioning and leverage data have power while narrative has none, since narrative is what is being liquidated. In a ranging regime, nothing much has power, and the useful conclusion is that this is a period for doing very little."
+      },
+      {
+        "type": "warning",
+        "text": "That last state is the one no commercial source can report, and its absence from the media you read is a structural fact rather than a coincidence. A publication cannot run the headline nothing is currently actionable, and a channel cannot fill an hour with it. You will therefore have to supply that conclusion yourself, and it applies more often than any external source will ever tell you."
+      },
+      {
+        "type": "image",
+        "svg": "crypto-06-2-transmission-chain",
+        "alt": "A five-stage transmission chain from interest rates through currencies and bonds, credit, equities, to crypto at the far end, with crypto marked as the longest-duration and highest-beta link, alongside three regime panels showing which pillar has power in a trending regime, a stressed regime and a no-trade regime.",
+        "caption": "Crypto receives the regime last and amplified. Much of what looks like crypto news is a bond market decision arriving late."
+      },
+      {
+        "type": "paragraph",
+        "text": "Two honest limits, because this course does not sell certainty."
+      },
+      {
+        "type": "paragraph",
+        "text": "The first is that regimes are named confidently in hindsight and are ambiguous while you are inside them. Nobody rang a bell at the bottom in 2022 or at the top in 2021. The value of regime mapping is not that it calls turns. It is that it stops you applying a momentum thesis to a market that has stopped trending, and stops you reading a liquidity-driven fall as a verdict on a protocol."
+      },
+      {
+        "type": "warning",
+        "text": "The second is that this is not permission to time the market. Chapter 4 Lesson 1 gave the evidence on what retail timing achieves: an estimated 73 to 81% of retail investors in the BIS data had likely lost money, with entries clustered after price rises. Regime reading tells you which evidence has power in conditions you are already in. It does not tell you what next quarter looks like, and anyone who claims otherwise is selling something."
+      },
+      {
+        "type": "paragraph",
+        "text": "One asymmetry recurs and is worth naming, because all three case studies in Chapter 5 displayed it."
+      },
+      {
+        "type": "paragraph",
+        "text": "Regimes deteriorate faster than they improve. A risk-on period builds over months and gives many opportunities to notice it. A shift into stress can complete in days, and in crypto sometimes in hours, because leverage unwinds mechanically rather than by decision. A plan that depends on reacting to a regime change is calibrated to the slower transition and will meet the faster one."
+      },
+      {
+        "type": "paragraph",
+        "text": "What to look for as a standing habit rather than an occasional exercise. Watch government bond yields and credit spreads even though you hold neither, because they move first. Watch equity risk appetite, since crypto is downstream of it. Watch aggregate open interest and funding, which tell you how much leverage is in the system. And be honest when nothing aligns, which is more often than a 24-hour market can afford to admit."
+      },
+      {
+        "type": "practice",
+        "text": "Before your next discretionary crypto decision, write down three things: what government bond yields have done over the last month, what equity risk appetite has done, and what funding rates have been doing. Then write one sentence on whether your thesis needs any of those to be true. If it does and they are pointing the other way, you have learned something for the cost of ten minutes."
+      },
+      {
+        "type": "practice",
+        "text": "Look back at the last three sharp crypto falls you remember and find what the wider risk environment was doing on those same days. For most of them you will find the move was not crypto-specific at all, even though the reporting at the time named a crypto cause. That exercise is the fastest way to internalise where crypto sits on the chain."
+      }
+    ],
+    "quiz": [
+      {
+        "question": "Why does crypto typically fall further than equities when a central bank signals tighter policy?",
+        "options": [
+          "Because crypto is unregulated",
+          "Because it sits at the far end of the transmission chain as the highest-beta and longest-duration asset — it has no cash flows at all, so it receives the same regime change amplified",
+          "Because crypto holders are more likely to panic",
+          "Because exchanges force selling during rate announcements"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. Rates move first, then currencies and bonds, then credit and equities — with the longest-duration equities falling hardest. Crypto has no cash flows at all, which puts it furthest along that logic. Nothing needs to happen on-chain for a large crypto fall to have a complete explanation several links up the chain.",
+        "feedbackWrong": "Not quite. Regulation, holder psychology and exchange mechanics are not what drive this. The position on the transmission chain does: crypto receives a liquidity change last and amplified, because it is the longest-duration risk asset available."
+      },
+      {
+        "question": "Aggregate open interest in perpetual futures is elevated and funding has been persistently positive for weeks. What does this tell you?",
+        "options": [
+          "That prices are about to fall",
+          "That crowded leveraged long positioning is present, so the conditions for a liquidation cascade exist — which is a statement about conditions, not a forecast",
+          "That the market is in a no-trade regime",
+          "That funding rates are about to turn negative"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. Funding turns positive when longs are crowded, and elevated open interest measures how much leverage is in the system. Together they say the fuel for a cascade is present. They do not say when, or whether, one starts — that distinction is the difference between reading a regime and predicting one.",
+        "feedbackWrong": "Not quite. This is a measurement of positioning, not a timing signal, and it describes a leveraged trending market rather than a no-trade regime. The conditions for a cascade being present is not the same as a cascade being imminent."
+      },
+      {
+        "question": "Why is a plan built on reacting to a regime change unreliable in crypto specifically?",
+        "options": [
+          "Because regime changes are never observable after the fact",
+          "Because regimes deteriorate faster than they improve, and in crypto leverage unwinds mechanically rather than by decision — so the damaging transition can complete in hours",
+          "Because crypto has no regimes",
+          "Because reacting to markets is always irrational"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. A risk-on period builds over months and gives many chances to notice it. A shift into stress completes far faster, and forced liquidations accelerate it without anyone choosing to sell. A reactive plan is calibrated to the slow transition and meets the fast one.",
+        "feedbackWrong": "Not quite. Regimes are clear in hindsight and crypto certainly has them. The problem is the asymmetry in speed, made worse here because liquidation cascades unwind positions mechanically rather than through decisions anyone could pause."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Market regime",
+        "def": "The prevailing environment of risk appetite, volatility and trend."
+      },
+      {
+        "term": "Transmission chain",
+        "def": "The path a policy change takes across markets, reaching crypto last."
+      },
+      {
+        "term": "High beta",
+        "def": "Moving with a broader risk market but by a larger amount in both directions."
+      },
+      {
+        "term": "No-trade regime",
+        "def": "A market where no pillar aligns and the correct discretionary position is none."
+      }
+    ]
+  },
+  {
+    "id": "crypto-portfolio-discipline",
+    "lessonNumber": 3,
+    "chapterNumber": 6,
+    "chapterTitle": "A Professional Crypto Process",
+    "title": "Portfolio Discipline and the Long Game",
+    "keyIdea": "Everything this track teaches converges on one conclusion: for almost everyone, the right position is a small slice, held with rules, that you could lose entirely without it changing your life.",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "This is the last lesson in the track. It is about what happens to a portfolio over years rather than to any position inside it, and about the practices that have to keep running when nothing interesting is happening."
+      },
+      {
+        "type": "paragraph",
+        "text": "Start with the property of crypto diversification that Chapter 2 Lesson 3 established and this lesson has to finish."
+      },
+      {
+        "type": "definition",
+        "term": "Correlation clustering",
+        "text": "The tendency of separate assets to move together far more closely during sharp falls than during normal or rising periods."
+      },
+      {
+        "type": "paragraph",
+        "text": "The equity version of this is documented in the Stocks track: Longin and Solnik, in the Journal of Finance in 2001, found using extreme value theory that correlation between international equity markets rises in the negative tail — when markets fall together — and does not rise in the positive tail. The protection is weakest exactly when it is needed."
+      },
+      {
+        "type": "warning",
+        "text": "Crypto exhibits a harsher version of the same asymmetry, and it operates at two levels at once. Individual crypto assets converge toward each other in a sell-off, so holding twenty tokens is close to holding one position. And crypto as a whole converges toward equities in a risk-off event, which is what removed the diversification argument in 2022. A portfolio spread across many tokens is not diversified. It is one bet, expressed at length."
+      },
+      {
+        "type": "paragraph",
+        "text": "That is why the allocation decision from Chapter 4 Lesson 3 is the one that matters, and why the number of tokens inside it barely matters at all."
+      },
+      {
+        "type": "paragraph",
+        "text": "Rebalancing is the first discipline, and it deserves an honest framing rather than a promotional one."
+      },
+      {
+        "type": "definition",
+        "term": "Rebalancing band",
+        "text": "A rule returning a holding to its target weight once it drifts beyond a set distance, rather than on a calendar date."
+      },
+      {
+        "type": "paragraph",
+        "text": "Rebalancing is not a forecast. It makes no claim that the asset being sold will now underperform. It is a rule that holds risk where you decided it should be, and in crypto it does more work than anywhere else in this course, because the drift is faster and larger."
+      },
+      {
+        "type": "example",
+        "text": "A portfolio holds 5% crypto and 95% everything else. Crypto rises fourfold with the rest flat, and the slice becomes about 17.4% of the total without any decision being taken. An 80% fall from there — ordinary in this asset class, not a catastrophe — leaves the portfolio at about 99% of its peak, having given back essentially the entire gain. Restoring 5% at the top would have moved about 14 units into the rest of the portfolio, permanently, as a rule rather than as a call."
+      },
+      {
+        "type": "warning",
+        "text": "Rebalancing out of a rising crypto position is the hardest routine action described anywhere in this course. It means selling the thing that is working, during the period when the argument that this time is different is loudest and most confident. The discomfort is the mechanism working. If it felt comfortable it would not be doing anything."
+      },
+      {
+        "type": "paragraph",
+        "text": "The second discipline is one no other track needs, and it is not a one-off task."
+      },
+      {
+        "type": "definition",
+        "term": "Custody hygiene",
+        "text": "The recurring practices that keep self-custodied assets reachable by you and unreachable by anyone else: revoking stale approvals, verifying recovery material, testing access, and keeping exchange balances under a stated cap."
+      },
+      {
+        "type": "paragraph",
+        "text": "Chapter 3 Lesson 2 covered the security practices and Chapter 4 Lesson 3 put them in the plan. The point here is that they decay. Approvals accumulate. Exchange balances creep above the cap because moving them is a small chore that is never urgent. Recovery material stays where it was put by a person who no longer remembers putting it there. Devices are replaced."
+      },
+      {
+        "type": "example",
+        "text": "A sensible annual review takes an hour. List every approval each wallet has granted and revoke the ones no longer used. Check every exchange balance against the cap and move the excess. Actually access each wallet rather than assuming you can. Confirm the recovery material is where the plan says, and that at least one other person knows the holdings exist."
+      },
+      {
+        "type": "paragraph",
+        "text": "The third discipline is reviewing decisions separately from outcomes."
+      },
+      {
+        "type": "definition",
+        "term": "Process review",
+        "text": "Examining a closed decision for whether the reasoning and the rules were sound, rather than only for whether it made money."
+      },
+      {
+        "type": "paragraph",
+        "text": "Forex Chapter 6 Lesson 4 made this point and it transfers without modification, but it bites harder here. In an asset class where annual moves are measured in multiples, outcomes carry almost no information about decision quality over any short period. A reckless position can return several hundred percent and a disciplined one can lose money over the same year. If you review only results you will systematically learn the wrong lesson, and you will learn it with great confidence."
+      },
+      {
+        "type": "paragraph",
+        "text": "Before the close, it is worth stating what this track has and has not given you, because the difference matters more here than in any other vertical."
+      },
+      {
+        "type": "paragraph",
+        "text": "It has given you the mechanics: what a blockchain does, how consensus works, what a wallet actually holds, how exchanges take custody, what a transaction costs and when it is final, and what separates a backed stablecoin from an algorithmic one. It has given you how to read the market: what market capitalisation does and does not mean, what the cycle evidence supports, how crypto behaves as a risk asset, what on-chain data can and cannot show, and how narratives function where there are no cash flows. It has given you the risk arithmetic at crypto volatility, the custody threat model, and the mechanics of leverage and liquidation. It has given you the psychology, the fraud structures, three case studies, and a process."
+      },
+      {
+        "type": "paragraph",
+        "text": "It has not given you a way to know which assets will rise. Nothing can, and Chapter 6 Lesson 1 was explicit that the strongest available evidence points the other way — most apparently distinct crypto strategies collapse into a small number of shared exposures."
+      },
+      {
+        "type": "warning",
+        "text": "If you take one thing from the whole track, take the asymmetry between those two paragraphs. Almost everything that can be known here concerns how the machine works and how to survive it. Almost nothing that can be known concerns what happens next. Any source that inverts that ratio — long on what happens next, short on mechanics and survival — is telling you about its business model rather than about the market."
+      },
+      {
+        "type": "paragraph",
+        "text": "There is one further discipline that belongs here and nowhere else, because it only becomes visible over years."
+      },
+      {
+        "type": "definition",
+        "term": "Complexity budget",
+        "text": "A limit on how many different protocols, wallets, chains and products you are willing to hold, set by how many you can actually keep track of rather than by how many look attractive."
+      },
+      {
+        "type": "paragraph",
+        "text": "Every additional protocol is another set of approvals, another contract that could be exploited, another interface to be impersonated, and another thing to remember during a year in which you were not paying attention. Complexity accumulates quietly and it never announces that it has exceeded what you can manage."
+      },
+      {
+        "type": "example",
+        "text": "A holder with two assets, one hardware wallet and one exchange account can review everything in twenty minutes and will notice if something is wrong. A holder with fifteen tokens across four chains, six protocols, three wallets and two exchanges cannot, and in practice does not. The second holder is not more sophisticated. They have taken on an operational load that grows while their attention does not, and Chapter 3 Lesson 2 showed that custody failures come from exactly that gap."
+      },
+      {
+        "type": "warning",
+        "text": "A useful test: could you write down, right now and without looking, every place you hold crypto and every protocol you have approved? If not, you are past your complexity budget, and the first item on the annual review is to reduce it rather than to document it more carefully."
+      },
+      {
+        "type": "paragraph",
+        "text": "A note on time horizon, since this is the last chance to say it."
+      },
+      {
+        "type": "paragraph",
+        "text": "This asset class is young enough that nobody has a long record in it, including the people who sound most certain. The oldest asset here has existed for well under two decades, and the most confident historical claims made about it rest on a handful of cycles. The Stocks track could point to studies covering many decades and still had to say the evidence was contested. Here, the honest position is that the sample is short and the conclusions drawn from it should carry the humility that implies."
+      },
+      {
+        "type": "paragraph",
+        "text": "That is not an argument for staying out. It is an argument for the specific position this lesson recommends: a slice small enough that being wrong about a young asset class with a short record does not damage anything that matters to you."
+      },
+      {
+        "type": "paragraph",
+        "text": "One practical matter belongs in a closing lesson because it decides whether any of the above survives contact with a decade."
+      },
+      {
+        "type": "paragraph",
+        "text": "Technology moves. A wallet application you use today may be abandoned in five years. A hardware device will eventually fail or become unsupported. A chain you hold assets on may lose the developer attention that keeps its tools working."
+      },
+      {
+        "type": "definition",
+        "term": "Recovery independence",
+        "text": "Holding assets in a way that can be recovered without the specific application, device or company you originally used."
+      },
+      {
+        "type": "paragraph",
+        "text": "This is why the recovery phrase matters more than the device. Standard recovery phrases can generally be restored into other compatible wallets, which means the phrase — not the hardware and not the app — is what you are actually preserving. A setup that can only be recovered using one company's software is a setup with a corporate dependency you did not intend to take on."
+      },
+      {
+        "type": "warning",
+        "text": "Test this rather than assume it. Restoring a wallet into a second, different application, confirming the same addresses appear, and then putting everything back is a half-hour exercise that converts an assumption into a fact. It is the same argument as the withdrawal test for exchanges: verify the exit path while nothing is wrong, because that is the only time it can be verified calmly."
+      },
+      {
+        "type": "image",
+        "svg": "crypto-06-3-small-slice",
+        "alt": "A portfolio diagram showing a 5 percent crypto slice drifting to about 17 percent after a fourfold rise, then an 80 percent fall returning the portfolio to about 99 percent of its peak, alongside three ongoing disciplines: rebalancing bands, custody hygiene covering approvals and recovery material, and process review judging decisions rather than outcomes.",
+        "caption": "The allocation decision is the one that matters. The number of tokens inside it barely matters at all."
+      },
+      {
+        "type": "paragraph",
+        "text": "Now the honest close, which this track owes the reader."
+      },
+      {
+        "type": "paragraph",
+        "text": "Set out what the evidence in this track actually said. An estimated 73 to 81% of retail investors in the BIS data had likely lost money, arriving after prices rose while the largest holders sold. Roughly half the tokens listed on a major decentralised exchange were found to be scam tokens. Three of the largest venues and protocols in the industry's history failed completely, one through incompetence, one through a mechanism working as designed, and one at the institution everybody considered the responsible choice. Diversification within the asset class does not work in the falls, and the asset class as a whole did not diversify a portfolio when it was needed."
+      },
+      {
+        "type": "paragraph",
+        "text": "None of that means crypto is worthless or that owning it is irrational. It means the honest position for almost everyone is a small slice, sized so that a total loss is survivable, held with written rules, in custody you control, reviewed on a schedule rather than in reaction to news."
+      },
+      {
+        "type": "warning",
+        "text": "That is a deliberately unexciting conclusion, and it is the one the evidence supports. Any source that reaches a more exciting conclusion should be asked which evidence it is using, and whether it is selling you something. This course would rather be useful than thrilling, and in this asset class the two are frequently opposed."
+      },
+      {
+        "type": "paragraph",
+        "text": "A reader who wants to run the full six-pillar process on crypto assets themselves now has everything required to do it, and to judge whether someone else has done it properly. That second skill is the more valuable one. Running the process well is time-consuming, and some readers who understand it completely will still prefer not to do it themselves; for them, Scere Markets sells completed theses built with this framework through its research service. That is the only mention it gets, and the framework is taught in full here precisely so that you can evaluate such a thesis — including ours — rather than take it on trust."
+      },
+      {
+        "type": "paragraph",
+        "text": "What to look for once a year, as the closing habit of this track. Recalculate what crypto is as a percentage of your total wealth, since drift has been working all year. Check every exchange balance against your cap. Revoke stale approvals and verify you can still access every wallet. Confirm somebody else knows the holdings exist. Reread your written plan and note where reality diverged from it, and for each difference decide whether the plan was wrong or the deviation was."
+      },
+      {
+        "type": "paragraph",
+        "text": "And check that the reason you hold each position is still the reason you originally wrote down, rather than a new reason invented to justify continuing to hold it."
+      },
+      {
+        "type": "practice",
+        "text": "Write down what percentage of your total wealth is in crypto today, then write down what your life looks like if that number goes to zero this month. If the second answer involves anything you cannot accept, the first number is wrong, and no confidence about any particular asset changes that. This is the single most useful sentence in the track and it takes two minutes."
+      },
+      {
+        "type": "practice",
+        "text": "Do the annual review described above once, now, even if it is not the anniversary of anything: approvals, balances against cap, wallet access, recovery material, and one other person who knows. Note how long it took. For most readers it is under an hour, which is a small price for removing the failure modes that ended three of the largest institutions in this industry."
+      }
+    ],
+    "quiz": [
+      {
+        "question": "Why is holding twenty different tokens not meaningfully diversified?",
+        "options": [
+          "Because twenty is too few holdings to diversify anything",
+          "Because crypto assets converge toward each other in sell-offs and crypto as a whole converges toward equities in risk-off events — so it is one bet expressed at length",
+          "Because tokens cannot be held in the same wallet",
+          "Because diversification only works across asset classes with cash flows"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. The asymmetry runs at two levels: within the asset class, where individual tokens move together in falls, and across it, where the diversification argument against equities largely failed in 2022. Longin and Solnik documented the equity version of this tail asymmetry; crypto exhibits a harsher form of it.",
+        "feedbackWrong": "Not quite. The count is not the issue and wallets are irrelevant. The issue is correlation in the tail: tokens converge with each other when prices fall, and crypto converges with equities in a risk-off event, so spreading within the class does very little when it matters."
+      },
+      {
+        "question": "Why does reviewing decisions by their outcomes mislead more severely in crypto than in other asset classes?",
+        "options": [
+          "Because crypto returns are not measurable",
+          "Because annual moves are measured in multiples, so a reckless position can return several hundred percent while a disciplined one loses money — outcomes carry almost no information about decision quality over short periods",
+          "Because crypto trades 24 hours a day",
+          "Because most crypto positions are held for less than a year"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct. When the noise is that large relative to the signal, results tell you very little about whether the reasoning was sound. Reviewing only outcomes means systematically learning the wrong lesson, and learning it with great confidence because the evidence appears so strong.",
+        "feedbackWrong": "Not quite. Returns are perfectly measurable, and neither trading hours nor holding periods are the mechanism. It is the size of the moves: the noise overwhelms the signal, so a good decision and a bad one are indistinguishable by result over any short window."
+      },
+      {
+        "question": "What conclusion does the evidence across this track support for almost all readers?",
+        "options": [
+          "That crypto should be avoided entirely as an asset class",
+          "A small slice, sized so a total loss is survivable, held with written rules in custody you control and reviewed on a schedule rather than in reaction to news",
+          "That crypto should be a core holding because of its long-run returns",
+          "That the correct approach is to trade actively using the six-pillar framework"
+        ],
+        "correctIndex": 1,
+        "feedbackCorrect": "Correct, and deliberately unexciting. Around three quarters of retail investors in the BIS data likely lost money; roughly half the tokens on a major decentralised exchange were scam tokens; three of the industry's largest institutions failed completely for three different reasons; and diversification failed both within the class and across it. That evidence supports a small, survivable, rules-based position rather than either avoidance or conviction.",
+        "feedbackWrong": "Not quite. The evidence does not support total avoidance, nor a core holding, nor active trading as the default — Chapter 6 Lesson 1 noted the process mostly tells you when not to have a position. It supports a small slice you could lose entirely, governed by rules written in advance."
+      }
+    ],
+    "keyTerms": [
+      {
+        "term": "Correlation clustering",
+        "def": "Assets moving together far more closely during sharp falls than during normal periods."
+      },
+      {
+        "term": "Rebalancing band",
+        "def": "A rule restoring a target weight once drift exceeds a set distance."
+      },
+      {
+        "term": "Custody hygiene",
+        "def": "Recurring practices keeping self-custodied assets reachable by you and nobody else."
+      },
+      {
+        "term": "Process review",
+        "def": "Judging a closed decision by the quality of its reasoning rather than by its result."
+      }
+    ]
   }
 ];
 

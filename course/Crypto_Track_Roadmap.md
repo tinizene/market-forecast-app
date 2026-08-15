@@ -46,7 +46,7 @@
 2. Recognizing Scams — rug pulls, ponzis, pig-butchering, fake exchanges, "guaranteed yield"; the manifesto's "no false promises" taught as a defensive skill
 3. A Crypto Trading & Custody Plan — the written plan (Forex Ch4 L2's expectancy carried over) extended with custody rules: what stays on-exchange, what goes cold, and when
 
-**Chapter 4 planned — 3 lessons.**
+**Chapter 4 COMPLETE — 3/3 lessons drafted, compiled into `crypto-content.js`, and live in the app.**
 
 ## Chapter 5: Real-World Case Studies
 *Counterpart to Forex Chapter 5 — iconic collapses analysed through the course's own framework, facts verified live at drafting.*
@@ -55,7 +55,7 @@
 2. Terra/Luna (May 2022) — the algorithmic-stablecoin death spiral Chapter 1 L7 set up; reflexivity and "yield from nowhere"
 3. FTX (November 2022) — commingled funds, the run, and why "not your keys" stopped being a slogan; ties back to Ch1 L4/L5 and Ch4 L2's fraud markers
 
-**Chapter 5 planned — 3 case studies.**
+**Chapter 5 COMPLETE — 3/3 case studies drafted, compiled into `crypto-content.js`, and live in the app.**
 
 ## Chapter 6: A Professional Crypto Process
 *Counterpart to Forex Chapter 6 — the same six-pillar thesis framework applied where several pillars (carry, valuation) need honest adaptation, ending at the same place: the Research Desk for students who want the process done for them.*
@@ -64,10 +64,68 @@
 2. Regime Mapping for Crypto — crypto as the high-beta end of the transmission chain; when the correct crypto position is none
 3. Portfolio Discipline & the Long Game — correlation clustering in drawdowns, rebalancing discipline, custody hygiene as ongoing practice; the honest close: most people should treat crypto as a small, survivable slice — mentioning the Research Desk plainly once, at the end, per the Forex Ch6 precedent
 
-**Chapter 6 planned — 3 lessons.**
+**Chapter 6 COMPLETE — 3/3 lessons drafted, compiled into `crypto-content.js`, and live in the app.**
 
 ---
 
-**Track total when complete: 6 chapters, 24 lessons.**
+**Track total: 6 chapters, 24 lessons — ✅ COMPLETE.**
 
 **Not in scope (deliberately):** NFT trading, memecoin tactics, yield-farming strategy guides, token-picking. The track teaches how the machine works and how to survive it — not which coin to buy. Where a student asks "which coin," the answer is the process (Chapter 6), never a ticker.
+
+---
+
+## Track status — COMPLETE
+
+**24 lessons across 6 chapters, 58,729 words.** Every lesson carries three quiz questions
+with explained right and wrong feedback, at least one practice exercise, a key-terms
+list, and one dark-theme diagram.
+
+| | Lessons | Words | Average | Quiz Qs | Diagrams |
+| --- | --- | --- | --- | --- | --- |
+| Crypto | 24 | 58,729 | 2,447 | 3.0 | 24 |
+| Stocks & ETFs | 25 | 29,042 | 1,162 | 3.0 | 25 |
+| Forex | 26 | 25,230 | 970 | 2.5 | 25 |
+| Foundations (free) | 10 | 3,602 | 360 | — | — |
+
+### Diagrams
+
+Chapters 1 to 3 have hand-authored SVGs living inside `crypto-content.js`. Chapters 4 to
+6 are **generated** by `scripts/build-crypto-svgs.js` into `data/course/src/crypto-svgs-ch456.js`,
+which merges into the same `window.SCERE_CRYPTO_SVGS` map — so both sets resolve
+identically and the build loads `crypto-content.js` first.
+
+Drawing primitives, the palette and the accessibility guard live in
+`scripts/lib/svg-kit.js`, shared with the stocks generator. The guard checks every text
+colour against the diagram background and fails the build below 4.5:1. Figures inside a
+generated diagram are written alongside the lesson text they illustrate, so the two
+cannot drift apart.
+
+To change a generated diagram, edit the generator and re-run it, then re-run
+`node scripts/build-course-data.js`. Do not edit `crypto-svgs-ch456.js` by hand.
+
+### Citations added for Chapters 4 to 6
+
+Each verified live against two independent sources at drafting, per the style guide.
+
+- Auer, Cornelli, Doerr, Frost and Gambacorta, *Crypto trading and Bitcoin prices*, BIS Working Paper 1049 (2022), also in the IMF Economic Review — 95 countries, 2015 to 2022; 73 to 81% of retail investors likely lost money; new users arrive after price rises.
+- Geier, Rozin and Doros, *Unit Bias*, Psychological Science 17 (2006) — cited explicitly as an analogy, since the original studies food portions rather than tokens.
+- Odean, *Are Investors Reluctant to Realize Their Losses?*, Journal of Finance 53(5), 1775–1798 (1998).
+- Xia and colleagues, *Trade or Trick?*, Proceedings of the ACM on Measurement and Analysis of Computing Systems (2021) — roughly half of Uniswap listings were scam tokens; $16m from 39,762 potential victims.
+- Griffin and Mei, *How Do Crypto Flows Finance Slavery? The Economics of Pig Butchering* (2024) — quoted with its own $75bn to $237bn methodological range and the public criticism of it, rather than as a single number.
+- US Federal Trade Commission consumer data, 2024 and 2025 — $5.7bn to investment scams in 2024; more lost via bank transfer or crypto than all other payment methods combined.
+- Decker and Wattenhofer, *Bitcoin Transaction Malleability and MtGox*, ESORICS (2014) — the exchange's own public explanation, checked against the ledger and found insufficient.
+- Liu, Tsyvinski and Wu, *Common Risk Factors in Cryptocurrency*, Journal of Finance 77(2), 1133–1177 (2022) — market, size and momentum account for ten long-short strategies.
+- Longin and Solnik, Journal of Finance 56(2), 649–676 (2001) — carried over from the Stocks track for the tail-correlation asymmetry.
+- Case-study facts (Mt. Gox dates and quantities, Terra timeline and the LFG bitcoin reserve, FTX timeline and balance sheet) each cross-checked across at least two independent reports.
+
+### Deliberately out of scope
+
+NFT trading, memecoin tactics, yield-farming strategy guides and token-picking, as
+originally specified. The track teaches how the machine works and how to survive it.
+Chapter 6 Lesson 1 states plainly that the realistic output of the process is usually
+knowing when *not* to hold a position.
+
+### Outstanding
+
+Translations. English master only, as with every other track — the 45 new glossary terms
+are recorded with FR, PT and SW pending native-speaker review rather than machine-guessed.

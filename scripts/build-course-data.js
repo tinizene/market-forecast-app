@@ -47,6 +47,9 @@ const TRACKS = [
     free: false,
     file: 'crypto-content.js',
     contentKey: 'SCERE_CRYPTO_CONTENT',
+    // Chapters 1-3 diagrams are hand-authored inside crypto-content.js; Chapters 4-6
+    // are generated and merge into the same map, so this file must load second.
+    svgFile: 'crypto-svgs-ch456.js',
     trackKey: 'SCERE_CRYPTO_TRACK',
     svgKey: 'SCERE_CRYPTO_SVGS',
     defaultTitle: 'Crypto',

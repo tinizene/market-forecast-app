@@ -1575,9 +1575,294 @@
 - **PT:** _(pending review)_
 - **SW:** _(pending review)_ ⚠
 
+
+### Chapters 4 to 6 terms
+
+*Added when Crypto Chapters 4, 5 and 6 were written. FR, PT and SW follow the same
+convention as the rest of this track: pending native-speaker review rather than
+machine-guessed.*
+
+**Chapter 4 — Psychology, Scams & Building a Plan**
+
+### Fear of missing out (FOMO)
+- **EN:** The pressure to enter a position because others appear to be profiting, rather than because the position meets a standard you set in advance.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Unit bias
+- **EN:** The tendency to treat one unit of something as the natural and appropriate amount, regardless of how large a unit is.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Reporting bias
+- **EN:** The distortion created when successful outcomes are shared far more often than unsuccessful ones, so that the visible sample stops resembling the real one.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Anchoring to the high
+- **EN:** Treating the highest price a holding has reached as its real value, so that any lower price feels like a temporary discount rather than the current price.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Averaging down
+- **EN:** Buying more of a holding after it falls, reducing the average price paid.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Precommitment
+- **EN:** Making a decision in advance, in a form that is hard to reverse later, so that a future version of you with worse judgement has fewer options.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Denominator blindness
+- **EN:** Judging a token by its unit price while ignoring supply, which is what converts a price into a valuation.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Unlock schedule
+- **EN:** The timetable on which tokens not yet circulating enter the supply.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Rug pull
+- **EN:** A token is created and promoted, buyers provide liquidity, and the creators then withdraw that liquidity or dump their holdings, leaving a token that cannot be sold at any meaningful price.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Yield scheme
+- **EN:** A product offering a fixed, high and supposedly reliable return on deposits, funded not by any activity that produces a return but by the deposits of later participants.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Pig butchering
+- **EN:** A long-running fraud in which the victim is befriended, often through a dating application or a wrong-number message, then gradually introduced to an investment platform that shows fabricated profits before the money proves impossible to withdraw.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Withdrawal-fee scam
+- **EN:** A platform that shows growing profits and permits small early withdrawals, then demands a tax, fee or deposit before releasing a larger balance — a demand that repeats.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Approval draining
+- **EN:** A wallet is connected to a site that requests permission to spend its tokens, and the permission — once granted — is used to remove them later, without any further action by the owner.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Impersonation and giveaway fraud
+- **EN:** A well-known person, project or support channel is imitated, and the imitation asks you to send funds, connect a wallet, or reveal a recovery phrase.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Verification theatre
+- **EN:** Signals that appear to constitute independent checking — audits, listings, endorsements, published team identities — but that do not establish the thing the reader assumes they establish.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Fraud versus risk
+- **EN:** Fraud is a scheme designed so that the operator gains and you lose. Risk is a genuine activity that can lose money because the activity itself can fail.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Written plan
+- **EN:** A document setting out what you will hold, how much, under what rules, where it is stored, and under what conditions you will act. Written while calm, consulted while not.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Custody map
+- **EN:** A written statement of which holdings sit on an exchange, which sit in a wallet you control, and the amount at which a holding moves from the first to the second.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Proof of reserves
+- **EN:** A published attestation that an exchange holds assets matching customer balances, usually verified against on-chain holdings at a point in time.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Rebalancing band
+- **EN:** A rule returning a holding to its target weight once it drifts beyond a set distance from it, rather than on a calendar date.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Recovery plan
+- **EN:** Where the recovery phrase lives, how many copies exist, and what happens to them physically.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Succession
+- **EN:** Who else knows a holding exists and can reach it if you cannot.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+**Chapter 5 — Real-World Case Studies**
+
+### Claim versus asset
+- **EN:** A balance shown by a custodian is a claim on that custodian. The asset is what the custodian actually holds. The two are the same thing right up until they are not, and nothing in the interface distinguishes them.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Transaction malleability
+- **EN:** A property of early Bitcoin whereby a transaction's identifier could be altered before confirmation without changing its effect, so a poorly built system could be tricked into believing a payment had failed and sending it again.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Venue risk
+- **EN:** The risk that the place holding your assets fails, independent of what those assets do. It applies identically to every holding at that venue, so it cannot be diversified away by holding more assets there.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Civil rehabilitation
+- **EN:** The Japanese bankruptcy-protection process Mt. Gox filed under on 28 February 2014.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Death spiral
+- **EN:** A feedback loop in which the mechanism intended to restore a peg makes the underlying problem worse, so that each corrective step accelerates the collapse.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Contagion
+- **EN:** The transmission of stress from one asset or institution to others, through forced selling, shared exposures or shared counterparties, rather than through anything wrong with the assets receiving it.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Commingling
+- **EN:** Mixing customer assets with the firm's own assets, so that customer funds are available to the firm for its own purposes.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Self-issued collateral
+- **EN:** A firm backing its balance sheet with a token it created itself, whose value depends on confidence in that same firm.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Bank run dynamics
+- **EN:** When an institution's ability to pay depends on most people not asking at once, the rational individual decision is to ask first — which makes the collective outcome certain.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Unsecured creditor
+- **EN:** What an exchange customer becomes in a bankruptcy: a claimant on the estate, resolved over years.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+**Chapter 6 — A Professional Crypto Process**
+
+### Invalidation condition
+- **EN:** The specific, checkable circumstance under which the thesis is proven wrong and the reason for holding no longer exists.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Falsifiable claim
+- **EN:** A statement specific enough that a future observation could show it to be wrong.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Supply arithmetic
+- **EN:** Total supply, unlock schedule and implied market capitalisation — what replaces valuation where there are no cash flows.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Issuance-funded reward
+- **EN:** A staking return paid from newly created supply, which dilutes holders rather than paying them.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Transmission chain
+- **EN:** The path by which a policy change moves across markets — rates, then currencies and bonds, then credit and equities, then commodities and crypto.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### High beta
+- **EN:** Moving in the same direction as a broader risk market, but by a larger amount in both directions.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### No-trade regime
+- **EN:** A market with no clear trend, no imminent catalyst and no pillar strongly aligned. The correct position is often none.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Stablecoin supply
+- **EN:** The total outstanding quantity of major stablecoins, which approximates the amount of capital positioned inside the crypto system and ready to be deployed.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Correlation clustering
+- **EN:** The tendency of separate assets to move together far more closely during sharp falls than during normal or rising periods.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Custody hygiene
+- **EN:** The recurring practices that keep self-custodied assets reachable by you and unreachable by anyone else: revoking stale approvals, verifying recovery material, testing access, and keeping exchange balances under a stated cap.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Process review
+- **EN:** Examining a closed decision for whether the reasoning and the rules were sound, rather than only for whether it made money.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Complexity budget
+- **EN:** A limit on how many different protocols, wallets, chains and products you are willing to hold, set by how many you can actually keep track of rather than by how many look attractive.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
+### Recovery independence
+- **EN:** Holding assets in a way that can be recovered without the specific application, device or company you originally used.
+- **FR:** _(pending review)_
+- **PT:** _(pending review)_
+- **SW:** _(pending review)_ ⚠
+
 ## Stocks / ETFs / Indexes Track Terms
 
-*(Not yet started. Expect terms like: share, dividend, index fund, ETF, P/E ratio, diversification, expense ratio.)*
+*The Stocks & ETFs track is complete. Its terms live in `course/Stock_Market_Terms_Glossary.md`,
+which is organised by category rather than by the EN/FR/PT/SW block format used above —
+that track has not yet been scheduled for translation.*
 
 ---
 

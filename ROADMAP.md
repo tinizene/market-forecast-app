@@ -149,6 +149,8 @@ Ordered by what unlocks what rather than by size.
   confetti. The register of the product is "get rich slow", and the celebration should
   match it.
 
+---
+
 ## 7. Smaller things
 
 - **Tailwind is a render-blocking third-party script** in every page's `<head>`. If that

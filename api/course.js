@@ -94,7 +94,11 @@ function toIndex(tracks) {
         trackTitle: t.trackTitle,
         trackTagline: t.trackTagline,
         free: !!t.free,
-        type: t.type,
+        // Per-lesson, falling back to the track. A track being rewritten from the old
+        // flat `body` format to `structured` is a mixed set for as long as the rewrite
+        // takes, and forcing one format per track would mean converting 25 lessons in a
+        // single commit or not at all.
+        type: l.type || t.type,
         id: l.id,
         chapterNumber: l.chapterNumber != null ? l.chapterNumber : null,
         chapterTitle: l.chapterTitle || null,
@@ -179,7 +183,7 @@ module.exports = async function handler(req, res) {
         lesson: Object.assign({}, hit.lesson, {
           track: hit.track.track,
           trackTitle: hit.track.trackTitle,
-          type: hit.track.type,
+          type: hit.lesson.type || hit.track.type,
           free,
         }),
         entitled: free ? true : entitled,

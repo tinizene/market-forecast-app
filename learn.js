@@ -469,6 +469,7 @@ function renderLessonBlock(block, idBase, index) {
         || (typeof FOUNDATION_SVGS !== 'undefined' ? FOUNDATION_SVGS[block.svg] : '')
         || (window.SCERE_FOREX_SVGS || {})[block.svg]
         || (window.SCERE_CRYPTO_SVGS || {})[block.svg]
+        || (window.SCERE_STOCKS_SVGS || {})[block.svg]
         || '';
       return `
         <figure class="lesson-image-card">

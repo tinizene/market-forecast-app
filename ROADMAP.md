@@ -107,24 +107,19 @@ support as permanent and say so. Right now it is accidental rather than chosen.
 
 ## 6. Student experience — worth doing later
 
-From an external UX audit of the course. These are the items judged real but not
-urgent: each is a genuine improvement, none of them is what is holding the product
-back. The audit's higher-priority findings — progress tracking, track pages, and the
-design-token layer — are not yet written down here; they are larger pieces of work and
-need scoping before they belong on a list like this.
+From an external UX audit of the course. The audit's higher-priority findings —
+progress tracking, the hub/track split, the design-token layer, reading comfort,
+per-lesson time estimates and search — have since been **built**; see the course pages
+and `scripts/contrast-audit.js`. What follows is what was deliberately left.
 
 Ordered by what unlocks what rather than by size.
 
 - **Light mode.** Many students read in daylight, and a dark-only interface is a real
-  comfort cost over a 58-lesson course. Deliberately listed after a token layer exists:
-  done today it means editing 117 colour literals in `styles.css` plus 39 Tailwind
-  utilities across 15 files, twice. Done afterwards it is one mirrored block under
-  `[data-theme="light"]`. The order is most of the cost.
-
-- **Reading comfort toggle** — font size and line height, remembered locally. The
-  lesson bodies are long-form prose; the app currently offers one size and one measure
-  and no way to change either. Cheap, and it pairs naturally with light mode as a
-  single "reading preferences" control rather than two separate toggles.
+  comfort cost over a 58-lesson course. **Now cheap:** the token layer landed, so this
+  is a mirrored block of custom properties under `[data-theme="light"]` plus a toggle,
+  rather than a rewrite of 117 colour literals. Every pair must be re-run through
+  `scripts/contrast-audit.js` for the light theme — light backgrounds fail differently,
+  and the same muted greys will not survive the flip.
 
 - **"Up next" / related lessons** at the end of a lesson body. Prev/next already exists
   as chrome; this is the editorial version — what to read next and why — which is what
@@ -134,9 +129,8 @@ Ordered by what unlocks what rather than by size.
   and it directly answers the "dense, fatiguing" complaint without changing any colour.
   Must remain keyboard-reachable and must not trap focus.
 
-- **Keyboard shortcuts** for previous/next lesson and mark-complete. Only worth building
-  after progress tracking exists, since mark-complete is the shortcut that justifies the
-  others. Needs a discoverable list, and must not capture keys while a text field or a
+- **Keyboard shortcuts** for previous/next lesson and mark-complete. Progress tracking
+  now exists, so the precondition is met and this is straightforwardly buildable. Needs a discoverable list, and must not capture keys while a text field or a
   dialog has focus.
 
 - **Local notes and highlights**, persisted in localStorage. The most speculative item
@@ -144,8 +138,8 @@ Ordered by what unlocks what rather than by size.
   data a learner would be upset to lose, which is an argument for doing it only once
   there is an account to attach it to.
 
-- **A completion moment** when a chapter or track finishes. Requires progress tracking
-  first. Keep it small: a clear state change and a sentence about what comes next, not
+- **A completion moment** when a chapter or track finishes. Progress tracking now
+  exists, so this is unblocked. Keep it small: a clear state change and a sentence about what comes next, not
   confetti. The register of the product is "get rich slow", and the celebration should
   match it.
 

@@ -26,6 +26,7 @@ const DEFAULT_LANG = 'en';
 const LANG_RE = /^[a-z]{2}(-[a-z]{2})?$/i;
 
 const caches = new Map();
+const indexCache = new Map();
 
 // Read once per warm lambda per language: the files are static per deployment, and
 // re-reading ~890 KB of JSON on every lesson view would be pure waste.
@@ -51,6 +52,37 @@ function requestedLang(req) {
   return LANG_RE.test(raw) ? raw.toLowerCase() : DEFAULT_LANG;
 }
 
+// Reading time. A 58-lesson course with no sense of how long anything takes is hard to
+// plan around, and "3 min" is the difference between starting a lesson on a commute and
+// putting it off. Counted from the actual text at 200 wpm — the low end of adult
+// reading speed, chosen because this is unfamiliar technical material and an estimate
+// that runs short is worse than one that runs long.
+function countWords(value, acc) {
+  if (value == null) return acc;
+  if (typeof value === 'string') {
+    const w = value.trim().split(/\s+/).filter(Boolean).length;
+    return acc + w;
+  }
+  if (Array.isArray(value)) return value.reduce((n, v) => countWords(v, n), acc);
+  if (typeof value === 'object') {
+    // Skip identifiers and raw SVG markup — neither is read.
+    return Object.keys(value).reduce((n, k) => (
+      k === 'id' || k === 'svgMarkup' || k === 'src' || k === 'alt' ? n : countWords(value[k], n)
+    ), acc);
+  }
+  return acc;
+}
+
+function readingMinutes(lesson) {
+  const words = countWords(lesson.blocks || lesson.body || '', 0)
+    + countWords(lesson.keyTerms || [], 0);
+  if (!words) return null;
+  // Quizzes and diagrams take time that word count does not capture.
+  const extra = (lesson.quiz ? 1 : 0) + (Array.isArray(lesson.blocks)
+    ? lesson.blocks.filter((b) => b.type === 'image').length * 0.5 : 0);
+  return Math.max(1, Math.round(words / 200 + extra));
+}
+
 // Public metadata only. Deliberately an allow-list rather than a delete-list, so a
 // new field added to a lesson cannot leak into the free catalogue by default.
 function toIndex(tracks) {
@@ -69,6 +101,7 @@ function toIndex(tracks) {
         lessonNumber: l.lessonNumber,
         title: l.title,
         keyIdea: l.keyIdea || '',
+        minutes: readingMinutes(l),
       });
     });
   }
@@ -96,8 +129,11 @@ module.exports = async function handler(req, res) {
 
     if (fn === 'index') {
       // Cached publicly: the syllabus is identical for everyone, entitled or not.
+      // Memoised because toIndex now walks every lesson body to estimate reading time,
+      // and that answer cannot change within a deployment.
+      if (!indexCache.has(lang)) indexCache.set(lang, toIndex(tracks));
       res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
-      res.status(200).json({ lessons: toIndex(tracks), lang, paywallActive: paywallActive() });
+      res.status(200).json({ lessons: indexCache.get(lang), lang, paywallActive: paywallActive() });
       return;
     }
 

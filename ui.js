@@ -334,10 +334,81 @@
     try { window.sessionStorage.removeItem(CODE_KEY); } catch (e) { /* ignore */ }
   }
 
+
+  // ---- reading preferences -------------------------------------------------
+  // Text size and line spacing for the lesson bodies, persisted locally. WCAG 1.4.4
+  // asks that text scale to 200%; browser zoom technically satisfies it but scales the
+  // whole layout, which on a phone means horizontal scrolling. This scales the prose
+  // only, which is what someone reading a 7.5-hour course actually wants.
+  var READ_KEY = 'scere_reading_v1';
+  var SIZES = { s: 0.94, m: 1, l: 1.14, xl: 1.3 };
+  var LEADING = { tight: 1.5, normal: 1.65, loose: 1.85 };
+
+  function readPrefs() {
+    try {
+      var raw = window.localStorage.getItem(READ_KEY);
+      var p = raw ? JSON.parse(raw) : {};
+      return { size: SIZES[p.size] ? p.size : 'm', leading: LEADING[p.leading] ? p.leading : 'normal' };
+    } catch (e) {
+      return { size: 'm', leading: 'normal' };
+    }
+  }
+
+  function applyPrefs(p) {
+    var el = document.documentElement;
+    el.style.setProperty('--reading-scale', String(SIZES[p.size]));
+    el.style.setProperty('--reading-leading', String(LEADING[p.leading]));
+  }
+
+  function savePrefs(p) {
+    try { window.localStorage.setItem(READ_KEY, JSON.stringify(p)); } catch (e) { /* ignore */ }
+    applyPrefs(p);
+  }
+
+  // Rendered wherever a caller mounts it; returns nothing, wires itself.
+  function mountReadingControls(container) {
+    if (!container) return;
+    var p = readPrefs();
+    applyPrefs(p);
+    var sizeBtn = function (k, label) {
+      return '<button type="button" data-size="' + k + '" aria-pressed="' + (p.size === k) + '"' +
+        ' aria-label="Text size ' + label + '">' + label + '</button>';
+    };
+    var leadBtn = function (k, label) {
+      return '<button type="button" data-leading="' + k + '" aria-pressed="' + (p.leading === k) + '"' +
+        ' aria-label="Line spacing ' + label + '">' + label + '</button>';
+    };
+    container.className = 'reading-controls';
+    container.innerHTML =
+      '<span id="rcTextLabel">Text</span>' +
+      '<span class="rc-group" role="group" aria-labelledby="rcTextLabel">' +
+        sizeBtn('s', 'S') + sizeBtn('m', 'M') + sizeBtn('l', 'L') + sizeBtn('xl', 'XL') +
+      '</span>' +
+      '<span id="rcSpaceLabel">Spacing</span>' +
+      '<span class="rc-group" role="group" aria-labelledby="rcSpaceLabel">' +
+        leadBtn('tight', 'Tight') + leadBtn('normal', 'Normal') + leadBtn('loose', 'Loose') +
+      '</span>';
+
+    container.addEventListener('click', function (ev) {
+      var btn = ev.target.closest('button');
+      if (!btn) return;
+      var group = btn.dataset.size ? 'size' : (btn.dataset.leading ? 'leading' : null);
+      if (!group) return;
+      p[group] = btn.dataset.size || btn.dataset.leading;
+      savePrefs(p);
+      // Only the buttons in the same group change state.
+      container.querySelectorAll('button[data-' + (group === 'size' ? 'size' : 'leading') + ']').forEach(function (b) {
+        b.setAttribute('aria-pressed', String((b.dataset.size || b.dataset.leading) === p[group]));
+      });
+      say(group === 'size' ? 'Text size ' + btn.textContent : 'Line spacing ' + btn.textContent);
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     mountLiveRegions();
     mountOfflineBanner();
     captureCode();
+    applyPrefs(readPrefs());
   });
 
   window.SCERE_UI = {
@@ -348,6 +419,7 @@
     skeleton: skeleton,
     focusHeading: focusHeading,
     isEmail: isEmail,
+    mountReadingControls: mountReadingControls,
     promoCode: promoCode,
     captureCode: captureCode,
     clearCode: clearCode,

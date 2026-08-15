@@ -105,7 +105,51 @@ support as permanent and say so. Right now it is accidental rather than chosen.
 
 ---
 
-## 6. Smaller things
+## 6. Student experience — worth doing later
+
+From an external UX audit of the course. These are the items judged real but not
+urgent: each is a genuine improvement, none of them is what is holding the product
+back. The audit's higher-priority findings — progress tracking, track pages, and the
+design-token layer — are not yet written down here; they are larger pieces of work and
+need scoping before they belong on a list like this.
+
+Ordered by what unlocks what rather than by size.
+
+- **Light mode.** Many students read in daylight, and a dark-only interface is a real
+  comfort cost over a 58-lesson course. Deliberately listed after a token layer exists:
+  done today it means editing 117 colour literals in `styles.css` plus 39 Tailwind
+  utilities across 15 files, twice. Done afterwards it is one mirrored block under
+  `[data-theme="light"]`. The order is most of the cost.
+
+- **Reading comfort toggle** — font size and line height, remembered locally. The
+  lesson bodies are long-form prose; the app currently offers one size and one measure
+  and no way to change either. Cheap, and it pairs naturally with light mode as a
+  single "reading preferences" control rather than two separate toggles.
+
+- **"Up next" / related lessons** at the end of a lesson body. Prev/next already exists
+  as chrome; this is the editorial version — what to read next and why — which is what
+  keeps someone moving through a track rather than stopping at the end of a chapter.
+
+- **Focus mode** that hides the nav, disclaimers and footer while reading. Low effort,
+  and it directly answers the "dense, fatiguing" complaint without changing any colour.
+  Must remain keyboard-reachable and must not trap focus.
+
+- **Keyboard shortcuts** for previous/next lesson and mark-complete. Only worth building
+  after progress tracking exists, since mark-complete is the shortcut that justifies the
+  others. Needs a discoverable list, and must not capture keys while a text field or a
+  dialog has focus.
+
+- **Local notes and highlights**, persisted in localStorage. The most speculative item
+  here — genuinely useful for a study product, and the first one that starts to create
+  data a learner would be upset to lose, which is an argument for doing it only once
+  there is an account to attach it to.
+
+- **A completion moment** when a chapter or track finishes. Requires progress tracking
+  first. Keep it small: a clear state change and a sentence about what comes next, not
+  confetti. The register of the product is "get rich slow", and the celebration should
+  match it.
+
+## 7. Smaller things
 
 - **Tailwind is a render-blocking third-party script** in every page's `<head>`. If that
   CDN is slow, firewalled or blocked by an extension, the page stalls before `<body>`

@@ -568,6 +568,8 @@ This is deliberately an MVP — the single-page forecast + news screen only, mat
 what was scoped. Not built in this pass, same "don't build it before there's a real
 decision behind it" discipline the weather app's roadmap docs used:
 
+Outstanding work now lives in [ROADMAP.md](ROADMAP.md).
+
 - ~~**Real Pro paywall/payment.**~~ **Built since.** Two Stripe products, enforced
   server-side: the course (one payment, permanent) and the daily ideas (monthly). See
   [PAYMENTS.md](PAYMENTS.md).

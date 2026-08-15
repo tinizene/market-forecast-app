@@ -779,3 +779,16 @@
 .state-card.is-error { border-color: rgba(239, 68, 68, 0.4); background: rgba(127, 29, 29, 0.18); }
 .state-card.is-error .state-title { color: #fecaca; }
 .state-card .ui-btn { margin-top: 1rem; }
+
+/* Promotion-code feedback. Stated next to the button that will charge, and stated
+   even when the code did NOT apply — a code silently ignored is how someone pays full
+   price believing it worked. */
+.promo-note {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  margin-top: 0.6rem;
+  color: #cbd5e1;
+}
+.promo-note.is-good { color: #86efac; }   /* 10.1:1 on the page */
+.promo-note.is-bad { color: #fca5a5; }    /* 8.5:1 on the page */
+.promo-was { color: #94a3b8; text-decoration: line-through; }

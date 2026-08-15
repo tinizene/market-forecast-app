@@ -1378,7 +1378,7 @@ async function renderCourseIndex() {
 // moment they have decided they want it. The price is read from Stripe via
 // /api/billing rather than written here, so there is exactly one place it can be wrong.
 
-const courseAccess = { configured: false, available: false, priceLabel: null, ownsCourse: false };
+const courseAccess = { configured: false, available: false, priceLabel: null, ownsCourse: false, promo: null };
 
 // ui.js loads before this file. The fallback exists only so a stale service-worker
 // cache that misses ui.js degrades to a plain page instead of a blank one.
@@ -1407,11 +1407,16 @@ function wireRetry(root, fn) {
 
 async function loadCourseBilling() {
   try {
-    const res = await fetch('/api/billing?fn=config');
+    // A campaign link (?code=LAUNCH50) is resolved server-side so the price shown here
+    // is the price actually charged. Showing €200 and then €100 on Stripe's page would
+    // be a pleasant surprise once and a trust problem thereafter.
+    const code = ui.promoCode ? ui.promoCode() : null;
+    const res = await fetch('/api/billing?fn=config' + (code ? `&code=${encodeURIComponent(code)}` : ''));
     if (!res.ok) return;
     const c = await res.json();
     courseAccess.configured = !!c.configured;
     courseAccess.ownsCourse = !!c.ownsCourse;
+    courseAccess.promo = c.promo || null;
     const course = c.course || {};
     courseAccess.available = !!course.available;
     courseAccess.priceLabel = course.priceLabel || null;
@@ -1421,8 +1426,32 @@ async function loadCourseBilling() {
   }
 }
 
+// The discounted figure wins wherever a code applies — the button must state what
+// will actually be charged.
+function coursePriceNow() {
+  const p = courseAccess.promo;
+  if (p && p.valid && p.course) return p.course.label;
+  return courseAccess.priceLabel;
+}
+
 function courseBuyLabel() {
-  return courseAccess.priceLabel ? `Get the course · ${courseAccess.priceLabel}` : 'Get the course';
+  const price = coursePriceNow();
+  return price ? `Get the course · ${price}` : 'Get the course';
+}
+
+// Says what the code did, including when it did nothing. A code that is silently
+// ignored is how someone pays full price believing it was applied.
+function renderPromoNote() {
+  const p = courseAccess.promo;
+  if (!p || courseAccess.ownsCourse) return '';
+  if (!p.valid) {
+    return `<p class="promo-note is-bad">Code <b>${escapeHtml(p.code)}</b> isn’t valid or has expired — the price shown is the standard one.</p>`;
+  }
+  if (!p.course) {
+    return `<p class="promo-note">Code <b>${escapeHtml(p.code)}</b> doesn’t apply to the course.</p>`;
+  }
+  const wasLabel = p.course.wasLabel ? `<s class="promo-was">${escapeHtml(p.course.wasLabel)}</s> ` : '';
+  return `<p class="promo-note is-good">✓ Code <b>${escapeHtml(p.code)}</b> applied — ${wasLabel}<b>${escapeHtml(p.course.label)}</b>${p.course.free ? ' (free)' : ''}</p>`;
 }
 
 async function startCourseCheckout(btn) {
@@ -1434,7 +1463,7 @@ async function startCourseCheckout(btn) {
     const res = await fetch('/api/billing?fn=createCheckout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ product: 'course' }),
+      body: JSON.stringify({ product: 'course', code: (ui.promoCode ? ui.promoCode() : null) || undefined }),
     });
     const d = await res.json().catch(() => ({}));
     if (res.ok && d.url) { window.location.href = d.url; return; }  // leave it busy; we're navigating away
@@ -1546,6 +1575,7 @@ function renderCourseOffer() {
         you learn it.
       </p>
       <button type="button" data-buy-course class="upgrade-btn">${escapeHtml(courseBuyLabel())}</button>
+      ${renderPromoNote()}
     </div>`;
 }
 
@@ -1562,7 +1592,7 @@ function renderLockedLesson(e) {
         This lesson is part of the course — Crypto, Forex and Stocks &amp; ETFs. One payment, yours permanently, and it includes three months of daily high-conviction ideas.
       </p>
       ${courseAccess.available
-        ? `<button type="button" data-buy-course class="upgrade-btn inline-block mt-4">${escapeHtml(courseBuyLabel())}</button>`
+        ? `<button type="button" data-buy-course class="upgrade-btn inline-block mt-4">${escapeHtml(courseBuyLabel())}</button>${renderPromoNote()}`
         : ''}
       <p class="mt-4 text-xs text-slate-500">
         <a href="./learn.html" class="underline decoration-slate-600 underline-offset-2 hover:text-sky-400">Browse the free Foundation track</a>

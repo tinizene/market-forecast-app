@@ -94,6 +94,67 @@ Use `sk_test_...` + test-mode prices, then buy with Stripe's
 expiry, any CVC). Worth walking the whole path once: buy the course, confirm the
 lessons unlock **and** the ideas open, then swap in the live keys.
 
+### 4b. Discount codes
+
+Both Checkout Sessions are created with `allow_promotion_codes`, so the payment page
+already shows an **Add promotion code** field. Creating codes needs no code change:
+
+1. Stripe Dashboard → **Product catalogue → Coupons** → create a coupon (percentage or
+   fixed amount, and for the subscription a **duration**: once, repeating for N months,
+   or forever).
+2. On that coupon → **Promotion codes** → create the customer-facing code (`LAUNCH50`).
+   Optional restrictions worth using: expiry date, maximum redemptions, first-time
+   customers only, and a minimum order amount.
+
+A few things specific to how this app grants access:
+
+- **A 100%-off code is a different shape of session.** When the total comes to zero,
+  Stripe sets `payment_status` to `no_payment_required` (not `paid`) and creates **no
+  PaymentIntent**. `deriveFromStripe` accepts both statuses, so a comped course grants
+  the course and its 90 included days exactly like a paid one. Matching only `paid`
+  would have let someone redeem a full-discount code, complete Checkout, and be granted
+  nothing — with no error anywhere to explain it.
+- **A comped course still expires its ideas at 90 days.** The included window runs from
+  the purchase date regardless of what was paid.
+- **A discounted purchase can still be refunded.** Refunds are compared against the
+  session's `amount_total`, which is the *discounted* amount — so fully refunding a
+  €100 half-price sale correctly revokes the course. A zero-amount order has nothing to
+  refund and can never be revoked this way.
+- **Fixed-amount coupons must be in EUR** to apply to these prices.
+- **On the subscription**, a `forever` coupon keeps the subscription `active` at a lower
+  price; entitlement follows subscription status, not the amount, so nothing changes.
+
+#### Campaign links (`?code=`)
+
+Any page accepts `?code=LAUNCH50`, so a campaign email, ad or affiliate link can arrive
+with the discount already applied — no typing, and no code to forget:
+
+```
+https://<your-domain>/learn.html?code=LAUNCH50
+https://<your-domain>/research.html?code=LAUNCH50
+```
+
+What happens:
+
+- The code is remembered for the **visit** (`sessionStorage`, not `localStorage` — a
+  discount from a link belongs to that visit, not permanently to that browser), so it
+  survives the walk from the syllabus into a free lesson and on to checkout. Someone who
+  clicks a link, reads two lessons and then buys still gets what they were promised.
+- The site shows the **real discounted price on the button** — "Get the course · €100",
+  with €200 struck through — because the code is resolved server-side against Stripe
+  before rendering. Showing €200 and then €100 on Stripe's page would be a pleasant
+  surprise once and a trust problem thereafter.
+- Checkout is created with `discounts` rather than `allow_promotion_codes` (the two are
+  mutually exclusive), so the discount is already applied when the buyer arrives.
+- **A code that does not apply says so.** Expired, unknown, wrong currency, wrong
+  product, below a minimum order — each is stated next to the price rather than silently
+  ignored. A code that is quietly dropped is how someone pays full price believing it
+  worked.
+- **A bad code can never block a sale.** Stripe is the authority on limits that cannot
+  be evaluated up front (per-customer caps, `first_time_transaction`, redemption
+  limits). If it refuses the code, checkout is retried *without* it and the buyer still
+  reaches the payment page, where they can type a different one.
+
 ### 5. (Optional but recommended) Prompt revocation — webhook + KV
 
 Without this, a cancellation, failed payment or refund stops access at the next

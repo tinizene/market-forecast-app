@@ -275,7 +275,27 @@ const access = {
   configured: false,
   course: { available: false, priceLabel: null },
   ideas: { available: false, priceLabel: null },
+  promo: null,
 };
+
+// A code from a campaign link may apply to one product, both, or neither. The price
+// on each button has to be the price that will actually be charged.
+function priceNow(which) {
+  const p = access.promo;
+  if (p && p.valid && p[which]) return p[which].label;
+  return access[which].priceLabel;
+}
+
+function promoNote(which) {
+  const p = access.promo;
+  if (!p) return '';
+  if (!p.valid) {
+    return `<p class="promo-note is-bad">Code <b>${escapeHtml(p.code)}</b> isn’t valid or has expired — prices shown are the standard ones.</p>`;
+  }
+  if (!p[which]) return '';
+  const was = p[which].wasLabel ? `<s class="promo-was">${escapeHtml(p[which].wasLabel)}</s> ` : '';
+  return `<p class="promo-note is-good">✓ Code <b>${escapeHtml(p.code)}</b> applied — ${was}<b>${escapeHtml(p[which].label)}</b></p>`;
+}
 let selectedDate = null;
 
 // ui.js loads before this file. The fallback exists only so a stale service-worker
@@ -316,8 +336,8 @@ function renderAccess() {
     return;
   }
 
-  const idealPrice = access.ideas.priceLabel ? escapeHtml(access.ideas.priceLabel) : '';
-  const coursePrice = access.course.priceLabel ? escapeHtml(access.course.priceLabel) : '';
+  const idealPrice = priceNow('ideas') ? escapeHtml(priceNow('ideas')) : '';
+  const coursePrice = priceNow('course') ? escapeHtml(priceNow('course')) : '';
   const signOut = '<button id="logoutBtn" type="button" class="underline hover:text-slate-200">Sign out</button>';
 
   if (access.entitled) {
@@ -354,7 +374,7 @@ function renderAccess() {
         <div class="paywall-icon">🔒</div>
         <p class="text-sm text-slate-200 font-semibold mb-1">Your three included months have ended</p>
         <p class="text-xs text-slate-400 mb-1 max-w-sm mx-auto">Your course is unaffected and stays yours. To keep receiving the daily ideas${idealPrice ? `, they are ${idealPrice}` : ''}. The track record above stays free, always.</p>
-        ${access.ideas.available ? `<button id="subscribeBtn" type="button" class="upgrade-btn">Keep the daily ideas${idealPrice ? ` · ${idealPrice}` : ''}</button>` : ''}
+        ${access.ideas.available ? `<button id="subscribeBtn" type="button" class="upgrade-btn">Keep the daily ideas${idealPrice ? ` · ${idealPrice}` : ''}</button>${promoNote('ideas')}` : ''}
         <p class="text-[11px] text-slate-500 mt-3">Already subscribed? <button id="restoreBtn" type="button" class="underline hover:text-slate-300">Restore access</button></p>
       </div>`;
   } else {
@@ -367,7 +387,8 @@ function renderAccess() {
         <p class="text-xs text-slate-400 mb-3 max-w-sm mx-auto">Full entries, targets, invalidation and the weighted six-pillar scorecard, updated daily. The track record above stays free, always.</p>
         ${access.course.available ? `
           <button id="buyCourseBtn" type="button" class="upgrade-btn">Get the course${coursePrice ? ` · ${coursePrice}` : ''}</button>
-          <p class="text-[11px] text-slate-400 mt-2 max-w-sm mx-auto">Yours permanently, and it includes three months of these ideas.</p>` : ''}
+          <p class="text-[11px] text-slate-400 mt-2 max-w-sm mx-auto">Yours permanently, and it includes three months of these ideas.</p>
+          ${promoNote('course')}` : ''}
         ${access.ideas.available ? `
           <p class="text-[11px] text-slate-500 mt-3">Just want the ideas? <button id="subscribeBtn" type="button" class="underline hover:text-slate-300">Subscribe${idealPrice ? ` · ${idealPrice}` : ''}</button></p>` : ''}
         <p class="text-[11px] text-slate-500 mt-2">Already paid? <button id="restoreBtn" type="button" class="underline hover:text-slate-300">Restore access</button></p>
@@ -385,7 +406,7 @@ async function startCheckout(btn, product, unavailableMsg) {
   // mean two Checkout Sessions.
   const restore = ui.setBusy(btn, 'Taking you to checkout…');
   try {
-    const res = await postJson('/api/billing?fn=createCheckout', { product });
+    const res = await postJson('/api/billing?fn=createCheckout', { product, code: (ui.promoCode ? ui.promoCode() : null) || undefined });
     const d = await res.json().catch(() => ({}));
     if (res.ok && d.url) { window.location.href = d.url; return; }  // stay busy; navigating away
     // These mean the page is simply out of date about what this visitor already has —
@@ -487,10 +508,12 @@ async function handleCheckoutReturn() {
 
 async function loadBillingConfig() {
   try {
-    const c = await fetchJson('/api/billing?fn=config');
+    const code = ui.promoCode ? ui.promoCode() : null;
+    const c = await fetchJson('/api/billing?fn=config' + (code ? `&code=${encodeURIComponent(code)}` : ''));
     access.configured = !!c.configured;
     access.course = c.course || { available: false, priceLabel: null };
     access.ideas = c.ideas || { available: false, priceLabel: null };
+    access.promo = c.promo || null;
   } catch (e) { /* leave defaults; paywall treated as inactive */ }
 }
 

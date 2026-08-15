@@ -307,9 +307,37 @@
     return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(v || '').trim());
   }
 
+  // ---- campaign discount codes --------------------------------------------
+  // A campaign link arrives as ?code=LAUNCH50. The code is remembered for the visit so
+  // it survives the walk from the syllabus into a lesson and on to checkout — someone
+  // who clicks an emailed link, reads two free lessons and then buys should still get
+  // the discount they were promised. sessionStorage, not localStorage: a discount from
+  // a link belongs to that visit, not permanently to that browser.
+  var CODE_KEY = 'scere_promo';
+  var CODE_RE = /^[A-Za-z0-9_-]{1,64}$/;
+
+  function promoCode() {
+    try { return window.sessionStorage.getItem(CODE_KEY) || null; } catch (e) { return null; }
+  }
+
+  function captureCode() {
+    try {
+      var c = (new URLSearchParams(window.location.search).get('code') || '').trim();
+      // Storage throws in some private-browsing modes; the code is a nicety, never a
+      // requirement, so failing to remember it must not break the page.
+      if (c && CODE_RE.test(c)) window.sessionStorage.setItem(CODE_KEY, c);
+    } catch (e) { /* ignore */ }
+    return promoCode();
+  }
+
+  function clearCode() {
+    try { window.sessionStorage.removeItem(CODE_KEY); } catch (e) { /* ignore */ }
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     mountLiveRegions();
     mountOfflineBanner();
+    captureCode();
   });
 
   window.SCERE_UI = {
@@ -320,6 +348,9 @@
     skeleton: skeleton,
     focusHeading: focusHeading,
     isEmail: isEmail,
+    promoCode: promoCode,
+    captureCode: captureCode,
+    clearCode: clearCode,
     strings: STRINGS,
     escapeHtml: esc,
   };

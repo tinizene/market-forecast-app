@@ -1052,3 +1052,7 @@
 }
 .reading-controls button[aria-pressed="true"] { background: var(--primary-soft); color: var(--primary-text); }
 .reading-controls button:hover { color: var(--text-primary); }
+
+/* Distance-from-target on a track-record row. Deliberately quiet: the outcome chip is
+   the headline, this is the detail that explains what KIND of miss it was. */
+.record-row .rr-dist { font-size: 0.7rem; color: var(--primary-text); margin-top: 0.15rem; }

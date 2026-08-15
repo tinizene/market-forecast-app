@@ -106,6 +106,29 @@ function renderNoTrade(data) {
     </div>`;
 }
 
+// The model writes this column as a sentence with the arithmetic shown. The row has
+// space for the headline figures only, so pull the two percentages back out and leave
+// the working to the full report. Returns '' when the column is absent — older reports
+// predate it, and a missing figure must not render as an empty label.
+function summariseDistance(text) {
+  const t = String(text || '').trim();
+  if (!t || /^(n\/?a|-|—)$/i.test(t)) return '';
+  if (/no published target/i.test(t)) return 'No published target';
+  const gap = t.match(/gap[^%\d-]{0,20}(-?[\d.]+)\s*%/i);
+  const prog = t.match(/progress[^%\d-]{0,20}(-?[\d.]+)\s*%/i);
+  const parts = [];
+  if (gap) parts.push(`${gap[1]}% from target`);
+  if (prog) {
+    const n = parseFloat(prog[1]);
+    parts.push(n < 0
+      ? `moved ${Math.abs(n)}% of the way in the wrong direction`
+      : `${n}% of the way to target`);
+  }
+  // Unparseable but present: show the raw text rather than silently dropping a figure
+  // the report went to the trouble of computing.
+  return parts.length ? parts.join(' · ') : t.slice(0, 80);
+}
+
 function renderTrackRecord(data) {
   const pr = data.performanceReview || {};
   const root = document.getElementById('trackRecord');
@@ -131,11 +154,16 @@ function renderTrackRecord(data) {
     const plShort = pl.split('—')[0].trim().slice(0, 60);
     const plCls = /\+|favorable|profit|win/i.test(pl) && !/n\/?a|flat|pending/i.test(pl.split('—')[0]) ? 'pos'
       : /-\d|loss|stopped/i.test(pl.split('—')[0]) ? 'neg' : 'na';
+    // How far the call finished from target. A loss that missed by 0.3% and a loss that
+    // ran 49% the wrong way are different mistakes, and only one of them is a wrong
+    // thesis — publishing the number is what lets a reader tell them apart.
+    const dist = summariseDistance(it.distance_from_target);
     return `
       <div class="record-row">
         <div>
           <div class="rr-idea">${escapeHtml(label)}</div>
           ${plShort ? `<div class="rr-sub">${escapeHtml(plShort)}</div>` : ''}
+          ${dist ? `<div class="rr-dist">${escapeHtml(dist)}</div>` : ''}
         </div>
         ${chip}
         <div class="rr-pl ${plCls}">${status === 'pending' ? 'open' : (plCls === 'pos' ? 'win' : plCls === 'neg' ? 'loss' : '—')}</div>

@@ -26,7 +26,7 @@ The free Foundation track is open to everyone and always has been.
 | Surface | Free (always) | Paid |
 | --- | --- | --- |
 | **Course** (`learn.html`, `lesson.html`) | The whole **syllabus** — every track, chapter, lesson title and key idea — plus the entire Foundation track | The lesson **bodies** of Crypto, Forex and Stocks & ETFs (**the course**) |
-| **Ideas** (`research.html`) | Regime headline, top idea, overall confidence, the full **track record** (wins / invalidations), each live idea's **headline + six-pillar score bars** | Entry, targets, stop/invalidation, per-pillar reasoning, confirmation criteria (**the ideas**) |
+| **Ideas** (`research.html`) | Regime headline, top idea, overall confidence, the full **track record** (wins / invalidations, and how far each call finished from its target), each live idea's **headline + six-pillar score bars** | Entry, targets, stop/invalidation, per-pillar reasoning, confirmation criteria (**the ideas**) |
 
 Paid content is **withheld server-side** and never sent to an unentitled browser
 — this is real enforcement, not CSS hiding. `middleware.js` blocks direct access

@@ -155,6 +155,10 @@ const PERFORMANCE_ALIASES = [
   ['outcome', (k) => /^outcome/.test(k)],
   ['outcome', (k) => /^status/.test(k)],
   ['hypothetical_p_l_if_followed', (k) => /p_l|pnl|hypothetical/.test(k)],
+  // "Distance from Target" arrives as its own column so the free track record can show
+  // how far off a call finished, not just whether it lost. Same header drift as the
+  // rest of this table, so match on the concepts rather than an exact name.
+  ['distance_from_target', (k) => /distance|gap_to_target|progress_to_target|off_target/.test(k)],
   ['key_lesson', (k) => /lesson|notes/.test(k)],
 ];
 
@@ -654,4 +658,7 @@ module.exports = {
   // reports whose source markdown is no longer on hand.
   extractNoTradeZone,
   classifyNoTradeVerdict,
+  // Exported so the performance table's drifting column headers can be
+  // regression-tested directly, without a whole report around them.
+  canonicalizePerformanceRow,
 };

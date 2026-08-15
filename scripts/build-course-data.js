@@ -71,7 +71,15 @@ const TRACKS = [
     svgKey: null,
     defaultTitle: 'Stocks & ETFs',
     defaultTagline: 'Index funds and ETFs, for a complete beginner.',
+    // Being rewritten to 'structured' one lesson at a time (see
+    // course/Stocks_Track_Roadmap.md). A lesson carrying its own `type` overrides this,
+    // so the two formats coexist until the rewrite finishes.
     type: 'body',
+    // Rewritten lessons live here and take precedence over a legacy card with the same
+    // id, so replacing one is a matter of writing it — no deletion step to forget.
+    rewriteFile: 'stocks-content.js',
+    rewriteContentKey: 'SCERE_STOCKS_CONTENT',
+    rewriteTrackKey: 'SCERE_STOCKS_TRACK',
   },
 ];
 
@@ -81,10 +89,12 @@ function loadBundles() {
   const win = {};
   global.window = win;
   for (const t of TRACKS) {
-    const p = path.join(SRC_DIR, t.file);
-    if (!fs.existsSync(p)) throw new Error(`Missing course bundle: ${t.file}`);
-    delete require.cache[require.resolve(p)];
-    require(p);
+    for (const file of [t.file, t.rewriteFile].filter(Boolean)) {
+      const p = path.join(SRC_DIR, file);
+      if (!fs.existsSync(p)) throw new Error(`Missing course bundle: ${file}`);
+      delete require.cache[require.resolve(p)];
+      require(p);
+    }
   }
   return win;
 }
@@ -126,8 +136,23 @@ function main() {
   const manifest = [];
 
   for (const t of TRACKS) {
-    const lessons = win[t.contentKey] || [];
-    const meta = (t.trackKey && win[t.trackKey]) || {};
+    const legacy = win[t.contentKey] || [];
+    const rewritten = (t.rewriteContentKey && win[t.rewriteContentKey]) || [];
+    const rewrittenIds = new Set(rewritten.map((l) => l.id));
+    // A rewrite REPLACES the legacy card of the same id rather than sitting beside it,
+    // so the reader never sees both the 200-word version and the real one.
+    const remaining = legacy
+      .filter((l) => !rewrittenIds.has(l.id))
+      .map((l, i) => Object.assign({}, l, { lessonNumber: rewritten.length + i + 1 }));
+    const lessons = rewritten.length
+      ? rewritten.map((l) => Object.assign({ type: 'structured' }, l)).concat(remaining)
+      : legacy;
+    if (rewritten.length) {
+      const dropped = legacy.length - remaining.length;
+      console.log(`  ${t.track}: ${rewritten.length} rewritten, ${remaining.length} legacy remaining` +
+        (dropped ? ` (${dropped} legacy card${dropped === 1 ? '' : 's'} replaced)` : ''));
+    }
+    const meta = (t.rewriteTrackKey && win[t.rewriteTrackKey]) || (t.trackKey && win[t.trackKey]) || {};
     const svgs = t.svgKey ? (win[t.svgKey] || {}) : (t.track === 'foundation' ? foundationSvgs : {});
 
     const payload = {

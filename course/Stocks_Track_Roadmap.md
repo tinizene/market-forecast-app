@@ -82,76 +82,95 @@ hold, what it entitles them to, and what it costs to hold it.
 7. **What It Costs to Own** *(id `expense-ratios`)* — expense ratios, spreads, and the
    compounding arithmetic of a fee, computed rather than asserted. — ✅ complete
 
-## Chapter 2: Reading a Company and a Market — 5 lessons
+## Chapter 2: Reading a Company and a Market — 5 lessons · ✅ COMPLETE
 
 1. **Reading the Three Statements** — what the income statement, balance sheet and cash
-   flow statement each answer, and which one is hardest to fake. — ⬜ not started
+   flow statement each answer, and which one is hardest to fake. — ✅ complete
 2. **Valuation Multiples and Their Assumptions** — P/E, P/B, EV/EBITDA; every multiple
-   is a compressed forecast, and a low one is a question, not a bargain. — ⬜ not started
+   is a compressed forecast, and a low one is a question, not a bargain. — ✅ complete
 3. **Growth, Value and the Factor Evidence** — the value premium, its long documented
    history and its long recent drought. Contested by construction; teach the
-   disagreement. — ⬜ not started
+   disagreement. — ✅ complete
 4. **Market Efficiency — and What It Means for You** — the three forms, what the
    evidence supports, and the Grossman–Stiglitz point that a perfectly efficient market
-   could not exist because nobody would be paid to make it so. — ⬜ not started
+   could not exist because nobody would be paid to make it so. — ✅ complete
 5. **Diversification Across Sectors and Countries** *(id `diversification-by-sector`)* —
-   correlation, home bias, and the honest answer to "how many stocks is enough". — ⬜ not started
+   correlation, home bias, and the honest answer to "how many stocks is enough". — ✅ complete
 
-## Chapter 3: Risk and Position Sizing for Equities — 4 lessons
+## Chapter 3: Risk and Position Sizing for Equities — 4 lessons · ✅ COMPLETE
 
 1. **What Risk Actually Means Here** — volatility versus permanent capital loss,
-   drawdown depth versus duration, and sequence-of-returns risk. — ⬜ not started
+   drawdown depth versus duration, and sequence-of-returns risk. — ✅ complete
 2. **Position Sizing and Concentration** — the arithmetic of recovering from a 50%
-   loss, single-stock risk, and why the Forex Ch3 L1 sizing formula transfers. — ⬜ not started
+   loss, single-stock risk, and why the Forex Ch3 L1 sizing formula transfers. — ✅ complete
 3. **Dollar-Cost Averaging vs Lump Sum** *(id `dollar-cost-averaging`)* — the evidence
    says lump sum wins on average and DCA wins on regret. Both facts, honestly, and why
-   a behavioural tool is still a legitimate tool. — ⬜ not started
+   a behavioural tool is still a legitimate tool. — ✅ complete
 4. **Margin, Leverage and Short Selling** — margin calls, borrow cost, and the asymmetry
-   that a short's loss is unbounded. Callback to Forex Ch3 L2. — ⬜ not started
+   that a short's loss is unbounded. Callback to Forex Ch3 L2. — ✅ complete
 
-## Chapter 4: Behaviour, Costs and a Written Plan — 3 lessons
+## Chapter 4: Behaviour, Costs and a Written Plan — 3 lessons · ✅ COMPLETE
 
 1. **The Behaviour Gap** — what the evidence says about individual investors' returns
-   versus the funds they hold, and how much of the gap is timing. — ⬜ not started
+   versus the funds they hold, and how much of the gap is timing. — ✅ complete
 2. **Fees, Taxes and Decades** — the full compounding arithmetic, computed, over a
-   realistic contribution schedule. This is the lesson the fee table exists for. — ⬜ not started
+   realistic contribution schedule. This is the lesson the fee table exists for. — ✅ complete
 3. **Building an Equity Plan** — written rules, rebalancing bands, and deciding the
-   sell condition before buying. Carries Forex Ch4 L2's expectancy framing. — ⬜ not started
+   sell condition before buying. Carries Forex Ch4 L2's expectancy framing. — ✅ complete
 
-## Chapter 5: Real-World Case Studies — 3 lessons
+## Chapter 5: Real-World Case Studies — 3 lessons · ✅ COMPLETE
 
 1. **The Dot-Com Bubble (1995–2002)** — narrative valuation, index concentration, and
-   how long "recovery" actually took on a real index. — ⬜ not started
+   how long "recovery" actually took on a real index. — ✅ complete
 2. **2007–2009 and the Shape of a Recovery** — drawdown, sequence risk, and what the
-   investor who kept contributing experienced versus the one who stopped. — ⬜ not started
+   investor who kept contributing experienced versus the one who stopped. — ✅ complete
 3. **GameStop, January 2021** — short squeezes, gamma, brokerage restrictions and
-   settlement mechanics. The case study where the plumbing became the story. — ⬜ not started
+   settlement mechanics. The case study where the plumbing became the story. — ✅ complete
 
-## Chapter 6: A Professional Equity Process — 3 lessons
+## Chapter 6: A Professional Equity Process — 3 lessons · ✅ COMPLETE
 
 1. **The Six-Pillar Thesis, Adapted for Equities** — what carries over from Forex Ch6
-   L1, what has to change when there are cash flows to value. — ⬜ not started
+   L1, what has to change when there are cash flows to value. — ✅ complete
 2. **Regime Mapping for Equities** — where equities sit on the rates → FX → credit →
-   equities transmission chain, and when the right position is none. — ⬜ not started
+   equities transmission chain, and when the right position is none. — ✅ complete
 3. **Portfolio Discipline and the Long Game** — correlation clustering in drawdowns,
    rebalancing as a discipline rather than a forecast, and the plainly-stated once
-   mention of the trade-thesis service, per the Forex Ch6 precedent. — ⬜ not started
+   mention of the trade-thesis service, per the Forex Ch6 precedent. — ✅ complete
 
 ---
 
 ## Total
 
-**25 lessons across 6 chapters — 7 built, 18 outstanding.** The track stands at 9
-lessons and 6,139 words (39 minutes), up from 7 lessons and 1,531 words (8 minutes).
-Two legacy cards remain, and both are already scheduled: `diversification-by-sector`
-becomes Chapter 2 Lesson 5, and `dollar-cost-averaging` becomes Chapter 3 Lesson 3.
+**25 lessons across 6 chapters — all 25 written. ✅ TRACK COMPLETE.**
 
-**25 lessons across 6 chapters.** For comparison: Forex 30, Crypto 24 (15 built),
-Foundations 10.
+The track stands at 25 lessons and 29,042 words, up from 7 lessons and 1,531 words.
+All seven legacy stub cards have been absorbed and replaced; none remain in
+`learn-content.js`. Every lesson carries three quiz questions with explained answers
+and a practice exercise, matching the Forex and Crypto tracks.
+
+| | Lessons | Words | Average | Quiz Qs per lesson |
+| --- | --- | --- | --- | --- |
+| Stocks & ETFs | 25 | 29,042 | 1,162 | 3.0 |
+| Forex | 26 | 25,230 | 970 | 2.5 |
+| Crypto (15 of 24 built) | 15 | 39,479 | 2,632 | 3.0 |
+| Foundations (free) | 10 | 3,602 | 360 | — |
 
 Target density is the course average — roughly 1,200–2,500 words per lesson depending
 on whether the lesson carries worked arithmetic. A lesson that lands under ~800 words is
-almost certainly a stub and should be reworked or merged.
+almost certainly a stub and should be reworked or merged. Every lesson in this track
+clears 1,000 words and the median is above 1,150.
+
+### Outstanding on this track
+
+**Diagrams.** The style guide asks for one supporting SVG per lesson, in both themes.
+This track has none — including the seven Chapter 1 lessons. Forex has 25 and Crypto
+has 15, resolved through `window.SCERE_FOREX_SVGS` / `window.SCERE_CRYPTO_SVGS`.
+Adding them needs a `window.SCERE_STOCKS_SVGS` map, one extra lookup in the `image`
+case of `renderBlock` in `learn.js`, and 25 diagrams. This is the one place the track
+does not yet meet the written standard, and it is recorded here rather than quietly
+skipped.
+
+**Translations.** English master only, as with every other track.
 
 ## Standards reminder
 

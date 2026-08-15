@@ -122,7 +122,19 @@ Content is written English-first. Glossary holds locked EN/FR/PT/SW translations
 - Chapters 4-6 planned in `course/Crypto_Track_Roadmap.md` (24 lessons total when complete)
 - Glossary: 96 crypto terms added (EN locked; FR/PT/SW pending native review, deliberately not machine-guessed)
 
-**Not started:** Stocks track, Advanced Forex Course.
+**Stocks & ETFs track (paid) — COMPLETE: 6 chapters, 25 lessons, all live in the app.**
+- Chapter 1 (What You Actually Own): 7/7 — shares, investing vs gambling, order books and settlement, indices, ETFs, dividends and total return, costs
+- Chapter 2 (Reading a Company and a Market): 5/5 — the three statements, valuation multiples, the factor evidence, market efficiency, diversification
+- Chapter 3 (Risk and Position Sizing for Equities): 4/4 — what risk means, position sizing, dollar-cost averaging, margin and shorting
+- Chapter 4 (Behaviour, Costs and a Written Plan): 3/3 — the behaviour gap, fees and taxes over decades, building an equity plan
+- Chapter 5 (Real-World Case Studies): 3/3 — dot-com 1995-2002, 2007-2009, GameStop January 2021
+- Chapter 6 (A Professional Equity Process): 3/3 — the six-pillar thesis adapted, regime mapping, portfolio discipline
+- Three ids are load-bearing and must not be renamed: `investing-vs-gambling`, `expense-ratios`, `dollar-cost-averaging` each have an interactive tool bound to them by id in `learn.js`
+- Outstanding: no SVG diagrams on any Stocks lesson (see `course/Stocks_Track_Roadmap.md`)
+- Glossary: 81 stocks terms added to `Stock_Market_Terms_Glossary.md`, section 11, grouped by chapter
+
+**Not started:** Advanced Forex Course. Crypto Chapters 4-6 (9 lessons) and Forex
+Chapter 6 remain the other open content work.
 
 **Known outstanding work:**
 - Forex and Foundations lessons are compiled into `forex-content.js` / `foundation-content.js` / `crypto-content.js` at the repo **root** (the live, deployed location) and rendered by `learn.js` via `renderForexTrack()` / `renderFoundationTrack()`. To add a lesson: write the markdown in `course/forex/`, verify citations/arithmetic, create a light SVG in `course/images/`, then compile the lesson into a block object appended to `window.SCERE_FOREX_CONTENT` in root `forex-content.js` and add its dark-ported inline SVG to `window.SCERE_FOREX_SVGS` in the same file. (The old `course/scere-integration/` staging copies were removed once promoted to root — root is now the single source of truth.)

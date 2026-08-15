@@ -68,6 +68,10 @@ function toPublic(data) {
         idea_as_published: it.idea_as_published || '',
         outcome: it.outcome || '',
         hypothetical_p_l_if_followed: it.hypothetical_p_l_if_followed || '',
+        // How far the call finished from its target. Free, like the rest of the track
+        // record — showing that a loss missed by 0.3% rather than went 50% the wrong
+        // way is the difference between a timing error and a wrong thesis.
+        distance_from_target: it.distance_from_target || '',
       })),
     },
     liveIdeas,

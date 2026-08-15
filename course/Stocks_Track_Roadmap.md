@@ -160,15 +160,27 @@ on whether the lesson carries worked arithmetic. A lesson that lands under ~800 
 almost certainly a stub and should be reworked or merged. Every lesson in this track
 clears 1,000 words and the median is above 1,150.
 
-### Outstanding on this track
+### Diagrams
 
-**Diagrams.** The style guide asks for one supporting SVG per lesson, in both themes.
-This track has none — including the seven Chapter 1 lessons. Forex has 25 and Crypto
-has 15, resolved through `window.SCERE_FOREX_SVGS` / `window.SCERE_CRYPTO_SVGS`.
-Adding them needs a `window.SCERE_STOCKS_SVGS` map, one extra lookup in the `image`
-case of `renderBlock` in `learn.js`, and 25 diagrams. This is the one place the track
-does not yet meet the written standard, and it is recorded here rather than quietly
-skipped.
+One dark-theme SVG per lesson, 25 in total, resolved through `window.SCERE_STOCKS_SVGS`
+exactly as Forex and Crypto resolve theirs. They differ from the other tracks in one
+respect: they are **generated** by `scripts/build-stocks-svgs.js` rather than
+hand-authored.
+
+That was a deliberate choice with a specific benefit. Every figure inside a diagram is
+computed in the generator from the same arithmetic as the lesson text — the fee curve,
+the recovery table, the margin-call threshold and both dollar-cost-averaging paths are
+calculated, not typed — so a diagram cannot drift out of agreement with the lesson it
+illustrates. The generator also checks each text colour against the background at build
+time and exits nonzero below 4.5:1, so a palette edit cannot quietly ship unreadable
+labels.
+
+To change a diagram, edit the generator and re-run it, then re-run
+`node scripts/build-course-data.js`. Do not edit `data/course/src/stocks-svgs.js` by
+hand; it is overwritten.
+
+Light-theme variants for the markdown masters have not been produced. The app renders
+dark only, so this affects the markdown source files rather than anything a reader sees.
 
 **Translations.** English master only, as with every other track.
 

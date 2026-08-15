@@ -1268,6 +1268,7 @@ async function fetchCourseIndex() {
     lessonNumber: l.lessonNumber,
     title: l.title,
     keyIdea: l.keyIdea,
+    minutes: l.minutes || null,
     type: l.type,
   }));
   return courseIndexCache;
@@ -1289,24 +1290,90 @@ async function fetchLesson(id) {
 
 function lessonHref(id) { return `./lesson.html?id=${encodeURIComponent(id)}`; }
 
-// ---------- learn.html: table of contents ----------
+// The lesson data already prefixes chapter titles with "Chapter N:", and both the TOC
+// divider and the lesson breadcrumb added their own — producing "Chapter 1: Chapter 1:
+// The History of Money" on all 12 chapters of the course. Stripped at the point of
+// display so the content files stay as they were authored.
+function chapterLabel(number, title, sep) {
+  const clean = String(title || '').replace(/^\s*chapter\s*\d+\s*[:.\u2013\u2014-]\s*/i, '').trim();
+  if (number == null) return clean;
+  return clean ? `Chapter ${number}${sep || ': '}${clean}` : `Chapter ${number}`;
+}
+
+// "3 min" reads better than "3 minutes" in a dense row, and an unknown estimate should
+// render as nothing rather than as "0 min".
+function minutesLabel(m) {
+  return m ? `${m} min` : '';
+}
+
+function totalMinutes(lessons) {
+  return lessons.reduce((n, l) => n + (l.minutes || 0), 0);
+}
+
+function formatDuration(mins) {
+  if (!mins) return '';
+  if (mins < 60) return `${mins} min`;
+  const h = Math.floor(mins / 60);
+  const r = mins % 60;
+  return r ? `${h} hr ${r} min` : `${h} hr`;
+}
+
+// progress.js loads before this file. The fallback keeps the course usable if a stale
+// service-worker cache misses it — every lesson simply reads as unread.
+const progress = window.SCERE_PROGRESS || {
+  supported: false, isDone: () => false, setDone: () => false, toggle: () => false,
+  touch() {}, lastLesson: () => null, stats: (ids) => ({ done: 0, total: ids.length, pct: 0 }),
+  nextIncomplete: (ids) => ids[0] || null, anyProgress: () => false, clearAll() {},
+};
+
+function trackHref(slug) { return `./track.html?track=${encodeURIComponent(slug)}`; }
+
+// Grouped once and reused by the hub, the track pages and the lesson viewer.
+function groupTracks(index) {
+  const tracks = [];
+  index.forEach((e) => {
+    let t = tracks.find((x) => x.track === e.track);
+    if (!t) {
+      t = { track: e.track, trackTitle: e.trackTitle, tagline: e.tagline, badge: e.badge, badgeClass: e.badgeClass, free: e.free, lessons: [] };
+      tracks.push(t);
+    }
+    t.lessons.push(e);
+  });
+  return tracks;
+}
+
+// A bar for the glance and a number for the record. A bar alone is invisible to a
+// screen reader, which is why the whole thing carries an aria-label.
+function renderProgressBar(pct, label) {
+  return `
+    <div class="prog" role="img" aria-label="${escapeHtml(label)}">
+      <div class="prog-bar"><span class="prog-fill" style="width:${pct}%"></span></div>
+      <span class="prog-num">${pct}%</span>
+    </div>`;
+}
+
+// ---------- learn.html: the course hub ----------
+//
+// This page used to be the entire syllabus in one flat list: 58 rows, 10,248px tall on
+// a 390px phone — over twelve screens of scrolling before you reached the end. It is
+// now four track cards. The lesson list moved to a page per track, which is a shallower
+// hierarchy AND makes each track linkable, resumable and separately measurable.
+
+let hubIndexCache = null;
+
 async function renderCourseIndex() {
   const root = document.getElementById('courseIndexRoot');
   if (!root) return;
+  root.innerHTML = ui.skeleton(4);
+
   let index;
-  // A skeleton, not an empty region: the syllabus is 58 rows fetched over the network,
-  // and an empty page for that second reads as "there is no course here".
-  root.innerHTML = ui.skeleton(5);
   try {
     index = await fetchCourseIndex();
   } catch (err) {
     root.innerHTML = failureState({
       title: 'The syllabus could not be loaded',
-      // Offline and server-error are different problems with different fixes, and
-      // telling someone to "check your connection" when their connection is fine is
-      // how a temporary blip turns into a lost visitor.
       message: navigator.onLine === false
-        ? 'You appear to be offline. The lesson list will load once your connection returns.'
+        ? 'You appear to be offline. The course will load once your connection returns.'
         : 'Something went wrong at our end. Trying again usually fixes it.',
       retry: 'Try again',
     });
@@ -1315,61 +1382,248 @@ async function renderCourseIndex() {
     return;
   }
 
-  const tracks = [];
-  index.forEach((e) => {
-    let t = tracks.find((x) => x.track === e.track);
-    if (!t) { t = { track: e.track, trackTitle: e.trackTitle, tagline: e.tagline, badge: e.badge, badgeClass: e.badgeClass, lessons: [] }; tracks.push(t); }
-    t.lessons.push(e);
-  });
+  hubIndexCache = index;
+  const tracks = groupTracks(index);
+  const allIds = index.map((l) => l.id);
+  const overall = progress.stats(allIds);
 
-  // The offer goes immediately before the first paid track: after the free lessons
-  // have made the case, and before the locked ones ask for payment.
-  const firstPaid = tracks.findIndex((t) => t.lessons.length && !t.lessons[0].free);
-
-  root.innerHTML = renderPurchaseOutcome() + tracks.map((t, ti) => {
-    const offer = ti === firstPaid ? renderCourseOffer() : '';
-    let lastChapter = null;
-    const rows = t.lessons.map((e) => {
-      let divider = '';
-      if (e.chapterNumber != null && e.chapterNumber !== lastChapter) {
-        divider = `<div class="toc-chapter">Chapter ${e.chapterNumber}${e.chapterTitle ? ' · ' + escapeHtml(e.chapterTitle) : ''}</div>`;
-        lastChapter = e.chapterNumber;
-      }
-      const label = e.chapterNumber != null ? `${e.chapterNumber}.${e.lessonNumber}` : `${e.lessonNumber}`;
-      // Paid rows stay clickable — the lesson page shows what the lesson covers and
-      // how to unlock it. Hiding them would make the course impossible to evaluate.
-      //
-      // The padlock used to be the ONLY signal that a lesson was locked, and it was
-      // marked aria-hidden — so a screen-reader user got no indication whatsoever and
-      // would have to open lesson after lesson to discover it. The icon stays
-      // decorative; the fact now travels as text inside the link's accessible name.
-      const lock = e.free ? '→' : '🔒';
-      const lockedNote = e.free ? '' : '<span class="sr-only"> — locked, part of the paid course</span>';
-      return divider + `
-        <a class="toc-row" href="${lessonHref(e.id)}">
-          <span class="toc-num"><span class="sr-only">Lesson </span>${escapeHtml(label)}</span>
-          <span class="toc-body">
-            <span class="toc-title">${escapeHtml(e.title)}${lockedNote}</span>
-            <span class="toc-key">${escapeHtml(e.keyIdea || '')}</span>
-          </span>
-          <span class="toc-go" aria-hidden="true">${lock}</span>
-        </a>`;
-    }).join('');
-    return offer + `
-      <section class="toc-track">
-        <div class="toc-head">
-          <span class="${t.badgeClass}">${escapeHtml(t.badge)}</span>
-          <h2 class="toc-track-title">${escapeHtml(t.trackTitle)}</h2>
-          <p class="toc-track-tag">${escapeHtml(t.tagline || '')}</p>
-          <p class="toc-count">${t.lessons.length} lesson${t.lessons.length === 1 ? '' : 's'}</p>
-        </div>
-        ${rows}
-      </section>`;
-  }).join('');
+  root.innerHTML =
+    renderPurchaseOutcome() +
+    renderContinueBanner(index) +
+    renderSearchBox() +
+    (progress.supported && overall.done
+      ? `<p class="hub-overall">${overall.done} of ${overall.total} lessons read across the whole course · ${renderProgressBar(overall.pct, `${overall.pct}% of the course read`)}</p>`
+      : '') +
+    tracks.map((t, i) => renderTrackCard(t, i === tracks.findIndex((x) => !x.free))).join('') +
+    renderProgressFootnote();
 
   wireCourseButtons(root);
-  if (purchaseOutcome === 'success') ui.say('Payment received. The whole course is unlocked.', true);
-  else ui.say(`Syllabus loaded — ${index.length} lessons.`);
+  wireSearch(root, index);
+  wireProgressReset(root);
+  ui.say(purchaseOutcome === 'success'
+    ? 'Payment received. The whole course is unlocked.'
+    : `Course loaded — ${tracks.length} tracks, ${index.length} lessons.`, purchaseOutcome === 'success');
+}
+
+// The dominant action for anyone who has already started. Deliberately above the track
+// cards: someone returning to lesson 7 should not have to find it again.
+function renderContinueBanner(index) {
+  if (!progress.supported) return '';
+  const lastId = progress.lastLesson();
+  const target = index.find((l) => l.id === lastId) || null;
+  const next = target && progress.isDone(target.id)
+    ? index.find((l) => !progress.isDone(l.id))
+    : target;
+  const pick = next || (progress.anyProgress() ? index.find((l) => !progress.isDone(l.id)) : null);
+  if (!pick) return '';
+  return `
+    <a class="continue-card" href="${lessonHref(pick.id)}">
+      <span class="continue-eyebrow">Continue where you left off</span>
+      <span class="continue-title">${escapeHtml(pick.title)}</span>
+      <span class="continue-meta">${escapeHtml(pick.trackTitle)}${pick.minutes ? ` · ${minutesLabel(pick.minutes)}` : ''}</span>
+    </a>`;
+}
+
+function renderSearchBox() {
+  return `
+    <div class="hub-search">
+      <label class="sr-only" for="lessonSearch">Search lessons</label>
+      <input id="lessonSearch" type="search" class="ui-input" placeholder="Search all ${58} lessons…" autocomplete="off">
+      <div id="searchResults" class="search-results" role="status" aria-live="polite"></div>
+    </div>`;
+}
+
+function renderTrackCard(t, isFirstPaid) {
+  const ids = t.lessons.map((l) => l.id);
+  const st = progress.stats(ids);
+  const mins = totalMinutes(t.lessons);
+  const locked = !t.free && courseAccess.configured && !courseAccess.ownsCourse;
+  const nextId = progress.nextIncomplete(ids);
+  const cta = !progress.supported || st.done === 0
+    ? 'Open track'
+    : st.done === st.total ? 'Review track' : 'Continue track';
+
+  return (isFirstPaid ? renderCourseOffer() : '') + `
+    <a class="track-card${t.free ? ' is-free' : ''}${locked ? ' is-locked' : ''}" href="${trackHref(t.track)}">
+      <div class="track-card-top">
+        <span class="${t.badgeClass}">${escapeHtml(t.badge)}</span>
+        ${locked ? '<span class="track-lock"><span aria-hidden="true">🔒</span> Part of the course</span>' : ''}
+      </div>
+      <h2 class="track-card-title">${escapeHtml(t.trackTitle)}</h2>
+      <p class="track-card-tag">${escapeHtml(t.tagline || '')}</p>
+      <p class="track-card-meta">${t.lessons.length} lesson${t.lessons.length === 1 ? '' : 's'}${mins ? ` · ${formatDuration(mins)}` : ''}</p>
+      ${progress.supported && st.done ? renderProgressBar(st.pct, `${st.done} of ${st.total} lessons read`) : ''}
+      ${progress.supported && st.done ? `<p class="track-card-prog">${st.done} of ${st.total} read</p>` : ''}
+      <span class="track-card-cta">${cta} →</span>
+    </a>`;
+}
+
+function renderProgressFootnote() {
+  if (!progress.supported) {
+    return '<p class="hub-note">Progress tracking is unavailable in this browser (private browsing blocks local storage), so lessons will not be marked as read.</p>';
+  }
+  if (!progress.anyProgress()) return '';
+  return `<p class="hub-note">Your progress is saved in this browser only — it is not tied to an account and will not follow you to another device.
+    <button type="button" id="resetProgress" class="link-btn">Reset progress</button></p>`;
+}
+
+function wireProgressReset(root) {
+  const btn = root.querySelector('#resetProgress');
+  if (!btn) return;
+  btn.addEventListener('click', async () => {
+    // Destructive and irreversible, so it asks first — the one place in this app that
+    // genuinely warrants a confirmation step.
+    const confirmed = await ui.openDialog({
+      title: 'Reset your progress?',
+      message: 'Every lesson will be marked unread again. This only affects this browser, and it cannot be undone.',
+      submitLabel: 'Reset progress',
+      cancelLabel: 'Keep it',
+      tone: 'error',
+    });
+    if (confirmed === null) return;
+    progress.clearAll();
+    ui.say('Progress reset.', true);
+    renderCourseIndex();
+  });
+}
+
+// Search across titles and key ideas. 58 lessons is past the point where scanning
+// works, and the key idea is often what someone remembers rather than the title.
+function wireSearch(root, index) {
+  const input = root.querySelector('#lessonSearch');
+  const out = root.querySelector('#searchResults');
+  if (!input || !out) return;
+
+  let timer = null;
+  const run = () => {
+    const q = input.value.trim().toLowerCase();
+    if (q.length < 2) { out.innerHTML = ''; out.classList.remove('is-open'); return; }
+    const hits = index.filter((l) =>
+      l.title.toLowerCase().includes(q) || (l.keyIdea || '').toLowerCase().includes(q)
+    ).slice(0, 12);
+    out.classList.add('is-open');
+    if (!hits.length) {
+      out.innerHTML = `<p class="search-empty">No lesson matches “${escapeHtml(input.value.trim())}”. Try a broader word — the search covers lesson titles and key ideas.</p>`;
+      return;
+    }
+    out.innerHTML =
+      `<p class="search-count">${hits.length} lesson${hits.length === 1 ? '' : 's'} found</p>` +
+      hits.map((l) => `
+        <a class="search-hit" href="${lessonHref(l.id)}">
+          <span class="search-hit-title">${escapeHtml(l.title)}${!l.free ? '<span class="sr-only"> — locked, part of the paid course</span>' : ''}</span>
+          <span class="search-hit-meta">${escapeHtml(l.trackTitle)}${l.minutes ? ` · ${minutesLabel(l.minutes)}` : ''}${!l.free ? ' · 🔒' : ''}</span>
+        </a>`).join('');
+  };
+
+  input.addEventListener('input', () => {
+    window.clearTimeout(timer);
+    timer = window.setTimeout(run, 120);   // debounce so the live region is not spammed
+  });
+  input.addEventListener('search', run);
+}
+
+// ---------- track.html: one track, its chapters, its progress ----------
+async function renderTrackPage() {
+  const root = document.getElementById('trackRoot');
+  if (!root) return;
+  const slug = new URLSearchParams(window.location.search).get('track');
+  root.innerHTML = ui.skeleton(5);
+
+  let index;
+  try {
+    index = await fetchCourseIndex();
+  } catch (err) {
+    root.innerHTML = failureState({
+      title: 'This track could not be loaded',
+      message: navigator.onLine === false
+        ? 'You appear to be offline. The track will load once your connection returns.'
+        : 'Something went wrong at our end. Trying again usually fixes it.',
+      retry: 'Try again',
+    });
+    wireRetry(root, renderTrackPage);
+    return;
+  }
+
+  const track = groupTracks(index).find((t) => t.track === slug);
+  if (!track) {
+    root.innerHTML = `
+      <div class="state-card">
+        <span class="state-icon" aria-hidden="true">🔍</span>
+        <p class="state-title">That track could not be found</p>
+        <p class="state-msg">It may have been renamed or moved. The course page lists every track available.</p>
+        <a href="./learn.html" class="upgrade-btn">Back to the course</a>
+      </div>`;
+    document.title = 'Track not found — Scere Markets';
+    ui.say('That track could not be found.', true);
+    return;
+  }
+
+  const ids = track.lessons.map((l) => l.id);
+  const st = progress.stats(ids);
+  const nextId = progress.nextIncomplete(ids);
+  const mins = totalMinutes(track.lessons);
+  const locked = !track.free && courseAccess.configured && !courseAccess.ownsCourse;
+
+  // Chapters collapse by default; the one holding the next unread lesson opens, so the
+  // page lands you where you are rather than at the top of a wall.
+  const chapters = [];
+  track.lessons.forEach((l) => {
+    const key = l.chapterNumber == null ? '_' : String(l.chapterNumber);
+    let c = chapters.find((x) => x.key === key);
+    if (!c) { c = { key, number: l.chapterNumber, title: l.chapterTitle, lessons: [] }; chapters.push(c); }
+    c.lessons.push(l);
+  });
+
+  const header = `
+    <header class="track-head">
+      <a class="track-back" href="./learn.html">← All tracks</a>
+      <span class="${track.badgeClass}">${escapeHtml(track.badge)}</span>
+      <h1 class="track-title">${escapeHtml(track.trackTitle)}</h1>
+      <p class="track-tag">${escapeHtml(track.tagline || '')}</p>
+      <p class="track-meta">${track.lessons.length} lessons${mins ? ` · ${formatDuration(mins)} of reading` : ''}</p>
+      ${progress.supported ? renderProgressBar(st.pct, `${st.done} of ${st.total} lessons read`) : ''}
+      ${progress.supported ? `<p class="track-prog-label">${st.done} of ${st.total} read</p>` : ''}
+      ${nextId ? `<a class="upgrade-btn track-continue" href="${lessonHref(nextId)}">${st.done ? 'Continue' : 'Start'} — ${escapeHtml((track.lessons.find((l) => l.id === nextId) || {}).title || '')}</a>`
+        : '<p class="track-done">✓ Every lesson in this track is read.</p>'}
+    </header>`;
+
+  const body = chapters.map((c, i) => {
+    const openThis = chapters.length === 1 || (nextId && c.lessons.some((l) => l.id === nextId)) || (!nextId && i === 0);
+    const cst = progress.stats(c.lessons.map((l) => l.id));
+    const rows = c.lessons.map((l) => renderTrackRow(l, track)).join('');
+    if (c.number == null) return `<div class="chapter-rows">${rows}</div>`;
+    return `
+      <details class="chapter" ${openThis ? 'open' : ''}>
+        <summary class="chapter-summary">
+          <span class="chapter-name">${escapeHtml(chapterLabel(c.number, c.title))}</span>
+          <span class="chapter-count">${progress.supported && cst.done ? `${cst.done}/${cst.total}` : `${cst.total} lesson${cst.total === 1 ? '' : 's'}`}</span>
+        </summary>
+        <div class="chapter-rows">${rows}</div>
+      </details>`;
+  }).join('');
+
+  root.innerHTML = renderPurchaseOutcome() + header + (locked ? renderCourseOffer() : '') + body;
+  wireCourseButtons(root);
+  document.title = `${track.trackTitle} — Scere Markets`;
+  ui.say(`${track.trackTitle}. ${track.lessons.length} lessons, ${st.done} read.`);
+}
+
+function renderTrackRow(l, track) {
+  const done = progress.supported && progress.isDone(l.id);
+  const label = l.chapterNumber != null ? `${l.chapterNumber}.${l.lessonNumber}` : `${l.lessonNumber}`;
+  const lockedNote = l.free ? '' : '<span class="sr-only"> — locked, part of the paid course</span>';
+  const statusIcon = done ? '✓' : (l.free ? '→' : '🔒');
+  const statusText = done ? '<span class="sr-only"> — read</span>' : '';
+  return `
+    <a class="toc-row${done ? ' is-done' : ''}" href="${lessonHref(l.id)}">
+      <span class="toc-num"><span class="sr-only">Lesson </span>${escapeHtml(label)}</span>
+      <span class="toc-body">
+        <span class="toc-title">${escapeHtml(l.title)}${lockedNote}${statusText}</span>
+        <span class="toc-key">${escapeHtml(l.keyIdea || '')}</span>
+        ${l.minutes ? `<span class="toc-time">${minutesLabel(l.minutes)}</span>` : ''}
+      </span>
+      <span class="toc-go" aria-hidden="true">${statusIcon}</span>
+    </a>`;
 }
 
 // ---------- buying the course ----------
@@ -1600,6 +1854,22 @@ function renderLockedLesson(e) {
     </section>`;
 }
 
+function wireMarkRead(root, entry, next) {
+  const btn = root.querySelector('#markRead');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const nowDone = progress.toggle(entry.id);
+    btn.setAttribute('aria-pressed', String(nowDone));
+    btn.textContent = nowDone ? '\u2713 Read' : 'Mark as read';
+    btn.className = `ui-btn ${nowDone ? 'ui-btn-ghost' : 'ui-btn-primary'}`;
+    // Toggling is the whole interaction, so say what changed AND what it enables —
+    // a silent state flip on a button is exactly the case aria-pressed alone under-serves.
+    ui.say(nowDone
+      ? `Marked as read.${next ? ` Next: ${next.title}.` : ' That was the last lesson in this track.'}`
+      : 'Marked as unread.', true);
+  });
+}
+
 // ---------- lesson.html: single lesson + prev/next ----------
 async function renderSingleLesson() {
   const root = document.getElementById('lessonRoot');
@@ -1643,7 +1913,7 @@ async function renderSingleLesson() {
   const next = pos < index.length - 1 ? index[pos + 1] : null;
 
   const crumb = [e.trackTitle];
-  if (e.chapterNumber != null) crumb.push(`Chapter ${e.chapterNumber}${e.chapterTitle ? ': ' + e.chapterTitle : ''}`);
+  if (e.chapterNumber != null) crumb.push(chapterLabel(e.chapterNumber, e.chapterTitle));
   const breadcrumb = `
     <div class="lesson-crumb">
       <span class="${e.badgeClass}">${escapeHtml(e.badge)}</span>
@@ -1693,7 +1963,35 @@ async function renderSingleLesson() {
     : '<span class="lesson-nav-btn is-empty" aria-hidden="true"></span>';
   const nav = `<nav class="lesson-nav">${navBtn(prev, 'prev')}${navBtn(next, 'next')}</nav>`;
 
-  root.innerHTML = renderPurchaseOutcome() + breadcrumb + lessonHtml + tools + nav;
+  // Track-relative position, not course-relative: "lesson 3 of 10" inside Foundation is
+  // a number someone can act on; "lesson 3 of 58" is discouraging and less true.
+  const trackLessons = index.filter((l) => l.track === e.track);
+  const trackPos = trackLessons.findIndex((l) => l.id === e.id) + 1;
+  const trackStats = progress.stats(trackLessons.map((l) => l.id));
+
+  const positionBar = `
+    <div id="readingControls"></div>
+    <div class="lesson-pos">
+      <a class="lesson-pos-track" href="${trackHref(e.track)}">${escapeHtml(e.trackTitle)}</a>
+      <span class="lesson-pos-count">Lesson ${trackPos} of ${trackLessons.length}${e.minutes ? ` · ${minutesLabel(e.minutes)}` : ''}</span>
+      ${progress.supported ? renderProgressBar(trackStats.pct, `${trackStats.done} of ${trackStats.total} lessons read in this track`) : ''}
+    </div>`;
+
+  const markBar = (!fetched.locked && progress.supported) ? `
+    <div class="lesson-mark">
+      <button type="button" id="markRead" class="ui-btn ${progress.isDone(e.id) ? 'ui-btn-ghost' : 'ui-btn-primary'}" aria-pressed="${progress.isDone(e.id)}">
+        ${progress.isDone(e.id) ? '✓ Read' : 'Mark as read'}
+      </button>
+      ${next ? `<a class="lesson-mark-next" href="${lessonHref(next.id)}">Next: ${escapeHtml(next.title)} →</a>` : ''}
+    </div>` : '';
+
+  root.innerHTML = renderPurchaseOutcome() + positionBar + breadcrumb + lessonHtml + tools + markBar + nav;
+
+  // Record the visit even for a locked lesson: it is still where the reader was.
+  progress.touch(e.id);
+  wireMarkRead(root, e, next);
+  // Only on an unlocked lesson: there is no prose to resize behind a paywall.
+  if (!fetched.locked && ui.mountReadingControls) ui.mountReadingControls(root.querySelector('#readingControls'));
 
   if (fetched.locked) wireCourseButtons(root);
 
@@ -1720,7 +2018,7 @@ async function renderSingleLesson() {
 document.addEventListener('DOMContentLoaded', async () => {
   // Page-aware dispatch. Legacy single-page render (#foundationRoot etc.) still
   // works if those mounts are present, so nothing else that includes learn.js breaks.
-  const sellingPage = document.getElementById('lessonRoot') || document.getElementById('courseIndexRoot');
+  const sellingPage = document.getElementById('lessonRoot') || document.getElementById('courseIndexRoot') || document.getElementById('trackRoot');
   if (sellingPage) {
     // Order matters: activate the Checkout session first so the entitlement cookie
     // exists before the lesson is fetched, or a buyer would land back on the locked
@@ -1729,6 +2027,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadCourseBilling();
   }
   if (document.getElementById('lessonRoot')) { renderSingleLesson(); return; }
+  if (document.getElementById('trackRoot')) { renderTrackPage(); return; }
   if (document.getElementById('courseIndexRoot')) { renderCourseIndex(); return; }
   renderFoundationTrack();
   renderForexTrack();

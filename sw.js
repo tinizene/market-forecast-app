@@ -1,3 +1,7 @@
+// v17 adds progress.js and track.html, and splits the syllabus into a hub plus a page
+// per track. An install still serving v16 would keep the old flat 58-row course page
+// and would not have progress.js cached at all.
+//
 // v16 adds ui.js (accessible dialogs, live regions, skeletons, offline banner) and
 // changes every page's markup to add landmarks and skip links. An install still
 // serving v15 would keep the old pages, which reference a ui.js it has not cached —
@@ -17,7 +21,7 @@
 // their routes redirect home (see vercel.json) and precaching them would keep
 // serving dead pages to anyone who had already visited. The version bump is what
 // evicts them from existing installs.
-const CACHE_NAME = 'scere-markets-v16';
+const CACHE_NAME = 'scere-markets-v17';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -27,6 +31,8 @@ const ASSETS_TO_CACHE = [
   './research.js',
   './learn.html',
   './lesson.html',
+  './track.html',
+  './progress.js',
   './learn.js',
   './country-indicator-copy.js',
   './crypto-labs.js',

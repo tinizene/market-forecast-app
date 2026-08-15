@@ -570,6 +570,12 @@ decision behind it" discipline the weather app's roadmap docs used:
 
 Outstanding work now lives in [ROADMAP.md](ROADMAP.md).
 
+**Checking the design system:** `node scripts/contrast-audit.js` reads the colour tokens
+out of `styles.css`, composites the translucent layers, and fails if any declared pair
+drops below WCAG 2.2 AA. Run it after touching a colour. It exists because two separate
+design proposals asserted "verified high contrast" for pairs that measured 2.49:1 and
+3.68:1 against a 4.5:1 requirement — including on the button people press to pay.
+
 - ~~**Real Pro paywall/payment.**~~ **Built since.** Two Stripe products, enforced
   server-side: the course (one payment, permanent) and the daily ideas (monthly). See
   [PAYMENTS.md](PAYMENTS.md).

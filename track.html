@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lesson — Scere Markets</title>
+    <title>Track — Scere Markets</title>
     <meta name="theme-color" content="#0f172a">
     <meta name="description" content="A single lesson from the Scere Markets course — Foundation, Forex, or Stocks &amp; ETFs. Educational only, not financial advice.">
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
@@ -33,29 +33,12 @@
 
         <!-- Read-aloud control bar — hidden by default, shown by learn.js only if the
              browser's Web Speech API is available. Reads this single lesson aloud. -->
-        <div id="speechBar" class="hidden mb-6 rounded-xl border border-slate-700 bg-slate-800/80 px-4 py-3 flex items-center gap-3 flex-wrap" role="region" aria-label="Read this lesson aloud">
-            <button id="speechPlayBtn" type="button" class="flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg px-3 py-2 transition">
-                <span id="speechPlayIcon">🔊</span>
-                <span id="speechPlayLabel">Listen to this lesson</span>
-            </button>
-            <button id="speechStopBtn" type="button" class="hidden bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold rounded-lg px-3 py-2 transition">Stop</button>
-            <label class="text-xs text-slate-400 flex items-center gap-1.5 ml-auto">
-                Speed
-                <select id="speechSpeedSelect" class="bg-slate-700 text-white rounded-lg px-2 py-1.5 text-xs outline-none border border-slate-600">
-                    <option value="slow">Slow</option>
-                    <option value="normal" selected>Normal</option>
-                    <option value="fast">Fast</option>
-                </select>
-            </label>
-            <p class="w-full text-[11px] text-slate-500">Reads this lesson aloud using your device's built-in voice. Works best on recent phone and desktop browsers.</p>
-        </div>
 
-        <!-- The single lesson renders here (renderSingleLesson() in learn.js), keyed by
-             ?id= in the URL, with its own breadcrumb and Previous/Next navigation.
-             #mainReadScope is the read-aloud scope for "Listen to this lesson". -->
-        <div id="mainReadScope">
-            <div id="lessonRoot" class="space-y-6" role="status" aria-live="polite"></div>
-        </div>
+
+        <!-- One track renders here (renderTrackPage() in learn.js), keyed by ?track= in
+             the URL: header with progress and a Continue action, then chapters that
+             collapse by default so the page opens where the reader actually is. -->
+        <div id="trackRoot" role="status" aria-live="polite"></div>
 
         <footer class="mt-10 text-center text-xs text-slate-500">
             Fund facts (expense ratios, index tracked) are curated from each issuer's own official page. Historical return and dividend figures come from Alpha Vantage's published, dividend-adjusted price series.

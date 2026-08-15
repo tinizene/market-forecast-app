@@ -185,4 +185,212 @@ window.SCERE_STOCKS_CONTENT = [
       { term: 'Settlement', def: 'The exchange of shares for money after a trade is agreed — T+1 in the United States since 28 May 2024.' },
     ],
   },
+  // ============================================================
+  {
+    id: 'what-is-an-index',
+    lessonNumber: 4,
+    chapterNumber: 1,
+    chapterTitle: 'What You Actually Own',
+    title: 'What Is an Index?',
+    keyIdea: 'An index is a rule for combining chosen shares into one number. Change the rule and the same market tells a different story.',
+    blocks: [
+      { type: 'paragraph', text: 'News reports say "the market rose 1% today" as though the market were a single thing with a single price. It is not. What rose was an index, and an index is a construction: somebody chose which companies to include and how much weight to give each one.' },
+      { type: 'definition', term: 'Index', text: 'A rule for combining the prices of a chosen set of shares into one number, so the group can be tracked over time.' },
+      { type: 'paragraph', text: 'Two decisions define any index. Which companies are in it, and how the contribution of each is weighted. The second decision is the one almost nobody examines, and it changes the answer more than people expect.' },
+
+      { type: 'paragraph', text: 'The most common method weights each company by its market value, so bigger companies move the index more.' },
+      { type: 'definition', term: 'Market-capitalisation weighting', text: 'Weighting each company by its total market value, so a company worth twice as much has twice the influence on the index.' },
+      { type: 'paragraph', text: 'The S&P 500 uses a refinement of this called float adjustment. It counts only the shares actually available for the public to buy, excluding blocks held by governments, founders and other companies. The reasoning is that shares nobody can purchase should not affect a measure of what the investable market is doing.' },
+      { type: 'paragraph', text: 'The index level is then the total float-adjusted market value of the constituents, divided by a number called the divisor. The divisor exists so that mechanical events — a stock split, a company joining or leaving — do not make the index jump when nothing real has happened. S&P Dow Jones Indices publishes both the index-mathematics and float-adjustment methodologies openly, which is worth knowing: the rule is not a secret, and you can read it.' },
+
+      { type: 'paragraph', text: 'The other main method is older and stranger.' },
+      { type: 'definition', term: 'Price weighting', text: 'Weighting each company by its share price alone, regardless of the size of the company.' },
+      { type: 'paragraph', text: 'The Dow Jones Industrial Average works this way. It adds the share prices of its 30 companies and divides by its own divisor. The consequence is that influence tracks the price per share and not the size of the business.' },
+      { type: 'example', text: 'One company trades at 300 a share, another at 100. In a price-weighted index the first has three times the influence of the second — even if the second company is worth far more in total, because it has issued many more shares. A 1% move in the 300 share moves the index three times as much as a 1% move in the 100 share.' },
+      { type: 'warning', text: 'Share price on its own says nothing about the size of a company. A company can halve its share price tomorrow by splitting its shares two-for-one, without anything about the business changing. In a price-weighted index that split permanently reduces the company\'s influence. This is why price weighting is generally regarded as a historical artefact rather than a good design — it was easy to compute in 1896, when the arithmetic was done by hand.' },
+
+      { type: 'paragraph', text: 'So "the market" depends on which index you mean. A day when a few very large companies fall and most smaller ones rise can be a down day for a cap-weighted index and an up day for an equally-weighted one covering the same companies. Neither number is lying. They are answering different questions.' },
+      { type: 'paragraph', text: 'This is worth carrying into the next lesson, because when you buy an index fund you are not buying "the market". You are buying a specific rule, and you should know which one.' },
+
+      { type: 'example', text: 'A cap-weighted index of the same 500 companies concentrates: if the largest handful grow to a third of the total value, a third of your return depends on those few. An equal-weighted version of the identical list gives each company the same share, so it leans more on the smaller members. Same companies, same day, different number.' },
+
+      { type: 'paragraph', text: 'Cap weighting has one consequence worth stating plainly, because it surprises people who believe an index fund is automatically diversified. The weights are not fixed. They move with price, so whatever has risen most owns the largest share of the index — and it owns that share precisely because it has already risen.' },
+      { type: 'warning', text: 'This means a cap-weighted index concentrates on its own. Nobody decides to increase the weighting of the most expensive part of the market; the rule does it automatically as prices rise. An index of 500 companies can quietly become a bet on a handful of them. Chapter 5 looks at what that produced in 1999, and it is the strongest honest caveat against treating a broad index fund as risk-free diversification.' },
+      { type: 'paragraph', text: 'That is a caveat, not an argument against index funds. The alternatives have their own weighting problems, and the fee arithmetic in Lesson 7 is a powerful counterweight. The point is only that you should know what the rule does when prices move, rather than assuming a large number of holdings guarantees spread.' },
+
+      { type: 'paragraph', text: 'One last thing an index quietly omits. Most headline indices are price indices — they track share prices only, and ignore dividends paid along the way. Total return versions exist and are usually higher. Lesson 6 covers why that difference is larger than it sounds.' },
+    ],
+    quiz: [{
+      question: 'Company A trades at 300 a share and is worth 10 billion in total. Company B trades at 50 a share and is worth 80 billion. Which has more influence on a price-weighted index like the Dow?',
+      options: [
+        'Company B, because it is the larger company',
+        'Company A, because price weighting counts the share price and ignores company size',
+        'They have equal influence, because indices treat members equally',
+        'Company B, because it has more shares outstanding',
+      ],
+      correctIndex: 1,
+      feedbackCorrect: 'Correct. Price weighting looks only at the price per share, so A has six times the influence of B despite being an eighth of the size. A cap-weighted index would do the opposite. This is exactly why it matters which rule an index uses before you read anything into its movement.',
+      feedbackWrong: 'Not quite. A price-weighted index adds share prices and divides — it never looks at how large the company is. Company A at 300 a share has six times the influence of Company B at 50, even though B is eight times the business. Size only drives the weighting in a market-capitalisation index.',
+    }],
+    keyTerms: [
+      { term: 'Index', def: 'A rule for combining chosen shares into a single trackable number.' },
+      { term: 'Market-capitalisation weighting', def: 'Weighting each company by its market value; used by the S&P 500, float-adjusted.' },
+      { term: 'Price weighting', def: 'Weighting by share price alone, regardless of company size; used by the Dow.' },
+      { term: 'Divisor', def: 'A number an index is divided by so splits and membership changes do not create artificial jumps.' },
+    ],
+  },
+
+  // ============================================================
+  {
+    id: 'what-is-an-etf',
+    lessonNumber: 5,
+    chapterNumber: 1,
+    chapterTitle: 'What You Actually Own',
+    title: 'What Is an ETF?',
+    keyIdea: 'A fund that trades like a share. A creation and redemption mechanism is what stops its price drifting away from what it holds.',
+    blocks: [
+      { type: 'paragraph', text: 'An index is a rule. An exchange-traded fund is a way to own the thing the rule describes, in one purchase, on an exchange.' },
+      { type: 'definition', term: 'Exchange-traded fund (ETF)', text: 'A fund holding a basket of assets, whose own shares trade on an exchange throughout the day like an ordinary share.' },
+      { type: 'paragraph', text: 'Buy one share of a broad index ETF and you own a small slice of every company in that index, in the proportions the index rule specifies. That is the appeal: diversification in a single transaction, at a cost that Lesson 7 will put numbers to.' },
+
+      { type: 'paragraph', text: 'This raises an obvious problem. The ETF\'s own share price is set by supply and demand on the exchange, minute by minute. The value of what it actually holds is a separate number. What stops the two drifting apart?' },
+      { type: 'definition', term: 'Net asset value (NAV)', text: 'The value of everything the fund holds, divided by the number of fund shares outstanding — what one share is actually backed by.' },
+      { type: 'paragraph', text: 'The answer is a mechanism most investors never see, run by a small set of large firms.' },
+      { type: 'definition', term: 'Authorised participant', text: 'A large financial firm permitted to create new ETF shares or redeem existing ones by trading directly with the fund.' },
+
+      { type: 'paragraph', text: 'An authorised participant can do something you cannot. It can deliver the underlying basket of shares to the fund and receive newly created ETF shares in return, or hand back a block of ETF shares and receive the underlying basket. The US Securities and Exchange Commission describes this creation and redemption process in its investor bulletin on ETFs, and it is the structural feature that makes the whole thing work.' },
+      { type: 'paragraph', text: 'That ability turns any gap between the ETF price and its NAV into a profit opportunity, and pursuing the profit closes the gap.' },
+      { type: 'example', text: 'An ETF is trading at 100.40 while the basket it holds is worth 100.00 a share. An authorised participant buys the underlying shares for 100.00, delivers them to the fund, receives new ETF shares, and sells them at 100.40. Doing this adds supply to the ETF and demand to the underlying, pushing the two prices together. The profit exists only while the gap does.' },
+      { type: 'paragraph', text: 'The SEC\'s own framing is that the market price is generally kept close to NAV because of this arbitrage function inherent in the structure. Note the word generally. It is a mechanism, not a guarantee.' },
+
+      { type: 'definition', term: 'Premium and discount', text: 'An ETF trading above its NAV is at a premium; below it, a discount.' },
+      { type: 'warning', text: 'Premiums and discounts widen exactly when you would least want them to. If the underlying market is closed, illiquid or falling fast, an authorised participant cannot price or trade the basket reliably, and the arbitrage that normally closes the gap weakens. ETFs holding hard-to-trade assets — small foreign markets, corporate bonds — show this most. The mechanism is strongest in the calm conditions where you need it least.' },
+
+      { type: 'paragraph', text: 'A second thing worth checking is how the fund actually obtains its exposure.' },
+      { type: 'paragraph', text: 'Most funds hold the real securities, which is called physical replication. Some instead enter a contract with a bank that agrees to pay the index return, which is called synthetic replication. The synthetic version can track more closely and reach otherwise awkward markets — but it introduces a party who has to honour the contract.' },
+      { type: 'warning', text: 'Synthetic replication adds counterparty risk: a risk that is not about the index at all, but about whether the bank on the other side of the swap can pay. Foundations Chapter 2 made the general point that risks you have not named are the ones that hurt. This is a concrete instance — the fund can track the index perfectly and still fail for a reason that has nothing to do with the index.' },
+
+      { type: 'paragraph', text: 'Finally, no fund tracks its index exactly. Fees, trading costs, and the timing of dividends all cause small gaps.' },
+      { type: 'definition', term: 'Tracking difference', text: 'The gap between a fund\'s return and its index\'s return over a period. Tracking error is the variability of that gap.' },
+      { type: 'paragraph', text: 'A fund with a slightly higher fee but tighter tracking can leave you better off than a cheaper one that lags. The advertised fee is the headline; the tracking difference is the result. Both are worth checking, and the next lesson explains why even small differences matter so much over time.' },
+    ],
+    quiz: [{
+      question: 'An ETF is trading at 50.30 while the basket of shares it holds is worth 50.00 per ETF share. What normally happens next?',
+      options: [
+        'Nothing — the ETF price is set independently by supply and demand',
+        'An authorised participant buys the underlying basket, exchanges it for new ETF shares and sells them, which pushes the two prices together',
+        'The fund manager manually resets the ETF price to 50.00',
+        'The exchange halts trading until the prices match',
+      ],
+      correctIndex: 1,
+      feedbackCorrect: 'Correct. The creation and redemption mechanism turns the gap into an arbitrage opportunity, and pursuing it adds ETF supply and underlying demand until the gap closes. Nobody sets the price by decree — the profit motive does the work. Note that this weakens when the underlying is hard to trade, which is when premiums and discounts widen.',
+      feedbackWrong: 'Not quite. No one resets the price by hand and trading is not halted. An authorised participant can trade directly with the fund, so a gap between the ETF price and the value of its holdings becomes a profit opportunity — and acting on it is what pushes the two back together.',
+    }],
+    keyTerms: [
+      { term: 'Exchange-traded fund (ETF)', def: 'A fund holding a basket of assets whose shares trade on an exchange like a share.' },
+      { term: 'Net asset value (NAV)', def: 'The value of the fund\'s holdings per fund share.' },
+      { term: 'Authorised participant', def: 'A firm allowed to create or redeem ETF shares directly with the fund.' },
+      { term: 'Premium and discount', def: 'An ETF trading above or below its net asset value.' },
+      { term: 'Tracking difference', def: 'The gap between a fund\'s return and its index\'s return.' },
+    ],
+  },
+
+  // ============================================================
+  {
+    id: 'dividends-and-dividend-etfs',
+    lessonNumber: 6,
+    chapterNumber: 1,
+    chapterTitle: 'What You Actually Own',
+    title: 'Dividends and Total Return',
+    keyIdea: 'A dividend is not free money. The share price drops by roughly the payment — what matters is total return, not the yield.',
+    blocks: [
+      { type: 'paragraph', text: 'Dividends attract a particular kind of enthusiasm. An income that arrives without selling anything feels like a different category of return from a rising price. Mechanically, it is not.' },
+      { type: 'definition', term: 'Dividend', text: 'A cash payment made by a company to its shareholders out of the residual you met in Lesson 1.' },
+      { type: 'paragraph', text: 'The important detail is what happens to the share price when the dividend is paid. The cash leaves the company. A company holding one unit less cash is worth one unit less, and the share price reflects that.' },
+      { type: 'definition', term: 'Ex-dividend date', text: 'The first day a share trades without the right to the upcoming dividend. Buy on or after this date and the seller keeps the payment.' },
+
+      { type: 'example', text: 'A share trades at 40.00 and pays a 1.00 dividend. On the ex-dividend date it opens at roughly 39.00. A holder who owned it through that date now has a share worth 39.00 and 1.00 in cash — the same 40.00 they had the day before. Nothing was created.' },
+      { type: 'paragraph', text: 'That word roughly is carrying real weight, and the honest version of this is more interesting than the tidy one.' },
+      { type: 'paragraph', text: 'Elton and Gruber studied this in 1970, in the Review of Economics and Statistics (volume 52, pages 68 to 74), using dividends paid between April 1966 and March 1967. They found the price drop was significantly less than the dividend, on average — and argued the gap reflected tax, since dividends were then taxed more heavily than capital gains, so a dividend was worth less than its face value to the marginal holder.' },
+      { type: 'warning', text: 'That explanation is not settled, and the course would be misleading you to present it as though it were. More than a hundred papers have since argued about whether the shortfall is really about tax at all, or about market microstructure — the fact that prices historically moved in discrete tick sizes, so the drop could not land exactly on the dividend. The finding that the drop is less than the dividend is robust. Why has been contested for over fifty years.' },
+
+      { type: 'paragraph', text: 'The deeper question is whether a company paying dividends is better for you than one that does not.' },
+      { type: 'paragraph', text: 'Miller and Modigliani addressed this in 1961, in the Journal of Business (volume 34, pages 411 to 433). Under a set of idealised assumptions — no taxes, no transaction costs, and investment decisions held fixed — they showed that dividend policy does not affect the value of the firm. A shareholder wanting cash can sell a small part of their holding, and one not wanting cash can reinvest the dividend. The two are equivalent.' },
+      { type: 'paragraph', text: 'The assumptions are obviously not the real world, and that is the point of the result rather than a flaw in it. It tells you where to look. If dividend policy matters in practice, it must matter because of one of the things the model assumed away: tax, costs, or what the payment reveals about management\'s intentions. It is not because cash paid out is inherently superior to value retained.' },
+
+      { type: 'definition', term: 'Total return', text: 'The return from price change and dividends together, with dividends assumed reinvested. Price return counts only the price change.' },
+      { type: 'paragraph', text: 'This is the number that actually describes what happened to your money, and it is why comparing two shares on dividend yield alone is a mistake. A high yield can mean a generous payment. It can equally mean a falling price, since yield is the dividend divided by the price — the denominator shrinking raises the yield just as reliably as the numerator growing.' },
+      { type: 'warning', text: 'A yield that rises sharply without the dividend changing is a price signal, not an income opportunity. It usually means the market expects the payment to be cut. Screening for the highest yields, without asking why they are high, systematically selects for exactly the companies about to reduce them.' },
+
+      { type: 'example', text: 'Two shares each yield 5%. One pays 2.50 on a 50.00 price after years of steady increases. The other paid 2.50 on a price that has fallen from 100.00 to 50.00 in eighteen months. The yield is identical and the situations have nothing in common. Only looking at the yield makes them look like the same investment.' },
+
+      { type: 'paragraph', text: 'None of this makes dividend-paying shares bad, and dividend-focused funds are a legitimate holding. The point is narrower: judge a holding on total return and on why the company pays what it pays. Treat the yield as one input, not as the answer.' },
+    ],
+    quiz: [{
+      question: 'A share you own at 60.00 pays a 2.00 dividend. On the ex-dividend date the price opens near 58.00. What has happened to your wealth?',
+      options: [
+        'It has fallen by 2.00 — the price dropped and the dividend does not compensate',
+        'It is roughly unchanged — you hold a share worth 58.00 plus 2.00 in cash',
+        'It has risen by 2.00 — the dividend is income on top of the share',
+        'It depends entirely on whether you reinvest the dividend',
+      ],
+      correctIndex: 1,
+      feedbackCorrect: 'Correct. The cash left the company, so the share is worth that much less, and you hold the cash instead. Roughly is the right word — the measured drop is reliably a little less than the dividend, and why that is has been argued about since Elton and Gruber in 1970. But the headline point stands: a dividend moves value from one pocket to another rather than creating it.',
+      feedbackWrong: 'Not quite. The dividend is paid out of the company, so the company — and therefore the share — is worth less by about that amount. You have not gained 2.00 or lost 2.00; you now hold a share worth about 58.00 plus 2.00 in cash. This is why total return, not yield, is the number that describes what happened.',
+    }],
+    keyTerms: [
+      { term: 'Dividend', def: 'A cash payment from a company to its shareholders.' },
+      { term: 'Ex-dividend date', def: 'The first day a share trades without the right to the upcoming dividend.' },
+      { term: 'Total return', def: 'Price change plus dividends reinvested — what actually happened to your money.' },
+      { term: 'Dividend yield', def: 'The dividend divided by the share price. Rises when the price falls, which is often why it is high.' },
+    ],
+  },
+
+  // ============================================================
+  {
+    id: 'expense-ratios',
+    lessonNumber: 7,
+    chapterNumber: 1,
+    chapterTitle: 'What You Actually Own',
+    title: 'What It Costs to Own',
+    keyIdea: 'A fee is charged on the whole balance every year, so it compounds against you. 1.45% a year became a third of the final pot.',
+    blocks: [
+      { type: 'paragraph', text: 'Fees are quoted as small annual percentages, which makes them sound trivial. The arithmetic of compounding them over an investing lifetime is not trivial at all, and it is the most reliably ignored number in personal investing.' },
+      { type: 'definition', term: 'Expense ratio', text: 'The annual fee a fund charges, as a percentage of the money you have invested with it. It is deducted from the fund\'s assets, so you never see a bill.' },
+      { type: 'paragraph', text: 'That last part matters more than it should. A fee you are invoiced for gets noticed and questioned. A fee deducted quietly from the fund\'s value simply shows up as slightly worse performance, which is easy to attribute to markets rather than to costs.' },
+
+      { type: 'paragraph', text: 'Here is what the difference actually does. The figures below assume 10,000 invested for 30 years with an underlying return of 7% a year, and they are computed rather than estimated.' },
+      { type: 'example', text: 'With no fee at all, 10,000 becomes about 76,123. At an expense ratio of 0.05%, typical of a broad index ETF, it becomes about 75,063. At 0.75% it becomes about 61,641. At 1.50%, a level not unusual for an actively managed fund plus an adviser, it becomes about 49,840.' },
+      { type: 'paragraph', text: 'Compare the two ends. The difference in fee is 1.45% a year. The difference in outcome is about 25,223 — the expensive option finishes with roughly 66% of what the cheap one produced. A 1.45% annual charge consumed about a third of the final pot.' },
+      { type: 'paragraph', text: 'The reason the effect is so much larger than the headline number is that the fee is charged on the whole balance every year, including on the gains that previous years\' fees have already reduced. Compounding works on costs exactly as it works on returns, and in the same direction — away from you.' },
+
+      { type: 'example', text: 'The same effect on a contribution schedule: 200 a month for 30 years at 7% gross is 72,000 of your own money paid in. At 0.05% it grows to about 241,601. At 1.50% it grows to about 182,722. The 58,879 difference is close to what you contributed over the first twenty-four years.' },
+
+      { type: 'warning', text: 'A fee is one of the few things about investing you can control completely, and it is certain. The return is uncertain, the timing is uncertain, your own behaviour is uncertain. The expense ratio is a known number you can read before you buy and change by choosing a different fund. Spending effort on the certain, controllable input before the uncertain, uncontrollable one is simply the better use of attention.' },
+
+      { type: 'paragraph', text: 'There is a structural argument here too, and it is unusually clean. William Sharpe set it out in 1991 in the Financial Analysts Journal (volume 47, issue 1, pages 7 to 9), in a paper called The Arithmetic of Active Management.' },
+      { type: 'paragraph', text: 'The argument is arithmetic, not empirical, which is what makes it strong. All the shares in a market are held by someone. The passively managed money holds the market in proportion, so it earns the market return before costs. The remaining money is actively managed and, taken together, must therefore also hold the rest of the market in proportion — so it too earns the market return before costs. Active management as a whole cannot beat the market before costs, because in aggregate it is the market. After costs, and active costs are higher, it must on average do worse.' },
+      { type: 'warning', text: 'Read what that claim is and is not. It does not say no active manager can beat the market — plainly some do. It says the average actively managed unit of currency must underperform the average passive one after costs, as a matter of arithmetic rather than evidence. Individual skill is a claim about the distribution around that average, not a repeal of it.' },
+
+      { type: 'paragraph', text: 'The expense ratio is also not the whole cost. Lesson 3 covered the spread you pay each time you trade. Funds pay spreads too, inside the fund, when they buy and sell — so a fund that trades a lot carries costs beyond its published fee. Taxes are a third layer, and depend on your own circumstances.' },
+      { type: 'paragraph', text: 'Chapter 4 returns to this with the full picture across a lifetime. For now the practical instruction is small: before buying any fund, find the expense ratio, and compare it to the alternatives that hold roughly the same thing. It is a two-minute check with a larger effect on your outcome than almost anything else you will do.' },
+    ],
+    quiz: [{
+      question: 'Two funds hold nearly identical assets. One charges 0.05% a year, the other 1.50%. Over 30 years at a 7% underlying return, roughly what happens?',
+      options: [
+        'The expensive fund ends up about 1.45% behind, matching the fee difference',
+        'The expensive fund ends up with about two thirds of what the cheap fund produced',
+        'The difference is negligible, because 1.45% a year is a small number',
+        'The expensive fund catches up, because higher fees usually buy better management',
+      ],
+      correctIndex: 1,
+      feedbackCorrect: 'Correct. On 10,000 over 30 years the cheap fund produces about 75,063 and the expensive one about 49,840 — roughly 66% of it. The fee is charged on the entire balance every year, so it compounds, which is why a 1.45% annual difference turns into about a third of the final pot rather than 1.45% of it.',
+      feedbackWrong: 'Not quite. The fee applies to your whole balance every year, not once, so it compounds against you. On 10,000 over 30 years at 7%, the difference between 0.05% and 1.50% is about 25,223 — the expensive fund finishes with roughly two thirds of what the cheap one produced.',
+    }],
+    keyTerms: [
+      { term: 'Expense ratio', def: 'A fund\'s annual fee as a percentage of assets, deducted from the fund rather than billed.' },
+      { term: 'Active management', def: 'Selecting holdings in an attempt to beat an index, rather than tracking it.' },
+      { term: 'Passive management', def: 'Holding the market in proportion, tracking an index rather than trying to beat it.' },
+    ],
+  },
 ];

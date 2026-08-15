@@ -55,32 +55,32 @@ Recurring threads to maintain (see `course/CLAUDE.md`):
 
 ---
 
-## Chapter 1: What You Actually Own — 7 lessons
+## Chapter 1: What You Actually Own — 7 lessons · ✅ COMPLETE (5,985 words)
 
 The mechanics chapter. By the end, a reader should be able to say precisely what they
 hold, what it entitles them to, and what it costs to hold it.
 
 1. **What a Share Actually Is** — a residual claim on a company's cash flows, limited
    liability, and the difference between owning a share and owning a piece of a
-   business's furniture. What a shareholder can and cannot compel. — ⬜ not started
+   business's furniture. What a shareholder can and cannot compel. — ✅ complete
 2. **Investing vs Gambling** *(id `investing-vs-gambling`)* — the structural difference
    is not risk, it is expected value and who holds the edge. Positive-sum ownership of
-   productive assets versus a negative-sum wager. Ties to Foundations Ch2. — ⬜ not started
+   productive assets versus a negative-sum wager. Ties to Foundations Ch2. — ✅ complete
 3. **How Shares Are Priced and Traded** — exchanges, the order book, bid/ask, market vs
    limit orders, and settlement (US moved to T+1 in May 2024 — verify at drafting).
-   Callback to Forex Ch1 L4 on spreads. — ⬜ not started
+   Callback to Forex Ch1 L4 on spreads. — ✅ complete
 4. **What Is an Index?** *(id `what-is-an-index`)* — market-cap versus price weighting,
    what an index measures and what it silently omits, and why "the market was up 2%" is
-   a weighted claim about a chosen basket, not a fact about all shares. — ⬜ not started
+   a weighted claim about a chosen basket, not a fact about all shares. — ✅ complete
 5. **What Is an ETF?** *(id `what-is-an-etf`)* — creation and redemption, why the price
    tracks NAV, tracking difference versus tracking error, physical versus synthetic
-   replication and the counterparty question. — ⬜ not started
+   replication and the counterparty question. — ✅ complete
 6. **Dividends and Total Return** *(id `dividends-and-dividend-etfs`)* — ex-dividend
    mechanics and why the price drops by roughly the dividend, total return versus price
    return, and the dividend-irrelevance argument (Miller & Modigliani 1961) taught as a
-   genuine debate rather than a settled result. — ⬜ not started
+   genuine debate rather than a settled result. — ✅ complete
 7. **What It Costs to Own** *(id `expense-ratios`)* — expense ratios, spreads, and the
-   compounding arithmetic of a fee, computed rather than asserted. — ⬜ not started
+   compounding arithmetic of a fee, computed rather than asserted. — ✅ complete
 
 ## Chapter 2: Reading a Company and a Market — 5 lessons
 
@@ -140,6 +140,11 @@ hold, what it entitles them to, and what it costs to hold it.
 ---
 
 ## Total
+
+**25 lessons across 6 chapters — 7 built, 18 outstanding.** The track stands at 9
+lessons and 6,139 words (39 minutes), up from 7 lessons and 1,531 words (8 minutes).
+Two legacy cards remain, and both are already scheduled: `diversification-by-sector`
+becomes Chapter 2 Lesson 5, and `dollar-cost-averaging` becomes Chapter 3 Lesson 3.
 
 **25 lessons across 6 chapters.** For comparison: Forex 30, Crypto 24 (15 built),
 Foundations 10.

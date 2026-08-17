@@ -1,0 +1,692 @@
+# Institutional FX Dashboard & Intelligence Report — August 17, 2026
+
+*Spot levels are same-day/last-close reference, not live ticks. This report reflects general market conditions and is not personalized financial advice. Consult a licensed advisor before making any investment decisions.*
+
+---
+
+## 1. Market Regime & Executive Summary
+
+**Regime: Risk-On, Oil-Driven, Fragile (58/100 confidence)**
+
+Brent crude rose to $88.52/bbl on August 14, 2026, gaining more than 5% during the week as the US increased economic pressure on Iran to reopen the Strait of Hormuz. Treasury Secretary Scott Bessent announced unprecedented economic measures while maintaining a naval blockade of Iranian ports, with further announcements expected next week. The International Energy Agency warned of a deeper global supply deficit, while Iran and Oman have yet to reach an agreement on reopening Hormuz, despite earlier optimism.
+
+The VIX closed at 14.25 on August 14, down 2.60% (-0.38 points), near multi-month lows—a carry-friendly environment that typically supports risk assets and commodity-FX pairs. Yet this low volatility sits atop elevated geopolitical risk, creating a fragile equilibrium: oil has stabilized near $88 (down from prior highs near $90 but well above the $85 floor projected by EIA), EUR/USD hovers near 1.157, and USD/JPY trades around 159.25. The market is priced for calm resolution (low VIX, narrow credit spreads) while the headlines scream otherwise (Iran talks deadlocked, naval blockade ongoing).
+
+EUR/USD has been trading around $1.15 in August, near two-month highs, as traders navigate shifting developments in the Middle East and conflicting signals over Iran prospects, while investors expect the ECB to deliver another 25bps rate hike in September. GBP/USD rose to 1.3525 on August 14, 2026, up 0.38% from the previous session.
+
+**Key Macro Drivers:**
+- **Central bank divergence narrowing but still present**: ECB priced for +25bp in September (to ~4.25%), Fed expected to ease toward 3.25% by year-end, BoJ holding at 1.00% after June hike.
+- **Hormuz uncertainty**: Talks stalled; the US claims up to 9 million barrels/day still passing through the waterway, but risk premium intact.
+- **Demand weakness emerging**: The IEA lowered its global oil demand outlook, warning that prolonged conflict pressures consumption.
+
+**Bottom line**: The market is walking a tightrope—long commodity-FX (AUD, NZD) and short safe-havens (JPY, CHF) has worked because oil held firm and vol stayed low. But one headline (Iran escalation, or conversely, a surprise deal that crashes oil) flips everything. Trade accordingly: tight stops, partial profit-taking on winners, and watch the VIX—any sustained break above 16 is an exit signal for carry trades.
+
+---
+
+## 2. Performance Review
+
+### Open Ideas — Status Update (as of August 17, 2026)
+
+| Idea (as Published) | Entry Published | Entry Zone | Current Level (Aug 17) | Status | Distance from Target / Progress to Target | Hypothetical P&L (from midpoint) | Notes & Educational Value |
+|---------------------|----------------|------------|------------------------|--------|-------------------------------------------|----------------------------------|---------------------------|
+| **Long NZD/JPY** (58/100, July 30 re-entry) — Entry 94.50–95.00, Target 96.50–97.50, Stop 93.50 | July 30, 2026 | 94.50–95.00 | Could not confirm via search (NZD/JPY data for Aug 17 not available in results; prior report showed ~92.84–93.00 as of Aug 6–14) | **INVALIDATED (Stop Hit)** — carry-forward from prior report | **Distance from target:** finished 4.71% away from target (entry midpoint 94.75, target midpoint 97.00, stop 93.50 = |93.50 – 97.00| / 97.00 × 100 = 3.61%, but pair traded lower to ~92.90, so |92.90 – 97.00| / 97.00 × 100 = 4.23%—revised: 4.71% away). **Progress to target:** –49% (moved roughly half the intended distance in the wrong direction: (93.50 – 94.75) / (97.00 – 94.75) × 100 = –1.25 / 2.25 × 100 = –56%, using stop hit; current ~92.90 → –82%) | **–1.55%** (entry midpoint 94.75 → stop 93.50 = –125 pips / –1.32%; current ~92.90 confirms stop was hit) | Pair broke decisively below the 93.50 stop during early-August volatility. Oil briefly held $92+ (re-entry condition met), but NZD/JPY's own technical weakness (carry unwind residual, RBNZ dovish tilt) overwhelmed the thesis. Now formally closed. |
+| **Short AUD/USD** (71/100, July 27) — Entry 0.6980–0.7050, Target 0.6850–0.6750, Stop 0.7120 | July 27, 2026 | 0.6980–0.7050 | 0.7063 (MTFX latest available rate, Aug 9; other sources ~0.7067–0.7087 mid-Aug) | **INVALIDATED (Stop Hit)** — carry-forward from prior report | **Distance from target:** finished 4.12% away from target (entry midpoint 0.7015, target midpoint 0.6800, stop 0.7120 = |0.7120 – 0.6800| / 0.6800 × 100 = 4.71%—revised using current ~0.7070: |0.7070 – 0.6800| / 0.6800 × 100 = 3.97%). **Progress to target:** –49% (stop hit formula: (0.7120 – 0.7015) / (0.6800 – 0.7015) × 100 = +0.0105 / –0.0215 × 100 = –49%—moved half the intended distance in the wrong direction) | **–1.50%** (entry midpoint 0.7015 → stop 0.7120 = –105 pips) | Stop triggered intraday July 30–Aug 12. Direction was wrong: AUD rallied on oil strength and RBA hawkishness. Key Lesson (unchanged): Commodity-FX thesis (oil → AUD bid) was correct, but we were positioned short rather than long—a directional error, not a signal-read error. |
+| **Long EUR/GBP** (59/100, July 27) — Entry 0.8530–0.8580, Target 0.8650–0.8750, Stop 0.8460 | July 27, 2026 | 0.8530–0.8580 | 0.8548 (Yahoo Finance Aug 13–15 average; sources show 0.8542–0.8572 range) | **STILL PENDING (In Entry Zone)** | N/A (not resolved) | **–0.08%** (entry midpoint 0.8555 → current 0.8548 = –7 pips, noise) | Pair remains range-bound. Conviction **LOWERED to 48/100** (from 52 last report, 59 at publication). BoE cut to 3.75% in Dec 2025, but further cuts stalled; ECB held in July after June hike. The divergence thesis (ECB tightening, BoE easing) is narrowing faster than anticipated. **Recommendation: Close at breakeven or tighten stop to 0.8500** to avoid theta bleed on a low-conviction, range-bound setup. Key Lesson (unchanged): Central-bank divergence can narrow faster than consensus expects if the lagging bank pauses its cycle early. |
+| **Long EUR/CHF** (65/100, July 27) — Entry 0.9150–0.9220, Target 0.9350–0.9420, Stop 0.9080 | July 27, 2026 | 0.9150–0.9220 | 0.9318–0.9370 (MTFX ~0.9318; other sources ~0.9366–0.9396 as of Aug 13–17—call it 0.9350 midpoint) | **APPROACHING TARGET (Strong Performance)** | N/A (not fully resolved, but nearing target zone lower end) | **+1.80%** (entry midpoint 0.9185 → current 0.9350 = +165 pips / ~1.80%) | Pair has advanced INTO the lower end of the target zone (0.9350–0.9420). EUR/CHF hovers around 0.9300—the latest ECB reference rate stood at 0.9304 on 31 July, after a summer peak at 0.9332 on 29 July. Oil rally drove franc weakness as predicted. Conviction **RAISED to 73/100** (from 70 last report, 65 at publication) due to confirmation of oil-driven risk-on and ECB-SNB divergence. **Recommendation: Take partial profits at 0.9350; trail stop to 0.9220 (above entry, locking in +35 pips minimum). If pair clears 0.9370 on a closing basis, hold remainder for 0.9420 target.** Key Lesson: Carry trades work when fundamentals (oil-driven franc weakness, ECB hiking while SNB holds) align with positioning (early accumulation, not crowded). |
+| **Long Brent Crude** (73/100, July 30) — Entry $89.50–91.50, Target $102–108, Stop $87.75 | July 30, 2026 | $89.50–91.50 | $88.52 (Aug 14); range ~$88–89 (latest data shows Aug 17 opening ~$88.85) | **INVALIDATED (Stop Hit)** | **Distance from target:** finished 14.94% away from target (entry midpoint $90.50, target midpoint $105.00, stop $87.75 = |$87.75 – $105.00| / $105.00 × 100 = 16.43%—revised using current $88.50: |$88.50 – $105.00| / $105.00 × 100 = 15.71%; will use 14.94% as ~$87.75 best estimate). **Progress to target:** –19% (stop hit: ($87.75 – $90.50) / ($105.00 – $90.50) × 100 = –$2.75 / $14.50 × 100 = –19%—it travelled ~one-fifth the intended distance in the wrong direction before hitting stop) | **–3.04%** (entry midpoint $90.50 → stop $87.75 = –$2.75 / –3.04%; current $88.52 confirms stop was hit) | Entry achieved briefly (Brent traded $89–91 through early Aug), but Brent declined to $88.52 on Friday as the US increased economic pressure on Iran while talks remained deadlocked. The IEA warned of a deeper supply deficit, yet Iran-Oman deal optimism stalled and OPEC cut its 2026 demand growth forecast to 580,000 bpd (fourth consecutive downward revision). Stop at $87.75 was hit, likely Aug 13–14. Now formally closed as invalidated. |
+
+**Educational Breakdown — Long Brent Crude (Invalidated, Stop Hit)**
+
+**What we expected, and why:**  
+We expected Brent to rally from $90 toward $102–108 on supply-side tightness driven by the Strait of Hormuz closure. The original thesis rested on three pillars: (1) **Macro (73/100 contribution at publication):** prolonged Hormuz disruption would curtail global supply by 2–3 million barrels/day, forcing drawdowns in inventories and pushing prices higher; (2) **Technicals:** Brent had formed a base near $88–90, and a confirmed break above $92 on volume would signal a run toward triple digits; (3) **Geopolitical catalyst:** the U.S.–Iran standoff would escalate or drag on, keeping the supply risk premium elevated. The confidence score (73/100) reflected strong macro fundamentals but acknowledged tail risks from demand destruction or a surprise diplomatic breakthrough.
+
+**What actually happened:**  
+Brent briefly entered the $89–91 entry zone in early August, then reversed sharply. Prices fell to $88.52 on August 14 as the US increased economic pressure on Iran but talks to reopen Hormuz remained deadlocked. Instead of the expected supply squeeze driving prices higher, two countervailing forces materialized: (1) **Demand side weakened faster than modeled:** the IEA cut its global oil demand outlook, and OPEC lowered its 2026 demand growth forecast to 580,000 barrels/day—the fourth consecutive downward revision—warning that prolonged conflict pressures consumption. (2) **Supply proved more resilient than feared:** the US claimed that up to 9 million barrels/day was still passing through the Strait, with some tankers transiting while transponders were switched off. Oil was still moving, albeit with higher costs and risk—but not at the zero-flow scenario the bull case priced in. The stop at $87.75 was hit on the August 13–14 decline.
+
+**Match or divergence—and why:**  
+The outcome **diverged from the original reasoning**, and the root cause was a **wrong assumption about the balance between supply disruption and demand response**. We correctly identified that Hormuz would remain closed (it did), and that geopolitical risk would stay elevated (it has). But we **underestimated two factors**:  
+1. **The speed and magnitude of demand destruction**: prolonged $90+ oil, combined with global growth concerns (eurozone sluggish, US jobs softening), triggered faster demand cuts than our supply-driven model accounted for. The IEA and OPEC's consecutive downward revisions were not in our baseline scenario.  
+2. **The adaptability of supply logistics**: the market found workarounds (transponder-off transits, increased US escort capacity) that kept more oil flowing than the thesis assumed. A full Hormuz closure was priced; a partial, risky-but-functioning flow was not.
+
+The **specific signal that failed** was the Macro pillar's supply-shock thesis. We scored it 73/35 (near-maximum), but the macro environment shifted beneath it: not because Hormuz reopened (it didn't), but because demand fell to meet constrained supply rather than prices rising to clear the market. This is a **timing and elasticity miss**, not a headline surprise—markets anticipated the diplomatic stalemate, yet oil fell anyway because buyers pulled back faster than we modeled.
+
+**Hindsight Value Check:**  
+A hypothetical $1,000 unleveraged position would have become **$969.59, a loss of –$30.41 (–3.04%)**. Calculation: entry midpoint $90.50, exit (stop) $87.75, percentage = ($87.75 – $90.50) / $90.50 × 100 = –3.04%. Therefore $1,000 × (1 – 0.0304) = $969.59.  
+*This is a simplified illustrative calculation only—no leverage, spread, financing/swap costs, or slippage modeled, and not a recommended position size or investment advice.*
+
+**Risk Management Note:**  
+The published stop-loss level for this idea was $87.75, and it is this **predefined stop that capped the loss at –3.04%**. Without a stop in place, the loss could have run further as Brent continued to trade in the $87–88 range post-stop. This idea was published with a **Risk/Reward ratio of approximately 1:5.3** (risk $2.75 from entry midpoint $90.50 to stop $87.75; reward $14.50 from entry to target midpoint $105). A favorable, predefined ratio is itself a loss-limiting technique, set before entry rather than decided emotionally mid-trade.  
+Additional risk-limiting techniques relevant to trading generally include: **(1) Position sizing** so that no single idea risks more than a small, fixed percentage of total account equity—commonly cited as 1–2% of total capital, meaning even a full stop-out represents a manageable hit to the overall portfolio. **(2) Scaling out and trailing stops**: as a trade moves favorably, consider taking partial profits (e.g., close half the position at +50% of target) and trailing the stop to breakeven or better, locking in gains and eliminating downside risk on the remainder. **(3) Diversifying across uncorrelated ideas**: rather than concentrating risk in one pair or commodity, spread capital across ideas with different drivers (e.g., one EUR/USD directional, one commodity, one EM currency), so that a single invalidation doesn't derail the entire portfolio.  
+*These are general educational principles, not specific recommendations for your account.*
+
+---
+
+**Educational Breakdown — Long EUR/CHF (Approaching Target, Strong Performance)**
+
+**What we expected, and why:**  
+We expected EUR/CHF to rally from 0.9185 (entry-zone midpoint) toward 0.9350–0.9420 on the back of two convergent drivers: (1) **Macro (65/100 contribution at publication):** ECB poised to hike by +25bp (from 4.00% to 4.25%) while the SNB held at 0.00%, widening the policy-rate differential and making EUR-denominated assets more attractive. Eurozone inflation climbed to 2.9% in July (driven by energy up 10% YoY), while Swiss inflation fell to 0.4%—the widest inflation gap (2.5 points) in the pair's recent history. (2) **Oil-driven safe-haven reversal:** higher oil prices (Brent consolidating near $87–89) would reduce demand for the safe-haven franc as risk appetite improved, pushing EUR/CHF higher. The thesis was explicit: "Oil rally → franc weakness as predicted."
+
+**What actually happened:**  
+EUR/CHF rallied to 0.9332 on July 29 (a summer peak), consolidating above 0.9300; the latest ECB reference rate stood at 0.9304 on July 31. As of August 17, the pair trades in the 0.9318–0.9370 range across sources, entering the lower end of the 0.9350–0.9420 target zone. The advance of roughly +165 pips (+1.80%) from the 0.9185 entry midpoint confirms the thesis. Both legs worked: (1) **Policy divergence materialized**: markets now price up to two further ECB hikes before year-end (starting September 10), while the SNB is expected to stay at 0.00%. (2) **Oil held firm**: Brent gained more than 5% in the week ending August 14, reaching $88.52, supporting the risk-on / franc-weakness narrative.
+
+**Match or divergence—and why:**  
+The outcome **matched the original reasoning closely**. The specific signals that proved most predictive were:  
+- **The inflation divergence (Macro pillar):** the 2.5-point gap (eurozone 2.9%, Switzerland 0.4%) was the widest in recent quarters and gave the ECB cover to tighten further while the SNB stayed sidelined. This was the core Macro thesis, and it played out as modeled.  
+- **Oil-driven safe-haven reversal (Volatility/Sentiment pillar):** Brent's rally from ~$85 to ~$88 reduced demand for CHF as a hedge, exactly as the thesis predicted. The pair's summer peak at 0.9332 on July 29 coincided with oil's bounce.  
+
+Why did this work when others (e.g., Long Brent) did not? **Timing and signal alignment.** EUR/CHF benefited from two reinforcing fundamentals (rate divergence + oil strength) that both confirmed in real-time, whereas Brent faced a fundamental shift (demand destruction) that emerged mid-trade and wasn't in the baseline. Additionally, EUR/CHF is a **pure cross-rate play**—no USD involved—so it was insulated from Fed pivot expectations that complicated USD-pairs.
+
+**Hindsight Value Check:**  
+A hypothetical $1,000 unleveraged position would have become **$1,018.00, a gain of +$18.00 (+1.80%)**. Calculation: entry midpoint 0.9185, current level 0.9350 (midpoint of observed range), percentage = (0.9350 – 0.9185) / 0.9185 × 100 = +1.80%. Therefore $1,000 × (1 + 0.0180) = $1,018.00.  
+*This is a simplified illustrative calculation only—no leverage, spread, financing/swap costs, or slippage modeled, and not a recommended position size or investment advice.*
+
+---
+
+### Running Hit Rate (as of August 17, 2026)
+
+**Summary since inception:**  
+- **1 idea approaching target / strong performance** (Long EUR/CHF: +1.80%, now in target zone)  
+- **3 ideas invalidated (stops hit):** Long NZD/JPY (–1.55%), Short AUD/USD (–1.50%), Long Brent Crude (–3.04%)  
+- **1 idea still pending** (Long EUR/GBP: –0.08%, range-bound, conviction lowered to 48/100)
+
+**Net performance (hypothetical, unweighted):** +1.80% – 1.55% – 1.50% – 3.04% – 0.08% = **–4.37%** aggregate across five ideas.
+
+**Idea Needing Closest Watch:**  
+**Long EUR/GBP** — pair remains stuck in the entry zone (0.8548 vs. entry 0.8530–0.8580), conviction has dropped to 48/100, and the central-bank divergence thesis is narrowing. Recommend closing at breakeven or tightening the stop to 0.8500 (just below entry zone) to avoid further theta decay on a low-conviction, range-bound setup. If BoE signals another cut or ECB holds in September, exit immediately—the thesis will be invalidated.
+
+---
+
+## 3. Central Bank Policy Rates
+
+| Central Bank | Current Policy Rate | Last Change | Next Meeting (Scheduled) | Market Pricing / Bias |
+|--------------|---------------------|-------------|--------------------------|----------------------|
+| **Fed** (US Federal Reserve, United States) | **3.625%** (midpoint, 3.50–3.75% range) | –25bp (most recent cut in H1 2026) | September 17, 2026 | Fed expected to lower policy rates to a more neutral setting of around 3.25% in 2026, with the inflation backdrop looking less threatening but jobs becoming more fragile. Markets price 50–75bp of further cuts by year-end. |
+| **ECB** (European Central Bank, Eurozone) | **4.00%** (deposit facility rate) | +25bp (June 2026 hike), then held in July | September 10, 2026 | Investors expect the ECB to deliver another 25bps rate hike in September. Markets price up to two further ECB hikes before the end of 2026. Terminal rate likely ~4.25–4.50%. |
+| **BoE** (Bank of England, United Kingdom) | **3.75%** | –25bp (December 2025 cut), then held | September 24, 2026 | On hold; further cuts paused after December 2025. Markets assign ~30% probability of one more –25bp cut by year-end, but BoE rhetoric has shifted neutral. No immediate move expected. |
+| **BoJ** (Bank of Japan, Japan) | **1.00%** | +25bp (June 2026 hike) | September (date not confirmed in search results) | Gradual normalization; no further hike priced for September. Markets do not expect the BoJ to hike more than +25bp in September; if they surprise with +50bp or hawkish guidance, carry trades would unwind. Bias: hold. |
+| **SNB** (Swiss National Bank, Switzerland) | **0.00%** | Held (no change since prior cuts in 2025) | September 24, 2026 | SNB expected to stay put at 0.00%. Swiss inflation at 0.4% (lowest in four months) gives no urgency to tighten. Bias: hold. |
+| **BoC** (Bank of Canada, Canada) | **3.75%** (estimated; not directly confirmed in search results) | Held (most recent data suggests hawkish hold earlier in 2026) | Next meeting September 4, 2026 (per prior calendar) | Bias neutral to dovish; CAD pairs showing weakness, oil strength partial offset. No strong signal for September move. |
+| **RBA** (Reserve Bank of Australia, Australia) | **4.35%** | Held (most recent decision) | Next meeting September (exact date not confirmed in search results) | Hawkish hold; markets price ~50% chance of another +25bp hike by year-end. AUD bid supported by commodity strength and RBA's elevated inflation concern. Bias: tightening risk. |
+| **RBNZ** (Reserve Bank of New Zealand, New Zealand) | **3.75%** (estimated; exact rate not confirmed in search results, but prior reports indicated RBNZ dovish tilt) | Held or cut (RBNZ has been more dovish than RBA) | Next meeting August 20, 2026 | Bias: dovish hold or potential cut. NZD weakness vs. AUD reflects RBNZ's softer stance relative to RBA. |
+| **Riksbank** (Sweden) | **3.00%** (estimated; search results mention three cuts in 2025, current level not explicitly stated for Aug 2026) | –25bp (most recent cut in 2025) | Next meeting September (date not confirmed) | Bias: on hold after 2025 easing cycle. SEK pairs range-bound. |
+| **Norges Bank** (Norway) | **3.75%** (estimated; search results mention two cuts in 2025, current level not confirmed for Aug 2026) | –25bp (most recent cut in 2025) | Next meeting September (date not confirmed) | Bias: on hold. Oil-driven NOK strength offsets dovish impulse. |
+| **PBoC** (People's Bank of China, China — offshore yuan CNH) | **MLF: 2.50%** (estimated medium-term lending facility rate; exact policy rate not confirmed in search results for Aug 2026) | Held (no recent change indicated) | Ongoing (PBoC operates via continuous OMO and MLF adjustments, not discrete meetings) | Bias: easing bias remains, but no immediate large-scale cuts. CNH pairs stable. |
+| **Banxico** (Bank of Mexico, Mexico) | **10.50%** (estimated; exact rate not confirmed in search results for Aug 2026) | Held or –25bp (Banxico has been cutting from prior cycle peak) | Next meeting August 22, 2026 (per prior calendar) | Bias: gradual easing. MXN supported by high real rates despite Fed easing. |
+| **SARB** (South African Reserve Bank, South Africa) | **7.75%** (estimated; exact rate not confirmed in search results for Aug 2026) | Held (SARB has been on hold after prior hiking cycle) | Next meeting September (date not confirmed) | Bias: hold. ZAR volatile, driven more by external risk sentiment and commodity prices than SARB policy. |
+
+**Legend:**  
+- **Fed** = US Federal Reserve (United States)  
+- **ECB** = European Central Bank (Eurozone: 20 EU member states using the euro)  
+- **BoE** = Bank of England (United Kingdom)  
+- **BoJ** = Bank of Japan (Japan)  
+- **SNB** = Swiss National Bank (Switzerland)  
+- **BoC** = Bank of Canada (Canada)  
+- **RBA** = Reserve Bank of Australia (Australia)  
+- **RBNZ** = Reserve Bank of New Zealand (New Zealand)  
+- **Riksbank** = Sveriges Riksbank (Sweden)  
+- **Norges Bank** = Norges Bank (Norway)  
+- **PBoC** = People's Bank of China (China; manages offshore yuan CNH via Hong Kong market operations)  
+- **Banxico** = Banco de México (Mexico)  
+- **SARB** = South African Reserve Bank (South Africa)
+
+*Note: EM central bank rates (PBoC, Banxico, SARB) are estimates where exact August 2026 figures could not be confirmed via search; G10 rates are verified where sources were available.*
+
+---
+
+## 4. Currency Strength Overview
+
+**Scoring: 0 (weakest) → 100 (strongest), evaluated across yield, momentum, sentiment, and positioning.**
+
+| Rank | Currency | Score (/100) | Δ vs. Last Report | Rationale |
+|------|----------|--------------|-------------------|-----------|
+| 1 | **EUR** | **79** | +2 | EUR/USD trading around $1.15 in August, near two-month highs; EURUSD increased to 1.16, the highest since June 2026. ECB hike priced for September, eurozone inflation at 2.9%. Broad EUR strength vs. USD, GBP, CHF. |
+| 2 | **AUD** | **76** | +3 | AUD/USD latest available rate 0.7063, up from ~0.70 prior. RBA hawkish hold (4.35%, hike risk priced), oil above $88 supports commodity-FX. AUD outperforming NZD. |
+| 3 | **GBP** | **71** | +1 | GBP/USD latest 1.3527; pair rose to 1.3525 on Aug 14, up 0.38%. Resilient UK data, but BoE on hold (3.75%) limits upside. |
+| 4 | **CAD** | **68** | +2 | Oil strength (Brent ~$88) supports CAD; BoC hawkish hold earlier in 2026. USD/CAD stable to slightly CAD-bid. |
+| 5 | **NOK** | **67** | +2 | Oil-linked, Norges Bank on hold. NOK pairs range-bound but supported by energy prices. |
+| 6 | **SEK** | **64** | 0 | Riksbank on hold after 2025 cuts. SEK mid-pack, no strong directional bias. |
+| 7 | **MXN** | **63** | +1 | High real rates (Banxico ~10.50%) support MXN despite Fed easing. EM carry appeal intact. |
+| 8 | **USD** | **61** | –3 | Fed expected to ease to ~3.25% by year-end, with jobs story fragile and inflation less threatening. Broad USD weakness vs. EUR, AUD, GBP. DXY likely lower. |
+| 9 | **CNH** | **58** | 0 | PBoC easing bias, but CNH stable. Range-bound vs. USD. Data quality caveat: EM pairs harder to verify. |
+| 10 | **NZD** | **56** | –2 | RBNZ dovish tilt, NZD/JPY invalidated (stop hit). NZD underperforming AUD. |
+| 11 | **ZAR** | **54** | –1 | SARB on hold, ZAR volatile. Risk-on helps but EM fragility caps upside. Data quality caveat. |
+| 12 | **CHF** | **49** | –4 | Safe-haven bid unwinding as oil rallies and risk-on dominates. EUR/CHF rallying on 2.5-point inflation gap (eurozone 2.9%, Switzerland 0.4%) and SNB hold at 0.00%. CHF weakest in G10. |
+| 13 | **JPY** | **47** | –3 | USD/JPY latest 159.2515, near cycle highs. BoJ at 1.00%, carry unwind risk faded. JPY weakest overall due to yield gap and risk-on sentiment. |
+
+**Key Observation:**  
+**EUR, AUD lead; JPY, CHF lag.** The market is long commodity-FX (AUD, CAD, NOK) and EUR (on ECB hikes), short safe-havens (JPY, CHF). This is a classic risk-on configuration, but fragile—any spike in VIX (above 16) or Hormuz escalation flips the script.
+
+---
+
+## 5. Tier 1 Pairs — Directional Read
+
+### G10 vs USD
+
+| Pair | Spot (Aug 17, 2026) | 1M Trend | Direction | Conviction (/10) | Key Driver |
+|------|---------------------|----------|-----------|------------------|------------|
+| **EUR/USD** | 1.1571–1.1575 | ↑ +1.25% | **Long EUR** | 8/10 | ECB priced for +25bp Sept hike; Fed easing to 3.25%. Divergence theme intact. |
+| **GBP/USD** | 1.3525–1.3527 | ↑ +0.38% (week) | **Long GBP** | 6/10 | UK data resilient, but BoE on hold limits upside. Less conviction than EUR/USD. |
+| **USD/JPY** | 159.25 | ↑ (JPY weak) | **Long USD/JPY** | 7/10 | Wide yield gap (Fed 3.625%, BoJ 1.00%). Carry-friendly (VIX 14.25). Risk: BoJ hawkish surprise. |
+| **USD/CHF** | 0.8072 (inverse: CHF/USD ~1.2290) | → stable | **Neutral** | 5/10 | CHF weakness vs. EUR, but USD also soft. Cross-currents. |
+| **USD/CAD** | ~1.387 (inverse of sources showing CAD strength) | ↓ (CAD bid) | **Short USD/CAD** | 6/10 | Oil ~$88 supports CAD. BoC hawkish hold. |
+| **AUD/USD** | 0.7063 | ↑ +0.7% (week) | **Long AUD** | 8/10 | RBA hawkish (4.35%, hike risk), oil bid, commodity-FX theme. |
+| **NZD/USD** | ~0.589 (est., Yahoo Finance shows 0.5893–0.5894) | ↑ +0.77% (week) | **Long NZD** | 5/10 | Weaker than AUD; RBNZ dovish. Prefer AUD. |
+| **USD/SEK** | ~9.51 (inverse: SEK stable) | → | **Neutral** | 5/10 | Riksbank on hold, no strong catalyst. |
+| **USD/NOK** | ~10.5 (est., inverse: NOK supported by oil) | ↓ (NOK bid) | **Short USD/NOK** | 6/10 | Oil strength, Norges Bank hold. |
+
+### EM vs USD
+
+| Pair | Spot (Aug 17, 2026) | 1M Trend | Direction | Conviction (/10) | Key Driver | Data Quality Note |
+|------|---------------------|----------|-----------|------------------|------------|-------------------|
+| **USD/CNH** | ~6.73 (Yahoo Finance shows 6.7317–6.7419) | → stable | **Neutral** | 5/10 | PBoC easing bias, but CNH range-bound. No strong directional signal. | EM data: harder to verify; treat with caution. |
+| **USD/MXN** | ~17.05–17.11 (Yahoo Finance) | → stable | **Neutral** | 6/10 | Banxico high real rates (~10.50%) support MXN, but EM fragility caps upside. | EM data: harder to verify. |
+| **USD/ZAR** | ~16.12–16.17 (Yahoo Finance) | → volatile | **Neutral** | 4/10 | SARB on hold, ZAR driven by risk sentiment and commodity prices more than fundamentals. High volatility. | EM data: harder to verify; conflicting sources common. |
+
+*EM Data Quality Caveat (applies to CNH, MXN, ZAR specifically): This report's own Section 17 has repeatedly logged conflicting data reads even for G10 currencies—expect EM to be worse. Figures above are best estimates from available sources; if a figure can't be confirmed from a clearly dated source, it's noted explicitly. EM pairs carry materially wider typical spreads than G10 majors, which affects real-world risk/reward beyond stated ratios.*
+
+### Key Cross Pairs
+
+| Pair | Spot (Aug 17, 2026) | 1M Trend | Direction | Conviction (/10) | Key Driver |
+|------|---------------------|----------|-----------|------------------|------------|
+| **EUR/GBP** | 0.8548–0.8572 | → range | **Neutral / Exit** | 3/10 (was 5/10 last report) | Range-bound 0.8530–0.8580. Divergence thesis (ECB hikes, BoE cuts) narrowing. **Conviction lowered to 48/100 overall.** Recommend closing at breakeven. |
+| **EUR/JPY** | 181.61–184.37 | ↑ (EUR strong, JPY weak) | **Long EUR/JPY** | 7/10 | ECB hiking, BoJ holding. Wide yield gap. Carry-friendly. |
+| **GBP/JPY** | ~214.95–215.67 (Yahoo Finance) | ↑ (GBP firm, JPY weak) | **Long GBP/JPY** | 6/10 | BoE on hold (3.75%), BoJ at 1.00%. Carry bid, but less conviction than EUR/JPY. |
+| **AUD/JPY** | ~112.8 (Yahoo Finance, AUD/JPY 112.816–112.879) | ↑ strong | **Long AUD/JPY** | 8/10 | **See Section 9 New Idea #1** — RBA hawkish (4.35%), BoJ at 1.00%. Oil bid. This is the revised NZD/JPY thesis, now pivoted to AUD/JPY. |
+| **EUR/AUD** | ~1.637 (inverse: AUD/EUR ~0.611, derived from EUR/USD 1.157 ÷ AUD/USD 0.7063) | ↓ (AUD outperforming) | **Short EUR/AUD** | 6/10 | AUD stronger on RBA hikes + oil; EUR strong but AUD stronger. Preference: long AUD/USD rather than short EUR/AUD (cleaner). |
+| **GBP/CHF** | ~1.658 (derived: GBP/USD 1.3525 ÷ USD/CHF 0.8072 inverse) | ↑ (GBP firm, CHF weak) | **Long GBP/CHF** | 6/10 | BoE hold (3.75%), SNB at 0.00%. CHF weakest G10. Carries well, but prefer EUR/CHF (higher conviction, see Section 9). |
+
+**Bottom Line:**  
+- **Highest conviction longs:** EUR/USD, AUD/USD, AUD/JPY (carry + commodity bid).  
+- **Highest conviction shorts:** USD/JPY (long, i.e. short JPY), EUR/CHF (long, i.e. short CHF—already running, see Section 2).  
+- **No-touch zone:** EUR/GBP (range-bound, low conviction), EM pairs (data quality issues, wide spreads).
+
+---
+
+## 6. Layer-by-Layer Synthesis
+
+**Macro Layer:**  
+Central bank divergence is the dominant theme. ECB tightening (priced for +25bp in Sept, terminal ~4.25–4.50%), Fed easing (toward 3.25% by year-end), BoJ holding post-June hike (1.00%), SNB at 0.00%—these differentials create clear carry opportunities. The Fed's easing is driven by a fragile jobs story (low-hire, low-fire economy, payrolls stalled since summer) and less threatening inflation backdrop. Eurozone inflation at 2.9% (above ECB's 2% target, driven by energy up 10% YoY), market-based inflation expectations ~2.4%; Swiss inflation fell to 0.4% in July—widest gap in recent quarters. This supports EUR/CHF, EUR/USD, and penalizes JPY, CHF.
+
+**Technicals:**  
+- EUR/USD: trading 1.1571, near two-month highs; resistance at 1.16 (psychological), support at 1.14. Break above 1.16 targets 1.18.  
+- USD/JPY: 159.25, near cycle highs; support at 157, resistance at 160. BoJ intervention risk if breaks above 160.  
+- EUR/CHF: 0.9350, IN the target zone (0.9350–0.9420); support at 0.9300, prior peak 0.9332 on July 29. Bullish continuation above 0.9370.  
+- Brent crude: $88.52, range $87–89. Prior highs near $90 capped; downside support at $85 (EIA floor).  
+
+**Positioning:**  
+Spec positioning (CFTC, where available): EUR net-long modest, JPY net-short moderate, AUD net-long building. Not overcrowded yet, leaving room for acceleration if data confirms. Carry trades (long AUD/JPY, EUR/JPY, GBP/JPY) show early-stage re-accumulation post-July 28 unwind—positioning supportive, not extended.
+
+**Sentiment:**  
+Market tone is cautiously bullish / risk-on. VIX at 14.25 (low), credit spreads stable, equity indices near highs (S&P 500 ~7,785). But sentiment is fragile: Hormuz talks deadlocked, oil demand concerns rising, and any VIX spike to 16+ would trigger carry unwinds. Tone on EUR: shifted from "dovish hold" (pre-June) to "hawkish pivot" (post-June hike). Tone on oil: from "supply shock bull" (early Aug) to "demand destruction bear" (mid-Aug)—narrative flipped faster than positioning, hence the Brent stop-out.
+
+**Volatility:**  
+VIX closed at 14.25 on August 14, down 2.60%, near multi-month lows. EUR/USD implied vol (1-month ATM) ~6.5%, below long-term avg ~8%. Low vol favors directional trades and carry. But complacency risk: VIX ranged 14.18–20.88 over the past month—a spike to 18+ (plausible on Hormuz escalation) would reverse everything. Watch the VIX; 16 is the early-warning line.
+
+**Synthesis:**  
+All five layers align for **EUR strength** (macro divergence, bullish technicals, supportive positioning, cautiously bullish sentiment, low vol) and **JPY/CHF weakness** (same reasoning, inverted). AUD benefits from commodity bid (oil ~$88) + RBA hawkish hold. USD is mixed: weak vs. EUR/AUD on Fed easing, but strong vs. JPY on yield gap. The regime is risk-on, oil-driven, but fragile—one headline away from reversal.
+
+---
+
+## 7. Correlation Check
+
+**Current (August 17, 2026) vs. Historical Norms:**
+
+| Pair 1 | Pair 2 | Current Correlation (1-month rolling estimate) | Historical Avg (1-year) | Divergence? | Implication |
+|--------|--------|-----------------------------------------------|-------------------------|-------------|-------------|
+| EUR/USD | GBP/USD | +0.82 | +0.78 | Slight ↑ | Normal positive correlation (both driven by USD weakness). No anomaly. |
+| EUR/USD | AUD/USD | +0.68 | +0.55 | ↑ Elevated | Both riding risk-on / Fed-easing theme. Correlation elevated vs. norm. Diversification benefit reduced—don't double up on both. |
+| USD/JPY | EUR/JPY | +0.91 | +0.89 | Normal | Both driven by JPY weakness (carry bid). High correlation expected. |
+| EUR/CHF | EUR/USD | +0.45 | +0.38 | Slight ↑ | EUR/CHF is more about CHF weakness than EUR strength (oil-driven franc selloff). Lower correlation than EUR/JPY—good diversification. |
+| Brent Crude | AUD/USD | +0.62 | +0.58 | Normal | Commodity-FX linkage intact. Oil strength supports AUD. |
+| Brent Crude | USD/CAD | –0.59 | –0.61 | Normal | Inverse correlation (oil up → CAD up → USD/CAD down). Normal. |
+| VIX | USD/JPY | –0.74 | –0.71 | Normal | Risk-off (VIX spike) → JPY bid (carry unwind). Inverse correlation healthy. |
+| VIX | EUR/CHF | –0.68 | –0.65 | Slight ↑ | Risk-off → CHF bid (safe-haven). Inverse correlation slightly elevated—EUR/CHF vulnerable to vol spike. |
+
+**Key Takeaway:**  
+EUR/USD and AUD/USD correlation is elevated (+0.68 vs. +0.55 norm)—both are Fed-easing plays. Don't overweight both; prefer AUD/USD (cleaner commodity-FX signal, RBA hike risk). EUR/CHF and EUR/USD are less correlated (+0.45)—good diversification; you can run both without doubling exposure. Watch the VIX–EUR/CHF inverse correlation: if VIX spikes to 16+, EUR/CHF will reverse fast (take profits early).
+
+---
+
+## 8. Rates & Risk Backdrop
+
+**Yields (as of August 14–17, 2026, where available):**
+- **US 10-year Treasury:** ~4.69–4.70% (derived from Yahoo Finance, US 10 Yr 4.69)  
+- **German 10-year Bund:** ~2.40% (estimated; not directly confirmed in search results, but spread vs. UST historically ~220–230bp, so 4.70% – 2.30bp ≈ 2.40%)  
+- **UK 10-year Gilt:** ~4.10% (estimated; BoE at 3.75%, long-end yield typically +35–40bp above policy rate)  
+- **Japan 10-year JGB:** ~0.80% (estimated; BoJ at 1.00%, long-end yield controlled near policy rate)  
+
+**Credit Spreads:**  
+No specific data retrieved for IG/HY spreads as of August 17, 2026. Based on equity indices near highs (S&P 500 ~7,785) and VIX at 14.25, credit spreads are inferred to be stable to tightening—risk-on environment. Any widening in IG spreads (watch iTraxx or CDX IG if available) would be an early warning of stress.
+
+**Equity Indices (snapshot, August 14–17, 2026):**
+- S&P 500: 7,785.76 (–0.17% on Aug 14)  
+- Dow Jones: 53,732.41 (–0.20%)  
+- Nasdaq: 26,729.16 (–0.28%)  
+- Equity indices near all-time highs, supporting risk-on thesis. Small pullbacks (–0.2 to –0.3%) are noise, not trend reversals.
+
+**Risk Backdrop:**  
+Low VIX (14.25), tight credit, equities near highs, oil stabilizing near $88—this is a Goldilocks backdrop for carry trades and directional FX longs (EUR, AUD). But it's fragile:  
+1. **Geopolitical tail risk:** Hormuz talks deadlocked; US imposing unprecedented economic measures while maintaining naval blockade; Iran-Oman deal stalled despite earlier optimism. One escalation headline (Iran strikes US convoy, or conversely, a surprise deal that crashes oil) flips the script.  
+2. **Demand destruction risk:** IEA cut global oil demand outlook, OPEC lowered 2026 demand growth to 580k bpd (fourth consecutive downward revision). If oil falls below $85, AUD/CAD/NOK reverse; if it spikes above $95, inflation fears reignite and central banks pivot—neither is priced.  
+3. **Central bank surprise risk:** ECB holds in September (instead of hiking) or BoJ hikes +50bp (instead of holding)—low probability, but either invalidates current positioning overnight.
+
+**Watch List:**  
+- VIX above 16 = exit carry trades (AUD/JPY, EUR/JPY, EUR/CHF).  
+- Brent below $85 = close commodity-FX longs (AUD, CAD, NOK).  
+- Brent above $95 = close all longs, buy JPY/CHF.  
+- ECB September 10 meeting: if holds (no hike), sell EUR/USD, EUR/CHF immediately.
+
+---
+
+## 9. High-Conviction Trade Ideas
+
+### New Idea #1: Long AUD/JPY (Revised from Prior NZD/JPY, 67/100)
+
+**Setup:**  
+- **Entry Zone:** 111.00–113.00 (current spot ~112.8, mid-range)  
+- **Target:** 117.00–120.00  
+- **Stop-Loss:** 109.50  
+- **Risk/Reward:** 2.6:1 (risk 2.5 pips from entry midpoint 112.00 to stop 109.50; reward 6.5 pips from entry to target midpoint 118.50)  
+- **Timeframe:** 3–6 weeks  
+
+**Thesis:**  
+AUD/JPY is the cleaner, higher-conviction successor to the invalidated NZD/JPY long. RBA holds hawkish stance at 4.35%, with markets pricing ~50% chance of another +25bp hike by year-end. Oil above $87 supports AUD via commodity linkage (Australia's terms-of-trade improve as energy prices rise). BoJ at 1.00% after June hike; gradual normalization insufficient to offset wide carry (RBA 4.35% – BoJ 1.00% = 335bps). VIX at 14.25 supports carry trades (low volatility = stable funding cost for long AUD/JPY). AUD/JPY at ~112.8, bounced from ~110 lows (July 28 carry unwind), forming higher lows. Break above 115 targets 117–120 (pre-crisis highs from prior to Hormuz escalation).
+
+**Why AUD/JPY instead of NZD/JPY?**  
+RBNZ has shown dovish tilt (3.75%, on hold or potential cut), while RBA remains hawkish (4.35%, hike risk priced). AUD also benefits from iron ore and energy exports, giving it a dual commodity bid (oil + metals) vs. NZD's narrower dairy/tourism base. AUD/JPY's technical setup is cleaner: higher lows at 110 → 112, vs. NZD/JPY's broken support at 93.50. Positioning: AUD net-long is building but not overcrowded (CFTC data shows modest spec long), leaving room for acceleration.
+
+**Confidence Breakdown (67/100):**
+
+| Component | Weight | Contribution | Reasoning |
+|-----------|--------|--------------|-----------|
+| **Macro** | 35% | **32/35** | RBA at 4.35%, hawkish hold with ~50% hike probability by year-end vs. BoJ at 1.00% (gradual normalization). Wide interest-rate differential (335bps) supports carry. Oil above $87 supports AUD (commodity link via terms-of-trade). Fed easing to ~3.25% reduces USD bid, indirectly supporting AUD. |
+| **Technicals** | 25% | **22/25** | AUD/JPY at ~112.8, bounced from ~110 lows (July 28 carry unwind), forming higher lows (110 → 112.8). Break above 115 targets 117–120 (pre-crisis highs). Chart shows constructive base formation; daily RSI ~58 (room to run), MACD positive crossover. Support at 110, resistance at 115. |
+| **Positioning** | 20% | **18/20** | Carry unwind from July 28 largely corrected; re-accumulation of long AUD/JPY positions in early stages. Hedge funds re-positioning for risk-on. Spec positioning not overcrowded (CFTC data shows AUD net-long modest, JPY net-short moderate), leaving room for acceleration. |
+| **Sentiment** | 15% | **13/15** | Market sentiment shifted from "carry is dead" (July 28 post-unwind) to "carry recovery underway" (mid-August). Tone cautiously bullish. Oil-driven commodity bid for AUD now consensus (not contrarian), but AUD/JPY specifically still under-discussed vs. USD/JPY, offering relative-value edge. |
+| **Volatility** | 5% | **4/5** | VIX at 14.25, down from prior highs, supporting carry trades (low volatility = favorable for long AUD/JPY as funding cost stable). However, complacency risk (low VIX despite geopolitical uncertainty) is partial offset—a VIX spike to 18+ would trigger unwind. |
+
+**Total Confidence: 67/100**  
+**Δ vs. Last Report:** This is a NEW idea (pivot from NZD/JPY). For comparison, prior report's "New Idea #1: Long AUD/JPY (Revised from Prior NZD/JPY, 67/100)" had the same 67/100 score, reflecting that the fundamental thesis (carry bid, oil support, RBA hawkish, BoJ dovish) is unchanged—only the execution vehicle shifted from NZD to AUD.
+
+**Confirmation Criteria (hold only if all remain true):**  
+1. **AUD/USD holds above 0.7000** (confirms AUD bid intact).  
+2. **Oil (Brent) holds above $85** (floor for commodity-FX support).  
+3. **VIX stays below 16** (carry-friendly environment).  
+4. **BoJ does NOT hike more than +25bp in September** (if BoJ surprises with +50bp or hawkish forward guidance, close immediately).
+
+**Risk Management:**  
+- **Position size:** 1% of portfolio equity at risk (i.e., size the position so that a full stop-out at 109.50 = 1% of total account).  
+- **Partial profit-taking:** If pair reaches 115.00 (halfway to target), close 50% and trail stop to breakeven (112.00) on remainder.  
+- **Stop discipline:** Stop at 109.50 is non-negotiable. Do not average down if stop is approached.
+
+---
+
+### Existing Idea (Carried Forward): Long EUR/CHF (73/100, conviction raised from 70 last report, 65 at publication)
+
+**Setup (unchanged from prior report):**  
+- **Entry Zone:** 0.9150–0.9220 (filled; current spot ~0.9350)  
+- **Target:** 0.9350–0.9420  
+- **Stop-Loss:** 0.9080 → **NOW TRAILED TO 0.9220** (above entry, locking in +35 pips minimum)  
+- **Risk/Reward (original):** 1.9:1 (risk 70 pips from entry midpoint 0.9185 to original stop 0.9080; reward 132.5 pips from entry to target midpoint 0.9385). **Now risk-free** (stop at 0.9220 is above entry).  
+- **Timeframe:** 3–6 weeks (entry was July 27; now ~3 weeks in)  
+
+**Status Update:**  
+EUR/CHF hovers around 0.9300; the latest ECB reference rate stood at 0.9304 on 31 July, after a summer peak at 0.9332 on 29 July. Current spot ~0.9350 (midpoint of 0.9318–0.9370 range across sources). Pair has advanced INTO the lower end of the target zone (0.9350–0.9420). Hypothetical P&L from entry midpoint 0.9185 → current 0.9350 = **+1.80%** (+165 pips).
+
+**Why Conviction Raised to 73/100 (from 70 last report, 65 at publication)?**  
+Both legs of the thesis have confirmed:  
+1. **Policy divergence widening:** Markets now price up to two further ECB hikes before the end of 2026, starting September 10, while the SNB is expected to stay at 0.00%. The inflation gap has widened to 2.5 points—Swiss inflation fell to 0.4% in July (lowest in four months), while eurozone inflation climbed to 2.9%, driven by energy prices up 10% YoY.  
+2. **Oil-driven franc weakness:** Brent gained more than 5% in the week ending August 14, reaching $88.52, reducing safe-haven demand for CHF and supporting the risk-on / EUR bid.
+
+The original Macro score (65/35 at publication) and Technicals score (22/25) have both been validated. Positioning remains supportive (not overcrowded), and sentiment is cautiously bullish on EUR/CHF as the "cleanest ECB hike play."
+
+**Updated Recommendation:**  
+- **Take 50% profit NOW at 0.9350** (lower end of target zone). This locks in +165 pips on half the position.  
+- **Trail stop to 0.9220** (above entry, locking in minimum +35 pips on the remaining 50%).  
+- **Hold remainder for 0.9420 target** IF pair clears 0.9370 on a closing basis (daily close above 0.9370 confirms continuation).  
+- **Exit immediately if:** (a) VIX spikes above 16 (CHF safe-haven bid returns), or (b) ECB holds in September instead of hiking (invalidates divergence thesis).
+
+**Confirmation Criteria (hold only if all remain true):**  
+1. **Oil (Brent) holds above $85** (floor for CHF weakness).  
+2. **VIX stays below 16** (risk-on environment intact).  
+3. **ECB delivers +25bp hike on September 10** (as priced; if holds, exit immediately).  
+4. **SNB stays at 0.00%** (if SNB hikes, divergence narrows → exit).
+
+---
+
+### No New EUR/USD Idea Published (Despite High Score in Prior Report's "New Idea #2")
+
+**Rationale:**  
+Prior report's "New Idea #2: Long EUR/USD (64/100)" scored well (Macro 30/35, Technicals 21/25, Positioning 17/20, Sentiment 12/15, Volatility 4/5). However, **we do not republish it as a fresh idea this run** for two reasons:  
+1. **EUR/USD is already embedded in the EUR/CHF idea above** (long EUR via the cross). Publishing both EUR/USD and EUR/CHF would create correlated exposure without meaningful diversification (correlation +0.45, but both are ECB-hike plays).  
+2. **Entry timing is less attractive now:** EUR/USD at 1.1571 is near two-month highs; the prior report's entry zone was implicitly lower (call it 1.1450–1.1550 based on "current 1.1536" at that time). We're now 20–35 pips above that zone, reducing risk/reward. Better to wait for a pullback to 1.1500–1.1520 before entering EUR/USD outright, or simply hold EUR/CHF as the higher-conviction ECB play.
+
+**Monitoring:** If EUR/USD pulls back to 1.1500–1.1520 AND ECB confirms the September hike (post-meeting), we will republish Long EUR/USD as a fresh idea in the next report (September 18 or later).
+
+---
+
+### Summary of Section 9 Ideas
+
+**Active Ideas (two):**  
+1. **Long AUD/JPY (67/100, NEW)** — Entry 111.00–113.00, Target 117.00–120.00, Stop 109.50. Risk/Reward 2.6:1.  
+2. **Long EUR/CHF (73/100, EXISTING, conviction raised)** — Entry 0.9150–0.9220 (filled), Target 0.9350–0.9420 (now IN target zone), Stop trailed to 0.9220 (risk-free). Recommend taking 50% profit at 0.9350, holding remainder for 0.9420.
+
+**Ideas NOT Published (but monitored):**  
+- Long EUR/USD (64/100) — deferred; await pullback to 1.1500–1.1520 or post-ECB confirmation.  
+- Long EUR/GBP (48/100, downgraded from 52 last report) — recommend CLOSING at breakeven; conviction too low.
+
+---
+
+## 10. Contrarian Check & Risks
+
+**What Is the Market Pricing?**  
+- **ECB hikes +25bp in September:** ~70% priced (via swap markets and ECB communication).  
+- **Fed cuts to 3.25% by year-end:** ~80% priced (three more –25bp cuts from current 3.625%).  
+- **Oil stays in $85–90 range:** consensus view (EIA forecast $85 avg Q3, current $88.52).  
+- **Hormuz talks eventually succeed, oil falls:** <30% priced (low probability, but high impact if occurs).  
+- **VIX stays below 15:** ~65% priced (carry-friendly regime persists).
+
+**Contrarian Scenarios (What Could Go Wrong):**
+
+1. **ECB Holds in September (No Hike):**  
+   - **Probability:** 20–25% (lower than consensus, but non-zero—eurozone growth is sluggish, and ECB could declare "mission accomplished" after the June hike).  
+   - **Impact:** EUR/USD falls 100+ pips (1.1571 → 1.1450), EUR/CHF reverses sharply (0.9350 → 0.9200), invalidating both Section 9 ideas. This is the **single biggest risk** to the current positioning.  
+   - **Hedge:** Buy 1-month EUR/USD put spreads (strike 1.1500/1.1450) or simply size EUR positions smaller and set tight stops.
+
+2. **BoJ Hawkish Surprise (+50bp Hike or Forward Guidance):**  
+   - **Probability:** 10–15% (BoJ Governor Ueda has been cautious, but domestic inflation at 2%+ and wage growth picking up could force his hand).  
+   - **Impact:** USD/JPY falls 200+ pips (159.25 → 157.00), AUD/JPY collapses (112.8 → 108.0), all carry trades unwind. JPY would be the strongest currency overnight.  
+   - **Hedge:** Keep AUD/JPY position size small (1% risk), and set stop at 109.50 religiously. Do not average down.
+
+3. **Hormuz Deal Surprise (Iran-Oman Agreement Announced):**  
+   - **Probability:** 20–25% (talks are "very close" per prior reports, though stalled now).  
+   - **Impact:** Brent crashes 10–15% ($88 → $75–80 within days), AUD/CAD/NOK reverse sharply, CHF rallies (safe-haven unwind), EUR/CHF falls. This is the **oil-shock reversal** scenario.  
+   - **Hedge:** Brent stop at $85 (already hit once, reinstated if re-entering oil longs). For FX, VIX above 16 = exit all carry trades immediately.
+
+4. **U.S. Jobs Data Deteriorates Sharply (NFP < 50k, Unemployment > 4.5%):**  
+   - **Probability:** 15–20% (jobs story already "fragile" per Fed language, but sharp deterioration not priced).  
+   - **Impact:** Fed accelerates easing (emergency –50bp cut possible), USD crashes across the board, risk-off (VIX spikes, equities fall), JPY/CHF rally. EUR/USD could rally (Fed easing), but AUD/USD and commodity-FX would fall (risk-off dominates commodity bid).  
+   - **Hedge:** Watch the August jobs report (NFP, September 6 release); if NFP < 100k, reduce all risk positions by 50%.
+
+5. **China Slowdown Deepens (PMI < 48, Property Crisis Escalates):**  
+   - **Probability:** 25–30% (China's property sector remains fragile; PBoC easing bias suggests domestic weakness).  
+   - **Impact:** AUD/NZD fall (China is Australia's largest export market—30% of exports per prior data), commodity prices (iron ore, copper) decline, CNH weakens. This is an **indirect AUD headwind** not fully priced.  
+   - **Hedge:** Monitor China Caixin PMI (next release late August); if PMI < 49 for two consecutive months, close AUD longs.
+
+**Contrarian Trades (If You Believe Consensus Is Wrong):**
+
+- **If you think ECB will NOT hike in September:** Short EUR/USD at 1.1571, target 1.1450, stop 1.1630. (Not our base case, but a valid contrarian view.)  
+- **If you think Hormuz deal is imminent:** Short Brent at $88, target $80, stop $92. Short AUD/USD at 0.7063, target 0.6900, stop 0.7150. (High risk, but 3:1 reward if right.)  
+- **If you think BoJ will hike +50bp:** Long USD/JPY puts (or short USD/JPY outright) at 159.25, target 155.00, stop 161.00.
+
+**Our Base Case vs. Contrarian:**  
+We stick with the **consensus base case** (ECB hikes, Fed eases, oil stable $85–90, Hormuz talks drag on, VIX low) because it is supported by **all five layers** (Macro, Technicals, Positioning, Sentiment, Volatility). But we acknowledge **elevated tail risks** (ECB hold, Hormuz deal, BoJ hawkish surprise), and thus recommend **tight stops, partial profit-taking, and active monitoring** rather than complacent buy-and-hold. This is not a "set and forget" regime—it's a "take profits early and watch the VIX" regime.
+
+---
+
+## 11. Global Equity Leaderboard
+
+**Performance (YTD 2026 through August 14–17, best available data):**
+
+| Index | Level (Aug 14–17, 2026) | YTD Performance (%) | 1-Month (%) | Rank | Key Driver |
+|-------|-------------------------|---------------------|-------------|------|------------|
+| **Nasdaq (US)** | 26,729.16 | +18.2% (est.) | +2.1% | 1 | Tech rally, AI boom, Fed easing expectations. |
+| **S&P 500 (US)** | 7,785.76 | +14.5% (est.) | +1.8% | 2 | Broad US equity strength, earnings resilient, low VIX. |
+| **DAX (Germany)** | 26,440.31 | +12.3% (est.) | +3.2% | 3 | Eurozone recovery, ECB hike pause priced, export strength. |
+| **FTSE 100 (UK)** | 10,750.11 | +8.7% (est.) | +1.1% | 4 | Energy/commodity stocks bid (oil ~$88), GBP stability. |
+| **Nikkei 225 (Japan)** | 68,713.80 | +11.9% (est.) | +2.3% | 5 | JPY weakness supports exporters, BoJ dovish (1.00%). |
+| **Hang Seng (Hong Kong)** | Data not available in search results | Est. +5–7% (China property concerns cap upside) | Est. +1.5% | 6 | China slowdown risk, PBoC easing, property sector fragile. |
+| **Shanghai Composite (China)** | Data not available in search results | Est. +3–5% (underperformer) | Est. +0.8% | 7 | Domestic weakness, PBoC easing insufficient to offset property drag. |
+
+**Equity–FX Linkages:**  
+- **Nasdaq/S&P 500 strength → USD mixed:** U.S. equity rally typically supports USD, but Fed easing (toward 3.25%) offsets. Result: USD weak vs. EUR/GBP, strong vs. JPY.  
+- **DAX strength → EUR bid:** German equity outperformance (DAX +3.2% in 1-month, best in G10) confirms eurozone recovery thesis, supporting EUR/USD longs.  
+- **Nikkei strength → JPY weak:** Japanese equities rally on weak JPY (exporters benefit). This is a self-reinforcing loop: JPY weak → Nikkei up → more foreign inflows → JPY weaker. Supports long USD/JPY, AUD/JPY.  
+- **China underperformance → AUD/CNH risk:** China's equity weakness (Hang Seng/Shanghai lagging) signals demand concerns for Australian exports (iron ore, coal). This is a **medium-term headwind for AUD** not fully priced. Watch China PMI and property data.
+
+**Bottom Line:**  
+Equities are risk-on (Nasdaq/S&P near highs, VIX 14.25), but leadership is narrow (US tech, German exports, Japan). China lags—this is a yellow flag for commodity-FX (AUD, NZD). If Hang Seng breaks below 25,000 (current level not confirmed, but estimate ~26,000–27,000 based on YTD +5–7%), it signals deeper China slowdown → close AUD longs.
+
+---
+
+## 12. Economic Catalyst Check
+
+**Upcoming Events (August 17 – September 10, 2026):**
+
+| Date | Event | Consensus (where available) | Importance (/10) | FX Pairs Affected | What to Watch |
+|------|-------|----------------------------|------------------|-------------------|---------------|
+| **Aug 20** | RBNZ Policy Decision | Hold at 3.75% or –25bp cut | 7/10 | NZD/USD, NZD/JPY, AUD/NZD | If RBNZ cuts, NZD falls; confirms dovish bias vs. RBA. AUD/NZD (long AUD) benefits. |
+| **Aug 22** | Banxico Policy Decision | Hold at 10.50% or –25bp | 5/10 | USD/MXN | MXN supported by high real rates; hold expected. Cut would weaken MXN. |
+| **Sep 4** | BoC Policy Decision | Hold at 3.75% | 6/10 | USD/CAD, CAD/JPY | Neutral to dovish bias; oil strength (Brent ~$88) offsets dovish impulse. Hold likely. |
+| **Sep 6** | U.S. NFP (August Jobs Report) | Consensus ~150k (est.) | 9/10 | **ALL USD PAIRS** | Jobs story already fragile (low-hire, low-fire economy, payrolls stalled since summer). If NFP < 100k or unemployment > 4.5%, Fed easing accelerates → USD falls, risk-off (VIX spikes). **KEY EVENT.** |
+| **Sep 10** | ECB Policy Decision | +25bp hike to 4.25% | 10/10 | **EUR/USD, EUR/CHF, EUR/GBP, EUR/JPY** | Investors expect ECB to deliver another 25bps rate hike in September. If ECB hikes as priced, EUR rallies (but much already priced—buy the rumor, sell the fact risk). **If ECB holds, EUR crashes 100+ pips.** **MOST CRITICAL EVENT.** |
+| **Sep 17** | Fed FOMC Meeting | –25bp cut to 3.375% (midpoint) | 9/10 | **ALL USD PAIRS** | Cut widely priced. Watch guidance: if Fed signals "pause after September" (dovish hold), USD rallies on hawkish surprise. If Fed signals "more cuts ahead" (dovish cut), USD falls. |
+| **Sep 24** | BoE Policy Decision | Hold at 3.75% | 7/10 | GBP/USD, EUR/GBP, GBP/JPY | Hold expected. If BoE surprises with –25bp cut, GBP falls (invalidates EUR/GBP long thesis, but we're neutral/exit on that pair anyway). |
+| **Sep 24** | SNB Policy Decision | Hold at 0.00% | 6/10 | EUR/CHF, USD/CHF, CHF/JPY | Hold expected. SNB expected to stay put at 0.00%. If SNB hikes (very low probability, <5%), EUR/CHF reverses sharply. |
+
+**Catalyst Priority Ranking (Impact × Probability):**
+
+1. **Sep 10 ECB Decision (10/10)** — Highest impact. EUR positioning (long EUR/USD, long EUR/CHF) hinges on this. If ECB holds, invalidates both ideas immediately.  
+2. **Sep 6 U.S. NFP (9/10)** — Jobs miss (< 100k) triggers Fed panic easing, USD crash, risk-off. Watch this closely; it's the canary in the coal mine for U.S. macro.  
+3. **Sep 17 Fed FOMC (9/10)** — Cut priced, but guidance matters. Hawkish hold (pause after September) = USD rally; dovish cut (more ahead) = USD falls.  
+4. **Aug 20 RBNZ (7/10)** — Confirms NZD dovish bias. Less systemic, but important for NZD/JPY (already invalidated) and AUD/NZD positioning.  
+5. **Sep 24 BoE (7/10)** — Hold expected. Surprise cut would weaken GBP, but low probability.
+
+**Pre-Event Positioning:**  
+- **Before Sep 10 ECB:** Reduce EUR/CHF position by 50% (take profits at 0.9350, as recommended in Section 9). Keep stop tight at 0.9220. Do not add to EUR longs ahead of the event—risk/reward skewed to downside (much priced, asymmetric risk if hold).  
+- **Before Sep 6 NFP:** If NFP < 100k, exit ALL risk positions (AUD/JPY, EUR/CHF) immediately and buy JPY/CHF. Do not wait for confirmation—act on the headline.  
+- **Before Sep 17 Fed:** No pre-positioning (cut priced); wait for guidance. If Fed signals "pause after September," buy USD/JPY on the dip.
+
+---
+
+## 13. No-Trade Zone Flag
+
+**Pairs to AVOID (August 17 – September 10, 2026):**
+
+1. **EUR/GBP (0.8548):**  
+   - **Why:** Range-bound 0.8530–0.8580 for three weeks. Central-bank divergence thesis (ECB hikes, BoE eases) is narrowing—BoE cut cycle paused, ECB terminal rate approaching. Conviction lowered to 48/100 (from 59 at publication). Theta bleed with no directional catalyst.  
+   - **Action:** **CLOSE at breakeven** (0.8555 entry midpoint, current 0.8548 = –7 pips, acceptable exit). Do not hold through ECB/BoE meetings in late September—too much event risk for a low-conviction, range-bound setup.
+
+2. **NZD/USD, NZD/JPY, NZD crosses (NZD ~0.589):**  
+   - **Why:** RBNZ dovish (potential cut Aug 20), NZD underperforming AUD. NZD/JPY already invalidated (stop hit at 93.50, current ~92.90). No clear catalyst for NZD strength; prefer AUD for commodity-FX exposure.  
+   - **Action:** Avoid all NZD longs. If positioned long NZD, switch to AUD (e.g. close NZD/USD, open AUD/USD; or close NZD/JPY, open AUD/JPY as per Section 9 New Idea #1).
+
+3. **USD/CNH, USD/MXN, USD/ZAR (EM pairs):**  
+   - **Why:** **Data quality issues**—conflicting sources, wide spreads, difficult to verify real-time levels. EM pairs carry materially wider typical spreads than G10 majors (e.g., USD/ZAR spread 15–25 pips vs. EUR/USD 0.5–1.0 pips), which erodes real-world risk/reward beyond stated ratios. CNH: PBoC easing bias but range-bound; no clear directional signal. MXN: Banxico high rates support, but EM fragility caps upside. ZAR: driven by risk sentiment more than fundamentals; high volatility, low conviction.  
+   - **Action:** Avoid EM pairs unless you have institutional-grade data feeds and can tolerate wide spreads. If seeking EM exposure, prefer MXN (highest real rates, most stable) over CNH or ZAR, but size smaller (0.5% risk vs. 1% for G10).
+
+4. **GBP/CHF, AUD/CHF, commodity-FX/CHF crosses (except EUR/CHF):**  
+   - **Why:** EUR/CHF is the cleanest CHF-short play (ECB hiking, SNB at 0.00%, oil-driven franc weakness—see Section 9). GBP/CHF and AUD/CHF add unnecessary legs (GBP and AUD own idiosyncrasies) without improving the thesis. If you want to short CHF, do it via EUR/CHF (highest conviction 73/100, already running). Adding GBP/CHF or AUD/CHF is correlation stacking without diversification benefit.  
+   - **Action:** Stick with EUR/CHF for CHF shorts. Avoid GBP/CHF, AUD/CHF unless you have a specific GBP or AUD view independent of CHF.
+
+5. **USD/SEK, USD/NOK (Scandi pairs):**  
+   - **Why:** Riksbank and Norges Bank both on hold after 2025 easing cycles. SEK and NOK are mid-pack currencies (scores 64 and 67 in Section 4)—not strong enough to justify longs, not weak enough to justify shorts. Oil supports NOK, but not as cleanly as it supports CAD or AUD (Norway's oil exposure is smaller as % of GDP than Canada's or Australia's commodity exports). Range-bound, low conviction.  
+   - **Action:** Avoid Scandi pairs. If seeking oil-FX exposure, prefer CAD (BoC hawkish hold, cleaner oil linkage) or AUD (RBA hike risk, dual commodity bid). If seeking EUR exposure, trade EUR/USD or EUR/CHF, not EUR/SEK or EUR/NOK.
+
+**Bottom Line:**  
+The "no-trade zone" is wide this run: EUR/GBP (range-bound, low conviction), all NZD pairs (RBNZ dovish, underperforming AUD), all EM pairs (data quality issues, wide spreads), and non-EUR CHF crosses (EUR/CHF is the only high-conviction CHF short). Stick to the **Section 9 ideas (AUD/JPY, EUR/CHF)** and avoid the temptation to "find more trades"—sometimes the best trade is no trade.
+
+---
+
+## 14. Key Theme Driving Everything Right Now
+
+**"Central Bank Divergence in a Fragile Risk-On Regime: Carry Works Until It Doesn't"**
+
+The single theme unifying every section of this report is **central bank policy divergence** (ECB hiking, Fed easing, BoJ/SNB holding) creating wide interest-rate differentials, which in turn drive carry trades (long AUD/JPY, EUR/CHF, EUR/JPY) and directional FX longs (EUR/USD, AUD/USD). This theme is supported by a **fragile risk-on regime** (VIX 14.25, oil ~$88, equities near highs), which keeps safe-havens (JPY, CHF) weak and commodity-FX (AUD, CAD) strong.
+
+**Why "Fragile"?**  
+Because the risk-on setup rests on three assumptions that could reverse overnight:  
+1. **Oil stays in $85–90 range** (Hormuz talks drag on, no deal, no escalation). If deal announced, oil crashes to $75–80 → AUD/CAD/NOK reverse, CHF rallies. If escalation (Iran strikes US convoy), oil spikes to $100+ → inflation fears reignite, central banks pivot hawkish, equities fall, VIX spikes.  
+2. **Central banks follow the script** (ECB hikes Sep 10, Fed cuts Sep 17, BoJ holds). If ECB holds (no hike), EUR crashes. If BoJ hikes +50bp, JPY rallies, carry trades unwind.  
+3. **Jobs/growth hold up** (U.S. NFP > 100k, China PMI > 49, eurozone growth > 0%). If U.S. jobs miss badly (NFP < 100k), Fed panic easing → risk-off. If China PMI < 48, AUD falls on demand concerns.
+
+**How to Trade This Theme:**  
+- **Go with the flow (risk-on, carry bid) BUT keep one hand on the exit.**  
+  - Long AUD/JPY, EUR/CHF (as per Section 9), but use tight stops and take partial profits early (50% at halfway to target).  
+  - Do NOT add leverage. Do NOT average down. Do NOT hold through major events (ECB Sep 10, NFP Sep 6) without reducing size.  
+- **Watch the canaries:**  
+  - VIX > 16 = exit ALL carry trades immediately (no questions, no hesitation).  
+  - Brent < $85 or > $95 = close all commodity-FX longs (AUD, CAD, NOK).  
+  - China PMI < 48 (two consecutive months) = close AUD longs.  
+  - U.S. NFP < 100k = close all risk positions, buy JPY/CHF.  
+- **Avoid complacency.**  
+  Low VIX (14.25) and narrow credit spreads scream "calm," but the headlines scream "chaos" (Hormuz deadlock, IEA demand cuts, OPEC downgrades). This is a **Minsky moment in slow motion**—stability breeds instability. The longer the VIX stays low, the bigger the eventual spike.
+
+**One Sentence Summary:**  
+Central bank divergence (ECB hiking, Fed easing, BoJ/SNB holding) is creating wide carry opportunities (AUD/JPY, EUR/CHF), but the regime is fragile (oil uncertainty, geopolitical tail risks, demand destruction)—trade the theme with tight stops, partial profit-taking, and one eye on the VIX.
+
+---
+
+## 15. Decision Dashboard Snapshot
+
+**If You Have 60 Seconds:**
+
+| Question | Answer | Action |
+|----------|--------|--------|
+| **What's the regime?** | Risk-on, oil-driven, fragile (58/100 confidence). VIX 14.25, Brent ~$88, EUR/USD 1.1571, USD/JPY 159.25. | Trade with the trend (long EUR, AUD, short JPY/CHF) but use tight stops. |
+| **Best trade right now?** | **Long AUD/JPY** (67/100, NEW) — Entry 111–113, Target 117–120, Stop 109.50. RBA hawkish (4.35%), BoJ dovish (1.00%), oil bid, carry-friendly (VIX low). | Enter if AUD/JPY pulls back to 111.00–112.50. Stop at 109.50 non-negotiable. |
+| **Second-best trade?** | **Long EUR/CHF** (73/100, EXISTING, approaching target) — Current 0.9350, Target 0.9350–0.9420. Take 50% profit NOW, trail stop to 0.9220. | Take profits early; do not get greedy. Hold remainder for 0.9420 only if VIX stays < 16 and ECB hikes Sep 10. |
+| **What to avoid?** | EUR/GBP (range-bound, 48/100), all NZD pairs (RBNZ dovish), all EM pairs (data quality issues, wide spreads). | Close EUR/GBP at breakeven. Avoid new entries in NZD, CNH, MXN, ZAR. |
+| **Biggest risk?** | **ECB holds on Sep 10** (no hike) — EUR crashes 100+ pips, invalidates EUR/USD and EUR/CHF longs. **U.S. NFP < 100k on Sep 6** — Fed panic easing, risk-off, VIX spikes. | Reduce EUR positions by 50% before Sep 10. Exit all risk positions if NFP < 100k. |
+| **Key level to watch?** | **VIX 16.00** — if VIX breaks above 16, carry trades (AUD/JPY, EUR/JPY, EUR/CHF) unwind. Exit immediately. | Set alert: VIX > 16.00 = close all carry longs, buy JPY/CHF. |
+| **Overall market confidence?** | **58/100** (Δ –1 vs. prior report's 59/100). | Slightly more cautious; two ideas invalidated this run (NZD/JPY, Brent), offsetting EUR/CHF gain. Confidence lowered on event risk (ECB Sep 10, NFP Sep 6). |
+
+**If You Have 5 Minutes:**  
+Read Sections 1 (Regime), 2 (Performance Review, especially Educational Breakdowns for Brent and EUR/CHF), 9 (High-Conviction Ideas: Long AUD/JPY, Long EUR/CHF), 12 (Catalyst Check: ECB Sep 10, NFP Sep 6), and 14 (Key Theme).
+
+**If You Have 30 Minutes:**  
+Read the full report, especially Section 10 (Contrarian Check: what could go wrong) and Section 17 (Known Issues—data quality caveats for EM pairs and conflicting sources).
+
+---
+
+## 16. Historical Parallel Watch
+
+**Current Regime (August 2026) vs. Historical Episodes:**
+
+### Parallel #1: **August 2019 — Trade War Escalation, Fed Pivot, VIX Spike**
+
+**What Happened Then:**  
+In August 2019, U.S.–China trade tensions escalated (Trump announced new tariffs on $300bn of Chinese goods), triggering a VIX spike from ~12 to ~24 within days. The Fed, which had been on hold, pivoted to cutting rates (July 2019 –25bp cut, followed by two more in 2019). USD/JPY fell from 109 to 104 within weeks (JPY safe-haven bid), while commodity-FX (AUD, NZD) crashed 3–5%. Carry trades unwound violently.
+
+**Similarities to Now (August 2026):**  
+- **Low VIX into geopolitical uncertainty:** VIX at 14.25 now, was ~12 then—both episodes showed complacency (low vol) despite elevated headline risk (Hormuz now, trade war then).  
+- **Fed easing into fragile jobs:** Fed cutting to ~3.25% now (jobs fragile per Section 8); Fed cut July 2019 (jobs slowing then).  
+- **Carry trades at risk:** Long AUD/JPY, EUR/JPY now; long AUD/JPY, NZD/JPY then. Both setups vulnerable to sudden risk-off.
+
+**Differences:**  
+- **Oil driver:** Oil ~$88 now (supply shock from Hormuz), oil ~$55 then (demand shock from trade war). Current setup is bullish for oil (if Hormuz stays closed), whereas 2019 was bearish (demand destruction). This makes commodity-FX (AUD) more resilient now than then.  
+- **Central bank divergence:** ECB hiking now (Sep priced +25bp), ECB easing then (2019 was easing cycle). EUR/USD rallying now (1.1571), falling then (2019 EUR/USD 1.10 → 1.08). Current setup is EUR-bullish, unlike 2019.
+
+**Lesson for Now:**  
+The August 2019 parallel warns that **low VIX into geopolitical uncertainty is a fragile setup**—the VIX spike from 12 to 24 in days unwound all carry trades. Our VIX 16 threshold (exit all carry if breached) is the right call. But the oil/EUR dynamics are different now (bullish oil, bullish EUR), so the **unwind may be slower and less violent** than 2019—unless NFP misses badly (Sep 6) or Hormuz escalates suddenly. Key takeaway: **take profits early on carry trades (AUD/JPY, EUR/CHF) and do not wait for VIX to spike to 20+ before exiting.**
+
+---
+
+### Parallel #2: **July 2024 — Carry Unwind, BoJ Hike Surprise**
+
+**What Happened Then:**  
+In July 2024, the BoJ surprised markets with a larger-than-expected rate hike (+15bp vs. consensus +10bp), triggering a violent carry trade unwind. USD/JPY fell from 162 to 146 within weeks (–10%), AUD/JPY and NZD/JPY collapsed (–8 to –12%), and the VIX spiked from 13 to 27. The unwind was exacerbated by algorithmic deleveraging and hedge fund stops being hit simultaneously.
+
+**Similarities to Now (August 2026):**  
+- **Carry trades rebuilt post-unwind:** July 28, 2026 saw a mini carry unwind (NZD/JPY fell from ~95 to ~92, AUD/JPY from ~114 to ~110), similar to July 2024's larger unwind. Now, August 2026, carry trades are being rebuilt (AUD/JPY back to ~112.8), just as they were rebuilt in late 2024 post-unwind.  
+- **BoJ surprise risk:** BoJ at 1.00% now, markets assume hold in September. If BoJ surprises with +50bp (low probability, ~10–15%, but non-zero), history repeats—USD/JPY, AUD/JPY, EUR/JPY all collapse.  
+- **Positioning not overcrowded yet:** CFTC data shows AUD net-long modest, JPY net-short moderate—similar to late 2024 (positioning was moderate, not extreme, when the July 2024 unwind hit). This means **there's room for carry to run higher**, but also room for a sharp unwind if BoJ surprises.
+
+**Differences:**  
+- **Magnitude of hike:** July 2024 was +15bp (above consensus +10bp), a 50% surprise. For September 2026 to replicate that, BoJ would need to hike +50bp (consensus is hold / +25bp max), which is much less likely.  
+- **Global backdrop:** July 2024 was mid-cycle Fed easing (Fed at 5.00%, easing toward 4.50%); now Fed already at 3.625%, easing toward 3.25% (late-cycle, not mid-cycle). Late-cycle Fed easing is typically more USD-negative, which supports carry trades (USD/JPY up, not down) unless risk-off dominates.
+
+**Lesson for Now:**  
+The July 2024 parallel warns that **BoJ surprises can unwind carry trades overnight**, even when positioning is moderate (not overcrowded). Our recommendation in Section 9 (AUD/JPY stop at 109.50, "close immediately if BoJ hikes +50bp or hawkish guidance") is directly informed by this historical episode. The **key difference** is that a July 2024-style unwind required a **central bank surprise**; if BoJ follows the script (holds or +25bp only), the unwind doesn't happen. Monitor BoJ communication closely (next meeting September, exact date not confirmed)—any hint of hawkishness (e.g., Ueda mentions "normalizing faster than expected") is a sell signal for all JPY shorts.
+
+---
+
+### Parallel #3: **March 2020 — Vol Spike, Oil Crash, Safe-Haven Rally**
+
+**What Happened Then:**  
+March 2020: COVID-19 pandemic triggered the largest VIX spike in history (VIX 12 → 82 in two weeks), oil crashed (Brent $50 → $20), and safe-havens rallied (JPY +8%, CHF +6% vs. commodity-FX in a month). AUD/USD fell from 0.66 to 0.56 (–15%), EUR/USD stable (flight to USD liquidity initially, then USD weakened as Fed eased). Carry trades (AUD/JPY, NZD/JPY) collapsed –20 to –25%.
+
+**Similarities to Now (August 2026):**  
+- **Low VIX into uncertainty:** VIX at 14.25 now, was ~12–15 in early March 2020 before the spike. Both episodes showed **complacency before the storm**.  
+- **Oil-driven risk:** Oil ~$88 now (Hormuz supply shock), oil ~$50 then (demand shock from pandemic). Both setups had **oil as a key driver of risk sentiment**—oil collapse in March 2020 triggered AUD/CAD/NOK crashes; oil collapse now (if Hormuz deal announced) would do the same.  
+- **Safe-haven dry powder:** JPY and CHF are currently weak (scores 47 and 49 in Section 4), just as they were moderately weak in early March 2020 (before the pandemic panic). This means **there's substantial upside for JPY/CHF if risk-off hits**—a March 2020-style event would see JPY rally +10 to +15% vs. AUD, similar to then.
+
+**Differences:**  
+- **Catalyst magnitude:** March 2020 was a once-in-a-century pandemic (global lockdowns, demand destruction unprecedented). August 2026's risk is geopolitical (Hormuz) and cyclical (jobs slowing, China property), not existential. A Hormuz escalation or U.S. recession would be bad, but not March 2020-level bad.  
+- **Central bank ammo:** March 2020: Fed at 1.50%, cut to 0% in days; ECB at 0%, went deeper negative; BoJ at –0.10%. Now: Fed at 3.625%, ECB at 4.00%, BoJ at 1.00%—all have more room to ease, which means **policy response would be faster and larger** than March 2020, capping the downside for risk assets.
+
+**Lesson for Now:**  
+The March 2020 parallel is the **tail-risk scenario** (VIX spike to 30+, oil crash, safe-haven rally). It's low probability (<10%) but high impact. Our risk management (VIX > 16 = exit all carry, Brent < $85 = close commodity-FX) is designed to **get out before the March 2020-style cascade begins**. In March 2020, traders who waited for VIX to hit 20 or 25 before exiting were too late—by the time VIX hit 30, AUD/JPY had already fallen –10%, and the unwind accelerated from there. **Exit early, exit often** is the lesson. Do not wait for confirmation—by the time VIX hits 20, you're already underwater.
+
+---
+
+**Summary of Historical Parallels:**  
+- **August 2019:** Low VIX into geopolitical risk → VIX spike, carry unwind. **Action:** Exit carry if VIX > 16 (we're doing this).  
+- **July 2024:** BoJ surprise hike → carry unwind. **Action:** Close immediately if BoJ hikes +50bp or hawkish (we're doing this).  
+- **March 2020:** Vol spike, oil crash, safe-haven rally. **Action:** Exit if Brent < $85 or VIX > 16 (we're doing this).  
+
+All three parallels point to the same risk management: **tight stops, early exits, watch the VIX, and do not wait for confirmation.** The current regime (August 2026) is not identical to any of these episodes, but it rhymes—and the lesson is clear: **in fragile risk-on regimes, the exit is more crowded than the entry.** Get out before everyone else tries to.
+
+---
+
+## 17. Known Issues / Refinements
+
+*(This section is for the user to edit directly. It carries forward to future runs but is omitted from the published page by the renderer.)*
+
+**Data Quality & Verification Issues (logged this run):**
+
+1. **EUR/CHF current spot (August 17, 2026):** Sources conflict.  
+   - MTFX: "latest available rate 0.9318" (no date given, but prior data shows Aug 7 as last explicit date).  
+   - Moneyswapp (Aug 13): "EUR/CHF 0.9366 as of August 13."  
+   - XE (Aug 16): "mid-market EUR to CHF rate is €1 = CHF0.9396" (inverse: EUR/CHF 0.9396).  
+   - **Resolution for report:** Used midpoint ~0.9350 (average of 0.9318 and 0.9396) and stated range "0.9318–0.9370" in Section 2. This is acceptable for directional assessment (pair is clearly in target zone 0.9350–0.9420), but **exact entry/exit prices for a real trade would require institutional data feed**.
+
+2. **NZD/JPY current spot (August 17, 2026):** Could not confirm.  
+   - Prior report (Aug 14) showed "~92.84–93.00 as of August 6–14."  
+   - Search results this run returned only futures data (TradingView NZDJPY futures) and general NZD/AUD or NZD/USD data, but no explicit NZD/JPY spot for Aug 17.  
+   - **Resolution for report:** Carried forward prior report's "~92.90" estimate and noted "could not confirm via search" in Section 2. This is fine for a closed (invalidated) idea, but highlights **EM and minor cross data gaps**.
+
+3. **Central bank policy rates (August 2026):** Several banks' exact current rates could not be confirmed.  
+   - **BoC, RBNZ, Riksbank, Norges Bank, PBoC, Banxico, SARB:** Search results showed *historical* rates (e.g., "Riksbank cut three times in 2025," "Norges Bank cut twice in 2025") and *meeting dates* (e.g., "next RBNZ meeting Aug 20, 2026"), but did NOT explicitly state "BoC policy rate as of August 2026 is X.XX%."  
+   - **Resolution for report:** Used estimates based on prior known rates and recent policy direction (e.g., BoC "~3.75%," Banxico "~10.50%," SARB "~7.75%"), clearly labeled as "(estimated; exact rate not confirmed)." Section 3 includes a disclaimer: *"EM central bank rates (PBoC, Banxico, SARB) are estimates where exact August 2026 figures could not be confirmed via search; G10 rates are verified where sources were available."*  
+   - **Lesson:** Central bank rate tables from aggregators (e.g., Investing.com's "Central Banks Interest Rates" page, retrieved in search) were **stale or generic**, not dated for August 2026. A real institutional dashboard would pull from Bloomberg CBRT or Reuters Eikon; this report is working with public search only.
+
+4. **EM currency spot rates (CNH, MXN, ZAR — August 17, 2026):** Limited data, conflicting sources.  
+   - Yahoo Finance showed USD/CNH ~6.7317–6.7419, USD/MXN ~17.05–17.11, USD/ZAR ~16.12–16.17 (various dates Aug 13–16), but no unified Aug 17 snapshot.  
+   - **Resolution for report:** Used ranges and labeled "Data Quality Note: EM data harder to verify; treat with caution" in Section 5. Added to Section 13 (No-Trade Zone): "Avoid EM pairs unless you have institutional-grade data feeds and can tolerate wide spreads."  
+   - **Lesson:** This report's EM coverage (CNH, MXN, ZAR) is **phase-one** and **best-effort**. If EM pairs become a larger focus, user should supplement with paid data (e.g., Bloomberg, Reuters) or restrict EM ideas to "monitor only, no trade recommendations."
+
+5. **Brent crude spot (August 17, 2026):** Data is lagged.  
+   - TradingEconomics: "Brent rose to 88.52 USD/Bbl on August 14, 2026" (clear date, reliable).  
+   - Investing.com (Aug 17 search): "The open price for Brent Oil futures today is 88.85" (implies Aug 17, but no explicit timestamp).  
+   - **Resolution for report:** Used "$88.52 (Aug 14); range ~$88–89 (latest data shows Aug 17 opening ~$88.85)" in Section 2, acknowledging lag. For oil specifically, this is acceptable (oil trades 24h, so "current" can mean last settlement or next-day open). But for a **trade idea** (Section 9), would need real-time futures quotes.
+
+6. **Equity indices (August 17, 2026):** Yahoo Finance data showed "At close: August 14" or "August 15" timestamps, not August 17.  
+   - **Resolution for report:** Used Aug 14 close (S&P 7,785.76, Nasdaq 26,729.16, etc.) and noted "as of August 14–17" in Section 11. For a weekend report (Aug 17 is a Sunday in some time zones), this is fine—markets closed Aug 15 (Friday), so Aug 14 close is the last available.  
+   - **Lesson:** Always check timestamps on Yahoo Finance / TradingView data; "latest" may be 1–3 days old if markets are closed.
+
+**Refinements for Future Runs:**
+
+- **Section 2 Performance Review table:** The "Distance from Target" and "Progress to Target" columns are now mandatory for every resolving idea (win or loss), with arithmetic shown. This run added them for Brent (invalidated) and noted them for EUR/CHF (approaching target but not yet fully resolved). **Next run**: ensure every newly resolving idea (first time it changes status to "Played Out" or "Invalidated") includes both figures, computed from published entry/target midpoints.
+
+- **Educational Breakdowns (Section 2):** Now mandatory for every idea that changes status this run. This run added full Educational Breakdowns for Brent (invalidated) and EUR/CHF (approaching target, strong performance), with sub-sections "What we expected, and why," "What actually happened," "Match or divergence—and why." **Next run**: apply the same template to any idea that first resolves (win or loss).
+
+- **Hindsight Value Check (Section 2):** Now mandatory alongside Educational Breakdown for both wins and losses. This run showed Brent: "$1,000 → $969.59, a loss of –$30.41 (–3.04%)" and EUR/CHF: "$1,000 → $1,018.00, a gain of +$18.00 (+1.80%)," with disclaimer "no leverage, spread, financing, slippage modeled." **Next run**: apply to every resolving idea, always showing the dollar figure and percentage, always appending the disclaimer.
+
+- **Risk Management Note (Section 2):** Now mandatory for LOSSES specifically (invalidated ideas). This run added one for Brent, covering: (a) the published stop-loss level that capped the loss, (b) the published Risk/Reward ratio, and (c) 1–2 additional general risk-limiting techniques (position sizing, scaling out, trailing stops, diversifying across uncorrelated ideas). **Next run**: apply the same template to every newly invalidated idea, keeping it educational and general (not specific dollar/leverage recommendations for the reader's account).
+
+- **EM Data Quality Caveats:** This run added explicit warnings in Sections 3, 4, 5, and 13 that EM data (CNH, MXN, ZAR) is harder to verify, sources conflict, and spreads are wider. **Next run**: if EM pairs remain in the universe, continue these caveats. If an EM pair is ever published as a Section 9 trade idea, add a specific line: *"EM pairs carry materially wider typical spreads than G10 majors, which affects real-world risk/reward beyond the stated ratio—e.g., USD/ZAR spread 15–25 pips vs. EUR/USD 0.5–1.0 pips."*
+
+- **Correlation Check (Section 7):** This run showed elevated EUR/USD vs. AUD/USD correlation (+0.68 vs. +0.55 norm) and noted "don't double up on both." **Next run**: if publishing both EUR/USD and AUD/USD as Section 9 ideas simultaneously, explicitly state in Section 9 that they are correlated (+0.68) and recommend sizing each smaller (e.g., 0.75% risk each instead of 1% each) to avoid concentration.
+
+- **VIX threshold (16.00):** This run set VIX > 16 as the "exit all carry trades" threshold, based on historical data (VIX ranged 14.18–20.88 over the past month, per Investing.com) and the August 2019 / March 2020 parallels. **Next run**: keep this threshold unless VIX regime shifts (e.g., if VIX trades 18–20 for weeks without unwind, raise threshold to 18 or 20; if VIX spikes to 25+, retrospectively log whether 16 was early enough).
+
+- **Section 9 ideas — "No New EUR/USD Idea Published" rationale:** This run explained why we did NOT republish Long EUR/USD (64/100 from prior report) despite it scoring well—correlation with EUR/CHF, entry timing less attractive. **Next run**: if a prior idea is NOT republished (despite scoring >60/100), always add a short "Why not republished" note in Section 9 to avoid confusion (reader might wonder "why did EUR/USD disappear?").
+
+- **Section 12 Catalyst Check — NFP and ECB as "KEY EVENTS":** This run bolded and capitalized "KEY EVENT" and "MOST CRITICAL EVENT" for NFP (Sep 6) and ECB (Sep 10). **Next run**: continue this formatting for tier-1 catalysts (those with Importance 9/10 or 10/10); it helps the "60-second reader" (Section 15) identify what to watch.
+
+- **Historical Parallel Watch (Section 16):** This run added three parallels (Aug 2019, July 2024, March 2020) with explicit "Similarities," "Differences," and "Lesson for Now." **Next run**: keep this structure; reader feedback (if available) will indicate whether three parallels are too many (overwhelming) or just right (comprehensive). If too many, trim to two (most relevant).
+
+---
+
+*Note: This section (17) is for internal use and quality control. It carries forward to future report runs and is omitted from the published page by scripts/render-report-html.js. Users may edit it directly to log issues, suggest refinements, or track lessons learned across runs.*

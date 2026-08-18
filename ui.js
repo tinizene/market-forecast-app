@@ -29,6 +29,19 @@
     invalidEmail: 'Enter a valid email address, e.g. name@example.com.',
     working: 'Working…',
     skipToContent: 'Skip to main content',
+    restoreTitle: 'Restore your access',
+    restoreMessage: 'Enter the email address you paid with and we’ll send you a sign-in link.',
+    restoreSubmit: 'Email me a link',
+    restoreBusy: 'Sending…',
+    restoreFieldLabel: 'Email address',
+    restoreHint: 'The address on your Stripe receipt.',
+    restoreSentTitle: 'Check your email',
+    restoreSentMessage: 'If that address has a purchase, a sign-in link is on its way. It works once and expires in 15 minutes.',
+    restoreUnavailableTitle: 'Email recovery isn’t switched on yet',
+    restoreUnavailableMessage: 'We can’t send sign-in links from this site right now. Please reply to your Stripe receipt and we’ll restore your access by hand.',
+    restoreRateLimited: 'That’s several links in a short time. Check your inbox and spam folder — if none arrived, try again in an hour.',
+    restoreOffline: 'Couldn’t reach us just now. Check your connection and try again.',
+    restoreFailed: 'Something went wrong sending the link. Please try again in a moment.',
   };
   window.SCERE_UI_STRINGS = Object.assign(STRINGS, window.SCERE_UI_STRINGS || {});
 
@@ -404,6 +417,55 @@
     });
   }
 
+  // ---- access recovery -----------------------------------------------------
+  //
+  // The highest-stakes interaction in the app: someone has paid, cannot get in, and
+  // this is the only way back. It lives here rather than in research.js or learn.js
+  // because both pages need it and the copy must not drift between them.
+  //
+  // The server answers identically whether or not the address has a purchase, so this
+  // dialog cannot say "found you" or "no account" — and deliberately does not try.
+  // Anything more specific would be a way to ask the site which of your customers'
+  // email addresses are real.
+  function requestAccessLink() {
+    return openDialog({
+      title: STRINGS.restoreTitle,
+      message: STRINGS.restoreMessage,
+      submitLabel: STRINGS.restoreSubmit,
+      busyLabel: STRINGS.restoreBusy,
+      field: {
+        label: STRINGS.restoreFieldLabel,
+        type: 'email',
+        inputmode: 'email',
+        autocomplete: 'email',
+        placeholder: 'name@example.com',
+        hint: STRINGS.restoreHint,
+        validate: function (v) { return isEmail(v) ? null : STRINGS.invalidEmail; },
+      },
+      // Throwing keeps the dialog open with the message inline, beside the field the
+      // person needs to change, rather than closing and leaving them to guess.
+      onSubmit: function (email) {
+        return fetch('/api/auth?fn=request', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email }),
+        }).then(function (res) {
+          if (res.ok) return;
+          if (res.status === 429) throw new Error(STRINGS.restoreRateLimited);
+          if (res.status === 503) throw new Error(STRINGS.restoreUnavailableMessage);
+          throw new Error(STRINGS.restoreFailed);
+        }, function () {
+          throw new Error(STRINGS.restoreOffline);
+        });
+      },
+    }).then(function (value) {
+      if (!value) return null;   // dismissed
+      alertDialog({ title: STRINGS.restoreSentTitle, message: STRINGS.restoreSentMessage });
+      say(STRINGS.restoreSentMessage, true);
+      return value;
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     mountLiveRegions();
     mountOfflineBanner();
@@ -420,6 +482,7 @@
     focusHeading: focusHeading,
     isEmail: isEmail,
     mountReadingControls: mountReadingControls,
+    requestAccessLink: requestAccessLink,
     promoCode: promoCode,
     captureCode: captureCode,
     clearCode: clearCode,

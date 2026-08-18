@@ -1,33 +1,34 @@
 # Roadmap
 
-What is agreed but not yet built. Ordered roughly by what blocks what — the top item
-gates going live, the rest do not.
+What is agreed but not yet built. Ordered roughly by what blocks what. Item 1 gated
+going live and is now shipped; nothing below it blocks launch.
 
 Shipped work is described in `README.md` (the app), `PAYMENTS.md` (the two products) and
 the per-track roadmaps under `course/`.
 
 ---
 
-## 1. Email recovery for course access — **blocks launch**
+## ~~1. Email recovery for course access~~ — **shipped**
 
-The course is sold as *"yours forever"*. Today that depends on the `scere_cus` cookie
-surviving, or on the buyer remembering which email address they paid with. Clearing
-cookies on a new laptop and forgetting the email currently loses a €200 purchase.
+Built as `api/auth.js`: enter an email, receive a signed single-use link, follow it,
+and the entitlement cookies are re-issued from Stripe. Setup is documented in
+`PAYMENTS.md` section 6, and `node scripts/test-auth.js` exercises it against stubs.
 
-That is tolerable while nothing is on sale. It stops being tolerable the moment
-`STRIPE_COURSE_PRICE_ID` is set and someone pays.
+Two things worth knowing beyond "it is done":
 
-**Build:** `api/auth.js` — enter an email, receive a signed single-use magic link,
-follow it, get the entitlement cookies re-issued from Stripe.
+- **It replaced a hole, not just a gap.** `/api/billing?fn=restore` re-issued full
+  entitlement to anyone who posted a customer's email address, with no verification of
+  any kind — knowing a buyer's email was enough to be granted their €200 course. That
+  endpoint now returns `410` pointing at the new one.
+- **It requires the KV store** from the revocation section, which was previously
+  optional. Without it a link cannot be made single-use and the endpoint cannot be rate
+  limited, so `/api/auth` refuses to run rather than degrade quietly.
 
-**Needs a decision:** an email provider (Resend is the least friction; Postmark has the
-better deliverability reputation; SES is cheapest at volume and the most setup), a
-verified sending domain, and an API key set in Vercel.
-
-Send from a dedicated transactional address — `login@` with `Reply-To:` a real
-monitored inbox — never the general `info@`. Mixing auth mail into an address that also
-sends anything promotional means one spam complaint puts *login* emails in the spam
-folder, which locks paying customers out of what they bought.
+Still needs, before the course goes on sale: an email provider key
+(`POSTMARK_API_TOKEN` or `RESEND_API_KEY`), a verified sending domain, and
+`AUTH_EMAIL_FROM` set to a dedicated `login@` address with `AUTH_EMAIL_REPLY_TO`
+pointing at a monitored inbox. `GET /api/auth?fn=config` reports exactly what is
+missing.
 
 ---
 

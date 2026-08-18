@@ -155,7 +155,7 @@ What happens:
   limits). If it refuses the code, checkout is retried *without* it and the buyer still
   reaches the payment page, where they can type a different one.
 
-### 5. (Optional but recommended) Prompt revocation — webhook + KV
+### 5. (Recommended) Prompt revocation — webhook + KV
 
 Without this, a cancellation, failed payment or refund stops access at the next
 cookie refresh (up to 30 days of lag). Add a webhook + a small KV store to cut
@@ -164,7 +164,9 @@ that to the customer's very next request.
 1. **Provision a KV store.** Vercel → **Storage → KV** (create a database and
    connect it to this project — it injects `KV_REST_API_URL` and
    `KV_REST_API_TOKEN`). [Upstash Redis](https://upstash.com/) works too, via
-   `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`.
+   `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`. The same store is
+   **required** by email recovery (section 6), so if you are selling the course
+   you are provisioning it either way.
 2. **Register the webhook** in Stripe → Developers → Webhooks → Add endpoint:
    - URL: `https://<your-domain>/api/stripe-webhook`
    - Events: `customer.subscription.updated`, `customer.subscription.deleted`,
@@ -180,6 +182,78 @@ whole point: cancelling a €70/month subscription must leave a €200 course
 untouched. The re-derivation is what then correctly drops the ideas and keeps the
 course. The webhook always re-checks status directly with Stripe, so a forged
 event can never grant or wrongly revoke access — only trigger a re-check.
+
+---
+
+### 6. (Required before selling the course) Email recovery
+
+The course is sold as *"yours forever"*. Ownership is proved by the `scere_cus`
+cookie — so without this, clearing cookies on a new laptop loses a €200 purchase
+with no way back. Set this up before `STRIPE_COURSE_PRICE_ID` goes live.
+
+1. **Provision the KV store** from section 5 if you have not already. It is not
+   optional here: it is what makes a link single-use and what rate limits the
+   endpoint. Without it, `/api/auth` refuses to run at all rather than emailing
+   links it cannot burn.
+2. **Pick an email provider and verify a sending domain.** Either works, and the
+   code uses whichever key is present:
+
+   | Variable | Provider |
+   | --- | --- |
+   | `POSTMARK_API_TOKEN` | [Postmark](https://postmarkapp.com/) — the better deliverability reputation, and what wins if both are set |
+   | `RESEND_API_KEY` | [Resend](https://resend.com/) — the least setup |
+
+3. **Set the sending identity:**
+
+   | Variable | Value |
+   | --- | --- |
+   | `AUTH_EMAIL_FROM` | `login@your-domain` — a dedicated transactional address |
+   | `AUTH_EMAIL_REPLY_TO` | a real, monitored inbox |
+   | `PUBLIC_BASE_URL` | `https://your-domain` — only needed on a custom domain; Vercel supplies its own host otherwise |
+
+   **Use a dedicated address, never the general `info@`.** Mixing auth mail into
+   an address that also sends anything promotional means one spam complaint puts
+   *login* mail in the spam folder, which locks paying customers out of what they
+   bought.
+
+4. **Check it is live:** `GET /api/auth?fn=config` returns
+   `{ configured: true, reason: null }` when everything is in place, and names
+   exactly what is missing when it is not.
+
+#### How recovery works
+
+- The visitor chooses **Restore access** (on the course pages or the ideas page)
+  and enters an email address.
+- `POST /api/auth?fn=request` answers **identically whether or not that address
+  has ever bought anything** — otherwise the endpoint would be a way to ask which
+  of your customers' addresses are real. A link is emailed only if the address
+  maps to a Stripe customer holding the course or a live subscription.
+- The link carries a signed token — `{ k: 'login', cus, jti, exp }`, 15 minutes —
+  and lands on a **confirm page with a button**. It is not consumed by opening
+  it, because mail clients and security scanners follow links before people do,
+  and a single-use token consumed by a scanner would burn before its owner ever
+  clicked. The page works without JavaScript; the button is a real form submit.
+- `POST /api/auth?fn=consume` burns the `jti` in KV **before** deriving anything,
+  so two simultaneous requests cannot both succeed, then re-derives entitlement
+  from Stripe and issues the same cookies a completed checkout would.
+- Rate limits: 3 links per address per hour, 10 per source address per hour, both
+  counted *before* any lookup so the limits cannot themselves be used to probe
+  which addresses exist.
+- The emailed link's origin comes from `PUBLIC_BASE_URL` or Vercel's own
+  environment — **never** from the request's `Host` header, which would let an
+  attacker have a genuine, correctly signed link delivered pointing at their own
+  domain.
+
+Run `node scripts/test-auth.js` to exercise all of this against stubs — no
+network, no credentials, no mail sent.
+
+#### What this replaced
+
+`/api/billing?fn=restore` used to re-issue **full entitlement to anyone who
+posted a customer's email address**, with no verification of any kind. Knowing a
+buyer's email was enough to be granted their course and their subscription, and
+its 404-vs-200 answers confirmed which addresses had bought. It now returns
+`410 Gone` pointing at `/api/auth?fn=request`.
 
 ---
 
@@ -235,9 +309,14 @@ event can never grant or wrongly revoke access — only trigger a re-check.
 - `GET  /api/billing?fn=status` — the same entitlement facts, without the prices
 - `POST /api/billing?fn=createCheckout` — `{ product }` → `{ url }`
 - `POST /api/billing?fn=activate` — `{ session_id }` → sets cookies
-- `POST /api/billing?fn=restore` — `{ email }` → sets cookies if anything is owned
+- `POST /api/billing?fn=restore` — **gone** (`410`), was unauthenticated; see below
 - `POST /api/billing?fn=logout` — clears cookies
 - `POST /api/stripe-webhook` — Stripe events → KV flag → prompt re-derivation
+- `GET  /api/auth?fn=config` — `{ configured, reason }` for email recovery
+- `POST /api/auth?fn=request` — `{ email }` → emails a single-use link; the answer is
+  identical whether or not that address exists
+- `GET  /api/auth?fn=verify&token=…` — the confirm page the emailed link opens
+- `POST /api/auth?fn=consume` — `{ token }` → burns it and sets cookies
 
 ---
 

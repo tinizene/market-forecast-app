@@ -470,53 +470,15 @@ function doBuyCourse() {
 }
 
 // Restoring access is the recovery path for someone who has already paid and cannot
-// get in — the single highest-stakes interaction in the app. It used to be a
-// window.prompt(): no label, no validation, no error text, no way to correct a typo
-// without starting over, unstyleable, untranslatable, and suppressed outright by some
-// mobile browsers. It is now a real labelled form whose errors stay attached to the
-// field, so a mistyped address is a correction rather than a dead end.
+// get in — the single highest-stakes interaction in the app.
+//
+// It used to POST the address straight to /api/billing?fn=restore, which re-issued
+// full entitlement to whoever asked. Typing a customer's email was enough to be
+// granted their course and their subscription. It now emails a single-use link to
+// that address instead, so proving you can read the inbox is what unlocks the
+// account — and the shared dialog lives in ui.js because learn.js needs the same one.
 async function doRestore() {
-  await ui.openDialog({
-    title: 'Restore your access',
-    message: 'Enter the email address you paid with and we’ll find your purchase.',
-    submitLabel: 'Restore access',
-    busyLabel: 'Looking you up…',
-    field: {
-      label: 'Email address',
-      type: 'email',
-      inputmode: 'email',
-      autocomplete: 'email',
-      placeholder: 'name@example.com',
-      hint: 'The address on your Stripe receipt.',
-      validate: (v) => (ui.isEmail(v) ? null : ui.strings.invalidEmail),
-    },
-    // Throwing keeps the dialog open with the message inline, next to the field the
-    // person needs to change — rather than closing and leaving them to guess.
-    onSubmit: async (email) => {
-      let d;
-      try {
-        const res = await postJson('/api/billing?fn=restore', { email });
-        d = await res.json().catch(() => ({}));
-        // Owning the course counts as a successful restore even with no live
-        // subscription — the ideas stay locked, but the course comes back.
-        if (!res.ok || !(d.entitled || d.ownsCourse)) {
-          throw new Error('We couldn’t find a purchase for that address. Check for a typo, or try the other address you might have used.');
-        }
-      } catch (err) {
-        if (err instanceof TypeError || navigator.onLine === false) {
-          throw new Error('Couldn’t reach us just now. Check your connection and try again.');
-        }
-        throw err;
-      }
-      await loadReport(selectedDate);
-      ui.say(d.ownsCourse && !d.entitled
-        ? 'Access restored. Your course is unlocked; the daily ideas are not currently active.'
-        : 'Access restored. The full ideas are unlocked.', true);
-      // An explicit user action changed what is on the page, so move focus to the
-      // content it unlocked instead of leaving it on a button that is now gone.
-      ui.focusHeading(document.getElementById('researchRoot'));
-    },
-  });
+  await ui.requestAccessLink();
 }
 
 async function doLogout() {
@@ -531,7 +493,13 @@ async function handleCheckoutReturn() {
   if (sub === 'success' && p.get('session_id')) {
     try { await postJson('/api/billing?fn=activate', { session_id: p.get('session_id') }); } catch (e) { /* ignore */ }
   }
-  if (sub) window.history.replaceState({}, '', window.location.pathname);
+  // api/auth sends an ideas subscriber here after a magic link is consumed. The
+  // cookies are already set; what is missing is any sign that it worked, and landing
+  // on a page that merely looks unlocked is when people wonder whether it did.
+  if (p.get('restored')) {
+    ui.say('Access restored. You are signed in on this device.', true);
+  }
+  if (sub || p.get('restored')) window.history.replaceState({}, '', window.location.pathname);
 }
 
 async function loadBillingConfig() {

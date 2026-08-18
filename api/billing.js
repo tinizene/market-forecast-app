@@ -8,7 +8,7 @@
 //   fn=createCheckout  → { url } to a Checkout Session   (POST {product:'course'|'ideas'})
 //   fn=activate        → verify a completed session, set cookies  (POST {session_id})
 //   fn=status          → { ownsCourse, ideasActive, ideasUntil, ideasSource }   (GET)
-//   fn=restore         → re-issue entitlement from a customer email  (POST {email})
+//   fn=restore         → REMOVED (was unauthenticated); see api/auth.js for recovery
 //   fn=logout          → clear entitlement cookies                            (POST)
 //
 // Renewals & cancellations need no webhook: the entitlement cookie carries a
@@ -341,23 +341,22 @@ module.exports = async function handler(req, res) {
       return;
     }
 
-    // ---- restore: re-issue entitlement from a subscriber email ----
+    // ---- restore: REMOVED, and kept here as a stub on purpose ----
+    //
+    // This used to re-issue full entitlement to anyone who posted a customer's email
+    // address, with no verification of any kind: knowing a buyer's email was enough
+    // to be granted their EUR 200 course and their ideas subscription. Its
+    // 404-vs-200 responses also confirmed which addresses had bought.
+    //
+    // It is answered explicitly rather than deleted because a cached copy of the old
+    // client will keep calling it, and that client must be told to send the visitor
+    // somewhere real instead of failing with "unknown fn".
     if (fn === 'restore') {
-      if (!paywallActive()) { res.status(200).json({ entitled: false, configured: false }); return; }
-      const email = (body.email || '').trim().toLowerCase();
-      if (!email) { res.status(400).json({ error: 'missing_email' }); return; }
-      const customers = await stripeRequest('GET', '/v1/customers', { email, limit: 1 });
-      const customer = customers && customers.data && customers.data[0];
-      if (!customer) { res.status(404).json({ entitled: false, error: 'no_customer' }); return; }
-      // Course ownership counts as something to restore even with no live
-      // subscription — that is the whole point of a product you own permanently.
-      const derived = await deriveFromStripe(customer.id);
-      if (derived.ownsCourse || derived.ideasActive) {
-        issueEntitlement(res, derived, customer.id);
-        res.status(200).json({ entitled: derived.ideasActive, ownsCourse: derived.ownsCourse, ideasUntil: derived.ideasUntil });
-      } else {
-        res.status(404).json({ entitled: false, error: 'nothing_to_restore' });
-      }
+      res.status(410).json({
+        error: 'restore_removed',
+        use: '/api/auth?fn=request',
+        message: 'Restoring access now works by emailing you a sign-in link.',
+      });
       return;
     }
 

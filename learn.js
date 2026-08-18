@@ -1747,6 +1747,19 @@ function wireCourseButtons(root) {
   (root || document).querySelectorAll('[data-buy-course]').forEach((btn) => {
     btn.addEventListener('click', () => startCourseCheckout(btn));
   });
+  // Someone who already owns the course and has lost their cookie needs a way back in
+  // from the page they are actually looking at. Until now the course pages had none —
+  // they pointed at the Ideas page, which is a strange place to recover a course.
+  (root || document).querySelectorAll('[data-restore-access]').forEach((btn) => {
+    btn.addEventListener('click', () => ui.requestAccessLink());
+  });
+}
+
+// The markup is identical in the offer card and on a locked lesson, so it is written
+// once — two copies of the sentence is how they end up saying different things.
+function renderRestoreLine() {
+  if (!courseAccess.configured || courseAccess.ownsCourse) return '';
+  return `<p class="text-[11px] text-slate-500 mt-3">Already paid? <button type="button" data-restore-access class="underline hover:text-slate-300">Restore access</button></p>`;
 }
 
 // Coming back from Stripe: verify the session so the entitlement cookie is set BEFORE
@@ -1755,11 +1768,21 @@ function wireCourseButtons(root) {
 // What the buyer sees on return. Paying €200 and landing on a page that simply looks
 // slightly different is the moment doubt sets in ("did that work? was I charged?"),
 // so the outcome is stated explicitly rather than implied by the absence of padlocks.
-let purchaseOutcome = null; // 'success' | 'cancelled' | 'unconfirmed'
+let purchaseOutcome = null; // 'success' | 'cancelled' | 'unconfirmed' | 'restored'
 
 async function handleCourseCheckoutReturn() {
   const p = new URLSearchParams(window.location.search);
   const buy = p.get('buy');
+  // api/auth redirects here after a magic link is consumed. The cookies are already
+  // set by then, so there is nothing to verify — only something to say, because
+  // landing on a page that merely looks unlocked is exactly the moment someone
+  // wonders whether it actually worked.
+  if (p.get('restored')) {
+    purchaseOutcome = 'restored';
+    p.delete('restored');
+    const rest = p.toString();
+    window.history.replaceState({}, '', window.location.pathname + (rest ? `?${rest}` : ''));
+  }
   if (buy === 'cancelled' || buy === 'cancel') purchaseOutcome = 'cancelled';
   if (buy === 'success' && p.get('session_id')) {
     try {
@@ -1786,6 +1809,14 @@ async function handleCourseCheckoutReturn() {
 
 function renderPurchaseOutcome() {
   if (!purchaseOutcome) return '';
+  if (purchaseOutcome === 'restored') {
+    return `
+      <div class="state-card toc-offer is-owned" role="status">
+        <span class="state-icon" aria-hidden="true">✓</span>
+        <p class="state-title">Access restored</p>
+        <p class="state-msg">You are signed in on this device and the course is unlocked again. The link you used has now been retired.</p>
+      </div>`;
+  }
   if (purchaseOutcome === 'success') {
     return `
       <div class="state-card toc-offer is-owned" role="status">
@@ -1804,7 +1835,8 @@ function renderPurchaseOutcome() {
   return `
     <div class="state-card" role="status">
       <p class="state-title">Payment received — still unlocking</p>
-      <p class="state-msg">Your payment went through, but we couldn’t confirm access on this device just yet. Refresh in a moment, or use “Restore access” on the Ideas page with the email you paid with.</p>
+      <p class="state-msg">Your payment went through, but we couldn’t confirm access on this device just yet. Refresh in a moment, or choose “Restore access” below and we’ll email you a sign-in link.</p>
+      <p class="state-msg"><button type="button" data-restore-access class="underline hover:text-slate-300">Restore access</button></p>
     </div>`;
 }
 
@@ -1831,6 +1863,7 @@ function renderCourseOffer() {
       </p>
       <button type="button" data-buy-course class="upgrade-btn">${escapeHtml(courseBuyLabel())}</button>
       ${renderPromoNote()}
+      ${renderRestoreLine()}
     </div>`;
 }
 
@@ -1849,6 +1882,7 @@ function renderLockedLesson(e) {
       ${courseAccess.available
         ? `<button type="button" data-buy-course class="upgrade-btn inline-block mt-4">${escapeHtml(courseBuyLabel())}</button>${renderPromoNote()}`
         : ''}
+      ${renderRestoreLine()}
       <p class="mt-4 text-xs text-slate-500">
         <a href="./learn.html" class="underline decoration-slate-600 underline-offset-2 hover:text-sky-400">Browse the free Foundation track</a>
       </p>
@@ -1994,7 +2028,10 @@ async function renderSingleLesson() {
   // Only on an unlocked lesson: there is no prose to resize behind a paywall.
   if (!fetched.locked && ui.mountReadingControls) ui.mountReadingControls(root.querySelector('#readingControls'));
 
-  if (fetched.locked) wireCourseButtons(root);
+  // Unconditional: the purchase-outcome card can carry a "Restore access" button even
+  // on an unlocked lesson (payment taken, cookie not yet confirmed), and gating the
+  // wiring on `locked` left that button dead.
+  wireCourseButtons(root);
 
   // Interactive wiring only applies to a body that actually rendered — a locked
   // lesson has no quiz, no calculator and no lab to attach to.
@@ -2012,6 +2049,7 @@ async function renderSingleLesson() {
   // screen-reader user who has already read past it never learns it arrived — and,
   // for a locked lesson, never learns why there is no lesson text.
   if (purchaseOutcome === 'success') ui.say('Payment received. The whole course is unlocked.', true);
+  if (purchaseOutcome === 'restored') ui.say('Access restored. The course is unlocked on this device.', true);
   else if (fetched.locked) ui.say(`${e.title}. This lesson is locked — it is part of the paid course.`);
   else ui.say(`${e.title} loaded. Lesson ${pos + 1} of ${index.length}.`);
 }

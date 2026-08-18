@@ -1,4 +1,4 @@
-// Shared top navigation for Scere Markets.
+// Shared top navigation for Scere Training.
 // Each page includes <div id="siteNav" data-active="home|learn|research"></div>
 // and this script replaces it with a real <nav> landmark, highlighting the active
 // section.
@@ -30,7 +30,11 @@
   nav.className = 'site-nav';
   nav.setAttribute('aria-label', 'Primary');
   nav.innerHTML =
-    '<a class="nav-brand" href="./index.html">Scere<span class="nav-dot" aria-hidden="true">.</span>Markets</a>' +
+        // The mark is decorative here: the link already reads "Scere Training", so
+    // announcing the logo as well would say the brand twice to a screen reader.
+    '<a class="nav-brand" href="./index.html">'
+      + '<img class="nav-mark" src="./icons/mark.svg" alt="" width="22" height="22" aria-hidden="true">'
+      + '<span>Scere<span class="nav-dot" aria-hidden="true">.</span>Training</span></a>' +
     '<div class="nav-links">' + linksHtml + '</div>' +
     '<span class="nav-spacer"></span>' +
     // The padlock is decoration. Hiding it stops screen readers announcing "locked"

@@ -1,4 +1,4 @@
-# Scere Markets
+# Scere Training
 
 A market-forecast PWA forked from [Scere Forecasts](../README.md) (the Liberia weather
 app) — same architecture, same dark-theme card UI, same offline-friendly PWA shell,

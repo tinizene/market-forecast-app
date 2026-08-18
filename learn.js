@@ -1554,7 +1554,7 @@ async function renderTrackPage() {
         <p class="state-msg">It may have been renamed or moved. The course page lists every track available.</p>
         <a href="./learn.html" class="upgrade-btn">Back to the course</a>
       </div>`;
-    document.title = 'Track not found — Scere Markets';
+    document.title = 'Track not found — Scere Training';
     ui.say('That track could not be found.', true);
     return;
   }
@@ -1605,7 +1605,7 @@ async function renderTrackPage() {
 
   root.innerHTML = renderPurchaseOutcome() + header + (locked ? renderCourseOffer() : '') + body;
   wireCourseButtons(root);
-  document.title = `${track.trackTitle} — Scere Markets`;
+  document.title = `${track.trackTitle} — Scere Training`;
   ui.say(`${track.trackTitle}. ${track.lessons.length} lessons, ${st.done} read.`);
 }
 
@@ -1939,7 +1939,7 @@ async function renderSingleLesson() {
         <a href="./learn.html" class="upgrade-btn">Back to all lessons</a>
       </div>`;
     ui.say('That lesson could not be found.', true);
-    document.title = 'Lesson not found — Scere Markets';
+    document.title = 'Lesson not found — Scere Training';
     return;
   }
 
@@ -2044,7 +2044,7 @@ async function renderSingleLesson() {
     initSpeechControls();
   }
 
-  document.title = `${e.title} — Scere Markets`;
+  document.title = `${e.title} — Scere Training`;
   // Announce the outcome. The region fills in after page load, so without this a
   // screen-reader user who has already read past it never learns it arrived — and,
   // for a locked lesson, never learns why there is no lesson text.

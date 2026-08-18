@@ -1,6 +1,6 @@
 # Payments — the two products
 
-Scere Markets sells two things, and they are bought and lost independently:
+Scere Training sells two things, and they are bought and lost independently:
 
 | Product | Price | Payment | Access |
 | --- | --- | --- | --- |
@@ -50,8 +50,8 @@ In the [Stripe Dashboard](https://dashboard.stripe.com/) → Products:
 
 | Product | Price to create | Copy the Price ID into |
 | --- | --- | --- |
-| Scere Markets — The Course | **€200.00 EUR, One-off** | `STRIPE_COURSE_PRICE_ID` |
-| Scere Markets — Daily Ideas | **€70.00 EUR, Recurring · Monthly** | `STRIPE_IDEAS_PRICE_ID` |
+| Scere Training — The Course | **€200.00 EUR, One-off** | `STRIPE_COURSE_PRICE_ID` |
+| Scere Training — Daily Ideas | **€70.00 EUR, Recurring · Monthly** | `STRIPE_IDEAS_PRICE_ID` |
 
 Price IDs look like `price_1AbC...`. Also copy your **Secret key**
 (`sk_live_...`, or `sk_test_...` to trial first) from Developers → API keys.

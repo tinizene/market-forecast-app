@@ -531,6 +531,20 @@
   text-decoration: none;
   margin-right: 0.25rem;
 }
+.site-nav .nav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+/* The mark carries the brand at a glance; the wordmark carries it when read. Text
+   stays legible at sizes the mark cannot, which is why both are here rather than
+   the mark alone. */
+.site-nav .nav-brand .nav-mark {
+  width: 1.375rem;
+  height: 1.375rem;
+  display: block;
+  flex: none;
+}
 .site-nav .nav-brand .nav-dot { color: var(--primary); }
 .site-nav .nav-links { display: flex; align-items: center; gap: 0.15rem; flex-wrap: wrap; }
 .site-nav .nav-link {

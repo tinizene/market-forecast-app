@@ -1,4 +1,4 @@
-# Handover Prompt — Scere Markets Course Project
+# Handover Prompt — Scere Training Course Project
 
 > **How to use this:** paste everything below the line into your first Claude Code session in the project directory. It orients Claude Code to the project, the standards, and the immediate next task. After the first session you won't need it again — `CLAUDE.md` gets read automatically every session.
 
@@ -8,7 +8,7 @@ I'm continuing work on a financial education course that was previously develope
 
 ## What this project is
 
-**Scere Markets** — a financial education platform. A free foundational track ("The Foundation of Money and Trade") builds universal financial literacy, then paid vertical tracks go deep on Forex, Crypto, and Stocks. Content is written as markdown lessons, then compiled into JS content files for the web app (live at market-forecast-app-ovoo.vercel.app, auto-deploying from `main`).
+**Scere Training** — a financial education platform. A free foundational track ("The Foundation of Money and Trade") builds universal financial literacy, then paid vertical tracks go deep on Forex, Crypto, and Stocks. Content is written as markdown lessons, then compiled into JS content files for the web app (live at market-forecast-app-ovoo.vercel.app, auto-deploying from `main`).
 
 ## What already exists
 

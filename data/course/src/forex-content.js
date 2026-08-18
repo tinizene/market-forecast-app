@@ -1,4 +1,4 @@
-// Curriculum content for the Forex track (paid) of the Scere Markets course.
+// Curriculum content for the Forex track (paid) of the Scere Training course.
 // Compiled from the markdown lessons in course/forex/*.en.md into the same typed-block
 // model as foundation-content.js (paragraph / definition / example / warning / practice /
 // image blocks, plus interactive quiz and keyTerms). Rendered by renderForexTrack() in
@@ -3553,7 +3553,7 @@ window.SCERE_FOREX_CONTENT = [
       },
       {
         "type": "paragraph",
-        "text": "One practical note, stated plainly and only once. Running this full six-pillar process on a live trade — researching each pillar, verifying the evidence, sizing and reviewing — takes hours and a skill built over time. For someone who wants the output of this framework on a specific trade without building that skill themselves, a completed trade thesis is something the Scere Markets platform offers as a service. The framework above is taught here in full and holds nothing back; the service simply exists for people who want the result without the hours. Everything you need to do it yourself is in this course."
+        "text": "One practical note, stated plainly and only once. Running this full six-pillar process on a live trade — researching each pillar, verifying the evidence, sizing and reviewing — takes hours and a skill built over time. For someone who wants the output of this framework on a specific trade without building that skill themselves, a completed trade thesis is something the Scere Training platform offers as a service. The framework above is taught here in full and holds nothing back; the service simply exists for people who want the result without the hours. Everything you need to do it yourself is in this course."
       },
       {
         "type": "practice",

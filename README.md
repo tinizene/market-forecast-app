@@ -607,6 +607,14 @@ design proposals asserted "verified high contrast" for pairs that measured 2.49:
 - `api/markets-hub.js` — consolidated serverless endpoint (quote/history/adjusted-history/macro/fx/news/countries/countryIndicators)
 - `vercel.json` — rewrites + no-cache headers for the app shell
 - `privacy-policy.html` — plain-language privacy summary
+- `i18n.js`, `i18n/*.json` — translation runtime and locale catalogues. English stays
+  inline in the pages and `data-i18n` keys sit alongside it, so English needs no fetch
+  and a failed locale load degrades to a correct English page. Adding a language means
+  writing `i18n/<code>.json` and flipping its `available` flag in `LANGUAGES`
+- `scripts/check-i18n.js` — static i18n gate: missing/orphan keys, locale parity,
+  `{placeholder}` and markup parity, and English drift between `en.json` and the source
+- `scripts/verify-i18n-browser.js`, `scripts/lib/local-server.js` — end-to-end i18n check
+  in headless Chromium against the real `api/*` handlers; skips where no browser exists
 - `FORK-NOTES.md` — what changed from the weather app and why
 - `fx-intelligence.html`, `fx-intelligence.js` — FX Intelligence Desk page
 - `scripts/parse-fx-report.js` — markdown → JSON parser for the daily FX dashboard report

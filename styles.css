@@ -1059,6 +1059,26 @@
 .mission-body { padding: 0.25rem 0 1.25rem; }
 .mission-body > * + * { margin-top: 1.5rem; }
 
+/* Language switcher. A native <select> styled to sit in the nav rather than a custom
+   menu, so keyboard operation, the mobile picker and screen-reader labelling all come
+   from the platform instead of being rebuilt. */
+.site-nav .nav-lang { display: inline-flex; align-items: center; margin-left: 0.35rem; }
+.site-nav .nav-lang-select {
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid var(--border-default);
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.45rem;
+  cursor: pointer;
+}
+.site-nav .nav-lang-select:hover { color: var(--text-body); }
+/* The options list is drawn by the OS, which does not inherit the page's dark theme —
+   without this the menu can render as dark text on a dark background. */
+.site-nav .nav-lang-select option { color: #0f172a; background: #ffffff; }
+
 /* --- lesson page: position + mark as read --- */
 .lesson-pos {
   border: 1px solid var(--border-default); border-radius: 0.9rem;

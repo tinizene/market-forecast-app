@@ -4,6 +4,17 @@
 // of this app: every dollar figure the calculator shows is computed from Alpha
 // Vantage's actual dividend-adjusted monthly price series, never invented.
 
+// Most translatable copy is tagged with data-i18n in the markup below, which the i18n
+// runtime picks up on its own. This is for the rest: strings that never exist as an
+// element — a dialog option, a live-region announcement, a document.title, a label
+// composed before it reaches markup. Named tr() rather than t() because `t` is already
+// a loop variable for tracks and terms throughout this file.
+//
+// Falls back to the English argument, so learn.js keeps working with i18n.js absent.
+function tr(key, fallback, vars) {
+  return window.SCERE_I18N ? window.SCERE_I18N.t(key, fallback, vars) : fallback;
+}
+
 function escapeHtml(str) {
   if (str == null) return '';
   return String(str).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -434,7 +445,7 @@ function renderLessonBlock(block, idBase, index) {
     case 'definition':
       return `
         <div class="lesson-block lesson-block-definition">
-          <span class="lesson-block-label">Definition</span>
+          <span class="lesson-block-label" data-i18n="learn.block.definition">Definition</span>
           <p class="text-sm font-semibold text-slate-100 mb-1">${escapeHtml(block.term)}</p>
           <p class="text-sm text-slate-300 leading-relaxed" data-read-unit id="${readId}">${escapeHtml(block.text)}</p>
         </div>`;
@@ -442,21 +453,21 @@ function renderLessonBlock(block, idBase, index) {
     case 'example':
       return `
         <div class="lesson-block lesson-block-example">
-          <span class="lesson-block-label">Example</span>
+          <span class="lesson-block-label" data-i18n="learn.block.example">Example</span>
           <p class="text-sm text-slate-300 leading-relaxed" data-read-unit id="${readId}">${escapeHtml(block.text)}</p>
         </div>`;
 
     case 'warning':
       return `
         <div class="lesson-block lesson-block-warning">
-          <span class="lesson-block-label">Worth Noting</span>
+          <span class="lesson-block-label" data-i18n="learn.block.warning">Worth Noting</span>
           <p class="text-sm text-slate-300 leading-relaxed" data-read-unit id="${readId}">${escapeHtml(block.text)}</p>
         </div>`;
 
     case 'practice':
       return `
         <div class="lesson-block lesson-block-practice">
-          <span class="lesson-block-label">Think It Through</span>
+          <span class="lesson-block-label" data-i18n="learn.block.practice">Think It Through</span>
           <p class="text-sm text-slate-300 leading-relaxed" data-read-unit id="${readId}">${escapeHtml(block.text)}</p>
         </div>`;
 
@@ -499,7 +510,7 @@ function renderQuizQuestion(q, lessonId, qIndex) {
 
   return `
     <div class="quiz-card" data-quiz data-quiz-lesson="${escapeHtml(lessonId)}" data-quiz-question="${qIndex}" data-correct-index="${q.correctIndex}">
-      <span class="quiz-label">Practice</span>
+      <span class="quiz-label" data-i18n="learn.quiz.label">Practice</span>
       <p class="quiz-question">${escapeHtml(q.question)}</p>
       <div class="quiz-options" data-quiz-options>${optionsHtml}</div>
       <div class="quiz-feedback" data-quiz-feedback
@@ -556,7 +567,7 @@ function renderKeyTerms(terms) {
   `).join('');
   return `
     <div class="key-terms-card">
-      <span class="key-terms-label">Key Terms Recap</span>
+      <span class="key-terms-label" data-i18n="learn.key-terms.label">Key Terms Recap</span>
       ${rows}
     </div>`;
 }
@@ -571,8 +582,8 @@ function renderFoundationLessonCard(lesson) {
   return `
     <section id="lesson-${escapeHtml(lesson.id)}" class="current-card bg-slate-800 rounded-2xl p-5 shadow-lg" data-lesson-section>
       <div class="flex items-start justify-between gap-3 mb-1">
-        <p class="text-xs uppercase tracking-wider text-blue-300">Chapter ${lesson.chapterNumber} &middot; Lesson ${lesson.lessonNumber}</p>
-        <button type="button" class="lesson-listen-btn hidden" data-lesson-listen="${escapeHtml(lesson.id)}">🔊 Listen</button>
+        <p class="text-xs uppercase tracking-wider text-blue-300">${escapeHtml(tr('learn.chapter-lesson', 'Chapter {c} · Lesson {l}', { c: lesson.chapterNumber, l: lesson.lessonNumber }))}</p>
+        <button type="button" class="lesson-listen-btn hidden" data-lesson-listen="${escapeHtml(lesson.id)}"><span aria-hidden="true">🔊</span> <span data-i18n="learn.listen">Listen</span></button>
       </div>
       <h2 class="text-lg font-bold mb-2" data-read-unit id="ru-${escapeHtml(lesson.id)}-title">${escapeHtml(lesson.title)}</h2>
       <p class="text-sm text-blue-200 font-medium mb-3" data-read-unit id="ru-${escapeHtml(lesson.id)}-keyidea">${escapeHtml(lesson.keyIdea)}</p>
@@ -587,7 +598,7 @@ function renderChapterDivider(lesson) {
   return `
     <div class="pt-2 pb-1">
       <div class="flex items-center gap-3">
-        <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 rounded-full px-2.5 py-1">Chapter ${lesson.chapterNumber}</span>
+        <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 rounded-full px-2.5 py-1">${escapeHtml(tr('learn.chapter-n', 'Chapter {c}', { c: lesson.chapterNumber }))}</span>
         <div class="h-px flex-1 bg-slate-700"></div>
       </div>
       <h3 class="text-base font-bold text-slate-100 mt-2">${escapeHtml(lesson.chapterTitle || '')}</h3>
@@ -602,7 +613,7 @@ function renderFoundationTrack() {
 
   const header = `
     <div class="mb-2">
-      <span class="foundation-badge">Free</span>
+      <span class="foundation-badge" data-i18n="learn.badge.free">Free</span>
       <p class="text-[11px] uppercase tracking-[0.15em] text-slate-400 mt-2">${escapeHtml(track.trackTitle || '')}</p>
       <p class="text-xs text-slate-400 mt-1">${escapeHtml(track.trackTagline || '')}</p>
     </div>`;
@@ -634,7 +645,7 @@ function renderForexTrack() {
 
   const header = `
     <div class="mb-2">
-      <span class="paid-badge">Paid track</span>
+      <span class="paid-badge" data-i18n="learn.badge.paid">Paid track</span>
       <p class="text-[11px] uppercase tracking-[0.15em] text-slate-400 mt-2">${escapeHtml(track.trackTitle || '')}</p>
       <p class="text-xs text-slate-400 mt-1">${escapeHtml(track.trackTagline || '')}</p>
     </div>`;
@@ -665,7 +676,7 @@ function renderCryptoTrack() {
 
   const header = `
     <div class="mb-2">
-      <span class="paid-badge">Paid track</span>
+      <span class="paid-badge" data-i18n="learn.badge.paid">Paid track</span>
       <p class="text-[11px] uppercase tracking-[0.15em] text-slate-400 mt-2">${escapeHtml(track.trackTitle || '')}</p>
       <p class="text-xs text-slate-400 mt-1">${escapeHtml(track.trackTagline || '')}</p>
     </div>`;
@@ -690,8 +701,8 @@ function renderLessonCard(lesson, index) {
   return `
     <section id="lesson-${escapeHtml(lesson.id)}" class="current-card bg-slate-800 rounded-2xl p-5 shadow-lg" data-lesson-section>
       <div class="flex items-start justify-between gap-3 mb-1">
-        <p class="text-xs uppercase tracking-wider text-blue-300">Lesson ${index + 1}</p>
-        <button type="button" class="lesson-listen-btn hidden" data-lesson-listen="${escapeHtml(lesson.id)}">🔊 Listen</button>
+        <p class="text-xs uppercase tracking-wider text-blue-300">${escapeHtml(tr('learn.lesson-n', 'Lesson {n}', { n: index + 1 }))}</p>
+        <button type="button" class="lesson-listen-btn hidden" data-lesson-listen="${escapeHtml(lesson.id)}"><span aria-hidden="true">🔊</span> <span data-i18n="learn.listen">Listen</span></button>
       </div>
       <h2 class="text-lg font-bold mb-2" data-read-unit id="ru-${escapeHtml(lesson.id)}-title">${escapeHtml(lesson.title)}</h2>
       <p class="text-sm text-blue-200 font-medium mb-3" data-read-unit id="ru-${escapeHtml(lesson.id)}-keyidea">${escapeHtml(lesson.keyIdea)}</p>
@@ -714,16 +725,16 @@ function renderFeeTable() {
 
   return `
     <section class="advisory-card !items-start flex-col !flex">
-      <p class="font-semibold text-sm mb-1">Real fee comparison</p>
-      <p class="text-xs opacity-80 mb-3">Sourced from each fund issuer's own page, lowest fee first. "asOf" is when this was last checked — expense ratios change rarely, but verify against the source link for anything beyond a rough comparison.</p>
+      <p class="font-semibold text-sm mb-1" data-i18n="learn.fees.title">Real fee comparison</p>
+      <p class="text-xs opacity-80 mb-3" data-i18n="learn.fees.blurb">Sourced from each fund issuer's own page, lowest fee first. "asOf" is when this was last checked — expense ratios change rarely, but verify against the source link for anything beyond a rough comparison.</p>
       <div class="w-full overflow-x-auto">
         <table class="w-full text-xs border-collapse">
           <thead>
             <tr class="text-left text-slate-400 uppercase tracking-wide">
-              <th class="pb-2 pr-3 font-semibold">Fund</th>
-              <th class="pb-2 pr-3 font-semibold">Tracks</th>
-              <th class="pb-2 pr-3 font-semibold">Expense ratio</th>
-              <th class="pb-2 pr-3 font-semibold">Source</th>
+              <th class="pb-2 pr-3 font-semibold" data-i18n="learn.fees.col-fund">Fund</th>
+              <th class="pb-2 pr-3 font-semibold" data-i18n="learn.fees.col-tracks">Tracks</th>
+              <th class="pb-2 pr-3 font-semibold" data-i18n="learn.fees.col-expense">Expense ratio</th>
+              <th class="pb-2 pr-3 font-semibold" data-i18n="learn.fees.col-source">Source</th>
             </tr>
           </thead>
           <tbody>
@@ -732,7 +743,7 @@ function renderFeeTable() {
                 <td class="py-2 pr-3 text-slate-200 font-medium">${escapeHtml(r.symbol)} <span class="block text-slate-400 font-normal">${escapeHtml(r.name)}</span></td>
                 <td class="py-2 pr-3 text-slate-300">${escapeHtml(r.indexTracked)}</td>
                 <td class="py-2 pr-3 text-slate-100 font-semibold">${r.expenseRatioPct}%</td>
-                <td class="py-2 pr-3"><a href="${escapeHtml(r.source)}" target="_blank" rel="noopener noreferrer" class="text-sky-400 underline decoration-sky-700 underline-offset-2">as of ${escapeHtml(r.asOf)}</a></td>
+                <td class="py-2 pr-3"><a href="${escapeHtml(r.source)}" target="_blank" rel="noopener noreferrer" class="text-sky-400 underline decoration-sky-700 underline-offset-2">${escapeHtml(tr('learn.fees.as-of', 'as of {date}', { date: r.asOf }))}</a></td>
               </tr>
             `).join('')}
           </tbody>
@@ -752,29 +763,29 @@ function renderDcaCalculatorShell() {
   const instruments = dcaEligibleInstruments();
   return `
     <section class="advisory-card !items-start flex-col !flex">
-      <p class="font-semibold text-sm mb-1">See what regular contributions would have grown to</p>
-      <p class="text-xs opacity-80 mb-3">Real historical prices and dividends, computed live. Not a prediction — this shows what already happened, not what will happen.</p>
+      <p class="font-semibold text-sm mb-1" data-i18n="learn.dca.title">See what regular contributions would have grown to</p>
+      <p class="text-xs opacity-80 mb-3" data-i18n="learn.dca.blurb">Real historical prices and dividends, computed live. Not a prediction — this shows what already happened, not what will happen.</p>
       <div class="w-full grid grid-cols-2 gap-2 mb-3">
         <label class="text-xs text-slate-400 col-span-2 sm:col-span-1">
-          Fund
+          <span data-i18n="learn.dca.field-fund">Fund</span>
           <select id="dcaSymbol" class="mt-1 w-full bg-slate-700 text-white rounded-lg p-2 text-sm outline-none border border-slate-600 focus:border-blue-500">
             ${instruments.map((i) => `<option value="${escapeHtml(i.symbol)}">${escapeHtml(i.label)} (${escapeHtml(i.symbol)})</option>`).join('')}
           </select>
         </label>
         <label class="text-xs text-slate-400">
-          Monthly amount (USD)
+          <span data-i18n="learn.dca.field-amount">Monthly amount (USD)</span>
           <input id="dcaAmount" type="number" min="1" step="1" value="150" class="mt-1 w-full bg-slate-700 text-white rounded-lg p-2 text-sm outline-none border border-slate-600 focus:border-blue-500">
         </label>
         <label class="text-xs text-slate-400">
-          Years back
+          <span data-i18n="learn.dca.field-years">Years back</span>
           <select id="dcaYears" class="mt-1 w-full bg-slate-700 text-white rounded-lg p-2 text-sm outline-none border border-slate-600 focus:border-blue-500">
-            <option value="5">5 years</option>
-            <option value="10" selected>10 years</option>
-            <option value="20">20 years (or full history)</option>
+            <option value="5" data-i18n="learn.dca.years-5">5 years</option>
+            <option value="10" selected data-i18n="learn.dca.years-10">10 years</option>
+            <option value="20" data-i18n="learn.dca.years-20">20 years (or full history)</option>
           </select>
         </label>
       </div>
-      <button id="dcaCalculate" type="button" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg py-2.5 transition">Calculate</button>
+      <button id="dcaCalculate" type="button" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg py-2.5 transition" data-i18n="learn.dca.calculate">Calculate</button>
       <div id="dcaResult" class="w-full mt-3"></div>
     </section>
   `;
@@ -820,11 +831,11 @@ async function runDcaCalculation() {
   const resultEl = document.getElementById('dcaResult');
 
   if (amount <= 0) {
-    resultEl.innerHTML = '<p class="text-xs text-red-300">Enter a monthly amount greater than zero.</p>';
+    resultEl.innerHTML = '<p class="text-xs text-red-300" data-i18n="learn.dca.err-amount">Enter a monthly amount greater than zero.</p>';
     return;
   }
 
-  resultEl.innerHTML = '<p class="text-xs text-slate-400">Calculating from real historical data…</p>';
+  resultEl.innerHTML = '<p class="text-xs text-slate-400" data-i18n="learn.dca.calculating">Calculating from real historical data…</p>';
 
   try {
     const res = await fetch(`/api/adjusted-history?symbol=${encodeURIComponent(symbol)}`);
@@ -832,32 +843,32 @@ async function runDcaCalculation() {
 
     if (data.error === 'not_configured') {
       showApiKeyBanner(data.message || 'This deployment has no ALPHA_VANTAGE_API_KEY set yet, so the calculator can\'t load historical data. See README.md.');
-      resultEl.innerHTML = '<p class="text-xs text-red-300">Historical data unavailable — see the notice above.</p>';
+      resultEl.innerHTML = '<p class="text-xs text-red-300" data-i18n="learn.dca.err-unavailable">Historical data unavailable — see the notice above.</p>';
       return;
     }
     if (data.error || !data.points || !data.points.length) {
-      resultEl.innerHTML = `<p class="text-xs text-red-300">Could not load historical data for ${escapeHtml(symbol)}${data.detail ? `: ${escapeHtml(data.detail)}` : '.'}</p>`;
+      resultEl.innerHTML = `<p class="text-xs text-red-300">${escapeHtml(tr('learn.dca.err-load', 'Could not load historical data for {symbol}.', { symbol: symbol }))}${data.detail ? ` ${escapeHtml(data.detail)}` : ''}</p>`;
       return;
     }
 
     const result = computeDca(data.points, amount, years);
     if (!result) {
-      resultEl.innerHTML = '<p class="text-xs text-red-300">Not enough historical data for that time range.</p>';
+      resultEl.innerHTML = '<p class="text-xs text-red-300" data-i18n="learn.dca.err-range">Not enough historical data for that time range.</p>';
       return;
     }
 
     const gainClass = result.gain >= 0 ? 'text-emerald-400' : 'text-red-400';
     resultEl.innerHTML = `
       <div class="bg-slate-900/40 rounded-lg p-3 space-y-1.5">
-        <div class="flex justify-between text-xs"><span class="text-slate-400">Contributed (${result.months} months, ${escapeHtml(result.startDate)} to ${escapeHtml(result.endDate)})</span><span class="text-slate-200 font-medium">${formatUsd(result.totalContributed)}</span></div>
-        <div class="flex justify-between text-xs"><span class="text-slate-400">Would be worth today</span><span class="text-slate-100 font-semibold">${formatUsd(result.finalValue)}</span></div>
-        <div class="flex justify-between text-xs"><span class="text-slate-400">Gain / loss</span><span class="${gainClass} font-semibold">${result.gain >= 0 ? '+' : ''}${formatUsd(result.gain)} (${result.gainPct >= 0 ? '+' : ''}${result.gainPct.toFixed(1)}%)</span></div>
+        <div class="flex justify-between text-xs"><span class="text-slate-400">${escapeHtml(tr('learn.dca.contributed', 'Contributed ({months} months, {from} to {to})', { months: result.months, from: result.startDate, to: result.endDate }))}</span><span class="text-slate-200 font-medium">${formatUsd(result.totalContributed)}</span></div>
+        <div class="flex justify-between text-xs"><span class="text-slate-400" data-i18n="learn.dca.worth-today">Would be worth today</span><span class="text-slate-100 font-semibold">${formatUsd(result.finalValue)}</span></div>
+        <div class="flex justify-between text-xs"><span class="text-slate-400" data-i18n="learn.dca.gain-loss">Gain / loss</span><span class="${gainClass} font-semibold">${result.gain >= 0 ? '+' : ''}${formatUsd(result.gain)} (${result.gainPct >= 0 ? '+' : ''}${result.gainPct.toFixed(1)}%)</span></div>
       </div>
-      <p class="text-[11px] text-slate-500 mt-2">Computed from ${escapeHtml(symbol)}'s real, dividend-adjusted monthly price history. Past performance is not a guarantee of future results — this is what happened historically, not a forecast. Doesn't account for taxes, brokerage fees, or currency conversion.</p>
+      <p class="text-[11px] text-slate-500 mt-2">${escapeHtml(tr('learn.dca.footnote', "Computed from {symbol}'s real, dividend-adjusted monthly price history. Past performance is not a guarantee of future results — this is what happened historically, not a forecast. Doesn't account for taxes, brokerage fees, or currency conversion.", { symbol: symbol }))}</p>
     `;
   } catch (err) {
     console.error('DCA calculation failed:', err);
-    resultEl.innerHTML = '<p class="text-xs text-red-300">Something went wrong loading historical data. Try again shortly.</p>';
+    resultEl.innerHTML = '<p class="text-xs text-red-300" data-i18n="learn.dca.err-generic">Something went wrong loading historical data. Try again shortly.</p>';
   }
 }
 
@@ -886,12 +897,12 @@ function formatIndicatorValue(indicator) {
 function renderCountryPanelShell() {
   return `
     <section class="advisory-card !items-start flex-col !flex">
-      <p class="font-semibold text-sm mb-1">Your country at a glance</p>
-      <p class="text-xs opacity-80 mb-3">Real data from the World Bank's Indicators API — pick any country to see its most recent published figures. Not tied to any recommendation; just real context for the environment you're investing from.</p>
+      <p class="font-semibold text-sm mb-1" data-i18n="learn.country.title">Your country at a glance</p>
+      <p class="text-xs opacity-80 mb-3" data-i18n="learn.country.blurb">Real data from the World Bank's Indicators API — pick any country to see its most recent published figures. Not tied to any recommendation; just real context for the environment you're investing from.</p>
       <label class="text-xs text-slate-400 w-full">
-        Country
+        <span data-i18n="learn.country.field">Country</span>
         <select id="countrySelect" class="mt-1 w-full bg-slate-700 text-white rounded-lg p-2 text-sm outline-none border border-slate-600 focus:border-blue-500">
-          <option value="">Loading countries…</option>
+          <option value="" data-i18n="learn.country.loading-list">Loading countries…</option>
         </select>
       </label>
       <div id="countryIndicatorsResult" class="w-full mt-3"></div>
@@ -911,7 +922,7 @@ function renderCountryIndicatorCards(data) {
       return `
         <div class="bg-slate-900/40 rounded-lg p-3">
           <p class="text-xs text-slate-400">${escapeHtml(ind.label)}</p>
-          <p class="text-sm text-slate-500 mt-1">Not available for ${escapeHtml(countryName)} in the World Bank's recent data.</p>
+          <p class="text-sm text-slate-500 mt-1">${escapeHtml(tr('learn.country.not-available', "Not available for {country} in the World Bank's recent data.", { country: countryName }))}</p>
         </div>
       `;
     }
@@ -925,7 +936,7 @@ function renderCountryIndicatorCards(data) {
         <p class="text-lg font-semibold text-slate-100 mt-0.5">${escapeHtml(formatted)}</p>
         ${blurb ? `<p class="text-xs text-slate-400 mt-1.5">${blurb}</p>` : ''}
         ${ind.note ? `<p class="text-[11px] text-slate-500 mt-1">${escapeHtml(ind.note)}</p>` : ''}
-        <a href="${escapeHtml(ind.sourceUrl)}" target="_blank" rel="noopener noreferrer" class="text-[11px] text-sky-400 underline decoration-sky-700 underline-offset-2 mt-1 inline-block">World Bank source</a>
+        <a href="${escapeHtml(ind.sourceUrl)}" target="_blank" rel="noopener noreferrer" class="text-[11px] text-sky-400 underline decoration-sky-700 underline-offset-2 mt-1 inline-block" data-i18n="learn.country.source">World Bank source</a>
       </div>
     `;
   }).join('');
@@ -942,21 +953,21 @@ async function loadCountryIndicators(countryId) {
     return;
   }
 
-  resultEl.innerHTML = '<p class="text-xs text-slate-400">Loading real data…</p>';
+  resultEl.innerHTML = '<p class="text-xs text-slate-400" data-i18n="learn.country.loading-data">Loading real data…</p>';
 
   try {
     const res = await fetch(`/api/country-indicators?country=${encodeURIComponent(countryId)}`);
     const data = await res.json();
 
     if (data.error && !data.indicators?.length) {
-      resultEl.innerHTML = `<p class="text-xs text-red-300">Could not load data for this country${data.detail ? `: ${escapeHtml(data.detail)}` : '.'}</p>`;
+      resultEl.innerHTML = `<p class="text-xs text-red-300" data-i18n="learn.country.err-load">Could not load data for this country.</p>`;
       return;
     }
 
     resultEl.innerHTML = renderCountryIndicatorCards(data);
   } catch (err) {
     console.error('country indicators failed:', err);
-    resultEl.innerHTML = '<p class="text-xs text-red-300">Something went wrong loading country data. Try again shortly.</p>';
+    resultEl.innerHTML = '<p class="text-xs text-red-300" data-i18n="learn.country.err-generic">Something went wrong loading country data. Try again shortly.</p>';
   }
 }
 
@@ -970,14 +981,14 @@ async function loadCountryList() {
     const countries = data.countries || [];
 
     if (!countries.length) {
-      select.innerHTML = '<option value="">Country list unavailable — try again later</option>';
+      select.innerHTML = '<option value="" data-i18n="learn.country.list-unavailable">Country list unavailable — try again later</option>';
       return;
     }
 
     let saved = '';
     try { saved = localStorage.getItem(COUNTRY_STORAGE_KEY) || ''; } catch (e) { /* ignore */ }
 
-    const options = ['<option value="">Select your country…</option>']
+    const options = ['<option value="" data-i18n="learn.country.select">Select your country…</option>']
       .concat(countries.map((c) => `<option value="${escapeHtml(c.id)}">${escapeHtml(c.name)}</option>`));
     select.innerHTML = options.join('');
 
@@ -993,7 +1004,7 @@ async function loadCountryList() {
     });
   } catch (err) {
     console.error('country list failed:', err);
-    select.innerHTML = '<option value="">Could not load country list</option>';
+    select.innerHTML = '<option value="" data-i18n="learn.country.list-failed">Could not load country list</option>';
   }
 }
 
@@ -1245,6 +1256,15 @@ function renderLessons() {
 // list across all three tracks, reusing the lesson renderers above.
 // ============================================================
 
+// The chrome's language and the lesson bodies' language must not disagree — a French
+// page listing English lessons is worse than either alone. api/course.js already takes
+// a `lang` parameter and falls back per track, so an untranslated track still serves
+// its English text rather than nothing.
+function langParam() {
+  const code = window.SCERE_I18N && window.SCERE_I18N.lang();
+  return code && code !== 'en' ? `&lang=${encodeURIComponent(code)}` : '';
+}
+
 // The syllabus comes from /api/course?fn=index — metadata only, and public, so the
 // course stays browsable before payment. Lesson BODIES are fetched one at a time and
 // are what the paywall actually guards. Order is fixed server-side (free Foundation
@@ -1253,7 +1273,7 @@ let courseIndexCache = null;
 
 async function fetchCourseIndex() {
   if (courseIndexCache) return courseIndexCache;
-  const res = await fetch('/api/course?fn=index');
+  const res = await fetch(`/api/course?fn=index${langParam()}`);
   if (!res.ok) throw new Error(`course index failed: ${res.status}`);
   const data = await res.json();
   courseIndexCache = (data.lessons || []).map((l) => ({
@@ -1279,7 +1299,7 @@ async function fetchCourseIndex() {
 // the lesson exists and is simply not paid for, and it still carries enough metadata
 // to render a useful locked state.
 async function fetchLesson(id) {
-  const res = await fetch(`/api/course?fn=lesson&id=${encodeURIComponent(id)}`);
+  const res = await fetch(`/api/course?fn=lesson&id=${encodeURIComponent(id)}${langParam()}`);
   if (res.status === 402) {
     const data = await res.json().catch(() => ({}));
     return { lesson: data.lesson || null, locked: true };
@@ -1298,13 +1318,15 @@ function lessonHref(id) { return `./lesson.html?id=${encodeURIComponent(id)}`; }
 function chapterLabel(number, title, sep) {
   const clean = String(title || '').replace(/^\s*chapter\s*\d+\s*[:.\u2013\u2014-]\s*/i, '').trim();
   if (number == null) return clean;
-  return clean ? `Chapter ${number}${sep || ': '}${clean}` : `Chapter ${number}`;
+  return clean
+    ? tr('learn.chapter-n-titled', 'Chapter {n}{sep}{title}', { n: number, sep: sep || ': ', title: clean })
+    : tr('learn.chapter-n', 'Chapter {c}', { c: number });
 }
 
 // "3 min" reads better than "3 minutes" in a dense row, and an unknown estimate should
 // render as nothing rather than as "0 min".
 function minutesLabel(m) {
-  return m ? `${m} min` : '';
+  return m ? tr('learn.minutes', '{n} min', { n: m }) : '';
 }
 
 function totalMinutes(lessons) {
@@ -1313,10 +1335,12 @@ function totalMinutes(lessons) {
 
 function formatDuration(mins) {
   if (!mins) return '';
-  if (mins < 60) return `${mins} min`;
+  if (mins < 60) return tr('learn.minutes', '{n} min', { n: mins });
   const h = Math.floor(mins / 60);
   const r = mins % 60;
-  return r ? `${h} hr ${r} min` : `${h} hr`;
+  return r
+    ? tr('learn.hours-minutes', '{h} hr {m} min', { h: h, m: r })
+    : tr('learn.hours', '{h} hr', { h: h });
 }
 
 // progress.js loads before this file. The fallback keeps the course usable if a stale
@@ -1372,14 +1396,14 @@ async function renderCourseIndex() {
     index = await fetchCourseIndex();
   } catch (err) {
     root.innerHTML = failureState({
-      title: 'The syllabus could not be loaded',
+      title: tr('learn.err.syllabus-title', 'The syllabus could not be loaded'),
       message: navigator.onLine === false
-        ? 'You appear to be offline. The course will load once your connection returns.'
-        : 'Something went wrong at our end. Trying again usually fixes it.',
-      retry: 'Try again',
+        ? tr('learn.err.offline-course', 'You appear to be offline. The course will load once your connection returns.')
+        : tr('learn.err.our-end', 'Something went wrong at our end. Trying again usually fixes it.'),
+      retry: tr('learn.err.retry', 'Try again'),
     });
     wireRetry(root, renderCourseIndex);
-    ui.say('The syllabus could not be loaded.', true);
+    ui.say(tr('learn.err.syllabus-said', 'The syllabus could not be loaded.'), true);
     return;
   }
 
@@ -1393,7 +1417,7 @@ async function renderCourseIndex() {
     renderContinueBanner(index) +
     renderSearchBox() +
     (progress.supported && overall.done
-      ? `<p class="hub-overall">${overall.done} of ${overall.total} lessons read across the whole course · ${renderProgressBar(overall.pct, `${overall.pct}% of the course read`)}</p>`
+      ? `<p class="hub-overall">${escapeHtml(tr('learn.hub.overall', '{done} of {total} lessons read across the whole course', { done: overall.done, total: overall.total }))} · ${renderProgressBar(overall.pct, tr('learn.a11y.pct-read', '{pct}% of the course read', { pct: overall.pct }))}</p>`
       : '') +
     tracks.map((t, i) => renderTrackCard(t, i === tracks.findIndex((x) => !x.free))).join('') +
     renderProgressFootnote();
@@ -1402,8 +1426,9 @@ async function renderCourseIndex() {
   wireSearch(root, index);
   wireProgressReset(root);
   ui.say(purchaseOutcome === 'success'
-    ? 'Payment received. The whole course is unlocked.'
-    : `Course loaded — ${tracks.length} tracks, ${index.length} lessons.`, purchaseOutcome === 'success');
+    ? tr('learn.say.paid', 'Payment received. The whole course is unlocked.')
+    : tr('learn.say.course-loaded', 'Course loaded — {tracks} tracks, {lessons} lessons.', { tracks: tracks.length, lessons: index.length }),
+    purchaseOutcome === 'success');
 }
 
 // The dominant action for anyone who has already started. Deliberately above the track
@@ -1419,7 +1444,7 @@ function renderContinueBanner(index) {
   if (!pick) return '';
   return `
     <a class="continue-card" href="${lessonHref(pick.id)}">
-      <span class="continue-eyebrow">Continue where you left off</span>
+      <span class="continue-eyebrow" data-i18n="learn.continue-eyebrow">Continue where you left off</span>
       <span class="continue-title">${escapeHtml(pick.title)}</span>
       <span class="continue-meta">${escapeHtml(pick.trackTitle)}${pick.minutes ? ` · ${minutesLabel(pick.minutes)}` : ''}</span>
     </a>`;
@@ -1428,8 +1453,8 @@ function renderContinueBanner(index) {
 function renderSearchBox() {
   return `
     <div class="hub-search">
-      <label class="sr-only" for="lessonSearch">Search lessons</label>
-      <input id="lessonSearch" type="search" class="ui-input" placeholder="Search all ${58} lessons…" autocomplete="off">
+      <label class="sr-only" for="lessonSearch" data-i18n="learn.search.label">Search lessons</label>
+      <input id="lessonSearch" type="search" class="ui-input" placeholder="Search all 58 lessons…" data-i18n-attr="placeholder:learn.search.placeholder" autocomplete="off">
       <div id="searchResults" class="search-results" role="status" aria-live="polite"></div>
     </div>`;
 }
@@ -1441,31 +1466,31 @@ function renderTrackCard(t, isFirstPaid) {
   const locked = !t.free && courseAccess.configured && !courseAccess.ownsCourse;
   const nextId = progress.nextIncomplete(ids);
   const cta = !progress.supported || st.done === 0
-    ? 'Open track'
-    : st.done === st.total ? 'Review track' : 'Continue track';
+    ? tr('learn.card.open', 'Open track')
+    : st.done === st.total ? tr('learn.card.review', 'Review track') : tr('learn.card.continue', 'Continue track');
 
   return (isFirstPaid ? renderCourseOffer() : '') + `
     <a class="track-card${t.free ? ' is-free' : ''}${locked ? ' is-locked' : ''}" href="${trackHref(t.track)}">
       <div class="track-card-top">
         <span class="${t.badgeClass}">${escapeHtml(t.badge)}</span>
-        ${locked ? '<span class="track-lock"><span aria-hidden="true">🔒</span> Part of the course</span>' : ''}
+        ${locked ? `<span class="track-lock"><span aria-hidden="true">🔒</span> <span data-i18n="learn.locked.badge">Part of the course</span></span>` : ''}
       </div>
       <h2 class="track-card-title">${escapeHtml(t.trackTitle)}</h2>
       <p class="track-card-tag">${escapeHtml(t.tagline || '')}</p>
-      <p class="track-card-meta">${t.lessons.length} lesson${t.lessons.length === 1 ? '' : 's'}${mins ? ` · ${formatDuration(mins)}` : ''}</p>
-      ${progress.supported && st.done ? renderProgressBar(st.pct, `${st.done} of ${st.total} lessons read`) : ''}
-      ${progress.supported && st.done ? `<p class="track-card-prog">${st.done} of ${st.total} read</p>` : ''}
-      <span class="track-card-cta">${cta} →</span>
+      <p class="track-card-meta">${escapeHtml(t.lessons.length === 1 ? tr('learn.track.one-lesson', '1 lesson') : tr('learn.track.n-lessons', '{n} lessons', { n: t.lessons.length }))}${mins ? ` · ${escapeHtml(formatDuration(mins))}` : ''}</p>
+      ${progress.supported && st.done ? renderProgressBar(st.pct, tr('learn.a11y.n-of-m-read', '{done} of {total} lessons read', { done: st.done, total: st.total })) : ''}
+      ${progress.supported && st.done ? `<p class="track-card-prog">${escapeHtml(tr('learn.track.n-of-m-read', '{done} of {total} read', { done: st.done, total: st.total }))}</p>` : ''}
+      <span class="track-card-cta">${escapeHtml(cta)} <span aria-hidden="true">→</span></span>
     </a>`;
 }
 
 function renderProgressFootnote() {
   if (!progress.supported) {
-    return '<p class="hub-note">Progress tracking is unavailable in this browser (private browsing blocks local storage), so lessons will not be marked as read.</p>';
+    return '<p class="hub-note" data-i18n="learn.progress.unsupported">Progress tracking is unavailable in this browser (private browsing blocks local storage), so lessons will not be marked as read.</p>';
   }
   if (!progress.anyProgress()) return '';
-  return `<p class="hub-note">Your progress is saved in this browser only — it is not tied to an account and will not follow you to another device.
-    <button type="button" id="resetProgress" class="link-btn">Reset progress</button></p>`;
+  return `<p class="hub-note"><span data-i18n="learn.progress.local-only">Your progress is saved in this browser only — it is not tied to an account and will not follow you to another device.</span>
+    <button type="button" id="resetProgress" class="link-btn" data-i18n="learn.reset.submit">Reset progress</button></p>`;
 }
 
 function wireProgressReset(root) {
@@ -1475,15 +1500,15 @@ function wireProgressReset(root) {
     // Destructive and irreversible, so it asks first — the one place in this app that
     // genuinely warrants a confirmation step.
     const confirmed = await ui.openDialog({
-      title: 'Reset your progress?',
-      message: 'Every lesson will be marked unread again. This only affects this browser, and it cannot be undone.',
-      submitLabel: 'Reset progress',
-      cancelLabel: 'Keep it',
+      title: tr('learn.reset.title', 'Reset your progress?'),
+      message: tr('learn.reset.message', 'Every lesson will be marked unread again. This only affects this browser, and it cannot be undone.'),
+      submitLabel: tr('learn.reset.submit', 'Reset progress'),
+      cancelLabel: tr('learn.reset.cancel', 'Keep it'),
       tone: 'error',
     });
     if (confirmed === null) return;
     progress.clearAll();
-    ui.say('Progress reset.', true);
+    ui.say(tr('learn.reset.said', 'Progress reset.'), true);
     renderCourseIndex();
   });
 }
@@ -1504,14 +1529,16 @@ function wireSearch(root, index) {
     ).slice(0, 12);
     out.classList.add('is-open');
     if (!hits.length) {
-      out.innerHTML = `<p class="search-empty">No lesson matches “${escapeHtml(input.value.trim())}”. Try a broader word — the search covers lesson titles and key ideas.</p>`;
+      out.innerHTML = `<p class="search-empty">${escapeHtml(tr('learn.search.empty', 'No lesson matches “{q}”. Try a broader word — the search covers lesson titles and key ideas.', { q: input.value.trim() }))}</p>`;
       return;
     }
     out.innerHTML =
-      `<p class="search-count">${hits.length} lesson${hits.length === 1 ? '' : 's'} found</p>` +
+      `<p class="search-count">${escapeHtml(hits.length === 1
+        ? tr('learn.search.count-one', '1 lesson found')
+        : tr('learn.search.count-many', '{n} lessons found', { n: hits.length }))}</p>` +
       hits.map((l) => `
         <a class="search-hit" href="${lessonHref(l.id)}">
-          <span class="search-hit-title">${escapeHtml(l.title)}${!l.free ? '<span class="sr-only"> — locked, part of the paid course</span>' : ''}</span>
+          <span class="search-hit-title">${escapeHtml(l.title)}${!l.free ? `<span class="sr-only"> ${escapeHtml(tr('learn.a11y.locked', '— locked, part of the paid course'))}</span>` : ''}</span>
           <span class="search-hit-meta">${escapeHtml(l.trackTitle)}${l.minutes ? ` · ${minutesLabel(l.minutes)}` : ''}${!l.free ? ' · 🔒' : ''}</span>
         </a>`).join('');
   };
@@ -1535,11 +1562,11 @@ async function renderTrackPage() {
     index = await fetchCourseIndex();
   } catch (err) {
     root.innerHTML = failureState({
-      title: 'This track could not be loaded',
+      title: tr('learn.err.track-title', 'This track could not be loaded'),
       message: navigator.onLine === false
-        ? 'You appear to be offline. The track will load once your connection returns.'
-        : 'Something went wrong at our end. Trying again usually fixes it.',
-      retry: 'Try again',
+        ? tr('learn.err.offline-track', 'You appear to be offline. The track will load once your connection returns.')
+        : tr('learn.err.our-end', 'Something went wrong at our end. Trying again usually fixes it.'),
+      retry: tr('learn.err.retry', 'Try again'),
     });
     wireRetry(root, renderTrackPage);
     return;
@@ -1550,12 +1577,12 @@ async function renderTrackPage() {
     root.innerHTML = `
       <div class="state-card">
         <span class="state-icon" aria-hidden="true">🔍</span>
-        <p class="state-title">That track could not be found</p>
-        <p class="state-msg">It may have been renamed or moved. The course page lists every track available.</p>
-        <a href="./learn.html" class="upgrade-btn">Back to the course</a>
+        <p class="state-title" data-i18n="learn.track.not-found-title">That track could not be found</p>
+        <p class="state-msg" data-i18n="learn.track.not-found-msg">It may have been renamed or moved. The course page lists every track available.</p>
+        <a href="./learn.html" class="upgrade-btn" data-i18n="learn.track.back-to-course">Back to the course</a>
       </div>`;
-    document.title = 'Track not found — Scere Training';
-    ui.say('That track could not be found.', true);
+    document.title = tr('learn.track.not-found-doctitle', 'Track not found — Scere Training');
+    ui.say(tr('learn.track.not-found-title', 'That track could not be found') + '.', true);
     return;
   }
 
@@ -1577,15 +1604,15 @@ async function renderTrackPage() {
 
   const header = `
     <header class="track-head">
-      <a class="track-back" href="./learn.html">← All tracks</a>
+      <a class="track-back" href="./learn.html"><span aria-hidden="true">←</span> <span data-i18n="learn.track.all-tracks">All tracks</span></a>
       <span class="${track.badgeClass}">${escapeHtml(track.badge)}</span>
       <h1 class="track-title">${escapeHtml(track.trackTitle)}</h1>
       <p class="track-tag">${escapeHtml(track.tagline || '')}</p>
-      <p class="track-meta">${track.lessons.length} lessons${mins ? ` · ${formatDuration(mins)} of reading` : ''}</p>
-      ${progress.supported ? renderProgressBar(st.pct, `${st.done} of ${st.total} lessons read`) : ''}
-      ${progress.supported ? `<p class="track-prog-label">${st.done} of ${st.total} read</p>` : ''}
-      ${nextId ? `<a class="upgrade-btn track-continue" href="${lessonHref(nextId)}">${st.done ? 'Continue' : 'Start'} — ${escapeHtml((track.lessons.find((l) => l.id === nextId) || {}).title || '')}</a>`
-        : '<p class="track-done">✓ Every lesson in this track is read.</p>'}
+      <p class="track-meta">${escapeHtml(tr('learn.track.n-lessons', '{n} lessons', { n: track.lessons.length }))}${mins ? ` · ${escapeHtml(tr('learn.track.of-reading', '{duration} of reading', { duration: formatDuration(mins) }))}` : ''}</p>
+      ${progress.supported ? renderProgressBar(st.pct, tr('learn.a11y.n-of-m-read', '{done} of {total} lessons read', { done: st.done, total: st.total })) : ''}
+      ${progress.supported ? `<p class="track-prog-label">${escapeHtml(tr('learn.track.n-of-m-read', '{done} of {total} read', { done: st.done, total: st.total }))}</p>` : ''}
+      ${nextId ? `<a class="upgrade-btn track-continue" href="${lessonHref(nextId)}">${escapeHtml(st.done ? tr('learn.track.continue', 'Continue') : tr('learn.track.start', 'Start'))} — ${escapeHtml((track.lessons.find((l) => l.id === nextId) || {}).title || '')}</a>`
+        : `<p class="track-done"><span aria-hidden="true">✓</span> <span data-i18n="learn.track.all-read">Every lesson in this track is read.</span></p>`}
     </header>`;
 
   const body = chapters.map((c, i) => {
@@ -1597,7 +1624,7 @@ async function renderTrackPage() {
       <details class="chapter" ${openThis ? 'open' : ''}>
         <summary class="chapter-summary">
           <span class="chapter-name">${escapeHtml(chapterLabel(c.number, c.title))}</span>
-          <span class="chapter-count">${progress.supported && cst.done ? `${cst.done}/${cst.total}` : `${cst.total} lesson${cst.total === 1 ? '' : 's'}`}</span>
+          <span class="chapter-count">${progress.supported && cst.done ? `${cst.done}/${cst.total}` : escapeHtml(cst.total === 1 ? tr('learn.track.one-lesson', '1 lesson') : tr('learn.track.n-lessons', '{n} lessons', { n: cst.total }))}</span>
         </summary>
         <div class="chapter-rows">${rows}</div>
       </details>`;
@@ -1605,19 +1632,19 @@ async function renderTrackPage() {
 
   root.innerHTML = renderPurchaseOutcome() + header + (locked ? renderCourseOffer() : '') + body;
   wireCourseButtons(root);
-  document.title = `${track.trackTitle} — Scere Training`;
-  ui.say(`${track.trackTitle}. ${track.lessons.length} lessons, ${st.done} read.`);
+  document.title = tr('learn.doctitle', '{title} — Scere Training', { title: track.trackTitle });
+  ui.say(tr('learn.say.track-loaded', '{title}. {total} lessons, {done} read.', { title: track.trackTitle, total: track.lessons.length, done: st.done }));
 }
 
 function renderTrackRow(l, track) {
   const done = progress.supported && progress.isDone(l.id);
   const label = l.chapterNumber != null ? `${l.chapterNumber}.${l.lessonNumber}` : `${l.lessonNumber}`;
-  const lockedNote = l.free ? '' : '<span class="sr-only"> — locked, part of the paid course</span>';
+  const lockedNote = l.free ? '' : `<span class="sr-only"> ${escapeHtml(tr('learn.a11y.locked', '— locked, part of the paid course'))}</span>`;
   const statusIcon = done ? '✓' : (l.free ? '→' : '🔒');
-  const statusText = done ? '<span class="sr-only"> — read</span>' : '';
+  const statusText = done ? `<span class="sr-only"> ${escapeHtml(tr('learn.a11y.read', '— read'))}</span>` : '';
   return `
     <a class="toc-row${done ? ' is-done' : ''}" href="${lessonHref(l.id)}">
-      <span class="toc-num"><span class="sr-only">Lesson </span>${escapeHtml(label)}</span>
+      <span class="toc-num"><span class="sr-only" data-i18n="learn.a11y.lesson-word">Lesson </span>${escapeHtml(label)}</span>
       <span class="toc-body">
         <span class="toc-title">${escapeHtml(l.title)}${lockedNote}${statusText}</span>
         <span class="toc-key">${escapeHtml(l.keyIdea || '')}</span>
@@ -1691,7 +1718,7 @@ function coursePriceNow() {
 
 function courseBuyLabel() {
   const price = coursePriceNow();
-  return price ? `Get the course · ${price}` : 'Get the course';
+  return price ? tr('learn.buy.with-price', 'Get the course · {price}', { price: price }) : tr('learn.buy.plain', 'Get the course');
 }
 
 // Says what the code did, including when it did nothing. A code that is silently
@@ -1700,20 +1727,20 @@ function renderPromoNote() {
   const p = courseAccess.promo;
   if (!p || courseAccess.ownsCourse) return '';
   if (!p.valid) {
-    return `<p class="promo-note is-bad">Code <b>${escapeHtml(p.code)}</b> isn’t valid or has expired — the price shown is the standard one.</p>`;
+    return `<p class="promo-note is-bad">${tr('learn.promo.invalid', 'Code <b>{code}</b> isn’t valid or has expired — the price shown is the standard one.', { code: escapeHtml(p.code) })}</p>`;
   }
   if (!p.course) {
-    return `<p class="promo-note">Code <b>${escapeHtml(p.code)}</b> doesn’t apply to the course.</p>`;
+    return `<p class="promo-note">${tr('learn.promo.not-applicable', 'Code <b>{code}</b> doesn’t apply to the course.', { code: escapeHtml(p.code) })}</p>`;
   }
   const wasLabel = p.course.wasLabel ? `<s class="promo-was">${escapeHtml(p.course.wasLabel)}</s> ` : '';
-  return `<p class="promo-note is-good">✓ Code <b>${escapeHtml(p.code)}</b> applied — ${wasLabel}<b>${escapeHtml(p.course.label)}</b>${p.course.free ? ' (free)' : ''}</p>`;
+  return `<p class="promo-note is-good">${tr('learn.promo.applied', '✓ Code <b>{code}</b> applied — {was}<b>{price}</b>', { code: escapeHtml(p.code), was: wasLabel, price: escapeHtml(p.course.label) })}${p.course.free ? ` ${escapeHtml(tr('learn.promo.free-suffix', '(free)'))}` : ''}</p>`;
 }
 
 async function startCourseCheckout(btn) {
   // setBusy disables the button as well as relabelling it. The old version only
   // swapped the text, so a double-click could open two Checkout Sessions — and the
   // change was invisible to anyone not looking at the button.
-  const restore = ui.setBusy(btn, 'Taking you to checkout…');
+  const restore = ui.setBusy(btn, tr('learn.buy.busy', 'Taking you to checkout…'));
   try {
     const res = await fetch('/api/billing?fn=createCheckout', {
       method: 'POST',
@@ -1728,17 +1755,19 @@ async function startCourseCheckout(btn) {
     restore();
     ui.alertDialog({
       tone: 'error',
-      title: 'Checkout is unavailable',
-      message: 'We couldn’t open the payment page just now. Nothing has been charged. Please try again in a moment.',
+      title: tr('learn.buy.unavailable-title', 'Checkout is unavailable'),
+      message: tr('learn.buy.unavailable-msg', 'We couldn’t open the payment page just now. Nothing has been charged. Please try again in a moment.'),
     });
   } catch (e) {
     restore();
     ui.alertDialog({
       tone: 'error',
-      title: navigator.onLine === false ? 'You’re offline' : 'Couldn’t start checkout',
+      title: navigator.onLine === false
+        ? tr('learn.buy.offline-title', 'You’re offline')
+        : tr('learn.buy.failed-title', 'Couldn’t start checkout'),
       message: navigator.onLine === false
-        ? 'Reconnect and try again — nothing has been charged.'
-        : 'Something went wrong before we reached the payment page. Nothing has been charged.',
+        ? tr('learn.buy.offline-msg', 'Reconnect and try again — nothing has been charged.')
+        : tr('learn.buy.failed-msg', 'Something went wrong before we reached the payment page. Nothing has been charged.'),
     });
   }
 }
@@ -1759,7 +1788,7 @@ function wireCourseButtons(root) {
 // once — two copies of the sentence is how they end up saying different things.
 function renderRestoreLine() {
   if (!courseAccess.configured || courseAccess.ownsCourse) return '';
-  return `<p class="text-[11px] text-slate-500 mt-3">Already paid? <button type="button" data-restore-access class="underline hover:text-slate-300">Restore access</button></p>`;
+  return `<p class="text-[11px] text-slate-500 mt-3"><span data-i18n="learn.restore.already-paid">Already paid?</span> <button type="button" data-restore-access class="underline hover:text-slate-300" data-i18n="learn.restore.cta">Restore access</button></p>`;
 }
 
 // Coming back from Stripe: verify the session so the entitlement cookie is set BEFORE
@@ -1813,30 +1842,30 @@ function renderPurchaseOutcome() {
     return `
       <div class="state-card toc-offer is-owned" role="status">
         <span class="state-icon" aria-hidden="true">✓</span>
-        <p class="state-title">Access restored</p>
-        <p class="state-msg">You are signed in on this device and the course is unlocked again. The link you used has now been retired.</p>
+        <p class="state-title" data-i18n="learn.outcome.restored-title">Access restored</p>
+        <p class="state-msg" data-i18n="learn.outcome.restored-msg">You are signed in on this device and the course is unlocked again. The link you used has now been retired.</p>
       </div>`;
   }
   if (purchaseOutcome === 'success') {
     return `
       <div class="state-card toc-offer is-owned" role="status">
         <span class="state-icon" aria-hidden="true">✓</span>
-        <p class="state-title">You own the course</p>
-        <p class="state-msg">Payment received. Every lesson is unlocked permanently, and the daily high-conviction ideas are included for the next three months.</p>
+        <p class="state-title" data-i18n="learn.outcome.owned-title">You own the course</p>
+        <p class="state-msg" data-i18n="learn.outcome.owned-msg">Payment received. Every lesson is unlocked permanently, and the daily high-conviction ideas are included for the next three months.</p>
       </div>`;
   }
   if (purchaseOutcome === 'cancelled') {
     return `
       <div class="state-card" role="status">
-        <p class="state-title">Checkout cancelled</p>
-        <p class="state-msg">Nothing was charged. The free Foundation track is still open, and the course is here whenever you want it.</p>
+        <p class="state-title" data-i18n="learn.outcome.cancelled-title">Checkout cancelled</p>
+        <p class="state-msg" data-i18n="learn.outcome.cancelled-msg">Nothing was charged. The free Foundation track is still open, and the course is here whenever you want it.</p>
       </div>`;
   }
   return `
     <div class="state-card" role="status">
-      <p class="state-title">Payment received — still unlocking</p>
-      <p class="state-msg">Your payment went through, but we couldn’t confirm access on this device just yet. Refresh in a moment, or choose “Restore access” below and we’ll email you a sign-in link.</p>
-      <p class="state-msg"><button type="button" data-restore-access class="underline hover:text-slate-300">Restore access</button></p>
+      <p class="state-title" data-i18n="learn.outcome.unconfirmed-title">Payment received — still unlocking</p>
+      <p class="state-msg" data-i18n="learn.outcome.unconfirmed-msg">Your payment went through, but we couldn’t confirm access on this device just yet. Refresh in a moment, or choose “Restore access” below and we’ll email you a sign-in link.</p>
+      <p class="state-msg"><button type="button" data-restore-access class="underline hover:text-slate-300" data-i18n="learn.restore.cta">Restore access</button></p>
     </div>`;
 }
 
@@ -1847,20 +1876,16 @@ function renderCourseOffer() {
   if (courseAccess.ownsCourse) {
     return `
       <div class="toc-offer is-owned">
-        <p class="text-sm font-semibold text-emerald-300">✓ You own the course</p>
-        <p class="text-xs text-slate-400 mt-1">Every lesson below is yours permanently.</p>
+        <p class="text-sm font-semibold text-emerald-300"><span aria-hidden="true">✓</span> <span data-i18n="learn.outcome.owned-title">You own the course</span></p>
+        <p class="text-xs text-slate-400 mt-1" data-i18n="learn.offer.owned-msg">Every lesson below is yours permanently.</p>
       </div>`;
   }
   if (!courseAccess.available) return '';
   const price = courseAccess.priceLabel ? escapeHtml(courseAccess.priceLabel) : '';
   return `
     <div class="toc-offer">
-      <p class="text-sm font-semibold text-white">The course${price ? ` — ${price}` : ''}</p>
-      <p class="text-xs text-slate-400 mt-1 mb-3 max-w-md">
-        Crypto, Forex and Stocks &amp; ETFs. One payment, yours permanently — and it includes
-        three months of the daily high-conviction ideas so you can watch the method work while
-        you learn it.
-      </p>
+      <p class="text-sm font-semibold text-white">${escapeHtml(price ? tr('learn.offer.title-priced', 'The course — {price}', { price: courseAccess.priceLabel }) : tr('learn.offer.title', 'The course'))}</p>
+      <p class="text-xs text-slate-400 mt-1 mb-3 max-w-md" data-i18n="learn.offer.blurb">Crypto, Forex and Stocks &amp; ETFs. One payment, yours permanently — and it includes three months of the daily high-conviction ideas so you can watch the method work while you learn it.</p>
       <button type="button" data-buy-course class="upgrade-btn">${escapeHtml(courseBuyLabel())}</button>
       ${renderPromoNote()}
       ${renderRestoreLine()}
@@ -1873,18 +1898,16 @@ function renderCourseOffer() {
 function renderLockedLesson(e) {
   return `
     <section class="current-card bg-slate-800 rounded-2xl p-6 shadow-lg text-center">
-      <span class="paid-badge">Part of the course</span>
+      <span class="paid-badge" data-i18n="learn.locked.badge">Part of the course</span>
       <h2 class="text-xl font-bold mt-3 mb-1">${escapeHtml(e.title)}</h2>
       ${e.keyIdea ? `<p class="text-sm text-slate-400 leading-relaxed max-w-md mx-auto">${escapeHtml(e.keyIdea)}</p>` : ''}
-      <p class="text-xs text-slate-500 mt-4 max-w-sm mx-auto">
-        This lesson is part of the course — Crypto, Forex and Stocks &amp; ETFs. One payment, yours permanently, and it includes three months of daily high-conviction ideas.
-      </p>
+      <p class="text-xs text-slate-500 mt-4 max-w-sm mx-auto" data-i18n="learn.locked.blurb">This lesson is part of the course — Crypto, Forex and Stocks &amp; ETFs. One payment, yours permanently, and it includes three months of daily high-conviction ideas.</p>
       ${courseAccess.available
         ? `<button type="button" data-buy-course class="upgrade-btn inline-block mt-4">${escapeHtml(courseBuyLabel())}</button>${renderPromoNote()}`
         : ''}
       ${renderRestoreLine()}
       <p class="mt-4 text-xs text-slate-500">
-        <a href="./learn.html" class="underline decoration-slate-600 underline-offset-2 hover:text-sky-400">Browse the free Foundation track</a>
+        <a href="./learn.html" class="underline decoration-slate-600 underline-offset-2 hover:text-sky-400" data-i18n="learn.locked.browse-free">Browse the free Foundation track</a>
       </p>
     </section>`;
 }
@@ -1895,13 +1918,15 @@ function wireMarkRead(root, entry, next) {
   btn.addEventListener('click', () => {
     const nowDone = progress.toggle(entry.id);
     btn.setAttribute('aria-pressed', String(nowDone));
-    btn.textContent = nowDone ? '\u2713 Read' : 'Mark as read';
+    btn.textContent = nowDone ? `\u2713 ${tr('learn.mark.read', 'Read')}` : tr('learn.mark.cta', 'Mark as read');
     btn.className = `ui-btn ${nowDone ? 'ui-btn-ghost' : 'ui-btn-primary'}`;
     // Toggling is the whole interaction, so say what changed AND what it enables —
     // a silent state flip on a button is exactly the case aria-pressed alone under-serves.
     ui.say(nowDone
-      ? `Marked as read.${next ? ` Next: ${next.title}.` : ' That was the last lesson in this track.'}`
-      : 'Marked as unread.', true);
+      ? tr('learn.mark.said-read', 'Marked as read.') + (next
+          ? ' ' + tr('learn.mark.said-next', 'Next: {title}.', { title: next.title })
+          : ' ' + tr('learn.mark.said-last', 'That was the last lesson in this track.'))
+      : tr('learn.mark.said-unread', 'Marked as unread.'), true);
   });
 }
 
@@ -1918,14 +1943,14 @@ async function renderSingleLesson() {
     index = await fetchCourseIndex();
   } catch (err) {
     root.innerHTML = failureState({
-      title: 'This lesson could not be loaded',
+      title: tr('learn.err.lesson-title', 'This lesson could not be loaded'),
       message: navigator.onLine === false
-        ? 'You appear to be offline. The lesson will load once your connection returns.'
-        : 'Something went wrong at our end. Trying again usually fixes it.',
-      retry: 'Try again',
+        ? tr('learn.err.offline-lesson', 'You appear to be offline. The lesson will load once your connection returns.')
+        : tr('learn.err.our-end', 'Something went wrong at our end. Trying again usually fixes it.'),
+      retry: tr('learn.err.retry', 'Try again'),
     });
     wireRetry(root, renderSingleLesson);
-    ui.say('This lesson could not be loaded.', true);
+    ui.say(tr('learn.err.lesson-title', 'This lesson could not be loaded') + '.', true);
     return;
   }
   const pos = index.findIndex((e) => e.id === id);
@@ -1934,12 +1959,12 @@ async function renderSingleLesson() {
     root.innerHTML = `
       <div class="state-card">
         <span class="state-icon" aria-hidden="true">🔍</span>
-        <p class="state-title">That lesson could not be found</p>
-        <p class="state-msg">It may have been renamed or moved. The full syllabus lists every lesson currently available.</p>
-        <a href="./learn.html" class="upgrade-btn">Back to all lessons</a>
+        <p class="state-title" data-i18n="learn.lesson.not-found-title">That lesson could not be found</p>
+        <p class="state-msg" data-i18n="learn.lesson.not-found-msg">It may have been renamed or moved. The full syllabus lists every lesson currently available.</p>
+        <a href="./learn.html" class="upgrade-btn" data-i18n="learn.lesson.back-to-all">Back to all lessons</a>
       </div>`;
-    ui.say('That lesson could not be found.', true);
-    document.title = 'Lesson not found — Scere Training';
+    ui.say(tr('learn.lesson.not-found-title', 'That lesson could not be found') + '.', true);
+    document.title = tr('learn.lesson.not-found-doctitle', 'Lesson not found — Scere Training');
     return;
   }
 
@@ -1953,7 +1978,7 @@ async function renderSingleLesson() {
     <div class="lesson-crumb">
       <span class="${e.badgeClass}">${escapeHtml(e.badge)}</span>
       <span class="lesson-crumb-text">${crumb.map(escapeHtml).join(' &middot; ')}</span>
-      <span class="lesson-crumb-count">Lesson ${pos + 1} of ${index.length}</span>
+      <span class="lesson-crumb-count">${escapeHtml(tr('learn.lesson.n-of-m', 'Lesson {n} of {total}', { n: pos + 1, total: index.length }))}</span>
     </div>`;
 
   // The body is fetched separately from the index: the index is public metadata,
@@ -1963,14 +1988,14 @@ async function renderSingleLesson() {
     fetched = await fetchLesson(id);
   } catch (err) {
     root.innerHTML = breadcrumb + failureState({
-      title: 'This lesson could not be loaded',
+      title: tr('learn.err.lesson-title', 'This lesson could not be loaded'),
       message: navigator.onLine === false
-        ? 'You appear to be offline. The lesson will load once your connection returns.'
-        : 'Something went wrong at our end. Trying again usually fixes it.',
-      retry: 'Try again',
+        ? tr('learn.err.offline-lesson', 'You appear to be offline. The lesson will load once your connection returns.')
+        : tr('learn.err.our-end', 'Something went wrong at our end. Trying again usually fixes it.'),
+      retry: tr('learn.err.retry', 'Try again'),
     });
     wireRetry(root, renderSingleLesson);
-    ui.say('This lesson could not be loaded.', true);
+    ui.say(tr('learn.err.lesson-title', 'This lesson could not be loaded') + '.', true);
     return;
   }
 
@@ -1994,7 +2019,7 @@ async function renderSingleLesson() {
   const labs = window.SCERE_CRYPTO_LABS;
 
   const navBtn = (l, dir) => l
-    ? `<a class="lesson-nav-btn ${dir}" href="${lessonHref(l.id)}"><span class="lnav-dir">${dir === 'prev' ? '← Previous' : 'Next →'}</span><span class="lnav-title">${escapeHtml(l.title)}</span></a>`
+    ? `<a class="lesson-nav-btn ${dir}" href="${lessonHref(l.id)}"><span class="lnav-dir">${dir === 'prev' ? `<span aria-hidden="true">←</span> <span data-i18n="learn.nav.previous">Previous</span>` : `<span data-i18n="learn.nav.next">Next</span> <span aria-hidden="true">→</span>`}</span><span class="lnav-title">${escapeHtml(l.title)}</span></a>`
     : '<span class="lesson-nav-btn is-empty" aria-hidden="true"></span>';
   const nav = `<nav class="lesson-nav">${navBtn(prev, 'prev')}${navBtn(next, 'next')}</nav>`;
 
@@ -2008,16 +2033,16 @@ async function renderSingleLesson() {
     <div id="readingControls"></div>
     <div class="lesson-pos">
       <a class="lesson-pos-track" href="${trackHref(e.track)}">${escapeHtml(e.trackTitle)}</a>
-      <span class="lesson-pos-count">Lesson ${trackPos} of ${trackLessons.length}${e.minutes ? ` · ${minutesLabel(e.minutes)}` : ''}</span>
-      ${progress.supported ? renderProgressBar(trackStats.pct, `${trackStats.done} of ${trackStats.total} lessons read in this track`) : ''}
+      <span class="lesson-pos-count">${escapeHtml(tr('learn.lesson.n-of-m', 'Lesson {n} of {total}', { n: trackPos, total: trackLessons.length }))}${e.minutes ? ` · ${escapeHtml(minutesLabel(e.minutes))}` : ''}</span>
+      ${progress.supported ? renderProgressBar(trackStats.pct, tr('learn.a11y.n-of-m-read-track', '{done} of {total} lessons read in this track', { done: trackStats.done, total: trackStats.total })) : ''}
     </div>`;
 
   const markBar = (!fetched.locked && progress.supported) ? `
     <div class="lesson-mark">
       <button type="button" id="markRead" class="ui-btn ${progress.isDone(e.id) ? 'ui-btn-ghost' : 'ui-btn-primary'}" aria-pressed="${progress.isDone(e.id)}">
-        ${progress.isDone(e.id) ? '✓ Read' : 'Mark as read'}
+        ${progress.isDone(e.id) ? `✓ ${escapeHtml(tr('learn.mark.read', 'Read'))}` : escapeHtml(tr('learn.mark.cta', 'Mark as read'))}
       </button>
-      ${next ? `<a class="lesson-mark-next" href="${lessonHref(next.id)}">Next: ${escapeHtml(next.title)} →</a>` : ''}
+      ${next ? `<a class="lesson-mark-next" href="${lessonHref(next.id)}">${escapeHtml(tr('learn.nav.next-titled', 'Next: {title}', { title: next.title }))} <span aria-hidden="true">→</span></a>` : ''}
     </div>` : '';
 
   root.innerHTML = renderPurchaseOutcome() + positionBar + breadcrumb + lessonHtml + tools + markBar + nav;
@@ -2044,17 +2069,21 @@ async function renderSingleLesson() {
     initSpeechControls();
   }
 
-  document.title = `${e.title} — Scere Training`;
+  document.title = tr('learn.doctitle', '{title} — Scere Training', { title: e.title });
   // Announce the outcome. The region fills in after page load, so without this a
   // screen-reader user who has already read past it never learns it arrived — and,
   // for a locked lesson, never learns why there is no lesson text.
-  if (purchaseOutcome === 'success') ui.say('Payment received. The whole course is unlocked.', true);
-  if (purchaseOutcome === 'restored') ui.say('Access restored. The course is unlocked on this device.', true);
-  else if (fetched.locked) ui.say(`${e.title}. This lesson is locked — it is part of the paid course.`);
-  else ui.say(`${e.title} loaded. Lesson ${pos + 1} of ${index.length}.`);
+  if (purchaseOutcome === 'success') ui.say(tr('learn.say.paid', 'Payment received. The whole course is unlocked.'), true);
+  if (purchaseOutcome === 'restored') ui.say(tr('learn.say.restored', 'Access restored. The course is unlocked on this device.'), true);
+  else if (fetched.locked) ui.say(tr('learn.say.lesson-locked', '{title}. This lesson is locked — it is part of the paid course.', { title: e.title }));
+  else ui.say(tr('learn.say.lesson-loaded', '{title} loaded. Lesson {n} of {total}.', { title: e.title, n: pos + 1, total: index.length }));
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+  // Every renderer below composes strings through tr(), which returns English until the
+  // locale JSON has arrived. Waiting here — rather than racing it — is why a French
+  // reader never sees the page render in English and then rewrite itself.
+  if (window.SCERE_I18N) { try { await window.SCERE_I18N.ready; } catch (e) { /* English */ } }
   // Page-aware dispatch. Legacy single-page render (#foundationRoot etc.) still
   // works if those mounts are present, so nothing else that includes learn.js breaks.
   const sellingPage = document.getElementById('lessonRoot') || document.getElementById('courseIndexRoot') || document.getElementById('trackRoot');

@@ -291,11 +291,16 @@
     b.className = 'ui-offline';
     b.setAttribute('role', 'status');
     b.hidden = true;
-    b.textContent = STRINGS.offline;
     document.body.appendChild(b);
 
     function sync(initial) {
       var off = navigator.onLine === false;
+      // Written when it is shown, not once at creation. The locale JSON arrives
+      // asynchronously, so a banner whose text was fixed at mount time would keep the
+      // English it was built with — and it is the wrong sentence to be stuck on,
+      // since someone offline cannot reload the page to fix it. Cleared when hidden so
+      // a stale sentence is never sitting in the accessibility tree either.
+      b.textContent = off ? STRINGS.offline : '';
       b.hidden = !off;
       if (!initial) say(off ? STRINGS.offline : STRINGS.backOnline, off);
     }

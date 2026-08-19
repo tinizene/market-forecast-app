@@ -78,17 +78,45 @@ because renaming a cookie signs every existing customer out.
 
 ## 3. Translation into several languages
 
-The whole application must be translatable. Two halves, and only the hook exists:
+**The interface half is done. The lesson content half is not, and is much the larger of
+the two.**
 
-- **Lesson content.** `api/course.js` already takes a `lang` parameter and falls back per
-  track, so `data/course/<track>.<lang>.json` can be dropped in beside the English and
-  serve immediately. Nothing has been translated yet.
-- **UI strings.** Page copy is still inline English in the HTML and in the renderers.
-  `ui.js` routes its own strings through `SCERE_UI_STRINGS` as the pattern to follow, but
-  the extraction has not been done.
+**Shipped — the interface.** `i18n.js` is the runtime: it resolves the language from
+`?lang=`, then a stored preference, then the browser, then English; sets `<html lang>`
+and `dir`; and translates anything carrying `data-i18n`, including markup inserted
+later, via a MutationObserver. English stays inline in the HTML as the fallback, so a
+failed locale fetch degrades to a correct English page rather than to blank elements,
+and deleting `i18n.js` would leave the site working.
 
-Also outstanding: a language switcher, `<html lang>` set from the choice, remembering
-the preference, and `hreflang` so the translated pages are indexed separately.
+351 strings are extracted into `i18n/en.json`, and `i18n/fr.json` is complete. That
+covers the six served pages *and* the two renderers — `learn.js` and `research.js` build
+most of the product surface with `innerHTML` after a fetch, so tagging only the `.html`
+files would have left the entire course UI in English while looking finished.
+
+The language switcher is in the nav, offering only languages that have a locale file
+(`available: true` in `LANGUAGES`), so a half-translated entry can never be picked.
+`hreflang` alternates are on all six pages.
+
+Two gates hold it:
+
+- `scripts/check-i18n.js` — missing keys, orphans, locale parity, `{placeholder}` and
+  markup parity, and drift between the English in `en.json` and the English in the
+  source. Static, fast, no browser.
+- `scripts/verify-i18n-browser.js` — 28 assertions in headless Chromium against the real
+  `api/*` handlers: the switch works end to end, the preference persists, each renderer
+  produces French, English is unaffected, and no catalogue string survives untranslated.
+  Skips cleanly where there is no Chromium.
+
+**Outstanding — the lesson content.** `api/course.js` already takes `lang` and falls back
+per track, so `data/course/<track>.<lang>.json` can be dropped in beside the English and
+serve immediately. Nothing has been translated: that is ~116,000 words across 85 lessons
+per language, and it is deliberately not machine-translated. `course/CLAUDE.md` and
+`Forex_Course_Style_Guide.md` §5 both require native-speaker review before publication —
+the glossary itself still has 141 of 298 terms marked pending for exactly that reason.
+Translating the lessons is a commissioning decision, not a code task.
+
+To add a language: write `i18n/<code>.json`, flip `available` in `LANGUAGES`, run both
+gates. `pt` and `sw` are already declared and waiting on their files.
 
 ---
 

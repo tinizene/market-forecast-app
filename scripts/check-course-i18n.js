@@ -14,9 +14,11 @@
 //   • no entry is orphaned — an orphan means the English was edited after translation,
 //     so that translation is now of a sentence nobody will read, and the live one has
 //     silently reverted to English
-//   • no translation is byte-identical to its English, unless it is on the keep-as-is
-//     list (Forex_Course_Glossary.md documents that Swahili trading vocabulary often
-//     keeps the English term, so identical is sometimes correct and sometimes a stub)
+//   • no translation is byte-identical to its English, unless the string has no letters
+//     in it at all (a bare "$5,000" has nothing to translate) or it is on the keep-as-is
+//     list — Forex_Course_Glossary.md documents that Swahili trading vocabulary often
+//     keeps the English term, so identical is sometimes correct and sometimes a stub,
+//     and the list records WHICH, with the reason
 //   • coverage, reported per track, so partial progress is a number rather than a claim
 //
 // USAGE: node scripts/check-course-i18n.js
@@ -82,7 +84,11 @@ function main() {
              `\n      en: "${symbolsIn(en)}"  ${lang}: "${symbolsIn(entry.sw)}"` +
              `\n      ${JSON.stringify(en.slice(0, 90))}`);
       }
-      if (entry.sw === en && !keepAsIs.has(key)) {
+      // A string with no letters in it — "$5,000", "1.0800", "50:1" — has nothing to
+      // translate, so identical is the only correct answer and flagging it would train
+      // people to ignore this check.
+      const hasWords = /\p{L}/u.test(en);
+      if (entry.sw === en && hasWords && !keepAsIs.has(key)) {
         note(`${lang}: ${key} is identical to the English — if that is deliberate, list it in "keepAsIs"` +
              `\n      ${JSON.stringify(en.slice(0, 90))}`);
       }

@@ -1,4 +1,4 @@
-// Curriculum content for the Crypto track (paid) of the Scere Markets course.
+// Curriculum content for the Crypto track (paid) of the Scere Training course.
 // Compiled from the markdown lessons in course/crypto/*.en.md into the same typed-block
 // model as foundation-content.js and forex-content.js. Rendered by renderCryptoTrack()
 // in learn.js into #cryptoRoot; diagrams resolve via window.SCERE_CRYPTO_SVGS
@@ -5661,7 +5661,7 @@ window.SCERE_CRYPTO_CONTENT = [
       },
       {
         "type": "paragraph",
-        "text": "A reader who wants to run the full six-pillar process on crypto assets themselves now has everything required to do it, and to judge whether someone else has done it properly. That second skill is the more valuable one. Running the process well is time-consuming, and some readers who understand it completely will still prefer not to do it themselves; for them, Scere Markets sells completed theses built with this framework through its research service. That is the only mention it gets, and the framework is taught in full here precisely so that you can evaluate such a thesis — including ours — rather than take it on trust."
+        "text": "A reader who wants to run the full six-pillar process on crypto assets themselves now has everything required to do it, and to judge whether someone else has done it properly. That second skill is the more valuable one. Running the process well is time-consuming, and some readers who understand it completely will still prefer not to do it themselves; for them, Scere Training sells completed theses built with this framework through its research service. That is the only mention it gets, and the framework is taught in full here precisely so that you can evaluate such a thesis — including ours — rather than take it on trust."
       },
       {
         "type": "paragraph",

@@ -1,4 +1,4 @@
-// Shared UX primitives for Scere Markets — accessible dialogs, live-region
+// Shared UX primitives for Scere Training — accessible dialogs, live-region
 // announcements, busy states, skeletons and offline detection.
 //
 // Why this file exists: the app was using window.prompt() and window.alert() for the

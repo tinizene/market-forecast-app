@@ -32,42 +32,47 @@ missing.
 
 ---
 
-## 2. The logo
+## ~~2. The logo~~ — **shipped**
 
-The brand mark to adopt is `design/logo-source-1024.png` (1024×1024 PNG): a green bull
-inside a circular candlestick chart with an upward arrow, on the dark navy the app
-already uses.
+The product is now **Scere Training**, tagline **Trade Smarter**, and the mark is a
+green bull's head on the app's navy.
 
-**Decide first — the wordmark says "SCERE TRAINING · TRADE SMARTER", the app is branded
-"Scere Markets" throughout.** Those are two different names. One has to give: either the
-mark is re-set with the Scere Markets wordmark, or the product is renamed and the nav
-brand, `<title>`s, manifest, meta descriptions and course copy all follow. This is a
-positioning call, not a design detail — "Training" and "Markets" promise different
-things to someone landing on the page.
+**The name question is settled.** The supplied artwork said "SCERE TRAINING" while the
+app said "Scere Markets"; Training won, so the nav, every page `<title>`, the manifest,
+the meta descriptions, the sign-in email and confirm page, and the three course lessons
+that name the research service all follow it now.
 
-**What adopting it involves:**
+**The mark was redrawn, not traced.** `design/logo-source-1024.png` is a 1 MB raster
+with soft glows, a background scene and the wordmark baked in — it cannot be recoloured,
+re-laid-out, or scaled to 32px legibly. It stacked five ideas: ring, bull, candlesticks,
+zigzag arrow and a dollar sign. `scripts/build-brand.js` redraws it as flat vector
+geometry keeping only the bull, because the bull is already the "up" signal in this
+industry and the arrow was saying it a second time. Drafts that kept the ring read as an
+alien; the fix was horns that run more horizontally than vertically, which is the thing
+to preserve if it is ever redrawn again.
 
-- **Favicon.** There is currently **none** on any page — no `<link rel="icon">` anywhere.
-  Needs at least a 32×32 and an SVG or 180×180 `apple-touch-icon`.
-- **Replace the hotlinked PWA icon.** `manifest.json` currently points at
-  `https://cdn-icons-png.flaticon.com/512/1170/1170678.png` — a third-party CDN image
-  the project does not own, does not control, and would lose without warning if that
-  URL changes. Should be a local `icons/` asset at 192×192 and 512×512, plus a
-  `maskable` variant so Android does not letterbox it.
-- **The nav brand.** `nav.js` renders `Scere.Markets` as styled text. Decide whether the
-  mark replaces it or sits beside it; text is lighter and stays legible at small sizes,
-  so a small mark plus the wordmark is likely right.
-- **Open Graph / Twitter card image.** None exists, so links shared to social or chat
-  currently unfurl with no image at all.
-- **Size and format.** The source is a 1 MB PNG with soft glows and gradients; it will
-  not survive being scaled to 32×32 legibly. A simplified mark — bull and arrow only, no
-  wordmark, no glow — is what a favicon needs. Export the sizes rather than scaling the
-  full artwork.
-- **Service worker.** New icon assets need adding to `ASSETS_TO_CACHE` and a `CACHE_NAME`
-  bump, or existing installs keep the old manifest.
-- **Contrast.** The green (`#4ade80`-ish) on the dark navy is comfortable, but any text
-  set in the brand green must still be checked at 4.5:1 — the app currently passes 31/31
-  and should not regress on a rebrand.
+Everything the old item asked for:
+
+- **Favicon** — `icons/favicon.svg` plus a 32×32 PNG, linked from all nine pages.
+- **PWA icons** — local 192, 512 and a padded `maskable` 512. The hotlinked
+  `cdn-icons-png.flaticon.com` image the project never owned is gone.
+- **Nav** — the mark sits beside the wordmark, `alt=""` because the link already reads
+  the brand and announcing it twice helps nobody.
+- **Open Graph / Twitter card** — `icons/og.png` at 1200×630, on the three pages a link
+  actually gets shared to.
+- **Service worker** — icons added to `ASSETS_TO_CACHE`, `CACHE_NAME` bumped to
+  `scere-training-v18`.
+- **Contrast** — the audit still passes, and the brand green is only ever used against
+  navy at ratios well past 4.5:1.
+
+Regenerate with `node scripts/build-brand.js` (needs Chromium; outputs are committed so
+a deploy never runs it).
+
+**Deliberately not renamed:** `reports/` and `reports-source/`, which are dated
+historical artefacts — rewriting a past report's footer would falsify a record. Internal
+identifiers are also untouched: the `scere_ent` / `scere_cus` cookies, the
+`scere_progress_v1` storage key and the `window.SCERE_*` globals all keep their names,
+because renaming a cookie signs every existing customer out.
 
 ---
 

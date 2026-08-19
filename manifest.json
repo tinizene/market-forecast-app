@@ -1,11 +1,25 @@
 {
-  "short_name": "Scere Markets",
-  "name": "Scere Markets — Forecasts & Analysis",
+  "short_name": "Scere Training",
+  "name": "Scere Training — Trade Smarter",
+  "description": "Learn how money and markets actually work — Forex, Crypto and Stocks, taught by checking the claims rather than repeating them.",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/1170/1170678.png",
+      "src": "./icons/icon-192.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-maskable-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
     }
   ],
   "start_url": "./index.html",

@@ -1,3 +1,8 @@
+// v18 adopts the brand mark and renames the product to Scere Training. Every page's
+// <title> and the manifest changed, and there are new icons/ assets an install still
+// serving v17 would neither have nor fetch — it would keep showing the old name and the
+// hotlinked third-party PWA icon that the manifest no longer points at.
+//
 // v17 adds progress.js and track.html, and splits the syllabus into a hub plus a page
 // per track. An install still serving v16 would keep the old flat 58-row course page
 // and would not have progress.js cached at all.
@@ -21,10 +26,18 @@
 // their routes redirect home (see vercel.json) and precaching them would keep
 // serving dead pages to anyone who had already visited. The version bump is what
 // evicts them from existing installs.
-const CACHE_NAME = 'scere-markets-v17';
+const CACHE_NAME = 'scere-training-v18';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
+  './manifest.json',
+  './icons/mark.svg',
+  './icons/favicon.svg',
+  './icons/favicon-32.png',
+  './icons/apple-touch-icon.png',
+  './icons/icon-192.png',
+  './icons/icon-512.png',
+  './icons/icon-maskable-512.png',
   './ui.js',
   './nav.js',
   './research.html',

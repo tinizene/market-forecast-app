@@ -75,7 +75,7 @@ Step back and the six chapters form one process. The mechanics (Chapter 1) let y
 And the honest close the course has earned the right to make: doing all of this well is genuinely hard and takes real time to build. It is not a shortcut to guaranteed profit — nothing is, and most retail accounts still lose (Chapter 4, Lesson 3). What this process does is put the odds, and your own behaviour, on the right side, which is the most any method honestly can.
 :::
 
-One practical note, stated plainly and only once. Running this full six-pillar process on a live trade — researching each pillar, verifying the evidence, sizing and reviewing — takes hours and a skill built over time. For someone who wants the *output* of this framework on a specific trade without building that skill themselves, a completed trade thesis is something the Scere Markets platform offers as a service. The framework above is taught here in full and holds nothing back; the service simply exists for people who want the result without the hours. Everything you need to do it yourself is in this course.
+One practical note, stated plainly and only once. Running this full six-pillar process on a live trade — researching each pillar, verifying the evidence, sizing and reviewing — takes hours and a skill built over time. For someone who wants the *output* of this framework on a specific trade without building that skill themselves, a completed trade thesis is something the Scere Training platform offers as a service. The framework above is taught here in full and holds nothing back; the service simply exists for people who want the result without the hours. Everything you need to do it yourself is in this course.
 
 ---
 

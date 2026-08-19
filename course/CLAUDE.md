@@ -1,8 +1,8 @@
-# Scere Markets — Course Content Project
+# Scere Training — Course Content Project
 
 ## What this project is
 
-A financial education platform with a free foundational track and paid vertical tracks (Forex first, then Crypto and Stocks). Content is written as markdown lessons, then compiled into JS content files for the Scere Markets web app.
+A financial education platform with a free foundational track and paid vertical tracks (Forex first, then Crypto and Stocks). Content is written as markdown lessons, then compiled into JS content files for the Scere Training web app.
 
 **Live app:** market-forecast-app-ovoo.vercel.app (auto-deploys from `main`)
 

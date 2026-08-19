@@ -87,7 +87,7 @@ function looksLikeEmail(v) {
 
 function buildEmail(link) {
   const text = [
-    'Here is your sign-in link for Scere Markets.',
+    'Here is your sign-in link for Scere Training.',
     '',
     link,
     '',
@@ -100,7 +100,7 @@ function buildEmail(link) {
   // filters are built to catch, and this is the one message that must arrive.
   const html = [
     '<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#0f172a">',
-    '<p>Here is your sign-in link for Scere Markets.</p>',
+    '<p>Here is your sign-in link for Scere Training.</p>',
     `<p><a href="${escapeAttr(link)}" style="display:inline-block;padding:12px 20px;background:#0f766e;color:#ffffff;border-radius:8px;text-decoration:none;font-weight:bold">Restore my access</a></p>`,
     '<p style="color:#475569;font-size:13px">The link works once and expires in 15 minutes.</p>',
     `<p style="color:#475569;font-size:13px">If the button does not work, copy this address into your browser:<br><span style="word-break:break-all">${escapeHtml(link)}</span></p>`,
@@ -108,7 +108,7 @@ function buildEmail(link) {
     '</div>',
   ].join('');
 
-  return { subject: 'Your Scere Markets sign-in link', text, html };
+  return { subject: 'Your Scere Training sign-in link', text, html };
 }
 
 const escapeHtml = (s) => String(s)
@@ -130,7 +130,7 @@ function confirmPage(token, opts) {
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex,nofollow">
-<title>${bad ? 'Link expired' : 'Restore your access'} · Scere Markets</title>
+<title>${bad ? 'Link expired' : 'Restore your access'} · Scere Training</title>
 <style>
   :root { color-scheme: dark; }
   body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
@@ -146,7 +146,7 @@ function confirmPage(token, opts) {
 </style>
 </head><body>
 <main class="card">
-<p class="brand">Scere Markets</p>
+<p class="brand">Scere Training</p>
 ${bad
     ? `<h1>That link no longer works</h1>
 <p>${escapeHtml(bad)}</p>

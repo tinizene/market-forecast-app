@@ -32,7 +32,7 @@
     { code: 'en', label: 'English', dir: 'ltr', available: true },
     { code: 'fr', label: 'Français', dir: 'ltr', available: true },
     { code: 'pt', label: 'Português', dir: 'ltr', available: false },
-    { code: 'sw', label: 'Kiswahili', dir: 'ltr', available: false },
+    { code: 'sw', label: 'Kiswahili', dir: 'ltr', available: true },
   ];
   var DEFAULT = 'en';
   var STORE_KEY = 'scere_lang';

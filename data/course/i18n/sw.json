@@ -1,1 +1,1328 @@
-{"strings":{},"keepAsIs":[]}
+{
+ "strings": {
+  "0086c55723d9": {
+   "en": "A process where independent experts evaluate a study's methodology and findings before publication, specifically to catch errors or unsupported conclusions.",
+   "sw": "Mchakato ambapo wataalamu huru hutathmini mbinu na matokeo ya utafiti kabla ya kuchapishwa, mahususi ili kubaini makosa au hitimisho lisilo na ushahidi."
+  },
+  "00e28cf9724e": {
+   "en": "An asset that specifically holds zero or negative correlation during periods of market stress — even if it behaves completely differently the rest of the time.",
+   "sw": "Mali inayoshikilia mahususi uwiano wa sifuri au hasi wakati wa vipindi vya shinikizo la soko — hata kama inatenda tofauti kabisa wakati mwingine wote."
+  },
+  "0124ce9643be": {
+   "en": "Without a shared medium of exchange, both sides need to want exactly what the other has, at the same time.",
+   "sw": "Bila njia ya pamoja ya kubadilishana, pande zote mbili zinahitaji kutaka hasa kile ambacho mwenzake anacho, kwa wakati mmoja."
+  },
+  "04a24b550eb8": {
+   "en": "Accepting a risk but capping how much it can cost you.",
+   "sw": "Kukubali hatari lakini kuweka kikomo cha kiasi inachoweza kukugharimu."
+  },
+  "0711a8d636e4": {
+   "en": "Risk",
+   "sw": "Hatari"
+  },
+  "07fa0ff5142f": {
+   "en": "Risk Avoidance",
+   "sw": "Kuepuka Hatari"
+  },
+  "08cee491361c": {
+   "en": "The price at which you open a position.",
+   "sw": "Bei ambayo kwayo unafungua nafasi."
+  },
+  "0ac461326c91": {
+   "en": "Several patterns provided statistically significant information, but that doesn't automatically mean they're profitable to trade after costs",
+   "sw": "Mitindo kadhaa ilitoa taarifa yenye maana kitakwimu, lakini hilo halimaanishi kiotomatiki kwamba ina faida kufanyiwa biashara baada ya gharama"
+  },
+  "0b73ec78bd0f": {
+   "en": "A position that profits if price rises.",
+   "sw": "Nafasi inayopata faida kama bei itapanda."
+  },
+  "0c03cbea518f": {
+   "en": "Tape Reading",
+   "sw": "Kusoma Tepu"
+  },
+  "0ccb53ffd1ac": {
+   "en": "An exchange rate determined by open market supply and demand, rather than fixed or pegged by government agreement.",
+   "sw": "Kiwango cha ubadilishaji kinachoamuliwa na ugavi na mahitaji ya soko huria, badala ya kuwekwa thabiti au kufungwa kwa makubaliano ya serikali."
+  },
+  "0ee94db5bf05": {
+   "en": "A general decline in prices across an economy over time.",
+   "sw": "Kushuka kwa jumla kwa bei katika uchumi kwa muda."
+  },
+  "1067f3663ccf": {
+   "en": "Before trusting any stated success rate: Is this from a peer-reviewed journal, or a personal website/book? Can you find the original source, or only secondhand mentions? Does it specify the market, time period, and conditions tested? Does the number stay consistent across sources, or does it quietly shift?",
+   "sw": "Kabla ya kuamini kiwango chochote cha mafanikio kilichotajwa: Je, hii inatoka kwenye jarida lililokaguliwa na wenzake, au tovuti binafsi/kitabu? Je, unaweza kupata chanzo asilia, au ni matajo ya mkono wa pili tu? Je, inabainisha soko, kipindi cha muda, na hali zilizojaribiwa? Je, namba inabaki thabiti katika vyanzo mbalimbali, au inabadilika kimyakimya?"
+  },
+  "1258e59bdf26": {
+   "en": "Print unlimited paper money with no risk",
+   "sw": "Kuchapisha pesa za karatasi bila kikomo bila hatari"
+  },
+  "1453e7b50a54": {
+   "en": "Candlestick charts don't show the closing price",
+   "sw": "Chati za mishumaa hazionyeshi bei ya kufunga"
+  },
+  "14a6d74c5b5f": {
+   "en": "Spreading exposure so no single holding dominates the result.",
+   "sw": "Kueneza uwazi ili umiliki mmoja usitawale matokeo."
+  },
+  "152c130f3d0c": {
+   "en": "Both can exist for the same pattern. The question is never just \"does it work\" — it's \"how do I know, and how sure can I actually be?\"",
+   "sw": "Zote mbili zinaweza kuwepo kwa mtindo ule ule. Swali si tu \"je, inafanya kazi\" kamwe — ni \"ninajuaje, na ninaweza kuwa na uhakika kiasi gani hasa?\""
+  },
+  "1575dfccbc6a": {
+   "en": "Ghanem, Harasheh, Sbaih & Ajmal (2024), published in Cogent Business & Management — genuinely recent research — tested 497 technical trading rules across 10 currencies over 22 years (2000–2022). Technical trading rules significantly predicted price movements in both developed and emerging-market currencies, with emerging markets showing even higher predictability.",
+   "sw": "Ghanem, Harasheh, Sbaih & Ajmal (2024), waliochapisha katika Cogent Business & Management — utafiti wa hivi karibuni kweli — walijaribu kanuni 497 za biashara za kiufundi katika sarafu 10 kwa miaka 22 (2000–2022). Kanuni za biashara za kiufundi zilitabiri msogeo wa bei kwa kiasi kikubwa katika sarafu za nchi zilizoendelea na za masoko yanayoibukia, ambapo masoko yanayoibukia yalionyesha utabirikaji wa juu zaidi."
+  },
+  "15eaeb0e4b07": {
+   "en": "A general decline in prices across an economy over time — the opposite of inflation — which can deepen a recession by encouraging people to delay spending.",
+   "sw": "Kushuka kwa jumla kwa bei katika uchumi kwa muda — kinyume cha mfumuko wa bei — ambako kunaweza kuzidisha mdororo kwa kuwahamasisha watu kuahirisha matumizi."
+  },
+  "160858ca1d64": {
+   "en": "Diversification — Why \"Don't Put All Your Eggs in One Basket\" Is Testable",
+   "sw": "Kusambaza Uwekezaji — Kwa Nini \"Usiweke Mayai Yako Yote Kwenye Kikapu Kimoja\" Inaweza Kupimwa"
+  },
+  "188b61339ed1": {
+   "en": "Two academic studies looked at whether Bitcoin is a safe haven for stock portfolios. One (Journal of Central Banking Theory and Practice, 2026) found Bitcoin showed statistically significant negative correlation with the S&P 500 — a real candidate for safe-haven status. Another found Bitcoin's correlation with stocks rose from roughly 0.05 in 2017 to 0.25–0.30 by 2021, and concluded crypto behaves as a diversifier, not a safe haven. Both studies used real data and careful methods. They still disagree — a sign the underlying relationship genuinely shifts over time.",
+   "sw": "Tafiti mbili za kitaaluma zilichunguza kama Bitcoin ni kimbilio salama kwa mikusanyiko ya hisa. Moja (Journal of Central Banking Theory and Practice, 2026) iligundua Bitcoin ilionyesha uwiano hasi wenye maana kitakwimu na S&P 500 — mgombea halisi wa hadhi ya kimbilio salama. Nyingine iligundua uwiano wa Bitcoin na hisa ulipanda kutoka takriban 0.05 mwaka 2017 hadi 0.25–0.30 kufikia 2021, na ikahitimisha kwamba crypto hutenda kama msambazaji, si kimbilio salama. Tafiti zote mbili zilitumia data halisi na mbinu makini. Bado hazikubaliani — ishara kwamba uhusiano wa msingi hubadilika kweli kwa muda."
+  },
+  "18b529de96e7": {
+   "en": "This is the answer to the question this whole course has been building toward: forex exists specifically because currencies are no longer fixed to gold or each other. They float, they move — and where there's constant, unpredictable movement in something valuable, a market emerges to trade it. That market is the one you're learning to navigate.",
+   "sw": "Hili ndilo jibu la swali ambalo kozi hii nzima imekuwa ikilielekea: forex ipo mahususi kwa sababu sarafu hazifungwi tena kwenye dhahabu wala kwa kila mmoja. Zinaelea, zinasogea — na palipo na msogeo wa kudumu usiotabirika katika kitu chenye thamani, soko hujitokeza kukifanyia biashara. Soko hilo ndilo unalojifunza kulipitia."
+  },
+  "196a34d51ee2": {
+   "en": "Choosing not to take an action because the risk outweighs the benefit.",
+   "sw": "Kuchagua kutochukua kitendo kwa sababu hatari inazidi manufaa."
+  },
+  "19df03a31c84": {
+   "en": "Taking on a risk's full potential downside, with no limit.",
+   "sw": "Kubeba hasara yote inayowezekana ya hatari, bila kikomo."
+  },
+  "1a01c2c374ce": {
+   "en": "Chart patterns guarantee profitable trades 70% of the time",
+   "sw": "Mitindo ya chati huhakikisha biashara zenye faida 70% ya muda"
+  },
+  "1a238f7c5da5": {
+   "en": "Independent expert evaluation of a study's methodology before publication.",
+   "sw": "Tathmini huru ya wataalamu ya mbinu ya utafiti kabla ya kuchapishwa."
+  },
+  "1a62a3dd926e": {
+   "en": "For most of human history — over 6,000 years — barter was how people exchanged what they had for what they needed: trading goods or services directly, with no money involved. It worked, but it had one serious flaw.",
+   "sw": "Kwa sehemu kubwa ya historia ya binadamu — zaidi ya miaka 6,000 — kubadilishana bidhaa ndiyo ilivyokuwa njia ya watu kubadilishana walichokuwa nacho kwa walichohitaji: kubadilishana bidhaa au huduma moja kwa moja, bila pesa. Ilifanya kazi, lakini ilikuwa na kasoro moja kubwa."
+  },
+  "1c7651c5d726": {
+   "en": "True or False: money must be a physical object made of something valuable, like gold, to function as money.",
+   "sw": "Kweli au Uongo: pesa lazima iwe kitu cha kimwili kilichotengenezwa kwa kitu chenye thamani, kama dhahabu, ili ifanye kazi kama pesa."
+  },
+  "1cac4acad401": {
+   "en": "Peer Review",
+   "sw": "Ukaguzi wa Wenzake"
+  },
+  "1d4beb9dcf70": {
+   "en": "Debasement",
+   "sw": "Kupunguza Ubora wa Sarafu"
+  },
+  "1d8628911d2d": {
+   "en": "An asset with an average positive — but imperfect — correlation to your existing holdings. Still tends to move with the rest of your portfolio, just not in lockstep.",
+   "sw": "Mali yenye uwiano chanya wa wastani — lakini usio kamili — na umiliki wako uliopo. Bado huelekea kusogea pamoja na mkusanyiko wako wote, ila si kwa hatua moja."
+  },
+  "1e8df8a1e9a9": {
+   "en": "Above your entry price",
+   "sw": "Juu ya bei yako ya kuingia"
+  },
+  "1f1f77215d1f": {
+   "en": "A trader who is right only 40% of the time can be consistently profitable, if every loss is small and controlled while winners are allowed to run. A trader who is right 90% of the time can still go broke, if a single uncontrolled loss is large enough to erase every gain before it. Being right often is not the same as trading well.",
+   "sw": "Mfanyabiashara ambaye ni sahihi 40% tu ya muda anaweza kupata faida kwa uthabiti, kama kila hasara ni ndogo na inadhibitiwa huku washindi wakiruhusiwa kukimbia. Mfanyabiashara ambaye ni sahihi 90% ya muda anaweza bado kufilisika, kama hasara moja isiyodhibitiwa ni kubwa vya kutosha kufuta kila faida iliyotangulia. Kuwa sahihi mara nyingi si sawa na kufanya biashara vizuri."
+  },
+  "211f0dfa08e3": {
+   "en": "Three different correlation relationships — not three names for the same thing.",
+   "sw": "Mahusiano matatu tofauti ya uwiano — si majina matatu ya kitu kimoja."
+  },
+  "2132195a5310": {
+   "en": "Hold more gold than it lends out",
+   "sw": "Kushikilia dhahabu nyingi kuliko inayokopesha"
+  },
+  "218f932a655f": {
+   "en": "What Is Money?",
+   "sw": "Pesa Ni Nini?"
+  },
+  "221ef7f5c091": {
+   "en": "How to Read a Market",
+   "sw": "Jinsi ya Kusoma Soko"
+  },
+  "22873c2c9687": {
+   "en": "Reading the real-time sequence of trade prices, sizes, and volume — originally from a literal paper ticker tape — to gauge buying and selling pressure as it happens.",
+   "sw": "Kusoma mfululizo wa wakati halisi wa bei za biashara, ukubwa, na kiasi — awali kutoka tepu halisi ya karatasi ya bei — ili kupima shinikizo la kununua na kuuza linapotokea."
+  },
+  "228922d6a16c": {
+   "en": "The price at which you plan to exit if the trade moves in your favor.",
+   "sw": "Bei ambayo kwayo unapanga kutoka kama biashara itasogea kwa manufaa yako."
+  },
+  "231d9ee2fc20": {
+   "en": "Not quite — re-read the definition: a bank holds only a fraction of deposits in reserve, and lends out the rest.",
+   "sw": "Si sahihi kabisa — soma tena maana yake: benki hushikilia sehemu tu ya amana kama akiba, na hukopesha kilichobaki."
+  },
+  "239f73a6299f": {
+   "en": "Money that has value because a government declares it legal tender and people trust and accept it — not because it's backed by a physical commodity like gold.",
+   "sw": "Pesa yenye thamani kwa sababu serikali inaitangaza kuwa halali kisheria na watu wanaiamini na kuikubali — si kwa sababu inaungwa mkono na bidhaa ya kimwili kama dhahabu."
+  },
+  "24b7e51868c8": {
+   "en": "Below your entry price",
+   "sw": "Chini ya bei yako ya kuingia"
+  },
+  "257ec21fe891": {
+   "en": "Chapter 3: Reading Markets & Making Decisions",
+   "sw": "Sura 3: Kusoma Masoko na Kufanya Maamuzi"
+  },
+  "2803fa23a487": {
+   "en": "Chapter 2: Risk, Inflation & Diversification",
+   "sw": "Sura 2: Hatari, Mfumuko wa Bei na Kusambaza Uwekezaji"
+  },
+  "28869f04514d": {
+   "en": "Unit of Account",
+   "sw": "Kipimo cha Hesabu"
+  },
+  "290d5be70d5b": {
+   "en": "Deflation",
+   "sw": "Mporomoko wa Bei"
+  },
+  "2c73442a3b46": {
+   "en": "Identifying a risk, judging if it's worth taking, and controlling its potential cost.",
+   "sw": "Kutambua hatari, kuhukumu kama inastahili kuchukuliwa, na kudhibiti gharama yake inayowezekana."
+  },
+  "2cebb2ab7164": {
+   "en": "Uptrend",
+   "sw": "Mwelekeo wa Kupanda"
+  },
+  "2d3bdd7ddbf0": {
+   "en": "The conflict facing a country whose currency is the world's reserve currency: it must supply the world with enough of its currency for global trade, while keeping enough confidence in that currency to stay credible — two goals pulling in opposite directions.",
+   "sw": "Mgongano unaokabili nchi ambayo sarafu yake ndiyo sarafu ya akiba ya dunia: lazima iipe dunia sarafu yake ya kutosha kwa biashara ya kimataifa, huku ikihifadhi imani ya kutosha katika sarafu hiyo ili ibaki ya kuaminika — malengo mawili yanayovutana pande tofauti."
+  },
+  "2dadae349dcd": {
+   "en": "A price level where rising prices have repeatedly reversed downward.",
+   "sw": "Kiwango cha bei ambapo bei zinazopanda zimegeuka kushuka mara kwa mara."
+  },
+  "2eb1b593ab25": {
+   "en": "A currency fixed in value relative to another currency.",
+   "sw": "Sarafu yenye thamani thabiti ikilinganishwa na sarafu nyingine."
+  },
+  "2f19e2ac8f6a": {
+   "en": "A diversifier has an average positive (but imperfect) correlation; a safe haven specifically holds zero/negative correlation during market stress",
+   "sw": "Msambazaji ana uwiano chanya wa wastani (lakini usio kamili); kimbilio salama hushikilia mahususi uwiano wa sifuri/hasi wakati wa shinikizo la soko"
+  },
+  "2f874f690765": {
+   "en": "In 1933, with U.S. gold reserves under severe strain, the government required citizens to exchange gold coin and bullion for currency, ending public redemption of dollars for gold domestically. In 1934, the Gold Reserve Act officially devalued the dollar from $20.67 to $35 per ounce — the U.S. left the domestic gold standard, but kept a modified, international-only version alive at that new rate.",
+   "sw": "Mwaka 1933, akiba za dhahabu za Marekani zikiwa chini ya shinikizo kali, serikali iliwataka raia kubadilisha sarafu na madini ya dhahabu kwa fedha, ikimaliza ukombozi wa umma wa dola kwa dhahabu ndani ya nchi. Mwaka 1934, Sheria ya Akiba ya Dhahabu ilishusha rasmi thamani ya dola kutoka $20.67 hadi $35 kwa wakia — Marekani iliacha kiwango cha dhahabu cha ndani, lakini ikaweka hai toleo lililorekebishwa, la kimataifa tu, kwa kiwango hicho kipya."
+  },
+  "308bf9d43005": {
+   "en": "An asset with an average correlation at or below zero to another asset, across all conditions — calm markets and turbulent ones alike.",
+   "sw": "Mali yenye uwiano wa wastani ulio sawa na au chini ya sifuri na mali nyingine, katika hali zote — masoko tulivu na yenye msukosuko sawasawa."
+  },
+  "30d4c6946201": {
+   "en": "The classical gold standard, from its 1879 U.S. adoption through the Great Depression.",
+   "sw": "Kiwango cha kawaida cha dhahabu, kuanzia kukubaliwa kwake Marekani mwaka 1879 hadi Mdororo Mkubwa wa Uchumi."
+  },
+  "31ca10c11517": {
+   "en": "Correct — a short position profits when price falls, so the stop-loss sits above the entry, since a rise is what proves a short position wrong.",
+   "sw": "Sahihi — nafasi ya short hupata faida bei inaposhuka, hivyo stop-loss inakaa juu ya kiingilio, kwa kuwa kupanda ndiko kunakothibitisha nafasi ya short imekosea."
+  },
+  "31e37d81f705": {
+   "en": "Setting a Stop-Loss — Where and Why",
+   "sw": "Kuweka Stop-Loss — Wapi na Kwa Nini"
+  },
+  "32674418fc51": {
+   "en": "Money valuable because of government backing and trust, not a physical commodity.",
+   "sw": "Pesa yenye thamani kwa sababu ya uungwaji mkono wa serikali na imani, si bidhaa ya kimwili."
+  },
+  "334e0e4b6b85": {
+   "en": "While researching this lesson, a live search turned up a trading blog claiming \"a study covering over 8,000 chart setups\" found a \"62% average success rate\" — no named author, no journal, no link. Before trusting a number like this, what would you want to see before believing it?",
+   "sw": "Wakati wa kufanya utafiti wa somo hili, utafutaji wa moja kwa moja ulipata blogu ya biashara ikidai \"utafiti unaohusu mipangilio zaidi ya 8,000 ya chati\" uligundua \"kiwango cha wastani cha mafanikio cha 62%\" — hakuna mwandishi aliyetajwa, hakuna jarida, hakuna kiungo. Kabla ya kuamini namba kama hii, ungependa kuona nini kabla ya kuiamini?"
+  },
+  "33c4be231ea0": {
+   "en": "Not quite — re-read the three functions: medium of exchange, store of value, and unit of account.",
+   "sw": "Si sahihi kabisa — soma tena kazi tatu: njia ya kubadilishana, hifadhi ya thamani, na kipimo cha hesabu."
+  },
+  "343580f2c11a": {
+   "en": "Price repeatedly reverses at these levels — a probability built from history, not a guaranteed wall.",
+   "sw": "Bei hugeuka mara kwa mara kwenye viwango hivi — uwezekano uliojengwa kutoka historia, si ukuta wa uhakika."
+  },
+  "35ed70eafc8f": {
+   "en": "One signal, three different mechanisms — and every one of them can be overridden by sentiment.",
+   "sw": "Ishara moja, mifumo mitatu tofauti — na kila mmoja wao unaweza kuzidiwa nguvu na hisia za soko."
+  },
+  "364912489d2c": {
+   "en": "Chang & Osler (1999), published in The Economic Journal, tested head-and-shoulders specifically on foreign exchange rates. It did generate statistically significant profits — but was \"dominated\" by simpler trading rules, meaning a plainer strategy achieved the same or better result with less complexity.",
+   "sw": "Chang & Osler (1999), waliochapisha katika The Economic Journal, walijaribu head-and-shoulders mahususi kwenye viwango vya ubadilishaji wa fedha za kigeni. Ulizalisha faida yenye maana kitakwimu — lakini ulikuwa \"umezidiwa\" na kanuni rahisi zaidi za biashara, ikimaanisha kwamba mkakati sahili zaidi ulifikia matokeo sawa au bora zaidi kwa utata mdogo."
+  },
+  "3657fee55131": {
+   "en": "Both people in a trade have to want exactly what the other one has, at the same time. A farmer with vegetables who wants shoes has to find a shoemaker who happens to want vegetables — not meat, not tools. If not, the trade just doesn't happen.",
+   "sw": "Watu wote wawili katika biashara lazima watake hasa kile ambacho mwenzake anacho, kwa wakati mmoja. Mkulima mwenye mboga anayetaka viatu lazima ampate mshona-viatu ambaye kwa bahati anataka mboga — si nyama, si zana. Kama sivyo, biashara haifanyiki tu."
+  },
+  "365fdada4251": {
+   "en": "Stop-Loss",
+   "sw": "Stop-Loss"
+  },
+  "36dc87b95366": {
+   "en": "Correct — prediction accuracy alone doesn't determine success. A trader who controls losses well can be profitable even with a mediocre prediction record.",
+   "sw": "Sahihi — usahihi wa utabiri peke yake hauamui mafanikio. Mfanyabiashara anayedhibiti hasara vizuri anaweza kupata faida hata akiwa na rekodi ya utabiri ya wastani."
+  },
+  "38284f8b0331": {
+   "en": "Monetary Policy",
+   "sw": "Sera ya Fedha"
+  },
+  "38d9ed7e5e9d": {
+   "en": "A deliberate reduction in a currency's official value.",
+   "sw": "Kupunguza kwa makusudi thamani rasmi ya sarafu."
+  },
+  "39e9770f8dc5": {
+   "en": "Most central banks target around 2% inflation, not 0%. Zero inflation removes a central bank's room to maneuver — it can't cut rates to fight a slowdown without risking deflation, which discourages spending and can deepen a recession. Moderate, steady inflation is the target precisely because both extremes are worse.",
+   "sw": "Benki kuu nyingi hulenga mfumuko wa bei wa karibu 2%, si 0%. Mfumuko wa bei wa sifuri huondoa nafasi ya benki kuu ya kujimudu — haiwezi kupunguza viwango vya riba kupambana na kudorora bila kuhatarisha mporomoko wa bei, ambao hukatisha tamaa matumizi na unaweza kuzidisha mdororo. Mfumuko wa bei wa wastani na thabiti ndilo lengo hasa kwa sababu pande zote mbili za mwisho ni mbaya zaidi."
+  },
+  "3a4b16dd60bd": {
+   "en": "Correct — that's exactly what fractional reserve banking is: holding only a fraction of deposits, and lending or issuing notes against the rest.",
+   "sw": "Sahihi — ndivyo hasa benki ya akiba ya sehemu ilivyo: kushikilia sehemu tu ya amana, na kukopesha au kutoa noti dhidi ya kilichobaki."
+  },
+  "3bbb94f2843a": {
+   "en": "A stop-loss you decide on after you're already losing money is not risk management — it's hope with a delay.",
+   "sw": "Stop-loss unayoiamua baada ya tayari kuanza kupoteza pesa si usimamizi wa hatari — ni matumaini yaliyochelewa."
+  },
+  "3c2e133f3d24": {
+   "en": "Not quite — re-read both definitions carefully; they describe different correlation behaviors under different conditions.",
+   "sw": "Si sahihi kabisa — soma tena maana zote mbili kwa makini; zinaeleza tabia tofauti za uwiano chini ya hali tofauti."
+  },
+  "3c4ea03f95e3": {
+   "en": "Paying another party to take on your risk.",
+   "sw": "Kumlipa mtu mwingine abebe hatari yako."
+  },
+  "3cbc87c7681f": {
+   "en": "True",
+   "sw": "Kweli"
+  },
+  "3ce12e776093": {
+   "en": "Crypto: Bitcoin is often called \"digital gold\" because its supply is capped at 21 million coins. But short-term price volatility has repeatedly overshadowed that case — an asset that can swing 10% in a day doesn't behave like a stable inflation hedge. Rising rates (the usual inflation response) also tend to pull speculative capital out of crypto, often pushing prices down exactly when the \"digital gold\" narrative would predict a rise.",
+   "sw": "Crypto: Bitcoin mara nyingi huitwa \"dhahabu ya kidijitali\" kwa sababu ugavi wake una kikomo cha sarafu milioni 21. Lakini mtikisiko wa bei wa muda mfupi umefunika hoja hiyo mara kwa mara — mali inayoweza kuyumba 10% kwa siku moja haitendi kama kinga thabiti dhidi ya mfumuko wa bei. Viwango vya riba vinavyopanda (jibu la kawaida kwa mfumuko wa bei) pia huelekea kuvuta mtaji wa kubahatisha nje ya crypto, mara nyingi zikisukuma bei chini hasa wakati simulizi ya \"dhahabu ya kidijitali\" ingetabiri kupanda."
+  },
+  "3ce49010b7e2": {
+   "en": "Cost-Push Inflation",
+   "sw": "Mfumuko wa Bei wa Kusukumwa na Gharama"
+  },
+  "3d558f7ea199": {
+   "en": "A monetary system in which a currency is directly backed by, and freely convertible into, a fixed quantity of gold.",
+   "sw": "Mfumo wa fedha ambapo sarafu inaungwa mkono moja kwa moja na, na inabadilishwa kwa uhuru kuwa, kiasi thabiti cha dhahabu."
+  },
+  "3effdc3fa704": {
+   "en": "A position that profits if the price goes up. You buy now, expecting to sell later at a higher price.",
+   "sw": "Nafasi inayopata faida kama bei itapanda. Unanunua sasa, ukitarajia kuuza baadaye kwa bei ya juu zaidi."
+  },
+  "3f1f3ce65968": {
+   "en": "What did Lo, Mamaysky & Wang (2000) actually conclude about chart patterns?",
+   "sw": "Lo, Mamaysky & Wang (2000) walihitimisha nini hasa kuhusu mitindo ya chati?"
+  },
+  "3f8bf47c92d3": {
+   "en": "A position that profits if price falls.",
+   "sw": "Nafasi inayopata faida kama bei itashuka."
+  },
+  "3fc74efa0e36": {
+   "en": "Bretton Woods and the Birth of Forex",
+   "sw": "Bretton Woods na Kuzaliwa kwa Forex"
+  },
+  "40a8199728cc": {
+   "en": "Bank Run",
+   "sw": "Kukimbilia Benki"
+  },
+  "411a04373a19": {
+   "en": "Correct — support is a level where price has repeatedly reversed in the past, a historical pattern and probability, not a physical barrier. Support levels break all the time.",
+   "sw": "Sahihi — msaada ni kiwango ambapo bei imegeuka mara kwa mara hapo awali, mtindo wa kihistoria na uwezekano, si kizuizi cha kimwili. Viwango vya msaada huvunjika mara kwa mara."
+  },
+  "424420a4bb3c": {
+   "en": "Currency directly backed by, and convertible into, a fixed quantity of gold.",
+   "sw": "Sarafu inayoungwa mkono moja kwa moja na, na kubadilishwa kuwa, kiasi thabiti cha dhahabu."
+  },
+  "42eff85fbaf8": {
+   "en": "A fixed, disciplined system prevents abuse — but that same rigidity leaves no room to maneuver when a real crisis hits.",
+   "sw": "Mfumo thabiti wenye nidhamu huzuia matumizi mabaya — lakini ugumu huo huo hauachi nafasi ya kujimudu janga halisi linapotokea."
+  },
+  "42f9ca81ac84": {
+   "en": "Stocks: in the long run, companies can often pass rising costs to consumers. In the short run, rising inflation often pushes stock prices down — a stock's value partly discounts future earnings, and higher inflation increases that discount rate, shrinking the present value of those future profits. Growth stocks, leaning more on distant future earnings, tend to suffer more than value stocks.",
+   "sw": "Hisa: kwa muda mrefu, kampuni mara nyingi zinaweza kupitisha gharama zinazopanda kwa walaji. Kwa muda mfupi, mfumuko wa bei unaopanda mara nyingi husukuma bei za hisa chini — thamani ya hisa kwa sehemu hupunguza thamani ya mapato ya baadaye, na mfumuko wa bei mkubwa zaidi huongeza kiwango hicho cha upunguzaji, na kupunguza thamani ya sasa ya faida hizo za baadaye. Hisa za ukuaji, zinazotegemea zaidi mapato ya baadaye ya mbali, huelekea kuathirika zaidi kuliko hisa za thamani."
+  },
+  "438e8a79b7bf": {
+   "en": "A 0% target is illegal in most countries",
+   "sw": "Lengo la 0% ni kinyume cha sheria katika nchi nyingi"
+  },
+  "43b7d37fb2b9": {
+   "en": "Connects closing prices over time with a single line.",
+   "sw": "Huunganisha bei za kufunga kwa muda kwa mstari mmoja."
+  },
+  "45681a3c43d4": {
+   "en": "Not quite — remember the POW camp example. Money just needs trust and acceptance, not physical value.",
+   "sw": "Si sahihi kabisa — kumbuka mfano wa kambi ya wafungwa. Pesa inahitaji tu imani na kukubalika, si thamani ya kimwili."
+  },
+  "45d83f4760bc": {
+   "en": "A measure of how closely two assets' prices tend to move in relation to each other, ranging from perfectly together (+1) to perfectly opposite (-1), with 0 meaning no consistent relationship.",
+   "sw": "Kipimo cha jinsi bei za mali mbili zinavyoelekea kusogea kwa uhusiano na kila mmoja, kuanzia pamoja kabisa (+1) hadi kinyume kabisa (-1), ambapo 0 humaanisha hakuna uhusiano wa kudumu."
+  },
+  "468a92f532b1": {
+   "en": "Inflation — What It Is, and How It Moves Every Market",
+   "sw": "Mfumuko wa Bei — Ni Nini, na Jinsi Unavyosogeza Kila Soko"
+  },
+  "48a23aac1dc9": {
+   "en": "What's the key difference between a \"diversifier\" and a \"safe haven\"?",
+   "sw": "Ni tofauti gani kuu kati ya \"msambazaji\" na \"kimbilio salama\"?"
+  },
+  "493dcd2198a7": {
+   "en": "Not quite — think about which direction actually hurts a long position, and place the stop on that side.",
+   "sw": "Si sahihi kabisa — fikiria ni mwelekeo upi unaoumiza nafasi ya long hasa, na weka stop upande huo."
+  },
+  "4992b15680de": {
+   "en": "Which of these is NOT one of the three functions of money?",
+   "sw": "Ni kipi kati ya hivi SI mojawapo ya kazi tatu za pesa?"
+  },
+  "4afd476679db": {
+   "en": "A perfect read of a chart, paired with no risk management, is still a losing strategy waiting to happen.",
+   "sw": "Usomaji kamili wa chati, ukiambatanishwa na kutokuwa na usimamizi wa hatari, bado ni mkakati wa hasara unaosubiri kutokea."
+  },
+  "4bfb66e89f7d": {
+   "en": "Correct — these are precise, different relationships. An asset can be one without being the other.",
+   "sw": "Sahihi — haya ni mahusiano sahihi na tofauti. Mali inaweza kuwa moja bila kuwa nyingine."
+  },
+  "4cb1e75822d2": {
+   "en": "Fiat Currency",
+   "sw": "Sarafu ya Fiat"
+  },
+  "4d53a246ea9a": {
+   "en": "In July 1944, representatives of 44 Allied nations met in Bretton Woods, New Hampshire, to design a new system: instead of every country backing its own currency with its own gold, every country would peg its currency to the U.S. dollar, and only the dollar would remain convertible to gold — at that same $35-per-ounce rate from 1934.",
+   "sw": "Mwezi Julai 1944, wawakilishi wa mataifa 44 ya Washirika walikutana Bretton Woods, New Hampshire, kubuni mfumo mpya: badala ya kila nchi kuunga mkono sarafu yake kwa dhahabu yake yenyewe, kila nchi ingefunga sarafu yake kwenye dola ya Marekani, na dola pekee ndiyo ingebaki inabadilishwa kuwa dhahabu — kwa kiwango kile kile cha $35 kwa wakia cha mwaka 1934."
+  },
+  "4d6f364d2cb7": {
+   "en": "Look at the job postings at any serious investment firm. You'll see plenty of listings for risk managers. You will not see a \"profit-taking manager.\" These firms don't primarily focus on how much they're making — they focus on how much they could lose, and how to control it.",
+   "sw": "Angalia matangazo ya kazi katika kampuni yoyote nzito ya uwekezaji. Utaona matangazo mengi ya wasimamizi wa hatari. Hutaona \"msimamizi wa kuchukua faida.\" Kampuni hizi hazizingatii kwanza kiasi wanachopata — zinazingatia kiasi wanachoweza kupoteza, na jinsi ya kukidhibiti."
+  },
+  "4e64f6f03a7c": {
+   "en": "A banking system where a bank holds only a fraction of the deposits it's responsible for in actual reserve, and lends out — or issues notes against — the rest. It's genuinely useful (it's how banks fund loans and business investment) but it comes with a structural risk.",
+   "sw": "Mfumo wa kibenki ambapo benki hushikilia sehemu tu ya amana inayowajibika nayo kama akiba halisi, na hukopesha — au hutoa noti dhidi ya — kilichobaki. Ni wa manufaa kweli (ndivyo benki zinavyofadhili mikopo na uwekezaji wa biashara) lakini unakuja na hatari ya kimuundo."
+  },
+  "4f745484b0b2": {
+   "en": "A price level where a rising price has repeatedly stopped rising and reversed downward, as sellers step in.",
+   "sw": "Kiwango cha bei ambapo bei inayopanda imesimama kupanda mara kwa mara na kugeuka kushuka, wauzaji wanapoingia."
+  },
+  "501be5ab809d": {
+   "en": "It's tempting to think a currency's value is fixed or \"real,\" the way a gold coin feels real. It isn't. Every currency's value — including the ones you'll see priced elsewhere in this app — is a reflection of collective trust and expectation. That's precisely why currency values move, and why markets like this one exist at all.",
+   "sw": "Ni rahisi kudhani kwamba thamani ya sarafu ni thabiti au \"halisi,\" jinsi sarafu ya dhahabu inavyohisi halisi. Sivyo. Thamani ya kila sarafu — ikiwemo zile utakazoziona zikiwekewa bei mahali pengine kwenye programu hii — ni onyesho la imani na matarajio ya pamoja. Hiyo ndiyo sababu hasa thamani za sarafu husogea, na kwa nini masoko kama hili yapo kabisa."
+  },
+  "506ef3cb06fa": {
+   "en": "Secretly reducing the amount of precious metal in a coin — mixing in cheaper metal — while still presenting it as full value.",
+   "sw": "Kupunguza kwa siri kiasi cha madini ya thamani katika sarafu — kwa kuchanganya madini ya bei rahisi — huku ikiendelea kuwasilishwa kama yenye thamani kamili."
+  },
+  "515a1c2db408": {
+   "en": "Correct — a bank run is a confidence problem, not necessarily a wrongdoing problem. The bank can be doing exactly what it always does and still run out if enough people show up at once.",
+   "sw": "Sahihi — kukimbilia benki ni tatizo la imani, si lazima liwe tatizo la kosa. Benki inaweza kuwa inafanya hasa inavyofanya daima na bado ikaishiwa kama watu wa kutosha watafika kwa wakati mmoja."
+  },
+  "520eed9b82f0": {
+   "en": "Support and resistance are not hard physical barriers — they're levels where enough traders have historically reacted that the reaction becomes somewhat self-reinforcing.",
+   "sw": "Msaada na upinzani si vizuizi vigumu vya kimwili — ni viwango ambapo wafanyabiashara wa kutosha wamekuwa wakiitikia kihistoria kiasi kwamba mwitikio huo unakuwa wa kujiimarisha wenyewe kwa kiasi fulani."
+  },
+  "5318b80b2653": {
+   "en": "They show the same open/high/low/close data, but candlesticks add a colored body for faster visual reading",
+   "sw": "Huonyesha data ile ile ya kufungua/juu/chini/kufunga, lakini mishumaa huongeza mwili wenye rangi kwa usomaji wa haraka wa kuona"
+  },
+  "54636b0ff8d9": {
+   "en": "Diversification isn't about quantity — owning twenty things isn't automatically safer than owning five. It's about relationship.",
+   "sw": "Kusambaza uwekezaji si suala la wingi — kumiliki vitu ishirini si salama zaidi kiotomatiki kuliko kumiliki vitano. Ni suala la uhusiano."
+  },
+  "550786cf7d32": {
+   "en": "A new official gold price",
+   "sw": "Bei mpya rasmi ya dhahabu"
+  },
+  "575f9dd900a3": {
+   "en": "A currency whose value is fixed, or held within a narrow band, relative to another currency rather than allowed to move freely.",
+   "sw": "Sarafu ambayo thamani yake ni thabiti, au inashikiliwa ndani ya ukanda mwembamba, ikilinganishwa na sarafu nyingine badala ya kuruhusiwa kusogea kwa uhuru."
+  },
+  "57691451c2f2": {
+   "en": "The Three Functions of Money",
+   "sw": "Kazi Tatu za Pesa"
+  },
+  "588e7400ba3a": {
+   "en": "A general, sustained rise in prices that reduces what a currency can buy.",
+   "sw": "Kupanda kwa jumla na kwa kudumu kwa bei kunakopunguza kile ambacho sarafu inaweza kununua."
+  },
+  "58cd7bd3c45d": {
+   "en": "Only candlestick patterns work",
+   "sw": "Mitindo ya mishumaa pekee ndiyo inayofanya kazi"
+  },
+  "59a4940aa51c": {
+   "en": "A general, sustained rise in the prices of goods and services across an economy, which reduces how much each unit of currency can buy.",
+   "sw": "Kupanda kwa jumla na kwa kudumu kwa bei za bidhaa na huduma katika uchumi, ambako hupunguza kiasi ambacho kila kipimo cha sarafu kinaweza kununua."
+  },
+  "59a51ae2f8eb": {
+   "en": "Shows open/high/low/close per period as a bar with open/close ticks.",
+   "sw": "Huonyesha kufungua/juu/chini/kufunga kwa kila kipindi kama kipau chenye alama za kufungua/kufunga."
+  },
+  "59f3a90f0bc9": {
+   "en": "Correct — widely repeated statistics often trace back to one non-peer-reviewed original source, just copied and re-copied. Repetition is not independent verification.",
+   "sw": "Sahihi — takwimu zinazorudiwa kwa upana mara nyingi hurudi kwenye chanzo kimoja asilia kisichokaguliwa na wenzake, kilichonakiliwa na kunakiliwa tena tu. Kurudiwa si uthibitisho huru."
+  },
+  "5b865f8a5cc9": {
+   "en": "Risk management is almost entirely about the stop-loss. Making \"too much\" profit is never a problem worth solving. Losing more than you planned to is the only outcome risk management exists to prevent.",
+   "sw": "Usimamizi wa hatari unahusu karibu kabisa stop-loss. Kupata faida \"nyingi mno\" si tatizo linalostahili kutatuliwa kamwe. Kupoteza zaidi ya ulivyopanga ndilo tokeo pekee ambalo usimamizi wa hatari upo kulizuia."
+  },
+  "5c20cea742cc": {
+   "en": "There is no real difference",
+   "sw": "Hakuna tofauti halisi"
+  },
+  "5cbf05424755": {
+   "en": "It rejoined at an overvalued pre-war exchange rate",
+   "sw": "Ilirudi kwa kiwango cha ubadilishaji cha kabla ya vita kilichozidishiwa thamani"
+  },
+  "5d566c576e43": {
+   "en": "A series of higher highs and higher lows over time.",
+   "sw": "Mfululizo wa vilele vya juu zaidi na mabonde ya juu zaidi kwa muda."
+  },
+  "5ec0baf5f77b": {
+   "en": "Not quite — this is actually true. Fixed exchange rates left little to trade; floating rates are what created the market.",
+   "sw": "Si sahihi kabisa — hii kwa kweli ni kweli. Viwango thabiti vya ubadilishaji viliacha kidogo cha kufanyia biashara; viwango vinavyoelea ndivyo vilivyounda soko."
+  },
+  "5f1a25573a30": {
+   "en": "Correlation",
+   "sw": "Uwiano"
+  },
+  "600c132473b8": {
+   "en": "True or False: higher-than-expected inflation always causes a currency to weaken.",
+   "sw": "Kweli au Uongo: mfumuko wa bei ulio juu kuliko ilivyotarajiwa daima husababisha sarafu kudhoofika."
+  },
+  "60a33e6cf515": {
+   "en": "False",
+   "sw": "Uongo"
+  },
+  "611023037cb5": {
+   "en": "A situation where many depositors try to withdraw their funds at once, faster than the bank can pay out, because it only holds a fraction of deposits in reserve.",
+   "sw": "Hali ambapo waweka-amana wengi hujaribu kutoa fedha zao kwa wakati mmoja, kwa kasi kuliko benki inavyoweza kulipa, kwa sababu inashikilia sehemu tu ya amana kama akiba."
+  },
+  "620a089242ea": {
+   "en": "Medium of Exchange",
+   "sw": "Njia ya Kubadilishana"
+  },
+  "62957520fdb6": {
+   "en": "Candlestick Chart",
+   "sw": "Chati ya Mishumaa"
+  },
+  "62ef8ddfb590": {
+   "en": "The possibility that an action or decision doesn't go the way you intended, exposing you to a loss or a bad outcome.",
+   "sw": "Uwezekano kwamba kitendo au uamuzi hauendi jinsi ulivyokusudia, ukikuweka wazi kwa hasara au matokeo mabaya."
+  },
+  "653a6b8acecd": {
+   "en": "Correct — Risk Limitation is the technique behind a stop-loss: accepting a risk exists, but capping exactly how much it can cost you.",
+   "sw": "Sahihi — Kupunguza Hatari ndiyo mbinu iliyo nyuma ya stop-loss: kukubali kwamba hatari ipo, lakini kuweka kikomo hasa cha kiasi inachoweza kukugharimu."
+  },
+  "669ed566d3c3": {
+   "en": "Gold's Problems and the Birth of Paper Money",
+   "sw": "Matatizo ya Dhahabu na Kuzaliwa kwa Pesa za Karatasi"
+  },
+  "66a903986c39": {
+   "en": "Not quite — both chart types plot identical underlying data. The difference is purely visual presentation.",
+   "sw": "Si sahihi kabisa — aina zote mbili za chati huchora data ile ile ya msingi. Tofauti ni ya uwasilishaji wa kuona tu."
+  },
+  "670b2b7e7e1c": {
+   "en": "You buy USD/CAD near a support zone at 1.34, believing the price will rise. Your take-profit sits above your entry. Your stop-loss sits below your entry — near the support zone, where price would have real difficulty falling through if your read is correct. If price falls to your stop instead, you exit there and move on.",
+   "sw": "Unanunua USD/CAD karibu na eneo la msaada kwa 1.34, ukiamini bei itapanda. Take-profit yako iko juu ya kiingilio chako. Stop-loss yako iko chini ya kiingilio chako — karibu na eneo la msaada, ambapo bei ingekuwa na ugumu halisi kupenya kama usomaji wako ni sahihi. Kama bei itashuka hadi stop yako badala yake, unatoka hapo na kuendelea."
+  },
+  "677c3f7bc9e3": {
+   "en": "Guarantee bank runs never happen",
+   "sw": "Kuhakikisha kukimbilia benki hakutokei kamwe"
+  },
+  "6788131275ff": {
+   "en": "Gold became the dominant choice almost everywhere it was available — scarce, durable, divisible, and easy to verify. The first standardized gold and silver coins date to the Kingdom of Lydia, around 700 B.C. But because money is defined by function and not material, gold was never the only option.",
+   "sw": "Dhahabu ikawa chaguo kuu karibu kila mahali ilipopatikana — adimu, ya kudumu, inayoweza kugawanywa, na rahisi kuthibitisha. Sarafu za kwanza sanifu za dhahabu na fedha zilianza katika Ufalme wa Lydia, karibu mwaka 700 K.K. Lakini kwa sababu pesa inafafanuliwa kwa kazi na si kwa dutu, dhahabu haikuwa chaguo pekee kamwe."
+  },
+  "684af3fcfab7": {
+   "en": "Correct — both show the same four data points per period; candlesticks just make the open/close relationship easier to scan visually.",
+   "sw": "Sahihi — zote mbili huonyesha pointi zile zile nne za data kwa kila kipindi; mishumaa hurahisisha tu kutazama uhusiano wa kufungua/kufunga."
+  },
+  "689e7f87976b": {
+   "en": "Shows the same open/high/low/close data as a bar chart, with a colored \"body\" between open and close, making bullish and bearish periods obvious at a glance.",
+   "sw": "Huonyesha data ile ile ya kufungua/juu/chini/kufunga kama chati ya vipau, ikiwa na \"mwili\" wenye rangi kati ya kufungua na kufunga, jambo linalofanya vipindi vya kupanda na vya kushuka vionekane wazi kwa mtazamo mmoja."
+  },
+  "6974a5f4c39e": {
+   "en": "Not quite — it specifically ended dollar-to-gold convertibility, not trading itself or a new gold price.",
+   "sw": "Si sahihi kabisa — ulimaliza mahususi ubadilishaji wa dola-kwa-dhahabu, si biashara yenyewe wala bei mpya ya dhahabu."
+  },
+  "697b549c15db": {
+   "en": "It banned private gold ownership",
+   "sw": "Ilipiga marufuku umiliki binafsi wa dhahabu"
+  },
+  "69fd8bcf25d5": {
+   "en": "Diversifier",
+   "sw": "Msambazaji"
+  },
+  "6a2908c76358": {
+   "en": "Shows the open, high, low, and close for each period as a vertical bar, with small horizontal ticks marking the open (left) and close (right).",
+   "sw": "Huonyesha bei ya kufungua, ya juu, ya chini, na ya kufunga kwa kila kipindi kama kipau wima, chenye alama ndogo za mlalo zinazoonyesha kufungua (kushoto) na kufunga (kulia)."
+  },
+  "6a2b4e5dd4ca": {
+   "en": "Free for everyone — the universal financial literacy behind every market on this app.",
+   "sw": "Bure kwa kila mtu — elimu ya kifedha ya wote iliyo nyuma ya kila soko kwenye programu hii."
+  },
+  "6aae08002677": {
+   "en": "A series of lower highs and lower lows.",
+   "sw": "Mfululizo wa vilele vya chini zaidi na mabonde ya chini zaidi."
+  },
+  "6b174c25d0cc": {
+   "en": "Not quite — think about the Bulkowski example. Repetition across blogs doesn't mean independent verification happened.",
+   "sw": "Si sahihi kabisa — fikiria mfano wa Bulkowski. Kurudiwa katika blogu mbalimbali hakumaanishi uthibitisho huru ulifanyika."
+  },
+  "6b732be0f0cc": {
+   "en": "Devaluation",
+   "sw": "Kushusha Thamani"
+  },
+  "6bbb357cbd5e": {
+   "en": "A stop-loss you decide on after you're already losing money is not risk management — it's hope with a delay. The entire value of a stop-loss comes from setting it before you enter, while you're still thinking clearly.",
+   "sw": "Stop-loss unayoiamua baada ya tayari kuanza kupoteza pesa si usimamizi wa hatari — ni matumaini yaliyochelewa. Thamani yote ya stop-loss inatokana na kuiweka kabla ya kuingia, ukiwa bado unafikiri kwa uwazi."
+  },
+  "6bc02bc491d6": {
+   "en": "Scarcity",
+   "sw": "Uadimu"
+  },
+  "6dedbd6b7fac": {
+   "en": "Correct — money is defined by function, not material. Cigarettes in a WWII POW camp worked as real money.",
+   "sw": "Sahihi — pesa inafafanuliwa kwa kazi, si kwa dutu. Sigara katika kambi ya wafungwa ya Vita vya Pili vya Dunia zilifanya kazi kama pesa halisi."
+  },
+  "6fc3f055a47a": {
+   "en": "Short Position",
+   "sw": "Nafasi ya Short"
+  },
+  "70f512140796": {
+   "en": "Diversification",
+   "sw": "Kusambaza Uwekezaji"
+  },
+  "70f5ec41f7c7": {
+   "en": "Not quite — re-read the example. The actual finding is more careful than a flat \"yes\" or \"no.\"",
+   "sw": "Si sahihi kabisa — soma tena mfano. Tokeo halisi ni makini zaidi kuliko \"ndiyo\" au \"hapana\" tupu."
+  },
+  "719e520100c1": {
+   "en": "An interwar system mixing actual gold reserves with gold-convertible currency reserves.",
+   "sw": "Mfumo wa kati ya vita uliochanganya akiba halisi za dhahabu na akiba za sarafu inayobadilishwa kuwa dhahabu."
+  },
+  "728992a944fc": {
+   "en": "True or False: a support level is a hard price floor that a price cannot fall below.",
+   "sw": "Kweli au Uongo: kiwango cha msaada ni sakafu ngumu ya bei ambayo bei haiwezi kushuka chini yake."
+  },
+  "72e7d00a1254": {
+   "en": "The conflict facing a reserve-currency country between global liquidity and maintaining trust.",
+   "sw": "Mgongano unaokabili nchi yenye sarafu ya akiba kati ya ukwasi wa kimataifa na kudumisha imani."
+  },
+  "7333c6f56d7a": {
+   "en": "Bar charts are only used in forex",
+   "sw": "Chati za vipau hutumika katika forex tu"
+  },
+  "736182866601": {
+   "en": "Fractional Reserve Banking",
+   "sw": "Benki ya Akiba ya Sehemu"
+  },
+  "73edb602f432": {
+   "en": "Paying someone else to take on your risk — like insurance, or options/hedging in trading. Comes at an ongoing cost that erodes returns if overused.",
+   "sw": "Kumlipa mtu mwingine abebe hatari yako — kama bima, au options/hedging katika biashara. Inakuja na gharama ya kudumu inayomomonyoa faida ikitumika kupita kiasi."
+  },
+  "75d511a3fd85": {
+   "en": "Both people in a trade must want exactly what the other has, at the same time.",
+   "sw": "Watu wote wawili katika biashara lazima watake hasa kile ambacho mwenzake anacho, kwa wakati mmoja."
+  },
+  "7602d93d9b0e": {
+   "en": "Store of Physical Weight",
+   "sw": "Hifadhi ya Uzito wa Kimwili"
+  },
+  "7620c68e9e90": {
+   "en": "To supply the world with dollars, the U.S. ran persistent deficits. But the more dollars circulated abroad, the harder it became to credibly promise every one could still convert to gold — especially as domestic inflation and war spending meant more dollars were printed than gold reserves could realistically back.",
+   "sw": "Ili kuipa dunia dola, Marekani iliendesha nakisi za kudumu. Lakini kadri dola nyingi zilivyozunguka nje ya nchi, ndivyo ilivyokuwa vigumu zaidi kuahidi kwa uaminifu kwamba kila moja ingeweza bado kubadilishwa kuwa dhahabu — hasa kadri mfumuko wa bei wa ndani na matumizi ya vita vilimaanisha dola nyingi zaidi zilichapishwa kuliko akiba za dhahabu zingeweza kuziunga mkono kihalisia."
+  },
+  "76764a7a3cb0": {
+   "en": "Gold Exchange Standard",
+   "sw": "Kiwango cha Kubadilishana Dhahabu"
+  },
+  "7714d6282d60": {
+   "en": "True or False: a bank run happens because the bank did something wrong that specific day.",
+   "sw": "Kweli au Uongo: kukimbilia benki hutokea kwa sababu benki ilifanya kitu kibaya siku hiyo mahususi."
+  },
+  "77415c6c771c": {
+   "en": "Triffin Dilemma",
+   "sw": "Tatizo la Triffin"
+  },
+  "781b148df084": {
+   "en": "A currency widely held by governments and institutions for global trade and finance.",
+   "sw": "Sarafu inayoshikiliwa kwa upana na serikali na taasisi kwa biashara na fedha za kimataifa."
+  },
+  "78b1c29c9e20": {
+   "en": "Safe Haven",
+   "sw": "Kimbilio Salama"
+  },
+  "7949df718297": {
+   "en": "Something that holds its purchasing power over time.",
+   "sw": "Kitu kinachoshikilia uwezo wake wa kununua kwa muda."
+  },
+  "7afcd21e9d79": {
+   "en": "You enter a long position on a currency pair at 1.50. Where should your stop-loss sit relative to your entry?",
+   "sw": "Unaingia katika nafasi ya long kwenye jozi la sarafu kwa 1.50. Stop-loss yako inapaswa kuwa wapi ikilinganishwa na kiingilio chako?"
+  },
+  "7b9501c07a95": {
+   "en": "Central Bank",
+   "sw": "Benki Kuu"
+  },
+  "7d4de8aeedd9": {
+   "en": "Inflation doesn't affect every market the same way — and it doesn't even affect any one market the same way every time.",
+   "sw": "Mfumuko wa bei hauathiri kila soko kwa njia ile ile — na hata hauathiri soko lolote moja kwa njia ile ile kila mara."
+  },
+  "7d6d76eb6002": {
+   "en": "To fix both problems — too many competing currencies, and the instability of fractional reserve banking — countries began establishing central banks. The Bank of England, founded in 1694, is one of the earliest examples: a single, trusted institution issuing one national currency and regulating the banks around it.",
+   "sw": "Ili kutatua matatizo yote mawili — sarafu nyingi sana zinazoshindana, na kutokuwa imara kwa benki ya akiba ya sehemu — nchi zilianza kuanzisha benki kuu. Benki ya Uingereza, iliyoanzishwa mwaka 1694, ni mojawapo ya mifano ya awali kabisa: taasisi moja inayoaminika inayotoa sarafu moja ya taifa na kudhibiti benki zinazoizunguka."
+  },
+  "7d72da340b48": {
+   "en": "Correct — a long position profits when price rises, so the stop-loss sits below, where a fall would prove the trade against you.",
+   "sw": "Sahihi — nafasi ya long hupata faida bei inapopanda, hivyo stop-loss inakaa chini, ambapo kushuka kungethibitisha biashara imekwenda kinyume nawe."
+  },
+  "7d72ff07e19a": {
+   "en": "Correct — Nixon announced the U.S. would suspend converting dollars into gold, which effectively ended Bretton Woods.",
+   "sw": "Sahihi — Nixon alitangaza kwamba Marekani ingesimamisha kubadilisha dola kuwa dhahabu, jambo ambalo kwa hakika lilimaliza Bretton Woods."
+  },
+  "7d806e6cef5a": {
+   "en": "They show completely different data",
+   "sw": "Huonyesha data tofauti kabisa"
+  },
+  "7d847e3892f8": {
+   "en": "Risk Acceptance",
+   "sw": "Kukubali Hatari"
+  },
+  "7dc05adce77f": {
+   "en": "It worked — until a war forced every participating country to choose between keeping its promise to gold and paying for the war. When World War I began in 1914, major economies suspended gold convertibility so they could print the money needed to fund it.",
+   "sw": "Ulifanya kazi — hadi vita vilipolazimisha kila nchi iliyoshiriki kuchagua kati ya kushikilia ahadi yake kwa dhahabu na kulipia vita. Vita vya Kwanza vya Dunia vilipoanza mwaka 1914, uchumi mkubwa ulisimamisha ubadilishaji wa dhahabu ili uweze kuchapisha pesa zilizohitajika kuvifadhili."
+  },
+  "7e966fc13ea6": {
+   "en": "A common measure for comparing the value of different things.",
+   "sw": "Kipimo cha pamoja cha kulinganisha thamani ya vitu tofauti."
+  },
+  "7fd1fa8c193f": {
+   "en": "What did the Nixon Shock actually announce?",
+   "sw": "Mshtuko wa Nixon ulitangaza nini hasa?"
+  },
+  "7fd5ecc3891d": {
+   "en": "What does fractional reserve banking actually allow a bank to do?",
+   "sw": "Benki ya akiba ya sehemu inairuhusu benki kufanya nini hasa?"
+  },
+  "7fe23216bdeb": {
+   "en": "A bank holding 100 gold coins but promising 500 IOUs can only cover a fraction of holders if they all show up at once.",
+   "sw": "Benki inayoshikilia sarafu 100 za dhahabu lakini ikiahidi hati 500 za IOU inaweza kulipa sehemu tu ya wenye nazo kama wote watafika kwa wakati mmoja."
+  },
+  "80a3916699e2": {
+   "en": "Not quite — it's the opposite. Defending a fixed gold peg during a recession usually means tightening money, not loosening it.",
+   "sw": "Si sahihi kabisa — ni kinyume chake. Kutetea kifungo thabiti cha dhahabu wakati wa mdororo kwa kawaida kunamaanisha kubana pesa, si kuzilegeza."
+  },
+  "812cad3990ce": {
+   "en": "Central banks don't actually target any specific inflation rate",
+   "sw": "Benki kuu hazilengi kiwango chochote mahususi cha mfumuko wa bei kwa kweli"
+  },
+  "81be167d149f": {
+   "en": "Recognizing a risk is too high relative to the benefit, and simply not taking the action. Example: skipping a major central bank announcement rather than holding a position through it.",
+   "sw": "Kutambua kwamba hatari ni kubwa mno ikilinganishwa na manufaa, na kutochukua kitendo hicho tu. Mfano: kuruka tangazo kuu la benki kuu badala ya kushikilia nafasi wakati wa tangazo hilo."
+  },
+  "828f27bcd505": {
+   "en": "Not quite — re-read the definitions. The technique behind a stop-loss caps a known risk rather than avoiding or transferring it.",
+   "sw": "Si sahihi kabisa — soma tena maana. Mbinu iliyo nyuma ya stop-loss huweka kikomo cha hatari inayojulikana badala ya kuiepuka au kuihamisha."
+  },
+  "82c2062ca3c0": {
+   "en": "True or False: a statistic repeated across many trading websites is more likely to be accurate because so many sources agree on it.",
+   "sw": "Kweli au Uongo: takwimu inayorudiwa katika tovuti nyingi za biashara ina uwezekano mkubwa wa kuwa sahihi kwa sababu vyanzo vingi vinakubaliana nayo."
+  },
+  "831ddc3446e6": {
+   "en": "The official institution that issues a country's currency and regulates its banks.",
+   "sw": "Taasisi rasmi inayotoa sarafu ya nchi na kudhibiti benki zake."
+  },
+  "83f3062df971": {
+   "en": "The 1944 international agreement under which most currencies were pegged to the U.S. dollar, while the dollar itself remained convertible to gold at a fixed rate.",
+   "sw": "Makubaliano ya kimataifa ya mwaka 1944 ambapo sarafu nyingi zilifungwa kwenye dola ya Marekani, huku dola yenyewe ikibaki inabadilishwa kuwa dhahabu kwa kiwango thabiti."
+  },
+  "84a3af0373f2": {
+   "en": "Risk management is what makes a good trader — not the ability to predict market direction.",
+   "sw": "Usimamizi wa hatari ndicho kinachomfanya mfanyabiashara mzuri — si uwezo wa kutabiri mwelekeo wa soko."
+  },
+  "8787e4d9579d": {
+   "en": "True or False: owning a large number of different assets automatically means a portfolio is well-diversified.",
+   "sw": "Kweli au Uongo: kumiliki idadi kubwa ya mali tofauti humaanisha kiotomatiki kwamba mkusanyiko umesambazwa vizuri."
+  },
+  "87eb83b7f884": {
+   "en": "A ban on foreign currency trading",
+   "sw": "Marufuku ya biashara ya sarafu za kigeni"
+  },
+  "8879da11747a": {
+   "en": "The creation of a new reserve currency",
+   "sw": "Kuundwa kwa sarafu mpya ya akiba"
+  },
+  "89a7ebcb7304": {
+   "en": "A series of lower highs and lower lows over time.",
+   "sw": "Mfululizo wa vilele vya chini zaidi na mabonde ya chini zaidi kwa muda."
+  },
+  "8a9865e8e68e": {
+   "en": "True or False: floating exchange rates are the reason a forex market exists today.",
+   "sw": "Kweli au Uongo: viwango vya ubadilishaji vinavyoelea ndiyo sababu soko la forex lipo leo."
+  },
+  "8add781f9728": {
+   "en": "Correct — the EUR/USD 2021 example shows inflation differentials can be completely overridden by other factors traders weigh more heavily at a given moment.",
+   "sw": "Sahihi — mfano wa EUR/USD wa mwaka 2021 unaonyesha tofauti za mfumuko wa bei zinaweza kuzidiwa nguvu kabisa na mambo mengine ambayo wafanyabiashara huyapa uzito zaidi kwa wakati fulani."
+  },
+  "8aef24f57cf1": {
+   "en": "Not quite — think about what a central bank loses if inflation is exactly zero and the economy hits a downturn.",
+   "sw": "Si sahihi kabisa — fikiria benki kuu inapoteza nini kama mfumuko wa bei ni sifuri hasa na uchumi ukakumbwa na kushuka."
+  },
+  "8b26b788a74e": {
+   "en": "Inflation",
+   "sw": "Mfumuko wa Bei"
+  },
+  "8ce23d656ede": {
+   "en": "The August 1971 announcement suspending the U.S. dollar's convertibility to gold, effectively ending the Bretton Woods system.",
+   "sw": "Tangazo la Agosti 1971 lililosimamisha ubadilishaji wa dola ya Marekani kuwa dhahabu, na kwa hakika kumaliza mfumo wa Bretton Woods."
+  },
+  "9172ccf70fff": {
+   "en": "Correct — this is the naive diversification trap. Highly correlated holdings can behave like one concentrated bet, no matter how many there are.",
+   "sw": "Sahihi — huu ndio mtego wa kusambaza kwa kijinga. Umiliki wenye uwiano mkubwa unaweza kutenda kama dau moja lililojikita, bila kujali ni mingapi."
+  },
+  "91d7397faf42": {
+   "en": "The same tension keeps showing up: a disciplined system builds trust, but that discipline can be too rigid in a crisis. You'll see this exact trade-off again with the gold standard itself in the next lesson.",
+   "sw": "Mvutano ule ule unaendelea kujitokeza: mfumo wenye nidhamu hujenga imani, lakini nidhamu hiyo inaweza kuwa ngumu mno wakati wa janga. Utaona mchanganyiko huu hasa tena na kiwango cha dhahabu chenyewe katika somo lijalo."
+  },
+  "93da7f3bcb45": {
+   "en": "Correct — under fixed pegs there wasn't much to actively trade. Once rates floated freely after 1973, currency values became a live, moving target — which is exactly what created the modern forex market.",
+   "sw": "Sahihi — chini ya vifungo thabiti hakukuwa na kitu kingi cha kufanyia biashara kwa bidii. Mara viwango vilipoelea kwa uhuru baada ya 1973, thamani za sarafu zikawa lengo hai, linalosogea — ambalo ndilo hasa lililounda soko la kisasa la forex."
+  },
+  "9449b80f57fa": {
+   "en": "Line Chart",
+   "sw": "Chati ya Mstari"
+  },
+  "94a597d46b22": {
+   "en": "Correct — medium of exchange, store of value, and unit of account are the three real functions. \"Store of physical weight\" isn't one of them.",
+   "sw": "Sahihi — njia ya kubadilishana, hifadhi ya thamani, na kipimo cha hesabu ndizo kazi tatu halisi. \"Hifadhi ya uzito wa kimwili\" si mojawapo yao."
+  },
+  "96b2de510c0f": {
+   "en": "The actions a central bank takes to manage a country's money supply and interest rates, typically to influence inflation, employment, and growth.",
+   "sw": "Hatua ambazo benki kuu huchukua kusimamia ugavi wa pesa na viwango vya riba vya nchi, kwa kawaida ili kuathiri mfumuko wa bei, ajira, na ukuaji."
+  },
+  "96ba40c06a3c": {
+   "en": "As trade grew, that stopped scaling. What was needed was something everyone would accept, regardless of what they personally wanted that day — which is exactly what money is. To count as real money, something generally has to do three things at once:",
+   "sw": "Biashara ilipokua, hiyo iliacha kuweza kupanuka. Kilichohitajika ni kitu ambacho kila mtu angekikubali, bila kujali alichokitaka siku hiyo — ambacho ndicho hasa pesa ilivyo. Ili kihesabike kama pesa halisi, kitu kwa kawaida kinapaswa kufanya mambo matatu kwa pamoja:"
+  },
+  "9714a8352284": {
+   "en": "A measure of how closely two assets' prices move in relation to each other.",
+   "sw": "Kipimo cha jinsi bei za mali mbili zinavyosogea kwa uhusiano na kila mmoja."
+  },
+  "9a6f15d38e74": {
+   "en": "Money isn't defined by what it's made of — it's defined by what it does.",
+   "sw": "Pesa haifafanuliwi kwa kile iliyotengenezwa nacho — inafafanuliwa kwa kile inachofanya."
+  },
+  "9adeb08b79b6": {
+   "en": "You believe a pair is about to fall, so you short at 1.36. Your take-profit sits below your entry. Your stop-loss sits above your entry — if price rises instead of falling, that proves you wrong, and you exit there.",
+   "sw": "Unaamini jozi fulani inakaribia kushuka, hivyo unafanya short kwa 1.36. Take-profit yako iko chini ya kiingilio chako. Stop-loss yako iko juu ya kiingilio chako — kama bei itapanda badala ya kushuka, hilo linathibitisha umekosea, na unatoka hapo."
+  },
+  "9b0f7250facb": {
+   "en": "Not quite — support reflects historical buyer behavior, not a guarantee. It can and does break.",
+   "sw": "Si sahihi kabisa — msaada huonyesha tabia ya kihistoria ya wanunuzi, si uhakika. Unaweza kuvunjika na huvunjika."
+  },
+  "9b6aff66a042": {
+   "en": "Not quite — a bank run can happen even when the bank hasn't changed anything. It's about many people demanding withdrawal at the same time, not a specific mistake that day.",
+   "sw": "Si sahihi kabisa — kukimbilia benki kunaweza kutokea hata benki isipobadilisha chochote. Inahusu watu wengi kudai kutoa fedha kwa wakati mmoja, si kosa mahususi la siku hiyo."
+  },
+  "9cb228d1f3fa": {
+   "en": "True or False: the best traders are the ones who predict market direction correctly most often.",
+   "sw": "Kweli au Uongo: wafanyabiashara bora ni wale wanaotabiri mwelekeo wa soko kwa usahihi mara nyingi zaidi."
+  },
+  "9cb4574e6dd1": {
+   "en": "You are still not ready to place a trade. The single most important topic in this course is risk management. Skilled analysis without risk management doesn't produce a successful trader — it produces someone who is right sometimes and wiped out eventually.",
+   "sw": "Bado hujawa tayari kufanya biashara. Mada muhimu kuliko zote katika kozi hii ni usimamizi wa hatari. Uchambuzi wa ustadi bila usimamizi wa hatari hautoi mfanyabiashara aliyefanikiwa — hutoa mtu ambaye ni sahihi mara nyingine na hatimaye anafutika kabisa."
+  },
+  "a03a22ea2e0c": {
+   "en": "Acknowledging a risk exists and choosing to take on the entire potential downside, with no limit. Never used deliberately in trading — it means being willing to lose everything on one position.",
+   "sw": "Kutambua kwamba hatari ipo na kuchagua kubeba hasara yote inayowezekana, bila kikomo. Haitumiki kamwe kwa makusudi katika biashara — inamaanisha kuwa tayari kupoteza kila kitu katika nafasi moja."
+  },
+  "a0f4b9ccee93": {
+   "en": "Long Position",
+   "sw": "Nafasi ya Long"
+  },
+  "a164a7ab65da": {
+   "en": "The core fix was simple: instead of physically carrying gold everywhere, leave it with someone trustworthy for safekeeping, and trade the paper receipt instead.",
+   "sw": "Suluhisho la msingi lilikuwa rahisi: badala ya kubeba dhahabu kila mahali kimwili, iache kwa mtu wa kuaminika kwa usalama, na ubadilishane risiti ya karatasi badala yake."
+  },
+  "a2e6fd531956": {
+   "en": "With the last tie between money and gold severed, the world entered the era of fiat currency — the system every major economy uses today.",
+   "sw": "Kwa kifungo cha mwisho kati ya pesa na dhahabu kukatwa, dunia iliingia enzi ya sarafu ya fiat — mfumo ambao kila uchumi mkubwa hutumia leo."
+  },
+  "a331e68d46a3": {
+   "en": "A portfolio split evenly across ten tech stocks looks diversified by holding count — but if all ten tend to rise and fall together, it behaves like one large bet, not ten independent ones. This is naive diversification: mistaking the number of holdings for actual risk reduction.",
+   "sw": "Mkusanyiko uliogawanywa sawasawa katika hisa kumi za teknolojia unaonekana umesambazwa kwa idadi ya umiliki — lakini kama zote kumi zinaelekea kupanda na kushuka pamoja, unatenda kama dau moja kubwa, si kumi yaliyo huru. Huku ndiko kusambaza kwa kijinga: kudhania kwamba idadi ya umiliki ni sawa na kupunguza hatari halisi."
+  },
+  "a39360e53cb5": {
+   "en": "An asset with an average positive but imperfect correlation to your holdings.",
+   "sw": "Mali yenye uwiano chanya wa wastani lakini usio kamili na umiliki wako."
+  },
+  "a3c51665dc1e": {
+   "en": "Holding only part of deposits in reserve, lending out the rest.",
+   "sw": "Kushikilia sehemu tu ya amana kama akiba, kukopesha kilichobaki."
+  },
+  "a3fceeba7127": {
+   "en": "The price at which you plan to exit if the position moves in your favor.",
+   "sw": "Bei ambayo kwayo unapanga kutoka kama nafasi itasogea kwa manufaa yako."
+  },
+  "a473adb51d4a": {
+   "en": "Chapter 1: The History of Money",
+   "sw": "Sura 1: Historia ya Fedha"
+  },
+  "a679448afa66": {
+   "en": "Forex exists because currencies float freely instead of being fixed to gold or to each other.",
+   "sw": "Forex ipo kwa sababu sarafu huelea kwa uhuru badala ya kufungwa kwenye dhahabu au kwa kila mmoja."
+  },
+  "a78ae30c3c42": {
+   "en": "When the Great Depression hit in 1929, countries still on the gold standard faced an impossible choice: defending a fixed gold peg meant keeping interest rates high and the money supply tight — the opposite of what a struggling economy needs to recover.",
+   "sw": "Mdororo Mkubwa wa Uchumi ulipotokea mwaka 1929, nchi zilizokuwa bado kwenye kiwango cha dhahabu zilikabiliwa na chaguo lisilowezekana: kutetea kifungo thabiti cha dhahabu kulimaanisha kuweka viwango vya riba juu na ugavi wa pesa mdogo — kinyume kabisa cha kile uchumi unaohangaika unahitaji ili kupona."
+  },
+  "a7e487ee3613": {
+   "en": "Limited supply — a key trait that let gold hold value as money.",
+   "sw": "Ugavi mdogo — sifa muhimu iliyoiwezesha dhahabu kushikilia thamani kama pesa."
+  },
+  "a94293ad71cd": {
+   "en": "Correct — zero or negative inflation removes a central bank's room to maneuver and can deepen a recession.",
+   "sw": "Sahihi — mfumuko wa bei wa sifuri au hasi huondoa nafasi ya benki kuu ya kujimudu na unaweza kuzidisha mdororo."
+  },
+  "a9cf411ae71e": {
+   "en": "Store of Value",
+   "sw": "Hifadhi ya Thamani"
+  },
+  "a9ea7a444b5d": {
+   "en": "Why did Britain's 1925 return to the gold standard strain its economy?",
+   "sw": "Kwa nini kurudi kwa Uingereza kwenye kiwango cha dhahabu mwaka 1925 kuliubana uchumi wake?"
+  },
+  "aac3d479c114": {
+   "en": "This solved gold's transport problem — but created a new one. Once many goldsmiths and banks were each issuing their own paper notes, a note from one issuer often wasn't trusted or accepted far from where it came from.",
+   "sw": "Hii ilitatua tatizo la usafirishaji wa dhahabu — lakini ikazua jipya. Mara wahunzi wengi wa dhahabu na benki walipoanza kutoa noti zao za karatasi, noti kutoka kwa mtoaji mmoja mara nyingi haikuaminiwa au kukubaliwa mbali na ilipotoka."
+  },
+  "acb19f8e5de1": {
+   "en": "A price level where a falling price has repeatedly stopped falling and reversed upward, as buyers step in.",
+   "sw": "Kiwango cha bei ambapo bei inayoshuka imesimama kushuka mara kwa mara na kugeuka kupanda, wanunuzi wanapoingia."
+  },
+  "ad3320fa295c": {
+   "en": "Lo, Mamaysky & Wang (2000), published in The Journal of Finance, built an automated, objective system to detect chart patterns and tested it on decades of U.S. stock data. They found several patterns, including head-and-shoulders and double bottoms, provided statistically significant information beyond random chance — but added an important caveat: statistical detectability is not the same as profitability after real-world costs.",
+   "sw": "Lo, Mamaysky & Wang (2000), waliochapisha katika The Journal of Finance, walijenga mfumo wa kiotomatiki na wa lengo la kubaini mitindo ya chati na wakaujaribu kwa miongo ya data ya hisa za Marekani. Waligundua mitindo kadhaa, ikiwemo head-and-shoulders na double bottoms, ilitoa taarifa yenye maana kitakwimu zaidi ya bahati nasibu — lakini wakaongeza onyo muhimu: kutambulika kitakwimu si sawa na kupata faida baada ya gharama za dunia halisi."
+  },
+  "ad4a725d40c3": {
+   "en": "Not quite — the issue was the exchange rate Britain rejoined at, not the money supply or a ban on gold.",
+   "sw": "Si sahihi kabisa — tatizo lilikuwa kiwango cha ubadilishaji ambacho Uingereza ilirudi nacho, si ugavi wa pesa wala marufuku ya dhahabu."
+  },
+  "adff65611b0c": {
+   "en": "A bank holds 100 gold coins but has issued 500 IOU notes against them. On an ordinary day this works fine — only a few people ever ask for their gold at once. But if confidence drops and everyone tries to redeem on the same day, the bank runs out of gold long before it runs out of notes to honor. The panic itself becomes the crisis.",
+   "sw": "Benki inashikilia sarafu 100 za dhahabu lakini imetoa noti 500 za IOU dhidi yake. Siku ya kawaida hii inafanya kazi vizuri — ni watu wachache tu wanaowahi kuomba dhahabu yao kwa wakati mmoja. Lakini kama imani itashuka na kila mtu akajaribu kukomboa siku hiyo hiyo, benki inaishiwa dhahabu kabla ya kuishiwa noti za kulipia. Hofu yenyewe inakuwa ndiyo janga."
+  },
+  "aef53c3a3c57": {
+   "en": "A currency held in significant quantities by governments and institutions worldwide for trade and finance — the U.S. dollar has held this role since Bretton Woods.",
+   "sw": "Sarafu inayoshikiliwa kwa wingi mkubwa na serikali na taasisi duniani kote kwa biashara na fedha — dola ya Marekani imeshikilia nafasi hii tangu Bretton Woods."
+  },
+  "af14d5cc1902": {
+   "en": "Diversification reduces risk. It does not remove it. During a genuine broad market shock, correlations across many assets tend to rise together — the calm-market relationships you diversified around can break down exactly when you need them most.",
+   "sw": "Kusambaza uwekezaji hupunguza hatari. Hakuiondoi. Wakati wa mshtuko halisi mpana wa soko, uwiano katika mali nyingi huelekea kupanda pamoja — mahusiano ya soko tulivu uliyoyasambazia yanaweza kuvunjika hasa wakati unapoyahitaji zaidi."
+  },
+  "af7b14cb5352": {
+   "en": "Floating Exchange Rate",
+   "sw": "Kiwango cha Ubadilishaji Kinachoelea"
+  },
+  "b04d2ff3288b": {
+   "en": "That $35-per-ounce rate is not a random number — it is exactly the rate Bretton Woods would formalize internationally ten years later, in 1944. Keep it in mind for the next lesson.",
+   "sw": "Kiwango hicho cha $35 kwa wakia si namba ya bahati nasibu — ni hasa kiwango ambacho Bretton Woods ingekirasimisha kimataifa miaka kumi baadaye, mwaka 1944. Kikumbuke kwa somo lijalo."
+  },
+  "b1bf770271fd": {
+   "en": "The 1971 suspension of the dollar's convertibility to gold.",
+   "sw": "Kusimamishwa kwa mwaka 1971 kwa ubadilishaji wa dola kuwa dhahabu."
+  },
+  "b24b0f59b424": {
+   "en": "What Is Risk, and How Do You Manage It?",
+   "sw": "Hatari Ni Nini, na Unaisimamiaje?"
+  },
+  "b2b5fafb458a": {
+   "en": "Risk isn't unique to trading — it's in everything. Skydiving carries risk. Flying to a vacation destination carries risk. Driving to work carries risk. The actual skill isn't avoiding risk altogether — that's impossible. It's judging whether a given risk is worth taking, and controlling it wherever you can.",
+   "sw": "Hatari si ya kipekee kwa biashara — ipo katika kila kitu. Kuruka kwa parachuti kuna hatari. Kusafiri kwa ndege kwenda likizo kuna hatari. Kuendesha gari kwenda kazini kuna hatari. Ustadi halisi si kuepuka hatari kabisa — hilo haliwezekani. Ni kuhukumu kama hatari fulani inastahili kuchukuliwa, na kuidhibiti pale unapoweza."
+  },
+  "b354c6d7d4a7": {
+   "en": "Peg (Pegged Currency)",
+   "sw": "Kufunga (Sarafu Iliyofungwa)"
+  },
+  "b4cf610373ea": {
+   "en": "Risk limitation is the technique you'll use the most. This lesson makes it concrete: every time you enter a position, there are three prices to think through.",
+   "sw": "Kupunguza hatari ndiyo mbinu utakayoitumia zaidi. Somo hili linaifanya iwe halisi: kila unapoingia katika nafasi, kuna bei tatu za kufikiria."
+  },
+  "b53e3f8c2a35": {
+   "en": "The United States formally adopted the gold standard in 1879 — every dollar in circulation became directly redeemable for a fixed amount of gold, for ordinary citizens, not just foreign governments. Britain had done the same decades earlier, in 1821.",
+   "sw": "Marekani ilikubali rasmi kiwango cha dhahabu mwaka 1879 — kila dola iliyokuwa katika mzunguko ikawa inaweza kukombolewa moja kwa moja kwa kiasi thabiti cha dhahabu, kwa raia wa kawaida, si serikali za kigeni tu. Uingereza ilikuwa imefanya hivyo miongo kadhaa mapema, mwaka 1821."
+  },
+  "b82bf23269fe": {
+   "en": "What is the key difference between a bar chart and a candlestick chart?",
+   "sw": "Ni tofauti gani kuu kati ya chati ya vipau na chati ya mishumaa?"
+  },
+  "ba326a964bb0": {
+   "en": "The practice of identifying a risk, deciding whether it's worth taking, and — if so — actively controlling how much that risk could cost you. This applies identically whether you're trading a currency, a stock, or a crypto asset.",
+   "sw": "Utaratibu wa kutambua hatari, kuamua kama inastahili kuchukuliwa, na — kama ndiyo — kudhibiti kwa bidii kiasi ambacho hatari hiyo inaweza kukugharimu. Hii inatumika vivyo hivyo iwe unafanya biashara ya sarafu, hisa, au mali ya crypto."
+  },
+  "ba3f776ba70b": {
+   "en": "Central bank actions managing money supply and interest rates.",
+   "sw": "Hatua za benki kuu za kusimamia ugavi wa pesa na viwango vya riba."
+  },
+  "bba0f8c00323": {
+   "en": "IOU (Promissory Note)",
+   "sw": "Hati ya Ahadi ya Deni (IOU)"
+  },
+  "bc92f0d31405": {
+   "en": "Correct — a strict gold standard actually makes it harder, since fighting a recession usually requires expanding the money supply beyond what gold reserves allow.",
+   "sw": "Sahihi — kiwango kikali cha dhahabu kwa kweli hufanya iwe vigumu zaidi, kwa kuwa kupambana na mdororo mara nyingi kunahitaji kupanua ugavi wa pesa zaidi ya kile akiba za dhahabu zinavyoruhusu."
+  },
+  "be91940b79f4": {
+   "en": "Support",
+   "sw": "Msaada"
+  },
+  "bf5567cba8e0": {
+   "en": "Chapter 1 established that fiat currency has value purely because people trust it — and that trust can erode. Inflation is what that erosion looks like when you measure it.",
+   "sw": "Sura ya 1 ilibainisha kwamba sarafu ya fiat ina thamani kwa sababu tu watu wanaiamini — na imani hiyo inaweza kumomonyoka. Mfumuko wa bei ndivyo mmomonyoko huo unavyoonekana unapoupima."
+  },
+  "bfd1d44a9c3e": {
+   "en": "Inflation from rising production costs being passed on to consumers.",
+   "sw": "Mfumuko wa bei unaotokana na gharama za uzalishaji zinazopanda kupitishwa kwa walaji."
+  },
+  "bfdae7febe22": {
+   "en": "Spreading exposure across different assets, sectors, regions, or markets so that a single holding's poor performance doesn't dominate your overall result.",
+   "sw": "Kueneza uwazi katika mali, sekta, kanda, au masoko tofauti ili utendaji mbaya wa umiliki mmoja usitawale matokeo yako ya jumla."
+  },
+  "c0b4d1efce8a": {
+   "en": "The price at which you plan to exit if the position moves against you, capping your loss at a known, fixed amount.",
+   "sw": "Bei ambayo kwayo unapanga kutoka kama nafasi itasogea dhidi yako, ikiweka kikomo cha hasara yako kwa kiasi kinachojulikana na thabiti."
+  },
+  "c1c553d2da52": {
+   "en": "Correct — this is the precise, nuanced finding: real signal, not a guarantee of profit.",
+   "sw": "Sahihi — hili ndilo tokeo sahihi na lenye upambanuzi: ishara halisi, si uhakika wa faida."
+  },
+  "c35070bce1f5": {
+   "en": "Resistance",
+   "sw": "Upinzani"
+  },
+  "c463ddb110df": {
+   "en": "Risk Management",
+   "sw": "Usimamizi wa Hatari"
+  },
+  "c4b84652ea84": {
+   "en": "Downtrend",
+   "sw": "Mwelekeo wa Kushuka"
+  },
+  "c63ac25aa3e2": {
+   "en": "Slight inflation gives room for monetary policy to work and helps avoid the risks of deflation",
+   "sw": "Mfumuko mdogo wa bei hutoa nafasi kwa sera ya fedha kufanya kazi na husaidia kuepuka hatari za mporomoko wa bei"
+  },
+  "c832da7acc4e": {
+   "en": "Three words people use interchangeably, and shouldn't:",
+   "sw": "Maneno matatu ambayo watu huyatumia kwa kubadilishana, na hawapaswi:"
+  },
+  "c8beb6296b18": {
+   "en": "Which risk management technique do traders rely on most heavily to cap potential losses?",
+   "sw": "Ni mbinu gani ya usimamizi wa hatari ambayo wafanyabiashara huitegemea zaidi kuweka kikomo cha hasara zinazowezekana?"
+  },
+  "c9c894f1a2b4": {
+   "en": "A series of higher highs and higher lows.",
+   "sw": "Mfululizo wa vilele vya juu zaidi na mabonde ya juu zaidi."
+  },
+  "c9d12507e1d4": {
+   "en": "Gold pegged to the U.S. dollar, and every other currency pegged to the dollar.",
+   "sw": "Dhahabu iliyofungwa kwenye dola ya Marekani, na kila sarafu nyingine iliyofungwa kwenye dola."
+  },
+  "ca2e4ccf9b2b": {
+   "en": "Not quite — think about ten tech stocks that all move together. Does the count alone protect you?",
+   "sw": "Si sahihi kabisa — fikiria hisa kumi za teknolojia zinazosogea zote pamoja. Je, idadi peke yake inakulinda?"
+  },
+  "cabff63b82e7": {
+   "en": "An interwar variant of the gold standard in which some countries held actual gold reserves, while others held reserves of a gold-convertible currency (like the British pound) instead of gold itself — more fragile than the pre-war original.",
+   "sw": "Toleo la kati ya vita la kiwango cha dhahabu ambapo baadhi ya nchi zilishikilia akiba halisi za dhahabu, huku nyingine zikishikilia akiba za sarafu inayobadilishwa kuwa dhahabu (kama pauni ya Uingereza) badala ya dhahabu yenyewe — dhaifu zaidi kuliko asili ya kabla ya vita."
+  },
+  "cb298d46d875": {
+   "en": "Reading real-time trade price, size, and volume to gauge buying/selling pressure.",
+   "sw": "Kusoma bei ya biashara, ukubwa, na kiasi cha wakati halisi ili kupima shinikizo la kununua/kuuza."
+  },
+  "cb4fa13e5d37": {
+   "en": "Gold Standard",
+   "sw": "Kiwango cha Dhahabu"
+  },
+  "cba652ce507c": {
+   "en": "Inflation from demand growing faster than the economy's ability to supply goods and services.",
+   "sw": "Mfumuko wa bei unaotokana na mahitaji kukua kwa kasi zaidi kuliko uwezo wa uchumi wa kutoa bidhaa na huduma."
+  },
+  "cc0504612995": {
+   "en": "Many depositors demanding withdrawal at once, faster than the bank can pay.",
+   "sw": "Waweka-amana wengi kudai kutoa fedha kwa wakati mmoja, kwa kasi kuliko benki inavyoweza kulipa."
+  },
+  "cec1546bc784": {
+   "en": "Reserve Currency",
+   "sw": "Sarafu ya Akiba"
+  },
+  "cee48d350b71": {
+   "en": "Risk Transference",
+   "sw": "Kuhamisha Hatari"
+  },
+  "d05011242cbd": {
+   "en": "Correct — rejoining at the old pre-war rate overvalued the pound relative to the real post-war economy, straining it for years.",
+   "sw": "Sahihi — kurudi kwa kiwango cha zamani cha kabla ya vita kuliizidishia pauni thamani ikilinganishwa na uchumi halisi wa baada ya vita, na kuibana kwa miaka mingi."
+  },
+  "d0b0ff277cad": {
+   "en": "Not quite — a short profits on a fall, so ask which direction would hurt it. That's where the stop goes.",
+   "sw": "Si sahihi kabisa — short hupata faida bei ikishuka, hivyo jiulize ni mwelekeo upi ungeiumiza. Hapo ndipo stop huenda."
+  },
+  "d0f48856316c": {
+   "en": "Diagram: a farmer with vegetables wanting shoes cannot trade directly with a shoemaker who wants meat instead — money removes this problem",
+   "sw": "Mchoro: mkulima mwenye mboga anayetaka viatu hawezi kubadilishana moja kwa moja na mshona-viatu anayetaka nyama badala yake — pesa huondoa tatizo hili"
+  },
+  "d2274db6a900": {
+   "en": "An asset with zero/negative correlation specifically during market stress.",
+   "sw": "Mali yenye uwiano wa sifuri/hasi mahususi wakati wa shinikizo la soko."
+  },
+  "d29faae40082": {
+   "en": "It doesn't matter, as long as you have one",
+   "sw": "Haijalishi, mradi tu unayo"
+  },
+  "d38887fd05a3": {
+   "en": "Accepting a risk exists, but capping how much it can cost you. This is what a stop-loss does mechanically — and it's the technique you'll use the most, by far.",
+   "sw": "Kukubali kwamba hatari ipo, lakini kuweka kikomo cha kiasi inachoweza kukugharimu. Hiki ndicho stop-loss inachofanya kimitambo — na ndiyo mbinu utakayoitumia zaidi kuliko zote, kwa mbali."
+  },
+  "d48cf545e994": {
+   "en": "Why do most central banks target a low, positive inflation rate (commonly around 2%) instead of 0%?",
+   "sw": "Kwa nini benki kuu nyingi hulenga kiwango cha chini na chanya cha mfumuko wa bei (kwa kawaida karibu 2%) badala ya 0%?"
+  },
+  "d6d025ec1504": {
+   "en": "Gold was excellent as money for a long time — but as trade grew larger and more complex, it ran into four real problems: it could be secretly debased, its value could shift when new gold was discovered, it was heavy and risky to transport, and there was often not enough of it in circulation to match the pace of trade.",
+   "sw": "Dhahabu ilikuwa bora sana kama pesa kwa muda mrefu — lakini biashara ilipokua kubwa na tata zaidi, ilikumbana na matatizo manne halisi: ingeweza kupunguzwa ubora kwa siri, thamani yake ingeweza kubadilika dhahabu mpya ilipogunduliwa, ilikuwa nzito na hatari kusafirisha, na mara nyingi haikuwepo ya kutosha katika mzunguko kulingana na kasi ya biashara."
+  },
+  "d7355b6fa2ec": {
+   "en": "A price level where falling prices have repeatedly reversed upward.",
+   "sw": "Kiwango cha bei ambapo bei zinazoshuka zimegeuka kupanda mara kwa mara."
+  },
+  "d7aec54fb8a6": {
+   "en": "A safe haven is always gold",
+   "sw": "Kimbilio salama daima ni dhahabu"
+  },
+  "d89bd8af27f7": {
+   "en": "Exactly at your entry price",
+   "sw": "Hasa kwenye bei yako ya kuingia"
+  },
+  "daced5e6fbf9": {
+   "en": "The Foundation of Money and Trade",
+   "sw": "Msingi wa Fedha na Biashara"
+  },
+  "de662ae44c92": {
+   "en": "The 1944 agreement pegging currencies to the U.S. dollar, itself pegged to gold.",
+   "sw": "Makubaliano ya mwaka 1944 yaliyofunga sarafu kwenye dola ya Marekani, ambayo yenyewe ilifungwa kwenye dhahabu."
+  },
+  "de7637a77045": {
+   "en": "This closes the loop on everything Foundations has covered. A chart, a candlestick pattern, a support level — all of it is information. None of it is a decision by itself. Risk management is what turns information into a controlled decision. A perfect read of a chart, paired with no risk management, is still a losing strategy waiting to happen. A mediocre read, paired with real risk management, can still be around to trade another day.",
+   "sw": "Hii inafunga mzunguko wa kila kitu ambacho Msingi umeshughulikia. Chati, mtindo wa mshumaa, kiwango cha msaada — vyote ni taarifa. Hakuna kimojawapo ni uamuzi chenyewe. Usimamizi wa hatari ndicho kinachogeuza taarifa kuwa uamuzi unaodhibitiwa. Usomaji kamili wa chati, ukiambatanishwa na kutokuwa na usimamizi wa hatari, bado ni mkakati wa hasara unaosubiri kutokea. Usomaji wa wastani, ukiambatanishwa na usimamizi halisi wa hatari, unaweza bado kubaki hai kufanya biashara siku nyingine."
+  },
+  "dee3d9f39de6": {
+   "en": "A deliberate reduction in a currency's official value, typically relative to another asset or currency.",
+   "sw": "Kupunguza kwa makusudi thamani rasmi ya sarafu, kwa kawaida ikilinganishwa na mali au sarafu nyingine."
+  },
+  "e0b0161e5560": {
+   "en": "Jesse Livermore built his reputation on tape reading, starting as a teenager reading ticker tape in the 1890s. His core idea: the tape records actual transactions, not opinions — and actual transactions reflect real buying and selling pressure in a way a chart, updated only after the fact, cannot. Ticker tape disappeared decades ago, replaced by Level II data and order-flow software — but the underlying idea survives in those modern tools.",
+   "sw": "Jesse Livermore alijenga sifa yake kwa kusoma tepu, akianza akiwa kijana akisoma tepu ya bei katika miaka ya 1890. Wazo lake kuu: tepu hurekodi miamala halisi, si maoni — na miamala halisi huonyesha shinikizo halisi la kununua na kuuza kwa njia ambayo chati, inayosasishwa baada tu ya tukio, haiwezi. Tepu ya bei ilitoweka miongo iliyopita, ikibadilishwa na data ya Level II na programu ya mtiririko wa maagizo — lakini wazo la msingi linaendelea kuishi katika zana hizo za kisasa."
+  },
+  "e11a26cb4603": {
+   "en": "Inflation below 2% cannot be accurately measured",
+   "sw": "Mfumuko wa bei chini ya 2% hauwezi kupimwa kwa usahihi"
+  },
+  "e13bfce7d0c0": {
+   "en": "Gold had become too cheap to be useful",
+   "sw": "Dhahabu ilikuwa imekuwa rahisi mno kuwa na manufaa"
+  },
+  "e1c8643596ac": {
+   "en": "A paper promise redeemable for a real asset on demand.",
+   "sw": "Ahadi ya karatasi inayoweza kukombolewa kwa mali halisi wakati wowote."
+  },
+  "e39ef73b80c4": {
+   "en": "It printed far too much money that year",
+   "sw": "Ilichapisha pesa nyingi mno mwaka huo"
+  },
+  "e503ffde1e27": {
+   "en": "Demand-Pull Inflation",
+   "sw": "Mfumuko wa Bei wa Kuvutwa na Mahitaji"
+  },
+  "e6e3b05d3688": {
+   "en": "Lend out or issue notes for more than it holds in reserve",
+   "sw": "Kukopesha au kutoa noti kwa kiasi kikubwa kuliko inachoshikilia kama akiba"
+  },
+  "e7206cb69d31": {
+   "en": "Not quite — re-read the EUR/USD example. The \"textbook\" direction didn't hold that time.",
+   "sw": "Si sahihi kabisa — soma tena mfano wa EUR/USD. Mwelekeo wa \"kitabu\" haukushikilia wakati ule."
+  },
+  "e72469262ed0": {
+   "en": "Risk Limitation",
+   "sw": "Kupunguza Hatari"
+  },
+  "e76b5488684c": {
+   "en": "Trading goods or services directly, without using money.",
+   "sw": "Kubadilishana bidhaa au huduma moja kwa moja, bila kutumia pesa."
+  },
+  "e7e3851c4d2d": {
+   "en": "Bretton Woods System",
+   "sw": "Mfumo wa Bretton Woods"
+  },
+  "e836fc27ef5d": {
+   "en": "Nixon Shock",
+   "sw": "Mshtuko wa Nixon"
+  },
+  "e889ba41a01c": {
+   "en": "Gold solved barter — but its own weight and fixed supply created problems that paper money was invented to fix.",
+   "sw": "Dhahabu ilitatua tatizo la kubadilishana bidhaa — lakini uzito wake na ugavi wake thabiti vilizua matatizo ambayo pesa za karatasi zilivumbuliwa kuyatatua."
+  },
+  "e95fdb2c337b": {
+   "en": "Double Coincidence of Wants",
+   "sw": "Sadfa Maradufu ya Mahitaji"
+  },
+  "e963e6384281": {
+   "en": "Connects closing prices over time with a single line. Simple and clear for spotting overall trend, but shows nothing about what happened within each period.",
+   "sw": "Huunganisha bei za kufunga kwa muda kwa mstari mmoja. Rahisi na wazi kwa kutambua mwelekeo wa jumla, lakini haionyeshi chochote kuhusu kilichotokea ndani ya kila kipindi."
+  },
+  "e9ccf670c346": {
+   "en": "Secretly reducing the precious-metal content of a coin.",
+   "sw": "Kupunguza kwa siri kiasi cha madini ya thamani katika sarafu."
+  },
+  "ea52d442acf9": {
+   "en": "Britain rejoined the gold standard in 1925, at the same rate the pound held before the war — a decision that overvalued the pound relative to Britain's actual post-war economic strength, and strained its economy for years.",
+   "sw": "Uingereza ilirudi kwenye kiwango cha dhahabu mwaka 1925, kwa kiwango kile kile ambacho pauni ilikuwa nacho kabla ya vita — uamuzi uliozidishia pauni thamani ikilinganishwa na nguvu halisi ya uchumi wa Uingereza baada ya vita, na kuubana uchumi wake kwa miaka mingi."
+  },
+  "ec1ee03dcb37": {
+   "en": "Barter",
+   "sw": "Kubadilishana Bidhaa"
+  },
+  "ed9c63be9661": {
+   "en": "Does It Actually Work? Evidence, Skepticism, and Making a Decision",
+   "sw": "Je, Kwa Kweli Inafanya Kazi? Ushahidi, Shaka, na Kufanya Uamuzi"
+  },
+  "ee6ce8cf5a3a": {
+   "en": "Inflation from rising production costs passed on to consumers.",
+   "sw": "Mfumuko wa bei unaotokana na gharama za uzalishaji zinazopanda kupitishwa kwa walaji."
+  },
+  "ee7458d1cab8": {
+   "en": "Entry Price",
+   "sw": "Bei ya Kuingia"
+  },
+  "ef393d6b4fa6": {
+   "en": "Support and resistance are not hard physical barriers. They can, and do, eventually break. Treat them as a probability, not a guarantee.",
+   "sw": "Msaada na upinzani si vizuizi vigumu vya kimwili. Vinaweza, na hutokea, kuvunjika hatimaye. Vichukulie kama uwezekano, si uhakika."
+  },
+  "ef444b53b80f": {
+   "en": "The price at which you plan to exit if the trade moves against you.",
+   "sw": "Bei ambayo kwayo unapanga kutoka kama biashara itasogea dhidi yako."
+  },
+  "f24c60ab59a5": {
+   "en": "A diversifier only applies to forex",
+   "sw": "Msambazaji hutumika kwa forex tu"
+  },
+  "f2ac0cf0bbe3": {
+   "en": "A medium of exchange (widely accepted in trade), a store of value (holds its worth over time so you can save it), and a unit of account (a common measure for comparing the value of very different things — how many chickens is a cow worth?).",
+   "sw": "Njia ya kubadilishana (inayokubalika kwa upana katika biashara), hifadhi ya thamani (inashikilia thamani yake kwa muda ili uweze kuiweka akiba), na kipimo cha hesabu (kipimo cha pamoja cha kulinganisha thamani ya vitu tofauti sana — ng'ombe ana thamani ya kuku wangapi?)."
+  },
+  "f341df7e616d": {
+   "en": "True or False: a strict gold standard makes it easier for a government to fight a recession.",
+   "sw": "Kweli au Uongo: kiwango kikali cha dhahabu hurahisisha serikali kupambana na mdororo wa uchumi."
+  },
+  "f3b9ba461034": {
+   "en": "Not quite — a trader with an excellent prediction record can still fail without proper risk management. One large, uncontrolled loss can erase many small wins.",
+   "sw": "Si sahihi kabisa — mfanyabiashara mwenye rekodi bora ya utabiri anaweza bado kushindwa bila usimamizi sahihi wa hatari. Hasara moja kubwa isiyodhibitiwa inaweza kufuta ushindi mdogo mwingi."
+  },
+  "f53ff1ed70de": {
+   "en": "An exchange rate set by open market supply and demand.",
+   "sw": "Kiwango cha ubadilishaji kilichowekwa na ugavi na mahitaji ya soko huria."
+  },
+  "f5eedb7a48e9": {
+   "en": "Bar Chart",
+   "sw": "Chati ya Vipau"
+  },
+  "f6362c968873": {
+   "en": "Inflation from demand growing faster than supply.",
+   "sw": "Mfumuko wa bei unaotokana na mahitaji kukua kwa kasi zaidi kuliko ugavi."
+  },
+  "f658f990dc86": {
+   "en": "Search any chart pattern's \"success rate\" and you'll find numbers like \"70% for head-and-shoulders\" or \"88% for a double bottom.\" These trace back overwhelmingly to one source: Thomas Bulkowski, a private investor who published his own backtested statistics in books and on a personal website — not peer-reviewed, not independently replicated, and by his own data, not stable across time (failure rates nearly doubled between the bullish 1990s and the more volatile 2000s).",
+   "sw": "Tafuta \"kiwango cha mafanikio\" cha mtindo wowote wa chati na utapata namba kama \"70% kwa head-and-shoulders\" au \"88% kwa double bottom.\" Hizi zinarudi kwa wingi mkubwa kwenye chanzo kimoja: Thomas Bulkowski, mwekezaji binafsi aliyechapisha takwimu zake mwenyewe za majaribio ya nyuma katika vitabu na kwenye tovuti binafsi — hazikukaguliwa na wenzake, hazikurudiwa kwa kujitegemea, na kwa mujibu wa data yake mwenyewe, si thabiti kwa muda (viwango vya kushindwa vilikaribia kuongezeka mara mbili kati ya miaka ya 1990 ya kupanda na miaka ya 2000 yenye mtikisiko zaidi)."
+  },
+  "f6b69d157004": {
+   "en": "The price at which you actually open a position.",
+   "sw": "Bei ambayo kwayo unafungua nafasi hasa."
+  },
+  "f6c1c9bfcd4f": {
+   "en": "A paper document promising the holder can redeem it for a real asset — in this case gold — on demand. Merchant receipts like this existed in China as early as the 7th century; goldsmiths in 17th-century England ran a very similar system.",
+   "sw": "Hati ya karatasi inayoahidi kwamba mwenye nayo anaweza kuikomboa kwa mali halisi — katika kesi hii dhahabu — anapotaka. Risiti za wafanyabiashara kama hizi zilikuwepo China mapema kama karne ya 7; wahunzi wa dhahabu katika Uingereza ya karne ya 17 waliendesha mfumo unaofanana sana."
+  },
+  "f6cf7a718b10": {
+   "en": "In prisoner-of-war camps during the Second World War, cigarettes functioned as real, working currency — divisible, portable, and valued by everyone (even non-smokers) because everyone knew everyone else would accept them. Prices were quoted \"in cigarettes,\" debts were tracked in cigarettes, and the camp's money supply rose and fell with Red Cross parcel deliveries. This is a real, documented case (R.A. Radford's 1945 account of a WWII POW camp economy) — and it's the cleanest proof that money is about trust and function, not what it's made of.",
+   "sw": "Katika kambi za wafungwa wa vita wakati wa Vita vya Pili vya Dunia, sigara zilifanya kazi kama sarafu halisi inayofanya kazi — zinazoweza kugawanywa, kubebeka, na kuthaminiwa na kila mtu (hata wasiovuta) kwa sababu kila mtu alijua kwamba kila mtu mwingine angezikubali. Bei zilinukuliwa \"kwa sigara,\" madeni yalifuatiliwa kwa sigara, na kiasi cha pesa cha kambi kilipanda na kushuka kulingana na uwasilishaji wa vifurushi vya Msalaba Mwekundu. Hii ni kesi halisi iliyorekodiwa (maelezo ya R.A. Radford ya mwaka 1945 kuhusu uchumi wa kambi ya wafungwa wa Vita vya Pili vya Dunia) — na ndio uthibitisho ulio wazi zaidi kwamba pesa inahusu imani na kazi, si kile iliyotengenezwa nacho."
+  },
+  "f6f1642fcc79": {
+   "en": "The possibility a decision doesn't go as intended, exposing you to loss.",
+   "sw": "Uwezekano kwamba uamuzi hauendi kama ulivyokusudiwa, ukikuweka wazi kwa hasara."
+  },
+  "f6f81c6b8890": {
+   "en": "This worked for a while — countries could hold U.S. dollars as reserves instead of physically shipping gold, making cross-border trade faster and cheaper. But a structural problem was building underneath it.",
+   "sw": "Hii ilifanya kazi kwa muda — nchi zingeweza kushikilia dola za Marekani kama akiba badala ya kusafirisha dhahabu kimwili, na kufanya biashara ya kuvuka mipaka iwe ya haraka na ya bei nafuu zaidi. Lakini tatizo la kimuundo lilikuwa likijengeka chini yake."
+  },
+  "f72b0938a865": {
+   "en": "True or False: in a short position, your stop-loss is placed below your entry price.",
+   "sw": "Kweli au Uongo: katika nafasi ya short, stop-loss yako inawekwa chini ya bei yako ya kuingia."
+  },
+  "f802fb679600": {
+   "en": "On August 15, 1971, President Nixon announced the U.S. would suspend the dollar's convertibility into gold — \"closing the gold window.\" What was framed as temporary turned out to be permanent. A brief patch (the Smithsonian Agreement, December 1971) failed, and by 1973 major currencies had abandoned fixed pegs entirely.",
+   "sw": "Tarehe 15 Agosti 1971, Rais Nixon alitangaza kwamba Marekani ingesimamisha ubadilishaji wa dola kuwa dhahabu — \"kufunga dirisha la dhahabu.\" Kilichowasilishwa kama cha muda kiligeuka kuwa cha kudumu. Kiraka cha muda mfupi (Makubaliano ya Smithsonian, Desemba 1971) kilishindwa, na kufikia mwaka 1973 sarafu kuu zilikuwa zimeacha vifungo thabiti kabisa."
+  },
+  "f951fe1c2c79": {
+   "en": "Same three prices, opposite arrangement — because the direction you're betting on is opposite too.",
+   "sw": "Bei zile zile tatu, mpangilio wa kinyume — kwa sababu mwelekeo unaoubashiri nao ni wa kinyume."
+  },
+  "f96dbb4dd373": {
+   "en": "In late 2021, U.S. inflation ran notably higher than Eurozone inflation. The textbook expectation was a weaker dollar. Instead, the dollar traded near a 16-month high against the euro — fears of renewed European COVID lockdowns outweighed the inflation differential. The relationship wasn't wrong; it was overridden.",
+   "sw": "Mwishoni mwa mwaka 2021, mfumuko wa bei wa Marekani ulikuwa juu zaidi kwa kiasi kikubwa kuliko wa Eneo la Euro. Matarajio ya kitabu yalikuwa dola dhaifu. Badala yake, dola ilifanyiwa biashara karibu na kiwango cha juu zaidi cha miezi 16 dhidi ya euro — hofu ya kufungwa upya kwa Ulaya kwa sababu ya COVID zilizidi tofauti ya mfumuko wa bei. Uhusiano haukuwa batili; ulizidiwa nguvu tu."
+  },
+  "f9ae928b6083": {
+   "en": "Forex: central banks fight high inflation by raising interest rates, which tends to attract foreign capital and strengthen a currency.",
+   "sw": "Forex: benki kuu hupambana na mfumuko mkubwa wa bei kwa kupandisha viwango vya riba, jambo linaloelekea kuvutia mtaji wa kigeni na kuimarisha sarafu."
+  },
+  "fa650a0b1178": {
+   "en": "Same data as a bar chart, with a colored body for fast visual reading.",
+   "sw": "Data ile ile kama chati ya vipau, ikiwa na mwili wenye rangi kwa usomaji wa haraka wa kuona."
+  },
+  "fadce2ca1447": {
+   "en": "An asset with an average zero/negative correlation across all conditions.",
+   "sw": "Mali yenye uwiano wa wastani wa sifuri/hasi katika hali zote."
+  },
+  "fb1fb3fecbe0": {
+   "en": "Take-Profit",
+   "sw": "Take-Profit"
+  },
+  "fbe543826ff6": {
+   "en": "The Rise and Fall of the Gold Standard",
+   "sw": "Kupanda na Kuanguka kwa Kiwango cha Dhahabu"
+  },
+  "fca6d4d4a274": {
+   "en": "Chart patterns are completely useless",
+   "sw": "Mitindo ya chati haina manufaa kabisa"
+  },
+  "fd66f3ee7210": {
+   "en": "Hedge",
+   "sw": "Kinga"
+  },
+  "fe14dfb6474c": {
+   "en": "The end of the dollar's convertibility to gold",
+   "sw": "Mwisho wa ubadilishaji wa dola kuwa dhahabu"
+  },
+  "fe41cb340752": {
+   "en": "Something widely accepted in trade for goods and services.",
+   "sw": "Kitu kinachokubalika kwa upana katika biashara kwa bidhaa na huduma."
+  },
+  "ff246795b616": {
+   "en": "A position that profits if the price goes down. You're effectively selling now, expecting to buy back later at a lower price.",
+   "sw": "Nafasi inayopata faida kama bei itashuka. Kwa hakika unauza sasa, ukitarajia kununua tena baadaye kwa bei ya chini zaidi."
+  }
+ },
+ "keepAsIs": {
+  "365fdada4251": "Glossary convention: 'stop-loss' is the term used in East African trading contexts; a forced Swahili coinage would be less clear than the English.",
+  "fb1fb3fecbe0": "Glossary convention: 'take-profit' is used as-is alongside stop-loss; translating one and not the other would be worse than keeping both."
+ }
+}

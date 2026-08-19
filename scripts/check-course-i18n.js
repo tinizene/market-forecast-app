@@ -51,7 +51,10 @@ function main() {
   for (const lang of langs) {
     const raw = JSON.parse(fs.readFileSync(path.join(OVERLAY_DIR, `${lang}.json`), 'utf8'));
     const strings = raw.strings || raw;
-    const keepAsIs = new Set(raw.keepAsIs || []);
+    // Object (key -> why) since the reason matters to a reviewer; an array is still
+    // accepted so an older overlay does not have to be rewritten to be checked.
+    const keepRaw = raw.keepAsIs || {};
+    const keepAsIs = new Set(Array.isArray(keepRaw) ? keepRaw : Object.keys(keepRaw));
 
     let translated = 0;
     for (const [key, entry] of Object.entries(strings)) {

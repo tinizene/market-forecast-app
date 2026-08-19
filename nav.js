@@ -31,7 +31,14 @@
     var i18n = window.SCERE_I18N;
     if (!i18n || i18n.languages.length < 2) return '';
     var current = i18n.lang();
-    var options = i18n.languages.map(function (l) {
+    // A preview language is not offered, but if you are reading one the control has to
+    // say so — a switcher showing "English" on a Swahili page is worse than no switcher.
+    var offered = i18n.languages.slice();
+    if (!offered.some(function (l) { return l.code === current; })) {
+      var active = i18n.entry && i18n.entry();
+      if (active) offered.push(active);
+    }
+    var options = offered.map(function (l) {
       return '<option value="' + l.code + '"' + (l.code === current ? ' selected' : '') + '>'
         + l.label + '</option>';
     }).join('');

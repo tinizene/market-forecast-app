@@ -24,15 +24,32 @@
 
   // Order follows course/Forex_Course_Style_Guide.md section 6. `dir` is declared now
   // so that adding Arabic later is a data change rather than a code change.
-  // `available` is what the switcher offers. A language with no i18n/<code>.json yet is
-  // declared here but not offered, so shipping one is dropping in the file and flipping
-  // this flag — never a half-translated switcher entry that looks broken to the person
-  // who picks it.
+  //
+  // Two flags, because "offered to everyone" and "reachable at all" are different
+  // states and collapsing them costs you the one in between.
+  //
+  //   available — the switcher offers it, and the pages carry an hreflang alternate for
+  //     it. A language with no i18n/<code>.json is declared here and not offered, so
+  //     shipping one is dropping in the file and flipping this flag, never a
+  //     half-translated entry that looks broken to whoever picks it.
+  //   preview   — not offered and not advertised to crawlers, but ?lang=<code> still
+  //     resolves. This is the state a finished translation sits in while it waits for
+  //     native review: the reviewer reads it on the real pages, the browser gate keeps
+  //     verifying it end to end, and no visitor meets it by accident. Without this the
+  //     two are one switch, and hiding an unreviewed translation would also make it
+  //     untestable — which is exactly when it would start to rot.
+  //
+  // scripts/check-i18n.js enforces the pairing: available languages must have a locale
+  // file and an hreflang alternate on every page, preview languages must have neither.
   var LANGUAGES = [
     { code: 'en', label: 'English', dir: 'ltr', available: true },
     { code: 'fr', label: 'Français', dir: 'ltr', available: true },
     { code: 'pt', label: 'Português', dir: 'ltr', available: false },
-    { code: 'sw', label: 'Kiswahili', dir: 'ltr', available: true },
+    // Complete, machine-translated, awaiting the native review that course/CLAUDE.md
+    // and Forex_Course_Style_Guide.md section 5 require before publication. Flip to
+    // available once that review is merged — the gate will then ask you for the
+    // hreflang alternates, so the two cannot drift apart.
+    { code: 'sw', label: 'Kiswahili', dir: 'ltr', available: false, preview: true },
   ];
   var DEFAULT = 'en';
   var STORE_KEY = 'scere_lang';
@@ -40,10 +57,12 @@
   var strings = {};          // the active locale; empty for English
   var active = DEFAULT;
 
+  // Resolvable, which is broader than offered: a preview language answers to an
+  // explicit ?lang= and to a stored preference, it is simply not advertised.
   function supported(code) {
     var c = String(code || '').toLowerCase();
     for (var i = 0; i < LANGUAGES.length; i++) {
-      if (LANGUAGES[i].code === c) return LANGUAGES[i].available;
+      if (LANGUAGES[i].code === c) return !!(LANGUAGES[i].available || LANGUAGES[i].preview);
     }
     return false;
   }
@@ -237,6 +256,12 @@
     ready: ready,
     lang: function () { return active; },
     languages: LANGUAGES.filter(function (l) { return l.available; }),
+    // The active language's entry even when it is a preview, so the switcher can show
+    // what you are actually reading rather than silently displaying the wrong label.
+    entry: function () {
+      for (var i = 0; i < LANGUAGES.length; i++) if (LANGUAGES[i].code === active) return LANGUAGES[i];
+      return null;
+    },
     isDefault: function () { return active === DEFAULT; },
     setLanguage: setLanguage,
     supported: supported,

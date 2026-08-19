@@ -30,7 +30,7 @@
 // their routes redirect home (see vercel.json) and precaching them would keep
 // serving dead pages to anyone who had already visited. The version bump is what
 // evicts them from existing installs.
-const CACHE_NAME = 'scere-training-v21';
+const CACHE_NAME = 'scere-training-v22';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

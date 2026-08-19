@@ -164,13 +164,24 @@ function cdpClient(ws) {
   const enH1 = await evalJs("document.querySelector('h1').textContent.trim()");
   check('English: homepage h1 present', enH1.length > 0, JSON.stringify(enH1.slice(0, 60)));
 
+  // What the switcher offers is what the app promises, and that is `available` — not
+  // every file in i18n/. A translation awaiting review sits in `preview`: reachable by
+  // ?lang=, deliberately not advertised. Asserting against the directory listing would
+  // make hiding one look like a regression, so ask the page what it offers.
+  const offered = await evalJs(`(()=>{const l=window.SCERE_I18N&&window.SCERE_I18N.languages;
+    return l ? l.map(x=>x.code) : null;})()`);
   const switcher = await evalJs(`(()=>{const s=document.querySelector('.nav-lang-select');
     return s ? [...s.options].map(o=>o.value) : null;})()`);
-  check('switcher offers exactly the locales that have files',
-    !!switcher && switcher.join(',') === ['en', ...LOCALES].join(','),
-    switcher ? switcher.join(',') : 'no switcher rendered');
+  check('switcher offers exactly the languages marked available',
+    !!switcher && !!offered && switcher.join(',') === offered.join(','),
+    switcher ? `switcher ${switcher.join(',')} vs available ${(offered || []).join(',')}` : 'no switcher rendered');
 
-  console.log(`  locales under test: ${LOCALES.join(', ')}`);
+  // Every locale file is still exercised end to end, offered or not. Hiding a
+  // translation must not mean it stops being tested — that is the window in which it
+  // is most likely to rot, because nobody is looking at it.
+  const previewOnly = LOCALES.filter((l) => !(offered || []).includes(l));
+  console.log(`  locales under test: ${LOCALES.join(', ')}`
+    + (previewOnly.length ? `  (preview, not offered: ${previewOnly.join(', ')})` : ''));
 
   for (const LANG of LOCALES) {
     const strings = catalogue[LANG];

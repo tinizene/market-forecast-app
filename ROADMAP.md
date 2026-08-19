@@ -78,8 +78,8 @@ because renaming a cookie signs every existing customer out.
 
 ## 3. Translation into several languages
 
-**The interface is done in French and Swahili. The Swahili course is fully translated
-and awaiting native review. Everything needed to add a language is in place.**
+**French is live. Swahili is complete — interface and all four course tracks — and sits
+in preview behind the switcher until a native speaker has read it.**
 
 **Shipped — the interface.** `i18n.js` is the runtime: it resolves the language from
 `?lang=`, then a stored preference, then the browser, then English; sets `<html lang>`
@@ -94,9 +94,18 @@ both complete. That covers the six served pages *and* the two renderers — `lea
 tagging only the `.html` files would have left the entire course UI in English while
 looking finished.
 
-The language switcher is in the nav, offering only languages that have a locale file
-(`available: true` in `LANGUAGES`), so a half-translated entry can never be picked.
-`hreflang` alternates are on all six pages.
+The language switcher offers only languages marked `available: true`, so a
+half-translated entry can never be picked, and `hreflang` alternates on all six pages
+match that list exactly.
+
+`LANGUAGES` carries two flags rather than one, because *offered to everyone* and
+*reachable at all* are different states and collapsing them costs you the one in
+between. `available` puts a language in the switcher and in the `hreflang` alternates.
+`preview` leaves it out of both while keeping `?lang=<code>` working — which is where a
+finished translation sits while it waits for review: the reviewer reads it on the real
+pages, the browser gate keeps verifying it end to end, and no visitor meets it by
+accident. Hiding it behind the single flag would also have made it untestable, which is
+exactly when a translation starts to rot.
 
 **Shipped — the Swahili course.** All 4,706 unique prose strings across the four tracks
 are translated, compiled to `data/course/<track>.sw.json` at 100% coverage.
@@ -116,6 +125,11 @@ awaiting native review, `_conventions` records the six rules it was written to, 
 `keepAsIs` records every term deliberately left in English **with the reason for each**,
 so a reviewer can disagree with a decision rather than wonder whether it was an oversight.
 
+**Swahili is in preview, not published.** `available: false, preview: true`. The
+switcher shows English and French; `?lang=sw` works for anyone given the link. Publishing
+is a one-line flag flip plus restoring the `sw` hreflang alternates on the six pages —
+and `check-i18n.js` fails if you do one without the other, so they cannot drift apart.
+
 **Outstanding — native review.** `course/CLAUDE.md` and `Forex_Course_Style_Guide.md` §5
 require native-speaker review before publication, and that has not happened. Run
 `node scripts/build-review-doc.js` to produce `review/sw-*.html`: English and Swahili
@@ -129,8 +143,11 @@ statically — `middleware.js` hard-blocks `/data/course/*` for the same reason.
 Four gates hold all of this:
 
 - `scripts/check-i18n.js` — missing keys, orphans, locale parity, `{placeholder}` and
-  markup parity, and drift between the English in `en.json` and the English in the
-  source. Static, fast, no browser.
+  markup parity, drift between the English in `en.json` and the English in the source,
+  and the availability contract: an offered language must have a locale file and an
+  `hreflang` alternate on every page, a preview language must have neither, and a locale
+  file that is neither offered nor in preview is unreachable and therefore unverified.
+  Static, fast, no browser.
 - `scripts/check-course-i18n.js` — the course gate, and it checks what a *language*
   proofreader cannot: that every number survives as a multiset, that currency and percent
   markers are intact, that no entry is orphaned by an English edit, and that nothing is
@@ -141,7 +158,9 @@ Four gates hold all of this:
 - `scripts/verify-i18n-browser.js` — 43 assertions in headless Chromium against the real
   `api/*` handlers: the switch works end to end, the preference persists, each renderer
   produces the target language, English is unaffected, and no catalogue string survives
-  untranslated. Skips cleanly where there is no Chromium.
+  untranslated. It exercises **every** locale file, offered or in preview, and asserts
+  the switcher matches what the app marks available rather than what happens to be in
+  `i18n/`. Skips cleanly where there is no Chromium.
 - `scripts/build-course-i18n.js` — recompiles the served files and reports coverage per
   track, so a drop is visible rather than inferred.
 

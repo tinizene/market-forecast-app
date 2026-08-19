@@ -46,6 +46,43 @@ const USED_FROM_JS = [/^ui\./, /^nav\./];
 const problems = [];
 const note = (msg) => problems.push(msg);
 
+// The declared languages, read out of i18n.js. Parsed rather than imported because
+// i18n.js is a browser IIFE with no module surface — and duplicating the list here
+// would create exactly the drift this gate exists to catch.
+function declaredLanguages() {
+  const src = fs.readFileSync(path.join(ROOT, 'i18n.js'), 'utf8');
+  const block = src.match(/var LANGUAGES = \[([\s\S]*?)\];/);
+  if (!block) { note('i18n.js: could not find the LANGUAGES array'); return []; }
+  return [...block[1].matchAll(/\{[^}]*\}/g)].map((m) => {
+    const entry = m[0];
+    const code = (entry.match(/code:\s*'([^']+)'/) || [])[1];
+    return {
+      code,
+      available: /available:\s*true/.test(entry),
+      preview: /preview:\s*true/.test(entry),
+    };
+  }).filter((l) => l.code);
+}
+
+// hreflang alternates tell a crawler "this page exists in that language". Advertising a
+// language the switcher does not offer is how an unreviewed translation ends up indexed,
+// and how a language with no locale file at all (pt, for a long time) ends up pointing
+// crawlers at a page that silently renders in English. The two lists have to agree.
+function checkHreflang(languages) {
+  const offered = languages.filter((l) => l.available).map((l) => l.code).sort();
+  for (const page of PAGES) {
+    const src = fs.readFileSync(path.join(ROOT, page), 'utf8');
+    const found = [...src.matchAll(/<link rel="alternate" hreflang="([^"]+)"/g)]
+      .map((m) => m[1]).filter((c) => c !== 'x-default').sort();
+    if (found.join(',') !== offered.join(',')) {
+      note(`${page}: hreflang alternates are [${found.join(', ') || 'none'}] but the ` +
+        `switcher offers [${offered.join(', ')}] — a language is advertised to crawlers ` +
+        `that visitors cannot pick, or offered without being advertised`);
+    }
+    if (!/hreflang="x-default"/.test(src)) note(`${page}: no hreflang="x-default" alternate`);
+  }
+}
+
 // Pulls key -> English out of the renderers, so en.json can be checked against the
 // source it came from rather than trusted.
 function keysInRenderers() {
@@ -171,9 +208,28 @@ function main() {
     note(`en.json: "${key}" is not referenced by any page or renderer`);
   }
 
+  const languages = declaredLanguages();
+  checkHreflang(languages);
+
   const locales = fs.readdirSync(I18N)
     .filter((f) => f.endsWith('.json') && f !== 'en.json')
     .map((f) => f.replace('.json', ''));
+
+  // A language cannot be offered without a catalogue to offer, and a catalogue that is
+  // neither offered nor in preview is dead weight nobody will notice has rotted.
+  for (const l of languages) {
+    if (l.available && l.code !== 'en' && !locales.includes(l.code)) {
+      note(`i18n.js: "${l.code}" is marked available but has no i18n/${l.code}.json`);
+    }
+  }
+  for (const code of locales) {
+    const l = languages.find((x) => x.code === code);
+    if (!l) note(`i18n/${code}.json exists but ${code} is not declared in i18n.js`);
+    else if (!l.available && !l.preview) {
+      note(`i18n/${code}.json exists but ${code} is neither available nor preview — ` +
+        `it is unreachable, so nothing verifies it`);
+    }
+  }
 
   for (const code of locales) {
     const loc = flatten(JSON.parse(fs.readFileSync(path.join(I18N, `${code}.json`), 'utf8')));
@@ -194,6 +250,10 @@ function main() {
   }
 
   console.log(`  en.json   ${Object.keys(en).length} keys — ${inHtml.size} from ${PAGES.length} pages, ${inJs.size} from ${RENDERERS.length} renderers`);
+  const offered = languages.filter((l) => l.available).map((l) => l.code);
+  const previewing = languages.filter((l) => l.preview && !l.available).map((l) => l.code);
+  console.log(`  offered: ${offered.join(', ')}`
+    + (previewing.length ? `   preview (reachable by ?lang=, not advertised): ${previewing.join(', ')}` : ''));
 
   if (problems.length) {
     console.error(`\n${problems.length} i18n problem(s):`);

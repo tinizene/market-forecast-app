@@ -609,10 +609,16 @@ design proposals asserted "verified high contrast" for pairs that measured 2.49:
 - `privacy-policy.html` — plain-language privacy summary
 - `i18n.js`, `i18n/*.json` — translation runtime and locale catalogues. English stays
   inline in the pages and `data-i18n` keys sit alongside it, so English needs no fetch
-  and a failed locale load degrades to a correct English page. Adding a language means
-  writing `i18n/<code>.json` and flipping its `available` flag in `LANGUAGES`
+  and a failed locale load degrades to a correct English page. `LANGUAGES` has two
+  flags: `available` puts a language in the switcher and the `hreflang` alternates,
+  `preview` keeps `?lang=<code>` working while advertising it nowhere — the state a
+  finished translation sits in while awaiting review, so it stays testable instead of
+  going dark. Swahili is in preview; French is live
 - `scripts/check-i18n.js` — static i18n gate: missing/orphan keys, locale parity,
-  `{placeholder}` and markup parity, and English drift between `en.json` and the source
+  `{placeholder}` and markup parity, English drift between `en.json` and the source, and
+  the availability contract — an offered language needs a locale file and an `hreflang`
+  alternate on every page, a preview language needs neither, and neither-nor is
+  unreachable
 - `scripts/verify-i18n-browser.js`, `scripts/lib/local-server.js` — end-to-end i18n check
   in headless Chromium against the real `api/*` handlers; skips where no browser exists
 - `data/course/i18n/<lang>.json` — the course translation **overlay**: `sha256(english)[:12]`

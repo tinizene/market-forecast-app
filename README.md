@@ -615,6 +615,27 @@ design proposals asserted "verified high contrast" for pairs that measured 2.49:
   `{placeholder}` and markup parity, and English drift between `en.json` and the source
 - `scripts/verify-i18n-browser.js`, `scripts/lib/local-server.js` — end-to-end i18n check
   in headless Chromium against the real `api/*` handlers; skips where no browser exists
+- `data/course/i18n/<lang>.json` — the course translation **overlay**: `sha256(english)[:12]`
+  → `{en, <lang>}`, so English stays the single source of truth, a proofreader reads both
+  languages side by side, an English edit orphans its old translation loudly instead of
+  going stale in silence, and anything untranslated falls back to English. Carries its own
+  provenance in `_note`, `_conventions` and `keepAsIs` (every term deliberately left in
+  English, with the reason for each). Swahili is complete: 4,706 strings, all four tracks
+- `scripts/extract-course-strings.js` — the translation work list, in reading order rather
+  than alphabetical so one lesson's sentences stay together; `--todo <lang>` skips what is done
+- `scripts/merge-translation.js` — merges a `{key: translation}` batch into an overlay,
+  refusing unknown keys; `"__keepAsIs": {key: reason}` records a deliberate non-translation
+- `scripts/build-course-i18n.js` — applies an overlay to produce `data/course/<track>.<lang>.json`
+- `scripts/check-course-i18n.js` — the course gate. Checks what a *language* proofreader
+  cannot: number multisets, currency and percent markers, orphans, and silent
+  identical-to-English entries. It caught two lost `%` markers and two clock times
+  localised into Swahili traditional time, which is correct Swahili and wrong in a lesson
+  about an economic calendar that displays international time
+- `scripts/build-review-doc.js` — builds the native-speaker proofreading document:
+  English and translation side by side in reading order, conventions and
+  kept-in-English decisions surfaced, translation column editable, emitting a JSON batch
+  that `merge-translation.js` consumes. Output is gitignored — it is the whole paid
+  course as static HTML, and this site deploys statically
 - `FORK-NOTES.md` — what changed from the weather app and why
 - `fx-intelligence.html`, `fx-intelligence.js` — FX Intelligence Desk page
 - `scripts/parse-fx-report.js` — markdown → JSON parser for the daily FX dashboard report

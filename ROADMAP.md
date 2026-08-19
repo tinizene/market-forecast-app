@@ -78,8 +78,8 @@ because renaming a cookie signs every existing customer out.
 
 ## 3. Translation into several languages
 
-**The interface half is done. The lesson content half is not, and is much the larger of
-the two.**
+**The interface is done in French and Swahili. The Swahili course is fully translated
+and awaiting native review. Everything needed to add a language is in place.**
 
 **Shipped — the interface.** `i18n.js` is the runtime: it resolves the language from
 `?lang=`, then a stored preference, then the browser, then English; sets `<html lang>`
@@ -88,35 +88,67 @@ later, via a MutationObserver. English stays inline in the HTML as the fallback,
 failed locale fetch degrades to a correct English page rather than to blank elements,
 and deleting `i18n.js` would leave the site working.
 
-351 strings are extracted into `i18n/en.json`, and `i18n/fr.json` is complete. That
-covers the six served pages *and* the two renderers — `learn.js` and `research.js` build
-most of the product surface with `innerHTML` after a fetch, so tagging only the `.html`
-files would have left the entire course UI in English while looking finished.
+351 strings are extracted into `i18n/en.json`; `i18n/fr.json` and `i18n/sw.json` are
+both complete. That covers the six served pages *and* the two renderers — `learn.js` and
+`research.js` build most of the product surface with `innerHTML` after a fetch, so
+tagging only the `.html` files would have left the entire course UI in English while
+looking finished.
 
 The language switcher is in the nav, offering only languages that have a locale file
 (`available: true` in `LANGUAGES`), so a half-translated entry can never be picked.
 `hreflang` alternates are on all six pages.
 
-Two gates hold it:
+**Shipped — the Swahili course.** All 4,706 unique prose strings across the four tracks
+are translated, compiled to `data/course/<track>.sw.json` at 100% coverage.
+`api/course.js` serves them with per-track fallback, so an untranslated track would
+degrade to English rather than break.
+
+It is stored as an **overlay**, `data/course/i18n/sw.json`: `sha256(english)[:12]` →
+`{en, sw}`. The English lesson JSON stays the single source of truth. Three things
+follow from that shape, and they are the whole reason for it. A proofreader reads both
+languages side by side, which is the form review actually needs. When English is edited
+its hash changes, the old entry is orphaned, and the gate says so — where a parallel
+translated tree would go stale in silence. And anything untranslated falls back
+automatically, so a partial translation is a usable page rather than a broken one.
+
+The overlay carries its own provenance: `_note` records that it is machine-translated and
+awaiting native review, `_conventions` records the six rules it was written to, and
+`keepAsIs` records every term deliberately left in English **with the reason for each**,
+so a reviewer can disagree with a decision rather than wonder whether it was an oversight.
+
+**Outstanding — native review.** `course/CLAUDE.md` and `Forex_Course_Style_Guide.md` §5
+require native-speaker review before publication, and that has not happened. Run
+`node scripts/build-review-doc.js` to produce `review/sw-*.html`: English and Swahili
+side by side in reading order, grouped by chapter and lesson, with the conventions and
+the kept-in-English decisions surfaced at the top. The Swahili column is editable in the
+browser and emits a JSON batch that `scripts/merge-translation.js` consumes directly, so
+a review comes back as a patch rather than as prose in an email. The output is
+gitignored: it is the entire paid course as static HTML, and this site deploys
+statically — `middleware.js` hard-blocks `/data/course/*` for the same reason.
+
+Four gates hold all of this:
 
 - `scripts/check-i18n.js` — missing keys, orphans, locale parity, `{placeholder}` and
   markup parity, and drift between the English in `en.json` and the English in the
   source. Static, fast, no browser.
-- `scripts/verify-i18n-browser.js` — 28 assertions in headless Chromium against the real
+- `scripts/check-course-i18n.js` — the course gate, and it checks what a *language*
+  proofreader cannot: that every number survives as a multiset, that currency and percent
+  markers are intact, that no entry is orphaned by an English edit, and that nothing is
+  silently identical to the English unless `keepAsIs` says why. It earned its place
+  immediately, catching two lost `%` markers and two clock times localised into Swahili
+  traditional time — correct Swahili, wrong in a lesson about reading an economic
+  calendar that shows international time.
+- `scripts/verify-i18n-browser.js` — 43 assertions in headless Chromium against the real
   `api/*` handlers: the switch works end to end, the preference persists, each renderer
-  produces French, English is unaffected, and no catalogue string survives untranslated.
-  Skips cleanly where there is no Chromium.
+  produces the target language, English is unaffected, and no catalogue string survives
+  untranslated. Skips cleanly where there is no Chromium.
+- `scripts/build-course-i18n.js` — recompiles the served files and reports coverage per
+  track, so a drop is visible rather than inferred.
 
-**Outstanding — the lesson content.** `api/course.js` already takes `lang` and falls back
-per track, so `data/course/<track>.<lang>.json` can be dropped in beside the English and
-serve immediately. Nothing has been translated: that is ~116,000 words across 85 lessons
-per language, and it is deliberately not machine-translated. `course/CLAUDE.md` and
-`Forex_Course_Style_Guide.md` §5 both require native-speaker review before publication —
-the glossary itself still has 141 of 298 terms marked pending for exactly that reason.
-Translating the lessons is a commissioning decision, not a code task.
-
-To add a language: write `i18n/<code>.json`, flip `available` in `LANGUAGES`, run both
-gates. `pt` and `sw` are already declared and waiting on their files.
+To add a language: write `i18n/<code>.json`, flip `available` in `LANGUAGES`, then
+`node scripts/extract-course-strings.js --todo <code>` for the course work list and
+`scripts/merge-translation.js` to merge it back. `pt` is declared and waiting on its
+files.
 
 ---
 

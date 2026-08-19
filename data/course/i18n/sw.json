@@ -85,6 +85,10 @@
    "en": "You have already seen a pure version of this. In Chapter 1, Lesson 7, an algorithmic stablecoin held its peg because people believed it would hold. Confidence supported the mechanism, and the working mechanism supported confidence. When confidence broke, the same loop ran backwards and destroyed the peg it had been holding up. That was reflexivity in its most extreme form - the belief was the entire backing.",
    "sw": "Tayari umeona toleo safi la hili. Katika Sura ya 1, Somo la 7, sarafu imara ya kialgoriti ilishikilia pegi yake kwa sababu watu waliamini itashikilia. Ujasiri uliunga mkono utaratibu, na utaratibu uliofanya kazi uliunga mkono ujasiri. Ujasiri ulipovunjika, kitanzi kilekile kilikimbia nyuma na kikaharibu pegi ambayo kilikuwa kikiishikilia. Hiyo ilikuwa kujiakisi katika namna yake kali zaidi - imani ilikuwa msaada mzima."
   },
+  "0102094e4fae": {
+   "en": "Why does the valuation pillar not transfer from equities to most crypto assets?",
+   "sw": "Kwa nini nguzo ya tathmini haihamishiki kutoka hisa kwenda rasilimali nyingi za kripto?"
+  },
   "01095a84ef38": {
    "en": "Positioning and sentiment. In currencies this comes from futures positioning data. In equities the closest equivalents are short interest, fund flows and analyst estimate revisions. Chapter 5 gave both the reason to watch it and the reason not to trust a simple reading of it: GameStop had the most extreme short interest anywhere, and the regulator still found short covering was not what drove the price.",
    "sw": "Msimamo na hisia za soko. Katika sarafu hii hutoka data ya msimamo wa mikataba ya baadaye. Katika hisa vinavyokaribia zaidi ni maslahi ya uuzaji-mkopo, mitiririko ya mifuko na marekebisho ya makadirio ya wachambuzi. Sura ya 5 ilitoa sababu ya kuiangalia na sababu ya kutoamini usomaji rahisi wake: GameStop ilikuwa na maslahi makali zaidi ya uuzaji-mkopo popote, na mdhibiti bado alibaini kufunika uuzaji-mkopo si ndiko kulikoendesha bei."
@@ -193,6 +197,10 @@
    "en": "The reasoning is simple enough to hold in your head: to break even, total winnings must equal total losses, so (win rate times reward) must equal (loss rate times risk). Solve that and the winning fraction is 1 / (1 + R). You do not need to memorise the algebra — you need to remember that a better reward-to-risk ratio lowers the win rate you need, and a worse one raises it, fast.",
    "sw": "Hoja ni rahisi vya kutosha kuishikilia kichwani: ili kulingana, jumla ya ushindi lazima ilingane na jumla ya hasara, hivyo (kiwango cha ushindi mara tuzo) lazima kilingane na (kiwango cha hasara mara hatari). Tatua hilo na sehemu ya ushindi ni 1 / (1 + R). Huhitaji kukariri aljebra — unahitaji kukumbuka kwamba uwiano bora wa tuzo-kwa-hatari hushusha kiwango cha ushindi unachohitaji, na mbaya huupandisha, kwa kasi."
   },
+  "025aa3d4cfe0": {
+   "en": "Regimes deteriorate faster than they improve. A risk-on period builds over months and gives many opportunities to notice it. A shift into stress can complete in days, and in crypto sometimes in hours, because leverage unwinds mechanically rather than by decision. A plan that depends on reacting to a regime change is calibrated to the slower transition and will meet the faster one.",
+   "sw": "Tawala huzorota kwa kasi zaidi kuliko huboreka. Kipindi cha hatari-hai hujengeka kwa miezi na hutoa fursa nyingi za kukitambua. Kuhamia msongo kunaweza kukamilika ndani ya siku, na katika kripto wakati mwingine ndani ya masaa, kwa sababu mzingo hufunguka kimitambo badala ya kwa uamuzi. Mpango unaotegemea kuitikia mabadiliko ya utawala umepimwa kwa mabadiliko ya polepole nao utakutana na ya haraka."
+  },
   "026381cff4b9": {
    "en": "Once the Alameda balance sheet was public, why did withdrawing become the correct decision for every individual customer regardless of what they believed?",
    "sw": "Mara karatasi ya salio ya Alameda ilipokuwa ya umma, kwa nini kutoa kukawa uamuzi sahihi kwa kila mteja binafsi bila kujali walichokiamini?"
@@ -208,6 +216,10 @@
   "02a8c3eda57c": {
    "en": "The mechanism's weakness was understood before May 2022. The response had been to build a reserve of assets outside the system, so that a peg defence would not have to rely solely on minting LUNA. That reserve was held largely in Bitcoin by an organisation called the Luna Foundation Guard.",
    "sw": "Udhaifu wa utaratibu ulieleweka kabla ya Mei 2022. Mwitikio ulikuwa kujenga akiba ya rasilimali nje ya mfumo, ili ulinzi wa pegi usilazimike kutegemea kutengeneza LUNA pekee. Akiba hiyo ilishikiliwa hasa katika Bitcoin na shirika liitwalo Luna Foundation Guard."
+  },
+  "02af97ca5659": {
+   "en": "Issuance-funded reward",
+   "sw": "Zawadi inayofadhiliwa na utoaji"
   },
   "02b28a198100": {
    "en": "Not quite — the money at risk is 5,000 x 0.01 = 50 dollars and the stop distance is 2 x 1,900 = 3,800 dollars, so the size is 50 / 3,800 = 0.01316 Bitcoin, or about 789 dollars of exposure. The 0.18 Bitcoin answer is what a 278-dollar stop gives, which is the classic tight-stop error.",
@@ -340,6 +352,10 @@
   "04d6d403c223": {
    "en": "That a perfectly efficient market is impossible, because nobody would gather information if prices already reflected it",
    "sw": "Kwamba soko lenye ufanisi kamili haliwezekani, kwa sababu hakuna angekusanya taarifa kama bei tayari zingeziakisi"
+  },
+  "04e499c1421d": {
+   "en": "It is worth being explicit about how often this process should produce a position, because the honest answer surprises people.",
+   "sw": "Inastahili kuwa wazi kuhusu mara ngapi mchakato huu unapaswa kuzalisha nafasi, kwa sababu jibu la kweli huwashangaza watu."
   },
   "04e53d28db3b": {
    "en": "A 20-period MA with bands ±2 standard deviations, widening with volatility.",
@@ -509,6 +525,14 @@
    "en": "There is a strong pull to do the opposite — to grab small profits quickly and give losing trades room to recover. That instinct feels like winning because it raises your win rate, but it is Trader C above, and it is a losing pattern with a comforting face. The psychology behind it, and how to build a plan that resists it, is Chapter 4.",
    "sw": "Kuna mvuto mkali wa kufanya kinyume — kunyakua faida ndogo kwa haraka na kuzipa biashara za hasara nafasi ya kupona. Silika hiyo huhisi kama kushinda kwa sababu hupandisha kiwango chako cha ushindi, lakini ni Mfanyabiashara C hapo juu, na ni mtindo wa hasara wenye uso wa kufariji. Saikolojia iliyo nyuma yake, na jinsi ya kujenga mpango unaoupinga, ni Sura ya 4."
   },
+  "0767fb47f907": {
+   "en": "Stablecoin supply",
+   "sw": "Usambazaji wa sarafu imara"
+  },
+  "0774688e8f47": {
+   "en": "Now the six pillars, in their crypto form.",
+   "sw": "Sasa nguzo sita, katika umbo lao la kripto."
+  },
   "0789b3ef2027": {
    "en": "Moving your coins from an exchange into self-custody on a hardware wallet does what to your risk?",
    "sw": "Kuhamisha sarafu zako kutoka soko la kubadilisha kwenda utunzaji binafsi katika pochi ya maunzi hufanya nini kwa hatari yako?"
@@ -664,6 +688,10 @@
   "0a71a893abe7": {
    "en": "Mean Reversion",
    "sw": "Kurudi kwa Wastani"
+  },
+  "0a8501be45c0": {
+   "en": "A practical note on what regime reading is for at the level of a portfolio rather than a trade.",
+   "sw": "Noti ya kivitendo kuhusu kusoma utawala ni kwa nini katika ngazi ya kasha badala ya ya biashara."
   },
   "0a8d57ff5f62": {
    "en": "Put those side by side and the honest answer is a range, not a number. Take the middle of each recent measurement. Bitcoin at roughly 46% annualized against major-currency volatility at roughly 7% gives 46 / 7 = 6.6 times. Take the friendliest combination for crypto — a calm crypto window near 40% against a stressed forex year near 11% — and the ratio falls to about 3.6 times. Take the harshest — a volatile crypto window near 55% against forex at its record low near 5.2 — and it rises to about 10.6 times.",
@@ -937,6 +965,10 @@
    "en": "Three regimes cover most of what a reader will meet, and each favours a different pillar.",
    "sw": "Tawala tatu hufunika mengi ya yale ambayo msomaji atakutana nayo, na kila moja hupendelea nguzo tofauti."
   },
+  "0e39901a0188": {
+   "en": "Once a thesis exists, two things have to be attached to it before it becomes a position.",
+   "sw": "Mara nadharia inapokuwepo, vitu viwili lazima viambatishwe kwake kabla haijawa nafasi."
+  },
   "0e3cd84697e2": {
    "en": "This is expected — value and momentum are negatively correlated, so a cheap share is usually one that has been falling",
    "sw": "Hili linatarajiwa — thamani na kasi zina uhusiano hasi, kwa hivyo hisa ya bei nafuu kwa kawaida ni ile iliyokuwa ikishuka"
@@ -964,6 +996,10 @@
   "0edf5bea93c8": {
    "en": "Three: leverage. For most readers the correct entry is a single word, and the word is none. Chapter 3 Lesson 3 showed that liquidation, rather than being wrong, is how most leveraged crypto accounts end. If the entry is not none, it needs a maximum and the price at which a liquidation occurs, written in advance.",
    "sw": "Tatu: mzingo. Kwa wasomaji wengi kiingizo sahihi ni neno moja, na neno ni hakuna. Sura ya 3 Somo la 3 lilionyesha kwamba ufilisi, badala ya kukosea, ndiyo jinsi akaunti nyingi za kripto zenye mzingo huisha. Ikiwa kiingizo si hakuna, kinahitaji kiwango cha juu kabisa na bei ambayo ufilisi hutokea, vikiandikwa mapema."
+  },
+  "0ee35ec48976": {
+   "en": "A thesis with four supportive pillars does not earn a larger position than the plan allows. Conviction determines whether you take a position at all; the written size limit determines how large it is, and the two must not be allowed to negotiate. Chapter 3 Lesson 1 showed that crypto volatility already forces small positions from the standard risk formula, and a strong thesis does not reduce volatility.",
+   "sw": "Nadharia yenye nguzo nne zinazounga mkono haipati nafasi kubwa zaidi kuliko mpango unavyoruhusu. Msimamo thabiti huamua kama unachukua nafasi kabisa; kikomo cha ukubwa kilichoandikwa huamua ni kubwa kiasi gani, na vyote viwili havipaswi kuruhusiwa kujadiliana. Sura ya 3 Somo la 1 lilionyesha kwamba mtikisiko wa kripto tayari hulazimisha nafasi ndogo kutoka fomula ya kawaida ya hatari, na nadharia imara haipunguzi mtikisiko."
   },
   "0ee94db5bf05": {
    "en": "A general decline in prices across an economy over time.",
@@ -1084,6 +1120,10 @@
   "10c6eddbd7d3": {
    "en": "Not quite - the approval is not tied to the 200 dollars you swapped, and it does not expire when you stop using the site. An unlimited allowance covers every unit of that token your wallet ever holds, and it is recorded on the blockchain until a revoke transaction removes it. Closing the tab or clicking disconnect changes nothing on-chain. Your exposure is the full 6,000 dollars.",
    "sw": "Si sahihi kabisa - idhini haifungwi na dola 200 ulizobadilisha, wala haikwishi muda unapoacha kutumia tovuti. Posho isiyo na mpaka hufunika kila kipimo cha tokeni hiyo ambacho pochi yako itawahi kushikilia, nayo imeandikwa katika mnyororo wa vitalu hadi muamala wa kubatilisha uiondoe. Kufunga kichupo au kubonyeza tenganisha hakubadilishi lolote kwenye mnyororo. Kufunuliwa kwako ni dola 6,000 zote."
+  },
+  "10d7e7a7ad16": {
+   "en": "Three regimes cover most of what a reader will meet, and each favours a different pillar from the previous lesson.",
+   "sw": "Tawala tatu hufunika mengi ya yale ambayo msomaji atakutana nayo, na kila moja hupendelea nguzo tofauti kutoka somo lililotangulia."
   },
   "10dfe29ca4b0": {
    "en": "Here's the demystifying truth: MACD is measuring how two moving averages converge and diverge — which is exactly what you just learned to see directly on the chart with the 20/50 pair. When people talk about MACD crossovers, they're talking about the same underlying event as a moving-average crossover, expressed as an oscillating line below the chart instead of two lines on it. If you understand the crossover section, you already understand MACD. Some traders prefer its presentation (the histogram makes momentum shifts visually loud); others just read the averages directly. There is no extra information in it that the moving averages don't contain.",
@@ -1861,6 +1901,10 @@
    "en": "How much you hold of one thing decides how bad your worst case is. It is the one input you control completely.",
    "sw": "Kiasi unachoshikilia cha kitu kimoja huamua hali yako mbaya zaidi itakuwa mbaya kiasi gani. Ni pembejeo moja unayoidhibiti kabisa."
   },
+  "1bbffe868048": {
+   "en": "In currencies, carry is an interest rate differential paid in the currency you hold. In equities it is dividend or shareholder yield. The apparent crypto equivalents are staking rewards and funding payments, and neither behaves the way carry is supposed to.",
+   "sw": "Katika sarafu, kubeba ni tofauti ya kiwango cha riba inayolipwa katika sarafu unayoishikilia. Katika hisa ni gawio au mavuno ya mwenyehisa. Vinavyoonekana kuwa visawe vya kripto ni zawadi za kuweka hisa na malipo ya ufadhili, na hakuna kinachotenda kama kubeba kunavyopaswa."
+  },
   "1bc7191d6a50": {
    "en": "The overall mood of participants toward an asset, from fear to greed. Sentiment is not a fact about the asset. It is an aggregate of how people currently feel about it, which is why it can change fast without anything else changing.",
    "sw": "Hali ya jumla ya washiriki kuelekea rasilimali, kutoka hofu hadi tamaa. Hisia si ukweli kuhusu rasilimali. Ni jumla ya jinsi watu wanavyohisi kwa sasa kuihusu, ndiyo maana zinaweza kubadilika haraka bila kingine kubadilika."
@@ -2008,6 +2052,10 @@
   "1d7ef3cc744e": {
    "en": "The bid-ask spread is a real, research-backed cost of trading — not just broker profit — and a pip is the unit you measure price moves in.",
    "sw": "Spread ya bid-ask ni gharama halisi ya kufanya biashara inayoungwa mkono na utafiti — si faida ya broker tu — na pip ni kipimo unachopimia misogeo ya bei."
+  },
+  "1d83c721694d": {
+   "en": "The periodic payment between longs and shorts in perpetual futures; a direct positioning signal.",
+   "sw": "Malipo ya mara kwa mara kati ya warefu na wafupi katika mikataba ya baadaye ya kudumu; ishara ya moja kwa moja ya msimamo."
   },
   "1d8628911d2d": {
    "en": "An asset with an average positive — but imperfect — correlation to your existing holdings. Still tends to move with the rest of your portfolio, just not in lockstep.",
@@ -2189,6 +2237,10 @@
    "en": "Write the six answers on one page. Date it. Add one line naming what would make you change the plan itself — a genuine change in your circumstances or in the evidence, not a change in the market. Then set a reminder to read it once a year without changing anything. Most of the value comes from the fact that it exists in your own handwriting on a day you were thinking clearly.",
    "sw": "Andika majibu sita katika ukurasa mmoja. Weka tarehe. Ongeza mstari mmoja ukitaja kitakachokufanya ubadilishe mpango wenyewe — mabadiliko halisi katika mazingira yako au katika ushahidi, si mabadiliko katika soko. Kisha weka kikumbusho cha kuusoma mara moja kwa mwaka bila kubadilisha chochote. Thamani nyingi hutokana na ukweli kwamba upo katika mwandiko wako mwenyewe wa siku ambayo ulikuwa unafikiri kwa uwazi."
   },
+  "205ffa27aad2": {
+   "en": "Correct. A share price implies a cash-flow forecast you can disagree with specifically; most tokens offer nothing equivalent. What replaces the pillar is supply arithmetic — total supply, unlock schedule, and the market capitalisation implied by a price target, which is a number you can compare against things that exist.",
+   "sw": "Sahihi. Bei ya hisa huashiria utabiri wa mtiririko wa fedha ambao unaweza kutokubaliana nao hasa; tokeni nyingi hazitoi kinacholingana. Kinachochukua nafasi ya nguzo ni hesabu ya usambazaji — usambazaji jumla, ratiba ya kufungua, na kiasi cha soko kinachoashiriwa na lengo la bei, ambayo ni namba unayoweza kuilinganisha na vitu vilivyopo."
+  },
   "20a5cd1596f4": {
    "en": "Everything in this chapter so far — wallets and keys (Lesson 4), exchanges (Lesson 5), transactions and finality (Lesson 6) — moves coins whose price swings hard. That volatility is the last practical gap in the picture. If you sell bitcoin because you expect it to fall, what do you hold instead? Moving back to actual dollars means a bank, business hours, and days of settlement. Crypto markets run 24/7 and settle in minutes.",
    "sw": "Kila kitu katika sura hii hadi sasa — pochi na funguo (Somo la 4), masoko ya kubadilisha (Somo la 5), miamala na umalizio (Somo la 6) — husogeza sarafu ambazo bei zake huyumba kwa nguvu. Mtikisiko huo ndilo pengo la mwisho la kivitendo katika picha. Ikiwa unauza bitcoin kwa sababu unatarajia itashuka, unashikilia nini badala yake? Kurudi kwa dola halisi humaanisha benki, saa za kazi, na siku za utimizaji. Masoko ya kripto huendeshwa saa 24/7 na hutimiza ndani ya dakika."
@@ -2281,6 +2333,10 @@
    "en": "What Is Money?",
    "sw": "Pesa Ni Nini?"
   },
+  "21a4eaf83b7f": {
+   "en": "The second is the one this course has already taught from the other direction.",
+   "sw": "Ya pili ndiyo ambayo kozi hii tayari imeifundisha kutoka mwelekeo mwingine."
+  },
   "21c45b23c362": {
    "en": "Because high-yield companies are always more profitable",
    "sw": "Kwa sababu kampuni zenye mavuno makubwa daima zina faida zaidi"
@@ -2304,6 +2360,10 @@
   "2209b7189c93": {
    "en": "It becomes completely different, with no resemblance to the original hash",
    "sw": "Huwa tofauti kabisa, bila kufanana kwa lolote na heshi ya awali"
+  },
+  "221057900720": {
+   "en": "What to look for as a standing habit rather than an occasional exercise. Watch government bond yields and credit spreads even though you hold neither, because they move first. Watch equity risk appetite, since crypto is downstream of it. Watch aggregate open interest and funding, which tell you how much leverage is in the system. And be honest when nothing aligns, which is more often than a 24-hour market can afford to admit.",
+   "sw": "Cha kuangalia kama tabia ya kudumu badala ya zoezi la mara kwa mara. Angalia mavuno ya hatifungani za serikali na mianya ya mikopo ingawa hushikilii yoyote, kwa sababu husogea kwanza. Angalia hamu ya hatari ya hisa, kwa kuwa kripto iko chini ya mkondo wake. Angalia maslahi wazi jumlifu na ufadhili, ambavyo hukuambia mzingo kiasi gani upo katika mfumo. Na kuwa mkweli wakati hakuna kinachopatana, jambo linalotokea mara nyingi zaidi kuliko soko la saa 24 linavyoweza kumudu kukiri."
   },
   "2216b9ccce32": {
    "en": "An accompanying IMF Global Financial Stability Note from January 2022, \"Cryptic Connections: Spillovers between Crypto and Equity Markets\" by Tara Iyer, went further into volatility. It found that the correlation between Bitcoin's price volatility and S&P 500 volatility rose more than fourfold compared with pre-pandemic years, and that Bitcoin's estimated contribution to the variation in S&P 500 volatility increased by roughly 16 percentage points in the post-pandemic period.",
@@ -2356,6 +2416,10 @@
   "229c95b75ae3": {
    "en": "This is not a theoretical risk. In December 2017, a single game — CryptoKitties, which let users breed digital cats — grew until it accounted for roughly 12 percent of all Ethereum transactions; the backlog of pending transactions reached about 30,000, and fees rose for every user on the network. In April 2021, Bitcoin's average fee crossed roughly 60 dollars per transaction — a record at the time, beating the previous bull-market peak of around 50 dollars from late 2017. And in May 2021, Ethereum's average fee peaked somewhere between about 50 and 70 dollars, depending on which data provider you check — sources genuinely disagree on the exact figure, which is itself a lesson in checking data before repeating it.",
    "sw": "Hii si hatari ya kinadharia. Mwezi Desemba 2017, mchezo mmoja — CryptoKitties, uliowaruhusu watumiaji kuzalisha paka za kidijitali — ulikua hadi ukachukua takriban asilimia 12 ya miamala yote ya Ethereum; msongamano wa miamala inayosubiri ulifikia takriban 30,000, na ada zilipanda kwa kila mtumiaji katika mtandao. Mwezi Aprili 2021, ada ya wastani ya Bitcoin ilivuka takriban dola 60 kwa muamala — rekodi wakati huo, ikishinda kilele cha awali cha soko la ng'ombe cha takriban dola 50 kutoka mwishoni mwa 2017. Na mwezi Mei 2021, ada ya wastani ya Ethereum ilifikia kilele mahali fulani kati ya takriban dola 50 na 70, kutegemea mtoa data unayemkagua — vyanzo havikubaliani kweli kuhusu takwimu hasa, jambo ambalo lenyewe ni somo la kukagua data kabla ya kuirudia."
+  },
+  "22c570e7e4ed": {
+   "en": "Forex Chapter 6 Lesson 3 introduced the transmission chain: a policy change moves through interest rates first, then currencies and bonds, then credit and equities, then commodities and other risk assets. Crypto sits at the end of that chain, and the position explains most of what feels arbitrary about its moves.",
+   "sw": "Forex Sura ya 6 Somo la 3 lilianzisha mnyororo wa usambazaji: mabadiliko ya sera husogea kupitia viwango vya riba kwanza, kisha sarafu na hatifungani, kisha mikopo na hisa, kisha bidhaa na rasilimali nyingine za hatari. Kripto hukaa mwisho wa mnyororo huo, na nafasi hiyo hueleza mengi ya yanayohisi ya kiholela kuhusu misogeo yake."
   },
   "22d349138a42": {
    "en": "The size of the loss you take if a trade hits its stop, compared with the size of the gain if it hits its target. Written risk-to-reward, so 1:2 means risking one unit to make two.",
@@ -2601,9 +2665,21 @@
    "en": "Anton, Cohen and Polk, in their study \"Best Ideas,\" found that the positions in which professional managers showed the most conviction — their single best-analysed ideas — outperformed both the market and the managers' own other holdings by roughly 2.8 to 4.5% per year. The striking part is the rest: the majority of the other stocks those managers held did not beat the market at all. Their edge was concentrated in a handful of ideas, and diluted by everything else they owned.",
    "sw": "Anton, Cohen na Polk, katika utafiti wao \"Best Ideas,\" waligundua kwamba nafasi ambazo wasimamizi wa kitaaluma walionyesha uhakika mkubwa zaidi — mawazo yao moja yaliyochambuliwa vizuri zaidi — yalifanya vizuri zaidi kuliko soko na kuliko umiliki mwingine wa wasimamizi wenyewe kwa takriban 2.8 hadi 4.5% kwa mwaka. Sehemu ya kushangaza ni iliyobaki: hisa nyingi zilizobaki ambazo wasimamizi hao walizishikilia hazikushinda soko kabisa. Faida yao ilijikita katika mawazo machache, na ilipunguzwa na kila kitu kingine walichokimiliki."
   },
+  "275e5716778a": {
+   "en": "That last state is the one no commercial source can report, and its absence from the media you read is a structural fact rather than a coincidence. A publication cannot run the headline nothing is currently actionable, and a channel cannot fill an hour with it. You will therefore have to supply that conclusion yourself, and it applies more often than any external source will ever tell you.",
+   "sw": "Hali hiyo ya mwisho ndiyo ambayo hakuna chanzo cha kibiashara kinachoweza kuiripoti, na kukosekana kwake katika vyombo vya habari unavyovisoma ni ukweli wa kimuundo badala ya bahati mbaya. Chapisho haliwezi kuendesha kichwa cha habari hakuna kinachoweza kutendewa kwa sasa, na chaneli haiwezi kujaza saa kwacho. Kwa hivyo utalazimika kutoa hitimisho hilo wewe mwenyewe, nalo hutumika mara nyingi zaidi kuliko chanzo chochote cha nje kitakavyowahi kukuambia."
+  },
+  "27784854cafb": {
+   "en": "Someone watching only crypto charts during that sequence sees an unexplained fall and looks for a crypto explanation. There usually is one available — a hack, an outflow, a regulatory headline — and it will be reported as the cause. The chain was the cause, and the on-chain story was a coincidence with good timing.",
+   "sw": "Mtu anayeangalia chati za kripto pekee wakati wa mfuatano huo huona kushuka kusiko na maelezo na hutafuta maelezo ya kripto. Kwa kawaida kunapatikana — udukuzi, mtoko, kichwa cha habari cha udhibiti — nako kutaripotiwa kama chanzo. Mnyororo ulikuwa chanzo, na hadithi ya kwenye mnyororo ilikuwa bahati yenye muda mzuri."
+  },
   "277ed8d833c0": {
    "en": "A verifiable, software-enforced limit on how many units of a digital asset can exist. Before Bitcoin, anything digital could be copied without limit; a working cap on digital units was genuinely new.",
    "sw": "Kikomo kinachothibitishika na kinachotekelezwa na programu juu ya vipimo vingapi vya rasilimali ya kidijitali vinaweza kuwepo. Kabla ya Bitcoin, chochote cha kidijitali kingeweza kunakiliwa bila kikomo; dari inayofanya kazi juu ya vipimo vya kidijitali ilikuwa mpya kweli."
+  },
+  "279a110bc7fd": {
+   "en": "Because crypto supply figures are not published",
+   "sw": "Kwa sababu takwimu za usambazaji wa kripto hazichapishwi"
   },
   "279d6fb5fe18": {
    "en": "Why did stop-loss orders fail to protect many traders during the Swiss franc shock?",
@@ -2997,6 +3073,10 @@
    "en": "For a cyclical company the multiple looks most attractive at exactly the wrong moment.",
    "sw": "Kwa kampuni ya mzunguko kizidishi kinaonekana cha kuvutia zaidi hasa katika wakati usio sahihi."
   },
+  "2cfdc8f1b71b": {
+   "en": "Funding payments are a genuine cash flow, and they are also unstable by construction: the rate exists to balance the two sides, so it moves against whichever side becomes crowded. Chapter 4 Lesson 2's test applies here as much as anywhere. Trace the yield to an activity, and note which activity it is.",
+   "sw": "Malipo ya ufadhili ni mtiririko halisi wa fedha, nayo pia hayana uthabiti kwa muundo: kiwango kipo ili kusawazisha pande mbili, kwa hivyo husogea dhidi ya upande wowote unaojaa. Mtihani wa Sura ya 4 Somo la 2 hutumika hapa kama mahali pengine popote. Fuatilia mavuno hadi shughuli, na utambue ni shughuli ipi."
+  },
   "2d062f456ef8": {
    "en": "Two rules admit no exceptions and are worth stating plainly. A recovery phrase is never typed into anything connected to the internet, and it is never photographed. A phrase that has been in a photo library, a password manager, a note application or a cloud backup should be treated as compromised, and the correct response is to move the funds to a newly generated wallet rather than to hope.",
    "sw": "Kanuni mbili hazikubali vighairi nazo zinastahili kutajwa wazi. Kifungu cha urejeshaji hakiandikwi kamwe katika chochote kilichounganishwa na mtandao, wala hakipigwi picha kamwe. Kifungu kilichokuwa katika maktaba ya picha, meneja wa manenosiri, programu ya noti au nakala rudufu ya wingu kinapaswa kuchukuliwa kama kimeathiriwa, na jibu sahihi ni kusogeza fedha kwenda pochi iliyozalishwa upya badala ya kutumaini."
@@ -3217,6 +3297,10 @@
    "en": "You profit in forex by holding one currency while it strengthens against another, then converting back — no travel required.",
    "sw": "Unapata faida katika forex kwa kushikilia sarafu moja inapoimarika dhidi ya nyingine, kisha kubadilisha tena — hakuna safari inayohitajika."
   },
+  "2fb6e285531d": {
+   "en": "A token pays a 6% staking reward, funded largely by newly issued supply. Why is this not carry in the sense the framework means?",
+   "sw": "Tokeni hulipa zawadi ya kuweka hisa ya 6%, iliyofadhiliwa hasa na usambazaji uliotolewa upya. Kwa nini hii si kubeba kwa maana ambayo mfumo huikusudia?"
+  },
   "2fb6f4ba2114": {
    "en": "This reframes everything the course has built. The whole point of Chapters 1 through 3 was to let you decide the things that matter — position size, stop, target, the ratio — in advance, while you are calm and thinking clearly. Discipline is simply honouring those decisions when fear and greed show up, which they will. That is why the tools are the answer, not gritted teeth: an OCO order (Chapter 1, Lesson 7) executes your exit whether or not you can bring yourself to click; a pre-set position size (Chapter 3, Lesson 1) removes the greedy \"go bigger just this once.\" The plan is your defence against your own psychology — and building that plan properly is the subject of the next lesson.",
    "sw": "Hii hupanga upya kila kitu ambacho kozi imekijenga. Kusudi lote la Sura ya 1 hadi 3 lilikuwa kukuruhusu uamue mambo yanayohusika — ukubwa wa nafasi, stop, lengo, uwiano — mapema, ukiwa mtulivu na unafikiri kwa uwazi. Nidhamu ni kuheshimu tu maamuzi hayo hofu na tamaa zinapojitokeza, ambazo zitajitokeza. Ndiyo sababu zana ndizo jibu, si meno yaliyokazwa: agizo la OCO (Sura ya 1, Somo la 7) hutekeleza kutoka kwako iwe unaweza kujilazimisha kubofya au huwezi; ukubwa wa nafasi uliowekwa mapema (Sura ya 3, Somo la 1) huondoa \"nenda kubwa zaidi mara hii tu\" ya tamaa. Mpango ni kinga yako dhidi ya saikolojia yako mwenyewe — na kujenga mpango huo ipasavyo ni mada ya somo lijalo."
@@ -3308,6 +3392,10 @@
   "30db532fca09": {
    "en": "Everything in Forex Chapter 1, Lesson 6 and Forex Chapter 3, Lesson 2 carries over intact. Leverage is borrowed buying power, margin is your own capital held as collateral, and the two are inverses: at 50x the margin requirement is 1 divided by 50, which is 2% of the position. Equity is balance plus or minus floating profit and loss. Free margin is equity minus used margin. Effective leverage is total position size divided by equity, and it, not the venue's advertised maximum, sets your distance to trouble. The crypto venue changes the vocabulary and one piece of the arithmetic. There is no broker phoning you. There is a threshold, and a bot.",
    "sw": "Kila kitu katika Forex Sura ya 1, Somo la 6 na Forex Sura ya 3, Somo la 2 huendelea kikiwa kamili. Mzingo ni uwezo wa kununua uliokopwa, mkopo ni mtaji wako mwenyewe unaoshikiliwa kama dhamana, na vyote viwili ni kinyume: katika 50x hitaji la mkopo ni 1 ikigawanywa na 50, ambayo ni 2% ya nafasi. Usawa ni salio pamoja au ukiondoa faida na hasara inayoelea. Mkopo huru ni usawa ukiondoa mkopo uliotumika. Mzingo halisi ni ukubwa jumla wa nafasi ukigawanywa na usawa, nao, si kiwango cha juu kinachotangazwa na uwanja, huweka umbali wako hadi matatizo. Uwanja wa kripto hubadilisha msamiati na kipande kimoja cha hesabu. Hakuna dalali anayekupigia simu. Kuna kizingiti, na roboti."
+  },
+  "31032a59969a": {
+   "en": "Not quite. The size of the rate and its tax treatment are beside the point, and carry has an equity form too. The issue is that the reward is denominated in the falling asset and may be funded by dilution rather than by any value-producing activity.",
+   "sw": "Si sahihi kabisa. Ukubwa wa kiwango na matibabu yake ya kodi hayahusiki, na kubeba kuna umbo la hisa pia. Suala ni kwamba zawadi imepewa dhehebu katika rasilimali inayoshuka na inaweza kufadhiliwa na kupunguza thamani badala ya shughuli yoyote inayozalisha thamani."
   },
   "311bc61478b1": {
    "en": "It reduces the fund's return by the amount lent",
@@ -3476,6 +3564,10 @@
   "336400a75dcb": {
    "en": "Start with the mechanisms, because two of them are genuinely important and Chapter 3 Lesson 4 introduced the first.",
    "sw": "Anza na taratibu, kwa sababu mbili kati yao ni muhimu kweli na Sura ya 3 Somo la 4 lilianzisha la kwanza."
+  },
+  "3381fbd6cf5a": {
+   "en": "In crypto the no-trade regime is harder to observe than anywhere else in this course, because the market never closes and there is always something happening somewhere. A 24-hour market manufactures the appearance of opportunity continuously. Nothing aligning is a legitimate and common state, and the absence of an enforced pause means you have to supply it yourself.",
+   "sw": "Katika kripto utawala wa kutofanya biashara ni mgumu zaidi kuuona kuliko mahali pengine popote katika kozi hii, kwa sababu soko halifungi kamwe na daima kuna kitu kinachotokea mahali fulani. Soko la saa 24 hutengeneza mwonekano wa fursa kwa kuendelea. Kutokupatana kwa lolote ni hali halali na ya kawaida, na kukosekana kwa kusimama kwa lazima humaanisha lazima ukitoe wewe mwenyewe."
   },
   "339313eb71b4": {
    "en": "Not quite — the stop belongs at the invalidation level where the thesis is proven wrong, not at an arbitrary distance.",
@@ -3716,6 +3808,10 @@
   "36edb0300452": {
    "en": "Correct. The instrument is the same but the source of return is not. Over a holding period of minutes, the businesses have generated nothing new, so any gain comes from whoever took the other side — before costs, which make the activity negative-sum in aggregate.",
    "sw": "Sahihi. Chombo ni kile kile lakini chanzo cha faida si kile kile. Katika kipindi cha kushikilia cha dakika, biashara hazijazalisha chochote kipya, hivyo faida yoyote hutoka kwa yeyote aliyechukua upande mwingine — kabla ya gharama, ambazo hufanya shughuli iwe jumla-hasi kwa jumla."
+  },
+  "370a59e3d551": {
+   "en": "Forex Chapter 6 Lesson 1 replaced a strong feeling with a written thesis scored against six pillars: fundamentals, valuation, catalyst, positioning, momentum and carry. The Stocks track adapted it for an asset with cash flows. This chapter adapts it for an asset that has none, which is a harder problem and an honest one.",
+   "sw": "Forex Sura ya 6 Somo la 1 lilibadilisha hisia kali na nadharia iliyoandikwa iliyopimwa dhidi ya nguzo sita: misingi, tathmini, kichocheo, msimamo, kasi na kubeba. Njia ya Hisa iliirekebisha kwa rasilimali yenye mitiririko ya fedha. Sura hii huirekebisha kwa rasilimali isiyo na yoyote, ambalo ni tatizo gumu zaidi na la kweli."
   },
   "371d2b32a180": {
    "en": "The supply effect is real and easy to state. Before April 2024, the network issued about 328,500 new coins a year against a circulating supply near 19.7 million, roughly 1.67% annual growth. After April 2024, it issues about 164,250 a year against a supply that passed 20 million in March 2026, roughly 0.82%. Around 95% of the 21 million cap has already been mined.",
@@ -4021,6 +4117,10 @@
    "en": "The annual fee a fund charges, as a percentage of the money you have invested with it. It is deducted from the fund's assets, so you never see a bill.",
    "sw": "Ada ya kila mwaka ambayo fund hutoza, kama asilimia ya pesa ulizowekeza nayo. Hutolewa kutoka mali za fund, hivyo huoni bili kamwe."
   },
+  "3b1f7b87b87b": {
+   "en": "One asymmetry recurs and is worth naming, because all three case studies in Chapter 5 displayed it.",
+   "sw": "Ukosefu mmoja wa ulinganifu hujirudia nao unastahili kutajwa, kwa sababu uchunguzi wote matatu wa matukio katika Sura ya 5 uliuonyesha."
+  },
   "3b2c57e05577": {
    "en": "Note what neither example contains: any information available at the start. The investor in the first example was not clever and the one in the second was not careless. They made the same decision and met different markets, which is why the choice has to be made on expected value and on what you can hold to, not on what happened to somebody.",
    "sw": "Tambua kile ambacho hakuna mfano una: taarifa yoyote iliyopatikana mwanzoni. Mwekezaji katika mfano wa kwanza hakuwa mwerevu na wa pili hakuwa mzembe. Walifanya uamuzi ule ule na wakakutana na masoko tofauti, ndiyo sababu chaguo lazima lifanywe juu ya thamani inayotarajiwa na juu ya unachoweza kushikilia, si juu ya kilichomtokea mtu fulani."
@@ -4169,6 +4269,10 @@
    "en": "There is a second-order point that connects back to Chapter 2. Funding rises precisely when one side is crowded. So the cost of holding is highest exactly when the position is most popular, which is exactly when the crowd is most vulnerable to being unwound. You pay the most to hold at the moment the position is most fragile. That is not a coincidence. It is the mechanism working as designed.",
    "sw": "Kuna hoja ya daraja la pili inayounganisha kurudi Sura ya 2. Ufadhili hupanda hasa wakati upande mmoja umejaa. Kwa hivyo gharama ya kushikilia ni kubwa zaidi hasa wakati nafasi ni maarufu zaidi, ambao ndio hasa wakati kundi liko hatarini zaidi kufunguliwa. Unalipa zaidi kushikilia wakati ambapo nafasi ni dhaifu zaidi. Hiyo si bahati mbaya. Ni utaratibu ukifanya kazi kama ulivyoundwa."
   },
+  "3d332792d31a": {
+   "en": "Total supply, unlock schedule and implied market capitalisation — what replaces valuation where there are no cash flows.",
+   "sw": "Usambazaji jumla, ratiba ya kufungua na kiasi cha soko kinachoashiriwa — kinachochukua nafasi ya tathmini pale hakuna mitiririko ya fedha."
+  },
   "3d3457e447c5": {
    "en": "The percentage fall from a peak price to the lowest point that follows it.",
    "sw": "Kushuka kwa asilimia kutoka bei ya kileleni hadi nukta ya chini kabisa inayoifuata."
@@ -4213,6 +4317,10 @@
    "en": "An investor holds a well-diversified portfolio through a 40% fall. Nothing they own is impaired and their time horizon is twenty years, so the fall is volatility rather than permanent loss. Then they lose their job in the same downturn, and they sell to pay for living costs. The volatility became a permanent loss at the moment their circumstances forced the sale — and the two events had the same cause.",
    "sw": "Mwekezaji anashikilia mkusanyiko uliosambazwa vizuri kupitia kushuka kwa 40%. Hakuna anachomiliki kimeharibika na upeo wake wa muda ni miaka ishirini, hivyo kushuka ni mtikisiko badala ya hasara ya kudumu. Kisha anapoteza kazi yake katika kushuka kule kule, na anauza kulipia gharama za maisha. Mtikisiko ukawa hasara ya kudumu wakati hali zake zilipolazimisha uuzaji — na matukio hayo mawili yalikuwa na sababu ile ile."
   },
+  "3e140dc41e3b": {
+   "en": "One further limit, stated plainly because the whole chapter depends on it. Everything described here is visible to everybody. Bond yields, credit spreads, funding rates and open interest are public and watched by people with far better tools than yours. Reading them correctly is not an edge over professionals, and this course will not pretend it is. It is protection against a specific and common error: buying a story that the wider market priced out weeks ago, in the asset class that receives that pricing last and hardest.",
+   "sw": "Kikomo kimoja zaidi, kikitajwa wazi kwa sababu sura nzima hutegemea juu yake. Kila kilichoelezwa hapa kinaonekana kwa kila mtu. Mavuno ya hatifungani, mianya ya mikopo, viwango vya ufadhili na maslahi wazi ni ya umma nayo huangaliwa na watu wenye zana bora zaidi kuliko zako. Kuvisoma kwa usahihi si ubora juu ya wataalamu, na kozi hii haitajifanya ni. Ni ulinzi dhidi ya kosa maalum na la kawaida: kununua hadithi ambayo soko pana liliipangia bei nje wiki kadhaa zilizopita, katika aina ya rasilimali inayopokea upangaji huo wa bei mwisho na kwa nguvu zaidi."
+  },
   "3e1f263fd333": {
    "en": "A pair combining two major currencies, with no U.S. dollar involved — for example, EUR/GBP, GBP/JPY, or CAD/JPY. \"Minor\" and \"cross pair\" refer to the same thing.",
    "sw": "Jozi linalounganisha sarafu mbili kuu, bila dola ya Marekani kuhusika — kwa mfano, EUR/GBP, GBP/JPY, au CAD/JPY. \"Ndogo\" na \"jozi la kuvuka\" hurejelea kitu kile kile."
@@ -4240,6 +4348,10 @@
   "3e79ddc10e1f": {
    "en": "Recovery plan",
    "sw": "Mpango wa urejeshaji"
+  },
+  "3e88249e37b1": {
+   "en": "Commentary generally supplies a directional call attached to a reason: the cycle says this, the chart says that, an approval is coming. Regime mapping supplies neither a direction nor a target. It answers a narrower question — given the conditions that already exist, which kinds of evidence currently have any power, and which are noise?",
+   "sw": "Maoni kwa kawaida hutoa wito wa mwelekeo ulioambatishwa na sababu: mzunguko husema hivi, chati husema vile, idhini inakuja. Kuchora ramani ya utawala hakutoi mwelekeo wala lengo. Hujibu swali finyu zaidi — kwa kuzingatia hali zilizopo tayari, ni aina zipi za ushahidi zenye nguvu yoyote kwa sasa, na zipi ni kelele?"
   },
   "3eb48def72ea": {
    "en": "Sam Bankman-Fried was convicted on seven counts in November 2023 and sentenced to 25 years in March 2024.",
@@ -4453,6 +4565,10 @@
    "en": "What is the most defensible summary of what the GameStop episode established?",
    "sw": "Muhtasari unaotetewa zaidi wa kile ambacho tukio la GameStop lilithibitisha ni upi?"
   },
+  "418aa79c826c": {
+   "en": "The second attachment is size, and this is where the framework connects to everything in Chapter 3.",
+   "sw": "Kiambatisho cha pili ni ukubwa, na hapa ndipo mfumo unapounganishwa na kila kitu katika Sura ya 3."
+  },
   "419cf4f0bf40": {
    "en": "Daily leveraged fund",
    "sw": "Fund ya leverage ya kila siku"
@@ -4573,6 +4689,10 @@
    "en": "The split matters because it sets a floor. Adding holdings reduces specific risk toward zero, and does essentially nothing to market risk. Someone holding every share in the world still carries the risk that shares as a class fall.",
    "sw": "Mgawanyo unahusika kwa sababu huweka sakafu. Kuongeza umiliki hupunguza hatari mahususi kuelekea sifuri, na hakufanyi chochote kwa hatari ya soko. Mtu anayeshikilia kila hisa duniani bado hubeba hatari kwamba hisa kama daraja zitashuka."
   },
+  "43b6b0fa15df": {
+   "en": "Staking rewards are usually paid in the same token being staked. A 6% reward on an asset that falls 60% is not income; it is more units of something worth less, and the reward often comes partly from issuing new supply — which dilutes every holder including you. Ask whether the reward is funded by fees users actually pay or by new issuance, because only the first is a return in the sense the pillar means.",
+   "sw": "Zawadi za kuweka hisa kwa kawaida hulipwa katika tokeni ileile inayowekwa kama hisa. Zawadi ya 6% katika rasilimali inayoshuka 60% si mapato; ni vipimo zaidi vya kitu chenye thamani ndogo zaidi, na zawadi mara nyingi hutoka kwa sehemu kwa kutoa usambazaji mpya — jambo linalopunguza thamani ya kila mmiliki ikiwa ni pamoja na wewe. Uliza kama zawadi hufadhiliwa na ada ambazo watumiaji hulipa hasa au na utoaji mpya, kwa sababu ni ya kwanza pekee iliyo faida kwa maana ambayo nguzo huikusudia."
+  },
   "43b7d37fb2b9": {
    "en": "Connects closing prices over time with a single line.",
    "sw": "Huunganisha bei za kufunga kwa muda kwa mstari mmoja."
@@ -4668,6 +4788,10 @@
   "45127cdc918b": {
    "en": "Because company analysis is worthless",
    "sw": "Kwa sababu uchambuzi wa kampuni hauna thamani"
+  },
+  "4518e993c7f7": {
+   "en": "Write the thesis down with its date, its pillars and its invalidation conditions, and keep it after the position closes. A file of past theses, each with what you expected and what happened, is the only instrument that reliably improves judgement in this asset class. Chapter 6 Lesson 3 explains why memory cannot do this job here: the moves are large enough that outcomes carry almost no information about whether the reasoning was sound.",
+   "sw": "Andika nadharia pamoja na tarehe yake, nguzo zake na masharti yake ya kubatilisha, na uiweke baada ya nafasi kufungwa. Faili la nadharia za awali, kila moja ikiwa na ulichotarajia na kilichotokea, ndicho chombo pekee kinachoboresha hukumu kwa uhakika katika aina hii ya rasilimali. Sura ya 6 Somo la 3 hueleza kwa nini kumbukumbu haiwezi kufanya kazi hii hapa: misogeo ni mikubwa vya kutosha hivi kwamba matokeo hubeba taarifa ndogo mno kuhusu kama hoja ilikuwa imara."
   },
   "45346aa1db94": {
    "en": "A mode in which the whole account balance backs every open position. A position can absorb a much larger adverse move before liquidation, because it draws on the entire balance. The cost is that a single bad position can consume the whole account, and positions become linked: a loss on one reduces the cushion under all the others.",
@@ -4857,6 +4981,10 @@
    "en": "Their economic claim is the same, but the vote is not a meaningful protection, so the position rests entirely on whether the business becomes more valuable",
    "sw": "Dai lao la kiuchumi ni lile lile, lakini kura si ulinzi wenye maana, hivyo nafasi hutegemea kabisa kama biashara itakuwa na thamani zaidi"
   },
+  "47ba0034faae": {
+   "en": "Falsifiable claim",
+   "sw": "Dai linaloweza kukanushwa"
+  },
   "47e4a1104bc0": {
    "en": "The last traded price multiplied by circulating supply — one multiplication, not money invested.",
    "sw": "Bei ya mwisho iliyofanyiwa biashara ikizidishwa na usambazaji unaozunguka — kuzidisha kumoja, si pesa iliyowekezwa."
@@ -4888,6 +5016,10 @@
   "486187eb2c0c": {
    "en": "About 353%, and just over fifteen years",
    "sw": "Takriban 353%, na zaidi kidogo ya miaka kumi na mitano"
+  },
+  "486f1db37884": {
+   "en": "Note the unlock schedule appearing as a pillar against. Supply growing 2.7% a month while you hold is a headwind the price has to overcome before anything else you believe becomes relevant, and it is published. Most token theses never mention it, which tells you how many of them have been through this exercise.",
+   "sw": "Tambua ratiba ya kufungua ikijitokeza kama nguzo inayopinga. Usambazaji unaokua 2.7% kwa mwezi unaposhikilia ni upinzani ambao bei lazima iushinde kabla chochote kingine unachokiamini hakijawa muhimu, nao umechapishwa. Nadharia nyingi za tokeni hazitaji kamwe, jambo linalokuambia ni ngapi kati yake zimepitia zoezi hili."
   },
   "486f670cf9ef": {
    "en": "Not quite — when nothing aligns, cash is the right position. Forcing a trade is overtrading, which gives edges back.",
@@ -5132,6 +5264,10 @@
   "4c2325e7a241": {
    "en": "Price Action",
    "sw": "Shughuli ya Bei"
+  },
+  "4c429dae3088": {
+   "en": "The periodic payment between long and short holders of a perpetual futures contract, which turns positive when longs are crowded and negative when shorts are.",
+   "sw": "Malipo ya mara kwa mara kati ya wamiliki warefu na wafupi wa mkataba wa baadaye wa kudumu, ambayo huwa chanya wakati warefu wamejaa na hasi wakati wafupi wamejaa."
   },
   "4c458f228c25": {
    "en": "Not quite — the 2015 SNB event proved the opposite: stop-losses triggered correctly but filled far from their set price. A stop-loss guarantees a trigger, not a fill price.",
@@ -5449,6 +5585,10 @@
    "en": "Correct — a bank run is a confidence problem, not necessarily a wrongdoing problem. The bank can be doing exactly what it always does and still run out if enough people show up at once.",
    "sw": "Sahihi — kukimbilia benki ni tatizo la imani, si lazima liwe tatizo la kosa. Benki inaweza kuwa inafanya hasa inavyofanya daima na bado ikaishiwa kama watu wa kutosha watafika kwa wakati mmoja."
   },
+  "51605a49b2c4": {
+   "en": "What replaces it is supply arithmetic, which is the closest thing to a hard constraint available. Chapter 4 Lesson 1 covered this as denominator blindness: the unit price is meaningless without the supply, the total supply and the unlock schedule are published, and the implied market capitalisation of a price target is a number you can compare against things that exist.",
+   "sw": "Kinachochukua nafasi yake ni hesabu ya usambazaji, ambako ni kitu kinachokaribia zaidi kizuizi kigumu kinachopatikana. Sura ya 4 Somo la 1 lilishughulikia hili kama upofu wa kigawanyaji: bei ya kipimo haina maana bila usambazaji, usambazaji jumla na ratiba ya kufungua vimechapishwa, na kiasi cha soko kinachoashiriwa na lengo la bei ni namba unayoweza kuilinganisha na vitu vilivyopo."
+  },
   "5164a603d506": {
    "en": "A written set of rules covering what you trade, the conditions for entering, where the stop and target go, how position size is calculated, the maximum you will risk, and how you review results. Its purpose is to move decisions out of the emotional moment and into calm preparation.",
    "sw": "Seti ya kanuni zilizoandikwa zinazohusu unachofanyia biashara, masharti ya kuingia, mahali stop na lengo huenda, jinsi ukubwa wa nafasi unavyokokotolewa, kiwango cha juu utakachohatarisha, na jinsi unavyopitia matokeo. Kusudi lake ni kuhamisha maamuzi kutoka kwenye wakati wa kihisia hadi kwenye maandalizi ya utulivu."
@@ -5685,6 +5825,10 @@
    "en": "Crypto does not change the mechanism. It changes the speed at which you can act on it, and the size of the moves you are acting on. A position that has halved in a week produces the same reluctance to sell as one that has halved in a year, with far less time to think.",
    "sw": "Kripto haibadilishi utaratibu. Hubadilisha kasi ambayo unaweza kutenda juu yake, na ukubwa wa misogeo unayotenda juu yake. Nafasi iliyopungua nusu katika wiki huzalisha kusita kuuza kuleile kama iliyopungua nusu katika mwaka, ikiwa na muda mdogo zaidi wa kufikiri."
   },
+  "54b200239d5a": {
+   "en": "Usable invalidation conditions for the thesis above: fee revenue falls for two consecutive quarters; the protocol change is delayed indefinitely or ships and is not adopted; the unlock schedule is altered to release supply faster; funding turns persistently and strongly positive, meaning the crowd has arrived. Each of these can be checked against a fact on a date. None of them is \"the price went down\", which is a description rather than a condition.",
+   "sw": "Masharti ya kubatilisha yanayotumika kwa nadharia iliyo hapo juu: mapato ya ada hushuka kwa robo mbili mfululizo; mabadiliko ya itifaki huahirishwa bila kikomo au husafirishwa na hayakubaliwi; ratiba ya kufungua hubadilishwa kutoa usambazaji kwa kasi zaidi; ufadhili hugeuka chanya kwa kudumu na kwa nguvu, ukimaanisha kundi limefika. Kila moja kati ya haya kinaweza kukaguliwa dhidi ya ukweli katika tarehe. Hakuna kati yake ni \"bei ilishuka\", ambayo ni maelezo badala ya sharti."
+  },
   "54b5ac1606a7": {
    "en": "Correct — a higher true pip value than the one you sized with means each pip costs more than you assumed, so the same lot size risks more: 127 dollars instead of 100.",
    "sw": "Sahihi — thamani halisi ya pip iliyo juu kuliko ile uliyopima nayo inamaanisha kila pip inagharimu zaidi ya ulivyodhania, hivyo ukubwa ule ule wa lot huhatarisha zaidi: dola 127 badala ya 100."
@@ -5744,6 +5888,10 @@
   "5562c3415100": {
    "en": "Do not convert this into market timing. The evidence that anyone reliably switches between regimes in advance is weak, and Chapter 4 Lesson 1 showed what the attempt costs the people who make it most often. Regime mapping tells you which pillar to trust in the environment you are already in. It does not tell you what the environment will be next quarter.",
    "sw": "Usigeuze hili kuwa kupanga muda wa soko. Ushahidi kwamba mtu yeyote hubadilisha kati ya tawala mapema kwa uhakika ni dhaifu, na Sura ya 4 Somo la 1 lilionyesha jaribio hilo huwagharimu nini wanaolifanya mara nyingi zaidi. Kuchora ramani ya utawala hukuambia ni nguzo ipi ya kuiamini katika mazingira ambayo tayari uko ndani yake. Hakukuambii mazingira yatakuwa yapi robo ijayo."
+  },
+  "556c278be0e5": {
+   "en": "A central bank signals tighter policy for longer. Government bond yields rise first. Currencies adjust. Credit spreads widen. Equities fall, and the longest-duration equities — companies valued on distant profits — fall hardest. Crypto, which has no cash flows at all and therefore the longest duration of anything, falls hardest of all. Nothing happened on-chain. The regime changed several links up the chain and arrived here magnified.",
+   "sw": "Benki kuu inaashiria sera kali zaidi kwa muda mrefu zaidi. Mavuno ya hatifungani za serikali hupanda kwanza. Sarafu hujirekebisha. Mianya ya mikopo hupanuka. Hisa hushuka, na hisa za muda mrefu zaidi — kampuni zinazotathminiwa juu ya faida za mbali — hushuka kwa nguvu zaidi. Kripto, isiyo na mitiririko ya fedha kabisa na hivyo yenye muda mrefu zaidi kuliko chochote, hushuka kwa nguvu zaidi kuliko yote. Hakuna kilichotokea kwenye mnyororo. Utawala ulibadilika viungo kadhaa juu ya mnyororo na ukafika hapa ukiwa umekuzwa."
   },
   "557b4a583b0d": {
    "en": "Because new users are less intelligent than existing ones",
@@ -5812,6 +5960,10 @@
   "5624f213e024": {
    "en": "Schematic only, not plotted data: crypto sits at the highest-beta end of the transmission chain, and correlation runs toward 1 in the stress window.",
    "sw": "Wa kimuundo pekee, si data iliyochorwa: kripto hukaa mwisho wa beta kubwa zaidi wa mnyororo wa usambazaji, na uhusiano hukimbia kuelekea 1 katika dirisha la msongo."
+  },
+  "5650c2b534d8": {
+   "en": "The recurring trap is that a widely known and long-scheduled event is not a catalyst in the sense the thesis means. Everyone can read the same calendar. Chapter 2 Lesson 2 made this point about halvings specifically: an event known years ahead has had years to be priced. A catalyst has to be something whose outcome is genuinely uncertain, not merely something whose date is certain.",
+   "sw": "Mtego unaojirudia ni kwamba tukio linalojulikana sana na lililopangwa kwa muda mrefu si kichocheo kwa maana ambayo nadharia huikusudia. Kila mtu anaweza kusoma kalenda ileile. Sura ya 2 Somo la 2 lilitoa hoja hii kuhusu kupunguzwa nusu hasa: tukio linalojulikana miaka mapema limekuwa na miaka ya kupangiwa bei. Kichocheo lazima kiwe kitu ambacho matokeo yake hayana uhakika kweli, si tu kitu ambacho tarehe yake ina uhakika."
   },
   "566c1095f7f7": {
    "en": "Using the maximum position size",
@@ -5977,6 +6129,10 @@
    "en": "A general, sustained rise in prices that reduces what a currency can buy.",
    "sw": "Kupanda kwa jumla na kwa kudumu kwa bei kunakopunguza kile ambacho sarafu inaweza kununua."
   },
+  "588ecaf96436": {
+   "en": "A written, structured argument for why a specific position should work, built from several independent lines of evidence rather than a single opinion.",
+   "sw": "Hoja iliyoandikwa na yenye muundo ya kwa nini nafasi maalum inapaswa kufanya kazi, iliyojengwa kutoka mistari kadhaa huru ya ushahidi badala ya maoni moja."
+  },
   "58a14af9a64a": {
    "en": "At least half the score is recomputed from recent price and volume, so much of it restates what the chart already showed",
    "sw": "Angalau nusu ya alama huhesabiwa upya kutoka bei na ujazo wa hivi karibuni, kwa hivyo sehemu kubwa yake hurudia kile chati ilikwisha kuonyesha"
@@ -6040,6 +6196,10 @@
   "59705e030e93": {
    "en": "A Crypto Trading and Custody Plan",
    "sw": "Mpango wa Biashara na Utunzaji wa Kripto"
+  },
+  "598303bde1ed": {
+   "en": "The specific, checkable circumstance under which the thesis is proven wrong and the reason for holding no longer exists.",
+   "sw": "Mazingira maalum, yanayoweza kukaguliwa ambapo nadharia inathibitishwa kuwa si sahihi na sababu ya kushikilia haipo tena."
   },
   "59969c812f5d": {
    "en": "Not quite. Diligence, presentation checks and diversification across listings all fail against a one-in-two base rate — particularly when colluding wallets are manufacturing the appearance of genuine trading. The useful conclusion is about whether to participate at all.",
@@ -6152,6 +6312,10 @@
   "5b1929c47058": {
    "en": "How many units rest as orders at each price level, and therefore how much can trade before price moves.",
    "sw": "Ni vipimo vingapi vilivyopumzika kama maagizo katika kila kiwango cha bei, na hivyo kiasi gani kinaweza kufanyiwa biashara kabla bei haijasogea."
+  },
+  "5b19691b90c5": {
+   "en": "A ranging regime, with no clear trend and no genuine catalyst, is where most forced positions are taken and most accounts are slowly worn down by fees, funding and spreads.",
+   "sw": "Utawala wa kuzunguka, usio na mwelekeo wazi na usio na kichocheo halisi, ndipo nafasi nyingi za kulazimishwa huchukuliwa na akaunti nyingi huchakazwa taratibu na ada, ufadhili na mianya."
   },
   "5b21b52b58cb": {
    "en": "Exchange Rate",
@@ -6348,6 +6512,10 @@
   "5dc4c37ed99e": {
    "en": "You have a high-conviction short on a currency: fundamentals, valuation, and a rate-decision catalyst all agree. Pre-mortem: it is three weeks later and the trade lost. Why? Perhaps the central bank surprised dovishly the other way; perhaps positioning was already so short that there was no one left to sell (Chapter 5, Lesson 2); perhaps a risk-off shock sent money into the currency as a safe haven; perhaps the move happened in an illiquid session and your stop filled far away (Chapter 5, Lesson 3). Each reason you surface becomes something you plan for now — a wider or differently placed stop, a smaller size, a decision to wait past the event, or a reason not to take the trade at all.",
    "sw": "Una short ya uhakika wa juu kwenye sarafu: misingi, uthaminishaji, na kichocheo cha uamuzi wa kiwango vyote vinakubaliana. Pre-mortem: ni wiki tatu baadaye na biashara ilipoteza. Kwa nini? Labda benki kuu ilishangaza kwa dovish upande mwingine; labda nafasi za soko tayari zilikuwa short mno kiasi kwamba hakukuwa na aliyebaki kuuza (Sura ya 5, Somo la 2); labda mshtuko wa kukwepa hatari ulipeleka pesa kwenye sarafu kama kimbilio salama; labda msogeo ulitokea katika kipindi kisicho na ukwasi na stop yako ikatimizwa mbali (Sura ya 5, Somo la 3). Kila sababu unayoifichua hukuwa kitu unachokipangia sasa — stop pana au iliyowekwa tofauti, ukubwa mdogo, uamuzi wa kusubiri baada ya tukio, au sababu ya kutochukua biashara kabisa."
+  },
+  "5ddb34d4cecf": {
+   "en": "Valuation. This is the pillar that does not survive the transfer, and the honest move is to say so rather than to construct a substitute that sounds rigorous.",
+   "sw": "Tathmini. Hii ndiyo nguzo isiyonusurika uhamisho, na hatua ya kweli ni kusema hivyo badala ya kujenga mbadala unaosikika wa makini."
   },
   "5ddda8ae7f0f": {
    "en": "Not quite — expectancy is a long-run average; over eight trades luck dominates and a positive-expectancy system can lose. Its edge needs a large sample to show.",
@@ -6593,6 +6761,10 @@
    "en": "It gets slightly longer",
    "sw": "Huwa ndefu kidogo"
   },
+  "618ef1ec9aff": {
+   "en": "There is one crypto-specific regime signal that has no equivalent in the other tracks, and it is worth watching.",
+   "sw": "Kuna ishara moja ya utawala maalum kwa kripto isiyo na kinacholingana katika njia nyingine, nayo inastahili kuangaliwa."
+  },
   "619d41787a4c": {
    "en": "Now the fact that reframes all of it. The theft was not an event in February 2014. It had been running, undetected, since 2011.",
    "sw": "Sasa ukweli unaoipa yote muktadha mpya. Wizi haukuwa tukio la Februari 2014. Ulikuwa umeendeshwa, bila kugunduliwa, tangu 2011."
@@ -6684,6 +6856,10 @@
   "62cd365f3916": {
    "en": "It is worth knowing how far a price has to move before a margin call arrives, because the answer is much closer than most borrowers assume.",
    "sw": "Inastahili kujua bei lazima isogee mbali kiasi gani kabla wito wa margin haujafika, kwa sababu jibu liko karibu zaidi mno kuliko wakopaji wengi wanavyodhania."
+  },
+  "62d93e87372c": {
+   "en": "Momentum. This has the strongest support of any pillar here, since it is one of the three factors Liu, Tsyvinski and Wu identified. It also has the shortest half-life. Crypto momentum operates over weeks rather than the three-to-twelve-month horizons documented in equities, and a pillar that decays that fast is one you must be willing to see reverse without treating the reversal as a personal failure.",
+   "sw": "Kasi. Hii ina msaada imara zaidi kuliko nguzo yoyote hapa, kwa kuwa ni mojawapo ya vipengele vitatu ambavyo Liu, Tsyvinski na Wu walivitambua. Pia ina nusu-uhai mfupi zaidi. Kasi ya kripto hufanya kazi katika wiki badala ya upeo wa miezi mitatu-hadi-kumi-na-miwili ulioandikwa katika hisa, na nguzo inayooza kwa kasi hiyo ni ambayo lazima uwe tayari kuiona ikigeuka bila kuchukulia kugeuka kama kushindwa binafsi."
   },
   "62dcca27f54e": {
    "en": "You will see the figure \"90% of day traders lose money\" repeated constantly, usually with no source attached. The carefully measured number from complete exchange records is \"more than 80% in a typical six-month period\" — which is a different and more precise claim. When a striking statistic circulates without a traceable source, treat the statistic itself as the thing to check first. That habit is worth more than the number.",
@@ -6793,6 +6969,10 @@
    "en": "Correct. That asymmetry is what makes a run complete in days rather than months: roughly 5 billion dollars of withdrawal requests arrived within about 72 hours. When an institution can only pay if most people do not ask at once, the rational individual choice makes the collective outcome certain.",
    "sw": "Sahihi. Ukosefu huo wa ulinganifu ndicho kinachofanya mkimbio ukamilike ndani ya siku badala ya miezi: takriban dola bilioni 5 za maombi ya utoaji zilifika ndani ya takriban masaa 72. Wakati taasisi inaweza kulipa tu ikiwa watu wengi hawaombi kwa wakati mmoja, chaguo la mtu binafsi lenye mantiki hufanya matokeo ya pamoja kuwa ya hakika."
   },
+  "643bec74d75a": {
+   "en": "The first is that regimes are named confidently in hindsight and are ambiguous while you are inside them. Nobody rang a bell at the bottom in 2022 or at the top in 2021. The value of regime mapping is not that it calls turns. It is that it stops you applying a momentum thesis to a market that has stopped trending, and stops you reading a liquidity-driven fall as a verdict on a protocol.",
+   "sw": "Cha kwanza ni kwamba tawala hutajwa kwa ujasiri baada ya tukio na huwa na utata ukiwa ndani yake. Hakuna aliyepiga kengele bondeni mwaka 2022 au kileleni mwaka 2021. Thamani ya kuchora ramani ya utawala si kwamba hutabiri mabadiliko. Ni kwamba hukuzuia kutumia nadharia ya kasi katika soko ambalo limeacha kuelekea, na hukuzuia kusoma kushuka kunakoendeshwa na ukwasi kama hukumu juu ya itifaki."
+  },
   "6444fe5d00c3": {
    "en": "Your phone, with your only crypto wallet app on it, is destroyed. You have your seed phrase written on paper at home. What happened to your coins?",
    "sw": "Simu yako, ikiwa na programu yako pekee ya pochi ya kripto, imeharibiwa. Una kifungu chako cha mbegu kilichoandikwa kwenye karatasi nyumbani. Nini kimetokea kwa sarafu zako?"
@@ -6896,6 +7076,10 @@
   "6579691bd263": {
    "en": "The quoted price is the midpoint, and nobody is offering it. The spread is the cost of crossing.",
    "sw": "Bei iliyonukuliwa ni sehemu ya kati, na hakuna anayeitoa. Spread ni gharama ya kuvuka."
+  },
+  "65837890cf59": {
+   "en": "Treat it as context, not as a trigger. Chapter 2 Lesson 4 was careful about the limits of on-chain measurement and the same caution applies here: this is an aggregate that moves for many reasons, including reasons that have nothing to do with appetite for risk, such as an issuer redeeming for regulatory purposes.",
+   "sw": "Ukichukulie kama muktadha, si kama kichocheo. Sura ya 2 Somo la 4 lilikuwa makini kuhusu vikomo vya kipimo cha kwenye mnyororo na tahadhari ileile hutumika hapa: hii ni jumla inayosogea kwa sababu nyingi, ikiwa ni pamoja na sababu zisizohusiana kabisa na hamu ya hatari, kama vile mtoaji kukomboa kwa madhumuni ya udhibiti."
   },
   "65839a5fb60e": {
    "en": "A company's receivables are growing much faster than its revenue. What does this justify?",
@@ -7101,6 +7285,10 @@
    "en": "Here's the part that actually matters for this course: nothing about that $25 profit required an actual vacation. The only thing that mattered was holding one currency while it strengthened against another, then converting back.",
    "sw": "Hii ndiyo sehemu inayohusika kwa kozi hii hasa: hakuna chochote kuhusu faida ile ya $25 kilichohitaji likizo halisi. Kitu pekee kilichohusika ni kushikilia sarafu moja inapoimarika dhidi ya nyingine, kisha kubadilisha tena."
   },
+  "68c62edacd73": {
+   "en": "The second is that this is not permission to time the market. Chapter 4 Lesson 1 gave the evidence on what retail timing achieves: an estimated 73 to 81% of retail investors in the BIS data had likely lost money, with entries clustered after price rises. Regime reading tells you which evidence has power in conditions you are already in. It does not tell you what next quarter looks like, and anyone who claims otherwise is selling something.",
+   "sw": "Cha pili ni kwamba hii si ruhusa ya kupanga muda wa soko. Sura ya 4 Somo la 1 lilitoa ushahidi juu ya kile ambacho kupanga muda kwa rejareja hufanikisha: makadirio ya 73 hadi 81% ya wawekezaji wa rejareja katika data ya BIS pengine walipoteza pesa, huku viingilio vikikusanyika baada ya kupanda kwa bei. Kusoma utawala hukuambia ni ushahidi upi wenye nguvu katika hali ambazo tayari uko ndani yake. Hakukuambii robo ijayo inaonekanaje, na yeyote anayedai vinginevyo anauza kitu."
+  },
   "68f33d2efabc": {
    "en": "Reporting bias",
    "sw": "Upendeleo wa kuripoti"
@@ -7228,6 +7416,10 @@
   "6a5bfb698d93": {
    "en": "It does not establish that the design is sound, that the team will not act against you, or that the deployed contract is the version reviewed. A contract can be audited and still contain a documented function letting the owner mint unlimited tokens, because that function is not a bug — it is a feature the auditors correctly reported and the reader never read. Audited is a statement about code review, not a statement about safety.",
    "sw": "Hauthibitishi kwamba muundo ni imara, kwamba timu haitatenda dhidi yako, au kwamba mkataba uliowekwa ni toleo lililopitiwa. Mkataba unaweza kukaguliwa na bado ukawa na kitendakazi kilichoandikwa kinachomruhusu mmiliki kutengeneza tokeni bila kikomo, kwa sababu kitendakazi hicho si hitilafu — ni sifa ambayo wakaguzi waliiripoti kwa usahihi na msomaji hakuisoma kamwe. Umekaguliwa ni kauli kuhusu mapitio ya msimbo, si kauli kuhusu usalama."
+  },
+  "6a78275b20ba": {
+   "en": "Correct. The value of the finding is that it collapses apparent variety into a few exposures, which matters when you believe you hold several independent bets. It is the strongest evidence this asset class currently has, and it is weaker than the equity equivalents: a cross-sectional description over a sample, not a promise about persistence or about any one asset.",
+   "sw": "Sahihi. Thamani ya tokeo ni kwamba huponda tofauti inayoonekana kuwa kufunuliwa kuchache, jambo lenye maana unapoamini unashikilia madau kadhaa huru. Ndio ushahidi imara zaidi ambao aina hii ya rasilimali inao kwa sasa, nao ni dhaifu zaidi kuliko visawe vya hisa: maelezo ya sehemu-mtambuka katika sampuli, si ahadi kuhusu kudumu au kuhusu rasilimali yoyote moja."
   },
   "6a7b93b30617": {
    "en": "What to look for when you read a set of accounts. Compare profit with operating cash flow across at least three years and note whether the gap is stable or widening. Check whether free cash flow is positive after capital spending. Look at how fast receivables and inventory are growing relative to revenue. And read the notes to the accounts, which is where anything genuinely awkward is disclosed in the smallest available typeface.",
@@ -7433,6 +7625,10 @@
    "en": "In the 2025 Morningstar data the overall gap was 1.2 points, but international equity funds showed 3.2 points and sector equity funds 2.1 points. Nobody trades a target-date pension fund on a hunch. People do trade a technology sector fund on one.",
    "sw": "Katika data ya Morningstar ya 2025 pengo la jumla lilikuwa pointi 1.2, lakini mifuko ya hisa za kimataifa ilionyesha pointi 3.2 na mifuko ya hisa za sekta pointi 2.1. Hakuna anayefanyia biashara mfuko wa pensheni wa tarehe lengwa kwa hisia. Watu hufanyia biashara mfuko wa sekta ya teknolojia kwa hisia."
   },
+  "6cb02a5570de": {
+   "en": "Supply arithmetic",
+   "sw": "Hesabu ya usambazaji"
+  },
   "6cb8abf9a66b": {
    "en": "Not quite. The argument is narrower and cleverer than any of those. It says perfect efficiency is self-defeating: if prices already reflected everything, nobody would pay to gather information, so prices would stop reflecting it. Some inefficiency must persist — which is not the same as saying it is available to you.",
    "sw": "Si sahihi kabisa. Hoja ni finyu na ya werevu zaidi kuliko yoyote kati ya hizo. Husema ufanisi kamili hujiharibu wenyewe: kama bei zingeakisi kila kitu tayari, hakuna angelipa kukusanya taarifa, hivyo bei zingeacha kuziakisi. Ufanisi mdogo lazima udumu — ambako si sawa na kusema unapatikana kwako."
@@ -7541,6 +7737,10 @@
    "en": "Monthly US employment release; one of the highest-impact scheduled events in forex.",
    "sw": "Toleo la kila mwezi la ajira la Marekani; mojawapo ya matukio yaliyopangwa yenye athari kubwa zaidi katika forex."
   },
+  "6e90dcac3ce3": {
+   "en": "Crypto receives the regime last and amplified. Much of what looks like crypto news is a bond market decision arriving late.",
+   "sw": "Kripto hupokea utawala mwisho na ukiwa umekuzwa. Mengi ya yanayoonekana kama habari za kripto ni uamuzi wa soko la hatifungani ukifika kwa kuchelewa."
+  },
   "6ea1bac39672": {
    "en": "Diagram of the transaction lifecycle in five stages: signed with a private key, broadcast to the peer-to-peer network, waiting in the mempool where transactions bid fees for scarce block space, included in a block, then buried under N confirmations as new blocks are added",
    "sw": "Mchoro wa mzunguko wa maisha ya muamala katika hatua tano: kutiwa sahihi kwa ufunguo wa faragha, kutangazwa kwa mtandao wa rika-kwa-rika, kusubiri katika mempool ambapo miamala hunadi ada kwa nafasi adimu ya kitalu, kujumuishwa katika kitalu, kisha kuzikwa chini ya uthibitisho N kadiri vitalu vipya vinavyoongezwa"
@@ -7560,6 +7760,10 @@
   "6ec60fe39028": {
    "en": "Cryptocurrency",
    "sw": "Sarafu ya kripto"
+  },
+  "6ef4c167d9c4": {
+   "en": "That crypto markets are fully efficient",
+   "sw": "Kwamba masoko ya kripto yana ufanisi kamili"
   },
   "6f09c78de26a": {
    "en": "One timing detail affects the price you get and is invisible unless you know to look for it.",
@@ -7588,6 +7792,10 @@
   "6f9f5d3e6b83": {
    "en": "On 10 October 2025, crypto markets ran the loop at record scale. The trigger was outside crypto: an announcement of new United States tariffs on Chinese imports set off cross-asset selling, and crypto entered that shock with open interest near record highs and heavily one-sided long positioning. The reported figures, from the derivatives data firm CoinGlass: roughly 19.1 to 19.5 billion dollars of leveraged positions liquidated within 24 hours, across roughly 1.62 million accounts, with longs approximately 85% to 90% of the total. That is the largest single-day liquidation total on record, more than twice the roughly 8 to 8.6 billion dollars liquidated on 19 May 2021, which had held the record until then. Sources disagree on bitcoin's exact intraday path, and it is worth saying so rather than picking the most dramatic number: reports place the fall at roughly 15% to 18% within hours, from a starting point variously given as about 122,000 to 126,300 dollars down to about 103,300 to 106,600 dollars. Smaller tokens fell far harder, with several major altcoins printing intraday falls in the 60% to 80% range. The depth collapse was the amplifier: analysis of exchange order books during the event found top-of-book depth on major venues falling by well over 90%, with bids reappearing only 4% and 10% away from the mid price. CoinDesk reported in November 2025 that depth remained well below early-October levels a month later.",
    "sw": "Tarehe 10 Oktoba 2025, masoko ya kripto yalikimbiza kitanzi kwa kiwango cha rekodi. Kichocheo kilikuwa nje ya kripto: tangazo la ushuru mpya wa Marekani juu ya bidhaa kutoka China lilianzisha uuzaji wa rasilimali mtambuka, na kripto iliingia katika mshtuko huo ikiwa na maslahi wazi karibu na rekodi za juu na msimamo mrefu wa upande mmoja mkali. Takwimu zilizoripotiwa, kutoka kampuni ya data ya viderivativi CoinGlass: takriban dola bilioni 19.1 hadi 19.5 za nafasi zenye mzingo zilifilisiwa ndani ya masaa 24, katika takriban akaunti milioni 1.62, huku warefu wakiwa takriban 85% hadi 90% ya jumla. Hiyo ndiyo jumla kubwa zaidi ya ufilisi ya siku moja iliyoandikwa, zaidi ya mara mbili ya takriban dola bilioni 8 hadi 8.6 zilizofilisiwa tarehe 19 Mei 2021, ambayo ilikuwa imeshikilia rekodi hadi wakati huo. Vyanzo havikubaliani kuhusu njia hasa ya bitcoin ndani ya siku, na inastahili kusema hivyo badala ya kuchagua namba ya kushtua zaidi: ripoti huweka kushuka katika takriban 15% hadi 18% ndani ya masaa, kutoka nukta ya kuanzia iliyotolewa kwa namna mbalimbali kama takriban dola 122,000 hadi 126,300 kushuka hadi takriban dola 103,300 hadi 106,600. Tokeni ndogo zaidi zilishuka kwa nguvu zaidi sana, huku altcoin kadhaa kuu zikichapisha kushuka ndani ya siku katika kiwango cha 60% hadi 80%. Kuporomoka kwa kina ndicho kilichokuwa kikuza: uchambuzi wa vitabu vya maagizo vya masoko wakati wa tukio ulibaini kina cha kilele cha kitabu katika viwanja vikuu kikishuka kwa zaidi ya 90%, huku zabuni zikijitokeza tena tu 4% na 10% mbali na bei ya katikati. CoinDesk iliripoti mwezi Novemba 2025 kwamba kina kilibaki chini sana ya viwango vya mapema Oktoba mwezi mmoja baadaye."
+  },
+  "6fa58c751c19": {
+   "en": "Halvings, large protocol upgrades and product approvals are crypto-native events with known dates, and Chapter 2 Lesson 2 examined the halving narrative in detail. The finding there applies to all of them: an event that everybody can see in advance has had as long as everybody has had to be priced. The uncertainty is never the date. It is the response, and the response is what nobody can schedule.",
+   "sw": "Kupunguzwa nusu, maboresho makubwa ya itifaki na idhini za bidhaa ni matukio ya asili ya kripto yenye tarehe zinazojulikana, na Sura ya 2 Somo la 2 lilichunguza simulizi ya kupunguzwa nusu kwa kina. Tokeo hapo hutumika kwa yote: tukio ambalo kila mtu anaweza kuliona mapema limekuwa na muda mrefu kadiri kila mtu alivyokuwa nao wa kupangiwa bei. Kutokuwa na uhakika kamwe si tarehe. Ni mwitikio, na mwitikio ndicho ambacho hakuna anayeweza kukipanga."
   },
   "6fa64bcb25f9": {
    "en": "Not quite — the missing piece is the measurement window. The IMF reported 0.01 for 2017 to 2019 and 0.36 for 2020 to 2021 on the same pair. A correlation with no dates attached cannot be checked.",
@@ -7688,6 +7896,10 @@
   "70f5ec41f7c7": {
    "en": "Not quite — re-read the example. The actual finding is more careful than a flat \"yes\" or \"no.\"",
    "sw": "Si sahihi kabisa — soma tena mfano. Tokeo halisi ni makini zaidi kuliko \"ndiyo\" au \"hapana\" tupu."
+  },
+  "710dbf07191a": {
+   "en": "Aggregate open interest in perpetual futures, together with the funding rate, is a direct measurement of how much leverage is in the system and which way it leans. When open interest is elevated and funding has been persistently positive for a sustained period, the market is carrying crowded leveraged long positioning. That is not a prediction that prices will fall. It is a statement that the conditions for a liquidation cascade are present, and Chapter 3 Lesson 3 described what happens when one starts.",
+   "sw": "Maslahi wazi jumlifu katika mikataba ya baadaye ya kudumu, pamoja na kiwango cha ufadhili, ni kipimo cha moja kwa moja cha mzingo kiasi gani upo katika mfumo na unaegemea upande upi. Wakati maslahi wazi yameinuka na ufadhili umekuwa chanya kwa kudumu kwa kipindi cha muda, soko linabeba msimamo mrefu wenye mzingo uliojaa. Hilo si utabiri kwamba bei zitashuka. Ni kauli kwamba hali za mfuatano wa ufilisi zipo, na Sura ya 3 Somo la 3 lilielezea kinachotokea mmoja unapoanza."
   },
   "711b5c6af517": {
    "en": "Settlement",
@@ -8165,6 +8377,10 @@
    "en": "2022 was not a hypothetical. It was the exact scenario the marketing described, and the results are on the record. Inflation arrived. United States consumer prices rose 9.1% over the 12 months ending June 2022, the largest 12-month increase since the period ending November 1981, according to the Bureau of Labor Statistics. If a capped-supply asset protects you from inflation, this was the moment.",
    "sw": "Mwaka 2022 haukuwa wa kudhania. Ulikuwa hali hasa ambayo utangazaji uliieleza, na matokeo yako katika rekodi. Mfumuko wa bei ulifika. Bei za watumiaji za Marekani zilipanda 9.1% katika miezi 12 iliyoishia Juni 2022, ongezeko kubwa zaidi la miezi 12 tangu kipindi kilichoishia Novemba 1981, kwa mujibu wa Bureau of Labor Statistics. Ikiwa rasilimali yenye dari ya usambazaji hukulinda dhidi ya mfumuko wa bei, huu ndio ulikuwa wakati."
   },
+  "76f7cc1f2b1c": {
+   "en": "Take any crypto asset you hold or have considered and score all six pillars in writing, one sentence of evidence each. Then strike out every pillar whose evidence is downstream of the price having moved. Count what is left. Most first attempts lose three or four pillars at this step, and the remaining count is the honest strength of the case.",
+   "sw": "Chukua rasilimali yoyote ya kripto unayoishikilia au uliyoifikiria na upime nguzo zote sita kwa maandishi, sentensi moja ya ushahidi kila moja. Kisha futa kila nguzo ambayo ushahidi wake uko chini ya mkondo wa bei kusogea. Hesabu kilichobaki. Majaribio mengi ya kwanza hupoteza nguzo tatu au nne katika hatua hii, na idadi iliyobaki ndiyo nguvu ya kweli ya hoja."
+  },
   "7714d6282d60": {
    "en": "True or False: a bank run happens because the bank did something wrong that specific day.",
    "sw": "Kweli au Uongo: kukimbilia benki hutokea kwa sababu benki ilifanya kitu kibaya siku hiyo mahususi."
@@ -8365,6 +8581,10 @@
    "en": "Bid/Ask Spread & Pips",
    "sw": "Spread ya Bid/Ask na Pip"
   },
+  "79e06d53221a": {
+   "en": "What to look for before acting on any crypto thesis. Check that each pillar rests on different evidence rather than on the same price move. Check that the valuation pillar has been replaced by supply arithmetic rather than quietly filled with a narrative. Check that any carry is funded by fees rather than issuance. And write down what would falsify the thesis, with a date, because a thesis that cannot be wrong cannot teach you anything.",
+   "sw": "Cha kuangalia kabla ya kutenda juu ya nadharia yoyote ya kripto. Kagua kwamba kila nguzo inasimama juu ya ushahidi tofauti badala ya juu ya msogeo uleule wa bei. Kagua kwamba nguzo ya tathmini imebadilishwa na hesabu ya usambazaji badala ya kujazwa kimya kimya na simulizi. Kagua kwamba kubeba kokote hufadhiliwa na ada badala ya utoaji. Na andika kitakachokanusha nadharia, kikiwa na tarehe, kwa sababu nadharia isiyoweza kuwa si sahihi haiwezi kukufundisha lolote."
+  },
   "79e884aa14c0": {
    "en": "Before entering, run these checks: Can you state the trade's risk-to-reward ratio as a number, from a real stop price and a real target price? Does that ratio clear its break-even win rate with room to spare, given a win rate you can honestly expect rather than a hoped-for one? Are your stop and target placed at meaningful levels — invalidation, support, resistance — or chosen to manufacture a nice-looking ratio? And do you ever widen a stop or pull in a target mid-trade? That is the ratio quietly collapsing, the one habit this lesson most wants you to catch.",
    "sw": "Kabla ya kuingia, fanya ukaguzi huu: Je, unaweza kutamka uwiano wa hatari-kwa-tuzo wa biashara kama namba, kutoka bei halisi ya stop na bei halisi ya lengo? Je, uwiano huo unapita kiwango chake cha ushindi cha kulingana kwa nafasi ya ziada, kwa kuzingatia kiwango cha ushindi unachoweza kukitarajia kwa uaminifu badala ya kile unachokitumaini? Je, stop na lengo lako vimewekwa kwenye viwango vyenye maana — kuvunjika, msaada, upinzani — au vimechaguliwa kutengeneza uwiano unaoonekana mzuri? Na je, unawahi kupanua stop au kuvuta lengo karibu katikati ya biashara? Huo ni uwiano ukiporomoka kimyakimya, tabia moja ambayo somo hili linataka zaidi ukamate."
@@ -8417,6 +8637,10 @@
    "en": "Why is position sizing often more important than which company you choose?",
    "sw": "Kwa nini upimaji wa ukubwa wa nafasi mara nyingi ni muhimu zaidi kuliko kampuni unayoichagua?"
   },
+  "7ad790911f98": {
+   "en": "The total outstanding quantity of major stablecoins, which approximates the amount of capital positioned inside the crypto system and ready to be deployed.",
+   "sw": "Kiasi jumla kilichosalia cha sarafu imara kuu, ambacho hukadiria kiasi cha mtaji uliowekwa ndani ya mfumo wa kripto na tayari kupelekwa."
+  },
   "7ad8b61c7cac": {
    "en": "Software or hardware that creates and stores your keys, and uses them to sign transactions. A wallet holds no coins. The coins are entries on the blockchain's ledger; the wallet holds the keys that control them.",
    "sw": "Programu au maunzi yanayounda na kuhifadhi funguo zako, na kuzitumia kutia sahihi miamala. Pochi haishikilii sarafu yoyote. Sarafu ni maingizo katika leja ya mnyororo wa vitalu; pochi hushikilia funguo zinazozidhibiti."
@@ -8436,6 +8660,10 @@
   "7afcd21e9d79": {
    "en": "You enter a long position on a currency pair at 1.50. Where should your stop-loss sit relative to your entry?",
    "sw": "Unaingia katika nafasi ya long kwenye jozi la sarafu kwa 1.50. Stop-loss yako inapaswa kuwa wapi ikilinganishwa na kiingilio chako?"
+  },
+  "7b05f6a21a97": {
+   "en": "Not quite. The paper does not establish predictability, does not single out momentum as the only workable strategy, and makes no efficiency claim. It shows that a range of distinct-looking strategies share underlying exposures.",
+   "sw": "Si sahihi kabisa. Karatasi haithibitishi kutabirika, haitengi kasi kama mkakati pekee unaotumika, wala haitoi dai la ufanisi. Huonyesha kwamba mikakati mbalimbali inayoonekana tofauti hushiriki kufunuliwa kwa msingi."
   },
   "7b17fc148d22": {
    "en": "A fund's annual fee as a percentage of assets, deducted from the fund rather than billed.",
@@ -8601,6 +8829,10 @@
    "en": "A multiple is a forecast compressed into one number. A low one is a question about why, not an answer about value.",
    "sw": "Kizidishi ni utabiri uliobanwa kuwa namba moja. Kidogo ni swali kuhusu kwa nini, si jibu kuhusu thamani."
   },
+  "7e0bfe32dc49": {
+   "en": "Aggregate open interest in perpetual futures, read together with funding, measures how much leverage is in the system and which way it leans. Chapter 3 Lesson 3 described the mechanics of a liquidation cascade. As a regime reading, elevated open interest with persistently positive funding says the fuel is present, and that a fall which would otherwise be ordinary has the potential to become mechanical and self-accelerating.",
+   "sw": "Maslahi wazi jumlifu katika mikataba ya baadaye ya kudumu, yakisomwa pamoja na ufadhili, hupima mzingo kiasi gani upo katika mfumo na unaegemea upande upi. Sura ya 3 Somo la 3 lilielezea mitambo ya mfuatano wa ufilisi. Kama usomaji wa utawala, maslahi wazi yaliyoinuka pamoja na ufadhili chanya wa kudumu husema mafuta yapo, na kwamba kushuka ambako vinginevyo kungekuwa kwa kawaida kuna uwezekano wa kuwa kwa kimitambo na kunakojiharakisha."
+  },
   "7e0ce3cf6a84": {
    "en": "Readers who took the Forex track have met this already, in Chapter 1 Lesson 4. The mechanism is identical; only the units differ. Currency traders count it in pips, share traders count it in cents, and both are paying the same thing.",
    "sw": "Wasomaji waliochukua njia ya Forex tayari wamekutana na hili, katika Sura ya 1 Somo la 4. Utaratibu unafanana; vipimo tu ndivyo vinavyotofautiana. Wafanyabiashara wa sarafu huihesabu kwa pip, wafanyabiashara wa hisa huihesabu kwa senti, na wote wanalipa kitu kile kile."
@@ -8692,6 +8924,10 @@
   "7f3720098c1a": {
    "en": "The Nasdaq Composite fell 78% and took fifteen years to regain its peak. Recovery is a fact about indexes; whether it is a fact about you depends on how long you had.",
    "sw": "Nasdaq Composite ilishuka 78% na ilichukua miaka kumi na mitano kurejea kilele chake. Kupona ni ukweli kuhusu faharasa; kama ni ukweli kukuhusu wewe hutegemea ulikuwa na muda kiasi gani."
+  },
+  "7f3735925aeb": {
+   "en": "Crypto sits at the far end of the transmission chain, which means it is usually reacting to something that was decided in a bond market weeks earlier. Reading the regime tells you which pillar has any power — and often that none does.",
+   "sw": "Kripto hukaa mwisho kabisa wa mnyororo wa usambazaji, jambo linalomaanisha kwa kawaida huitikia kitu kilichoamuliwa katika soko la hatifungani wiki kadhaa mapema. Kusoma utawala hukuambia ni nguzo ipi yenye nguvu yoyote — na mara nyingi kwamba hakuna yenye nguvu."
   },
   "7f38500c990b": {
    "en": "Not quite. Momentum is well documented for individual shares, and neither pillar overrides the other. Their disagreement here is the normal case: cheapness usually arises from a falling price, which is exactly what negative momentum measures.",
@@ -9153,6 +9389,10 @@
    "en": "That the issuer's entire business, controls, and operations have been examined and approved",
    "sw": "Kwamba biashara nzima ya mtoaji, udhibiti, na uendeshaji vimechunguzwa na kuidhinishwa"
   },
+  "855d31c419e0": {
+   "en": "Chapter 2 Lesson 3 established the evidence that crypto trades as a high-beta risk asset rather than as an independent one, and that the diversification argument largely failed in 2022 when it was needed. This lesson is what to do with that fact.",
+   "sw": "Sura ya 2 Somo la 3 lilithibitisha ushahidi kwamba kripto hufanyiwa biashara kama rasilimali ya hatari yenye beta kubwa badala ya kama huru, na kwamba hoja ya mtawanyiko kwa kiasi kikubwa ilishindwa mwaka 2022 ilipohitajika. Somo hili ni la kufanya nini na ukweli huo."
+  },
   "856483751e88": {
    "en": "That exchange interfaces are usually inaccurate",
    "sw": "Kwamba violesura vya masoko ya kubadilisha kwa kawaida si sahihi"
@@ -9409,6 +9649,10 @@
    "en": "Unsecured creditor",
    "sw": "Mdai asiye na dhamana"
   },
+  "890a6ecef0e1": {
+   "en": "The practical consequence is that a great deal of crypto price action is not about crypto. Liquidity conditions are set elsewhere, and crypto receives them amplified.",
+   "sw": "Matokeo ya kivitendo ni kwamba sehemu kubwa mno ya msogeo wa bei ya kripto haihusu kripto. Hali za ukwasi huwekwa mahali pengine, na kripto huzipokea zikiwa zimekuzwa."
+  },
   "890ba7d5b596": {
    "en": "Brokers ignored them on purpose",
    "sw": "Mabroker waliyapuuza kwa makusudi"
@@ -9445,6 +9689,10 @@
    "en": "Traders who avoided EUR/CHF entirely",
    "sw": "Wafanyabiashara walioepuka EUR/CHF kabisa"
   },
+  "8979fdf3004a": {
+   "en": "A risk-on trending regime, with rising risk appetite and low volatility elsewhere, is where momentum works and where the factor evidence has most force. It is also where funding rates climb and leverage accumulates, which is the same condition described from the other side.",
+   "sw": "Utawala wa mwelekeo wa hatari-hai, wenye hamu ya hatari inayopanda na mtikisiko mdogo mahali pengine, ndipo kasi inapofanya kazi na ambapo ushahidi wa vipengele una nguvu zaidi. Pia ndipo viwango vya ufadhili hupanda na mzingo hujilimbikiza, ambayo ni hali ileile ikielezwa kutoka upande mwingine."
+  },
   "8991bbf09ab1": {
    "en": "Risk affecting nearly all companies together. Not diversifiable within equities.",
    "sw": "Hatari inayoathiri karibu kampuni zote kwa pamoja. Haiwezi kusambazwa ndani ya hisa."
@@ -9477,6 +9725,10 @@
    "en": "Be honest about the limit. \"Best ideas\" means best-analysed, not most strongly felt — the two are easy to confuse and it is the confusion this whole lesson exists to break. Evidence-backed factors are also not guarantees; they have long stretches of underperformance, which is exactly why you need several pillars and, still, the risk control of Chapter 3. A thesis raises your odds. It never removes the need to be sized to be wrong.",
    "sw": "Kuwa mwaminifu kuhusu kikomo. \"Mawazo bora\" inamaanisha yaliyochambuliwa vizuri zaidi, si yanayohisiwa kwa nguvu zaidi — hizo mbili ni rahisi kuzichanganya na ni mkanganyiko huo ambao somo hili lote lipo kulivunja. Vipengele vinavyoungwa mkono na ushahidi pia si uhakika; vina vipindi virefu vya utendaji duni, ambayo ndiyo hasa sababu unahitaji nguzo kadhaa na, bado, udhibiti wa hatari wa Sura ya 3. Nadharia huongeza uwezekano wako. Kamwe haiondoi hitaji la kupimwa ili ukosee."
   },
+  "8a0005744e8e": {
+   "en": "The Six-Pillar Thesis, Adapted for Crypto",
+   "sw": "Nadharia ya Nguzo Sita, Iliyorekebishwa kwa Kripto"
+  },
   "8a1784a8130d": {
    "en": "A standardised annual cost figure for a fund, covering management and most operating costs. Also encountered as the total expense ratio, and broadly comparable to the American expense ratio.",
    "sw": "Takwimu sanifu ya gharama ya kila mwaka kwa fund, inayohusu usimamizi na gharama nyingi za uendeshaji. Pia hukutana nayo kama uwiano wa jumla wa gharama, na inalinganika kwa upana na uwiano wa gharama wa Marekani."
@@ -9505,6 +9757,10 @@
    "en": "Running the six-pillar process properly on individual companies is genuinely time-consuming, and many people who understand it completely will still decide they would rather not do it themselves. Scere Training sells completed trade theses built with this framework for readers in that position. That is the only mention it gets, and the reason the framework is taught in full here is that you should be able to judge such a thesis — including one of ours — rather than take it on trust.",
    "sw": "Kuendesha mchakato wa nguzo sita ipasavyo kwa kampuni mmoja mmoja huchukua muda mwingi kweli, na watu wengi wanaouelewa kabisa bado wataamua wangependelea wasiufanye wenyewe. Scere Training huuza nadharia kamili za biashara zilizojengwa kwa mfumo huu kwa wasomaji walio katika msimamo huo. Hilo ndilo tajo pekee linalopata, na sababu ya mfumo kufundishwa kikamilifu hapa ni kwamba unapaswa kuweza kuhukumu nadharia kama hiyo — ikiwa ni pamoja na yetu — badala ya kuichukua kwa imani."
   },
+  "8a477faaf4cd": {
+   "en": "That is three supportive pillars, one mildly supportive, two against, and a dated catalyst. It is a real thesis rather than a strong one, and the two pillars against are exactly the sort a person who wanted to buy would have quietly omitted.",
+   "sw": "Hizo ni nguzo tatu zinazounga mkono, moja inayounga mkono kidogo, mbili zinazopinga, na kichocheo chenye tarehe. Ni nadharia halisi badala ya imara, na nguzo mbili zinazopinga ndizo hasa aina ambayo mtu aliyetaka kununua angeziacha kimya kimya."
+  },
   "8a5d031f57de": {
    "en": "Several independent, evidence-based pillars pointing the same way",
    "sw": "Nguzo kadhaa huru zenye msingi wa ushahidi zikielekea upande ule ule"
@@ -9524,6 +9780,10 @@
   "8a9865e8e68e": {
    "en": "True or False: floating exchange rates are the reason a forex market exists today.",
    "sw": "Kweli au Uongo: viwango vya ubadilishaji vinavyoelea ndiyo sababu soko la forex lipo leo."
+  },
+  "8a9bea529f49": {
+   "en": "Liu, Tsyvinski and Wu found that three factors — market, size and momentum — accounted for the returns of ten apparently distinct crypto long-short strategies. What follows?",
+   "sw": "Liu, Tsyvinski na Wu walibaini kwamba vipengele vitatu — soko, ukubwa na kasi — vilieleza faida za mikakati kumi ya kripto ya mrefu-mfupi inayoonekana tofauti. Nini hufuata?"
   },
   "8aac4784b1f0": {
    "en": "The gap between the bid and the ask. It is a real cost, paid at the moment of trading rather than billed separately.",
@@ -9596,6 +9856,10 @@
   "8b8b918e425b": {
    "en": "Performance chasing",
    "sw": "Kufuatilia utendaji"
+  },
+  "8b92a9e9073c": {
+   "en": "Two honest limits, because this course does not sell certainty.",
+   "sw": "Vikomo viwili vya kweli, kwa sababu kozi hii haiuzi uhakika."
   },
   "8b93fab71db5": {
    "en": "The halving date is calculable from Bitcoin's source code years in advance. What objection does this raise against the claim that the halving will push the price up?",
@@ -10177,6 +10441,10 @@
    "en": "Correct. The same sequence of returns helps someone buying and harms someone selling. Units sold at depressed prices between 2008 and 2011 were not there for the recovery, while units bought in the same period were. Neither investor made an error, which is what makes sequence risk a structural rather than a behavioural problem.",
    "sw": "Sahihi. Mfuatano uleule wa faida humsaidia anayenunua na kumdhuru anayeuza. Vipimo vilivyouzwa kwa bei zilizoshuka kati ya 2008 na 2011 havikuwepo kwa ajili ya kupona, huku vipimo vilivyonunuliwa katika kipindi kilekile vilikuwepo. Hakuna mwekezaji aliyefanya kosa, jambo linalofanya hatari ya mfuatano kuwa tatizo la kimuundo badala ya la kitabia."
   },
+  "92ffcc9032ea": {
+   "en": "For any asset paying you a staking reward, find out what proportion of that reward comes from fees paid by users and what proportion from newly issued supply. Both figures are normally published. If the answer is mostly issuance, write down what your holding is as a percentage of total supply before and after a year of rewards, and note whether it actually rose.",
+   "sw": "Kwa rasilimali yoyote inayokulipa zawadi ya kuweka hisa, bainisha ni sehemu gani ya zawadi hiyo hutoka ada zinazolipwa na watumiaji na ni sehemu gani hutoka usambazaji uliotolewa upya. Takwimu zote mbili kwa kawaida huchapishwa. Ikiwa jibu ni hasa utoaji, andika umiliki wako ni asilimia ngapi ya usambazaji jumla kabla na baada ya mwaka wa zawadi, na utambue kama kweli ulipanda."
+  },
   "930e271f2a67": {
    "en": "The same applies across countries. Holding only companies from your own country is called home bias, and it is close to universal — investors everywhere hold far more domestic equity than the size of their market would justify.",
    "sw": "Vivyo hivyo katika nchi mbalimbali. Kushikilia kampuni za nchi yako mwenyewe tu huitwa upendeleo wa nyumbani, na ni karibu wa wote — wawekezaji kila mahali hushikilia hisa nyingi mno za ndani kuliko ukubwa wa soko lao ungehalalisha."
@@ -10597,6 +10865,10 @@
    "en": "Book-to-market",
    "sw": "Kitabu-kwa-soko"
   },
+  "98f6fb96844b": {
+   "en": "Because crypto prices are too volatile to model",
+   "sw": "Kwa sababu bei za kripto zina mtikisiko mkubwa mno kuiga"
+  },
   "9901ddf91e9d": {
    "en": "Your account equity (balance plus floating profit and loss)",
    "sw": "Usawa wa akaunti yako (salio pamoja na faida na hasara inayoelea)"
@@ -10640,6 +10912,10 @@
   "996a2e86b6ef": {
    "en": "Forex Chapter 6 Lesson 4 made this point and it transfers without modification. A good decision can lose money and a bad one can make it. If you only review the losers, you learn nothing from the positions that worked for reasons you never identified — and you will repeat them at a larger size.",
    "sw": "Forex Sura ya 6 Somo la 4 lilitoa hoja hii nayo huhamishika bila marekebisho. Uamuzi mzuri unaweza kupoteza pesa na mbaya unaweza kupata. Ikiwa unakagua wapotezaji pekee, hujifunzi lolote kutoka nafasi zilizofanya kazi kwa sababu ambazo hukuzitambua kamwe — nawe utazirudia kwa ukubwa zaidi."
+  },
+  "996af4890ee1": {
+   "en": "Where regime reading earns its place is in discretionary decisions: the additional position you were about to open, the size you were about to increase, the leverage you were about to use. Applied there it is protection. Applied to a long-term contribution schedule it becomes market timing wearing a more respectable name, and the evidence on retail market timing is in Chapter 4 Lesson 1 and is not encouraging.",
+   "sw": "Pale kusoma utawala kunapopata nafasi yake ni katika maamuzi ya hiari: nafasi ya ziada uliyokuwa karibu kuifungua, ukubwa uliokuwa karibu kuuongeza, mzingo uliokuwa karibu kuutumia. Kukitumika hapo ni ulinzi. Kukitumika kwa ratiba ya michango ya muda mrefu huwa kupanga muda wa soko kukivaa jina lenye heshima zaidi, na ushahidi juu ya kupanga muda wa soko wa rejareja uko katika Sura ya 4 Somo la 1 nao hautii moyo."
   },
   "9976d15fab73": {
    "en": "Beliefs about a price affecting the fundamentals meant to justify it, making confidence part of the system.",
@@ -10708,6 +10984,10 @@
   "9a1e9c768b10": {
    "en": "A smart contract that prices trades with a formula instead of an order book.",
    "sw": "Mkataba mahiri unaopanga bei za biashara kwa fomula badala ya kitabu cha maagizo."
+  },
+  "9a214afc7f07": {
+   "en": "What exists instead is on-chain activity, and Chapter 2 Lesson 4 was deliberately careful about its limits. Active addresses, transaction counts and exchange flows are real measurements of real things, and they are not accounting. An address is not a person. A transaction is not a sale. The measurement can be inflated deliberately and often is.",
+   "sw": "Kilichopo badala yake ni shughuli ya kwenye mnyororo, na Sura ya 2 Somo la 4 lilikuwa makini kwa makusudi kuhusu vikomo vyake. Anwani hai, hesabu za miamala na mitiririko ya masoko ya kubadilisha ni vipimo halisi vya vitu halisi, navyo si uhasibu. Anwani si mtu. Muamala si uuzaji. Kipimo kinaweza kukuzwa kwa makusudi na mara nyingi hukuzwa."
   },
   "9a40b5ed1207": {
    "en": "The landmark study is Fama and French, in the Journal of Finance in 1992 (volume 47, issue 2, pages 427 to 465). They examined which characteristics actually explained differences in average share returns, and found that two easily measured variables did most of the work: company size, and book-to-market equity — the accounting value of a company against its market price.",
@@ -11017,6 +11297,10 @@
    "en": "An authorised participant buys the underlying basket, exchanges it for new ETF shares and sells them, which pushes the two prices together",
    "sw": "Mshiriki aliyeidhinishwa hununua kikapu cha msingi, huibadilisha kwa hisa mpya za ETF na kuziuza, jambo linalosukuma bei hizo mbili pamoja"
   },
+  "9f33cbc3a994": {
+   "en": "Four pillars transfer, one is replaced by supply arithmetic, and one only resembles carry.",
+   "sw": "Nguzo nne huhamishika, moja hubadilishwa na hesabu ya usambazaji, na moja hufanana tu na kubeba."
+  },
   "9f3d237bcd2c": {
    "en": "Not quite — nothing in the software forbids spending earlier. Each confirmation adds proof-of-work an attacker would have to redo, so reversal gets exponentially more expensive with depth. The exchange's N is a risk judgment, and different platforms pick different numbers.",
    "sw": "Si sahihi kabisa — hakuna kilicho katika programu kinachokataza kutumia mapema. Kila uthibitisho huongeza uthibitisho-wa-kazi ambao mshambuliaji angelazimika kuurudia, kwa hivyo kutendua huwa ghali kwa kuzidisha kadiri kina kinavyoongezeka. N ya soko ni hukumu ya hatari, na majukwaa tofauti huchagua namba tofauti."
@@ -11052,6 +11336,10 @@
   "9fd68d2f105b": {
    "en": "Suppose you hold a long perpetual position with 10,000 dollars of notional exposure, and funding is +0.01% per 8-hour period. You pay 10,000 x 0.0001 = 1 dollar at each settlement. There are three settlements a day, so that is 3 dollars a day, or 0.03% of your notional daily. Held for 30 days at the same rate, that is 90 dollars. Annualised without compounding, 0.03% a day is 10.95% a year. Now suppose funding rises to +0.1% per period, which happens in strongly one-sided markets. The same position pays 30 dollars a day - an annualised 109.5%. The price has not moved at all in either case.",
    "sw": "Tuseme unashikilia nafasi ndefu ya kudumu yenye kufunuliwa kwa kinadharia kwa dola 10,000, na ufadhili ni +0.01% kwa kipindi cha masaa 8. Unalipa 10,000 x 0.0001 = dola 1 katika kila utimizaji. Kuna utimizaji tatu kwa siku, kwa hivyo hiyo ni dola 3 kwa siku, au 0.03% ya kinadharia chako kila siku. Ikishikiliwa kwa siku 30 katika kiwango kilekile, hiyo ni dola 90. Ikipimwa kwa mwaka bila kujilimbikiza, 0.03% kwa siku ni 10.95% kwa mwaka. Sasa tuseme ufadhili unapanda hadi +0.1% kwa kipindi, jambo linalotokea katika masoko yenye upande mmoja mkali. Nafasi ileile hulipa dola 30 kwa siku - 109.5% kwa mwaka. Bei haijasogea kabisa katika kesi yoyote."
+  },
+  "9fd76b12fb89": {
+   "en": "Six pillars shown with their crypto adaptation: fundamentals become on-chain activity with stated limits, valuation is marked as not transferring because there are no cash flows and is replaced by supply arithmetic, catalyst transfers with a warning about scheduled events, positioning is strengthened by funding rates, momentum is supported by the Liu Tsyvinski and Wu three-factor finding but decays in weeks, and carry is qualified because staking rewards are often paid in the same falling token and funded by new issuance.",
+   "sw": "Nguzo sita zikionyeshwa na urekebishaji wao wa kripto: misingi huwa shughuli ya kwenye mnyororo yenye vikomo vilivyotajwa, tathmini huwekewa alama kama isiyohamishika kwa sababu hakuna mitiririko ya fedha nayo hubadilishwa na hesabu ya usambazaji, kichocheo huhamishika kikiwa na onyo kuhusu matukio yaliyopangwa, msimamo huimarishwa na viwango vya ufadhili, kasi huungwa mkono na tokeo la vipengele vitatu la Liu Tsyvinski na Wu lakini huoza katika wiki, na kubeba hufafanuliwa kwa sababu zawadi za kuweka hisa mara nyingi hulipwa katika tokeni ileile inayoshuka na hufadhiliwa na utoaji mpya."
   },
   "9ff174e6acfd": {
    "en": "Not quite — the wallet held keys, not coins. The coins are entries on the ledger, and the written seed phrase regenerates every key on a new device. (Without the written phrase, though, they would be visible on the ledger forever and spendable by no one.)",
@@ -11393,6 +11681,10 @@
    "en": "A document setting out what you will hold, how much, under what rules, where it is stored, and under what conditions you will act. Written while calm, consulted while not.",
    "sw": "Hati inayoeleza utakachoshikilia, kiasi gani, chini ya kanuni zipi, kinapohifadhiwa, na chini ya masharti gani utatenda. Huandikwa ukiwa mtulivu, hurejelewa usipokuwa."
   },
+  "a45508b2f141": {
+   "en": "Because staking rewards are taxed differently from interest",
+   "sw": "Kwa sababu zawadi za kuweka hisa hutozwa kodi tofauti na riba"
+  },
   "a473adb51d4a": {
    "en": "Chapter 1: The History of Money",
    "sw": "Sura 1: Historia ya Fedha"
@@ -11516,6 +11808,10 @@
   "a61a5b3ac716": {
    "en": "A claim on what is left after suppliers, staff, lenders and tax are paid. Shareholders hold one.",
    "sw": "Dai juu ya kilichobaki baada ya wasambazaji, wafanyakazi, wakopeshaji na kodi kulipwa. Wanahisa hushikilia moja."
+  },
+  "a626d982819a": {
+   "en": "Fundamentals. In equities this is the three financial statements. In currencies it is growth, inflation and policy. Crypto has neither, and pretending otherwise is where most token analysis goes wrong.",
+   "sw": "Misingi. Katika hisa hii ni taarifa tatu za kifedha. Katika sarafu ni ukuaji, mfumuko wa bei na sera. Kripto haina yoyote, na kujifanya vinginevyo ndipo uchambuzi mwingi wa tokeni unakosea."
   },
   "a62fecffc7ec": {
    "en": "Notional Value",
@@ -11645,6 +11941,10 @@
    "en": "Limited supply — a key trait that let gold hold value as money.",
    "sw": "Ugavi mdogo — sifa muhimu iliyoiwezesha dhahabu kushikilia thamani kama pesa."
   },
+  "a7e87e3fba0a": {
+   "en": "Positioning and sentiment. This transfers unusually well, because crypto exposes positioning data that other markets keep private.",
+   "sw": "Msimamo na hisia za soko. Hii huhamishika vizuri isivyo kawaida, kwa sababu kripto hufunua data ya msimamo ambayo masoko mengine huiweka ya faragha."
+  },
   "a80627e665cc": {
    "en": "If the rate had instead moved from 1 USD = 20 MXN to 1 USD = 25 MXN while you were away, would you have made money or lost money converting your 2,000 pesos back? Work out the math before reading the next section.",
    "sw": "Kama kiwango kingekuwa kimesogea badala yake kutoka 1 USD = 20 MXN hadi 1 USD = 25 MXN ulipokuwa mbali, je, ungepata pesa au ungepoteza pesa kubadilisha peso zako 2,000 tena? Fanya hesabu kabla ya kusoma sehemu inayofuata."
@@ -11656,6 +11956,10 @@
   "a820a6db14ba": {
    "en": "The first thing to separate is your balance from your equity.",
    "sw": "Kitu cha kwanza cha kutenganisha ni salio lako na usawa wako."
+  },
+  "a8219f5d075b": {
+   "en": "In a trending risk-on regime, momentum evidence has power and a valuation-style argument has almost none, because nothing is being valued. In a stressed regime, positioning and leverage data have power while narrative has none, since narrative is what is being liquidated. In a ranging regime, nothing much has power, and the useful conclusion is that this is a period for doing very little.",
+   "sw": "Katika utawala wa mwelekeo wa hatari-hai, ushahidi wa kasi una nguvu na hoja ya mtindo wa tathmini karibu haina, kwa sababu hakuna kinachotathminiwa. Katika utawala wa msongo, data ya msimamo na mzingo ina nguvu huku simulizi haina, kwa kuwa simulizi ndiyo inayofilisiwa. Katika utawala wa kuzunguka, hakuna chenye nguvu nyingi, na hitimisho lenye manufaa ni kwamba hiki ni kipindi cha kufanya kidogo sana."
   },
   "a826ea68c775": {
    "en": "That does not mean narratives are unimportant. Chapter 2 Lesson 5 made the case that in a market with no cash flows, narrative does much of the work that earnings do elsewhere. The point is narrower: a named curve is a way of describing what happened, not a way of knowing what happens next.",
@@ -11845,6 +12149,10 @@
    "en": "Start with the reassuring part. Nothing you learned about position sizing is now wrong. Forex Chapter 3, Lesson 1 gave you the sizing formula, and Foundations Chapter 2 gave you the 1% to 2% rule it feeds on. The formula is arithmetic, not a forex convention. It works on any instrument that has a price and a stop.",
    "sw": "Anza na sehemu ya kutuliza. Hakuna ulichojifunza kuhusu kupanga ukubwa wa nafasi ambacho sasa si sahihi. Forex Sura ya 3, Somo la 1 lilikupa fomula ya kupanga ukubwa, na Misingi Sura ya 2 lilikupa kanuni ya 1% hadi 2% inayoilisha. Fomula ni hesabu, si desturi ya forex. Hufanya kazi katika chombo chochote chenye bei na kusimamisha."
   },
+  "aa7d62b2223a": {
+   "en": "Because valuation only applies to regulated instruments",
+   "sw": "Kwa sababu tathmini hutumika kwa vyombo vinavyodhibitiwa pekee"
+  },
   "aa930a0fcd99": {
    "en": "One complication is worth knowing before you own anything, because it changes what the vote is worth.",
    "sw": "Utata mmoja unastahili kujulikana kabla ya kumiliki chochote, kwa sababu hubadilisha kura inastahili nini."
@@ -11852,6 +12160,10 @@
   "aa9d60ab6585": {
    "en": "None - public information has no effect on prices",
    "sw": "Hakuna - taarifa ya umma haina athari kwa bei"
+  },
+  "aaa1513ae415": {
+   "en": "In equities, running the process well can identify a company the market has mispriced. Here, with no cash flows and one of the strongest documented findings being that most strategies collapse into three factors, the realistic output is narrower. The process mostly tells you when not to have a position, and that is a genuinely valuable output rather than a consolation. Chapter 3 established that survival is the constraint that dominates in this asset class, and a framework that keeps you out of crowded, unsupported positions is doing the work that matters.",
+   "sw": "Katika hisa, kuendesha mchakato vizuri kunaweza kutambua kampuni ambayo soko limeipangia bei vibaya. Hapa, bila mitiririko ya fedha na huku mojawapo ya matokeo imara zaidi yaliyoandikwa likiwa kwamba mikakati mingi huponda kuwa vipengele vitatu, tokeo halisi ni finyu zaidi. Mchakato hasa hukuambia lini usiwe na nafasi, na hilo ni tokeo lenye thamani kweli badala ya faraja. Sura ya 3 lilithibitisha kwamba kunusurika ndicho kizuizi kinachotawala katika aina hii ya rasilimali, na mfumo unaokuweka nje ya nafasi zilizojaa, zisizoungwa mkono unafanya kazi yenye maana."
   },
   "aac3d479c114": {
    "en": "This solved gold's transport problem — but created a new one. Once many goldsmiths and banks were each issuing their own paper notes, a note from one issuer often wasn't trusted or accepted far from where it came from.",
@@ -12141,6 +12453,10 @@
    "en": "Crowded positioning tells you what could unwind violently. It does not tell you when. Funding can stay extremely positive for weeks while price keeps rising, and traders who shorted \"because funding was too high\" get carried out well before any reversal arrives. Every crowded trade looks obvious afterwards and pays nothing for being early. Treat elevated funding as a statement about fragility, never as an entry trigger.",
    "sw": "Msimamo uliojaa hukuambia kinachoweza kufunguka kwa nguvu. Haikuambii lini. Ufadhili unaweza kubaki chanya mno kwa wiki huku bei ikiendelea kupanda, na wafanyabiashara waliouza-mkopo \"kwa sababu ufadhili ulikuwa juu mno\" hutolewa nje muda mrefu kabla kugeuka kokote hakujafika. Kila biashara iliyojaa huonekana dhahiri baadaye na hailipi chochote kwa kuwa mapema. Chukulia ufadhili ulioinuka kama kauli kuhusu udhaifu, kamwe si kama kichocheo cha kuingia."
   },
+  "aed11a03c147": {
+   "en": "Because 6% is too small to matter",
+   "sw": "Kwa sababu 6% ni ndogo mno kuwa na maana"
+  },
   "aed8142fa7c4": {
    "en": "Judge the decision, not just the result. A trade that won because the market bailed out a sloppy thesis is a warning, not a success; a well-built thesis that lost to a genuine surprise may have been exactly right to take. Rewarding yourself for luck and punishing yourself for variance trains the wrong habits.",
    "sw": "Hukumu uamuzi, si tokeo tu. Biashara iliyoshinda kwa sababu soko liliokoa nadharia iliyoachwa ovyo ni onyo, si mafanikio; nadharia iliyojengwa vizuri iliyopoteza kwa mshangao halisi huenda ilikuwa sahihi kabisa kuchukuliwa. Kujizawadia kwa bahati na kujiadhibu kwa utofauti hukufundisha tabia zisizo sahihi."
@@ -12200,6 +12516,10 @@
   "af7fe17cbc1a": {
    "en": "Weight capital toward your best-analysed theses (which outperform), while still sizing every trade to the fixed-fractional rule — concentrate conviction, not risk — and review closed trades for the quality of the decision, not just the result.",
    "sw": "Elekeza mtaji zaidi kwenye nadharia zako zilizochambuliwa vizuri zaidi (ambazo hufanya vizuri zaidi), huku bado ukipima kila biashara kwa kanuni ya sehemu thabiti — jikite kwenye uhakika, si hatari — na pitia biashara zilizofungwa kwa ubora wa uamuzi, si tokeo tu."
+  },
+  "af8964494bd2": {
+   "en": "A short note on how this differs from what most crypto commentary offers, since the vocabulary overlaps and the substance does not.",
+   "sw": "Noti fupi kuhusu jinsi hii inavyotofautiana na kile ambacho maoni mengi ya kripto hutoa, kwa kuwa msamiati huingiliana na maudhui hayaingiliani."
   },
   "af9a39d6c48c": {
    "en": "An asset with a persistently high beta, which magnifies the reference market's moves in both directions.",
@@ -12277,6 +12597,10 @@
    "en": "Share ownership is positive-sum — the businesses underneath produce value — while the casino game only redistributes what players bring",
    "sw": "Umiliki wa hisa ni jumla-chanya — biashara zilizo chini huzalisha thamani — ilhali mchezo wa kasino hugawanya upya tu kile wachezaji huleta"
   },
+  "b149117c8e1b": {
+   "en": "That a portfolio of several clever-sounding crypto strategies is probably one exposure wearing several names — though the finding describes a sample period and says nothing about any individual token",
+   "sw": "Kwamba kasha la mikakati kadhaa ya kripto inayosikika ya werevu pengine ni kufunuliwa kumoja kukivaa majina kadhaa — ingawa tokeo huelezea kipindi cha sampuli na halisemi lolote kuhusu tokeni yoyote binafsi"
+  },
   "b14e089cccd5": {
    "en": "What to look for when a similar argument appears, as it does regularly. Notice when valuation is being dismissed rather than argued — the phrase this time the old measures do not apply is the specific signal, and it is not always wrong, which is what makes it dangerous. Notice when an index's top ten holdings become an unusually large share of the whole. Notice when the case for owning something rests entirely on what it might become. And check what proportion of your own portfolio depends on the same story being true.",
    "sw": "Cha kuangalia hoja kama hiyo inapojitokeza, kama inavyotokea mara kwa mara. Tambua wakati tathmini inakataliwa badala ya kujadiliwa — msemo safari hii vipimo vya zamani havitumiki ndiyo ishara maalum, nayo si kosa kila mara, jambo linalofanya iwe hatari. Tambua wakati umiliki kumi bora wa faharasa unakuwa sehemu kubwa isiyo ya kawaida ya jumla. Tambua wakati hoja ya kumiliki kitu inategemea kabisa kile kinachoweza kuwa. Na kagua ni sehemu gani ya kasha lako mwenyewe inategemea hadithi hiyohiyo kuwa kweli."
@@ -12309,6 +12633,10 @@
    "en": "What to look for when you review the plan, which should be a fixed date rather than a reaction. Check whether the exchange balance has crept above the cap, because it always creeps. Check whether the allocation has drifted past the band. Check that you can still access every wallet you own, by actually accessing it rather than by assuming. Confirm the recovery material is where the document says it is.",
    "sw": "Cha kuangalia unapokagua mpango, ambako kunapaswa kuwa tarehe isiyobadilika badala ya mwitikio. Kagua kama salio la soko la kubadilisha limepanda taratibu juu ya dari, kwa sababu daima hupanda taratibu. Kagua kama mgawanyo umetelezea kupita ukanda. Kagua kwamba bado unaweza kufikia kila pochi unayoimiliki, kwa kuifikia hasa badala ya kwa kudhania. Thibitisha nyenzo za urejeshaji ziko pale hati inaposema ziko."
   },
+  "b1b8ad1d547e": {
+   "en": "High beta",
+   "sw": "Beta kubwa"
+  },
   "b1b91d7d8a52": {
    "en": "Position sizing turns your stop-loss distance and risk percentage into an exact trade size, so a losing trade costs exactly what you decided in advance.",
    "sw": "Upimaji wa ukubwa wa nafasi hugeuza umbali wa stop-loss yako na asilimia yako ya hatari kuwa ukubwa kamili wa biashara, ili biashara ya hasara igharimu hasa kile ulichoamua mapema."
@@ -12340,6 +12668,10 @@
   "b24b0f59b424": {
    "en": "What Is Risk, and How Do You Manage It?",
    "sw": "Hatari Ni Nini, na Unaisimamiaje?"
+  },
+  "b24c95c91ccd": {
+   "en": "Before adapting anything, it is worth knowing what the evidence says actually explains crypto returns, because the answer is narrower than most commentary implies.",
+   "sw": "Kabla ya kurekebisha lolote, inastahili kujua ushahidi husema nini kinachoeleza hasa faida za kripto, kwa sababu jibu ni finyu zaidi kuliko maoni mengi yanavyodokeza."
   },
   "b28a04f1a7bb": {
    "en": "List every institution that currently holds any of your crypto, and beside each the amount. Then write one sentence per institution answering: what evidence do I have that this entity holds what it says it holds, and would that evidence have distinguished FTX from a sound exchange in October 2022? For almost everyone the honest answer is that it would not, which is why the cap exists rather than the assessment.",
@@ -12697,6 +13029,10 @@
    "en": "But avoidance alone wastes the opportunity. The genuinely valuable habit is to watch the events you're sitting out.",
    "sw": "Lakini kuepuka peke yake hupoteza fursa. Tabia yenye thamani kweli ni kutazama matukio unayoyakaa nje."
   },
+  "b75ca0b1d78b": {
+   "en": "There is also a category of event that is genuinely internal to crypto, and it deserves a caveat rather than enthusiasm.",
+   "sw": "Pia kuna kundi la matukio ambalo ni la ndani kabisa la kripto, nalo linastahili tahadhari badala ya shauku."
+  },
   "b75efbf57f8f": {
    "en": "Now the part that matters more than either figure. Two investors lived through this period identically until early 2009, and then made different decisions.",
    "sw": "Sasa sehemu yenye maana zaidi kuliko takwimu zote mbili. Wawekezaji wawili walipitia kipindi hiki kwa namna moja hadi mwanzoni mwa 2009, kisha wakafanya maamuzi tofauti."
@@ -13025,6 +13361,10 @@
    "en": "A system wins 40% of trades with an average win of 2R and an average loss of 1R. What is its expectancy in R?",
    "sw": "Mfumo hushinda 40% ya biashara wenye ushindi wa wastani wa 2R na hasara ya wastani ya 1R. Matarajio yake kwa R ni yapi?"
   },
+  "bb31314b9a6f": {
+   "en": "Funding rate",
+   "sw": "Kiwango cha ufadhili"
+  },
   "bb3e22efe7bd": {
    "en": "Now put the correct pip value back into the Chapter 1, Lesson 5 formula and watch what the shortcut does to your risk. Lot Size = (Account Balance x Risk %) / (Stop-Loss in Pips x Pip Value).",
    "sw": "Sasa rudisha thamani sahihi ya pip kwenye fomula ya Sura ya 1, Somo la 5 na utazame njia ya mkato inayofanya nini kwa hatari yako. Ukubwa wa Lot = (Salio la Akaunti x Hatari %) / (Stop-Loss kwa Pip x Thamani ya Pip)."
@@ -13200,6 +13540,10 @@
   "bd9ea2042675": {
    "en": "Barber and Odean (2000) found the households that traded the most earned about 11.4% a year while the market returned about 17.9%. What does this best demonstrate?",
    "sw": "Barber na Odean (2000) waligundua kaya zilizofanya biashara zaidi zilipata takriban 11.4% kwa mwaka ilhali soko lilirudisha takriban 17.9%. Hili linaonyesha nini vizuri zaidi?"
+  },
+  "bde10f2bedaa": {
+   "en": "Invalidation condition",
+   "sw": "Sharti la kubatilisha"
   },
   "be151c4e5dc9": {
    "en": "If a dividend is not free money, the useful question becomes whether the company can keep paying it.",
@@ -13493,6 +13837,10 @@
    "en": "Steinert and Herff (2018), in PLOS ONE, went further and reported that short-term altcoin returns could be predicted from Twitter activity and sentiment across 181 altcoins. Treat that as suggestive rather than as a tool. The samples in this literature are short, the platforms have changed enormously since, and social data has a specific contamination problem.",
    "sw": "Steinert na Herff (2018), katika PLOS ONE, walikwenda mbali zaidi na wakaripoti kwamba faida za muda mfupi za altcoin zingeweza kutabiriwa kutoka shughuli na hisia za Twitter katika altcoin 181. Chukulia hiyo kama ya kudokeza badala ya kama zana. Sampuli katika fasihi hii ni fupi, majukwaa yamebadilika kwa kiasi kikubwa tangu wakati huo, na data ya kijamii ina tatizo maalum la kuchafuliwa."
   },
+  "c1a37ff64a49": {
+   "en": "Correct. Carry is meant to be a return that does not require the market to agree with you. More units of something worth less is not that, and if the units come from new issuance rather than from fees users actually pay, your proportional ownership may not have risen at all. The test is which activity funds the reward.",
+   "sw": "Sahihi. Kubeba kunakusudiwa kuwa faida isiyohitaji soko likubaliane nawe. Vipimo zaidi vya kitu chenye thamani ndogo zaidi si hivyo, na ikiwa vipimo hutoka utoaji mpya badala ya ada ambazo watumiaji hulipa hasa, umiliki wako wa uwiano huenda haukupanda kabisa. Mtihani ni ni shughuli ipi inayofadhili zawadi."
+  },
   "c1acf4e456e7": {
    "en": "A central bank's primary policy tool — effectively the price of money.",
    "sw": "Zana kuu ya sera ya benki kuu — kwa hakika bei ya pesa."
@@ -13689,6 +14037,10 @@
    "en": "Mt. Gox failed through incompetence at a venue that had a reputation for chaos. FTX failed at a venue widely regarded as the responsible one — regulated-adjacent, institutionally backed, and run by a founder who was a fixture of financial media. That difference is the entire reason this case study exists.",
    "sw": "Mt. Gox ilishindwa kwa kutokuwa na uwezo katika uwanja uliokuwa na sifa ya machafuko. FTX ilishindwa katika uwanja uliozingatiwa sana kuwa unaowajibika — karibu na udhibiti, uliopewa msaada wa kitaasisi, na ulioendeshwa na mwanzilishi aliyekuwa kipengele cha kudumu cha vyombo vya habari vya kifedha. Tofauti hiyo ndiyo sababu nzima ya uchunguzi huu wa tukio kuwepo."
   },
+  "c3e26a524e09": {
+   "en": "For a reader following the plan from Chapter 4 Lesson 3, with a fixed allocation and scheduled purchases, the regime should change almost nothing. That is deliberate. Scheduled contributions are not a position taken on a regime, and stopping them because conditions look poor is the error Chapter 4 Lesson 1 documented — retail entries clustering after rises, which is the same behaviour seen from the other side.",
+   "sw": "Kwa msomaji anayefuata mpango kutoka Sura ya 4 Somo la 3, ukiwa na mgawanyo usiobadilika na manunuzi yaliyopangwa, utawala unapaswa kubadilisha karibu lolote. Hilo ni la makusudi. Michango iliyopangwa si nafasi iliyochukuliwa juu ya utawala, na kuisimamisha kwa sababu hali zinaonekana mbaya ni kosa ambalo Sura ya 4 Somo la 1 lilikuandika — viingilio vya rejareja vikikusanyika baada ya kupanda, ambayo ni tabia ileile ikionekana kutoka upande mwingine."
+  },
   "c3e6fa184d18": {
    "en": "Not quite. Forward multiples are widely published and are not automatically higher or lower. The care they require comes from the denominator being an estimate, which can be revised down and take the apparent cheapness with it.",
    "sw": "Si sahihi kabisa. Vizidishi vya mbele huchapishwa kwa upana na si vya juu au chini kiotomatiki. Uangalifu vinaouhitaji hutoka kwa kigawanyaji kuwa kadirio, ambalo linaweza kupunguzwa na kuchukua unafuu unaoonekana pamoja nalo."
@@ -13861,6 +14213,10 @@
    "en": "Premium and discount",
    "sw": "Malipo ya ziada na punguzo"
   },
+  "c6afaf64015b": {
+   "en": "A final honest note about what this framework is for in this asset class.",
+   "sw": "Noti ya mwisho ya kweli kuhusu mfumo huu ni wa nini katika aina hii ya rasilimali."
+  },
   "c6bd3defd69d": {
    "en": "A balance shown by a custodian is a claim on that custodian. The asset is what the custodian actually holds. The two are the same thing right up until they are not, and nothing in the interface distinguishes them.",
    "sw": "Salio linaloonyeshwa na mtunzaji ni dai juu ya mtunzaji huyo. Rasilimali ni kile ambacho mtunzaji hushikilia hasa. Vyote viwili ni kitu kilekile hadi visipokuwa, na hakuna kilicho katika kiolesura kinachovitofautisha."
@@ -13916,6 +14272,10 @@
   "c7709fd463a5": {
    "en": "So the honest conclusion is not that you should have judged better. It is that judging the counterparty is a weak defence, and this case is the evidence for that claim rather than an exception to it.",
    "sw": "Kwa hivyo hitimisho la kweli si kwamba ulipaswa kuhukumu vizuri zaidi. Ni kwamba kuhukumu mshirika ni ulinzi dhaifu, na kesi hii ndiyo ushahidi wa dai hilo badala ya ubaguzi wake."
+  },
+  "c770b1986a0a": {
+   "en": "Not quite. Volatility and regulation are not the obstacle, and supply figures are published — indeed they are what replaces the pillar. The problem is the absence of cash flows, which removes the thing a valuation would be calculated from.",
+   "sw": "Si sahihi kabisa. Mtikisiko na udhibiti si kizuizi, na takwimu za usambazaji huchapishwa — kwa kweli ndizo zinazochukua nafasi ya nguzo. Tatizo ni kukosekana kwa mitiririko ya fedha, jambo linaloondoa kitu ambacho tathmini ingehesabiwa kutoka kwake."
   },
   "c7756dc836c0": {
    "en": "Calendar year 2022 returns, from close to close: the S&P 500 fell about 19.4%; the Nasdaq Composite fell about 33.1%; Bitcoin fell about 64%, from roughly 46,300 dollars to roughly 16,500 dollars; and Ether fell roughly 67% to 68%, from roughly 3,700 dollars to roughly 1,200 dollars. Bitcoin's calendar-year fall was roughly 1.9 times the Nasdaq's and roughly 3.3 times the S&P 500's. Sources differ by one or two percentage points on the crypto figures depending on which exchange price feed and which cut-off time they use, so treat these as close ranges rather than exact constants. Measured peak to trough instead of calendar year, the gap is wider. The Nasdaq Composite fell about 36.4% from its record close of 16,057.44 on 19 November 2021 to its cycle closing low of 10,213.29 on 28 December 2022. Bitcoin fell about 77% to 78% from roughly 69,000 dollars in November 2021 to roughly 15,500 dollars on 21 November 2022.",
@@ -14024,6 +14384,10 @@
   "c926165d4c4a": {
    "en": "Because premia only apply to institutional investors",
    "sw": "Kwa sababu malipo ya ziada hutumika kwa wawekezaji wa kitaasisi tu"
+  },
+  "c933f979a4c9": {
+   "en": "Forex Chapter 6 Lesson 2 placed the stop at the invalidation level rather than at an arbitrary distance. In crypto the invalidation is usually not a price at all, because prices here move far enough on liquidity alone to trigger any sensible price-based level without anything having changed.",
+   "sw": "Forex Sura ya 6 Somo la 2 liliweka kusimamisha katika kiwango cha kubatilisha badala ya katika umbali holela. Katika kripto kubatilisha kwa kawaida si bei kabisa, kwa sababu bei hapa husogea mbali vya kutosha kwa ukwasi pekee kuchochea kiwango chochote chenye maana kinachotegemea bei bila chochote kubadilika."
   },
   "c93925ac63e3": {
    "en": "Momentum — is price already moving your way? A thesis that fights a strong existing trend needs to be exceptional; one that rides it has the wind at its back (Chapter 2, Lesson 1).",
@@ -14212,6 +14576,10 @@
   "cb0a1177b2ef": {
    "en": "Borrowing from a broker to buy more than your cash allows.",
    "sw": "Kukopa kutoka kwa dalali ili kununua zaidi ya kiasi ambacho fedha yako inaruhusu."
+  },
+  "cb0ba5f0779c": {
+   "en": "Chapter 3 Lesson 3 taught funding as a cost of holding a leveraged position. As a positioning signal it is the cleanest one in this course: a persistently high positive funding rate is a directly observable statement that leveraged long positioning is crowded, and crowded leverage is what liquidation cascades are made of.",
+   "sw": "Sura ya 3 Somo la 3 lilifundisha ufadhili kama gharama ya kushikilia nafasi yenye mzingo. Kama ishara ya msimamo ndiyo iliyo safi zaidi katika kozi hii: kiwango cha ufadhili chanya kilicho juu kwa kudumu ni kauli inayoonekana moja kwa moja kwamba msimamo mrefu wenye mzingo umejaa, na mzingo uliojaa ndicho ambacho mifuatano ya ufilisi hutengenezwa kwacho."
   },
   "cb13cf9b046b": {
    "en": "The collapse did not stop at Terra. Institutions that had lent against LUNA, held UST, or built strategies assuming Anchor's yield were damaged in the following weeks, and several failed over the following months. Each failure removed a lender or counterparty other firms depended on, which is contagion running through balance sheets rather than through prices.",
@@ -14549,6 +14917,10 @@
    "en": "They were instructed to protect hedge funds with short positions",
    "sw": "Waliagizwa kulinda mifuko ya uwekezaji yenye nafasi za uuzaji-mkopo"
   },
+  "cfc8d8686188": {
+   "en": "Regime Mapping for Crypto",
+   "sw": "Kuchora Ramani ya Utawala kwa Kripto"
+  },
   "cfd5d99a6a0f": {
    "en": "You post 200 dollars of margin and open a long perpetual at 50x. Notional is 200 x 50 = 10,000 dollars. Funding is plus 0.01% per 8-hour period, which is the ordinary, unremarkable level. Cost per day = 10,000 x 0.0001 x 3 = 3 dollars. Against notional that is 0.03% a day, which is trivial. Against your 200 dollars of margin it is 1.5% a day. Nothing has happened to the price. You are simply paying 1.5% of your posted capital every day to keep the position open. Now raise funding to plus 0.1% per period, which occurs in strongly one-sided markets. Cost per day = 10,000 x 0.001 x 3 = 30 dollars. That is 15% of your margin, per day, with the price completely unchanged.",
    "sw": "Unaweka dola 200 za mkopo na kufungua nafasi ndefu ya kudumu katika 50x. Ya kinadharia ni 200 x 50 = dola 10,000. Ufadhili ni ongeza 0.01% kwa kipindi cha masaa 8, ambalo ni kiwango cha kawaida, kisichoshangaza. Gharama kwa siku = 10,000 x 0.0001 x 3 = dola 3. Dhidi ya ya kinadharia hiyo ni 0.03% kwa siku, ambayo ni ndogo mno. Dhidi ya dola 200 zako za mkopo ni 1.5% kwa siku. Hakuna kilichotokea kwa bei. Unalipa tu 1.5% ya mtaji wako uliouweka kila siku ili kuweka nafasi wazi. Sasa pandisha ufadhili hadi ongeza 0.1% kwa kipindi, kinachotokea katika masoko yenye upande mmoja mkali. Gharama kwa siku = 10,000 x 0.001 x 3 = dola 30. Hiyo ni 15% ya mkopo wako, kwa siku, huku bei haijabadilika kabisa."
@@ -14616,6 +14988,10 @@
   "d0c038fd6d55": {
    "en": "Activity feels like work, and work feels like it should be rewarded. Trading inverts that intuition: beyond the trades your rules actually call for, each extra one is a cost, not an effort. For most retail traders, doing less is the higher-skill move.",
    "sw": "Shughuli huhisi kama kazi, na kazi huhisi kama inapaswa kulipwa. Biashara hugeuza silika hiyo: zaidi ya biashara ambazo kanuni zako zinaziita hasa, kila moja ya ziada ni gharama, si juhudi. Kwa wafanyabiashara wengi wa rejareja, kufanya kidogo ndiyo hatua ya ustadi wa juu zaidi."
+  },
+  "d0d5dce28fe9": {
+   "en": "Liu, Tsyvinski and Wu published Common Risk Factors in Cryptocurrency in the Journal of Finance in 2022, volume 77, issue 2, pages 1133 to 1177. They examined the cross-section of cryptocurrency returns and found that three factors — the crypto market itself, size, and momentum — captured expected returns across the assets they studied. They tested ten characteristics that formed profitable long-short strategies, and found all of them accounted for by that three-factor model.",
+   "sw": "Liu, Tsyvinski na Wu walichapisha Common Risk Factors in Cryptocurrency katika Journal of Finance mwaka 2022, juzuu 77, toleo la 2, kurasa 1133 hadi 1177. Walichunguza sehemu-mtambuka ya faida za sarafu ya kripto na wakabaini kwamba vipengele vitatu — soko la kripto lenyewe, ukubwa, na kasi — vilishika faida zinazotarajiwa katika rasilimali walizozisoma. Walipima sifa kumi zilizounda mikakati yenye faida ya mrefu-mfupi, na wakabaini zote zikielezwa na mfano huo wa vipengele vitatu."
   },
   "d0f30ab92f4b": {
    "en": "A written plan pre-decides every recurring choice, and expectancy — (win rate x avg win) minus (loss rate x avg loss) — is the one number that says whether that plan actually makes money over time.",
@@ -14741,6 +15117,10 @@
    "en": "Because the investor will improvise at exactly the moment they are least able to think clearly",
    "sw": "Kwa sababu mwekezaji ataboreka papo hapo katika wakati ambao hana uwezo wa kufikiri kwa uwazi"
   },
+  "d31aef3058ac": {
+   "en": "Before your next discretionary crypto decision, write down three things: what government bond yields have done over the last month, what equity risk appetite has done, and what funding rates have been doing. Then write one sentence on whether your thesis needs any of those to be true. If it does and they are pointing the other way, you have learned something for the cost of ten minutes.",
+   "sw": "Kabla ya uamuzi wako ujao wa hiari wa kripto, andika mambo matatu: mavuno ya hatifungani za serikali yamefanya nini katika mwezi uliopita, hamu ya hatari ya hisa imefanya nini, na viwango vya ufadhili vimekuwa vikifanya nini. Kisha andika sentensi moja kuhusu kama nadharia yako inahitaji lolote kati ya hayo liwe kweli. Ikiwa inahitaji nayo yanaelekeza upande mwingine, umejifunza kitu kwa gharama ya dakika kumi."
+  },
   "d322118af227": {
    "en": "In March you use a new exchange application to swap 200 dollars of a stablecoin. The interface asks you to approve the token. You click through, because the swap will not proceed otherwise, and the default is an unlimited allowance. You use the site twice more, then forget it exists. By November your wallet holds 6,000 dollars of that same stablecoin, accumulated for entirely different reasons. That month the application's contract is exploited. The attacker does not need your seed phrase, your password, or your device. The approval you granted in March authorizes the contract to move that token, in any amount, at any time. All 6,000 dollars leaves in one transaction. You are not online. You find out later.",
    "sw": "Mwezi Machi unatumia programu mpya ya soko la kubadilisha kubadilisha dola 200 za sarafu imara. Kiolesura kinakuomba uidhinishe tokeni. Unabonyeza, kwa sababu ubadilishaji hautaendelea vinginevyo, na chaguo-msingi ni posho isiyo na mpaka. Unatumia tovuti mara mbili zaidi, kisha unasahau ipo. Kufikia Novemba pochi yako inashikilia dola 6,000 za sarafu imara ileile, iliyojilimbikiza kwa sababu tofauti kabisa. Mwezi huo mkataba wa programu unavamiwa. Mshambuliaji hahitaji kifungu chako cha mbegu, nenosiri lako, wala kifaa chako. Idhini uliyoitoa mwezi Machi huidhinisha mkataba kusogeza tokeni hiyo, katika kiasi chochote, wakati wowote. Dola 6,000 zote zinaondoka katika muamala mmoja. Huko mtandaoni. Unagundua baadaye."
@@ -14789,6 +15169,10 @@
    "en": "Common practice places the stop at somewhere between 1.5 and 3 times ATR away from entry. There is no correct multiple, and this course will not pretend there is one. A smaller multiple gets you stopped out by noise more often; a larger one forces a smaller position for the same risk. The multiple is a choice you write into your plan and then apply consistently, so that your results measure your strategy rather than your improvisation. This lesson uses 2 times ATR. On the numbers above, that is a stop 2 x 1,900 = 3,800 dollars away, which is 3,800 / 60,000 = 6.33% of the price.",
    "sw": "Mazoea ya kawaida huweka kusimamisha mahali fulani kati ya mara 1.5 na 3 za ATR mbali na kuingia. Hakuna kizidishi sahihi, na kozi hii haitajifanya kuna kimoja. Kizidishi kidogo hukufanya usimamishwe na kelele mara nyingi zaidi; kikubwa zaidi hulazimisha nafasi ndogo zaidi kwa hatari ileile. Kizidishi ni chaguo unaloandika katika mpango wako kisha kulitumia kwa uthabiti, ili matokeo yako yapime mkakati wako badala ya uboreshaji wako wa papo hapo. Somo hili hutumia mara 2 ya ATR. Katika namba zilizo hapo juu, hiyo ni kusimamisha 2 x 1,900 = dola 3,800 mbali, ambayo ni 3,800 / 60,000 = 6.33% ya bei."
   },
+  "d4087f38e205": {
+   "en": "Over the last two months, government bond yields have risen sharply, credit spreads have widened, and equity leadership has narrowed to a handful of very large companies. You are considering a position in a small token whose case rests entirely on adoption arriving over the next several years. The chain says every one of those observations works against a long-duration risk asset, and crypto is the longest-duration risk asset available. That does not mean the token is bad or that the price must fall. It means your thesis now owes an explanation for why this asset is an exception, and if you do not have one, you are trading against the regime without having noticed there was one.",
+   "sw": "Katika miezi miwili iliyopita, mavuno ya hatifungani za serikali yamepanda kwa kasi, mianya ya mikopo imepanuka, na uongozi wa hisa umefinywa hadi kampuni chache kubwa mno. Unafikiria nafasi katika tokeni ndogo ambayo hoja yake inategemea kabisa matumizi kufika katika miaka kadhaa ijayo. Mnyororo unasema kila mmoja wa uchunguzi huo unafanya kazi dhidi ya rasilimali ya hatari ya muda mrefu, na kripto ndiyo rasilimali ya hatari ya muda mrefu zaidi inayopatikana. Hilo halimaanishi tokeni ni mbaya au kwamba bei lazima ishuke. Linamaanisha nadharia yako sasa inadaiwa maelezo ya kwa nini rasilimali hii ni ubaguzi, na ikiwa huna, unafanya biashara dhidi ya utawala bila kutambua kulikuwa na mmoja."
+  },
   "d41059c57a3b": {
    "en": "Diagram showing leverage/margin mechanics, real regulatory leverage caps by region, and the measured effect of capping leverage",
    "sw": "Mchoro unaoonyesha utaratibu wa leverage/margin, vikomo halisi vya udhibiti wa leverage kwa kanda, na athari iliyopimwa ya kuweka kikomo cha leverage"
@@ -14824,6 +15208,10 @@
   "d47099aaa634": {
    "en": "Not quite — break-even win rate = 1 / (1 + R) = 1 / 4 = 25% at 1:3.",
    "sw": "Si sahihi kabisa — kiwango cha ushindi cha kulingana = 1 / (1 + R) = 1 / 4 = 25% kwa 1:3."
+  },
+  "d473245c85db": {
+   "en": "There are two signals specific to this asset class that have no equivalent in the other tracks, and both are publicly observable.",
+   "sw": "Kuna ishara mbili maalum kwa aina hii ya rasilimali zisizo na kinacholingana katika njia nyingine, nazo zote zinaonekana hadharani."
   },
   "d473b9e82629": {
    "en": "Correct. The document only works if it is followed, so an unusable rule damages the whole plan by teaching you that its contents are optional. Rewrite it into something you will actually do. That is a different thing from abandoning a rule because the market moved against it.",
@@ -15081,6 +15469,10 @@
    "en": "Not quite — at 1:2 break-even is 33.3% (A profits), but at 1:1 break-even is 50% (B loses at 40%). The ratio flips the outcome.",
    "sw": "Si sahihi kabisa — kwa 1:2 kulingana ni 33.3% (A hupata faida), lakini kwa 1:1 kulingana ni 50% (B hupoteza kwa 40%). Uwiano hubadilisha tokeo."
   },
+  "d7e8d22a7469": {
+   "en": "Because carry only applies to currency positions",
+   "sw": "Kwa sababu kubeba hutumika kwa nafasi za sarafu pekee"
+  },
   "d7f5d1a0c481": {
    "en": "If you adopt a tilt, the commitment has to outlast the drought. A value tilt abandoned after five poor years captures the underperformance and none of the premium, which is a worse outcome than never tilting at all. That is a behavioural requirement rather than an analytical one, and it is the part most people fail.",
    "sw": "Kama utakubali mwelekeo, ahadi lazima izidi ukame. Mwelekeo wa thamani ulioachwa baada ya miaka mitano mibaya hunasa utendaji duni na hakuna kati ya malipo ya ziada, ambalo ni tokeo baya zaidi kuliko kutokuwa na mwelekeo kabisa. Hilo ni hitaji la kitabia badala ya la kiuchambuzi, na ndiyo sehemu ambayo watu wengi hushindwa."
@@ -15233,6 +15625,10 @@
    "en": "The mechanics you need are only these: phone numbers are reassigned by carrier staff following a customer-service process, and that process can be defeated. The attacker convinces or bribes someone at a carrier to move the number. You need to know that this is possible and routine. You do not need the script, and this lesson will not provide one.",
    "sw": "Mitambo unayohitaji ni hii tu: namba za simu hupewa upya na wafanyakazi wa mtoa huduma wakifuata mchakato wa huduma kwa wateja, na mchakato huo unaweza kushindwa. Mshambuliaji humshawishi au humhonga mtu katika mtoa huduma kuhamisha namba. Unahitaji kujua kwamba hili linawezekana na ni la kawaida. Huhitaji hati, na somo hili halitatoa moja."
   },
+  "da25c7b3bad4": {
+   "en": "A stressed regime, with falling risk appetite and high volatility, is where correlations converge and any diversification argument stops working. Momentum reverses violently. Crypto typically falls further than the risk assets above it in the chain, and the liquidation mechanics from Chapter 3 Lesson 3 do the rest.",
+   "sw": "Utawala wa msongo, wenye hamu ya hatari inayoshuka na mtikisiko mkubwa, ndipo uhusiano hukusanyika na hoja yoyote ya mtawanyiko huacha kufanya kazi. Kasi hugeuka kwa ukali. Kripto kwa kawaida hushuka zaidi ya rasilimali za hatari zilizo juu yake katika mnyororo, na mitambo ya ufilisi kutoka Sura ya 3 Somo la 3 hufanya iliyobaki."
+  },
   "da268feb1c94": {
    "en": "The checklist for this week. Work through these in order; most people can finish the first five in one evening. 1. Move your email account to app-based or hardware two-factor authentication, and remove your phone number as a recovery method if the provider allows it, because your email resets everything else. Save the backup codes offline. 2. Replace SMS two-factor authentication with an authenticator app on every exchange account you hold, or a hardware security key or passkey where supported. Save the backup codes offline. 3. Call your mobile carrier and add a port-out PIN or number lock to your account. 4. Open a token-approval checker for each chain you have used, and revoke every approval belonging to a site you are not actively using this week, including chains you used only once. Put a monthly reminder in your calendar to repeat this. 5. Decide what is on-exchange and write the number down: keep only what you are trading in the next few weeks, move the rest out, and turn on a withdrawal address allowlist where one is offered. 6. Check where your seed phrase currently lives. If it exists as a photo, a screenshot, a note in your phone, a password manager entry, a cloud document, or an email to yourself, it is already exposed to anything that reads those. Write it on paper or metal, store it offline, and delete every digital copy. 7. Create a second wallet for connecting to new applications, funded only with what you are willing to lose, and stop connecting your main wallet to sites entirely. 8. Do the restore drill from Chapter 1 Lesson 4 if you have never done it: send a small amount to a self-custody wallet, delete the wallet, and restore it from your written phrase on a different device. 9. Bookmark every crypto site you use, and reach them only from bookmarks from now on. 10. Write one sentence and keep it where you will see it: nobody legitimate will ever ask for my seed phrase, and I will never type it into anything I did not open myself.",
    "sw": "Orodha ya kukagua ya wiki hii. Pitia hizi kwa mpangilio; watu wengi wanaweza kumaliza tano za kwanza jioni moja. 1. Hamisha akaunti yako ya barua pepe kwenda uthibitishaji wa vipengele viwili unaotegemea programu au maunzi, na uondoe namba yako ya simu kama njia ya urejeshaji ikiwa mtoa huduma ataruhusu, kwa sababu barua pepe yako huweka upya kila kitu kingine. Hifadhi misimbo ya akiba nje ya mtandao. 2. Badilisha uthibitishaji wa vipengele viwili wa SMS na programu ya kuthibitisha katika kila akaunti ya soko la kubadilisha unayoshikilia, au ufunguo halisi wa usalama au passkey pale unapoungwa mkono. Hifadhi misimbo ya akiba nje ya mtandao. 3. Piga simu mtoa huduma wako wa simu na uongeze PIN ya kutoa namba au kufunga namba katika akaunti yako. 4. Fungua kikagua idhini za tokeni kwa kila mnyororo uliotumia, na ubatilishe kila idhini ya tovuti ambayo hutumii kwa bidii wiki hii, ikiwa ni pamoja na minyororo uliyoitumia mara moja tu. Weka kikumbusho cha kila mwezi katika kalenda yako kurudia hili. 5. Amua nini kiko katika soko la kubadilisha na uandike namba: weka kile tu unachokifanyia biashara katika wiki chache zijazo, sogeza kilichobaki nje, na uwashe orodha ya anwani zinazoruhusiwa za utoaji pale inapotolewa. 6. Kagua kifungu chako cha mbegu kinapoishi kwa sasa. Ikiwa kipo kama picha, picha ya skrini, noti katika simu yako, kiingizo cha meneja wa manenosiri, hati ya wingu, au barua pepe kwako mwenyewe, tayari kimefunuliwa kwa chochote kinachosoma hivyo. Kiandike katika karatasi au chuma, kihifadhi nje ya mtandao, na ufute kila nakala ya kidijitali. 7. Unda pochi ya pili ya kuunganisha na programu mpya, iliyofadhiliwa tu na kile ulicho tayari kupoteza, na uache kuunganisha pochi yako kuu na tovuti kabisa. 8. Fanya zoezi la kurejesha kutoka Sura ya 1 Somo la 4 ikiwa hujawahi kulifanya: tuma kiasi kidogo kwa pochi ya utunzaji binafsi, futa pochi, na uirejeshe kutoka kifungu chako kilichoandikwa katika kifaa tofauti. 9. Weka alamisho kwa kila tovuti ya kripto unayoitumia, na uzifikie kutoka alamisho pekee kuanzia sasa. 10. Andika sentensi moja na uiweke mahali utakapoiona: hakuna mtu halali atakayewahi kuomba kifungu changu cha mbegu, nami sitakiandika kamwe katika chochote ambacho sikukifungua mwenyewe."
@@ -15320,6 +15716,10 @@
   "db37e2978abc": {
    "en": "R-multiple",
    "sw": "Kizidishi-R"
+  },
+  "db74ee478ca1": {
+   "en": "Moving in the same direction as a broader risk market, but by a larger amount in both directions.",
+   "sw": "Kusogea katika mwelekeo uleule kama soko pana la hatari, lakini kwa kiasi kikubwa zaidi pande zote mbili."
   },
   "db8c31cfba28": {
    "en": "Compare the two ends. The difference in fee is 1.45% a year. The difference in outcome is about 25,223 — the expensive option finishes with roughly 66% of what the cheap one produced. A 1.45% annual charge consumed about a third of the final pot.",
@@ -15537,6 +15937,10 @@
    "en": "Most calendars let you click through for detail: the source institution, what the indicator measures, why traders care, and the historical record of actual-vs-forecast. That history is genuinely useful — it shows you whether a given release tends to surprise or reliably lands on consensus.",
    "sw": "Kalenda nyingi hukuruhusu kubofya ndani kwa maelezo: taasisi ya chanzo, kiashiria kinachopima nini, kwa nini wafanyabiashara wanajali, na rekodi ya kihistoria ya halisi-dhidi-ya-utabiri. Historia hiyo ina manufaa kweli — inakuonyesha kama toleo fulani huelekea kushangaza au hutua kwa makubaliano kwa kutegemewa."
   },
+  "de9f70c3f7d2": {
+   "en": "A worked thesis. Fundamentals: fee revenue paid by users has risen for three consecutive quarters and is not attributable to a single application or an incentive programme — supportive, and checkable next quarter. Valuation: replaced by supply arithmetic — circulating supply is 60% of total, with the remainder unlocking over 24 months, so the effective supply grows about 2.7% a month while I hold — against. Catalyst: a protocol change with an uncertain outcome scheduled within two months — supportive, with a date. Positioning: funding has been mildly negative for three weeks, meaning leveraged positioning leans short rather than crowded long — supportive. Momentum: price below its level three months ago — against. Carry: staking pays 4%, of which the published split shows most comes from fees rather than issuance — mildly supportive.",
+   "sw": "Nadharia iliyofanyiwa kazi. Misingi: mapato ya ada yaliyolipwa na watumiaji yamepanda kwa robo tatu mfululizo nayo hayahusishwi na programu moja au mpango wa motisha — inaunga mkono, na inaweza kukaguliwa robo ijayo. Tathmini: imebadilishwa na hesabu ya usambazaji — usambazaji unaozunguka ni 60% ya jumla, huku kilichobaki kikifunguliwa katika miezi 24, kwa hivyo usambazaji halisi hukua takriban 2.7% kwa mwezi ninaposhikilia — inapinga. Kichocheo: mabadiliko ya itifaki yenye matokeo yasiyo na uhakika yaliyopangwa ndani ya miezi miwili — inaunga mkono, ikiwa na tarehe. Msimamo: ufadhili umekuwa hasi kidogo kwa wiki tatu, ukimaanisha msimamo wenye mzingo huegemea mfupi badala ya mrefu uliojaa — inaunga mkono. Kasi: bei iko chini ya kiwango chake cha miezi mitatu iliyopita — inapinga. Kubeba: kuweka hisa hulipa 4%, ambapo mgawanyo uliochapishwa huonyesha sehemu kubwa hutoka ada badala ya utoaji — inaunga mkono kidogo."
+  },
   "de9fcca37948": {
    "en": "The tendency to hold a much larger share of domestic companies than their weight in the world market would suggest.",
    "sw": "Mwelekeo wa kushikilia sehemu kubwa mno ya kampuni za ndani kuliko uzito wao katika soko la dunia ungedokeza."
@@ -15552,6 +15956,10 @@
   "ded5685209e5": {
    "en": "What to look for before buying any fund. The ongoing charge in the official document rather than a comparison website. The platform or custody fee, which is charged separately and often quietly. The tracking difference over three years. And the total of all recurring charges written on one line, because no provider will ever present that total for you.",
    "sw": "Cha kutazama kabla ya kununua fund yoyote. Malipo ya kudumu katika hati rasmi badala ya tovuti ya kulinganisha. Ada ya jukwaa au ya uhifadhi, ambayo hutozwa tofauti na mara nyingi kimyakimya. Tofauti ya kufuatilia katika miaka mitatu. Na jumla ya malipo yote ya kudumu ikiandikwa kwenye mstari mmoja, kwa sababu hakuna mtoa huduma atakayewahi kukuwasilishia jumla hiyo."
+  },
+  "dedb115f2c6a": {
+   "en": "Four pillars transfer intact. One has to be rebuilt because there are no cash flows to value, and one has to be replaced by something that only looks like carry.",
+   "sw": "Nguzo nne huhamishika zikiwa kamili. Moja lazima ijengwe upya kwa sababu hakuna mitiririko ya fedha ya kutathmini, na moja lazima ibadilishwe na kitu kinachofanana tu na kubeba."
   },
   "dee3d9f39de6": {
    "en": "A deliberate reduction in a currency's official value, typically relative to another asset or currency.",
@@ -15821,6 +16229,10 @@
    "en": "Candlestick patterns are the most heavily marketed part of price action, and they are where the evidence is weakest and most contested. Two well-known studies show the problem clearly.",
    "sw": "Mitindo ya mishumaa ndiyo sehemu inayotangazwa zaidi ya shughuli ya bei, na ndipo ushahidi ulipo dhaifu zaidi na wenye mgogoro zaidi. Tafiti mbili zinazojulikana zinaonyesha tatizo wazi."
   },
+  "e2f16dca2ff4": {
+   "en": "A weak fundamentals pillar says on-chain activity is growing. A usable one says fee revenue paid by users has grown across three consecutive quarters, that this is not explained by a single application or a token incentive programme, and that here is what I expect the figure to be next quarter if I am right. The first cannot be wrong on a date. The second can.",
+   "sw": "Nguzo dhaifu ya misingi husema shughuli ya kwenye mnyororo inakua. Inayotumika husema mapato ya ada yaliyolipwa na watumiaji yamekua katika robo tatu mfululizo, kwamba hili haliezelezwi na programu moja au mpango wa motisha wa tokeni, na kwamba hii hapa ndiyo takwimu ninayotarajia robo ijayo ikiwa niko sahihi. Ya kwanza haiwezi kuwa si sahihi katika tarehe. Ya pili inaweza."
+  },
   "e2ff3d606dab": {
    "en": "Mt. Gox was not dominant because it was the best. It was dominant because it was early, and because liquidity concentrates. Chapter 2 Lesson 1 explained why traders go where other traders already are: a venue with more participants has tighter spreads and deeper books, which attracts more participants. That is a genuine advantage for users and it produces a market structure in which an enormous share of an entire asset class can end up sitting at one company.",
    "sw": "Mt. Gox halikuwa likitawala kwa sababu lilikuwa bora zaidi. Lilikuwa likitawala kwa sababu lilikuwa la mapema, na kwa sababu ukwasi hukusanyika. Sura ya 2 Somo la 1 lilieleza kwa nini wafanyabiashara huenda ambapo wafanyabiashara wengine tayari wapo: uwanja wenye washiriki wengi zaidi una mianya membamba zaidi na vitabu vyenye kina zaidi, jambo linalovutia washiriki wengi zaidi. Hiyo ni faida halisi kwa watumiaji nayo huzalisha muundo wa soko ambapo sehemu kubwa mno ya aina nzima ya rasilimali inaweza kuishia ikiketi katika kampuni moja."
@@ -15869,6 +16281,10 @@
    "en": "It changes by roughly one character",
    "sw": "Hubadilika kwa takriban herufi moja"
   },
+  "e3db2f2f24d3": {
+   "en": "Independence is the whole source of the framework's value. A price that has risen produces positive momentum, positive sentiment, high funding and enthusiastic on-chain activity all at once. That is one observation recorded four times, and it produces a thesis that looks strongly supported at exactly the moment it is most crowded. Before counting a pillar, ask what would have to be different for it to disagree with the others.",
+   "sw": "Uhuru ndilo chanzo kizima cha thamani ya mfumo. Bei iliyopanda huzalisha kasi chanya, hisia chanya za soko, ufadhili mkubwa na shughuli ya kwenye mnyororo yenye shauku yote kwa wakati mmoja. Hilo ni uchunguzi mmoja ulioandikwa mara nne, nalo huzalisha nadharia inayoonekana kuungwa mkono kwa nguvu katika wakati hasa ambapo imejaa zaidi. Kabla ya kuhesabu nguzo, uliza nini kingelazimika kuwa tofauti ili itokubaliane na nyingine."
+  },
   "e3e1f66fd77e": {
    "en": "A long-running fraud in which the victim is befriended, often through a dating application or a wrong-number message, then gradually introduced to an investment platform that shows fabricated profits before the money proves impossible to withdraw.",
    "sw": "Udanganyifu wa muda mrefu ambapo mwathiriwa hufanywa rafiki, mara nyingi kupitia programu ya uchumba au ujumbe wa namba isiyo sahihi, kisha huanzishwa taratibu kwenye jukwaa la uwekezaji linaloonyesha faida za uongo kabla pesa haijathibitika kuwa haiwezekani kuitoa."
@@ -15905,6 +16321,10 @@
    "en": "Precision matters here, because this attack is constantly exaggerated in both directions. A majority attacker can: censor (refuse to include chosen transactions), reorganize recent history (privately mine an alternative chain and release it, replacing recently confirmed blocks), and double-spend (deposit coins on an exchange, trade and withdraw, then release a rewritten chain in which the original deposit never happened). A majority attacker cannot: steal coins from arbitrary wallets (spending your coins requires your cryptographic key, which no amount of hashpower conjures), mint coins beyond the schedule (every node independently checks the supply rules, so a rule-breaking block is rejected even with enormous work behind it), or change the network's rules.",
    "sw": "Usahihi una maana hapa, kwa sababu shambulizi hili hukuzwa mara kwa mara pande zote mbili. Mshambuliaji mwenye wingi anaweza: kuzuia (kukataa kujumuisha miamala aliyoichagua), kupanga upya historia ya hivi karibuni (kuchimba mnyororo mbadala kwa siri na kuutoa, ukibadilisha vitalu vilivyothibitishwa hivi karibuni), na kutumia-mara-mbili (kuweka sarafu katika soko la kubadilisha, kufanya biashara na kutoa, kisha kutoa mnyororo ulioandikwa upya ambapo amana ya awali haikutokea kamwe). Mshambuliaji mwenye wingi hawezi: kuiba sarafu kutoka pochi zozote (kutumia sarafu zako kunahitaji ufunguo wako wa kikriptografia, ambao hakuna kiasi cha nguvu ya heshi kinachouzalisha), kutengeneza sarafu zaidi ya ratiba (kila nodi hukagua kanuni za usambazaji kwa kujitegemea, kwa hivyo kitalu kinachovunja kanuni hukataliwa hata kikiwa na kazi kubwa mno nyuma yake), au kubadilisha kanuni za mtandao."
   },
+  "e45cd05bc83f": {
+   "en": "Rarely. Most assets, most of the time, will show two or three pillars pointing the same way and the rest neutral or contradictory, which is not a thesis but a preference. The framework earns its value by making that visible, since the alternative is the same preference held with the same confidence and no record of how thin it was.",
+   "sw": "Mara chache. Rasilimali nyingi, nyakati nyingi, zitaonyesha nguzo mbili au tatu zikielekeza njia ileile na kilichobaki cha kati au chenye kupingana, ambayo si nadharia bali upendeleo. Mfumo hupata thamani yake kwa kufanya hilo lionekane, kwa kuwa mbadala ni upendeleo uleule ukishikiliwa kwa ujasiri uleule na bila rekodi ya jinsi ulivyokuwa mwembamba."
+  },
   "e45d92fbdf53": {
    "en": "The payout is not covered by earnings and is being funded from reserves, borrowing or asset sales, which cannot continue indefinitely",
    "sw": "Malipo hayafunikwi na mapato na yanafadhiliwa kutoka akiba, kukopa au kuuza mali, ambako hakuwezi kuendelea milele"
@@ -15912,6 +16332,10 @@
   "e46460cc0b5e": {
    "en": "That coordinated retail buyers can reliably defeat professional investors",
    "sw": "Kwamba wanunuzi wa rejareja walioratibiwa wanaweza kuwashinda wawekezaji wa kitaalamu kwa uhakika"
+  },
+  "e4687339790c": {
+   "en": "That momentum is the only strategy that works in crypto",
+   "sw": "Kwamba kasi ndio mkakati pekee unaofanya kazi katika kripto"
   },
   "e474f4893172": {
    "en": "What is the main way the valuation pillar differs between currencies and shares?",
@@ -15989,6 +16413,10 @@
    "en": "The Six Pillars",
    "sw": "Nguzo Sita"
   },
+  "e5a1fac693e7": {
+   "en": "A staking return paid from newly created supply, which dilutes holders rather than paying them.",
+   "sw": "Faida ya kuweka hisa inayolipwa kutoka usambazaji ulioundwa upya, ambayo hupunguza thamani ya wamiliki badala ya kuwalipa."
+  },
   "e5b31778b899": {
    "en": "Active Addresses",
    "sw": "Anwani Hai"
@@ -16056,6 +16484,10 @@
   "e66b04c0df9c": {
    "en": "They cannot coexist",
    "sw": "Haviwezi kuishi pamoja"
+  },
+  "e67c4012ddd8": {
+   "en": "Scoring the pillars is what turns the framework from a checklist into a decision, so here it is worked through on a realistic example.",
+   "sw": "Kupima nguzo ndicho kinachogeuza mfumo kutoka orodha ya kukagua kuwa uamuzi, kwa hivyo hii hapa ikifanyiwa kazi katika mfano halisi."
   },
   "e68806ab9429": {
    "en": "Not quite. A stop order does not guarantee the stop price. It guarantees that an order is sent once the level is reached, and that order then fills at whatever prices are actually available, which after a gap can be far lower.",
@@ -16172,6 +16604,10 @@
   "e79a36738433": {
    "en": "Not quite — the BIS found no single cause: thin overnight liquidity, options hedging, stop-loss execution and algorithms combined.",
    "sw": "Si sahihi kabisa — BIS haikupata sababu moja: ukwasi mdogo wa usiku, kulinda options, utekelezaji wa stop-loss na algoriti viliungana."
+  },
+  "e79f33aa0fb5": {
+   "en": "That crypto returns are predictable using those three factors",
+   "sw": "Kwamba faida za kripto zinatabirika kwa kutumia vipengele hivyo vitatu"
   },
   "e7b77c34681e": {
    "en": "1 pip",
@@ -16309,6 +16745,10 @@
    "en": "Connects closing prices over time with a single line. Simple and clear for spotting overall trend, but shows nothing about what happened within each period.",
    "sw": "Huunganisha bei za kufunga kwa muda kwa mstari mmoja. Rahisi na wazi kwa kutambua mwelekeo wa jumla, lakini haionyeshi chochote kuhusu kilichotokea ndani ya kila kipindi."
   },
+  "e97a3e26aff2": {
+   "en": "Catalyst. This transfers well and is often stronger here than in other markets, because so much of the calendar is known in advance: protocol upgrades, halvings, unlock dates, exchange listings, regulatory decisions with published timetables.",
+   "sw": "Kichocheo. Hii huhamishika vizuri na mara nyingi ni imara zaidi hapa kuliko katika masoko mengine, kwa sababu sehemu kubwa ya kalenda inajulikana mapema: maboresho ya itifaki, kupunguzwa nusu, tarehe za kufungua, uorodheshaji katika masoko ya kubadilisha, maamuzi ya udhibiti yenye ratiba zilizochapishwa."
+  },
   "e9958b8ca4ef": {
    "en": "Customer deposits were not sitting in customer accounts. They were available to an affiliated trading firm and were used. Everything else follows from that: once customer money has been spent, the exchange is solvent only for as long as customers do not all ask for it at once.",
    "sw": "Amana za wateja hazikuwa zimeketi katika akaunti za wateja. Zilipatikana kwa kampuni shirika ya biashara nazo zilitumika. Kila kitu kingine hufuata kutoka hapo: mara pesa ya mteja inapotumika, soko la kubadilisha lina uwezo wa kulipa tu kwa muda ambao wateja hawaiombi wote kwa wakati mmoja."
@@ -16340,6 +16780,10 @@
   "e9b4a1e7903c": {
    "en": "Trading with yourself to manufacture volume or price, with no real change in ownership or risk.",
    "sw": "Kufanya biashara na wewe mwenyewe kutengeneza ujazo au bei, bila mabadiliko yoyote halisi ya umiliki au hatari."
+  },
+  "e9b57f2b7063": {
+   "en": "Because most crypto assets have no cash flows, so there is no calculation producing a value the price can be compared against — on-chain ratios compare an asset to its own history but are not valuations",
+   "sw": "Kwa sababu rasilimali nyingi za kripto hazina mitiririko ya fedha, kwa hivyo hakuna hesabu inayozalisha thamani ambayo bei inaweza kulinganishwa nayo — uwiano wa kwenye mnyororo hulinganisha rasilimali na historia yake yenyewe lakini si tathmini"
   },
   "e9c2a91e822f": {
    "en": "What to do instead, in order of strength. Use an authenticator app that generates codes on your device, because the code never travels over the phone network and a SIM swap does not reach it. Use a hardware security key or a passkey where the service supports it, because that is the option that scored 100% against targeted attacks in the Google study. Remove your phone number as a recovery method on any account that lets you, especially email, since your email account is usually the master key to everything else. And ask your mobile carrier for a port-out PIN or a number lock, which is a free phone call that adds a step the attacker has to defeat.",
@@ -16376,6 +16820,10 @@
   "ea2c01ba5879": {
    "en": "In the United States that period is one business day. The Securities and Exchange Commission shortened it from two days to one under Exchange Act Rule 15c6-1(a), effective 28 May 2024. The convention is written as T+1 — trade date plus one business day.",
    "sw": "Nchini Marekani kipindi hicho ni siku moja ya kazi. Tume ya Usalama na Ubadilishaji ilikifupisha kutoka siku mbili hadi moja chini ya Kanuni ya Sheria ya Ubadilishaji 15c6-1(a), ikianza kutumika tarehe 28 Mei 2024. Desturi huandikwa kama T+1 — tarehe ya biashara pamoja na siku moja ya kazi."
+  },
+  "ea347440a262": {
+   "en": "Scoring works the same way it does everywhere else, and the same error dominates.",
+   "sw": "Kupima hufanya kazi kwa njia ileile kama kila mahali pengine, na kosa lilelile hutawala."
   },
   "ea35eb25bb3d": {
    "en": "The S&P 500 uses a refinement of this called float adjustment. It counts only the shares actually available for the public to buy, excluding blocks held by governments, founders and other companies. The reasoning is that shares nobody can purchase should not affect a measure of what the investable market is doing.",
@@ -16592,6 +17040,10 @@
   "ecb8c143252b": {
    "en": "Catalyst — what will actually make the move happen, and when? A thesis with no catalyst can be right and go nowhere for a year. A scheduled event (Chapter 2, Lesson 4) or a building pressure gives the trade a reason to move now.",
    "sw": "Kichocheo — ni nini kitakachofanya msogeo utokee hasa, na lini? Nadharia isiyo na kichocheo inaweza kuwa sahihi na isiende popote kwa mwaka. Tukio lililopangwa (Sura ya 2, Somo la 4) au shinikizo linalojengeka humpa biashara sababu ya kusogea sasa."
+  },
+  "ecc13e6570a1": {
+   "en": "Read what that does and does not say. It says the excess returns from a range of apparently distinct crypto strategies mostly collapse into three exposures, so a portfolio of clever-sounding crypto strategies is probably one exposure wearing several names. It does not say those factors will persist, and it says nothing about any individual token. It is a description of a cross-section over a sample period, which is the strongest form of evidence this asset class currently has and is weaker than what equities offer.",
+   "sw": "Soma kile hilo linalosema na lisilolisema. Husema faida za ziada kutoka mikakati mbalimbali ya kripto inayoonekana tofauti hasa huponda kuwa kufunuliwa kutatu, kwa hivyo kasha la mikakati ya kripto inayosikika ya werevu pengine ni kufunuliwa kumoja kukivaa majina kadhaa. Halisemi kwamba vipengele hivyo vitadumu, wala halisemi lolote kuhusu tokeni yoyote binafsi. Ni maelezo ya sehemu-mtambuka katika kipindi cha sampuli, ambako ndio ushahidi imara zaidi ambao aina hii ya rasilimali inao kwa sasa nao ni dhaifu zaidi ya kile hisa hutoa."
   },
   "ecc891337cf9": {
    "en": "Correlation falls during volatile periods, improving diversification",
@@ -17065,6 +17517,10 @@
    "en": "Email a photo to a friend. Your friend now has the photo — and so do you. Nothing left your possession. Send the same photo to ten more people, and now eleven identical copies exist. For photos, that is a feature. For money, it is fatal. If a digital coin were just a file, you could \"pay\" it to one person, keep a copy, and pay the same coin to someone else. Both payments would look real.",
    "sw": "Tuma picha kwa barua pepe kwa rafiki. Rafiki yako sasa ana picha — na wewe pia unayo. Hakuna kilichoondoka kwako. Tuma picha ileile kwa watu kumi zaidi, na sasa nakala kumi na moja zinazofanana zipo. Kwa picha, hilo ni sifa nzuri. Kwa pesa, ni la kifo. Ikiwa sarafu ya kidijitali ingekuwa faili tu, ungeweza \"kumlipa\" mtu mmoja, ukabakiza nakala, na ukamlipa mtu mwingine sarafu ileile. Malipo yote mawili yangeonekana halisi."
   },
+  "f36cf54fd293": {
+   "en": "A share has cash flows, so its price implies a forecast you can disagree with specifically. Most crypto assets have no cash flows at all, which means there is no calculation that produces a value the price can be compared against. Ratios built from on-chain data can be useful for comparing an asset against its own history. They are not valuations, and treating them as though they were is how a narrative gets dressed up as analysis.",
+   "sw": "Hisa ina mitiririko ya fedha, kwa hivyo bei yake huashiria utabiri ambao unaweza kutokubaliana nao hasa. Rasilimali nyingi za kripto hazina mitiririko ya fedha kabisa, jambo linalomaanisha hakuna hesabu inayozalisha thamani ambayo bei inaweza kulinganishwa nayo. Uwiano uliojengwa kutoka data ya kwenye mnyororo unaweza kuwa na manufaa kwa kulinganisha rasilimali na historia yake yenyewe. Si tathmini, na kuuchukulia kana kwamba ni ndivyo simulizi hupambwa kama uchambuzi."
+  },
   "f36fd5e2d039": {
    "en": "As you look at any pair or liquidity claim, ask yourself: is a \"most traded\" or \"most liquid\" claim backed by a specific, current, named source — or just stated as common knowledge? For an unfamiliar pair, does it include USD, and if so is the other side a major or an emerging currency? If there's no USD at all, it's a minor/cross pair. And remember that rankings change over time — treat any specific ranking as a snapshot, not a permanent fact.",
    "sw": "Unapotazama jozi lolote au dai lolote la ukwasi, jiulize: je, dai la \"linalofanyiwa biashara zaidi\" au \"lenye ukwasi zaidi\" linaungwa mkono na chanzo mahususi, cha sasa, kilichotajwa — au limetamkwa tu kama maarifa ya kawaida? Kwa jozi lisilofahamika, je, linajumuisha USD, na kama ndiyo, je, upande mwingine ni sarafu kuu au inayoibukia? Kama hakuna USD kabisa, ni jozi ndogo/la kuvuka. Na kumbuka madaraja hubadilika kwa muda — chukulia daraja lolote mahususi kama picha ya wakati, si ukweli wa kudumu."
@@ -17084,6 +17540,10 @@
   "f3ce758c76a9": {
    "en": "A roulette wheel is not like this. The wheel produces nothing. Every unit won by one player is a unit lost by another, minus the house edge — which makes it negative-sum for the players taken together.",
    "sw": "Gurudumu la roulette si hivi. Gurudumu halizalishi chochote. Kila kipimo kinachoshindwa na mchezaji mmoja ni kipimo kinachopotea kwa mwingine, kutoa faida ya kasino — ambako hufanya iwe jumla-hasi kwa wachezaji kwa pamoja."
+  },
+  "f403b401dc72": {
+   "en": "The path by which a policy change moves across markets — rates, then currencies and bonds, then credit and equities, then commodities and crypto.",
+   "sw": "Njia ambayo mabadiliko ya sera husogea kupitia masoko — viwango vya riba, kisha sarafu na hatifungani, kisha mikopo na hisa, kisha bidhaa na kripto."
   },
   "f4197b1d5e1f": {
    "en": "The second discipline is reviewing decisions separately from outcomes.",
@@ -17136,6 +17596,10 @@
   "f4b40c9452fc": {
    "en": "The single most-cited source for this claim is the DALBAR Quantitative Analysis of Investor Behavior, which for years reported gaps of five or six percentage points a year. Wade Pfau, writing in Advisor Perspectives in 2017 under the title A Warning to the Advisory Profession: DALBAR's Math is Wrong, showed that the study compares an investor making ongoing contributions against an index return that assumes a single lump sum invested at the start. Those are two different questions. Michael Kitces has made the same criticism independently. Neither DALBAR figure nor anything derived from it belongs in a serious argument.",
    "sw": "Chanzo kinachonukuliwa zaidi kwa dai hili ni DALBAR Quantitative Analysis of Investor Behavior, ambayo kwa miaka mingi iliripoti mapengo ya pointi tano au sita za asilimia kwa mwaka. Wade Pfau, akiandika katika Advisor Perspectives mwaka 2017 chini ya kichwa A Warning to the Advisory Profession: DALBAR's Math is Wrong, alionyesha kuwa utafiti huo hulinganisha mwekezaji anayechangia kwa kuendelea dhidi ya faida ya faharasa inayodhania kiasi kimoja kikubwa kiliwekezwa mwanzoni. Hayo ni maswali mawili tofauti. Michael Kitces ametoa ukosoaji huohuo kwa kujitegemea. Wala takwimu ya DALBAR wala chochote kinachotokana nayo hakistahili kuwa katika hoja makini."
+  },
+  "f4f043b107fd": {
+   "en": "A statement specific enough that a future observation could show it to be wrong.",
+   "sw": "Kauli maalum vya kutosha hivi kwamba uchunguzi wa baadaye ungeweza kuonyesha kwamba si sahihi."
   },
   "f4fd15516d65": {
    "en": "Appreciation / Depreciation",
@@ -17381,6 +17845,10 @@
    "en": "One further point, about a word that was doing a great deal of work at the time.",
    "sw": "Hoja moja zaidi, kuhusu neno lililokuwa likifanya kazi nyingi sana wakati huo."
   },
+  "f83a5aab280c": {
+   "en": "A five-stage transmission chain from interest rates through currencies and bonds, credit, equities, to crypto at the far end, with crypto marked as the longest-duration and highest-beta link, alongside three regime panels showing which pillar has power in a trending regime, a stressed regime and a no-trade regime.",
+   "sw": "Mnyororo wa usambazaji wa hatua tano kutoka viwango vya riba kupitia sarafu na hatifungani, mikopo, hisa, hadi kripto mwisho kabisa, huku kripto ikiwekewa alama kama kiungo cha muda mrefu zaidi na chenye beta kubwa zaidi, sambamba na paneli tatu za utawala zikionyesha ni nguzo ipi yenye nguvu katika utawala wa mwelekeo, utawala wa msongo na utawala wa kutofanya biashara."
+  },
   "f840bb49e269": {
    "en": "Three real uses explain why stablecoins now settle more value than most people expect. First, trading pairs: on most exchanges (Lesson 5), coins are priced against a stablecoin, not against bank dollars, so selling into one lets a trader step out of volatility without leaving crypto rails. Second, moving value between venues: a stablecoin transfer settles like any transaction from Lesson 6 — minutes, any hour, any day. Third, dollar access where banking is hard: in countries with high inflation or restricted dollar accounts, a dollar-denominated token that only needs a phone and a private key is genuinely useful. This course is written for underserved investors, so we say this plainly — and just as plainly: the token is only as good as the promise behind it, which is the entire rest of this lesson.",
    "sw": "Matumizi matatu halisi hueleza kwa nini sarafu imara sasa hutimiza thamani zaidi kuliko watu wengi wanavyotarajia. Kwanza, jozi za biashara: katika masoko mengi ya kubadilisha (Somo la 5), sarafu hupangiwa bei dhidi ya sarafu imara, si dhidi ya dola za benki, kwa hivyo kuuza ndani yake humruhusu mfanyabiashara kutoka nje ya mtikisiko bila kuondoka kwenye reli za kripto. Pili, kuhamisha thamani kati ya viwanja: uhamisho wa sarafu imara hutimizwa kama muamala wowote kutoka Somo la 6 — dakika, saa yoyote, siku yoyote. Tatu, upatikanaji wa dola pale huduma za benki zilipo ngumu: katika nchi zenye mfumuko mkubwa wa bei au akaunti za dola zilizozuiwa, tokeni yenye dhehebu la dola inayohitaji simu na ufunguo wa faragha pekee ni ya manufaa kweli. Kozi hii imeandikwa kwa wawekezaji wasiohudumiwa vya kutosha, kwa hivyo tunasema hili wazi — na kwa uwazi uleule: tokeni ni bora tu kadiri ya ahadi iliyo nyuma yake, ambayo ndiyo somo lililobaki lote."
@@ -17605,6 +18073,10 @@
    "en": "A line chart of the Nasdaq Composite from its peak of 5,048.62 on 10 March 2000, through its trough of 1,114.11 on 9 October 2002, to 23 April 2015 when it first closed above the earlier peak at 5,056.06.",
    "sw": "Chati ya mistari ya Nasdaq Composite kutoka kilele chake cha 5,048.62 tarehe 10 Machi 2000, kupitia bonde lake la 1,114.11 tarehe 9 Oktoba 2002, hadi 23 Aprili 2015 ilipofungwa kwa mara ya kwanza juu ya kilele cha awali katika 5,056.06."
   },
+  "fa7c637ab144": {
+   "en": "Because the reward is paid in the same token and funded by issuance that dilutes every holder — so it can increase your unit count without increasing your share of the asset",
+   "sw": "Kwa sababu zawadi hulipwa katika tokeni ileile na hufadhiliwa na utoaji unaopunguza thamani ya kila mmiliki — kwa hivyo inaweza kuongeza hesabu yako ya vipimo bila kuongeza sehemu yako ya rasilimali"
+  },
   "faa2731660e6": {
    "en": "Not quite. Switching is not always free, and a cheaper fund is not guaranteed to perform better. The argument is purely about timing: one-off costs against an annual charge that compounds for as long as you hold.",
    "sw": "Si sahihi kabisa. Kuhamia si bure daima, na mfuko wa bei nafuu hauhakikishiwi kufanya vizuri zaidi. Hoja inahusu muda pekee: gharama za mara moja dhidi ya malipo ya kila mwaka yanayojilimbikiza kwa muda wote unaoshikilia."
@@ -17696,6 +18168,10 @@
   "fc0c2c7bd1a5": {
    "en": "Find any post claiming an on-chain metric called a top or a bottom. Write down four things: (1) which provider's version of the metric is shown, (2) the exact rule that generates the signal, including the numeric threshold, (3) every past instance where that exact rule fired, including the ones that failed, and (4) whether the rule existed before the dates it is being credited for. Most posts fail at step 2, because there is no stated rule, only a chart and an arrow.",
    "sw": "Tafuta chapisho lolote linalodai kipimo cha kwenye mnyororo kilitabiri kilele au bonde. Andika mambo manne: (1) ni toleo la mtoa data yupi la kipimo linaloonyeshwa, (2) kanuni hasa inayozalisha ishara, ikiwa ni pamoja na kizingiti cha kinambari, (3) kila tukio la awali ambapo kanuni hiyo hasa ilifyatuka, ikiwa ni pamoja na yale yaliyoshindwa, na (4) kama kanuni ilikuwepo kabla ya tarehe ambazo inasifiwa kwazo. Machapisho mengi hushindwa katika hatua ya 2, kwa sababu hakuna kanuni iliyotajwa, chati na mshale tu."
+  },
+  "fc0e69926272": {
+   "en": "Stablecoins are how money waits inside crypto. A sustained expansion in their aggregate supply indicates capital arriving and staying; a sustained contraction indicates capital leaving the system rather than rotating within it. It is a coarse measure, it can be distorted by a single large issuer's decisions, and it is still one of the few readings available that describes the system as a whole rather than one asset.",
+   "sw": "Sarafu imara ndivyo pesa husubiri ndani ya kripto. Upanukaji unaodumu katika usambazaji wao jumlifu huonyesha mtaji ukifika na kubaki; upungufu unaodumu huonyesha mtaji ukiondoka katika mfumo badala ya kuzunguka ndani yake. Ni kipimo kibovu, kinaweza kupotoshwa na maamuzi ya mtoaji mmoja mkubwa, na bado ni mojawapo ya usomaji mchache unaopatikana unaoelezea mfumo kwa ujumla badala ya rasilimali moja."
   },
   "fc10685014c2": {
    "en": "A genuinely positive-expectancy system can lose over 5, 10, even 20 trades in a row — that is normal variance, not a broken system, and it is the same fat-tailed, streaky randomness you met in Chapter 2. Just as dangerous in reverse: a losing system can win for a while by pure chance, tempting you to trust it and size up. You cannot judge a system, or yourself, on a handful of trades. This is exactly why the plan includes a review over a meaningful sample, and why your risk per trade must be small enough (Chapter 3, Lesson 1) to survive the inevitable losing streaks while the edge has time to show.",
@@ -17912,6 +18388,10 @@
   "ff05e26f6957": {
    "en": "A schedule of when to check prices",
    "sw": "Ratiba ya wakati wa kukagua bei"
+  },
+  "ff091490db79": {
+   "en": "Carry. This is the pillar most often misrepresented, and it needs care.",
+   "sw": "Kubeba. Hii ndiyo nguzo inayowasilishwa vibaya mara nyingi zaidi, nayo inahitaji uangalifu."
   },
   "ff0f6d92c3d3": {
    "en": "The fall from a previous peak to a subsequent trough, as a percentage. It describes the worst of an experience rather than its average.",

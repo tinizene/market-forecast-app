@@ -1,3 +1,7 @@
+// v19 collapses the home page's mission essay into a <details> disclosure. index.html
+// and styles.css both changed, and both are precached — without the bump an existing
+// install keeps serving the old thousand-word scroll.
+//
 // v18 adopts the brand mark and renames the product to Scere Training. Every page's
 // <title> and the manifest changed, and there are new icons/ assets an install still
 // serving v17 would neither have nor fetch — it would keep showing the old name and the
@@ -26,7 +30,7 @@
 // their routes redirect home (see vercel.json) and precaching them would keep
 // serving dead pages to anyone who had already visited. The version bump is what
 // evicts them from existing installs.
-const CACHE_NAME = 'scere-training-v18';
+const CACHE_NAME = 'scere-training-v19';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

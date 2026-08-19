@@ -1022,6 +1022,43 @@
 .toc-row.is-done .toc-go { color: var(--success-text); }
 .toc-row.is-done .toc-title { color: var(--text-secondary); }
 
+/* The mission runs to about a thousand words. Left open it was most of the home
+   page's scroll height, pushing the footer and the three product cards' worth of
+   context far out of reach on a phone. Collapsing it keeps the argument available to
+   anyone who wants it and off the critical path for everyone else.
+
+   <details> rather than a div and a click handler: it gives keyboard operation, the
+   right expanded/collapsed semantics for screen readers, and find-in-page for free.
+   The opening two paragraphs and the closing call to action stay outside it, so
+   collapsing removes the essay and neither the hook nor the way in. Same pattern as
+   .chapter above. */
+.mission-more { border-top: 1px solid var(--border-default); border-bottom: 1px solid var(--border-default); }
+.mission-summary {
+  display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+  padding: 0.9rem 0.25rem; cursor: pointer; list-style: none;
+  font-size: 0.9rem; font-weight: 600; color: var(--text-body);
+}
+.mission-summary::-webkit-details-marker { display: none; }
+.mission-summary::before {
+  content: '▸'; color: var(--primary-text); font-size: 0.8rem;
+  transition: transform 0.15s ease; display: inline-block; flex: none;
+}
+.mission-more[open] > .mission-summary::before { transform: rotate(90deg); }
+.mission-summary:hover { color: var(--text-primary); }
+.mission-summary-hint {
+  margin-left: auto; font-size: 0.72rem; font-weight: 500; color: var(--text-tertiary);
+  white-space: nowrap;
+}
+/* One label for each state rather than swapping text in script — the summary keeps
+   working with JavaScript disabled, which is the reason for using <details> at all. */
+.mission-summary-label[data-open] { display: none; }
+.mission-more[open] > .mission-summary .mission-summary-label[data-closed] { display: none; }
+.mission-more[open] > .mission-summary .mission-summary-label[data-open] { display: inline; }
+/* Spacing is set here rather than left to a utility class, so the sections stay
+   readable if the Tailwind CDN is slow or blocked. */
+.mission-body { padding: 0.25rem 0 1.25rem; }
+.mission-body > * + * { margin-top: 1.5rem; }
+
 /* --- lesson page: position + mark as read --- */
 .lesson-pos {
   border: 1px solid var(--border-default); border-radius: 0.9rem;

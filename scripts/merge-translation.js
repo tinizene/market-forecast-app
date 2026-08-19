@@ -46,6 +46,13 @@ function main() {
   for (const [key, why] of Object.entries(batch.__keepAsIs || {})) {
     if (!live.has(key)) { unknown.push(key); continue; }
     overlay.keepAsIs[key] = why;
+    // Record the English AS the translation. "Leave it in English" is a decision, not a
+    // gap: without this the string would count as untranslated forever, so coverage
+    // could never reach 100% and the number would stop meaning anything.
+    if (!overlay.strings[key] || !overlay.strings[key][lang]) {
+      overlay.strings[key] = { en: live.get(key), [lang]: live.get(key) };
+      added++;
+    }
   }
   delete batch.__keepAsIs;
 

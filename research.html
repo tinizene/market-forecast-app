@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Research Desk — Scere Training</title>
+    <title data-i18n="research.research-desk-scere-training">The Research Desk — Scere Training</title>
+    <link rel="alternate" hreflang="en" href="./research.html?lang=en">
+    <link rel="alternate" hreflang="fr" href="./research.html?lang=fr">
+    <link rel="alternate" hreflang="x-default" href="./research.html">
     <link rel="icon" href="./icons/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="./icons/favicon-32.png" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
@@ -31,16 +34,16 @@
     </script>
 </head>
 <body class="bg-slate-900 text-white font-sans min-h-screen p-4">
-    <a class="skip-link" href="#mainContent">Skip to main content</a>
+    <a data-i18n="common.skip-main-content" class="skip-link" href="#mainContent">Skip to main content</a>
     <div class="app-bg" aria-hidden="true"></div>
     <main class="relative z-10 max-w-2xl mx-auto pb-8" id="mainContent" tabindex="-1">
 
         <div id="siteNav" data-active="research"></div>
 
         <header class="text-center my-4 relative">
-            <p class="text-[11px] uppercase tracking-[0.2em] text-amber-300 mb-1">The research desk · paid</p>
-            <h1 class="text-2xl font-bold tracking-wide">High-Conviction Ideas</h1>
-            <p class="text-slate-400 text-sm mt-1">Real due-diligence research, scored daily — with the receipts</p>
+            <p data-i18n="research.research-desk-paid" class="text-[11px] uppercase tracking-[0.2em] text-amber-300 mb-1">The research desk · paid</p>
+            <h1 data-i18n="common.high-conviction-ideas" class="text-2xl font-bold tracking-wide">High-Conviction Ideas</h1>
+            <p data-i18n="research.real-due-diligence-research-scored-daily" class="text-slate-400 text-sm mt-1">Real due-diligence research, scored daily — with the receipts</p>
             <div class="absolute top-0 right-0">
                 <select id="historySelect" aria-label="Choose report date" class="text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white px-2 py-1.5 rounded-lg transition outline-none border border-slate-700"></select>
             </div>
@@ -56,8 +59,8 @@
         <div class="advisory-card alert-teaser !items-start mb-6">
             <span class="advisory-icon">🔎</span>
             <div>
-                <p class="font-semibold text-sm">Track record is free and in the open.</p>
-                <p class="text-xs opacity-90 mt-0.5">Every closed idea shows its outcome — a win or an invalidation — before you hit any wall. Today's <em>live</em> theses (entries, targets, invalidation, full scorecards) unlock with a paid track. The exact six-pillar method is taught, step by step, in the <a href="./learn.html" class="underline decoration-blue-400/60 hover:text-white">Forex track</a>.</p>
+                <p data-i18n="research.track-record-free-open" class="font-semibold text-sm">Track record is free and in the open.</p>
+                <p data-i18n-html="research.every-closed-idea-shows-its-outcome" class="text-xs opacity-90 mt-0.5">Every closed idea shows its outcome — a win or an invalidation — before you hit any wall. Today's <em>live</em> theses (entries, targets, invalidation, full scorecards) unlock with a paid track. The exact six-pillar method is taught, step by step, in the <a href="./learn.html" class="underline decoration-blue-400/60 hover:text-white">Forex track</a>.</p>
             </div>
         </div>
 
@@ -77,7 +80,7 @@
 
             <!-- FREE track record — shown before any paywall -->
             <section>
-                <h3 class="section-title">Track record — how past calls turned out</h3>
+                <h3 data-i18n="research.track-record-how-past-calls-turned" class="section-title">Track record — how past calls turned out</h3>
                 <div id="trackRecord" class="space-y-2"></div>
             </section>
 
@@ -86,10 +89,10 @@
                  subscribe / active-subscription / restore UI. -->
             <section>
                 <div class="flex items-center justify-between gap-3 flex-wrap mb-1">
-                    <h3 class="section-title !mb-0">Today's live ideas</h3>
+                    <h3 data-i18n="research.today-s-live-ideas" class="section-title !mb-0">Today's live ideas</h3>
                     <span id="accessStatus" class="text-xs font-semibold"></span>
                 </div>
-                <p class="text-xs text-slate-400 mb-3">Headline and confidence score are free. The full thesis — entry, targets, invalidation and the weighted scorecard — unlocks with a subscription.</p>
+                <p data-i18n="research.headline-confidence-score-free-full-thesis" class="text-xs text-slate-400 mb-3">Headline and confidence score are free. The full thesis — entry, targets, invalidation and the weighted scorecard — unlocks with a subscription.</p>
                 <div id="accessBar" class="mb-4"></div>
                 <div id="liveIdeas" class="space-y-4"></div>
             </section>
@@ -99,8 +102,8 @@
                 <a href="./learn.html" class="advisory-card alert-teaser !items-start !no-underline">
                     <span class="advisory-icon">📘</span>
                     <div>
-                        <p class="font-semibold text-sm">Where these scores come from</p>
-                        <p class="text-xs opacity-90 mt-0.5">Every idea above is scored against the same six-pillar method — macro, technicals, positioning, sentiment, volatility. The course teaches it step by step, and includes three months of these ideas.</p>
+                        <p data-i18n="research.where-these-scores-come-from" class="font-semibold text-sm">Where these scores come from</p>
+                        <p data-i18n="research.every-idea-above-scored-against-same" class="text-xs opacity-90 mt-0.5">Every idea above is scored against the same six-pillar method — macro, technicals, positioning, sentiment, volatility. The course teaches it step by step, and includes three months of these ideas.</p>
                     </div>
                 </a>
             </section>
@@ -110,16 +113,17 @@
         <footer class="mt-10 text-center text-xs text-slate-500">
             Built on the same daily pipeline that writes <code>data/fx-reports/</code> — nothing new to generate. Every level is machine-parsed from the generated report.
             <br>
-            <span class="block mt-2 max-w-sm mx-auto">Analytical scenarios for your own judgment — not personalized financial advice. Data may be delayed or incomplete. Consult a licensed financial advisor before making investment decisions.</span>
+            <span data-i18n="research.analytical-scenarios-own-judgment-not-personalized" class="block mt-2 max-w-sm mx-auto">Analytical scenarios for your own judgment — not personalized financial advice. Data may be delayed or incomplete. Consult a licensed financial advisor before making investment decisions.</span>
             <br>
-            <a href="./privacy-policy.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Privacy Policy</a>
+            <a data-i18n="common.privacy-policy" href="./privacy-policy.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Privacy Policy</a>
             ·
-            <a href="./learn.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">The Course</a>
+            <a data-i18n="common.course" href="./learn.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">The Course</a>
             ·
-            <a href="./index.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Why we exist</a>
+            <a data-i18n="common.why-exist" href="./index.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Why we exist</a>
         </footer>
     </main>
 
+    <script src="./i18n.js"></script>
     <script src="./ui.js"></script>
     <script src="./nav.js"></script>
     <script src="./research.js"></script>

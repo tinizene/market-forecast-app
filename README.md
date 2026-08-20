@@ -607,6 +607,41 @@ design proposals asserted "verified high contrast" for pairs that measured 2.49:
 - `api/markets-hub.js` — consolidated serverless endpoint (quote/history/adjusted-history/macro/fx/news/countries/countryIndicators)
 - `vercel.json` — rewrites + no-cache headers for the app shell
 - `privacy-policy.html` — plain-language privacy summary
+- `i18n.js`, `i18n/*.json` — translation runtime and locale catalogues. English stays
+  inline in the pages and `data-i18n` keys sit alongside it, so English needs no fetch
+  and a failed locale load degrades to a correct English page. `LANGUAGES` has two
+  flags: `available` puts a language in the switcher and the `hreflang` alternates,
+  `preview` keeps `?lang=<code>` working while advertising it nowhere — the state a
+  finished translation sits in while awaiting review, so it stays testable instead of
+  going dark. Swahili is in preview; French is live
+- `scripts/check-i18n.js` — static i18n gate: missing/orphan keys, locale parity,
+  `{placeholder}` and markup parity, English drift between `en.json` and the source, and
+  the availability contract — an offered language needs a locale file and an `hreflang`
+  alternate on every page, a preview language needs neither, and neither-nor is
+  unreachable
+- `scripts/verify-i18n-browser.js`, `scripts/lib/local-server.js` — end-to-end i18n check
+  in headless Chromium against the real `api/*` handlers; skips where no browser exists
+- `data/course/i18n/<lang>.json` — the course translation **overlay**: `sha256(english)[:12]`
+  → `{en, <lang>}`, so English stays the single source of truth, a proofreader reads both
+  languages side by side, an English edit orphans its old translation loudly instead of
+  going stale in silence, and anything untranslated falls back to English. Carries its own
+  provenance in `_note`, `_conventions` and `keepAsIs` (every term deliberately left in
+  English, with the reason for each). Swahili is complete: 4,706 strings, all four tracks
+- `scripts/extract-course-strings.js` — the translation work list, in reading order rather
+  than alphabetical so one lesson's sentences stay together; `--todo <lang>` skips what is done
+- `scripts/merge-translation.js` — merges a `{key: translation}` batch into an overlay,
+  refusing unknown keys; `"__keepAsIs": {key: reason}` records a deliberate non-translation
+- `scripts/build-course-i18n.js` — applies an overlay to produce `data/course/<track>.<lang>.json`
+- `scripts/check-course-i18n.js` — the course gate. Checks what a *language* proofreader
+  cannot: number multisets, currency and percent markers, orphans, and silent
+  identical-to-English entries. It caught two lost `%` markers and two clock times
+  localised into Swahili traditional time, which is correct Swahili and wrong in a lesson
+  about an economic calendar that displays international time
+- `scripts/build-review-doc.js` — builds the native-speaker proofreading document:
+  English and translation side by side in reading order, conventions and
+  kept-in-English decisions surfaced, translation column editable, emitting a JSON batch
+  that `merge-translation.js` consumes. Output is gitignored — it is the whole paid
+  course as static HTML, and this site deploys statically
 - `FORK-NOTES.md` — what changed from the weather app and why
 - `fx-intelligence.html`, `fx-intelligence.js` — FX Intelligence Desk page
 - `scripts/parse-fx-report.js` — markdown → JSON parser for the daily FX dashboard report

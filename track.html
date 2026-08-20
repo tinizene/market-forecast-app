@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Track — Scere Training</title>
+    <title data-i18n="track.track-scere-training">Track — Scere Training</title>
+    <link rel="alternate" hreflang="en" href="./track.html?lang=en">
+    <link rel="alternate" hreflang="fr" href="./track.html?lang=fr">
+    <link rel="alternate" hreflang="x-default" href="./track.html">
     <link rel="icon" href="./icons/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="./icons/favicon-32.png" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
@@ -20,13 +23,13 @@
     </script>
 </head>
 <body class="bg-slate-900 text-white font-sans min-h-screen p-4">
-    <a class="skip-link" href="#mainContent">Skip to main content</a>
+    <a data-i18n="common.skip-main-content" class="skip-link" href="#mainContent">Skip to main content</a>
     <div class="app-bg" aria-hidden="true"></div>
     <main class="relative z-10 max-w-2xl mx-auto pb-8" id="mainContent" tabindex="-1">
 
         <div id="siteNav" data-active="learn"></div>
 
-        <a href="./learn.html" class="inline-flex items-center gap-1.5 text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg transition mb-4">&larr; All lessons</a>
+        <a data-i18n="common.larr-all-lessons" href="./learn.html" class="inline-flex items-center gap-1.5 text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg transition mb-4">&larr; All lessons</a>
 
         <div class="mb-6 rounded-xl border border-amber-600/50 bg-amber-900/20 px-4 py-3 text-xs text-amber-200" role="note">
             ⚠️ Educational content only — not financial advice, and not a recommendation to buy or trade any specific instrument. Every historical figure is real, computed data — but past performance never guarantees future results. See the full disclaimer in the footer.
@@ -46,18 +49,19 @@
         <footer class="mt-10 text-center text-xs text-slate-500">
             Fund facts (expense ratios, index tracked) are curated from each issuer's own official page. Historical return and dividend figures come from Alpha Vantage's published, dividend-adjusted price series.
             <br>
-            <span class="block mt-2 max-w-sm mx-auto">Nothing on this page is financial advice or a recommendation to buy or sell any security. Data may be delayed or incomplete. Consult a licensed financial advisor before making investment decisions.</span>
+            <span data-i18n="common.nothing-page-financial-advice-recommendation" class="block mt-2 max-w-sm mx-auto">Nothing on this page is financial advice or a recommendation to buy or sell any security. Data may be delayed or incomplete. Consult a licensed financial advisor before making investment decisions.</span>
             <br>
-            <a href="./privacy-policy.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Privacy Policy</a>
+            <a data-i18n="common.privacy-policy" href="./privacy-policy.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Privacy Policy</a>
             ·
-            <a href="./learn.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">All lessons</a>
+            <a data-i18n="common.all-lessons" href="./learn.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">All lessons</a>
             ·
-            <a href="./research.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">High-Conviction Ideas</a>
+            <a data-i18n="common.high-conviction-ideas" href="./research.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">High-Conviction Ideas</a>
             ·
-            <a href="./index.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Why we exist</a>
+            <a data-i18n="common.why-exist" href="./index.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Why we exist</a>
         </footer>
     </main>
 
+    <script src="./i18n.js"></script>
     <script src="./ui.js"></script>
     <script src="./nav.js"></script>
     <script src="./instruments.js"></script>

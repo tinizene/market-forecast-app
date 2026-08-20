@@ -52,6 +52,14 @@ function directionMeta(text) {
   return { label: '', cls: 'alert-low' };
 }
 
+// Strings that never exist as an element — announcements, dialog copy, composed
+// labels — go through tr(). Everything that renders as markup carries data-i18n
+// instead and the i18n runtime picks it up on insertion. Falls back to English, so
+// this file still works with i18n.js absent.
+function tr(key, fallback, vars) {
+  return window.SCERE_I18N ? window.SCERE_I18N.t(key, fallback, vars) : fallback;
+}
+
 // ---- renderers -----------------------------------------------------------
 
 function renderRegimeHero(data) {
@@ -60,7 +68,7 @@ function renderRegimeHero(data) {
   const top = ds.topIdea;
   const regimeShort = regime.classification
     ? regime.classification.split('—')[0].split(',')[0].trim()
-    : 'Market Regime';
+    : tr('research.regime.fallback', 'Market Regime');
   const overall = ds.overallConfidence != null ? ds.overallConfidence : null;
   const dateLabel = data.reportDateLabel || data.reportDate || '';
 
@@ -70,20 +78,20 @@ function renderRegimeHero(data) {
     topHtml = `
       <div class="mt-4 pt-4 border-t border-white/20 flex items-center gap-4 flex-wrap">
         <div class="flex-1 min-w-[9rem]">
-          <p class="text-[11px] uppercase tracking-wide text-blue-100/80 font-semibold">Top idea today</p>
+          <p class="text-[11px] uppercase tracking-wide text-blue-100/80 font-semibold" data-i18n="research.top-idea">Top idea today</p>
           <p class="text-lg font-bold mt-0.5">${escapeHtml(top.label || '')}${dir.label ? ` <span class="text-xs font-semibold align-middle opacity-80">${dir.label}</span>` : ''}</p>
         </div>
         ${top.confidence != null ? `<div class="text-center">
           <div class="text-3xl font-extrabold leading-none">${escapeHtml(top.confidence)}</div>
-          <div class="text-[11px] text-blue-100/80 mt-0.5">confidence /100</div>
+          <div class="text-[11px] text-blue-100/80 mt-0.5" data-i18n="research.confidence-scale">confidence /100</div>
         </div>` : ''}
       </div>`;
   }
 
   document.getElementById('regimeHero').innerHTML = `
-    <p class="text-[11px] uppercase tracking-[0.15em] text-blue-100/80 font-semibold">Today's regime${dateLabel ? ` · ${escapeHtml(dateLabel)}` : ''}</p>
+    <p class="text-[11px] uppercase tracking-[0.15em] text-blue-100/80 font-semibold"><span data-i18n="research.todays-regime">Today's regime</span>${dateLabel ? ` · ${escapeHtml(dateLabel)}` : ''}</p>
     <h2 class="text-lg font-bold mt-1 leading-snug">${escapeHtml(regimeShort)}</h2>
-    ${overall != null ? `<p class="text-blue-100/90 text-sm mt-2">Overall market confidence <b>${escapeHtml(overall)}/100</b> — the desk's read on how tradable conditions are right now.</p>` : ''}
+    ${overall != null ? `<p class="text-blue-100/90 text-sm mt-2">${tr('research.overall-confidence', 'Overall market confidence <b>{score}/100</b> — the desk\'s read on how tradable conditions are right now.', { score: escapeHtml(overall) })}</p>` : ''}
     ${topHtml}
   `;
 }
@@ -100,8 +108,8 @@ function renderNoTrade(data) {
     <div class="advisory-card alert-moderate !items-start">
       <span class="advisory-icon">⚠️</span>
       <div>
-        <p class="font-semibold text-sm">${partial ? 'No-Trade Zone partially lifted' : 'No-Trade Zone flagged'}</p>
-        <p class="text-xs opacity-90 mt-0.5">${escapeHtml(nt.text || 'Conditions argue for caution — the desk is flagging elevated risk of whipsaw or event-driven noise.')}</p>
+        <p class="font-semibold text-sm">${escapeHtml(partial ? tr('research.no-trade.partial', 'No-Trade Zone partially lifted') : tr('research.no-trade.flagged', 'No-Trade Zone flagged'))}</p>
+        <p class="text-xs opacity-90 mt-0.5">${escapeHtml(nt.text || tr('research.no-trade.default', 'Conditions argue for caution — the desk is flagging elevated risk of whipsaw or event-driven noise.'))}</p>
       </div>
     </div>`;
 }
@@ -113,11 +121,11 @@ function renderNoTrade(data) {
 function summariseDistance(text) {
   const t = String(text || '').trim();
   if (!t || /^(n\/?a|-|—)$/i.test(t)) return '';
-  if (/no published target/i.test(t)) return 'No published target';
+  if (/no published target/i.test(t)) return tr('research.no-published-target', 'No published target');
   const gap = t.match(/gap[^%\d-]{0,20}(-?[\d.]+)\s*%/i);
   const prog = t.match(/progress[^%\d-]{0,20}(-?[\d.]+)\s*%/i);
   const parts = [];
-  if (gap) parts.push(`${gap[1]}% from target`);
+  if (gap) parts.push(tr('research.pct-from-target', '{pct}% from target', { pct: gap[1] }));
   if (prog) {
     const n = parseFloat(prog[1]);
     parts.push(n < 0
@@ -137,16 +145,16 @@ function renderTrackRecord(data) {
 
   let summaryHtml = '';
   if (hr) {
-    summaryHtml = `<span class="record-summary"><b>${hr.wins} win${hr.wins === 1 ? '' : 's'}</b> · ${hr.inv} invalidated · ${hr.pending} pending${hr.total ? ` · ${hr.total} total` : ''}</span>`;
+    summaryHtml = `<span class="record-summary"><b>${escapeHtml(hr.wins === 1 ? tr('research.summary.one-win', '1 win') : tr('research.summary.n-wins', '{n} wins', { n: hr.wins }))}</b> · ${escapeHtml(tr('research.summary.n-invalidated', '{n} invalidated', { n: hr.inv }))} · ${escapeHtml(tr('research.summary.n-pending', '{n} pending', { n: hr.pending }))}${hr.total ? ` · ${escapeHtml(tr('research.summary.n-total', '{n} total', { n: hr.total }))}` : ''}</span>`;
   }
 
   const rows = ideas.map((it) => {
     const status = classifyOutcome(it.outcome);
     const chip = status === 'win'
-      ? '<span class="status-chip win">Win</span>'
+      ? '<span class="status-chip win" data-i18n="research.status.win">Win</span>'
       : status === 'inv'
-        ? '<span class="status-chip inv">Invalidated</span>'
-        : '<span class="status-chip pending">Open</span>';
+        ? '<span class="status-chip inv" data-i18n="research.status.invalidated">Invalidated</span>'
+        : '<span class="status-chip pending" data-i18n="research.status.open">Open</span>';
     // Idea label = everything before the first "Entry"; keep the (date) if present.
     const raw = String(it.idea_as_published || '');
     const label = raw.split(/\.\s*Entry|,?\s*Entry/i)[0].replace(/\s*—\s*(Bullish|Bearish)\.?/i, ' · $1').trim() || 'Idea';
@@ -166,20 +174,20 @@ function renderTrackRecord(data) {
           ${dist ? `<div class="rr-dist">${escapeHtml(dist)}</div>` : ''}
         </div>
         ${chip}
-        <div class="rr-pl ${plCls}">${status === 'pending' ? 'open' : (plCls === 'pos' ? 'win' : plCls === 'neg' ? 'loss' : '—')}</div>
+        <div class="rr-pl ${plCls}">${escapeHtml(status === 'pending' ? tr('research.pl.open', 'open') : (plCls === 'pos' ? tr('research.pl.win', 'win') : plCls === 'neg' ? tr('research.pl.loss', 'loss') : '—'))}</div>
       </div>`;
   }).join('');
 
   if (!ideas.length && !hr) {
-    root.innerHTML = '<div class="record-card"><div class="record-row"><div class="rr-idea text-slate-400">No closed or open ideas recorded yet for this report.</div></div></div>';
+    root.innerHTML = '<div class="record-card"><div class="record-row"><div class="rr-idea text-slate-400" data-i18n="research.record.empty">No closed or open ideas recorded yet for this report.</div></div></div>';
     return;
   }
 
   root.innerHTML = `
     <div class="record-card">
       <div class="record-head">
-        <span class="pro-badge" style="background:linear-gradient(90deg,#22c55e,#16a34a)">Free</span>
-        <strong class="text-sm">Every call, tracked in the open</strong>
+        <span class="pro-badge" style="background:linear-gradient(90deg,#22c55e,#16a34a)" data-i18n="research.badge.free">Free</span>
+        <strong class="text-sm" data-i18n="research.record.title">Every call, tracked in the open</strong>
         ${summaryHtml}
       </div>
       ${rows}
@@ -202,7 +210,7 @@ function renderScoreBars(scoring) {
         <span class="font-mono text-slate-400">${escapeHtml(r.contribution || '')}</span>
       </div>`;
   }).join('');
-  return `<div class="w-full mt-2"><p class="text-[11px] uppercase tracking-wide text-slate-400 mb-1.5">Six-pillar score</p>${bars}</div>`;
+  return `<div class="w-full mt-2"><p class="text-[11px] uppercase tracking-wide text-slate-400 mb-1.5" data-i18n="research.six-pillar">Six-pillar score</p>${bars}</div>`;
 }
 
 // Idea headline → "Short USD/JPY" (pair + direction), free on every card.
@@ -222,12 +230,12 @@ function ideaHead(headline, biasFallback, conf, badge) {
       <span class="font-bold text-sm">${escapeHtml(core)}</span>
       ${dir.label ? `<span class="text-[10px] font-bold px-2 py-0.5 rounded ${dir.cls}">${dir.label}</span>` : ''}
       <span class="flex-1"></span>
-      ${conf != null ? `<span class="text-xs text-slate-400">score <b class="text-slate-200">${escapeHtml(conf)}/100</b></span>` : ''}
+      ${conf != null ? `<span class="text-xs text-slate-400">${tr('research.score-of-100', 'score <b class="text-slate-200">{score}/100</b>', { score: escapeHtml(conf) })}</span>` : ''}
       ${badge}
     </div>`;
 }
 
-const NO_IDEAS_HTML = '<div class="advisory-card"><p class="text-sm text-slate-400">No open trade ideas on the desk today — often the most honest call there is.</p></div>';
+const NO_IDEAS_HTML = '<div class="advisory-card"><p class="text-sm text-slate-400" data-i18n="research.no-ideas">No open trade ideas on the desk today — often the most honest call there is.</p></div>';
 
 // Entitled / open mode: the full thesis, no blur, no overlay.
 function renderLiveIdeasFull(ideas) {
@@ -245,16 +253,16 @@ function renderLiveIdeasFull(ideas) {
       .filter((r) => r.reasoning)
       .map((r) => `<li class="text-xs text-slate-400 mb-1"><span class="text-slate-300 font-medium">${escapeHtml(r.component || '')}:</span> ${escapeHtml(r.reasoning)}</li>`).join('');
     const confirmHtml = idea.confirmationCriteria
-      ? `<p class="text-xs text-slate-400 mt-2"><span class="text-slate-300 font-medium">Confirmation:</span> ${escapeHtml(idea.confirmationCriteria)}</p>`
+      ? `<p class="text-xs text-slate-400 mt-2"><span class="text-slate-300 font-medium" data-i18n="research.confirmation">Confirmation:</span> ${escapeHtml(idea.confirmationCriteria)}</p>`
       : '';
     return `
       <div class="advisory-card !items-start flex-col !flex">
-        ${ideaHead(idea.headline, f.Bias, idea.totalConfidence, '<span class="pro-badge" style="background:linear-gradient(90deg,#22c55e,#16a34a)">Unlocked</span>')}
+        ${ideaHead(idea.headline, f.Bias, idea.totalConfidence, '<span class="pro-badge" style="background:linear-gradient(90deg,#22c55e,#16a34a)" data-i18n="research.badge.unlocked">Unlocked</span>')}
         ${renderScoreBars(idea.scoring)}
         <div class="w-full mt-3">
-          <p class="text-[11px] uppercase tracking-wide text-slate-400 mb-1">The trade</p>
+          <p class="text-[11px] uppercase tracking-wide text-slate-400 mb-1" data-i18n="research.the-trade">The trade</p>
           ${fieldsHtml || '<p class="text-xs text-slate-500">—</p>'}
-          ${reasoningHtml ? `<p class="text-[11px] uppercase tracking-wide text-slate-400 mt-3 mb-1">Why it scores this way</p><ul class="mt-1">${reasoningHtml}</ul>` : ''}
+          ${reasoningHtml ? `<p class="text-[11px] uppercase tracking-wide text-slate-400 mt-3 mb-1" data-i18n="research.why-it-scores">Why it scores this way</p><ul class="mt-1">${reasoningHtml}</ul>` : ''}
           ${confirmHtml}
         </div>
       </div>`;
@@ -267,23 +275,23 @@ function renderLiveIdeasFull(ideas) {
 function renderLiveIdeasLocked(liveIdeas) {
   const root = document.getElementById('liveIdeas');
   if (!liveIdeas || !liveIdeas.length) { root.innerHTML = NO_IDEAS_HTML; return; }
-  const placeholderRow = (k) => `
+  const placeholderRow = ([key, label]) => `
     <div class="grid grid-cols-[8.5rem_1fr] gap-2 py-1 border-b border-slate-700/50 text-xs">
-      <span class="text-slate-400">${k}</span>
+      <span class="text-slate-400" data-i18n="${key}">${label}</span>
       <span class="text-slate-100 font-medium tracking-widest">••••••••</span>
     </div>`;
   root.innerHTML = liveIdeas.map((idea) => `
       <div class="advisory-card !items-start flex-col !flex">
-        ${ideaHead(idea.headline, null, idea.totalConfidence, '<span class="pro-badge">Thesis locked</span>')}
+        ${ideaHead(idea.headline, null, idea.totalConfidence, '<span class="pro-badge" data-i18n="research.badge.locked">Thesis locked</span>')}
         ${renderScoreBars(idea.scoring)}
         <div class="lock-wrap w-full mt-3">
           <div class="lock-blur">
-            <p class="text-[11px] uppercase tracking-wide text-slate-400 mb-1">The trade</p>
-            ${['Entry zone', 'Target(s)', 'Stop / invalidation', 'Risk / reward'].map(placeholderRow).join('')}
+            <p class="text-[11px] uppercase tracking-wide text-slate-400 mb-1" data-i18n="research.the-trade">The trade</p>
+            ${[['research.field.entry-zone', 'Entry zone'], ['research.field.targets', 'Target(s)'], ['research.field.stop', 'Stop / invalidation'], ['research.field.risk-reward', 'Risk / reward']].map(placeholderRow).join('')}
           </div>
           <div class="lock-over">
             <div class="lock-ic">🔒</div>
-            <p class="lock-msg">Entry, targets, invalidation and the full scorecard unlock with the course, or on their own monthly.</p>
+            <p class="lock-msg" data-i18n="research.lock-msg">Entry, targets, invalidation and the full scorecard unlock with the course, or on their own monthly.</p>
           </div>
         </div>
       </div>`).join('');
@@ -358,7 +366,7 @@ function renderAccess() {
   const status = document.getElementById('accessStatus');
 
   if (!access.paywallActive) { // paywall not configured → fully open preview
-    status.textContent = 'Open preview';
+    status.textContent = tr('research.access.open-preview', 'Open preview');
     status.className = 'text-xs font-semibold text-slate-500';
     bar.innerHTML = '';
     return;
@@ -366,24 +374,28 @@ function renderAccess() {
 
   const idealPrice = priceNow('ideas') ? escapeHtml(priceNow('ideas')) : '';
   const coursePrice = priceNow('course') ? escapeHtml(priceNow('course')) : '';
-  const signOut = '<button id="logoutBtn" type="button" class="underline hover:text-slate-200">Sign out</button>';
+  const signOut = '<button id="logoutBtn" type="button" class="underline hover:text-slate-200" data-i18n="research.access.sign-out">Sign out</button>';
 
   if (access.entitled) {
     // Included with the course vs. paid for monthly are different situations and the
     // page should not pretend otherwise — one of them is going to end on a known date.
     if (access.ideasSource === 'included') {
       const until = formatDate(access.ideasUntil);
-      status.textContent = '✓ Included with your course';
+      status.textContent = `✓ ${tr('research.access.included', 'Included with your course')}`;
       status.className = 'text-xs font-semibold text-emerald-300';
       bar.innerHTML = `<div class="flex flex-wrap items-center gap-3 text-xs text-slate-400">
-          <span>The daily ideas come with your course${until ? ` until <strong class="text-slate-200">${escapeHtml(until)}</strong>` : ''}. After that they are optional${idealPrice ? `, at ${idealPrice}` : ''} — your course access is untouched either way.</span>
+          <span>${until
+            ? tr('research.access.included-until', 'The daily ideas come with your course until <strong class="text-slate-200">{until}</strong>.', { until: escapeHtml(until) })
+            : tr('research.access.included-plain', 'The daily ideas come with your course.')} ${idealPrice
+            ? tr('research.access.then-optional-priced', 'After that they are optional, at {price} — your course access is untouched either way.', { price: idealPrice })
+            : tr('research.access.then-optional', 'After that they are optional — your course access is untouched either way.')}</span>
           ${signOut}
         </div>`;
     } else {
-      status.textContent = '✓ Subscription active';
+      status.textContent = `✓ ${tr('research.access.sub-active', 'Subscription active')}`;
       status.className = 'text-xs font-semibold text-emerald-300';
       bar.innerHTML = `<div class="flex items-center gap-3 text-xs text-slate-400">
-          <span>You have full access to every live thesis.</span>
+          <span data-i18n="research.access.full-access">You have full access to every live thesis.</span>
           ${signOut}
         </div>`;
     }
@@ -391,7 +403,7 @@ function renderAccess() {
     return;
   }
 
-  status.textContent = '🔒 Locked';
+  status.textContent = `🔒 ${tr('research.access.locked', 'Locked')}`;
   status.className = 'text-xs font-semibold text-amber-300';
 
   // A course owner whose included months have run out is not a stranger being asked to
@@ -400,10 +412,14 @@ function renderAccess() {
     bar.innerHTML = `
       <div class="paywall-card">
         <div class="paywall-icon">🔒</div>
-        <p class="text-sm text-slate-200 font-semibold mb-1">Your three included months have ended</p>
-        <p class="text-xs text-slate-400 mb-1 max-w-sm mx-auto">Your course is unaffected and stays yours. To keep receiving the daily ideas${idealPrice ? `, they are ${idealPrice}` : ''}. The track record above stays free, always.</p>
-        ${access.ideas.available ? `<button id="subscribeBtn" type="button" class="upgrade-btn">Keep the daily ideas${idealPrice ? ` · ${idealPrice}` : ''}</button>${promoNote('ideas')}` : ''}
-        <p class="text-[11px] text-slate-500 mt-3">Already subscribed? <button id="restoreBtn" type="button" class="underline hover:text-slate-300">Restore access</button></p>
+        <p class="text-sm text-slate-200 font-semibold mb-1" data-i18n="research.lapsed.title">Your three included months have ended</p>
+        <p class="text-xs text-slate-400 mb-1 max-w-sm mx-auto">${escapeHtml(idealPrice
+          ? tr('research.lapsed.msg-priced', 'Your course is unaffected and stays yours. To keep receiving the daily ideas, they are {price}. The track record above stays free, always.', { price: idealPrice })
+          : tr('research.lapsed.msg', 'Your course is unaffected and stays yours. The track record above stays free, always.'))}</p>
+        ${access.ideas.available ? `<button id="subscribeBtn" type="button" class="upgrade-btn">${escapeHtml(idealPrice
+          ? tr('research.lapsed.keep-priced', 'Keep the daily ideas · {price}', { price: idealPrice })
+          : tr('research.lapsed.keep', 'Keep the daily ideas'))}</button>${promoNote('ideas')}` : ''}
+        <p class="text-[11px] text-slate-500 mt-3"><span data-i18n="research.already-subscribed">Already subscribed?</span> <button id="restoreBtn" type="button" class="underline hover:text-slate-300" data-i18n="research.restore-access">Restore access</button></p>
       </div>`;
   } else {
     // Never bought anything: lead with the course, since it is the better deal for
@@ -411,15 +427,19 @@ function renderAccess() {
     bar.innerHTML = `
       <div class="paywall-card">
         <div class="paywall-icon">🔒</div>
-        <p class="text-sm text-slate-200 font-semibold mb-1">Unlock every live thesis</p>
-        <p class="text-xs text-slate-400 mb-3 max-w-sm mx-auto">Full entries, targets, invalidation and the weighted six-pillar scorecard, updated daily. The track record above stays free, always.</p>
+        <p class="text-sm text-slate-200 font-semibold mb-1" data-i18n="research.unlock.title">Unlock every live thesis</p>
+        <p class="text-xs text-slate-400 mb-3 max-w-sm mx-auto" data-i18n="research.unlock.msg">Full entries, targets, invalidation and the weighted six-pillar scorecard, updated daily. The track record above stays free, always.</p>
         ${access.course.available ? `
-          <button id="buyCourseBtn" type="button" class="upgrade-btn">Get the course${coursePrice ? ` · ${coursePrice}` : ''}</button>
-          <p class="text-[11px] text-slate-400 mt-2 max-w-sm mx-auto">Yours permanently, and it includes three months of these ideas.</p>
+          <button id="buyCourseBtn" type="button" class="upgrade-btn">${escapeHtml(coursePrice
+            ? tr('research.unlock.buy-course-priced', 'Get the course · {price}', { price: coursePrice })
+            : tr('research.unlock.buy-course', 'Get the course'))}</button>
+          <p class="text-[11px] text-slate-400 mt-2 max-w-sm mx-auto" data-i18n="research.unlock.course-note">Yours permanently, and it includes three months of these ideas.</p>
           ${promoNote('course')}` : ''}
         ${access.ideas.available ? `
-          <p class="text-[11px] text-slate-500 mt-3">Just want the ideas? <button id="subscribeBtn" type="button" class="underline hover:text-slate-300">Subscribe${idealPrice ? ` · ${idealPrice}` : ''}</button></p>` : ''}
-        <p class="text-[11px] text-slate-500 mt-2">Already paid? <button id="restoreBtn" type="button" class="underline hover:text-slate-300">Restore access</button></p>
+          <p class="text-[11px] text-slate-500 mt-3"><span data-i18n="research.unlock.just-ideas">Just want the ideas?</span> <button id="subscribeBtn" type="button" class="underline hover:text-slate-300">${escapeHtml(idealPrice
+            ? tr('research.unlock.subscribe-priced', 'Subscribe · {price}', { price: idealPrice })
+            : tr('research.unlock.subscribe', 'Subscribe'))}</button></p>` : ''}
+        <p class="text-[11px] text-slate-500 mt-2"><span data-i18n="research.already-paid">Already paid?</span> <button id="restoreBtn" type="button" class="underline hover:text-slate-300" data-i18n="research.restore-access">Restore access</button></p>
       </div>`;
   }
   const sub = document.getElementById('subscribeBtn'); if (sub) sub.onclick = doSubscribe;
@@ -432,7 +452,7 @@ function renderAccess() {
 async function startCheckout(btn, product, unavailableMsg) {
   // Disabling matters as much as relabelling: two clicks on a checkout button used to
   // mean two Checkout Sessions.
-  const restore = ui.setBusy(btn, 'Taking you to checkout…');
+  const restore = ui.setBusy(btn, tr('research.checkout.busy', 'Taking you to checkout…'));
   try {
     const res = await postJson('/api/billing?fn=createCheckout', { product, code: (ui.promoCode ? ui.promoCode() : null) || undefined });
     const d = await res.json().catch(() => ({}));
@@ -443,30 +463,36 @@ async function startCheckout(btn, product, unavailableMsg) {
       restore();
       await loadReport(selectedDate);
       ui.say(d.error === 'already_included'
-        ? 'You already have the daily ideas — they are included with your course.'
-        : 'You already have this. The page has been updated.', true);
+        ? tr('research.checkout.already-included', 'You already have the daily ideas — they are included with your course.')
+        : tr('research.checkout.already-have', 'You already have this. The page has been updated.'), true);
       return;
     }
     restore();
-    ui.alertDialog({ tone: 'error', title: 'Checkout is unavailable', message: unavailableMsg + ' Nothing has been charged.' });
+    ui.alertDialog({
+      tone: 'error',
+      title: tr('research.checkout.unavailable-title', 'Checkout is unavailable'),
+      message: `${unavailableMsg} ${tr('research.checkout.nothing-charged', 'Nothing has been charged.')}`,
+    });
   } catch (e) {
     restore();
     ui.alertDialog({
       tone: 'error',
-      title: navigator.onLine === false ? 'You’re offline' : 'Couldn’t start checkout',
+      title: navigator.onLine === false
+        ? tr('research.checkout.offline-title', 'You’re offline')
+        : tr('research.checkout.failed-title', 'Couldn’t start checkout'),
       message: navigator.onLine === false
-        ? 'Reconnect and try again — nothing has been charged.'
-        : 'Something went wrong before we reached the payment page. Nothing has been charged.',
+        ? tr('research.checkout.offline-msg', 'Reconnect and try again — nothing has been charged.')
+        : tr('research.checkout.failed-msg', 'Something went wrong before we reached the payment page. Nothing has been charged.'),
     });
   }
 }
 
 function doSubscribe() {
-  return startCheckout(document.getElementById('subscribeBtn'), 'ideas', 'Subscriptions aren’t available right now. Please try again later.');
+  return startCheckout(document.getElementById('subscribeBtn'), 'ideas', tr('research.checkout.subs-unavailable', 'Subscriptions aren’t available right now. Please try again later.'));
 }
 
 function doBuyCourse() {
-  return startCheckout(document.getElementById('buyCourseBtn'), 'course', 'The course isn’t available to buy right now. Please try again shortly.');
+  return startCheckout(document.getElementById('buyCourseBtn'), 'course', tr('research.checkout.course-unavailable', 'The course isn’t available to buy right now. Please try again shortly.'));
 }
 
 // Restoring access is the recovery path for someone who has already paid and cannot
@@ -497,7 +523,7 @@ async function handleCheckoutReturn() {
   // cookies are already set; what is missing is any sign that it worked, and landing
   // on a page that merely looks unlocked is when people wonder whether it did.
   if (p.get('restored')) {
-    ui.say('Access restored. You are signed in on this device.', true);
+    ui.say(tr('research.say.restored', 'Access restored. You are signed in on this device.'), true);
   }
   if (sub || p.get('restored')) window.history.replaceState({}, '', window.location.pathname);
 }
@@ -553,7 +579,9 @@ async function loadReport(dateKey) {
     loadingEl.innerHTML = '';
     loadingEl.classList.add('hidden');
     document.getElementById('researchRoot').classList.remove('hidden');
-    ui.say(pub.reportDateLabel ? `Report for ${pub.reportDateLabel} loaded.` : 'Report loaded.');
+    ui.say(pub.reportDateLabel
+      ? tr('research.say.report-dated', 'Report for {date} loaded.', { date: pub.reportDateLabel })
+      : tr('research.say.report', 'Report loaded.'));
   } catch (err) {
     console.error('Failed to load research data:', err);
     loadingEl.innerHTML = '';
@@ -567,13 +595,17 @@ async function loadReport(dateKey) {
     errEl.innerHTML = `
       <div class="state-card is-error">
         <span class="state-icon" aria-hidden="true">${offline ? '📡' : missing ? '📭' : '⚠️'}</span>
-        <p class="state-title">${offline ? 'You’re offline' : missing ? 'No report for that date' : 'The desk could not be loaded'}</p>
-        <p class="state-msg">${offline
-          ? 'Reconnect and we’ll pick up where you left off. Lessons you have already opened are still available.'
+        <p class="state-title">${escapeHtml(offline
+          ? tr('research.err.offline-title', 'You’re offline')
           : missing
-            ? 'Nothing was published for that day. Pick another date above — the most recent report is selected by default.'
-            : 'Something went wrong at our end. Trying again usually fixes it.'}</p>
-        <button type="button" class="ui-btn ui-btn-primary" data-retry>Try again</button>
+            ? tr('research.err.missing-title', 'No report for that date')
+            : tr('research.err.desk-title', 'The desk could not be loaded'))}</p>
+        <p class="state-msg">${escapeHtml(offline
+          ? tr('research.err.offline-msg', 'Reconnect and we’ll pick up where you left off. Lessons you have already opened are still available.')
+          : missing
+            ? tr('research.err.missing-msg', 'Nothing was published for that day. Pick another date above — the most recent report is selected by default.')
+            : tr('research.err.our-end', 'Something went wrong at our end. Trying again usually fixes it.'))}</p>
+        <button type="button" class="ui-btn ui-btn-primary" data-retry data-i18n="research.err.retry">Try again</button>
       </div>`;
     errEl.classList.remove('hidden');
     const retry = errEl.querySelector('[data-retry]');
@@ -587,7 +619,7 @@ async function populateHistorySelect() {
     const { dates } = await fetchJson('/api/research?fn=index');
     const sorted = [...(dates || [])].sort().reverse();
     if (!sorted.length) { select.classList.add('hidden'); return; }
-    select.innerHTML = sorted.map((date, i) => `<option value="${date}" ${i === 0 ? 'selected' : ''}>${date}${i === 0 ? ' · latest' : ''}</option>`).join('');
+    select.innerHTML = sorted.map((date, i) => `<option value="${date}" ${i === 0 ? 'selected' : ''}>${date}${i === 0 ? ` · ${escapeHtml(tr('research.history.latest', 'latest'))}` : ''}</option>`).join('');
     select.addEventListener('change', () => loadReport(select.value));
   } catch {
     select.classList.add('hidden');
@@ -595,6 +627,9 @@ async function populateHistorySelect() {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+  // Renderers below compose strings through tr(), which answers in English until the
+  // locale JSON lands. Waiting is what stops the desk rendering twice.
+  if (window.SCERE_I18N) { try { await window.SCERE_I18N.ready; } catch (e) { /* English */ } }
   await handleCheckoutReturn();
   await loadBillingConfig();
   await populateHistorySelect();

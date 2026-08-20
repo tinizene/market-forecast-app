@@ -99,7 +99,11 @@ Cross-reference earlier lessons explicitly. The course should feel cumulative, n
 
 ## Translations
 
-Content is written English-first. Glossary holds locked EN/FR/PT/SW translations. Terms marked ⚠ in Swahili need native-speaker review before publication — do not silently "fix" them. Translations are not yet wired into the app.
+Content is written English-first. Glossary holds locked EN/FR/PT/SW translations. Terms marked ⚠ in Swahili need native-speaker review before publication — do not silently "fix" them.
+
+**The app is now translatable, but the lessons are not translated.** The interface has a full translation layer (`i18n.js`, `i18n/*.json`, a language switcher, French complete) and `api/course.js` serves `data/course/<track>.<lang>.json` when it exists, falling back to English per track when it does not. So a reader who picks French gets a French interface around English lesson text — deliberately, and visibly, rather than around machine-translated lesson text that reads fluent and is unverified.
+
+Translating a track means writing `data/course/<track>.<lang>.json` with the same shape as the English. Do not machine-translate it into place: the standard above applies to lesson prose as much as to glossary terms, and the arithmetic in worked examples has to be re-checked in the target language's number formatting.
 
 ---
 
@@ -138,7 +142,7 @@ Content is written English-first. Glossary holds locked EN/FR/PT/SW translations
 
 **All four tracks are now complete: Foundations 10, Forex 26, Crypto 24, Stocks & ETFs 25 — 85 lessons.**
 
-**Not started:** Advanced Forex Course. Translations beyond the English master.
+**Not started:** Advanced Forex Course. Lesson-content translations beyond the English master (the *interface* is translated — see Translations above).
 
 **Known outstanding work:**
 - Forex and Foundations lessons are compiled into `forex-content.js` / `foundation-content.js` / `crypto-content.js` at the repo **root** (the live, deployed location) and rendered by `learn.js` via `renderForexTrack()` / `renderFoundationTrack()`. To add a lesson: write the markdown in `course/forex/`, verify citations/arithmetic, create a light SVG in `course/images/`, then compile the lesson into a block object appended to `window.SCERE_FOREX_CONTENT` in root `forex-content.js` and add its dark-ported inline SVG to `window.SCERE_FOREX_SVGS` in the same file. (The old `course/scere-integration/` staging copies were removed once promoted to root — root is now the single source of truth.)

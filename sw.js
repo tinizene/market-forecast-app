@@ -30,7 +30,7 @@
 // their routes redirect home (see vercel.json) and precaching them would keep
 // serving dead pages to anyone who had already visited. The version bump is what
 // evicts them from existing installs.
-const CACHE_NAME = 'scere-training-v19';
+const CACHE_NAME = 'scere-training-v22';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -44,6 +44,13 @@ const ASSETS_TO_CACHE = [
   './icons/icon-maskable-512.png',
   './ui.js',
   './nav.js',
+  './i18n.js',
+  // The locale files, so a language someone has chosen survives going offline. Only
+  // the ones that exist: addAll rejects as a unit, and a 404 on a locale we have not
+  // written yet would take the whole app shell down with it.
+  './i18n/en.json',
+  './i18n/fr.json',
+  './i18n/sw.json',
   './research.html',
   './research.js',
   './learn.html',

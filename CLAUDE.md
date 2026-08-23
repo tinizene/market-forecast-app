@@ -136,3 +136,40 @@ Content is written English-first. Glossary holds locked EN/FR/PT/SW translations
 **Known outstanding work:**
 - Forex and Foundations lessons are compiled into `forex-content.js` / `foundation-content.js` / `crypto-content.js` at the repo **root** (the live, deployed location) and rendered by `learn.js` via `renderForexTrack()` / `renderFoundationTrack()`. To add a lesson: write the markdown in `course/forex/`, verify citations/arithmetic, create a light SVG in `course/images/`, then compile the lesson into a block object appended to `window.SCERE_FOREX_CONTENT` in root `forex-content.js` and add its dark-ported inline SVG to `window.SCERE_FOREX_SVGS` in the same file. (The old `course/scere-integration/` staging copies were removed once promoted to root — root is now the single source of truth.)
 - Chapter 6 of the Forex track ties into a business model: students who can't run the professional trade-thesis framework themselves can buy completed theses from the platform. Teach the framework completely and honestly; mention the service plainly once, at the end of Lesson 4 only.
+
+---
+
+# When You Need Me to Run Code or Commands
+
+If you need me to manually run any code, command, script, query, or terminal instruction, you must tell me exactly:
+
+1. What I need to run — provide the complete, copy-pasteable command or code.
+2. Where I need to run it — explicitly state the application/environment, for example:
+   * Terminal / Command Prompt / PowerShell
+   * VS Code integrated terminal
+   * Browser console
+   * Database console / SQL editor
+   * Project root directory
+   * A specific folder
+   * A specific server or machine
+3. What directory I should be in before running the command, if relevant.
+4. Any prerequisites — for example, activate a virtual environment, start Docker, log in, set environment variables, or install dependencies.
+5. What I should expect to happen after running it.
+6. What output or result I should send back to you, if you need the result to continue.
+
+Never tell me only to "run this," "execute this," or "try this" without explaining exactly where and how to run it.
+Use this format:
+Run this
+Where: VS Code → Integrated Terminal
+Directory: `/path/to/project`
+Prerequisites: Activate the virtual environment first
+
+```bash
+exact-command-here
+
+```
+
+Expected result: Describe what should happen.
+Send me: The complete output, or the relevant error message.
+If there are multiple commands, number them and explain whether they must be run in a specific order.
+Assume I may not know which terminal, folder, application, environment, or machine to use. Be explicit rather than relying on assumptions.

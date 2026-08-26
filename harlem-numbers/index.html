@@ -984,6 +984,8 @@
       if (SCREENS.indexOf(id) === -1) id = 'home';
       currentScreen = id;
 
+      if (resetArmed) disarmReset();
+
       SCREENS.forEach(function (name) {
         $('screen-' + name).classList.toggle('active', name === id);
       });
@@ -1300,6 +1302,16 @@
     }
 
     // ---------------------------------------------------------------- events
+    var resetArmed = false;
+    var resetTimer = null;
+
+    function disarmReset() {
+      resetArmed = false;
+      window.clearTimeout(resetTimer);
+      var btn = document.querySelector('[data-action="reset"]');
+      if (btn) btn.textContent = 'Reset demo data';
+    }
+
     var ACTIONS = {
       'go': function (target) { showScreen(target.dataset.screen); },
       'back': function () { showScreen('home'); },
@@ -1316,8 +1328,18 @@
         var word = DREAM_BOOK[Math.floor(Math.random() * DREAM_BOOK.length)];
         toast('Dream Book is coming soon. Today it would have suggested "' + word + '".');
       },
-      'reset': function () {
-        if (!window.confirm('Reset the demo? Slips, balance and activity will be cleared.')) return;
+      // Two-step confirm rather than window.confirm(): a sandboxed frame can
+      // block native dialogs, and a destructive button that silently does
+      // nothing is worse than one that asks twice.
+      'reset': function (target) {
+        if (!resetArmed) {
+          resetArmed = true;
+          target.textContent = 'Tap again to erase everything';
+          resetTimer = window.setTimeout(disarmReset, 6000);
+          toast('This clears slips, balance and activity. Tap again to confirm.');
+          return;
+        }
+        disarmReset();
         state = defaultState();
         draft = { type: 'straight', digits: '', stakeCents: STAKES_CENTS[0] };
         save();

@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- No maximum-scale / user-scalable=no: it blocks pinch-zoom, which some
+       people need to read the screen at all. viewport-fit covers the notch. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#fdf6e3" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0d0d0d" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="Harlem Numbers - a play-money demo of a daily three-digit numbers game.">
+  <title>Harlem Numbers - Daily Play</title>
+  <style>
+    /* ---------------------------------------------------------------- theme
+       Light palette lives on bare :root. Dark is defined twice: once behind
+       the OS preference (unless the player explicitly chose light) and once
+       behind an explicit data-theme, so the toggle wins in both directions. */
+    :root {
+      --bg: #fdf6e3;
+      --surface: #ffffff;
+      --surface-sunken: #f7f0dd;
+      --text: #1a1a1a;
+      --text-light: #5a5a5a;
+      --primary: #8b0000;
+      --primary-dark: #5c0000;
+      --on-primary: #ffffff;
+      --gold: #d4af37;
+      --gold-light: #f1d27a;
+      --on-gold: #0d0d0d;
+      --border: #e0d5c1;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --shadow-nav: 0 -4px 16px rgba(0, 0, 0, 0.08);
+      --success: #1a7a3a;
+      --pending: #8a6d00;
+      --muted: #6f6f6f;
+      --focus: #2563eb;
+      --radius: 16px;
+      --transition: 0.25s ease;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        color-scheme: dark;
+        --bg: #0d0d0d;
+        --surface: #1a1a1a;
+        --surface-sunken: #121212;
+        --text: #f0e6d2;
+        --text-light: #b0a48b;
+        --primary: #b30000;
+        --primary-dark: #7a0000;
+        --gold: #d4af37;
+        --gold-light: #e0c56e;
+        --border: #2a2a2a;
+        --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        --shadow-nav: 0 -4px 16px rgba(0, 0, 0, 0.5);
+        --success: #2ecc71;
+        --pending: #e0c56e;
+        --muted: #9a9a9a;
+        --focus: #7dabff;
+      }
+    }
+
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #0d0d0d;
+      --surface: #1a1a1a;
+      --surface-sunken: #121212;
+      --text: #f0e6d2;
+      --text-light: #b0a48b;
+      --primary: #b30000;
+      --primary-dark: #7a0000;
+      --gold: #d4af37;
+      --gold-light: #e0c56e;
+      --border: #2a2a2a;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      --shadow-nav: 0 -4px 16px rgba(0, 0, 0, 0.5);
+      --success: #2ecc71;
+      --pending: #e0c56e;
+      --muted: #9a9a9a;
+      --focus: #7dabff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    * { margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      /* No colour transition on the theme swap: only some surfaces would
+         animate, and the page paints half-light for a frame. */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* Room for the fixed nav plus the home-indicator area on iOS. */
+      padding-bottom: calc(88px + env(safe-area-inset-bottom));
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+      border-radius: 6px;
+    }
+
+    /* Panels are focused on navigation so screen readers announce the new
+       screen; a ring around the whole page is noise for everyone else. */
+    .screen:focus, .screen:focus-visible { outline: none; }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 480px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* -------------------------------------------------------------- top bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 0;
+      min-height: 56px;
+    }
+
+    .top-bar-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .top-bar-title .accent { color: var(--gold); }
+
+    .icon-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      font-size: 1.15rem;
+      flex-shrink: 0;
+      transition: background-color var(--transition), border-color var(--transition);
+    }
+
+    .icon-btn[hidden] { display: none; }
+
+    .demo-badge {
+      display: block;
+      text-align: center;
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      border: 1px dashed var(--border);
+      border-radius: 999px;
+      padding: 5px 10px;
+    }
+
+    /* -------------------------------------------------------------- screens */
+    .screen { display: none; flex-direction: column; gap: 16px; }
+    .screen.active { display: flex; }
+
+    /* ---------------------------------------------------------- number card */
+    .number-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px 16px;
+      text-align: center;
+      border: 2px solid var(--gold);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .number-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary), var(--gold), var(--primary));
+    }
+
+    .label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-light);
+      margin-bottom: 6px;
+    }
+
+    .winning-number {
+      font-size: 4.8rem;
+      font-weight: 900;
+      letter-spacing: 10px;
+      /* letter-spacing pads the right edge; pull it back so it reads centred */
+      text-indent: 10px;
+      line-height: 1;
+      margin: 6px 0 4px;
+      font-variant-numeric: tabular-nums;
+      user-select: none;
+    }
+
+    .draw-note {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      margin-bottom: 14px;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .countdown-item {
+      background: var(--surface-sunken);
+      border-radius: 10px;
+      padding: 8px 10px;
+      min-width: 58px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .countdown-value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .countdown-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-light);
+    }
+
+    /* -------------------------------------------------------------- buttons */
+    .primary-btn, .secondary-btn {
+      border: none;
+      border-radius: 50px;
+      padding: 15px 28px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      font-family: inherit;
+      cursor: pointer;
+      width: 100%;
+      text-transform: uppercase;
+      touch-action: manipulation;
+      transition: transform 0.12s ease, opacity var(--transition);
+    }
+
+    .primary-btn {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: var(--on-primary);
+      box-shadow: 0 6px 16px rgba(139, 0, 0, 0.3);
+    }
+
+    .secondary-btn {
+      background: var(--surface);
+      color: var(--text);
+      border: 2px solid var(--border);
+      margin-top: 10px;
+    }
+
+    .primary-btn:active:not(:disabled), .secondary-btn:active:not(:disabled) { transform: translateY(1px); }
+    .primary-btn:disabled, .secondary-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* ----------------------------------------------------------------- feed */
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-title .icon { color: var(--gold); }
+
+    .feed-list {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 8px 12px;
+      list-style: none;
+    }
+
+    .feed-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 4px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .feed-item:last-child { border-bottom: none; }
+
+    .feed-avatar {
+      width: 42px;
+      height: 42px;
+      background: var(--gold-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--on-gold);
+      flex-shrink: 0;
+      font-size: 0.9rem;
+    }
+
+    /* min-width:0 stops long text from blowing out the flex row */
+    .feed-content { min-width: 0; }
+    .feed-text { font-size: 0.9rem; line-height: 1.35; }
+    .feed-meta { font-size: 0.72rem; color: var(--text-light); margin-top: 3px; }
+    .feed-hit { font-weight: 700; color: var(--primary); }
+
+    .link-btn {
+      display: block;
+      width: 100%;
+      background: none;
+      border: none;
+      font-family: inherit;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      text-decoration: underline;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    /* ------------------------------------------------------------- bet entry */
+    .number-display {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 8px 0 20px;
+    }
+
+    .digit-box {
+      width: 72px;
+      height: 80px;
+      background: var(--surface);
+      border: 2px solid var(--gold);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.6rem;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      box-shadow: var(--shadow);
+    }
+
+    .digit-box.locked {
+      border-color: var(--border);
+      color: var(--text-light);
+      background: var(--surface-sunken);
+      box-shadow: none;
+    }
+
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .key {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      height: 56px;
+      font-size: 1.4rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      touch-action: manipulation;
+      transition: transform 0.12s ease, background-color 0.12s ease;
+    }
+
+    .key:active {
+      background: var(--gold-light);
+      color: var(--on-gold);
+      transform: scale(0.96);
+    }
+
+    .key.action {
+      background: var(--primary);
+      color: var(--on-primary);
+      border: none;
+    }
+
+    .option-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .option {
+      flex: 1 1 40%;
+      background: var(--surface);
+      color: var(--text);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 8px;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      touch-action: manipulation;
+      transition: border-color var(--transition), background-color var(--transition), color var(--transition);
+    }
+
+    .option[aria-checked="true"] {
+      border-color: var(--primary);
+      background: color-mix(in srgb, var(--primary) 12%, var(--surface));
+      color: var(--primary);
+    }
+
+    .amount-row { margin-bottom: 12px; flex-wrap: nowrap; }
+    .amount-row .option { flex: 1; padding: 12px 0; font-weight: 700; }
+
+    .amount-row .option[aria-checked="true"] {
+      border-color: var(--gold);
+      background: color-mix(in srgb, var(--gold) 18%, var(--surface));
+      color: var(--text);
+    }
+
+    .payout-preview {
+      transition: opacity var(--transition);
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+    }
+
+    /* A payout the player cannot currently claim should not look live. */
+    .payout-preview.unavailable { opacity: 0.45; }
+
+    .payout-preview .label { font-size: 0.8rem; margin-bottom: 4px; }
+
+    .payout-preview .value {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .payout-preview .sub {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      margin-top: 4px;
+    }
+
+    .payout-preview .odds {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--border);
+    }
+
+    .form-error {
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      min-height: 1.2em;
+      margin-bottom: 8px;
+    }
+
+    /* -------------------------------------------------------- cards & slips */
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .row-list { list-style: none; }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .row:last-child { border-bottom: none; }
+    .row-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+
+    .row-number {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .row-meta { font-size: 0.8rem; color: var(--text-light); }
+    .row-label { font-weight: 600; }
+
+    .row-amount {
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .row-amount.credit { color: var(--success); }
+
+    .status {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .status.hit { background: color-mix(in srgb, var(--success) 20%, var(--surface)); color: var(--success); }
+    .status.pending { background: color-mix(in srgb, var(--pending) 25%, var(--surface)); color: var(--pending); }
+    .status.missed { background: color-mix(in srgb, var(--muted) 20%, var(--surface)); color: var(--muted); }
+
+    .balance {
+      font-size: 2.4rem;
+      font-weight: 800;
+      text-align: center;
+      margin: 12px 0 20px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .wallet-actions {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .wallet-actions button {
+      flex: 1;
+      padding: 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-family: inherit;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-deposit { background: var(--primary); color: var(--on-primary); }
+
+    .btn-withdraw {
+      background: var(--surface);
+      border: 2px solid var(--border);
+      color: var(--text);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-light);
+    }
+
+    .fine-print {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      text-align: center;
+      line-height: 1.5;
+      padding: 0 8px 8px;
+    }
+
+    /* ----------------------------------------------------------- bottom nav */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0 calc(14px + env(safe-area-inset-bottom));
+      box-shadow: var(--shadow-nav);
+      z-index: 100;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 0.7rem;
+      font-family: inherit;
+      cursor: pointer;
+      padding: 4px 12px;
+      transition: color var(--transition);
+    }
+
+    .nav-item[aria-selected="true"] { color: var(--primary); }
+    .nav-item .nav-icon { font-size: 1.35rem; line-height: 1; }
+
+    /* --------------------------------------------------------------- toasts */
+    .toast-region {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: calc(84px + env(safe-area-inset-bottom));
+      width: min(440px, calc(100vw - 32px));
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 200;
+      pointer-events: none;
+    }
+
+    .toast {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 12px 14px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      white-space: pre-line;
+      animation: toast-in 0.2s ease;
+    }
+
+    .toast.success { border-left-color: var(--success); }
+    .toast.error { border-left-color: var(--primary); }
+
+    @keyframes toast-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="top-bar">
+      <button class="icon-btn" id="backBtn" type="button" data-action="back" hidden aria-label="Back to home">&larr;</button>
+      <h1 class="top-bar-title" id="screenTitle">Harlem<span class="accent">Numbers</span></h1>
+      <button class="icon-btn" id="themeToggle" type="button" data-action="toggle-theme" aria-pressed="false" aria-label="Switch to dark mode">🌙</button>
+    </header>
+
+    <p class="demo-badge">Demo &middot; play money &middot; nothing real is wagered</p>
+
+    <main>
+      <!-- HOME -->
+      <section id="screen-home" class="screen active" role="tabpanel" aria-labelledby="tab-home" tabindex="-1">
+        <div class="number-card">
+          <p class="label" id="drawLabel">Last draw</p>
+          <p class="winning-number" id="winningNumber" aria-live="polite">&ndash;&ndash;&ndash;</p>
+          <p class="draw-note" id="drawNote"></p>
+          <div class="countdown">
+            <div class="countdown-item">
+              <div class="countdown-value" id="cdHours">00</div>
+              <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-item">
+              <div class="countdown-value" id="cdMinutes">00</div>
+              <div class="countdown-label">Min</div>
+            </div>
+            <div class="countdown-item">
+              <div class="countdown-value" id="cdSeconds">00</div>
+              <div class="countdown-label">Sec</div>
+            </div>
+          </div>
+          <p class="visually-hidden" id="countdownText" aria-live="polite"></p>
+          <button class="primary-btn" type="button" data-action="go" data-screen="bet">Play Now</button>
+          <button class="secondary-btn" type="button" id="resolveBtn" data-action="resolve">Check results</button>
+        </div>
+
+        <section>
+          <h2 class="section-title"><span class="icon" aria-hidden="true">🔥</span> Recent hits on the block</h2>
+          <ul class="feed-list" id="homeFeed"></ul>
+        </section>
+
+        <button class="link-btn" type="button" data-action="dream-book">🔮 Open Dream Book for suggested numbers</button>
+      </section>
+
+      <!-- PLACE BET -->
+      <section id="screen-bet" class="screen" role="tabpanel" aria-labelledby="tab-home" tabindex="-1">
+        <form id="betForm" novalidate>
+          <div class="number-display" id="digitDisplay" aria-live="polite"></div>
+
+          <div class="keypad" id="keypad"></div>
+
+          <h2 class="section-title" style="margin-bottom:8px" id="betTypeLabel">Bet type</h2>
+          <div class="option-row" id="betTypeRow" role="radiogroup" aria-labelledby="betTypeLabel"></div>
+
+          <h2 class="section-title" style="margin-bottom:8px" id="stakeLabel">Stake</h2>
+          <div class="option-row amount-row" id="stakeRow" role="radiogroup" aria-labelledby="stakeLabel"></div>
+
+          <p class="form-error" id="betError" role="alert"></p>
+
+          <div class="payout-preview" id="payoutPreview">
+            <p class="label">Potential payout</p>
+            <p class="value" id="payoutValue">$540.00</p>
+            <p class="sub" id="payoutSub"></p>
+            <p class="odds" id="payoutOdds"></p>
+          </div>
+
+          <button class="primary-btn" type="submit" aria-describedby="betError">Confirm bet</button>
+        </form>
+      </section>
+
+      <!-- MY SLIPS -->
+      <section id="screen-slips" class="screen" role="tabpanel" aria-labelledby="tab-slips" tabindex="-1">
+        <div class="card">
+          <ul class="row-list" id="slipsList"></ul>
+        </div>
+      </section>
+
+      <!-- THE BLOCK -->
+      <section id="screen-block" class="screen" role="tabpanel" aria-labelledby="tab-block" tabindex="-1">
+        <ul class="feed-list" id="blockFeed"></ul>
+        <p class="fine-print">Community posts are sample content in this demo.</p>
+      </section>
+
+      <!-- WALLET -->
+      <section id="screen-wallet" class="screen" role="tabpanel" aria-labelledby="tab-wallet" tabindex="-1">
+        <div class="card">
+          <p class="label" style="text-align:center">Available balance</p>
+          <p class="balance" id="balanceDisplay">$0.00</p>
+          <div class="wallet-actions">
+            <button class="btn-deposit" type="button" data-action="deposit">Deposit</button>
+            <button class="btn-withdraw" type="button" data-action="withdraw">Withdraw</button>
+          </div>
+          <h2 class="section-title" style="margin-bottom:12px">Recent activity</h2>
+          <ul class="row-list" id="activityList"></ul>
+        </div>
+        <p class="fine-print">
+          This is a play-money demo. Balances, draws and payouts live only in this browser
+          and can be reset at any time.
+          <button class="link-btn" type="button" data-action="reset">Reset demo data</button>
+        </p>
+      </section>
+    </main>
+  </div>
+
+  <nav class="bottom-nav" role="tablist" aria-label="Main">
+    <button class="nav-item" id="tab-home" type="button" role="tab" data-action="go" data-screen="home" aria-selected="true" aria-controls="screen-home">
+      <span class="nav-icon" aria-hidden="true">🏠</span> Home
+    </button>
+    <button class="nav-item" id="tab-slips" type="button" role="tab" data-action="go" data-screen="slips" aria-selected="false" aria-controls="screen-slips">
+      <span class="nav-icon" aria-hidden="true">🎫</span> My Slips
+    </button>
+    <button class="nav-item" id="tab-block" type="button" role="tab" data-action="go" data-screen="block" aria-selected="false" aria-controls="screen-block">
+      <span class="nav-icon" aria-hidden="true">🔥</span> The Block
+    </button>
+    <button class="nav-item" id="tab-wallet" type="button" role="tab" data-action="go" data-screen="wallet" aria-selected="false" aria-controls="screen-wallet">
+      <span class="nav-icon" aria-hidden="true">💰</span> Wallet
+    </button>
+  </nav>
+
+  <div class="toast-region" id="toastRegion" role="status" aria-live="polite"></div>
+
+  <script src="game.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    var G = window.HNGame;
+
+    // ------------------------------------------------------------- constants
+    var STORAGE_KEY = 'hn:v2:state';
+    var THEME_KEY = 'hn:v2:theme';
+    var STARTING_BALANCE_CENTS = 125000;
+    var STAKES_CENTS = [100, 200, 500, 1000];
+    var MAX_SLIPS = 200;
+    var MAX_ACTIVITY = 50;
+    var TOAST_MS = 4000;
+
+    var money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+    var dayFmt = new Intl.DateTimeFormat(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
+    var timeFmt = new Intl.DateTimeFormat(undefined, { hour: 'numeric', minute: '2-digit' });
+
+    // --------------------------------------------------------------- helpers
+    function $(id) { return document.getElementById(id); }
+
+    /**
+     * Build an element. Text always goes in via textContent, never innerHTML -
+     * nothing player-supplied is ever parsed as markup.
+     */
+    function el(tag, props, children) {
+      var node = document.createElement(tag);
+      props = props || {};
+      Object.keys(props).forEach(function (key) {
+        var value = props[key];
+        if (value === null || value === undefined || value === false) return;
+        if (key === 'class') node.className = value;
+        else if (key === 'text') node.textContent = value;
+        else if (key === 'dataset') Object.keys(value).forEach(function (k) { node.dataset[k] = value[k]; });
+        else if (key === 'style') node.setAttribute('style', value);
+        else node.setAttribute(key, value === true ? '' : value);
+      });
+      (children || []).forEach(function (child) {
+        if (child) node.appendChild(child);
+      });
+      return node;
+    }
+
+    function replaceChildren(node, children) {
+      node.textContent = '';
+      children.forEach(function (child) { node.appendChild(child); });
+    }
+
+    function fmt(cents) { return money.format(cents / 100); }
+
+    function signed(cents) { return (cents >= 0 ? '+' : '–') + fmt(Math.abs(cents)); }
+
+    /** localStorage throws in private mode and when quota is full. */
+    var storage = {
+      read: function (key, fallback) {
+        try {
+          var raw = window.localStorage.getItem(key);
+          return raw === null ? fallback : JSON.parse(raw);
+        } catch (err) {
+          return fallback;
+        }
+      },
+      write: function (key, value) {
+        try {
+          window.localStorage.setItem(key, JSON.stringify(value));
+          return true;
+        } catch (err) {
+          return false;
+        }
+      }
+    };
+
+    // ------------------------------------------------------------------ data
+    var FEED_ITEMS = [
+      { avatar: 'TJ', tokens: [['t', 'Someone on 125th just hit '], ['h', '472'], ['t', ' for '], ['h', '$540']], meta: '2 min ago · Harlem' },
+      { avatar: 'MK', tokens: [['t', 'Marcus from Lenox Ave won '], ['h', '$1,080'], ['t', ' on a box play']], meta: '15 min ago · Harlem' },
+      { avatar: 'DR', tokens: [['t', 'Dream number "snake" came through – '], ['h', '008'], ['t', ' straight!']], meta: '1 hour ago · Washington Heights' }
+    ];
+
+    var DREAM_BOOK = ['Snake', 'Money', 'Water', 'Fire', 'Baby', 'Ring'];
+
+    function defaultState() {
+      return {
+        version: 2,
+        balanceCents: STARTING_BALANCE_CENTS,
+        slips: [],
+        activity: [
+          { kind: 'deposit', label: 'Opening balance', deltaCents: STARTING_BALANCE_CENTS }
+        ]
+      };
+    }
+
+    var SLIP_STATUSES = { pending: 1, hit: 1, missed: 1 };
+    var DRAW_KEY_RE = /^\d{4}-\d{2}-\d{2}$/;
+
+    function isInt(value, min) {
+      return Number.isInteger(value) && value >= (min === undefined ? 0 : min);
+    }
+
+    /**
+     * localStorage is player-writable, so treat it as untrusted input: anything
+     * that fails the shape check is dropped rather than crashing a render.
+     */
+    function isValidSlip(slip) {
+      if (!slip || typeof slip !== 'object') return false;
+      var spec = G.BET_TYPES[slip.type];
+      if (!spec) return false;
+      if (typeof slip.digits !== 'string' || slip.digits.length !== spec.digits || !/^[0-9]+$/.test(slip.digits)) return false;
+      if (!SLIP_STATUSES[slip.status]) return false;
+      if (!DRAW_KEY_RE.test(slip.drawKey)) return false;
+      return isInt(slip.stakeCents, 1) && isInt(slip.netPayoutCents, 0);
+    }
+
+    function isValidActivity(entry) {
+      return entry && typeof entry === 'object' &&
+        typeof entry.label === 'string' &&
+        Number.isInteger(entry.deltaCents);
+    }
+
+    function loadState() {
+      var raw = storage.read(STORAGE_KEY, null);
+      if (!raw || typeof raw !== 'object' || raw.version !== 2) return defaultState();
+      return {
+        version: 2,
+        balanceCents: isInt(raw.balanceCents, 0) ? raw.balanceCents : STARTING_BALANCE_CENTS,
+        slips: Array.isArray(raw.slips) ? raw.slips.filter(isValidSlip).slice(0, MAX_SLIPS) : [],
+        activity: Array.isArray(raw.activity) ? raw.activity.filter(isValidActivity).slice(0, MAX_ACTIVITY) : []
+      };
+    }
+
+    var state = loadState();
+    var saveFailed = false;
+
+    function save() {
+      var ok = storage.write(STORAGE_KEY, state);
+      if (!ok && !saveFailed) {
+        saveFailed = true;
+        toast('Your browser is blocking local storage, so this session will not be remembered.', 'error');
+      }
+    }
+
+    // ------------------------------------------------------------- bet draft
+    var draft = { type: 'straight', digits: '', stakeCents: STAKES_CENTS[0] };
+
+    // ----------------------------------------------------------------- toast
+    function toast(message, tone) {
+      var region = $('toastRegion');
+      var node = el('div', { class: 'toast' + (tone ? ' ' + tone : ''), text: message });
+      region.appendChild(node);
+      while (region.children.length > 3) region.removeChild(region.firstChild);
+      window.setTimeout(function () {
+        if (node.parentNode) node.parentNode.removeChild(node);
+      }, TOAST_MS);
+    }
+
+    // ----------------------------------------------------------------- theme
+    function applyTheme(theme) {
+      var root = document.documentElement;
+      if (theme === 'dark' || theme === 'light') root.dataset.theme = theme;
+      else delete root.dataset.theme;
+
+      var isDark = theme === 'dark' ||
+        (theme !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var toggle = $('themeToggle');
+      toggle.textContent = isDark ? '☀️' : '🌙';
+      toggle.setAttribute('aria-pressed', String(isDark));
+      toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+
+    function toggleTheme() {
+      var isDark = $('themeToggle').getAttribute('aria-pressed') === 'true';
+      var next = isDark ? 'light' : 'dark';
+      storage.write(THEME_KEY, next);
+      applyTheme(next);
+    }
+
+    // ------------------------------------------------------------ navigation
+    var SCREENS = ['home', 'bet', 'slips', 'block', 'wallet'];
+    var TITLES = { home: null, bet: 'Place a Bet', slips: 'My Slips', block: 'The Block', wallet: 'Wallet' };
+    var currentScreen = 'home';
+    var booted = false;
+
+    function showScreen(id) {
+      if (SCREENS.indexOf(id) === -1) id = 'home';
+      currentScreen = id;
+
+      if (resetArmed) disarmReset();
+
+      SCREENS.forEach(function (name) {
+        $('screen-' + name).classList.toggle('active', name === id);
+      });
+
+      // The bet screen is reached from Home, so Home stays the selected tab.
+      var selectedTab = id === 'bet' ? 'home' : id;
+      Array.prototype.forEach.call(document.querySelectorAll('.nav-item'), function (tab) {
+        tab.setAttribute('aria-selected', String(tab.dataset.screen === selectedTab));
+      });
+
+      $('backBtn').hidden = id !== 'bet';
+      var title = $('screenTitle');
+      if (TITLES[id]) {
+        title.textContent = TITLES[id];
+      } else {
+        replaceChildren(title, [
+          document.createTextNode('Harlem'),
+          el('span', { class: 'accent', text: 'Numbers' })
+        ]);
+      }
+
+      render();
+      if (booted) {
+        $('screen-' + id).focus({ preventScroll: true });
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }
+    }
+
+    // ------------------------------------------------------------- bet entry
+    function requiredDigits() { return G.BET_TYPES[draft.type].digits; }
+
+    function setDigits(next) {
+      draft.digits = next.slice(0, requiredDigits());
+      renderBet();
+    }
+
+    function addDigit(digit) {
+      if (draft.digits.length >= requiredDigits()) return;
+      setDigits(draft.digits + digit);
+    }
+
+    function setBetType(type) {
+      if (!G.BET_TYPES[type]) return;
+      draft.type = type;
+      // Switching to Front Pair drops the third digit rather than silently
+      // keeping a value the player can no longer see.
+      draft.digits = draft.digits.slice(0, requiredDigits());
+      renderBet();
+    }
+
+    function currentValidation() {
+      return G.validateBet({
+        type: draft.type,
+        digits: draft.digits,
+        stakeCents: draft.stakeCents,
+        balanceCents: state.balanceCents
+      });
+    }
+
+    function placeBet() {
+      var check = currentValidation();
+      if (!check.ok) {
+        $('betError').textContent = check.message;
+        toast(check.message, 'error');
+        return;
+      }
+
+      var payout = G.quote(draft.type, draft.stakeCents);
+      var drawTime = G.nextDrawTime(new Date());
+      var selection = G.formatSelection(draft.type, draft.digits);
+
+      state.slips.unshift({
+        id: 'slip-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8),
+        type: draft.type,
+        digits: draft.digits,
+        stakeCents: draft.stakeCents,
+        netPayoutCents: payout.netCents,
+        status: 'pending',
+        drawKey: G.drawKey(drawTime),
+        placedAt: new Date().toISOString()
+      });
+      state.slips = state.slips.slice(0, MAX_SLIPS);
+
+      state.balanceCents -= draft.stakeCents;
+      addActivity('bet', 'Bet on ' + selection, -draft.stakeCents);
+      save();
+
+      draft.digits = '';
+      renderBet();
+      toast('Bet placed on ' + selection + '.\nPotential payout ' + fmt(payout.netCents) +
+        ' · draw ' + dayFmt.format(drawTime) + '.', 'success');
+      showScreen('slips');
+    }
+
+    function addActivity(kind, label, deltaCents) {
+      state.activity.unshift({ kind: kind, label: label, deltaCents: deltaCents, at: new Date().toISOString() });
+      state.activity = state.activity.slice(0, MAX_ACTIVITY);
+    }
+
+    // ------------------------------------------------------------ settlement
+    function pendingDue(now) {
+      var cutoff = G.drawKey(G.lastDrawTime(now));
+      return state.slips.some(function (slip) {
+        return slip.status === 'pending' && slip.drawKey <= cutoff;
+      });
+    }
+
+    /**
+     * Settle everything whose draw has passed. Safe to call on every tick:
+     * settle() only touches pending slips, so it never double-pays.
+     */
+    function settleDue(options) {
+      var now = new Date();
+      var cutoff = G.drawKey(G.lastDrawTime(now));
+      var result = G.settle(state.slips, cutoff, G.numberForDraw);
+
+      if (result.settledCount === 0) {
+        if (options && options.announce) {
+          toast('Nothing to settle yet. Next draw at ' + timeFmt.format(G.nextDrawTime(now)) + '.');
+        }
+        return;
+      }
+
+      state.slips = result.slips;
+      if (result.wonCents > 0) {
+        state.balanceCents += result.wonCents;
+        addActivity('hit', result.hits === 1 ? 'Winning slip' : result.hits + ' winning slips', result.wonCents);
+      }
+      save();
+      render();
+
+      var winning = G.numberForDraw(cutoff);
+      toast(result.hits > 0
+        ? 'Draw ' + winning + ': ' + result.hits + ' winning slip' + (result.hits === 1 ? '' : 's') +
+          ', ' + fmt(result.wonCents) + ' paid in.'
+        : 'Draw ' + winning + ': no winners on ' + result.settledCount + ' slip' +
+          (result.settledCount === 1 ? '' : 's') + ' this time.',
+        result.hits > 0 ? 'success' : null);
+    }
+
+    // --------------------------------------------------------------- renders
+    function renderHome() {
+      var now = new Date();
+      var last = G.lastDrawTime(now);
+      var next = G.nextDrawTime(now);
+
+      $('winningNumber').textContent = G.numberForDraw(G.drawKey(last));
+      $('drawLabel').textContent = 'Winning number · ' + dayFmt.format(last);
+      $('drawNote').textContent = 'Next draw ' + dayFmt.format(next) + ' at ' + timeFmt.format(next);
+
+      var resolveBtn = $('resolveBtn');
+      var due = pendingDue(now);
+      resolveBtn.disabled = !due;
+      resolveBtn.textContent = due ? 'Check results' : 'No slips to settle';
+    }
+
+    function renderCountdown() {
+      var now = new Date();
+      var target = G.nextDrawTime(now);
+      var diff = Math.max(0, target - now);
+      var hours = Math.floor(diff / 3600000);
+      var minutes = Math.floor((diff % 3600000) / 60000);
+      var seconds = Math.floor((diff % 60000) / 1000);
+
+      $('cdHours').textContent = String(hours).padStart(2, '0');
+      $('cdMinutes').textContent = String(minutes).padStart(2, '0');
+      $('cdSeconds').textContent = String(seconds).padStart(2, '0');
+      // Screen readers get one calm update a minute instead of one a second.
+      if (seconds === 0) {
+        $('countdownText').textContent = 'Next draw in ' + hours + ' hours and ' + minutes + ' minutes.';
+      }
+    }
+
+    function renderDigits() {
+      var needed = requiredDigits();
+      var boxes = [];
+      for (var i = 0; i < 3; i++) {
+        if (i < needed) {
+          boxes.push(el('div', { class: 'digit-box', text: draft.digits[i] !== undefined ? draft.digits[i] : '–' }));
+        } else {
+          boxes.push(el('div', { class: 'digit-box locked', text: 'X', title: 'Any digit' }));
+        }
+      }
+      replaceChildren($('digitDisplay'), boxes);
+    }
+
+    function renderBetTypes() {
+      var row = $('betTypeRow');
+      replaceChildren(row, Object.keys(G.BET_TYPES).map(function (type) {
+        var spec = G.BET_TYPES[type];
+        return el('button', {
+          class: 'option',
+          type: 'button',
+          role: 'radio',
+          'aria-checked': String(type === draft.type),
+          title: spec.hint,
+          text: spec.label,
+          dataset: { action: 'set-type', type: type }
+        });
+      }));
+    }
+
+    function renderStakes() {
+      var row = $('stakeRow');
+      replaceChildren(row, STAKES_CENTS.map(function (cents) {
+        return el('button', {
+          class: 'option',
+          type: 'button',
+          role: 'radio',
+          'aria-checked': String(cents === draft.stakeCents),
+          text: fmt(cents).replace('.00', ''),
+          dataset: { action: 'set-stake', stake: String(cents) }
+        });
+      }));
+    }
+
+    function renderPayout() {
+      var spec = G.BET_TYPES[draft.type];
+      var payout = G.quote(draft.type, draft.stakeCents);
+      var chance = G.winChance(draft.type);
+      var expected = G.expectedReturnCents(draft.type, draft.stakeCents);
+
+      $('payoutValue').textContent = fmt(payout.netCents);
+      $('payoutSub').textContent = fmt(payout.grossCents) + ' gross − ' + fmt(payout.cutCents) +
+        ' runner cut (' + G.RUNNER_CUT_PCT + '%)';
+      $('payoutOdds').textContent = spec.label + ' hits ' + chance.wins + ' times in 1,000 draws · ' +
+        'average return ' + fmt(expected) + ' per ' + fmt(draft.stakeCents) + ' staked';
+
+      // Only nag about problems the player can see - an empty keypad is not an
+      // error yet, but a 6-way box on 112 is.
+      var check = currentValidation();
+      var showError = !check.ok && check.code !== 'digits';
+      $('betError').textContent = showError ? check.message : '';
+      $('payoutPreview').classList.toggle('unavailable', showError);
+    }
+
+    function renderBet() {
+      renderDigits();
+      renderBetTypes();
+      renderStakes();
+      renderPayout();
+    }
+
+    function statusLabel(slip) {
+      if (slip.status === 'pending') return 'PENDING';
+      return slip.status === 'hit' ? 'HIT' : 'MISSED';
+    }
+
+    function renderSlips() {
+      var list = $('slipsList');
+      if (state.slips.length === 0) {
+        replaceChildren(list, [el('li', { class: 'empty-state', text: 'No slips yet. Place your first bet.' })]);
+        return;
+      }
+
+      replaceChildren(list, state.slips.map(function (slip) {
+        var spec = G.BET_TYPES[slip.type];
+        var meta = spec.label + ' · ' + fmt(slip.stakeCents) + ' · draw ' + slip.drawKey;
+        if (slip.status === 'hit') meta += ' · paid ' + fmt(slip.netPayoutCents);
+        else if (slip.status === 'pending') meta += ' · to win ' + fmt(slip.netPayoutCents);
+        else if (slip.winning) meta += ' · drew ' + slip.winning;
+
+        return el('li', { class: 'row' }, [
+          el('div', { class: 'row-info' }, [
+            el('span', { class: 'row-number', text: G.formatSelection(slip.type, slip.digits) }),
+            el('span', { class: 'row-meta', text: meta })
+          ]),
+          el('span', { class: 'status ' + slip.status, text: statusLabel(slip) })
+        ]);
+      }));
+    }
+
+    function renderWallet() {
+      $('balanceDisplay').textContent = fmt(state.balanceCents);
+      var list = $('activityList');
+      if (state.activity.length === 0) {
+        replaceChildren(list, [el('li', { class: 'empty-state', text: 'No activity yet.' })]);
+        return;
+      }
+      replaceChildren(list, state.activity.slice(0, 8).map(function (entry) {
+        return el('li', { class: 'row' }, [
+          el('div', { class: 'row-info' }, [el('span', { class: 'row-label', text: entry.label })]),
+          el('span', {
+            class: 'row-amount' + (entry.deltaCents >= 0 ? ' credit' : ''),
+            text: signed(entry.deltaCents)
+          })
+        ]);
+      }));
+    }
+
+    function renderFeed() {
+      [$('homeFeed'), $('blockFeed')].forEach(function (list) {
+        replaceChildren(list, FEED_ITEMS.map(function (item) {
+          var text = el('p', { class: 'feed-text' });
+          item.tokens.forEach(function (token) {
+            text.appendChild(token[0] === 'h'
+              ? el('span', { class: 'feed-hit', text: token[1] })
+              : document.createTextNode(token[1]));
+          });
+          return el('li', { class: 'feed-item' }, [
+            el('span', { class: 'feed-avatar', 'aria-hidden': 'true', text: item.avatar }),
+            el('div', { class: 'feed-content' }, [text, el('p', { class: 'feed-meta', text: item.meta })])
+          ]);
+        }));
+      });
+    }
+
+    /** Render only what is on screen; the rest re-renders when it is shown. */
+    function render() {
+      if (currentScreen === 'home') { renderHome(); renderCountdown(); }
+      if (currentScreen === 'bet') renderBet();
+      if (currentScreen === 'slips') renderSlips();
+      if (currentScreen === 'wallet') renderWallet();
+    }
+
+    // ---------------------------------------------------------------- events
+    var resetArmed = false;
+    var resetTimer = null;
+
+    function disarmReset() {
+      resetArmed = false;
+      window.clearTimeout(resetTimer);
+      var btn = document.querySelector('[data-action="reset"]');
+      if (btn) btn.textContent = 'Reset demo data';
+    }
+
+    var ACTIONS = {
+      'go': function (target) { showScreen(target.dataset.screen); },
+      'back': function () { showScreen('home'); },
+      'toggle-theme': toggleTheme,
+      'resolve': function () { settleDue({ announce: true }); render(); },
+      'digit': function (target) { addDigit(target.dataset.digit); },
+      'clear': function () { setDigits(''); },
+      'backspace': function () { setDigits(draft.digits.slice(0, -1)); },
+      'set-type': function (target) { setBetType(target.dataset.type); },
+      'set-stake': function (target) { draft.stakeCents = Number(target.dataset.stake); renderBet(); },
+      'deposit': function () { toast('Deposits are not part of this demo.'); },
+      'withdraw': function () { toast('Withdrawals are not part of this demo.'); },
+      'dream-book': function () {
+        var word = DREAM_BOOK[Math.floor(Math.random() * DREAM_BOOK.length)];
+        toast('Dream Book is coming soon. Today it would have suggested "' + word + '".');
+      },
+      // Two-step confirm rather than window.confirm(): a sandboxed frame can
+      // block native dialogs, and a destructive button that silently does
+      // nothing is worse than one that asks twice.
+      'reset': function (target) {
+        if (!resetArmed) {
+          resetArmed = true;
+          target.textContent = 'Tap again to erase everything';
+          resetTimer = window.setTimeout(disarmReset, 6000);
+          toast('This clears slips, balance and activity. Tap again to confirm.');
+          return;
+        }
+        disarmReset();
+        state = defaultState();
+        draft = { type: 'straight', digits: '', stakeCents: STAKES_CENTS[0] };
+        save();
+        render();
+        toast('Demo data reset.', 'success');
+      }
+    };
+
+    // One delegated listener instead of inline onclick attributes: it survives
+    // re-renders, and the page stays compatible with a strict CSP.
+    document.addEventListener('click', function (event) {
+      var target = event.target.closest('[data-action]');
+      if (!target) return;
+      var handler = ACTIONS[target.dataset.action];
+      if (!handler) return;
+      event.preventDefault();
+      handler(target);
+    });
+
+    $('betForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      placeBet();
+    });
+
+    // Physical keyboards: type the number instead of hunting for the keypad.
+    document.addEventListener('keydown', function (event) {
+      if (currentScreen !== 'bet') return;
+      if (event.metaKey || event.ctrlKey || event.altKey) return;
+      if (event.key >= '0' && event.key <= '9') {
+        addDigit(event.key);
+      } else if (event.key === 'Backspace') {
+        event.preventDefault();
+        setDigits(draft.digits.slice(0, -1));
+      } else if (event.key === 'Escape') {
+        setDigits('');
+      }
+    });
+
+    // Arrow-key navigation between tabs, as the tablist role promises.
+    document.querySelector('.bottom-nav').addEventListener('keydown', function (event) {
+      var keys = { ArrowRight: 1, ArrowLeft: -1 };
+      if (!(event.key in keys)) return;
+      var tabs = Array.prototype.slice.call(document.querySelectorAll('.nav-item'));
+      var index = tabs.indexOf(document.activeElement);
+      if (index === -1) return;
+      event.preventDefault();
+      var nextTab = tabs[(index + keys[event.key] + tabs.length) % tabs.length];
+      nextTab.focus();
+      showScreen(nextTab.dataset.screen);
+    });
+
+    // A backgrounded tab throttles timers, so re-sync on the way back in.
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden) { settleDue(); render(); }
+    });
+
+    // ------------------------------------------------------------------ init
+    var keypadKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    replaceChildren($('keypad'), keypadKeys.map(function (digit) {
+      return el('button', { class: 'key', type: 'button', text: digit, dataset: { action: 'digit', digit: digit } });
+    }).concat([
+      el('button', { class: 'key action', type: 'button', text: 'C', 'aria-label': 'Clear', dataset: { action: 'clear' } }),
+      el('button', { class: 'key', type: 'button', text: '0', dataset: { action: 'digit', digit: '0' } }),
+      el('button', { class: 'key action', type: 'button', text: '⌫', 'aria-label': 'Backspace', dataset: { action: 'backspace' } })
+    ]));
+
+    applyTheme(storage.read(THEME_KEY, null));
+    renderFeed();
+    renderBet();
+    settleDue();
+    showScreen('home');
+    booted = true;
+
+    // Tick once a second for the countdown; settlement is checked on the
+    // minute rather than every frame of the clock.
+    window.setInterval(function () {
+      if (currentScreen === 'home') renderCountdown();
+      if (new Date().getSeconds() === 0) { settleDue(); render(); }
+    }, 1000);
+  })();
+  </script>
+</body>
+</html>

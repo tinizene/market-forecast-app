@@ -1,0 +1,13 @@
+{
+  "name": "numbers-ledger",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Durable double-entry ledger and agent float model for a cash-and-mobile-money numbers game",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=22.5"
+  },
+  "scripts": {
+    "test": "node --disable-warning=ExperimentalWarning --test \"test/**/*.test.js\""
+  }
+}

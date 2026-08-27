@@ -1,0 +1,48 @@
+name: Numbers ledger tests
+
+# The ledger is the part where being wrong costs money, so it runs on every
+# change to it. No install step: the tests use Node's built-in runner and the
+# package has no dependencies.
+
+on:
+  pull_request:
+    paths:
+      - 'numbers-ledger/**'
+      # The draw-lifecycle test settles against harlem-numbers/game.js - the real
+      # payout and hit rules - so a change there must re-run this suite.
+      - 'harlem-numbers/game.js'
+      - '.github/workflows/numbers-ledger-tests.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'numbers-ledger/**'
+      - 'harlem-numbers/game.js'
+      - '.github/workflows/numbers-ledger-tests.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: numbers-ledger-tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    # Names the check on the pull request. Without it both workflows post a
+    # check called "test" and a red one does not say which project broke.
+    name: numbers-ledger
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: numbers-ledger
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+
+      - name: Run tests
+        run: npm test

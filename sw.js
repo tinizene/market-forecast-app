@@ -30,7 +30,13 @@
 // their routes redirect home (see vercel.json) and precaching them would keep
 // serving dead pages to anyone who had already visited. The version bump is what
 // evicts them from existing installs.
-const CACHE_NAME = 'scere-training-v22';
+// v23 registers the service worker from every live page rather than the home page
+// alone, via a new precached pwa.js — an install that predates it would never fetch
+// that file. It also stops a CDN outage from taking the whole precache down: addAll
+// rejects as a unit, so the Tailwind CDN is now cached best-effort alongside the
+// shell rather than inside it.
+//
+const CACHE_NAME = 'scere-training-v23';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -42,6 +48,7 @@ const ASSETS_TO_CACHE = [
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/icon-maskable-512.png',
+  './pwa.js',
   './ui.js',
   './nav.js',
   './i18n.js',
@@ -62,15 +69,26 @@ const ASSETS_TO_CACHE = [
   './crypto-labs.js',
   './instruments.js',
   './fund-facts.js',
-  './styles.css',
-  './manifest.json',
+  './styles.css'
+];
+
+// Cached if it happens to be reachable, but never allowed to fail the install.
+// cache.addAll() rejects as a unit, so a third party having a bad morning would
+// otherwise leave a visitor with no app shell at all - the same trap the locale
+// files above are written to avoid.
+const OPTIONAL_ASSETS = [
   'https://cdn.tailwindcss.com'
 ];
 
 // 1. Install: cache the app shell.
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS_TO_CACHE))
+    caches.open(CACHE_NAME).then((cache) =>
+      cache.addAll(ASSETS_TO_CACHE).then(() =>
+        // allSettled, not all: a rejection here is a nice-to-have that missed.
+        Promise.allSettled(OPTIONAL_ASSETS.map((url) => cache.add(url)))
+      )
+    )
   );
   self.skipWaiting();
 });

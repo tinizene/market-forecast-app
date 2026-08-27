@@ -162,14 +162,6 @@
     <script src="./i18n.js"></script>
     <script src="./ui.js"></script>
     <script src="./nav.js"></script>
-    <script>
-        // The intro page is static content — no market data, no API keys, no app.js.
-        // Registering the service worker is the only runtime behaviour it needs.
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function () {
-                navigator.serviceWorker.register('./sw.js').catch(function () { /* offline support is best-effort */ });
-            });
-        }
-    </script>
+    <script src="./pwa.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 # numbers-ledger
 
-Milestone 1 of the Runner Float Architecture: the ledger and float model, with
-no draws layered on top yet beyond what settlement needs.
+Milestones 1 and 2 of the Runner Float Architecture: the ledger and float
+model, now durable and safe under concurrent writers.
 
 The question this exists to answer is narrow and worth answering before
 anything else gets built: **does value move operator → runner → player →
@@ -11,7 +11,9 @@ mobile money, and reconcile to the unit at close?**
 npm test          # or: node --test "test/**/*.test.js"
 ```
 
-No dependencies. Node 20+ (uses the built-in test runner).
+No dependencies. **Node 22.5+** — the durable store uses `node:sqlite`, which
+is built in but still marked experimental, so the test script passes
+`--disable-warning=ExperimentalWarning`.
 Note that `node --test <dir>` does not work on current Node — it resolves the
 directory as a module path. Pass a glob or a file.
 
@@ -24,7 +26,22 @@ directory as a module path. Pass a glob or a file.
 | `src/accounts.js` | Chart of accounts, classes, partitioning, what counts as callable |
 | `src/ledger.js` | Append-only double-entry journal, balances, invariants |
 | `src/operator.js` | The transaction types T0–T9, each with its guard |
-| `test/` | 33 tests, including a full simulated trading day |
+| `src/store/memory.js` | In-memory store — the default, for tests |
+| `src/store/sqlite.js` | Durable store on Node's built-in SQLite |
+| `test/` | 41 tests: unit, a simulated trading day, durability, concurrency |
+
+## Durable or in-memory
+
+```js
+const { Operator } = require('./src/operator.js');
+const { SqliteStore } = require('./src/store/sqlite.js');
+
+const op = new Operator();                                       // in-memory
+const op = new Operator({ store: new SqliteStore('ledger.db') }); // durable
+```
+
+Both run the same rules. The store only decides where the journal lives and how
+writes are serialised.
 
 ## The transactions
 
@@ -58,6 +75,30 @@ directory as a module path. Pass a glob or a file.
   classic ledger bug; the only way to be immune is not to keep one.
 - **A full trading day reconciles**, across 25 different generated days, with
   runners running dry mid-day and topping up (failure case F4).
+- **The books survive a restart.** Balances, idempotency and voucher state all
+  come back from the file; a draw recorded before a restart still settles after
+  one.
+- **Concurrent processes cannot overdraw a runner.** Eight processes race for
+  float that only covers one of them: exactly one wins, the other seven fail
+  the guard, and the runner never goes negative. Same for double-redeeming a
+  voucher.
+
+## Why the guards moved inside the transaction
+
+Milestone 1 checked a balance and then posted. Single-threaded and in-memory
+that is airtight. Behind an HTTP endpoint it is a race: two cash-ins can both
+read enough float and both post, overdrawing a runner by the smaller of them.
+
+Guards now run as a `precondition` evaluated inside the write transaction, and
+the SQLite store opens with `BEGIN IMMEDIATE` — the write lock is taken before
+the guard reads anything, so the check and the write cannot be separated. The
+multi-process test in `test/concurrency.test.js` is the evidence; it fails
+against the milestone-1 design.
+
+One behaviour changed as a result, for the better: a replayed transaction id is
+now an idempotent no-op rather than an error, which is what makes a redelivered
+mobile-money callback safe to accept. Settling the same draw under a *different*
+id is still refused outright.
 
 ## What building it changed in the design
 
@@ -75,9 +116,16 @@ is worth weighing.
 
 ## What is deliberately not here
 
-No draws, no bet types, no HTTP, no persistence, no auth, no mobile money.
-Those come next, and none of them are worth building on a ledger that does not
-balance.
+No draws, no bet types, no HTTP, no auth, no mobile money. Those come next, and
+none of them are worth building on a ledger that does not balance.
+
+Two known limits of the current store. SQLite serialises writers, which is
+right for one operator process and a bounded agent network, but it is a single
+writer — a busy multi-node deployment wants Postgres, and the store interface
+exists so that swap does not touch the rules. And the balance cache is
+maintained in the same transaction as its entries, with `verify()` to prove it
+has not drifted; that check is cheap now and will want to become a scheduled
+job rather than a test assertion.
 
 Cash never appears in this ledger at all — by design. See the architecture
 document for why that is the whole point rather than an omission.

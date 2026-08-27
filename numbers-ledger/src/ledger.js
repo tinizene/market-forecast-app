@@ -3,56 +3,74 @@
 const { CONFIG } = require('./config.js');
 const { assertAmount, format } = require('./money.js');
 const { ACCOUNTS, CALLABLE, parseAccount, accountId, signedBalance } = require('./accounts.js');
+const { MemoryStore } = require('./store/memory.js');
 
 /**
- * An append-only double-entry journal.
+ * An append-only double-entry journal over a pluggable store.
  *
- * Three properties are enforced rather than hoped for:
+ * Four properties are enforced rather than hoped for:
  *
- *   1. Every transaction balances. Debits equal credits, always, or the post
- *      is rejected whole. There is no partial write.
+ *   1. Every transaction balances. Debits equal credits or the post is
+ *      rejected whole. There is no partial write.
  *   2. Transactions are idempotent by id. A retried request - a mobile money
  *      callback delivered twice, an operator tapping twice - cannot post the
  *      same movement again.
- *   3. Nothing is ever mutated. A mistake is corrected by a compensating
- *      transaction, so the history of what was believed and when survives.
- *
- * Balances are derived from the journal, never stored and updated. A stored
- * balance that disagrees with its entries is the classic ledger bug, and the
- * only way to be immune is not to keep one.
+ *   3. Guards run inside the write transaction. A caller passes a
+ *      `precondition`, and it is evaluated against balances read under the
+ *      same lock that the write takes. Checking a balance and then posting is
+ *      a race the moment there are two callers; this closes it.
+ *   4. Nothing is ever mutated. A mistake is corrected by a compensating
+ *      transaction, so what was believed, and when, survives.
  */
 class Ledger {
-  #journal = [];
-  #byId = new Map();
-  #balances = new Map(); // accountId -> { debits, credits } - a cache, rebuildable from #journal
+  #store;
 
-  constructor({ currency = CONFIG.currency } = {}) {
+  constructor({ currency = CONFIG.currency, store = null } = {}) {
     this.currency = currency;
+    this.#store = store || new MemoryStore();
   }
 
-  get journal() {
-    return this.#journal.slice();
-  }
-
-  get size() {
-    return this.#journal.length;
-  }
-
-  has(id) {
-    return this.#byId.has(id);
-  }
-
-  get(id) {
-    return this.#byId.get(id) || null;
+  get store() {
+    return this.#store;
   }
 
   /**
-   * @param {{id: string, kind: string, at: string, memo?: string,
-   *          entries: Array<{account: string, debit?: number, credit?: number}>}} tx
+   * @param {object} tx {id, kind, at, memo?, entries:[{account, debit|credit}]}
+   * @param {{precondition?: (view) => void}} [options] precondition runs inside
+   *        the write transaction and should throw to abort. It receives
+   *        {balance, controlBalance, getState}.
    * @returns {{posted: boolean, transaction: object}} posted is false when the
-   *          id was already applied - the caller's retry was a no-op, not an error.
+   *        id was already applied - a retry is a no-op, not an error.
    */
-  post(tx) {
+  post(tx, options = {}) {
+    if (!tx || typeof tx !== 'object') throw new TypeError('Transaction must be an object');
+    if (typeof tx.id !== 'string' || tx.id.length === 0) throw new TypeError('Transaction needs an id');
+
+    return this.#store.transaction((view) => {
+      if (view.hasTx(tx.id)) {
+        return { posted: false, transaction: null, duplicate: true };
+      }
+
+      if (options.precondition) {
+        options.precondition(this.#guardView(view));
+      }
+
+      // `entries` may be a function so that a posting whose lines depend on
+      // stored state - settling a draw, redeeming a voucher - reads that state
+      // under the same lock it writes with.
+      const entries = typeof tx.entries === 'function' ? tx.entries(this.#guardView(view)) : tx.entries;
+      const record = this.#validate({ ...tx, entries });
+
+      const seq = view.nextSeq();
+      const stored = Object.freeze({ ...record, seq, entries: Object.freeze(record.entries.map(Object.freeze)) });
+      view.append(stored);
+      if (options.onCommit) options.onCommit(this.#stateView(view));
+      return { posted: true, transaction: stored };
+    });
+  }
+
+  /** Structural validation. Nothing here touches the store. */
+  #validate(tx) {
     if (!tx || typeof tx !== 'object') throw new TypeError('Transaction must be an object');
     const { id, kind, at, memo, entries } = tx;
 
@@ -65,27 +83,19 @@ class Ledger {
       throw new Error('A double entry needs at least two lines');
     }
 
-    // Idempotency: same id, same movement, no second posting.
-    if (this.#byId.has(id)) {
-      return { posted: false, transaction: this.#byId.get(id) };
-    }
-
     let debits = 0;
     let credits = 0;
     const normalised = entries.map((entry, i) => {
-      const { account } = entry;
-      const { spec } = parseAccount(account);
+      const { control } = parseAccount(entry.account);
       const hasDebit = entry.debit !== undefined;
       const hasCredit = entry.credit !== undefined;
-
       if (hasDebit === hasCredit) {
-        throw new Error(`Entry ${i} on ${account} must be exactly one of debit or credit`);
+        throw new Error(`Entry ${i} on ${entry.account} must be exactly one of debit or credit`);
       }
       const amount = assertAmount(hasDebit ? entry.debit : entry.credit, `Entry ${i} amount`);
       if (hasDebit) debits += amount;
       else credits += amount;
-
-      return { account, control: parseAccount(account).control, spec, debit: hasDebit ? amount : 0, credit: hasCredit ? amount : 0 };
+      return { account: entry.account, control, debit: hasDebit ? amount : 0, credit: hasCredit ? amount : 0 };
     });
 
     if (debits !== credits) {
@@ -94,42 +104,40 @@ class Ledger {
       );
     }
 
-    const record = Object.freeze({
-      id, kind, at,
-      memo: memo || null,
-      seq: this.#journal.length + 1,
-      entries: Object.freeze(normalised.map((e) => Object.freeze(e)))
-    });
-
-    this.#journal.push(record);
-    this.#byId.set(id, record);
-    for (const entry of normalised) {
-      const totals = this.#balances.get(entry.account) || { debits: 0, credits: 0 };
-      totals.debits += entry.debit;
-      totals.credits += entry.credit;
-      this.#balances.set(entry.account, totals);
-    }
-
-    return { posted: true, transaction: record };
+    return { id, kind, at, memo: memo || null, entries: normalised };
   }
 
-  /** Signed balance of one account, in minor units. */
-  balance(id) {
+  #guardView(view) {
+    return {
+      balance: (id) => this.#balanceFrom(view, id),
+      controlBalance: (control) => this.#controlBalanceFrom(view, control),
+      getState: (kind, key) => view.getState(kind, key)
+    };
+  }
+
+  #stateView(view) {
+    return {
+      getState: (kind, key) => view.getState(kind, key),
+      putState: (kind, key, value) => view.putState(kind, key, value)
+    };
+  }
+
+  #balanceFrom(view, id) {
     const { spec } = parseAccount(id);
-    const totals = this.#balances.get(id) || { debits: 0, credits: 0 };
+    const totals = view.totals(id);
     return signedBalance(spec, totals.debits, totals.credits);
   }
 
-  /** Sum of a control account across all its partitions. */
-  controlBalance(control) {
+  #controlBalanceFrom(view, control) {
     const spec = ACCOUNTS[control];
     if (!spec) throw new Error(`Unknown account: ${control}`);
-    if (!spec.partitioned) return this.balance(control);
+    if (!spec.partitioned) return this.#balanceFrom(view, control);
 
     let debits = 0;
     let credits = 0;
-    for (const [id, totals] of this.#balances) {
+    for (const id of view.accounts()) {
       if (id === control || id.startsWith(`${control}:`)) {
+        const totals = view.totals(id);
         debits += totals.debits;
         credits += totals.credits;
       }
@@ -137,41 +145,47 @@ class Ledger {
     return signedBalance(spec, debits, credits);
   }
 
-  /** Every party holding a balance in a partitioned account. */
+  // ------------------------------------------------------------------ reads
+
+  has(id) {
+    return this.#store.read((view) => view.hasTx(id));
+  }
+
+  balance(id) {
+    return this.#store.read((view) => this.#balanceFrom(view, id));
+  }
+
+  controlBalance(control) {
+    return this.#store.read((view) => this.#controlBalanceFrom(view, control));
+  }
+
   parties(control) {
     const prefix = `${control}:`;
-    return [...this.#balances.keys()]
-      .filter((id) => id.startsWith(prefix))
-      .map((id) => id.slice(prefix.length))
-      .sort();
+    return this.#store.read((view) =>
+      view.accounts().filter((id) => id.startsWith(prefix)).map((id) => id.slice(prefix.length)).sort()
+    );
+  }
+
+  get journal() {
+    return this.#store.journal();
+  }
+
+  get size() {
+    return this.#store.journal().length;
   }
 
   /** Across the whole journal, total debits must equal total credits. */
   trialBalance() {
-    let debits = 0;
-    let credits = 0;
-    for (const totals of this.#balances.values()) {
-      debits += totals.debits;
-      credits += totals.credits;
-    }
-    return { debits, credits, balanced: debits === credits };
-  }
-
-  /**
-   * The invariant that decides whether the business is sound today: settlement
-   * funds must cover every liability that can be called on in real money.
-   * A shortfall is not a number to watch - it is a reason to stop selling float.
-   */
-  solvency() {
-    const assets = this.balance(accountId('SETTLEMENT'));
-    const liabilities = {};
-    let callable = 0;
-    for (const control of CALLABLE) {
-      const value = this.controlBalance(control);
-      liabilities[control] = value;
-      callable += value;
-    }
-    return { assets, liabilities, callable, headroom: assets - callable, ok: assets >= callable };
+    return this.#store.read((view) => {
+      let debits = 0;
+      let credits = 0;
+      for (const id of view.accounts()) {
+        const totals = view.totals(id);
+        debits += totals.debits;
+        credits += totals.credits;
+      }
+      return { debits, credits, balanced: debits === credits };
+    });
   }
 
   /**
@@ -184,24 +198,49 @@ class Ledger {
    * business.
    */
   equation() {
-    const totals = { ASSET: 0, LIABILITY: 0, EQUITY: 0, REVENUE: 0, EXPENSE: 0 };
-    for (const id of this.#balances.keys()) {
-      const { spec } = parseAccount(id);
-      totals[spec.class] += this.balance(id);
-    }
-    const left = totals.ASSET;
-    const right = totals.LIABILITY + totals.EQUITY + totals.REVENUE - totals.EXPENSE;
-    return { ...totals, left, right, holds: left === right };
+    return this.#store.read((view) => {
+      const totals = { ASSET: 0, LIABILITY: 0, EQUITY: 0, REVENUE: 0, EXPENSE: 0 };
+      for (const id of view.accounts()) {
+        const { spec } = parseAccount(id);
+        totals[spec.class] += this.#balanceFrom(view, id);
+      }
+      const left = totals.ASSET;
+      const right = totals.LIABILITY + totals.EQUITY + totals.REVENUE - totals.EXPENSE;
+      return { ...totals, left, right, holds: left === right };
+    });
+  }
+
+  /**
+   * The invariant that decides whether the business is sound today: settlement
+   * funds must cover every liability that can be called on in real money.
+   * A shortfall is not a number to watch - it is a reason to stop selling float.
+   */
+  solvency() {
+    return this.#store.read((view) => {
+      const assets = this.#balanceFrom(view, accountId('SETTLEMENT'));
+      const liabilities = {};
+      let callable = 0;
+      for (const control of CALLABLE) {
+        const value = this.#controlBalanceFrom(view, control);
+        liabilities[control] = value;
+        callable += value;
+      }
+      return { assets, liabilities, callable, headroom: assets - callable, ok: assets >= callable };
+    });
   }
 
   /** Every account with a non-zero balance, for a statement or an eyeball check. */
   snapshot() {
-    const rows = [];
-    for (const id of [...this.#balances.keys()].sort()) {
-      const value = this.balance(id);
-      if (value !== 0) rows.push({ account: id, minor: value, formatted: format(value, this.currency) });
-    }
-    return rows;
+    return this.#store.read((view) =>
+      view.accounts()
+        .map((id) => ({ account: id, minor: this.#balanceFrom(view, id) }))
+        .filter((row) => row.minor !== 0)
+        .map((row) => ({ ...row, formatted: format(row.minor, this.currency) }))
+    );
+  }
+
+  close() {
+    this.#store.close();
   }
 }
 

@@ -4,3 +4,8 @@
 # middleware.js hard-blocks /data/course/* precisely because the lesson bodies are the
 # paid product. Regenerate it locally and send the files to the reviewer directly.
 review/
+
+# Local ledger databases - never commit a book of account
+numbers-ledger/*.db
+numbers-ledger/*.db-wal
+numbers-ledger/*.db-shm

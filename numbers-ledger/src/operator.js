@@ -5,41 +5,31 @@ const { assertAmount, assertNonNegative, format } = require('./money.js');
 const { accountId } = require('./accounts.js');
 
 /**
- * The operator's book: the ledger plus the small amount of state that is not
- * itself a balance - which vouchers exist, which bets belong to which draw.
+ * The operator's book: the ledger, plus the state that is not itself a balance
+ * - which vouchers exist, which bets belong to which draw. All of it lives in
+ * the store, so a restart loses nothing.
  *
- * Every operation here is a guard plus one atomic transaction. The guards are
- * the product: a runner cannot sell float they have not bought, a player
- * cannot stake money they do not have, and a draw cannot pay twice.
+ * Every operation is a guard plus one atomic transaction, and the guard runs
+ * *inside* that transaction. That is the difference from a naive
+ * check-then-write: two simultaneous cash-ins against the same runner cannot
+ * both see enough float, because the second one reads only after the first has
+ * committed or rolled back.
  *
  * No operation reads the clock. Callers pass `at`, so a test can run a whole
  * trading day in milliseconds and settlement is never at the mercy of a device
  * clock - the same reason the design puts the cutoff on the server.
  */
 class Operator {
+  /**
+   * @param {{currency?: object, store?: object}} [options] pass a SqliteStore
+   *        for durability; defaults to in-memory.
+   */
   constructor(options = {}) {
     this.ledger = new Ledger(options);
-    this.vouchers = new Map(); // voucherId -> { agentId, amountMinor, redeemedBy }
-    this.bets = new Map();     // betId -> { playerId, drawKey, stakeMinor, settled }
-    this.draws = new Map();    // drawKey -> Set(betId)
   }
 
-  // ---------------------------------------------------------------- helpers
-
-  #floatOf(agentId) {
-    return this.ledger.balance(accountId('AGENT_FLOAT', agentId));
-  }
-
-  #walletOf(playerId) {
-    return this.ledger.balance(accountId('PLAYER_WALLET', playerId));
-  }
-
-  #settlement() {
-    return this.ledger.balance('SETTLEMENT');
-  }
-
-  #require(condition, message) {
-    if (!condition) throw new Error(message);
+  static #fail(message) {
+    throw new Error(message);
   }
 
   // ------------------------------------------------------------ T0: capital
@@ -71,7 +61,9 @@ class Operator {
     assertAmount(paidMinor, 'paidMinor');
     assertAmount(floatMinor, 'floatMinor');
     const commission = floatMinor - paidMinor;
-    this.#require(commission >= 0, `Float granted (${format(floatMinor)}) cannot exceed money paid plus zero commission`);
+    if (commission < 0) {
+      Operator.#fail(`Float granted (${format(floatMinor)}) cannot exceed money paid plus zero commission`);
+    }
 
     const entries = [{ account: 'SETTLEMENT', debit: paidMinor }];
     if (commission > 0) entries.push({ account: 'AGENT_COMMISSION', debit: commission });
@@ -85,23 +77,25 @@ class Operator {
   /**
    * A player hands a runner cash; the runner pushes an equal amount of e-value.
    * The cash itself never appears here - it is between those two people, and
-   * the operator was already paid for this float in T1. That is the whole
-   * design in two ledger lines.
+   * the operator was already paid for this float in T1.
    */
   cashIn({ id, at, agentId, playerId, amountMinor, memo }) {
     assertAmount(amountMinor, 'amountMinor');
-    const available = this.#floatOf(agentId);
-    this.#require(
-      available >= amountMinor,
-      `Agent ${agentId} has ${format(available)} float, cannot sell ${format(amountMinor)}`
-    );
+    const float = accountId('AGENT_FLOAT', agentId);
 
     return this.ledger.post({
       id, kind: 'CASH_IN', at, memo,
       entries: [
-        { account: accountId('AGENT_FLOAT', agentId), debit: amountMinor },
+        { account: float, debit: amountMinor },
         { account: accountId('PLAYER_WALLET', playerId), credit: amountMinor }
       ]
+    }, {
+      precondition: (v) => {
+        const available = v.balance(float);
+        if (available < amountMinor) {
+          Operator.#fail(`Agent ${agentId} has ${format(available)} float, cannot sell ${format(amountMinor)}`);
+        }
+      }
     });
   }
 
@@ -110,36 +104,50 @@ class Operator {
   /** A runner buys voucher inventory with float. Sold offline, activated later. */
   issueVoucher({ id, at, agentId, voucherId, amountMinor, memo }) {
     assertAmount(amountMinor, 'amountMinor');
-    this.#require(!this.vouchers.has(voucherId), `Voucher ${voucherId} already exists`);
-    const available = this.#floatOf(agentId);
-    this.#require(available >= amountMinor, `Agent ${agentId} has ${format(available)} float, cannot buy ${format(amountMinor)} of vouchers`);
+    const float = accountId('AGENT_FLOAT', agentId);
 
-    const result = this.ledger.post({
+    return this.ledger.post({
       id, kind: 'ISSUE_VOUCHER', at, memo,
       entries: [
-        { account: accountId('AGENT_FLOAT', agentId), debit: amountMinor },
+        { account: float, debit: amountMinor },
         { account: 'UNREDEEMED_VOUCHERS', credit: amountMinor }
       ]
+    }, {
+      precondition: (v) => {
+        if (v.getState('voucher', voucherId)) Operator.#fail(`Voucher ${voucherId} already exists`);
+        const available = v.balance(float);
+        if (available < amountMinor) {
+          Operator.#fail(`Agent ${agentId} has ${format(available)} float, cannot buy ${format(amountMinor)} of vouchers`);
+        }
+      },
+      onCommit: (s) => s.putState('voucher', voucherId, { agentId, amountMinor, redeemedBy: null })
     });
-    if (result.posted) this.vouchers.set(voucherId, { agentId, amountMinor, redeemedBy: null });
-    return result;
   }
 
-  /** The player activates the code. Single use, checked here and enforced atomically. */
+  /** The player activates the code. Single use, checked and written under one lock. */
   redeemVoucher({ id, at, voucherId, playerId, memo }) {
-    const voucher = this.vouchers.get(voucherId);
-    this.#require(voucher, `Unknown voucher ${voucherId}`);
-    this.#require(voucher.redeemedBy === null, `Voucher ${voucherId} was already redeemed by ${voucher.redeemedBy}`);
-
-    const result = this.ledger.post({
+    return this.ledger.post({
       id, kind: 'REDEEM_VOUCHER', at, memo,
-      entries: [
-        { account: 'UNREDEEMED_VOUCHERS', debit: voucher.amountMinor },
-        { account: accountId('PLAYER_WALLET', playerId), credit: voucher.amountMinor }
-      ]
+      entries: (v) => {
+        const voucher = v.getState('voucher', voucherId);
+        return [
+          { account: 'UNREDEEMED_VOUCHERS', debit: voucher.amountMinor },
+          { account: accountId('PLAYER_WALLET', playerId), credit: voucher.amountMinor }
+        ];
+      }
+    }, {
+      precondition: (v) => {
+        const voucher = v.getState('voucher', voucherId);
+        if (!voucher) Operator.#fail(`Unknown voucher ${voucherId}`);
+        if (voucher.redeemedBy !== null) {
+          Operator.#fail(`Voucher ${voucherId} was already redeemed by ${voucher.redeemedBy}`);
+        }
+      },
+      onCommit: (s) => {
+        const voucher = s.getState('voucher', voucherId);
+        s.putState('voucher', voucherId, { ...voucher, redeemedBy: playerId });
+      }
     });
-    if (result.posted) voucher.redeemedBy = playerId;
-    return result;
   }
 
   // ----------------------------------------------------------- T4: place bet
@@ -150,24 +158,30 @@ class Operator {
    */
   placeBet({ id, at, betId, playerId, drawKey, stakeMinor, memo }) {
     assertAmount(stakeMinor, 'stakeMinor');
-    this.#require(!this.bets.has(betId), `Bet ${betId} already exists`);
-    const wallet = this.#walletOf(playerId);
-    this.#require(wallet >= stakeMinor, `Player ${playerId} has ${format(wallet)}, cannot stake ${format(stakeMinor)}`);
+    const wallet = accountId('PLAYER_WALLET', playerId);
 
-    const result = this.ledger.post({
+    return this.ledger.post({
       id, kind: 'PLACE_BET', at, memo,
       entries: [
-        { account: accountId('PLAYER_WALLET', playerId), debit: stakeMinor },
+        { account: wallet, debit: stakeMinor },
         { account: 'UNSETTLED_STAKES', credit: stakeMinor }
       ]
+    }, {
+      precondition: (v) => {
+        if (v.getState('bet', betId)) Operator.#fail(`Bet ${betId} already exists`);
+        const draw = v.getState('draw', drawKey);
+        if (draw && draw.settled) Operator.#fail(`Draw ${drawKey} has already settled`);
+        const balance = v.balance(wallet);
+        if (balance < stakeMinor) {
+          Operator.#fail(`Player ${playerId} has ${format(balance)}, cannot stake ${format(stakeMinor)}`);
+        }
+      },
+      onCommit: (s) => {
+        s.putState('bet', betId, { playerId, drawKey, stakeMinor, settled: false });
+        const draw = s.getState('draw', drawKey) || { betIds: [], settled: false };
+        s.putState('draw', drawKey, { ...draw, betIds: [...draw.betIds, betId] });
+      }
     });
-
-    if (result.posted) {
-      this.bets.set(betId, { playerId, drawKey, stakeMinor, settled: false });
-      if (!this.draws.has(drawKey)) this.draws.set(drawKey, new Set());
-      this.draws.get(drawKey).add(betId);
-    }
-    return result;
   }
 
   // --------------------------------------------------------- T5: settle draw
@@ -180,40 +194,62 @@ class Operator {
    * @param {Array<{betId: string, payoutMinor: number}>} winners
    */
   settleDraw({ id, at, drawKey, winners = [], memo }) {
-    const betIds = this.draws.get(drawKey);
-    this.#require(betIds && betIds.size > 0, `No bets recorded for draw ${drawKey}`);
+    const readDraw = (v) => {
+      const draw = v.getState('draw', drawKey);
+      if (!draw || draw.betIds.length === 0) Operator.#fail(`No bets recorded for draw ${drawKey}`);
+      if (draw.settled) Operator.#fail(`Draw ${drawKey} is already settled`);
+      return draw;
+    };
 
-    const unsettled = [...betIds].filter((b) => !this.bets.get(b).settled);
-    this.#require(unsettled.length > 0, `Draw ${drawKey} is already settled`);
+    let summary = { totalStakes: 0, totalPayout: 0, betsSettled: 0 };
 
-    let totalStakes = 0;
-    for (const betId of unsettled) totalStakes += this.bets.get(betId).stakeMinor;
+    const result = this.ledger.post({
+      id, kind: 'SETTLE_DRAW', at, memo,
+      entries: (v) => {
+        const draw = readDraw(v);
+        const open = draw.betIds.filter((b) => !v.getState('bet', b).settled);
 
-    const entries = [
-      { account: 'UNSETTLED_STAKES', debit: totalStakes },
-      { account: 'STAKES_REVENUE', credit: totalStakes }
-    ];
+        let totalStakes = 0;
+        for (const betId of open) totalStakes += v.getState('bet', betId).stakeMinor;
 
-    let totalPayout = 0;
-    for (const winner of winners) {
-      const bet = this.bets.get(winner.betId);
-      this.#require(bet, `Unknown bet ${winner.betId}`);
-      this.#require(bet.drawKey === drawKey, `Bet ${winner.betId} belongs to draw ${bet.drawKey}, not ${drawKey}`);
-      this.#require(!bet.settled, `Bet ${winner.betId} is already settled`);
-      const payout = assertAmount(winner.payoutMinor, 'payoutMinor');
-      totalPayout += payout;
-      entries.push({ account: 'PRIZE_PAYOUTS', debit: payout });
-      entries.push({ account: accountId('PLAYER_WALLET', bet.playerId), credit: payout });
-    }
+        const entries = [
+          { account: 'UNSETTLED_STAKES', debit: totalStakes },
+          { account: 'STAKES_REVENUE', credit: totalStakes }
+        ];
 
-    const result = this.ledger.post({ id, kind: 'SETTLE_DRAW', at, memo, entries });
-    if (result.posted) {
-      for (const betId of unsettled) this.bets.get(betId).settled = true;
-    }
-    return { ...result, totalStakes, totalPayout, betsSettled: unsettled.length };
+        let totalPayout = 0;
+        for (const winner of winners) {
+          const bet = v.getState('bet', winner.betId);
+          if (!bet) Operator.#fail(`Unknown bet ${winner.betId}`);
+          if (bet.drawKey !== drawKey) {
+            Operator.#fail(`Bet ${winner.betId} belongs to draw ${bet.drawKey}, not ${drawKey}`);
+          }
+          if (bet.settled) Operator.#fail(`Bet ${winner.betId} is already settled`);
+          const payout = assertAmount(winner.payoutMinor, 'payoutMinor');
+          totalPayout += payout;
+          entries.push({ account: 'PRIZE_PAYOUTS', debit: payout });
+          entries.push({ account: accountId('PLAYER_WALLET', bet.playerId), credit: payout });
+        }
+
+        summary = { totalStakes, totalPayout, betsSettled: open.length };
+        return entries;
+      }
+    }, {
+      precondition: (v) => { readDraw(v); },
+      onCommit: (s) => {
+        const draw = s.getState('draw', drawKey);
+        for (const betId of draw.betIds) {
+          const bet = s.getState('bet', betId);
+          if (!bet.settled) s.putState('bet', betId, { ...bet, settled: true });
+        }
+        s.putState('draw', drawKey, { ...draw, settled: true });
+      }
+    });
+
+    return { ...result, ...summary };
   }
 
-  // ------------------------------------------------- T6: withdraw to mobile money
+  // ------------------------------------------- T6: withdraw to mobile money
 
   /**
    * The only path where real money leaves the operator. The transfer fee is an
@@ -223,16 +259,24 @@ class Operator {
   withdrawToMobileMoney({ id, at, playerId, amountMinor, feeMinor = 0, memo }) {
     assertAmount(amountMinor, 'amountMinor');
     assertNonNegative(feeMinor, 'feeMinor');
-    const wallet = this.#walletOf(playerId);
-    this.#require(wallet >= amountMinor, `Player ${playerId} has ${format(wallet)}, cannot withdraw ${format(amountMinor)}`);
-    const funds = this.#settlement();
-    this.#require(funds >= amountMinor + feeMinor, `Settlement funds ${format(funds)} cannot cover ${format(amountMinor + feeMinor)}`);
+    const wallet = accountId('PLAYER_WALLET', playerId);
 
-    const entries = [{ account: accountId('PLAYER_WALLET', playerId), debit: amountMinor }];
+    const entries = [{ account: wallet, debit: amountMinor }];
     if (feeMinor > 0) entries.push({ account: 'TRANSACTION_FEES', debit: feeMinor });
     entries.push({ account: 'SETTLEMENT', credit: amountMinor + feeMinor });
 
-    return this.ledger.post({ id, kind: 'WITHDRAW_MOBILE_MONEY', at, memo, entries });
+    return this.ledger.post({ id, kind: 'WITHDRAW_MOBILE_MONEY', at, memo, entries }, {
+      precondition: (v) => {
+        const balance = v.balance(wallet);
+        if (balance < amountMinor) {
+          Operator.#fail(`Player ${playerId} has ${format(balance)}, cannot withdraw ${format(amountMinor)}`);
+        }
+        const funds = v.balance('SETTLEMENT');
+        if (funds < amountMinor + feeMinor) {
+          Operator.#fail(`Settlement funds ${format(funds)} cannot cover ${format(amountMinor + feeMinor)}`);
+        }
+      }
+    });
   }
 
   // --------------------------------------------------------- T7: cash payout
@@ -246,14 +290,20 @@ class Operator {
   cashPayout({ id, at, agentId, playerId, amountMinor, commissionMinor = 0, memo }) {
     assertAmount(amountMinor, 'amountMinor');
     assertNonNegative(commissionMinor, 'commissionMinor');
-    const wallet = this.#walletOf(playerId);
-    this.#require(wallet >= amountMinor, `Player ${playerId} has ${format(wallet)}, cannot be paid ${format(amountMinor)}`);
+    const wallet = accountId('PLAYER_WALLET', playerId);
 
-    const entries = [{ account: accountId('PLAYER_WALLET', playerId), debit: amountMinor }];
+    const entries = [{ account: wallet, debit: amountMinor }];
     if (commissionMinor > 0) entries.push({ account: 'AGENT_COMMISSION', debit: commissionMinor });
     entries.push({ account: accountId('AGENT_FLOAT', agentId), credit: amountMinor + commissionMinor });
 
-    return this.ledger.post({ id, kind: 'CASH_PAYOUT', at, memo, entries });
+    return this.ledger.post({ id, kind: 'CASH_PAYOUT', at, memo, entries }, {
+      precondition: (v) => {
+        const balance = v.balance(wallet);
+        if (balance < amountMinor) {
+          Operator.#fail(`Player ${playerId} has ${format(balance)}, cannot be paid ${format(amountMinor)}`);
+        }
+      }
+    });
   }
 
   // ------------------------------------------------------ T8: sell float back
@@ -265,17 +315,25 @@ class Operator {
    */
   sellFloatBack({ id, at, agentId, amountMinor, memo }) {
     assertAmount(amountMinor, 'amountMinor');
-    const available = this.#floatOf(agentId);
-    this.#require(available >= amountMinor, `Agent ${agentId} has ${format(available)} float, cannot redeem ${format(amountMinor)}`);
-    const funds = this.#settlement();
-    this.#require(funds >= amountMinor, `Settlement funds ${format(funds)} cannot cover ${format(amountMinor)}`);
+    const float = accountId('AGENT_FLOAT', agentId);
 
     return this.ledger.post({
       id, kind: 'SELL_FLOAT_BACK', at, memo,
       entries: [
-        { account: accountId('AGENT_FLOAT', agentId), debit: amountMinor },
+        { account: float, debit: amountMinor },
         { account: 'SETTLEMENT', credit: amountMinor }
       ]
+    }, {
+      precondition: (v) => {
+        const available = v.balance(float);
+        if (available < amountMinor) {
+          Operator.#fail(`Agent ${agentId} has ${format(available)} float, cannot redeem ${format(amountMinor)}`);
+        }
+        const funds = v.balance('SETTLEMENT');
+        if (funds < amountMinor) {
+          Operator.#fail(`Settlement funds ${format(funds)} cannot cover ${format(amountMinor)}`);
+        }
+      }
     });
   }
 
@@ -295,21 +353,19 @@ class Operator {
 
   // ------------------------------------------------------------- statements
 
-  /** What a runner needs to see at close: what they hold and what they earned. */
+  /** What a runner needs to see at close: what they hold. */
   agentStatement(agentId) {
-    return {
-      agentId,
-      floatMinor: this.#floatOf(agentId),
-      floatFormatted: format(this.#floatOf(agentId))
-    };
+    const floatMinor = this.ledger.balance(accountId('AGENT_FLOAT', agentId));
+    return { agentId, floatMinor, floatFormatted: format(floatMinor) };
   }
 
   playerStatement(playerId) {
-    return {
-      playerId,
-      walletMinor: this.#walletOf(playerId),
-      walletFormatted: format(this.#walletOf(playerId))
-    };
+    const walletMinor = this.ledger.balance(accountId('PLAYER_WALLET', playerId));
+    return { playerId, walletMinor, walletFormatted: format(walletMinor) };
+  }
+
+  close() {
+    this.ledger.close();
   }
 }
 

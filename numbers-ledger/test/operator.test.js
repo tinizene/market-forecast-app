@@ -97,7 +97,7 @@ test('T5 - settlement recognises every stake and pays the winners, once', () => 
   assert.throws(() => op.settleDraw({ id: 's-2', at: AT, drawKey: 'D1', winners: [] }), /already settled/);
 });
 
-test('T5 - replaying the settlement id cannot pay a winner twice', () => {
+test('T5 - a winner cannot be paid twice, by retry or by re-settling', () => {
   const op = funded();
   op.cashIn({ id: 'in-1', at: AT, agentId: 'ag-1', playerId: 'p-1', amountMinor: 100_00 });
   op.placeBet({ id: 'bet-1', at: AT, betId: 'b1', playerId: 'p-1', drawKey: 'D1', stakeMinor: 10_00 });
@@ -106,8 +106,19 @@ test('T5 - replaying the settlement id cannot pay a winner twice', () => {
   assert.equal(first.posted, true);
   const wallet = op.ledger.balance('PLAYER_WALLET:p-1');
 
-  // A retry of the identical request: the ledger id guard stops it.
-  assert.throws(() => op.settleDraw({ id: 's-1', at: AT, drawKey: 'D1', winners: [{ betId: 'b1', payoutMinor: 100_00 }] }), /already settled/);
+  // Retrying the identical request is a no-op, not an error - that is what
+  // makes a redelivered callback safe to accept.
+  const retry = op.settleDraw({ id: 's-1', at: AT, drawKey: 'D1', winners: [{ betId: 'b1', payoutMinor: 100_00 }] });
+  assert.equal(retry.posted, false);
+  assert.equal(retry.duplicate, true);
+  assert.equal(op.ledger.balance('PLAYER_WALLET:p-1'), wallet, 'the retry moved nothing');
+
+  // A *different* id against the same draw is a genuine second settlement, and
+  // is refused outright.
+  assert.throws(
+    () => op.settleDraw({ id: 's-2', at: AT, drawKey: 'D1', winners: [{ betId: 'b1', payoutMinor: 100_00 }] }),
+    /already settled/
+  );
   assert.equal(op.ledger.balance('PLAYER_WALLET:p-1'), wallet);
 });
 

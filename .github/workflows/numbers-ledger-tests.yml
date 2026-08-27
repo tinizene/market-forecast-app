@@ -8,11 +8,15 @@ on:
   pull_request:
     paths:
       - 'numbers-ledger/**'
+      # The draw-lifecycle test settles against harlem-numbers/game.js - the real
+      # payout and hit rules - so a change there must re-run this suite.
+      - 'harlem-numbers/game.js'
       - '.github/workflows/numbers-ledger-tests.yml'
   push:
     branches: [main]
     paths:
       - 'numbers-ledger/**'
+      - 'harlem-numbers/game.js'
       - '.github/workflows/numbers-ledger-tests.yml'
 
 permissions:

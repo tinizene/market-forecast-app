@@ -11,6 +11,7 @@
  */
 class MemoryStore {
   #journal = [];
+  #events = [];
   #byId = new Map();
   #totals = new Map();  // accountId -> { debits, credits }
   #state = new Map();   // `${kind}:${key}` -> object
@@ -20,7 +21,7 @@ class MemoryStore {
     if (this.#inTransaction) throw new Error('Nested transactions are not supported');
     this.#inTransaction = true;
 
-    const pending = { journal: [], totals: new Map(), state: new Map() };
+    const pending = { journal: [], events: [], totals: new Map(), state: new Map() };
     const view = this.#view(pending);
 
     try {
@@ -29,6 +30,7 @@ class MemoryStore {
         this.#journal.push(record);
         this.#byId.set(record.id, record);
       }
+      for (const event of pending.events) this.#events.push(event);
       for (const [account, totals] of pending.totals) this.#totals.set(account, totals);
       for (const [key, value] of pending.state) this.#state.set(key, value);
       return result;
@@ -59,6 +61,9 @@ class MemoryStore {
           });
         }
       },
+      hasEvent: (id) => this.#events.some((e) => e.id === id) || pending.events.some((e) => e.id === id),
+      appendEvent: (event) => pending.events.push(event),
+      nextEventSeq: () => this.#events.length + pending.events.length + 1,
       getState: (kind, key) => {
         const k = `${kind}:${key}`;
         const value = pending.state.has(k) ? pending.state.get(k) : this.#state.get(k);
@@ -82,6 +87,10 @@ class MemoryStore {
 
   journal() {
     return this.#journal.slice();
+  }
+
+  events() {
+    return this.#events.slice();
   }
 
   close() {}

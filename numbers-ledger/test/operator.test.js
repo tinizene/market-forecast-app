@@ -2,6 +2,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const { Operator } = require('../src/operator.js');
+const { openTestDraw, payTo } = require('./helpers.js');
 
 const AT = '2026-08-27T08:00:00Z';
 
@@ -10,6 +11,11 @@ function funded({ capital = 5_000_00, paid = 9_500_00, float = 10_000_00 } = {})
   const op = new Operator();
   op.injectCapital({ id: 'cap-1', at: AT, amountMinor: capital });
   op.buyFloat({ id: 'buy-1', at: AT, agentId: 'ag-1', paidMinor: paid, floatMinor: float });
+  // AT sits inside both windows; tests that care about timing open their own.
+  op.draws = {
+    D1: openTestDraw(op, { drawKey: 'D1', at: '2026-08-27T00:00:00Z' }),
+    D2: openTestDraw(op, { drawKey: 'D2', at: '2026-08-27T00:00:00Z', drawAt: '2026-08-28T19:00:00Z' })
+  };
   return op;
 }
 
@@ -62,7 +68,7 @@ test('T3 - a voucher is single use', () => {
 test('T4 - a stake is held, not recognised as revenue', () => {
   const op = funded();
   op.cashIn({ id: 'in-1', at: AT, agentId: 'ag-1', playerId: 'p-1', amountMinor: 100_00 });
-  op.placeBet({ id: 'bet-1', at: AT, betId: 'b1', playerId: 'p-1', drawKey: '2026-08-27', stakeMinor: 10_00 });
+  op.placeBet({ id: 'bet-1', at: AT, betId: 'b1', playerId: 'p-1', drawKey: 'D1', stakeMinor: 10_00 });
 
   assert.equal(op.ledger.balance('PLAYER_WALLET:p-1'), 90_00);
   assert.equal(op.ledger.balance('UNSETTLED_STAKES'), 10_00);
@@ -73,7 +79,7 @@ test('T4 - a player cannot stake more than their wallet', () => {
   const op = funded();
   op.cashIn({ id: 'in-1', at: AT, agentId: 'ag-1', playerId: 'p-1', amountMinor: 10_00 });
   assert.throws(
-    () => op.placeBet({ id: 'bet-1', at: AT, betId: 'b1', playerId: 'p-1', drawKey: '2026-08-27', stakeMinor: 10_01 }),
+    () => op.placeBet({ id: 'bet-1', at: AT, betId: 'b1', playerId: 'p-1', drawKey: 'D1', stakeMinor: 10_01 }),
     /cannot stake/
   );
   assert.equal(op.ledger.balance('UNSETTLED_STAKES'), 0);
@@ -86,7 +92,8 @@ test('T5 - settlement recognises every stake and pays the winners, once', () => 
   op.placeBet({ id: 'bet-1', at: AT, betId: 'b1', playerId: 'p-1', drawKey: 'D1', stakeMinor: 10_00 });
   op.placeBet({ id: 'bet-2', at: AT, betId: 'b2', playerId: 'p-2', drawKey: 'D1', stakeMinor: 10_00 });
 
-  const result = op.settleDraw({ id: 's-1', at: AT, drawKey: 'D1', winners: [{ betId: 'b1', payoutMinor: 5_400_00 }] });
+  op.draws.D1.reveal();
+  const result = op.settleDraw({ id: 's-1', at: '2026-08-27T19:01:00Z', drawKey: 'D1', evaluate: payTo({ b1: 5_400_00 }) });
   assert.equal(result.totalStakes, 20_00);
   assert.equal(result.betsSettled, 2);
   assert.equal(op.ledger.balance('UNSETTLED_STAKES'), 0);
@@ -94,7 +101,7 @@ test('T5 - settlement recognises every stake and pays the winners, once', () => 
   assert.equal(op.ledger.balance('PLAYER_WALLET:p-1'), 90_00 + 5_400_00);
   assert.equal(op.ledger.balance('PLAYER_WALLET:p-2'), 90_00);
 
-  assert.throws(() => op.settleDraw({ id: 's-2', at: AT, drawKey: 'D1', winners: [] }), /already settled/);
+  assert.throws(() => op.settleDraw({ id: 's-2', at: AT, drawKey: 'D1', evaluate: () => 0 }), /already settled/);
 });
 
 test('T5 - a winner cannot be paid twice, by retry or by re-settling', () => {
@@ -102,13 +109,14 @@ test('T5 - a winner cannot be paid twice, by retry or by re-settling', () => {
   op.cashIn({ id: 'in-1', at: AT, agentId: 'ag-1', playerId: 'p-1', amountMinor: 100_00 });
   op.placeBet({ id: 'bet-1', at: AT, betId: 'b1', playerId: 'p-1', drawKey: 'D1', stakeMinor: 10_00 });
 
-  const first = op.settleDraw({ id: 's-1', at: AT, drawKey: 'D1', winners: [{ betId: 'b1', payoutMinor: 100_00 }] });
+  op.draws.D1.reveal();
+  const first = op.settleDraw({ id: 's-1', at: '2026-08-27T19:01:00Z', drawKey: 'D1', evaluate: payTo({ b1: 100_00 }) });
   assert.equal(first.posted, true);
   const wallet = op.ledger.balance('PLAYER_WALLET:p-1');
 
   // Retrying the identical request is a no-op, not an error - that is what
   // makes a redelivered callback safe to accept.
-  const retry = op.settleDraw({ id: 's-1', at: AT, drawKey: 'D1', winners: [{ betId: 'b1', payoutMinor: 100_00 }] });
+  const retry = op.settleDraw({ id: 's-1', at: '2026-08-27T19:01:00Z', drawKey: 'D1', evaluate: payTo({ b1: 100_00 }) });
   assert.equal(retry.posted, false);
   assert.equal(retry.duplicate, true);
   assert.equal(op.ledger.balance('PLAYER_WALLET:p-1'), wallet, 'the retry moved nothing');
@@ -116,23 +124,27 @@ test('T5 - a winner cannot be paid twice, by retry or by re-settling', () => {
   // A *different* id against the same draw is a genuine second settlement, and
   // is refused outright.
   assert.throws(
-    () => op.settleDraw({ id: 's-2', at: AT, drawKey: 'D1', winners: [{ betId: 'b1', payoutMinor: 100_00 }] }),
+    () => op.settleDraw({ id: 's-2', at: '2026-08-27T19:01:00Z', drawKey: 'D1', evaluate: payTo({ b1: 100_00 }) }),
     /already settled/
   );
   assert.equal(op.ledger.balance('PLAYER_WALLET:p-1'), wallet);
 });
 
-test('T5 - a bet from another draw cannot be paid out', () => {
+test('T5 - settlement only ever sees the bets of the draw being settled', () => {
   const op = funded();
   op.cashIn({ id: 'in-1', at: AT, agentId: 'ag-1', playerId: 'p-1', amountMinor: 100_00 });
   op.placeBet({ id: 'bet-1', at: AT, betId: 'b1', playerId: 'p-1', drawKey: 'D1', stakeMinor: 10_00 });
   op.placeBet({ id: 'bet-2', at: AT, betId: 'b2', playerId: 'p-1', drawKey: 'D2', stakeMinor: 10_00 });
 
-  assert.throws(
-    () => op.settleDraw({ id: 's-1', at: AT, drawKey: 'D1', winners: [{ betId: 'b2', payoutMinor: 100_00 }] }),
-    /belongs to draw D2/
-  );
-  assert.equal(op.ledger.balance('UNSETTLED_STAKES'), 20_00, 'the failed settlement wrote nothing');
+  op.draws.D1.reveal();
+  const seen = [];
+  op.settleDraw({
+    id: 's-1', at: '2026-08-27T19:01:00Z', drawKey: 'D1',
+    evaluate: (bet) => { seen.push(bet.betId); return 0; }
+  });
+
+  assert.deepEqual(seen, ['b1'], 'the D2 bet was never offered for payment');
+  assert.equal(op.ledger.balance('UNSETTLED_STAKES'), 10_00, "D2's stake is still held");
 });
 
 test('T6 - withdrawal is the only path where money leaves, and the fee is the operator\'s', () => {

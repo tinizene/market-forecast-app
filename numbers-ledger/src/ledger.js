@@ -69,6 +69,46 @@ class Ledger {
     });
   }
 
+  /**
+   * Append a non-financial fact: a draw opened, a seed revealed. Same
+   * transaction, same idempotency by id, same append-only guarantee as the
+   * journal - but no entries, because no money moved.
+   *
+   * `data` may be a function so it can read state written under the same lock.
+   */
+  event(evt, options = {}) {
+    if (!evt || typeof evt !== 'object') throw new TypeError('Event must be an object');
+    if (typeof evt.id !== 'string' || evt.id.length === 0) throw new TypeError('Event needs an id');
+    if (typeof evt.kind !== 'string' || evt.kind.length === 0) throw new TypeError('Event needs a kind');
+    if (typeof evt.at !== 'string' || Number.isNaN(Date.parse(evt.at))) {
+      throw new TypeError(`Event needs an ISO timestamp, got ${evt.at}`);
+    }
+
+    return this.#store.transaction((view) => {
+      if (view.hasEvent(evt.id)) return { posted: false, event: null, duplicate: true };
+
+      if (options.precondition) options.precondition(this.#guardView(view));
+
+      const data = typeof evt.data === 'function' ? evt.data(this.#guardView(view)) : (evt.data || {});
+      const record = Object.freeze({
+        id: evt.id, kind: evt.kind, at: evt.at, memo: evt.memo || null,
+        seq: view.nextEventSeq(), data
+      });
+      view.appendEvent(record);
+      if (options.onCommit) options.onCommit(this.#stateView(view));
+      return { posted: true, event: record };
+    });
+  }
+
+  /** Read one stored state record outside a transaction, for reporting. */
+  readState(kind, key) {
+    return this.#store.read((view) => view.getState(kind, key));
+  }
+
+  get events() {
+    return this.#store.events();
+  }
+
   /** Structural validation. Nothing here touches the store. */
   #validate(tx) {
     if (!tx || typeof tx !== 'object') throw new TypeError('Transaction must be an object');

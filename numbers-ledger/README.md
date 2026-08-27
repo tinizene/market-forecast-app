@@ -1,7 +1,7 @@
 # numbers-ledger
 
-Milestones 1 and 2 of the Runner Float Architecture: the ledger and float
-model, now durable and safe under concurrent writers.
+Milestones 1-3 of the Runner Float Architecture: the ledger and float model -
+durable, safe under concurrent writers, and now with a draw authority on top.
 
 The question this exists to answer is narrow and worth answering before
 anything else gets built: **does value move operator → runner → player →
@@ -25,10 +25,11 @@ directory as a module path. Pass a glob or a file.
 | `src/money.js` | Integer minor units. No floats anywhere near a balance |
 | `src/accounts.js` | Chart of accounts, classes, partitioning, what counts as callable |
 | `src/ledger.js` | Append-only double-entry journal, balances, invariants |
-| `src/operator.js` | The transaction types T0–T9, each with its guard |
+| `src/operator.js` | The transaction types T0–T9 and the draw lifecycle, each with its guard |
+| `src/draws.js` | Commit-reveal, result derivation, and the betting window |
 | `src/store/memory.js` | In-memory store — the default, for tests |
 | `src/store/sqlite.js` | Durable store on Node's built-in SQLite |
-| `test/` | 41 tests: unit, a simulated trading day, durability, concurrency |
+| `test/` | 59 tests: unit, a simulated trading day, durability, concurrency, draws |
 
 ## Durable or in-memory
 
@@ -57,6 +58,8 @@ writes are serialised.
 | T7 | `cashPayout` | Bounded by the wallet; repays the runner in float |
 | T8 | `sellFloatBack` | Bounded by float held and funds on hand |
 | T9 | `accrueGamingTax` | — |
+| D1 | `openDraw` | Commitment must be published before betting opens |
+| D2 | `revealDraw` | Seed must match the commitment; not before the draw time |
 
 ## What the tests actually prove
 
@@ -82,6 +85,38 @@ writes are serialised.
   float that only covers one of them: exactly one wins, the other seven fail
   the guard, and the runner never goes negative. Same for double-redeeming a
   voucher.
+
+## The draw authority
+
+Two promises, kept separately.
+
+**The number cannot be chosen after seeing the book.** A seed is generated and
+its commitment — `sha256(drawKey|seed)` — published *before* betting opens; the
+result is `HMAC(seed, drawKey)` reduced by rejection sampling. Revealing a
+different seed later fails the check, in the operator's own code, before anyone
+else has to catch it. `drawReceipt(drawKey)` returns everything a player or an
+auditor needs to redo the check themselves.
+
+Rejection sampling rather than `% 1000`: 2^32 is not a multiple of 1000, so a
+plain modulo makes low numbers very slightly likelier. The bias is tiny, but
+"very slightly rigged in a direction nobody chose" is not a property to ship in
+a game of chance when the fix is six lines.
+
+**A bet cannot be entered after the numbers are known.** The betting window is
+half-open — the cutoff instant is already closed — and enforced against the
+server-supplied `at`, never a device clock. A bet is also refused outright once
+a draw is revealed, independently of any timestamp, so a forged or replayed
+`at` inside the old window still gets nowhere.
+
+Settlement takes an `evaluate(bet, result)` function rather than a list of
+winners. With a `winners[]` argument, settlement would simply trust whoever
+called it; deriving payouts from the revealed number is the point of having an
+authority at all. The lifecycle test wires in `harlem-numbers/game.js` — the
+real payout and hit rules — so this is exercised against the game as shipped.
+
+Opening and revealing move no money, so they are events rather than ledger
+transactions — but append-only ones, in the same store and the same
+transaction. A commitment that could be edited afterwards would prove nothing.
 
 ## Why the guards moved inside the transaction
 
@@ -116,8 +151,13 @@ is worth weighing.
 
 ## What is deliberately not here
 
-No draws, no bet types, no HTTP, no auth, no mobile money. Those come next, and
-none of them are worth building on a ledger that does not balance.
+No HTTP, no auth, no mobile money. Those come next, and none of them are worth
+building on a ledger that does not balance.
+
+The ledger still holds no bet types of its own: a selection is an opaque blob it
+stores and hands back to the evaluator. That keeps the rules in one place
+(`harlem-numbers/game.js`) rather than two that can drift — at the cost of a
+cross-package import in one test, which the CI path filter accounts for.
 
 Two known limits of the current store. SQLite serialises writers, which is
 right for one operator process and a bounded agent network, but it is a single

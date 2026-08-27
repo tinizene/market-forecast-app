@@ -46,6 +46,18 @@ const SCHEMA = `
     credits INTEGER NOT NULL DEFAULT 0
   );
 
+  -- Facts that move no money but must still be undeniable: when a draw's
+  -- commitment was published, when its seed was revealed. Append-only for the
+  -- same reason the journal is - a commitment that can be edited afterwards
+  -- proves nothing.
+  CREATE TABLE IF NOT EXISTS events (
+    seq  INTEGER PRIMARY KEY AUTOINCREMENT,
+    id   TEXT    NOT NULL UNIQUE,
+    kind TEXT    NOT NULL,
+    at   TEXT    NOT NULL,
+    data TEXT    NOT NULL
+  );
+
   CREATE TABLE IF NOT EXISTS state (
     kind  TEXT NOT NULL,
     key   TEXT NOT NULL,
@@ -90,6 +102,10 @@ class SqliteStore {
                                ON CONFLICT(kind, key) DO UPDATE SET value = excluded.value`),
       listState:   db.prepare('SELECT key, value FROM state WHERE kind = ? ORDER BY key'),
       lastSeq:     db.prepare('SELECT COALESCE(MAX(seq), 0) AS seq FROM journal'),
+      hasEvent:    db.prepare('SELECT 1 FROM events WHERE id = ?'),
+      addEvent:    db.prepare('INSERT INTO events (id, kind, at, data) VALUES (?, ?, ?, ?)'),
+      allEvents:   db.prepare('SELECT seq, id, kind, at, data FROM events ORDER BY seq'),
+      lastEventSeq: db.prepare('SELECT COALESCE(MAX(seq), 0) AS seq FROM events'),
       allTx:       db.prepare('SELECT seq, id, kind, at, memo FROM journal ORDER BY seq'),
       entriesFor:  db.prepare('SELECT account, control, debit, credit FROM entries WHERE seq = ? ORDER BY idx'),
       recompute:   db.prepare(`SELECT account, SUM(debit) AS debits, SUM(credit) AS credits
@@ -137,6 +153,9 @@ class SqliteStore {
           s.upsert.run(entry.account, entry.debit, entry.credit);
         });
       },
+      hasEvent: (id) => s.hasEvent.get(id) !== undefined,
+      appendEvent: (event) => s.addEvent.run(event.id, event.kind, event.at, JSON.stringify(event.data)),
+      nextEventSeq: () => Number(s.lastEventSeq.get().seq) + 1,
       getState: (kind, key) => {
         const row = s.getState.get(kind, key);
         return row ? JSON.parse(row.value) : null;
@@ -162,6 +181,12 @@ class SqliteStore {
       entries: this.#stmt.entriesFor.all(row.seq).map((e) => ({
         account: e.account, control: e.control, debit: Number(e.debit), credit: Number(e.credit)
       }))
+    }));
+  }
+
+  events() {
+    return this.#stmt.allEvents.all().map((row) => ({
+      seq: Number(row.seq), id: row.id, kind: row.kind, at: row.at, data: JSON.parse(row.data)
     }));
   }
 

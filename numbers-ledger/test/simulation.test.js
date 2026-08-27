@@ -3,6 +3,8 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const { Operator } = require('../src/operator.js');
 const { ACCOUNTS } = require('../src/accounts.js');
+const { openTestDraw } = require('./helpers.js');
+const { createHash } = require('node:crypto');
 
 /**
  * A full trading day, run end to end. This is the milestone-1 question:
@@ -30,6 +32,13 @@ function runTradingDay({ seed = 42, agents = 4, players = 40, startingFloatMinor
   const next = () => at(step++);
 
   op.injectCapital({ id: 'cap-1', at: next(), amountMinor: 2_000_000_00, memo: 'opening capital' });
+
+  // The draw is committed before a single bet is taken. Every `at` below falls
+  // inside the betting window by construction.
+  // Derived from the scenario seed rather than the CSPRNG: a real draw's seed
+  // must be unpredictable, but a test day has to be reproducible to be useful.
+  const drawSeed = createHash('sha256').update(`scenario-${seed}`).digest('hex');
+  const draw = openTestDraw(op, { drawKey: DAY, drawAt: '2026-08-27T19:00:00Z', at: at(0), seed: drawSeed });
 
   // Runners buy float at a 5% discount.
   const agentIds = [];
@@ -83,18 +92,24 @@ function runTradingDay({ seed = 42, agents = 4, players = 40, startingFloatMinor
       const stakeMinor = (1 + rand(4)) * 25_00;
       if (op.playerStatement(playerId).walletMinor < stakeMinor) continue;
       const betId = `${playerId}-b${b}`;
-      op.placeBet({ id: `bet-${betId}`, at: next(), betId, playerId, drawKey: DAY, stakeMinor });
-      placed.push({ betId, playerId, stakeMinor });
+      // One bet in twenty picks the number that will actually come up. The
+      // result is fixed by the committed seed, so this is a property of the
+      // scenario, not the test peeking at an outcome it can change.
+      const digits = rand(20) === 0 ? draw.result : String(rand(1000)).padStart(3, '0');
+      op.placeBet({ id: `bet-${betId}`, at: next(), betId, playerId, drawKey: DAY, stakeMinor, selection: { digits } });
+      placed.push({ betId, playerId, stakeMinor, digits });
     }
     assert.ok(op.playerStatement(playerId).walletMinor <= wallet);
   }
 
-  // The draw: roughly one bet in twenty hits, paying 540x per unit staked less the cut.
-  const winners = placed
-    .filter(() => rand(20) === 0)
-    .map((bet) => ({ betId: bet.betId, payoutMinor: bet.stakeMinor * 540 }));
-
-  const settlement = op.settleDraw({ id: `settle-${DAY}`, at: next(), drawKey: DAY, winners });
+  // Reveal, then settle: payouts are derived from the number that was fixed
+  // before betting opened, by the rules, not by a list handed to settlement.
+  draw.reveal('2026-08-27T19:00:00Z');
+  const settlement = op.settleDraw({
+    id: `settle-${DAY}`, at: '2026-08-27T19:01:00Z', drawKey: DAY,
+    evaluate: (bet, result) => (bet.selection && bet.selection.digits === result ? bet.stakeMinor * 540 : 0)
+  });
+  const winners = placed.filter((b) => b.digits === draw.result);
 
   // Winners take their money out: half to mobile money, half in cash at a runner.
   let cashOuts = 0;
@@ -123,15 +138,17 @@ function runTradingDay({ seed = 42, agents = 4, players = 40, startingFloatMinor
     }
   }
 
-  return { op, agentIds, playerIds, placed, winners, settlement, cashOuts, mobileOuts, topUps };
+  return { op, agentIds, playerIds, placed, winners, settlement, cashOuts, mobileOuts, topUps, draw };
 }
 
 test('a full trading day reconciles to the unit', () => {
-  const { op, settlement, placed, winners } = runTradingDay();
+  const { op, settlement, placed, winners, draw } = runTradingDay();
 
   assert.ok(op.ledger.size > 100, `expected a busy day, got ${op.ledger.size} transactions`);
   assert.ok(placed.length > 40, `expected plenty of bets, got ${placed.length}`);
   assert.ok(winners.length > 0, 'the day needs at least one winner to be interesting');
+  assert.equal(settlement.winners, winners.length, 'settlement paid exactly the bets that matched');
+  assert.equal(settlement.result, draw.result);
 
   const trial = op.ledger.trialBalance();
   assert.equal(trial.balanced, true, `debits ${trial.debits} vs credits ${trial.credits}`);

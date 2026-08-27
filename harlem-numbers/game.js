@@ -31,10 +31,22 @@
    * keypad entry, and validation enforces it.
    */
   var BET_TYPES = {
-    straight: { label: 'Straight',   digits: 3, multiplier: 600, hint: 'Exact order' },
-    box6:     { label: '6-Way Box',  digits: 3, multiplier: 80,  hint: 'Any order - three different digits' },
-    box3:     { label: '3-Way Box',  digits: 3, multiplier: 160, hint: 'Any order - one digit repeated' },
-    front:    { label: 'Front Pair', digits: 2, multiplier: 50,  hint: 'First two digits, in order' }
+    straight:  { label: 'Straight',   digits: 3, multiplier: 600, hint: 'Exact order' },
+    box6:      { label: '6-Way Box',  digits: 3, multiplier: 80,  hint: 'Any order - three different digits' },
+    box3:      { label: '3-Way Box',  digits: 3, multiplier: 160, hint: 'Any order - one digit repeated' },
+    front:     { label: 'Front Pair', digits: 2, multiplier: 50,  hint: 'First two digits, in order' },
+    // The two high-frequency bets. They exist because a player who never wins
+    // stops playing, and every bet above hits at most 1% of the time: a daily
+    // player betting only straights has a 0.7% chance of a single win in a
+    // week. One Digit hits 27.1% of draws, so that becomes 89%.
+    //
+    // The multipliers are set so the average return matches the rest of the
+    // board rather than undercutting it - 2.2x at 27.1% returns the same 54c
+    // per dollar as the 600x straight. Frequency is bought by lowering the
+    // prize, not by widening the margin. A version paying 1x (a stake refund)
+    // would return 5c per dollar: a trap wearing the same badge as the others.
+    oneDigit:  { label: 'One Digit',  digits: 1, multiplier: 2.2, hint: 'Your digit anywhere in the number' },
+    twoDigits: { label: 'Two Digits', digits: 2, multiplier: 10,  hint: 'Both digits anywhere - any order' }
   };
 
   var DIGITS_RE = /^[0-9]+$/;
@@ -70,7 +82,10 @@
   function grossPayoutCents(type, stakeCents) {
     var spec = BET_TYPES[type];
     if (!spec) throw new Error('Unknown bet type: ' + type);
-    return stakeCents * spec.multiplier;
+    // Rounded because One Digit pays 2.2x: a 7c stake would otherwise owe
+    // 15.4c and put a fraction of a cent into the ledger. Every whole-number
+    // multiplier is unaffected, and the half-cent rounds towards the player.
+    return Math.round(stakeCents * spec.multiplier);
   }
 
   function netPayoutCents(grossCents, cutPct) {
@@ -103,9 +118,9 @@
       return {
         ok: false,
         code: 'digits',
-        message: spec.digits === 2
-          ? 'Front Pair needs 2 digits.'
-          : 'Enter a full 3-digit number.'
+        message: spec.digits === 3
+          ? 'Enter a full 3-digit number.'
+          : spec.label + ' needs ' + spec.digits + (spec.digits === 1 ? ' digit.' : ' digits.')
       };
     }
 
@@ -125,6 +140,15 @@
       }
     }
 
+    // The mirror of the box check, and this one protects the house. Two
+    // Digits is priced for two DIFFERENT digits appearing (54 draws in 1,000).
+    // Played as 4 and 4 it becomes 'a 4 anywhere' - 271 in 1,000 - and 10x on
+    // those odds pays out 2.44x the stake on average. One unvalidated field is
+    // the difference between a 49% return and a bet that bankrupts the draw.
+    if (bet.type === 'twoDigits' && bet.digits[0] === bet.digits[1]) {
+      return { ok: false, code: 'two-same', message: 'Pick two different digits - one digit repeated is the One Digit bet.' };
+    }
+
     if (!Number.isInteger(bet.stakeCents) || bet.stakeCents <= 0) {
       return { ok: false, code: 'stake', message: 'Pick a stake.' };
     }
@@ -138,9 +162,14 @@
 
   // ------------------------------------------------------------- settlement
 
-  /** Display form of a selection: '472' straight/box, '47X' front pair. */
+  /**
+   * Display form of a selection: '472' straight/box, '47X' front pair,
+   * '4+7' Two Digits (the + reads as 'and', not as a position).
+   */
   function formatSelection(type, digits) {
-    return type === 'front' ? digits + 'X' : digits;
+    if (type === 'front') return digits + 'X';
+    if (type === 'twoDigits') return digits[0] + '+' + digits[1];
+    return digits;
   }
 
   /**
@@ -155,6 +184,10 @@
       // A box covers every ordering, the straight ordering included.
       case 'box6':
       case 'box3':     return sortDigits(slip.digits) === sortDigits(winning);
+      // Position-free: the digit only has to be somewhere in the result.
+      case 'oneDigit':  return winning.indexOf(slip.digits) !== -1;
+      case 'twoDigits': return winning.indexOf(slip.digits[0]) !== -1 &&
+                               winning.indexOf(slip.digits[1]) !== -1;
       default:         return false;
     }
   }
@@ -243,7 +276,14 @@
    * Validation guarantees a box bet's digit shape matches its type, so the
    * count is a property of the type alone.
    */
-  var WIN_COMBINATIONS = { straight: 1, box6: 6, box3: 3, front: 10 };
+  var WIN_COMBINATIONS = {
+    straight: 1, box6: 6, box3: 3, front: 10,
+    // 1,000 - 9^3: every result that is missing the chosen digit entirely.
+    oneDigit: 271,
+    // Inclusion-exclusion on two distinct digits: 1,000 - 9^3 - 9^3 + 8^3.
+    // Validation guarantees the digits differ, which is what makes 54 correct.
+    twoDigits: 54
+  };
 
   function winChance(type) {
     var wins = WIN_COMBINATIONS[type];

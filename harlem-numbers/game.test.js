@@ -1,5 +1,6 @@
 /**
- * Run with: node --test harlem-numbers
+ * Run with: node --test harlem-numbers/game.test.js
+ * (Passing the directory does not work: node resolves it as a module path.)
  */
 const test = require('node:test');
 const assert = require('node:assert/strict');
@@ -10,6 +11,18 @@ test('payouts match the advertised table', () => {
   assert.deepEqual(G.quote('box6', 100),     { grossCents: 8000,  netCents: 7200,  cutCents: 800 });
   assert.deepEqual(G.quote('box3', 100),     { grossCents: 16000, netCents: 14400, cutCents: 1600 });
   assert.deepEqual(G.quote('front', 100),    { grossCents: 5000,  netCents: 4500,  cutCents: 500 });
+  assert.deepEqual(G.quote('oneDigit', 100), { grossCents: 220,   netCents: 198,   cutCents: 22 });
+  assert.deepEqual(G.quote('twoDigits', 100),{ grossCents: 1000,  netCents: 900,   cutCents: 100 });
+});
+
+test('a fractional multiplier still settles in whole cents', () => {
+  // One Digit pays 2.2x, so 7c staked owes 15.4c before the cut.
+  assert.deepEqual(G.quote('oneDigit', 7), { grossCents: 15, netCents: 13, cutCents: 2 });
+  for (let stake = 1; stake <= 500; stake++) {
+    const q = G.quote('oneDigit', stake);
+    assert.ok(Number.isInteger(q.grossCents) && Number.isInteger(q.netCents), `stake ${stake}c`);
+    assert.equal(q.netCents + q.cutCents, q.grossCents, `stake ${stake}c`);
+  }
 });
 
 test('net plus cut always reconstructs gross (no rounding leak)', () => {
@@ -76,6 +89,47 @@ test('hit detection per bet type', () => {
   assert.ok(!G.isHit({ type: 'straight', digits: '472' }, '47'));
 });
 
+test('the odds table matches what isHit actually does, over all 1,000 draws', () => {
+  // The advertised chance and the settlement rule are two statements of the
+  // same fact. Counting one against the other over the whole outcome space is
+  // what stops a payout being priced for odds the game does not have.
+  const selections = {
+    straight: '472', box6: '472', box3: '112', front: '47', oneDigit: '4', twoDigits: '47'
+  };
+  for (const [type, digits] of Object.entries(selections)) {
+    let wins = 0;
+    for (let n = 0; n < 1000; n++) {
+      if (G.isHit({ type, digits }, String(n).padStart(3, '0'))) wins++;
+    }
+    assert.equal(wins, G.winChance(type).wins, `${type} (${digits}) hit ${wins} of 1,000`);
+  }
+});
+
+test('One Digit and Two Digits hit on position-free matches', () => {
+  assert.ok(G.isHit({ type: 'oneDigit', digits: '4' }, '472'));
+  assert.ok(G.isHit({ type: 'oneDigit', digits: '2' }, '472'));  // last position counts
+  assert.ok(G.isHit({ type: 'oneDigit', digits: '7' }, '777'));
+  assert.ok(!G.isHit({ type: 'oneDigit', digits: '5' }, '472'));
+
+  assert.ok(G.isHit({ type: 'twoDigits', digits: '47' }, '472'));
+  assert.ok(G.isHit({ type: 'twoDigits', digits: '74' }, '472'));  // order is irrelevant
+  assert.ok(G.isHit({ type: 'twoDigits', digits: '47' }, '740'));
+  assert.ok(!G.isHit({ type: 'twoDigits', digits: '47' }, '442'));  // needs BOTH
+  assert.ok(!G.isHit({ type: 'twoDigits', digits: '47' }, '123'));
+});
+
+test('Two Digits refuses a repeated digit', () => {
+  const base = { stakeCents: 100, balanceCents: 10000 };
+  // 44 would be 'a 4 anywhere' - 271 in 1,000 - paid at 10x. Against the
+  // house, not the player, which is why it is validated and not merely priced.
+  assert.equal(G.validateBet({ ...base, type: 'twoDigits', digits: '44' }).code, 'two-same');
+  assert.ok(G.validateBet({ ...base, type: 'twoDigits', digits: '47' }).ok);
+  assert.equal(G.validateBet({ ...base, type: 'twoDigits', digits: '4' }).code, 'digits');
+  assert.ok(G.validateBet({ ...base, type: 'oneDigit', digits: '4' }).ok);
+  assert.equal(G.validateBet({ ...base, type: 'oneDigit', digits: '47' }).code, 'digits');
+  assert.equal(G.validateBet({ ...base, type: 'oneDigit', digits: '' }).code, 'digits');
+});
+
 test('settle pays hits, marks misses, and leaves future draws alone', () => {
   const slips = [
     { id: 'a', type: 'straight', digits: '472', drawKey: '2026-08-25', status: 'pending', netPayoutCents: 54000 },
@@ -140,6 +194,9 @@ test('draw numbers are deterministic, three digits, and spread across the range'
 test('formatSelection marks the open digit on a front pair', () => {
   assert.equal(G.formatSelection('front', '47'), '47X');
   assert.equal(G.formatSelection('straight', '472'), '472');
+  assert.equal(G.formatSelection('oneDigit', '4'), '4');
+  // '+' reads as 'and': neither digit is tied to a position.
+  assert.equal(G.formatSelection('twoDigits', '47'), '4+7');
 });
 
 test('true odds and expected return per bet type', () => {
@@ -152,7 +209,29 @@ test('true odds and expected return per bet type', () => {
   assert.equal(G.expectedReturnCents('box6', 100), 43);
   assert.equal(G.expectedReturnCents('box3', 100), 43);
   assert.equal(G.expectedReturnCents('front', 100), 45);
+  assert.deepEqual(G.winChance('oneDigit'), { wins: 271, outOf: 1000, oneIn: 1000 / 271 });
+  assert.deepEqual(G.winChance('twoDigits'), { wins: 54, outOf: 1000, oneIn: 1000 / 54 });
+  assert.equal(G.expectedReturnCents('oneDigit', 100), 54);   // level with the straight bet
+  assert.equal(G.expectedReturnCents('twoDigits', 100), 49);
+
   for (const type of Object.keys(G.BET_TYPES)) {
-    assert.ok(G.expectedReturnCents(type, 100) < 100, `${type} should be a losing proposition on average`);
+    const ret = G.expectedReturnCents(type, 100);
+    assert.ok(ret < 100, `${type} should be a losing proposition on average`);
+    // The floor is the point of the new bets: a high-frequency bet has to buy
+    // its frequency out of the prize, never out of the player's return. Money
+    // Back as originally proposed - stake refunded on 54 draws in 1,000 -
+    // returns 5c per dollar and would fail here.
+    assert.ok(ret >= 40, `${type} returns only ${ret}c per dollar - far below the rest of the board`);
+  }
+});
+
+test('no bet type is priced above its own true odds', () => {
+  // Net payout x chance must stay under the stake, or the draw funds itself
+  // out of the operator's capital. Checked from the table, not from the
+  // multipliers, so a future edit to either has to keep them consistent.
+  for (const type of Object.keys(G.BET_TYPES)) {
+    const chance = G.winChance(type);
+    const net = G.quote(type, 10000).netCents;
+    assert.ok(net * chance.wins < 10000 * chance.outOf, `${type} pays more than fair odds`);
   }
 });

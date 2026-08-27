@@ -29,6 +29,9 @@ concurrency:
 
 jobs:
   test:
+    # Names the check on the pull request. Without it both workflows post a
+    # check called "test" and a red one does not say which project broke.
+    name: harlem-numbers
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

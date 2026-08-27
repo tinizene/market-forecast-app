@@ -8,3 +8,7 @@
 # gambling-themed demo is not served from the course's domain. Run it locally
 # by opening harlem-numbers/index.html.
 harlem-numbers
+
+# numbers-ledger is server-side code for a separate product. It is not part of
+# any deployed site and must not be reachable as static files.
+numbers-ledger

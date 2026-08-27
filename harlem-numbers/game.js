@@ -4,7 +4,8 @@
  * Nothing in this file touches the DOM, localStorage, or the clock. Every
  * function is a pure function of its arguments, which is what makes the rules
  * (payouts, bet validity, hit detection, settlement) unit-testable without a
- * browser. See game.test.js - run it with `node --test harlem-numbers`.
+ * browser. See game.test.js - run it with `node --test harlem-numbers/game.test.js`.
+ * (Passing the directory does not work: node resolves it as a module path.)
  *
  * All money is handled in integer cents. Never floats: 0.1 + 0.2 !== 0.3, and
  * a betting ledger that drifts by a cent is a ledger nobody trusts.

@@ -6,18 +6,42 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const G = require('./game.js');
 
-test('payouts match the advertised table', () => {
-  assert.deepEqual(G.quote('straight', 100), { grossCents: 60000, netCents: 54000, cutCents: 6000 });
-  assert.deepEqual(G.quote('box6', 100),     { grossCents: 8000,  netCents: 7200,  cutCents: 800 });
-  assert.deepEqual(G.quote('box3', 100),     { grossCents: 16000, netCents: 14400, cutCents: 1600 });
-  assert.deepEqual(G.quote('front', 100),    { grossCents: 5000,  netCents: 4500,  cutCents: 500 });
-  assert.deepEqual(G.quote('oneDigit', 100), { grossCents: 220,   netCents: 198,   cutCents: 22 });
-  assert.deepEqual(G.quote('twoDigits', 100),{ grossCents: 1000,  netCents: 900,   cutCents: 100 });
+test('payouts match the advertised table, and nothing is deducted from a win', () => {
+  assert.deepEqual(G.quote('straight', 100), { grossCents: 50000, netCents: 50000, cutCents: 0 });
+  assert.deepEqual(G.quote('box6', 100),     { grossCents: 6800,  netCents: 6800,  cutCents: 0 });
+  assert.deepEqual(G.quote('box3', 100),     { grossCents: 13500, netCents: 13500, cutCents: 0 });
+  assert.deepEqual(G.quote('front', 100),    { grossCents: 4100,  netCents: 4100,  cutCents: 0 });
+  assert.deepEqual(G.quote('oneDigit', 100), { grossCents: 185,   netCents: 185,   cutCents: 0 });
+  assert.deepEqual(G.quote('twoDigits', 100),{ grossCents: 850,   netCents: 850,   cutCents: 0 });
+
+  // The quoted payout is what the player receives: the network is paid out of
+  // gross gaming revenue, not by docking the winner (decision D3).
+  assert.equal(G.RUNNER_CUT_PCT, 0);
+  for (const type of Object.keys(G.BET_TYPES)) {
+    const q = G.quote(type, 337);
+    assert.equal(q.netCents, q.grossCents, `${type} must pay the quoted amount in full`);
+  }
+});
+
+test('the deduction machinery still works if a cut is ever reinstated', () => {
+  // RUNNER_CUT_PCT is 0 today, so the rounding rule that matters when it is not
+  // would otherwise go untested: the CUT is rounded, never the payout, so the
+  // house cannot round in its own favour twice.
+  assert.deepEqual(G.quote('straight', 100, 10), { grossCents: 50000, netCents: 45000, cutCents: 5000 });
+  for (const type of Object.keys(G.BET_TYPES)) {
+    for (const stake of [1, 7, 33, 100, 999]) {
+      for (const cut of [1, 7.5, 10, 33]) {
+        const q = G.quote(type, stake, cut);
+        assert.equal(q.netCents + q.cutCents, q.grossCents, `${type} @ ${stake}c, ${cut}% cut`);
+        assert.ok(Number.isInteger(q.netCents) && Number.isInteger(q.cutCents));
+      }
+    }
+  }
 });
 
 test('a fractional multiplier still settles in whole cents', () => {
-  // One Digit pays 2.2x, so 7c staked owes 15.4c before the cut.
-  assert.deepEqual(G.quote('oneDigit', 7), { grossCents: 15, netCents: 13, cutCents: 2 });
+  // One Digit pays 1.85x, so 7c staked owes 12.95c before rounding.
+  assert.deepEqual(G.quote('oneDigit', 7), { grossCents: 13, netCents: 13, cutCents: 0 });
   for (let stake = 1; stake <= 500; stake++) {
     const q = G.quote('oneDigit', stake);
     assert.ok(Number.isInteger(q.grossCents) && Number.isInteger(q.netCents), `stake ${stake}c`);
@@ -204,15 +228,17 @@ test('true odds and expected return per bet type', () => {
   assert.deepEqual(G.winChance('box6'), { wins: 6, outOf: 1000, oneIn: 1000 / 6 });
   assert.deepEqual(G.winChance('front'), { wins: 10, outOf: 1000, oneIn: 100 });
 
-  // Per $1 staked: every bet on the board returns less than it costs.
-  assert.equal(G.expectedReturnCents('straight', 100), 54);
-  assert.equal(G.expectedReturnCents('box6', 100), 43);
-  assert.equal(G.expectedReturnCents('box3', 100), 43);
-  assert.equal(G.expectedReturnCents('front', 100), 45);
+  // Per $1 staked: every bet on the board returns less than it costs. The
+  // straight bet pays 500x on a 1-in-1,000 chance, which is the rate every
+  // US state Pick-3 pays and the benchmark this board is set against.
+  assert.equal(G.expectedReturnCents('straight', 100), 50);
+  assert.equal(G.expectedReturnCents('box6', 100), 41);
+  assert.equal(G.expectedReturnCents('box3', 100), 41);
+  assert.equal(G.expectedReturnCents('front', 100), 41);
   assert.deepEqual(G.winChance('oneDigit'), { wins: 271, outOf: 1000, oneIn: 1000 / 271 });
   assert.deepEqual(G.winChance('twoDigits'), { wins: 54, outOf: 1000, oneIn: 1000 / 54 });
-  assert.equal(G.expectedReturnCents('oneDigit', 100), 54);   // level with the straight bet
-  assert.equal(G.expectedReturnCents('twoDigits', 100), 49);
+  assert.equal(G.expectedReturnCents('oneDigit', 100), 50);   // level with the straight bet
+  assert.equal(G.expectedReturnCents('twoDigits', 100), 46);
 
   for (const type of Object.keys(G.BET_TYPES)) {
     const ret = G.expectedReturnCents(type, 100);

@@ -1211,8 +1211,13 @@
       var expected = G.expectedReturnCents(draft.type, draft.stakeCents);
 
       $('payoutValue').textContent = fmt(payout.netCents);
-      $('payoutSub').textContent = fmt(payout.grossCents) + ' gross − ' + fmt(payout.cutCents) +
-        ' runner cut (' + G.RUNNER_CUT_PCT + '%)';
+      // With commission paid out of gross gaming revenue there is nothing to
+      // deduct, and "$500.00 gross − $0.00 runner cut (0%)" would be a worse
+      // line than saying so plainly. The branch stays for a reinstated cut.
+      $('payoutSub').textContent = payout.cutCents > 0
+        ? fmt(payout.grossCents) + ' gross − ' + fmt(payout.cutCents) +
+          ' runner cut (' + G.RUNNER_CUT_PCT + '%)'
+        : 'Paid in full - nothing is deducted from a win';
       $('payoutOdds').textContent = spec.label + ' hits ' + chance.wins + ' times in 1,000 draws · ' +
         'average return ' + fmt(expected) + ' per ' + fmt(draft.stakeCents) + ' staked';
 

@@ -18,8 +18,16 @@
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
 
-  /** The runner's cut, in percent, taken off the gross payout. */
-  var RUNNER_CUT_PCT = 10;
+  /**
+   * The runner's cut, in percent, taken off the gross payout - now zero.
+   *
+   * The network used to be paid by docking 10% from the winner. It is now paid
+   * out of gross gaming revenue instead, so a quoted payout is what the player
+   * receives (design decision D3). The machinery stays: netPayoutCents still
+   * takes a rate, and the tests still exercise a non-zero one, so reinstating a
+   * deduction is a one-line change rather than a rewrite.
+   */
+  var RUNNER_CUT_PCT = 0;
 
   /** Draw time, local to the player's device. */
   var DRAW_HOUR = 19;
@@ -31,22 +39,22 @@
    * keypad entry, and validation enforces it.
    */
   var BET_TYPES = {
-    straight:  { label: 'Straight',   digits: 3, multiplier: 600, hint: 'Exact order' },
-    box6:      { label: '6-Way Box',  digits: 3, multiplier: 80,  hint: 'Any order - three different digits' },
-    box3:      { label: '3-Way Box',  digits: 3, multiplier: 160, hint: 'Any order - one digit repeated' },
-    front:     { label: 'Front Pair', digits: 2, multiplier: 50,  hint: 'First two digits, in order' },
+    straight:  { label: 'Straight',   digits: 3, multiplier: 500, hint: 'Exact order' },
+    box6:      { label: '6-Way Box',  digits: 3, multiplier: 68,  hint: 'Any order - three different digits' },
+    box3:      { label: '3-Way Box',  digits: 3, multiplier: 135, hint: 'Any order - one digit repeated' },
+    front:     { label: 'Front Pair', digits: 2, multiplier: 41,  hint: 'First two digits, in order' },
     // The two high-frequency bets. They exist because a player who never wins
     // stops playing, and every bet above hits at most 1% of the time: a daily
     // player betting only straights has a 0.7% chance of a single win in a
     // week. One Digit hits 27.1% of draws, so that becomes 89%.
     //
     // The multipliers are set so the average return matches the rest of the
-    // board rather than undercutting it - 2.2x at 27.1% returns the same 54c
-    // per dollar as the 600x straight. Frequency is bought by lowering the
+    // board rather than undercutting it - 1.85x at 27.1% returns the same 50c
+    // per dollar as the 500x straight. Frequency is bought by lowering the
     // prize, not by widening the margin. A version paying 1x (a stake refund)
     // would return 5c per dollar: a trap wearing the same badge as the others.
-    oneDigit:  { label: 'One Digit',  digits: 1, multiplier: 2.2, hint: 'Your digit anywhere in the number' },
-    twoDigits: { label: 'Two Digits', digits: 2, multiplier: 10,  hint: 'Both digits anywhere - any order' }
+    oneDigit:  { label: 'One Digit',  digits: 1, multiplier: 1.85, hint: 'Your digit anywhere in the number' },
+    twoDigits: { label: 'Two Digits', digits: 2, multiplier: 8.5,  hint: 'Both digits anywhere - any order' }
   };
 
   var DIGITS_RE = /^[0-9]+$/;
@@ -82,8 +90,8 @@
   function grossPayoutCents(type, stakeCents) {
     var spec = BET_TYPES[type];
     if (!spec) throw new Error('Unknown bet type: ' + type);
-    // Rounded because One Digit pays 2.2x: a 7c stake would otherwise owe
-    // 15.4c and put a fraction of a cent into the ledger. Every whole-number
+    // Rounded because One Digit pays 1.85x: a 7c stake would otherwise owe
+    // 12.95c and put a fraction of a cent into the ledger. Every whole-number
     // multiplier is unaffected, and the half-cent rounds towards the player.
     return Math.round(stakeCents * spec.multiplier);
   }
@@ -142,9 +150,9 @@
 
     // The mirror of the box check, and this one protects the house. Two
     // Digits is priced for two DIFFERENT digits appearing (54 draws in 1,000).
-    // Played as 4 and 4 it becomes 'a 4 anywhere' - 271 in 1,000 - and 10x on
-    // those odds pays out 2.44x the stake on average. One unvalidated field is
-    // the difference between a 49% return and a bet that bankrupts the draw.
+    // Played as 4 and 4 it becomes 'a 4 anywhere' - 271 in 1,000 - and 8.5x on
+    // those odds pays out 2.30x the stake on average. One unvalidated field is
+    // the difference between a 46% return and a bet that bankrupts the draw.
     if (bet.type === 'twoDigits' && bet.digits[0] === bet.digits[1]) {
       return { ok: false, code: 'two-same', message: 'Pick two different digits - one digit repeated is the One Digit bet.' };
     }

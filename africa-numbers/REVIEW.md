@@ -151,10 +151,11 @@ worth setting, and nothing in the file could be tested without a browser.
 
 Rules now live in `game.js` as pure functions - payouts, validation, hit
 detection, settlement, draw timing. That is what made it possible to *check* the
-claims in this review rather than assert them: 14 unit tests cover the payout
+claims in this review rather than assert them: 20 unit tests cover the payout
 table, the rounding identity (`net + cut === gross` for every type and stake),
-box-shape validation, hit detection per bet type, settlement idempotency, the
-19:00 boundary, month and year rollovers, and draw determinism. The UI layer
+box-shape validation, hit detection per bet type counted over all 1,000 possible
+draws, settlement idempotency, the 19:00 boundary, month and year rollovers, and
+draw determinism. The UI layer
 uses one delegated `click` listener keyed on `data-action`, so it survives
 re-renders and needs no inline handlers.
 
@@ -166,12 +167,19 @@ horizontal overflow.
 ## 6. One thing added on purpose, one thing still missing
 
 **Added: the true odds.** The payout preview now states what each bet actually
-returns - "Straight hits 1 times in 1,000 draws - average return $0.54 per $1.00
+returns - "Straight hits 1 times in 1,000 draws - average return $0.50 per $1.00
 staked". Every bet on the board returns less than it costs, which is how the
-game works and not a flaw. The 10% cut is also broken out explicitly rather than
-folded into a single figure. A player who understands the price is a player who
+game works and not a flaw. A player who understands the price is a player who
 can consent to it. The unit tests assert every bet type is a losing proposition
-on average, so a future payout change cannot quietly make one look free.
+on average *and* that none returns less than 40c per dollar, so a future payout
+change can neither quietly make one look free nor quietly turn one into a trap.
+
+The board is priced against the international benchmark: a straight pays **500x**
+on a 1-in-1,000 chance, which is the rate every US state Pick-3 pays, and the
+quoted figure is what the winner receives. Runner commission used to be 10% off
+the payout; it now comes out of gross gaming revenue, so nothing is deducted from
+a win. `RUNNER_CUT_PCT` is 0 rather than deleted, and the tests still exercise a
+non-zero rate, so reinstating a deduction stays a one-line change.
 
 **Still missing: an operator.** Everything here runs in the browser, so nothing
 about it is authoritative. Balances are a variable in `localStorage` - anyone

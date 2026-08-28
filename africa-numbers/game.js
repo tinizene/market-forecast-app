@@ -14,7 +14,7 @@
   'use strict';
   var api = factory();
   if (typeof module === 'object' && module.exports) module.exports = api;
-  root.HNGame = api;
+  root.ANGame = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
 

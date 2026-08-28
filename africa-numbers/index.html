@@ -712,7 +712,7 @@
         </div>
 
         <section>
-          <h2 class="section-title"><span class="icon" aria-hidden="true">🔥</span> Recent hits on the block</h2>
+          <h2 class="section-title"><span class="icon" aria-hidden="true">🔥</span> Recent winners</h2>
           <ul class="feed-list" id="homeFeed"></ul>
         </section>
 
@@ -752,9 +752,9 @@
         </div>
       </section>
 
-      <!-- THE BLOCK -->
-      <section id="screen-block" class="screen" role="tabpanel" aria-labelledby="tab-block" tabindex="-1">
-        <ul class="feed-list" id="blockFeed"></ul>
+      <!-- WINNERS -->
+      <section id="screen-winners" class="screen" role="tabpanel" aria-labelledby="tab-winners" tabindex="-1">
+        <ul class="feed-list" id="winnersFeed"></ul>
         <p class="fine-print">Community posts are sample content in this demo.</p>
       </section>
 
@@ -786,8 +786,8 @@
     <button class="nav-item" id="tab-slips" type="button" role="tab" data-action="go" data-screen="slips" aria-selected="false" aria-controls="screen-slips">
       <span class="nav-icon" aria-hidden="true">🎫</span> My Slips
     </button>
-    <button class="nav-item" id="tab-block" type="button" role="tab" data-action="go" data-screen="block" aria-selected="false" aria-controls="screen-block">
-      <span class="nav-icon" aria-hidden="true">🔥</span> The Block
+    <button class="nav-item" id="tab-winners" type="button" role="tab" data-action="go" data-screen="winners" aria-selected="false" aria-controls="screen-winners">
+      <span class="nav-icon" aria-hidden="true">🔥</span> Winners
     </button>
     <button class="nav-item" id="tab-wallet" type="button" role="tab" data-action="go" data-screen="wallet" aria-selected="false" aria-controls="screen-wallet">
       <span class="nav-icon" aria-hidden="true">💰</span> Wallet
@@ -801,9 +801,11 @@
   (function () {
     'use strict';
 
-    var G = window.HNGame;
+    var G = window.ANGame;
 
     // ------------------------------------------------------------- constants
+    // The 'hn:' prefix predates the rename and stays: it is invisible to the
+    // player, and changing a storage key silently resets everyone's demo.
     var STORAGE_KEY = 'hn:v2:state';
     var THEME_KEY = 'hn:v2:theme';
     var STARTING_BALANCE_CENTS = 125000;
@@ -975,8 +977,8 @@
     }
 
     // ------------------------------------------------------------ navigation
-    var SCREENS = ['home', 'bet', 'slips', 'block', 'wallet'];
-    var TITLES = { home: null, bet: 'Place a Bet', slips: 'My Slips', block: 'The Block', wallet: 'Wallet' };
+    var SCREENS = ['home', 'bet', 'slips', 'winners', 'wallet'];
+    var TITLES = { home: null, bet: 'Place a Bet', slips: 'My Slips', winners: 'Winners', wallet: 'Wallet' };
     var currentScreen = 'home';
     var booted = false;
 
@@ -1277,7 +1279,7 @@
     }
 
     function renderFeed() {
-      [$('homeFeed'), $('blockFeed')].forEach(function (list) {
+      [$('homeFeed'), $('winnersFeed')].forEach(function (list) {
         replaceChildren(list, FEED_ITEMS.map(function (item) {
           var text = el('p', { class: 'feed-text' });
           item.tokens.forEach(function (token) {

@@ -6,7 +6,7 @@ const draws = require('../src/draws.js');
 
 // The prototype's real payout and hit rules, so settlement is exercised against
 // the game as shipped rather than a stand-in written to agree with itself.
-const game = require('../../harlem-numbers/game.js');
+const game = require('../../africa-numbers/game.js');
 
 const KEY = '2026-08-27';
 const COMMITTED_AT = '2026-08-26T12:00:00Z';

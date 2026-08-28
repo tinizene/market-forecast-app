@@ -1,10 +1,10 @@
 /**
- * Harlem Numbers - pure game logic.
+ * Africa Numbers - pure game logic.
  *
  * Nothing in this file touches the DOM, localStorage, or the clock. Every
  * function is a pure function of its arguments, which is what makes the rules
  * (payouts, bet validity, hit detection, settlement) unit-testable without a
- * browser. See game.test.js - run it with `node --test harlem-numbers/game.test.js`.
+ * browser. See game.test.js - run it with `node --test africa-numbers/game.test.js`.
  * (Passing the directory does not work: node resolves it as a module path.)
  *
  * All money is handled in integer cents. Never floats: 0.1 + 0.2 !== 0.3, and
@@ -257,9 +257,14 @@
    * number for the same day, and a player can't reroll a losing draw by
    * clearing localStorage. It is still client-side and therefore predictable -
    * a real draw must be signed and served by the operator. See REVIEW.md.
+   *
+   * The default salt is part of the result, not decoration: changing it
+   * changes the number drawn on every past and future date. It moved with the
+   * rename from the old brand, which is safe only because this is play money
+   * with nothing settled against it. Once real draws run it is frozen.
    */
   function numberForDraw(key, salt) {
-    var input = String(key) + '|' + (salt === undefined ? 'harlem-numbers' : salt);
+    var input = String(key) + '|' + (salt === undefined ? 'africa-numbers' : salt);
     var hash = 0x811c9dc5; // FNV-1a 32-bit
     for (var i = 0; i < input.length; i++) {
       hash ^= input.charCodeAt(i);

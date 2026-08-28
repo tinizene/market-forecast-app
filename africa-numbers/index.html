@@ -8,8 +8,8 @@
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#fdf6e3" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0d0d0d" media="(prefers-color-scheme: dark)">
-  <meta name="description" content="Harlem Numbers - a play-money demo of a daily three-digit numbers game.">
-  <title>Harlem Numbers - Daily Play</title>
+  <meta name="description" content="Africa Numbers - a play-money demo of a daily three-digit numbers game.">
+  <title>Africa Numbers - Daily Play</title>
   <style>
     /* ---------------------------------------------------------------- theme
        Light palette lives on bare :root. Dark is defined twice: once behind
@@ -679,7 +679,7 @@
   <div class="app">
     <header class="top-bar">
       <button class="icon-btn" id="backBtn" type="button" data-action="back" hidden aria-label="Back to home">&larr;</button>
-      <h1 class="top-bar-title" id="screenTitle">Harlem<span class="accent">Numbers</span></h1>
+      <h1 class="top-bar-title" id="screenTitle">Africa<span class="accent">Numbers</span></h1>
       <button class="icon-btn" id="themeToggle" type="button" data-action="toggle-theme" aria-pressed="false" aria-label="Switch to dark mode">🌙</button>
     </header>
 
@@ -872,9 +872,9 @@
 
     // ------------------------------------------------------------------ data
     var FEED_ITEMS = [
-      { avatar: 'TJ', tokens: [['t', 'Someone on 125th just hit '], ['h', '472'], ['t', ' for '], ['h', '$540']], meta: '2 min ago · Harlem' },
-      { avatar: 'MK', tokens: [['t', 'Marcus from Lenox Ave won '], ['h', '$1,080'], ['t', ' on a box play']], meta: '15 min ago · Harlem' },
-      { avatar: 'DR', tokens: [['t', 'Dream number "snake" came through – '], ['h', '008'], ['t', ' straight!']], meta: '1 hour ago · Washington Heights' }
+      { avatar: 'TJ', tokens: [['t', 'Someone on Broad Street just hit '], ['h', '472'], ['t', ' for '], ['h', '$540']], meta: '2 min ago · Monrovia' },
+      { avatar: 'MK', tokens: [['t', 'Musu from Paynesville won '], ['h', '$1,080'], ['t', ' on a box play']], meta: '15 min ago · Monrovia' },
+      { avatar: 'DR', tokens: [['t', 'Dream number "snake" came through – '], ['h', '008'], ['t', ' straight!']], meta: '1 hour ago · Sinkor' }
     ];
 
     var DREAM_BOOK = ['Snake', 'Money', 'Water', 'Fire', 'Baby', 'Ring'];
@@ -1002,7 +1002,7 @@
         title.textContent = TITLES[id];
       } else {
         replaceChildren(title, [
-          document.createTextNode('Harlem'),
+          document.createTextNode('Africa'),
           el('span', { class: 'accent', text: 'Numbers' })
         ]);
       }

@@ -1,10 +1,10 @@
-# Harlem Numbers - code review and rewrite
+# Africa Numbers - code review and rewrite
 
-A review of the single-file `Harlem Numbers - Daily Play` prototype, and the
+A review of the single-file `Africa Numbers - Daily Play` prototype, and the
 reworked version in this folder.
 
 ```
-harlem-numbers/
+africa-numbers/
   index.html      markup, styles, and the UI layer
   game.js         pure game rules - no DOM, no storage, no clock
   game.test.js    14 unit tests over game.js (node --test)
@@ -12,7 +12,7 @@ harlem-numbers/
 ```
 
 Run it: open `index.html` directly in a browser (it works from `file://`).
-Test it: `node --test harlem-numbers/game.test.js`.
+Test it: `node --test africa-numbers/game.test.js`.
 
 ---
 

@@ -111,7 +111,7 @@ a draw is revealed, independently of any timestamp, so a forged or replayed
 Settlement takes an `evaluate(bet, result)` function rather than a list of
 winners. With a `winners[]` argument, settlement would simply trust whoever
 called it; deriving payouts from the revealed number is the point of having an
-authority at all. The lifecycle test wires in `harlem-numbers/game.js` — the
+authority at all. The lifecycle test wires in `africa-numbers/game.js` — the
 real payout and hit rules — so this is exercised against the game as shipped.
 
 Opening and revealing move no money, so they are events rather than ledger
@@ -156,7 +156,7 @@ building on a ledger that does not balance.
 
 The ledger still holds no bet types of its own: a selection is an opaque blob it
 stores and hands back to the evaluator. That keeps the rules in one place
-(`harlem-numbers/game.js`) rather than two that can drift — at the cost of a
+(`africa-numbers/game.js`) rather than two that can drift — at the cost of a
 cross-package import in one test, which the CI path filter accounts for.
 
 Two known limits of the current store. SQLite serialises writers, which is

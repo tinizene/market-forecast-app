@@ -1,5 +1,5 @@
 /**
- * Run with: node --test harlem-numbers/game.test.js
+ * Run with: node --test africa-numbers/game.test.js
  * (Passing the directory does not work: node resolves it as a module path.)
  */
 const test = require('node:test');

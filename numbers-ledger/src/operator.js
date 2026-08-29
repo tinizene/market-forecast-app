@@ -46,6 +46,21 @@ class Operator {
   }
 
   /**
+   * A suspended runner cannot take money from players.
+   *
+   * Note what is *not* guarded: paying a winner (T7) and selling float back
+   * (T8) stay open. Suspension must never strand a runner's float or leave a
+   * player unpaid - it stops the account growing the operator's exposure, and
+   * leaves every route that settles up intact.
+   */
+  static #assertNotSuspended(v, agentId) {
+    const agent = v.getState('agent', agentId);
+    if (agent && agent.suspended) {
+      Operator.#fail(`Agent ${agentId} is suspended${agent.reason ? `: ${agent.reason}` : ''}`);
+    }
+  }
+
+  /**
    * The betting window, checked identically however the bet arrives.
    *
    * A paid bet and a free ticket must obey the same clock: a grant earned
@@ -100,10 +115,20 @@ class Operator {
     }
 
     const entries = [{ account: 'SETTLEMENT', debit: paidMinor }];
-    if (commission > 0) entries.push({ account: 'AGENT_COMMISSION', debit: commission });
+    if (commission > 0) entries.push({ account: accountId('AGENT_COMMISSION', agentId), debit: commission });
     entries.push({ account: accountId('AGENT_FLOAT', agentId), credit: floatMinor });
 
-    return this.ledger.post({ id, kind: 'BUY_FLOAT', at, memo, entries });
+    return this.ledger.post({ id, kind: 'BUY_FLOAT', at, memo, entries }, {
+      precondition: (v) => Operator.#assertNotSuspended(v, agentId),
+      onCommit: (s) => {
+        // First purchase registers the runner. Without a roster, a runner at
+        // exactly zero float is invisible - and that is precisely the one who
+        // needs a top-up before the next draw (F4).
+        if (!s.getState('agent', agentId)) {
+          s.putState('agent', agentId, { agentId, suspended: false, reason: null, since: at });
+        }
+      }
+    });
   }
 
   // ------------------------------------------------------------- T2: cash in
@@ -125,6 +150,7 @@ class Operator {
       ]
     }, {
       precondition: (v) => {
+        Operator.#assertNotSuspended(v, agentId);
         const available = v.balance(float);
         if (available < amountMinor) {
           Operator.#fail(`Agent ${agentId} has ${format(available)} float, cannot sell ${format(amountMinor)}`);
@@ -148,6 +174,7 @@ class Operator {
       ]
     }, {
       precondition: (v) => {
+        Operator.#assertNotSuspended(v, agentId);
         if (v.getState('voucher', voucherId)) Operator.#fail(`Voucher ${voucherId} already exists`);
         const available = v.balance(float);
         if (available < amountMinor) {
@@ -424,7 +451,7 @@ class Operator {
     const wallet = accountId('PLAYER_WALLET', playerId);
 
     const entries = [{ account: wallet, debit: amountMinor }];
-    if (commissionMinor > 0) entries.push({ account: 'AGENT_COMMISSION', debit: commissionMinor });
+    if (commissionMinor > 0) entries.push({ account: accountId('AGENT_COMMISSION', agentId), debit: commissionMinor });
     entries.push({ account: accountId('AGENT_FLOAT', agentId), credit: amountMinor + commissionMinor });
 
     return this.ledger.post({ id, kind: 'CASH_PAYOUT', at, memo, entries }, {
@@ -648,12 +675,140 @@ class Operator {
     });
   }
 
+  // -------------------------------------------------------- runner tooling
+
+  /**
+   * Suspend a runner from selling. An event, not a transaction: no money
+   * moves, but the fact has to be as durable and as append-only as one.
+   *
+   * The design calls for suspending a runner who cannot reconcile *before the
+   * next draw, not after the next audit* - which only works if the suspension
+   * takes effect inside the same lock every sale is checked against.
+   */
+  suspendAgent({ id, at, agentId, reason = null, memo }) {
+    return this.ledger.event({ id, kind: 'AGENT_SUSPENDED', at, memo, data: { agentId, reason } }, {
+      precondition: (v) => {
+        const agent = v.getState('agent', agentId);
+        if (!agent) Operator.#fail(`Unknown agent ${agentId}`);
+        if (agent.suspended) Operator.#fail(`Agent ${agentId} is already suspended`);
+      },
+      onCommit: (s) => {
+        const agent = s.getState('agent', agentId);
+        s.putState('agent', agentId, { ...agent, suspended: true, reason, since: at });
+      }
+    });
+  }
+
+  reinstateAgent({ id, at, agentId, memo }) {
+    return this.ledger.event({ id, kind: 'AGENT_REINSTATED', at, memo, data: { agentId } }, {
+      precondition: (v) => {
+        const agent = v.getState('agent', agentId);
+        if (!agent) Operator.#fail(`Unknown agent ${agentId}`);
+        if (!agent.suspended) Operator.#fail(`Agent ${agentId} is not suspended`);
+      },
+      onCommit: (s) => {
+        const agent = s.getState('agent', agentId);
+        s.putState('agent', agentId, { ...agent, suspended: false, reason: null, since: at });
+      }
+    });
+  }
+
+  /** Every runner the operator has ever sold float to, with their current position. */
+  agents() {
+    return this.ledger.listState('agent').map(([agentId, agent]) => ({
+      ...agent,
+      floatMinor: this.ledger.balance(accountId('AGENT_FLOAT', agentId))
+    }));
+  }
+
+  /**
+   * Runners who cannot serve the next draw. Sales stop when float runs out,
+   * which is a revenue loss rather than a risk (F4) - but only if somebody is
+   * told. A runner sitting at exactly zero has no balance row at all, which is
+   * why this reads the roster rather than the accounts.
+   */
+  agentsBelow(thresholdMinor) {
+    assertNonNegative(thresholdMinor, 'thresholdMinor');
+    return this.agents()
+      .filter((a) => a.floatMinor < thresholdMinor)
+      .sort((a, b) => a.floatMinor - b.floatMinor);
+  }
+
   // ------------------------------------------------------------- statements
 
-  /** What a runner needs to see at close: what they hold. */
-  agentStatement(agentId) {
-    const floatMinor = this.ledger.balance(accountId('AGENT_FLOAT', agentId));
-    return { agentId, floatMinor, floatFormatted: format(floatMinor) };
+  /**
+   * The six lines the daily reconciliation asks for: opening float, purchases,
+   * sales, payouts handled, commission earned, closing float - derived from
+   * the journal rather than kept as a running total, so it cannot disagree
+   * with the entries it claims to summarise.
+   *
+   * `from` and `to` are ISO timestamps; the window is half-open, so a day's
+   * statement and the next day's cannot both claim the same transaction.
+   */
+  agentStatement(agentId, { from = null, to = null } = {}) {
+    const float = accountId('AGENT_FLOAT', agentId);
+    const commissionAccount = accountId('AGENT_COMMISSION', agentId);
+    const start = from === null ? -Infinity : Date.parse(from);
+    const end = to === null ? Infinity : Date.parse(to);
+    if (Number.isNaN(start) || Number.isNaN(end)) Operator.#fail('from and to must be ISO timestamps');
+
+    // Every kind that can move a runner's float. Anything unrecognised lands
+    // in `other` rather than vanishing: a statement that silently drops a
+    // movement is worse than one that admits it does not understand it.
+    const BUCKETS = {
+      BUY_FLOAT: 'purchases',
+      CASH_IN: 'sales',
+      ISSUE_VOUCHER: 'vouchers',
+      CASH_PAYOUT: 'payouts',
+      SELL_FLOAT_BACK: 'redemptions'
+    };
+
+    const movements = { purchases: 0, sales: 0, vouchers: 0, payouts: 0, redemptions: 0, other: 0 };
+    let openingMinor = 0;
+    let commissionMinor = 0;
+
+    for (const tx of this.ledger.journal) {
+      const when = Date.parse(tx.at);
+      let delta = 0;
+      let commission = 0;
+      for (const entry of tx.entries) {
+        // Float is a liability: a credit is float the runner gained.
+        if (entry.account === float) delta += entry.credit - entry.debit;
+        if (entry.account === commissionAccount) commission += entry.debit - entry.credit;
+      }
+      if (delta === 0 && commission === 0) continue;
+
+      if (when < start) {
+        openingMinor += delta;
+        continue;
+      }
+      if (when >= end) continue;
+
+      movements[BUCKETS[tx.kind] || 'other'] += delta;
+      commissionMinor += commission;
+    }
+
+    const netMinor = Object.values(movements).reduce((a, b) => a + b, 0);
+    const closingMinor = openingMinor + netMinor;
+    const agent = this.ledger.readState('agent', agentId);
+
+    return {
+      agentId,
+      from, to,
+      suspended: agent ? agent.suspended : false,
+      openingMinor, movements, netMinor, closingMinor, commissionMinor,
+      // The statement reconciles when its closing figure is the balance the
+      // ledger holds. That is only assertable for an open-ended window - a
+      // historical statement is checked by its own arithmetic instead.
+      reconciles: to === null
+        ? closingMinor === this.ledger.balance(float)
+        : closingMinor === openingMinor + netMinor,
+      floatMinor: this.ledger.balance(float),
+      floatFormatted: format(this.ledger.balance(float)),
+      openingFormatted: format(openingMinor),
+      closingFormatted: format(closingMinor),
+      commissionFormatted: format(commissionMinor)
+    };
   }
 
   playerStatement(playerId) {

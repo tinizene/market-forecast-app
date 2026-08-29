@@ -26,7 +26,10 @@ const ACCOUNTS = {
   UNSETTLED_STAKES:    { class: LIABILITY, partitioned: false, callable: true, label: 'Unsettled stakes' },
   STAKES_REVENUE:      { class: REVENUE,   partitioned: false, label: 'Stakes revenue' },
   PRIZE_PAYOUTS:       { class: EXPENSE,   partitioned: false, label: 'Prize payouts' },
-  AGENT_COMMISSION:    { class: EXPENSE,   partitioned: false, label: 'Agent commission' },
+  // Partitioned by runner: a statement that cannot say what this runner
+  // earned is not a statement, and the daily reconciliation in the design
+  // lists commission as one of its six lines.
+  AGENT_COMMISSION:    { class: EXPENSE,   partitioned: true,  label: 'Agent commission' },
   TRANSACTION_FEES:    { class: EXPENSE,   partitioned: false, label: 'Transaction fees' },
   GAMING_TAX_PAYABLE:  { class: LIABILITY, partitioned: false, callable: false, label: 'Gaming tax payable' },
   GAMING_TAX_EXPENSE:  { class: EXPENSE,   partitioned: false, label: 'Gaming tax' },

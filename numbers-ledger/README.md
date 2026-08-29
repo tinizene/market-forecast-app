@@ -64,6 +64,7 @@ writes are serialised.
 | T13 | `payJackpot` | Bounded by the pool; once per draw, never before the reveal |
 | D1 | `openDraw` | Commitment must be published before betting opens |
 | D2 | `revealDraw` | Seed must match the commitment; not before the draw time |
+| A1 | `suspendAgent` / `reinstateAgent` | Each happens once; read under the same lock every sale is checked against |
 
 T10–T13 are the promotional transactions. A free ticket differs from a sold
 voucher (T3) by exactly one line — that one debits the runner's float because a
@@ -73,6 +74,28 @@ stake without passing through the wallet, so a grant cannot be withdrawn as
 cash. Both `PROMO_VOUCHERS` and `JACKPOT_POOL` are **callable**, which is the
 point: promising more than the operator holds fails the solvency check before
 the promise can be redeemed.
+
+## Runner tooling
+
+`agentStatement(agentId, { from, to })` produces the six lines the daily
+reconciliation asks for — opening float, purchases, sales, payouts handled,
+commission earned, closing float — derived from the journal rather than kept as
+a running total, so it cannot disagree with the entries it summarises. The
+window is half-open, so one day's statement and the next cannot both claim the
+same transaction. A kind that moves float but is not recognised lands in
+`other` rather than vanishing.
+
+`AGENT_COMMISSION` is partitioned by runner, because a statement that cannot
+say what this runner earned is not a statement.
+
+**Suspension stops selling, never settling.** A suspended runner cannot cash in,
+sell vouchers or buy more float; they can still pay winners (T7) and sell float
+back (T8). Suspending must not strand a runner's money or leave a player unpaid.
+
+`agents()` and `agentsBelow(threshold)` read a roster written on a runner's
+first float purchase — not the balance rows, because a runner sitting at
+exactly zero has no balance row, and that is precisely the runner who cannot
+serve the next draw (F4).
 
 ## What the tests actually prove
 
@@ -101,6 +124,12 @@ the promise can be redeemed.
   float that only covers one of them: exactly one wins, the other seven fail
   the guard, and the runner never goes negative. Same for double-redeeming a
   voucher.
+- **A runner's statement reconciles.** Opening plus movements equals closing,
+  and closing equals the balance the ledger holds. One day closes where the
+  next opens, and one runner's activity never appears on another's statement.
+- **Suspension holds where it should and yields where it must.** A suspended
+  runner is refused every way of taking money from a player, and still allowed
+  every way of settling up.
 - **A free bet is a bet.** It settles under the same rules and pays the same
   prize as a paid one, revenue is grossed up by the free stake against the
   expense recognised at issue, and the promotion nets to its true cost rather

@@ -2,7 +2,7 @@
 
 const { Ledger } = require('./ledger.js');
 const { assertAmount, assertNonNegative, format } = require('./money.js');
-const { accountId } = require('./accounts.js');
+const { accountId, parseAccount } = require('./accounts.js');
 const draws = require('./draws.js');
 
 /**
@@ -22,15 +22,48 @@ const draws = require('./draws.js');
  */
 class Operator {
   /**
-   * @param {{currency?: object, store?: object}} [options] pass a SqliteStore
-   *        for durability; defaults to in-memory.
+   * @param {{currency?: object, store?: object, promoDailyCapMinor?: number}} [options]
+   *        pass a SqliteStore for durability; defaults to in-memory.
+   *        promoDailyCapMinor caps what promotions may cost in a single day;
+   *        null (the default) means uncapped.
    */
   constructor(options = {}) {
     this.ledger = new Ledger(options);
+    const cap = options.promoDailyCapMinor;
+    if (cap !== undefined && cap !== null) assertNonNegative(cap, 'promoDailyCapMinor');
+    this.promoDailyCapMinor = cap === undefined ? null : cap;
   }
 
   static #fail(message) {
     throw new Error(message);
+  }
+
+  /** UTC calendar day of a timestamp - the bucket the promotional cap counts in. */
+  static #dayOf(at) {
+    const t = Date.parse(at);
+    if (Number.isNaN(t)) Operator.#fail(`at must be an ISO timestamp, got ${at}`);
+    return new Date(t).toISOString().slice(0, 10);
+  }
+
+  /**
+   * The betting window, checked identically however the bet arrives.
+   *
+   * A paid bet and a free ticket must obey the same clock: a grant earned
+   * before the cutoff does not license a stake placed after the number is
+   * known. Sharing one function is what stops the two paths from drifting.
+   */
+  static #assertAcceptsBets(v, drawKey, at) {
+    const draw = v.getState('draw', drawKey);
+    if (!draw) Operator.#fail(`Draw ${drawKey} is not open for betting`);
+    if (draw.settled) Operator.#fail(`Draw ${drawKey} has already settled`);
+    if (draw.result) Operator.#fail(`Draw ${drawKey} has already been drawn`);
+    if (!draws.acceptsBetsAt(draw, at)) {
+      Operator.#fail(
+        Date.parse(at) < Date.parse(draw.opensAt)
+          ? `Draw ${drawKey} does not open until ${draw.opensAt}`
+          : `Draw ${drawKey} closed at ${draw.cutoffAt}`
+      );
+    }
   }
 
   // ------------------------------------------------------------ T0: capital
@@ -261,17 +294,7 @@ class Operator {
 
         // No bet without a published commitment, and none after the cutoff.
         // Both checks run against the server-supplied `at`, never a device clock.
-        const draw = v.getState('draw', drawKey);
-        if (!draw) Operator.#fail(`Draw ${drawKey} is not open for betting`);
-        if (draw.settled) Operator.#fail(`Draw ${drawKey} has already settled`);
-        if (draw.result) Operator.#fail(`Draw ${drawKey} has already been drawn`);
-        if (!draws.acceptsBetsAt(draw, at)) {
-          Operator.#fail(
-            Date.parse(at) < Date.parse(draw.opensAt)
-              ? `Draw ${drawKey} does not open until ${draw.opensAt}`
-              : `Draw ${drawKey} closed at ${draw.cutoffAt}`
-          );
-        }
+        Operator.#assertAcceptsBets(v, drawKey, at);
 
         const balance = v.balance(wallet);
         if (balance < stakeMinor) {
@@ -459,6 +482,172 @@ class Operator {
     });
   }
 
+  // ----------------------------------------------- T10-T11: free tickets
+
+  /**
+   * A promotional ticket the operator grants. One line separates this from a
+   * sold voucher (T3): that one debits the runner's float, because a runner
+   * paid for it, and this one debits promotional cost, because nobody did.
+   * That line is the entire cost of the campaign, and partitioning the expense
+   * by campaign is what lets each promotion report its own cost.
+   *
+   * The daily cap is a posting guard, not a monitoring alert: it is evaluated
+   * inside the write transaction, so a promotion with a bug stops issuing
+   * rather than draining the float.
+   */
+  issueFreeTicket({ id, at, campaignId, ticketId, playerId, faceMinor, memo }) {
+    assertAmount(faceMinor, 'faceMinor');
+    // Validate the player id here rather than at settlement: a malformed id
+    // that only fails when a free ticket wins fails at the worst moment.
+    parseAccount(accountId('PLAYER_WALLET', playerId));
+    const expense = accountId('PROMO_EXPENSE', campaignId);
+    const day = Operator.#dayOf(at);
+    const cap = this.promoDailyCapMinor;
+
+    return this.ledger.post({
+      id, kind: 'ISSUE_FREE_TICKET', at, memo,
+      entries: [
+        { account: expense, debit: faceMinor },
+        { account: 'PROMO_VOUCHERS', credit: faceMinor }
+      ]
+    }, {
+      precondition: (v) => {
+        if (v.getState('freeTicket', ticketId)) Operator.#fail(`Free ticket ${ticketId} already exists`);
+        if (cap === null) return;
+        const spent = (v.getState('promoDay', day) || { spentMinor: 0 }).spentMinor;
+        if (spent + faceMinor > cap) {
+          Operator.#fail(
+            `Promotional budget for ${day} is ${format(cap)}; ${format(spent)} already issued, ` +
+            `cannot add ${format(faceMinor)}`
+          );
+        }
+      },
+      onCommit: (s) => {
+        s.putState('freeTicket', ticketId, {
+          campaignId, playerId, faceMinor, issuedAt: at, redeemedBy: null, betId: null
+        });
+        const spent = (s.getState('promoDay', day) || { spentMinor: 0 }).spentMinor;
+        s.putState('promoDay', day, { spentMinor: spent + faceMinor });
+      }
+    });
+  }
+
+  /**
+   * The player plays the free ticket. It becomes a stake directly and the
+   * wallet is never touched, so a promotional grant cannot be withdrawn as
+   * cash - the oldest way a bonus turns into a cash-out scheme.
+   *
+   * From here it is a bet like any other: it settles under T5 at the same odds
+   * and the same payout, because it is one.
+   */
+  redeemFreeTicket({ id, at, ticketId, betId, drawKey, selection = null, memo }) {
+    return this.ledger.post({
+      id, kind: 'REDEEM_FREE_TICKET', at, memo,
+      entries: (v) => {
+        const ticket = v.getState('freeTicket', ticketId);
+        return [
+          { account: 'PROMO_VOUCHERS', debit: ticket.faceMinor },
+          { account: 'UNSETTLED_STAKES', credit: ticket.faceMinor }
+        ];
+      }
+    }, {
+      precondition: (v) => {
+        const ticket = v.getState('freeTicket', ticketId);
+        if (!ticket) Operator.#fail(`Unknown free ticket ${ticketId}`);
+        if (ticket.redeemedBy !== null) {
+          Operator.#fail(`Free ticket ${ticketId} was already played by ${ticket.redeemedBy}`);
+        }
+        if (v.getState('bet', betId)) Operator.#fail(`Bet ${betId} already exists`);
+        Operator.#assertAcceptsBets(v, drawKey, at);
+      },
+      onCommit: (s) => {
+        const ticket = s.getState('freeTicket', ticketId);
+        s.putState('freeTicket', ticketId, { ...ticket, redeemedBy: ticket.playerId, betId });
+        s.putState('bet', betId, {
+          playerId: ticket.playerId, drawKey, stakeMinor: ticket.faceMinor,
+          selection, settled: false, free: true, ticketId
+        });
+        const draw = s.getState('draw', drawKey);
+        s.putState('draw', drawKey, { ...draw, betIds: [...draw.betIds, betId] });
+      }
+    });
+  }
+
+  // -------------------------------------------------- T12-T13: the jackpot
+
+  /**
+   * A share of the draw's stakes accrues to the pot. Recognising it as a
+   * liability draw by draw is what forces the operator to hold assets against
+   * the figure on the screen: the pool sits inside the solvency invariant, so
+   * a pot growing faster than settlement funds halts float sales before it can
+   * be won. An advertised jackpot that exists only as a number is a debt with
+   * no record, and it is the classic way one of these collapses.
+   *
+   * Funded after settlement, so the contribution is a share of a final stakes
+   * figure rather than a running guess.
+   */
+  fundJackpot({ id, at, drawKey, amountMinor, memo }) {
+    assertAmount(amountMinor, 'amountMinor');
+
+    return this.ledger.post({
+      id, kind: 'FUND_JACKPOT', at, memo,
+      entries: [
+        { account: 'JACKPOT_CONTRIBUTION', debit: amountMinor },
+        { account: 'JACKPOT_POOL', credit: amountMinor }
+      ]
+    }, {
+      precondition: (v) => {
+        const draw = v.getState('draw', drawKey);
+        if (!draw) Operator.#fail(`Draw ${drawKey} was never opened`);
+        if (!draw.settled) Operator.#fail(`Draw ${drawKey} has not settled; the pot is funded from a final stakes figure`);
+        if (draw.jackpotFundedMinor !== undefined) {
+          Operator.#fail(`Draw ${drawKey} has already contributed ${format(draw.jackpotFundedMinor)} to the jackpot`);
+        }
+      },
+      onCommit: (s) => {
+        const draw = s.getState('draw', drawKey);
+        s.putState('draw', drawKey, { ...draw, jackpotFundedMinor: amountMinor });
+      }
+    });
+  }
+
+  /**
+   * The pot is won. No expense is recognised here - the cost was booked draw
+   * by draw as the pot was built, which stops one jackpot night from reading
+   * as a catastrophic loss and, more to the point, stops an unwon pot from
+   * being treated as profit in the months before it is claimed.
+   *
+   * Getting it out of the wallet is still T6 or T7, with the payout ceiling
+   * applying as it does to any other win.
+   */
+  payJackpot({ id, at, drawKey, playerId, amountMinor, memo }) {
+    assertAmount(amountMinor, 'amountMinor');
+    const wallet = accountId('PLAYER_WALLET', playerId);
+
+    return this.ledger.post({
+      id, kind: 'PAY_JACKPOT', at, memo,
+      entries: [
+        { account: 'JACKPOT_POOL', debit: amountMinor },
+        { account: wallet, credit: amountMinor }
+      ]
+    }, {
+      precondition: (v) => {
+        const draw = v.getState('draw', drawKey);
+        if (!draw) Operator.#fail(`Draw ${drawKey} was never opened`);
+        if (!draw.result) Operator.#fail(`Draw ${drawKey} has not been revealed yet`);
+        if (draw.jackpotPaid) Operator.#fail(`Draw ${drawKey} has already paid its jackpot`);
+        const pool = v.balance('JACKPOT_POOL');
+        if (pool < amountMinor) {
+          Operator.#fail(`Jackpot pool holds ${format(pool)}, cannot pay ${format(amountMinor)}`);
+        }
+      },
+      onCommit: (s) => {
+        const draw = s.getState('draw', drawKey);
+        s.putState('draw', drawKey, { ...draw, jackpotPaid: { playerId, amountMinor } });
+      }
+    });
+  }
+
   // ------------------------------------------------------------- statements
 
   /** What a runner needs to see at close: what they hold. */
@@ -470,6 +659,24 @@ class Operator {
   playerStatement(playerId) {
     const walletMinor = this.ledger.balance(accountId('PLAYER_WALLET', playerId));
     return { playerId, walletMinor, walletFormatted: format(walletMinor) };
+  }
+
+  /** What one campaign has cost, and what of it is still owed. */
+  promoStatement(campaignId) {
+    const spentMinor = this.ledger.balance(accountId('PROMO_EXPENSE', campaignId));
+    const outstandingMinor = this.ledger.balance('PROMO_VOUCHERS');
+    return {
+      campaignId, spentMinor, outstandingMinor,
+      spentFormatted: format(spentMinor),
+      outstandingFormatted: format(outstandingMinor)
+    };
+  }
+
+  /** What has been promised in the pot, and whether the operator can pay it. */
+  jackpotStatement() {
+    const poolMinor = this.ledger.balance('JACKPOT_POOL');
+    const { headroom } = this.ledger.solvency();
+    return { poolMinor, poolFormatted: format(poolMinor), funded: headroom >= 0 };
   }
 
   close() {

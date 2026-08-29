@@ -32,6 +32,20 @@ const ACCOUNTS = {
   GAMING_TAX_EXPENSE:  { class: EXPENSE,   partitioned: false, label: 'Gaming tax' },
 
   /**
+   * Promotions. Both liabilities are callable: a free ticket and an advertised
+   * jackpot are promises to pay, and a promise is owed whether or not the
+   * player paid for it. That is deliberate and it bites - issuing a free
+   * ticket credits a callable liability while debiting an expense, so it
+   * consumes headroom without adding an asset. An operator that promotes
+   * beyond its capital fails the solvency check before the promotion can be
+   * redeemed, which is the correct moment to find out.
+   */
+  PROMO_EXPENSE:        { class: EXPENSE,   partitioned: true,  label: 'Promotional cost' },
+  PROMO_VOUCHERS:       { class: LIABILITY, partitioned: false, callable: true, label: 'Unredeemed free tickets' },
+  JACKPOT_CONTRIBUTION: { class: EXPENSE,   partitioned: false, label: 'Jackpot contribution' },
+  JACKPOT_POOL:         { class: LIABILITY, partitioned: false, callable: true, label: 'Jackpot pool' },
+
+  /**
    * The operator's own money in the business. Not callable by anyone outside
    * it, which is exactly why it can absorb commission and fees without those
    * eating into what players and runners are owed.

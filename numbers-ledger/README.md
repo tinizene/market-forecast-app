@@ -25,7 +25,7 @@ directory as a module path. Pass a glob or a file.
 | `src/money.js` | Integer minor units. No floats anywhere near a balance |
 | `src/accounts.js` | Chart of accounts, classes, partitioning, what counts as callable |
 | `src/ledger.js` | Append-only double-entry journal, balances, invariants |
-| `src/operator.js` | The transaction types T0–T9 and the draw lifecycle, each with its guard |
+| `src/operator.js` | The transaction types T0–T13 and the draw lifecycle, each with its guard |
 | `src/draws.js` | Commit-reveal, result derivation, and the betting window |
 | `src/store/memory.js` | In-memory store — the default, for tests |
 | `src/store/sqlite.js` | Durable store on Node's built-in SQLite |
@@ -58,8 +58,21 @@ writes are serialised.
 | T7 | `cashPayout` | Bounded by the wallet; repays the runner in float |
 | T8 | `sellFloatBack` | Bounded by float held and funds on hand |
 | T9 | `accrueGamingTax` | — |
+| T10 | `issueFreeTicket` | One ticket per id; the daily promotional budget is a posting guard |
+| T11 | `redeemFreeTicket` | Single use; obeys the betting window exactly as T4 does |
+| T12 | `fundJackpot` | Only from a settled draw, and only once per draw |
+| T13 | `payJackpot` | Bounded by the pool; once per draw, never before the reveal |
 | D1 | `openDraw` | Commitment must be published before betting opens |
 | D2 | `revealDraw` | Seed must match the commitment; not before the draw time |
+
+T10–T13 are the promotional transactions. A free ticket differs from a sold
+voucher (T3) by exactly one line — that one debits the runner's float because a
+runner paid for it, this one debits promotional cost because nobody did — and
+that line is the whole cost of a campaign. Redeeming turns it straight into a
+stake without passing through the wallet, so a grant cannot be withdrawn as
+cash. Both `PROMO_VOUCHERS` and `JACKPOT_POOL` are **callable**, which is the
+point: promising more than the operator holds fails the solvency check before
+the promise can be redeemed.
 
 ## What the tests actually prove
 
@@ -68,7 +81,10 @@ writes are serialised.
   expenses. Trial balance alone would not catch an expense booked as a
   liability; this does.
 - **Solvency.** Settlement funds cover every callable liability — agent float,
-  player wallets, unredeemed vouchers, unsettled stakes.
+  player wallets, unredeemed vouchers, unsettled stakes, unredeemed free
+  tickets and the jackpot pool. A test issues promotions past the operator's
+  capital and watches the check go red while the books still balance:
+  insolvency is not a bookkeeping error (failure case F16).
 - **Idempotency.** A replayed transaction id is a no-op, not a second payment.
   A retried mobile-money callback cannot pay a winner twice.
 - **Guards hold under failure.** Every rejected operation leaves the trial
@@ -85,6 +101,12 @@ writes are serialised.
   float that only covers one of them: exactly one wins, the other seven fail
   the guard, and the runner never goes negative. Same for double-redeeming a
   voucher.
+- **A free bet is a bet.** It settles under the same rules and pays the same
+  prize as a paid one, revenue is grossed up by the free stake against the
+  expense recognised at issue, and the promotion nets to its true cost rather
+  than its face. The daily budget stops issuance rather than draining the
+  float, and a rejected issue writes neither the entry, the ticket, nor the
+  day's counter.
 
 ## The draw authority
 
@@ -153,6 +175,11 @@ is worth weighing.
 
 No HTTP, no auth, no mobile money. Those come next, and none of them are worth
 building on a ledger that does not balance.
+
+The promotional budget cap is a constructor option rather than a stored,
+auditable policy. That is enough for the guard to fail closed, which is the
+property that matters, but a licensed operation will want the cap itself to be
+an append-only event with a name against it.
 
 The ledger still holds no bet types of its own: a selection is an opaque blob it
 stores and hands back to the evaluator. That keeps the rules in one place

@@ -2,7 +2,7 @@
 
 ## What this project is
 
-A financial education platform with a free foundational track and paid vertical tracks (Forex first, then Crypto and Stocks). Content is written as markdown lessons, then compiled into JS content files for the Scere Training web app.
+A financial education platform with a free foundational track and three paid vertical tracks (Forex, Crypto, Stocks & ETFs). All four are written and live. Lessons are authored as prose, built into JSON under `data/course/`, and served only through `/api/course`, which checks entitlement — see **How content reaches the app** below.
 
 **Live app:** market-forecast-app-ovoo.vercel.app (auto-deploys from `main`)
 
@@ -10,9 +10,9 @@ A financial education platform with a free foundational track and paid vertical 
 
 ## Authoritative documents — read these before writing any lesson
 
-1. **`Forex_Course_Style_Guide.md`** — lesson structure, markdown block conventions, content sourcing standard, citation verification protocol, translation workflow. This governs everything.
-2. **`Forex_Track_Roadmap.md`** — locked chapter/lesson structure for the Forex track, plus the planned Advanced Course. Update lesson status here as work completes.
-3. **`Forex_Course_Glossary.md`** — every locked term in EN/FR/PT/SW. Check before defining any term; never redefine an existing one.
+1. **`Forex_Course_Style_Guide.md`** — lesson structure, markdown block conventions, content sourcing standard, citation verification protocol, translation workflow. This governs everything, on every track, not only Forex.
+2. **The roadmaps** — locked chapter/lesson structure, and where lesson status is recorded as work completes: `Forex_Track_Roadmap.md` (which also holds the planned Advanced Course), `Crypto_Track_Roadmap.md`, `Stocks_Track_Roadmap.md`.
+3. **The glossaries** — every locked term. Check before defining any term; never redefine an existing one. `Forex_Course_Glossary.md` holds Foundations, Forex and Crypto terms in EN/FR/PT/SW; the Stocks & ETFs terms live in `Stock_Market_Terms_Glossary.md` (section 11), organised by category rather than in the EN/FR/PT/SW block format.
 
 ---
 
@@ -60,6 +60,29 @@ Each lesson is a standalone `.md` file:
 
 ---
 
+## How content reaches the app
+
+Run these commands from the **repo root**, not from `course/`.
+
+```
+course/<track>/NN-M-slug.en.md         markdown master, where one exists
+data/course/src/<track>-content.js     authoring bundle - window.SCERE_<TRACK>_CONTENT
+       |   node scripts/build-course-data.js
+       v
+data/course/<track>.json               generated; SVGs inlined into their image blocks
+       |   /api/course?fn=index  and  ?fn=lesson&id=<id>
+       v
+learn.html / track.html / lesson.html  rendered by learn.js
+```
+
+- **`data/course/src/*-content.js` is the file you edit.** Lesson bodies no longer ship as public static scripts. `middleware.js` returns 404 for `/data/course/*`, which covers the generated JSON and the authoring bundles alike, and `api/course.js` is the only route to a lesson body: the syllabus (`fn=index`) is public metadata, a body (`fn=lesson`) needs entitlement on a paid track, per the `free` flag the build writes.
+- **Re-run `node scripts/build-course-data.js` after any content change, and commit the generated JSON** — that is what deploys. Skip it and the app keeps serving the old lesson.
+- **Diagrams are inlined by that build.** The `SCERE_*_SVGS` maps exist only in the authoring bundles, so the browser never fetches an SVG file and a paid diagram cannot leak while its prose is gated. Some maps are themselves generated — `scripts/build-crypto-svgs.js` and `scripts/build-stocks-svgs.js` write `data/course/src/crypto-svgs-ch456.js` and `data/course/src/stocks-svgs.js`. Edit the generator, not the output.
+- **`renderFoundationTrack()` / `renderForexTrack()` / `renderCryptoTrack()` in `learn.js` are dead paths.** They are never reached: on `learn.html` the dispatcher returns at `renderCourseIndex()`, and the `window.SCERE_*_CONTENT` globals they read are no longer loaded by any page (the one surviving legacy mount, `#cryptoRoot`, is hidden and empty). The live path is `renderCourseIndex()`, `renderTrackPage()` and `renderSingleLesson()`, all fetching `/api/course`. The root-level `forex-content.js` / `foundation-content.js` / `crypto-content.js` files no longer exist.
+- **`course/<track>/` is not complete coverage.** Foundations (10), Forex (26) and Crypto Chapters 1-3 (15) have `.en.md` masters; Crypto Chapters 4-6 and the whole Stocks & ETFs track were authored straight into the bundles and have no markdown. The bundle is what ships either way — just don't read a track's markdown folder as the whole track.
+
+---
+
 ## Per-lesson checklist
 
 1. Read the roadmap entry for the lesson.
@@ -67,11 +90,12 @@ Each lesson is a standalone `.md` file:
 3. Verify every citation per the protocol above.
 4. Draft the lesson in the standard format.
 5. Create one supporting SVG diagram (light theme for markdown; a dark variant is needed for the app).
-6. Check the glossary for existing terms; add only genuinely new ones. Run the duplicate check:
+6. Check the glossary for existing terms; add only genuinely new ones — Foundations, Forex and Crypto terms go in `Forex_Course_Glossary.md`, Stocks & ETFs terms in `Stock_Market_Terms_Glossary.md`. Run the duplicate check:
    `grep "^### " Forex_Course_Glossary.md | sort | uniq -d`
    (Only `### Broker` and `### Central Bank` are intentional documented duplicates.)
-7. Update lesson status in the roadmap.
-8. Report honestly in the handoff: what was verified and how, what came up empty, and where a claim is weaker than the rest.
+7. Compile the lesson into `data/course/src/<track>-content.js`, then rebuild and commit the served JSON: `node scripts/build-course-data.js` from the repo root. Nothing you write is live until that JSON changes.
+8. Update lesson status in the roadmap.
+9. Report honestly in the handoff: what was verified and how, what came up empty, and where a claim is weaker than the rest.
 
 ---
 
@@ -145,7 +169,8 @@ Translating a track means writing `data/course/<track>.<lang>.json` with the sam
 **Not started:** Advanced Forex Course. Lesson-content translations beyond the English master (the *interface* is translated — see Translations above).
 
 **Known outstanding work:**
-- Forex and Foundations lessons are compiled into `forex-content.js` / `foundation-content.js` / `crypto-content.js` at the repo **root** (the live, deployed location) and rendered by `learn.js` via `renderForexTrack()` / `renderFoundationTrack()`. To add a lesson: write the markdown in `course/forex/`, verify citations/arithmetic, create a light SVG in `course/images/`, then compile the lesson into a block object appended to `window.SCERE_FOREX_CONTENT` in root `forex-content.js` and add its dark-ported inline SVG to `window.SCERE_FOREX_SVGS` in the same file. (The old `course/scere-integration/` staging copies were removed once promoted to root — root is now the single source of truth.)
+- Crypto Chapters 4-6 and the Stocks & ETFs track have no markdown masters under `course/` — they exist only as authoring bundles. Back-filling them is optional; what matters is that nobody treats a track's markdown folder as the full track.
+- `Stock_Market_Terms_Glossary.md` is organised by category rather than the EN/FR/PT/SW block format the main glossary uses, and that track is not yet scheduled for translation.
 - Chapter 6 of the Forex track ties into a business model: students who can't run the professional trade-thesis framework themselves can buy completed theses from the platform. Teach the framework completely and honestly; mention the service plainly once, at the end of Lesson 4 only.
 
 ---

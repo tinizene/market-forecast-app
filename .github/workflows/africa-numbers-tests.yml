@@ -1,6 +1,6 @@
-name: Harlem Numbers tests
+name: Africa Numbers tests
 
-# The prototype in harlem-numbers/ is excluded from the Vercel deployment
+# The prototype in africa-numbers/ is excluded from the Vercel deployment
 # (see .vercelignore), so nothing else in this repo exercises it. This runs its
 # unit tests on any pull request or push that touches it.
 #
@@ -11,27 +11,27 @@ name: Harlem Numbers tests
 on:
   pull_request:
     paths:
-      - 'harlem-numbers/**'
-      - '.github/workflows/harlem-numbers-tests.yml'
+      - 'africa-numbers/**'
+      - '.github/workflows/africa-numbers-tests.yml'
   push:
     branches: [main]
     paths:
-      - 'harlem-numbers/**'
-      - '.github/workflows/harlem-numbers-tests.yml'
+      - 'africa-numbers/**'
+      - '.github/workflows/africa-numbers-tests.yml'
 
 permissions:
   contents: read
 
 # A new push supersedes an in-flight run on the same branch.
 concurrency:
-  group: harlem-numbers-tests-${{ github.ref }}
+  group: africa-numbers-tests-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   test:
     # Names the check on the pull request. Without it both workflows post a
     # check called "test" and a red one does not say which project broke.
-    name: harlem-numbers
+    name: africa-numbers
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -43,9 +43,9 @@ jobs:
           node-version: '22'
 
       - name: Run unit tests
-        run: node --test harlem-numbers/game.test.js
+        run: node --test africa-numbers/game.test.js
 
       # Catches a build that silently stops inlining game.js, which would
       # publish a page with a dead <script src> and no working app.
       - name: Check the single-file build
-        run: node harlem-numbers/build-artifact.mjs "${RUNNER_TEMP}/dist-artifact.html"
+        run: node africa-numbers/build-artifact.mjs "${RUNNER_TEMP}/dist-artifact.html"

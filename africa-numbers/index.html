@@ -8,8 +8,8 @@
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#fdf6e3" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0d0d0d" media="(prefers-color-scheme: dark)">
-  <meta name="description" content="Harlem Numbers - a play-money demo of a daily three-digit numbers game.">
-  <title>Harlem Numbers - Daily Play</title>
+  <meta name="description" content="Africa Numbers - a play-money demo of a daily three-digit numbers game.">
+  <title>Africa Numbers - Daily Play</title>
   <style>
     /* ---------------------------------------------------------------- theme
        Light palette lives on bare :root. Dark is defined twice: once behind
@@ -679,7 +679,7 @@
   <div class="app">
     <header class="top-bar">
       <button class="icon-btn" id="backBtn" type="button" data-action="back" hidden aria-label="Back to home">&larr;</button>
-      <h1 class="top-bar-title" id="screenTitle">Harlem<span class="accent">Numbers</span></h1>
+      <h1 class="top-bar-title" id="screenTitle">Africa<span class="accent">Numbers</span></h1>
       <button class="icon-btn" id="themeToggle" type="button" data-action="toggle-theme" aria-pressed="false" aria-label="Switch to dark mode">🌙</button>
     </header>
 
@@ -712,7 +712,7 @@
         </div>
 
         <section>
-          <h2 class="section-title"><span class="icon" aria-hidden="true">🔥</span> Recent hits on the block</h2>
+          <h2 class="section-title"><span class="icon" aria-hidden="true">🔥</span> Recent winners</h2>
           <ul class="feed-list" id="homeFeed"></ul>
         </section>
 
@@ -752,9 +752,9 @@
         </div>
       </section>
 
-      <!-- THE BLOCK -->
-      <section id="screen-block" class="screen" role="tabpanel" aria-labelledby="tab-block" tabindex="-1">
-        <ul class="feed-list" id="blockFeed"></ul>
+      <!-- WINNERS -->
+      <section id="screen-winners" class="screen" role="tabpanel" aria-labelledby="tab-winners" tabindex="-1">
+        <ul class="feed-list" id="winnersFeed"></ul>
         <p class="fine-print">Community posts are sample content in this demo.</p>
       </section>
 
@@ -786,8 +786,8 @@
     <button class="nav-item" id="tab-slips" type="button" role="tab" data-action="go" data-screen="slips" aria-selected="false" aria-controls="screen-slips">
       <span class="nav-icon" aria-hidden="true">🎫</span> My Slips
     </button>
-    <button class="nav-item" id="tab-block" type="button" role="tab" data-action="go" data-screen="block" aria-selected="false" aria-controls="screen-block">
-      <span class="nav-icon" aria-hidden="true">🔥</span> The Block
+    <button class="nav-item" id="tab-winners" type="button" role="tab" data-action="go" data-screen="winners" aria-selected="false" aria-controls="screen-winners">
+      <span class="nav-icon" aria-hidden="true">🔥</span> Winners
     </button>
     <button class="nav-item" id="tab-wallet" type="button" role="tab" data-action="go" data-screen="wallet" aria-selected="false" aria-controls="screen-wallet">
       <span class="nav-icon" aria-hidden="true">💰</span> Wallet
@@ -801,9 +801,11 @@
   (function () {
     'use strict';
 
-    var G = window.HNGame;
+    var G = window.ANGame;
 
     // ------------------------------------------------------------- constants
+    // The 'hn:' prefix predates the rename and stays: it is invisible to the
+    // player, and changing a storage key silently resets everyone's demo.
     var STORAGE_KEY = 'hn:v2:state';
     var THEME_KEY = 'hn:v2:theme';
     var STARTING_BALANCE_CENTS = 125000;
@@ -872,9 +874,9 @@
 
     // ------------------------------------------------------------------ data
     var FEED_ITEMS = [
-      { avatar: 'TJ', tokens: [['t', 'Someone on 125th just hit '], ['h', '472'], ['t', ' for '], ['h', '$540']], meta: '2 min ago · Harlem' },
-      { avatar: 'MK', tokens: [['t', 'Marcus from Lenox Ave won '], ['h', '$1,080'], ['t', ' on a box play']], meta: '15 min ago · Harlem' },
-      { avatar: 'DR', tokens: [['t', 'Dream number "snake" came through – '], ['h', '008'], ['t', ' straight!']], meta: '1 hour ago · Washington Heights' }
+      { avatar: 'TJ', tokens: [['t', 'Someone on Broad Street just hit '], ['h', '472'], ['t', ' for '], ['h', '$540']], meta: '2 min ago · Monrovia' },
+      { avatar: 'MK', tokens: [['t', 'Musu from Paynesville won '], ['h', '$1,080'], ['t', ' on a box play']], meta: '15 min ago · Monrovia' },
+      { avatar: 'DR', tokens: [['t', 'Dream number "snake" came through – '], ['h', '008'], ['t', ' straight!']], meta: '1 hour ago · Sinkor' }
     ];
 
     var DREAM_BOOK = ['Snake', 'Money', 'Water', 'Fire', 'Baby', 'Ring'];
@@ -975,8 +977,8 @@
     }
 
     // ------------------------------------------------------------ navigation
-    var SCREENS = ['home', 'bet', 'slips', 'block', 'wallet'];
-    var TITLES = { home: null, bet: 'Place a Bet', slips: 'My Slips', block: 'The Block', wallet: 'Wallet' };
+    var SCREENS = ['home', 'bet', 'slips', 'winners', 'wallet'];
+    var TITLES = { home: null, bet: 'Place a Bet', slips: 'My Slips', winners: 'Winners', wallet: 'Wallet' };
     var currentScreen = 'home';
     var booted = false;
 
@@ -1002,7 +1004,7 @@
         title.textContent = TITLES[id];
       } else {
         replaceChildren(title, [
-          document.createTextNode('Harlem'),
+          document.createTextNode('Africa'),
           el('span', { class: 'accent', text: 'Numbers' })
         ]);
       }
@@ -1209,8 +1211,13 @@
       var expected = G.expectedReturnCents(draft.type, draft.stakeCents);
 
       $('payoutValue').textContent = fmt(payout.netCents);
-      $('payoutSub').textContent = fmt(payout.grossCents) + ' gross − ' + fmt(payout.cutCents) +
-        ' runner cut (' + G.RUNNER_CUT_PCT + '%)';
+      // With commission paid out of gross gaming revenue there is nothing to
+      // deduct, and "$500.00 gross − $0.00 runner cut (0%)" would be a worse
+      // line than saying so plainly. The branch stays for a reinstated cut.
+      $('payoutSub').textContent = payout.cutCents > 0
+        ? fmt(payout.grossCents) + ' gross − ' + fmt(payout.cutCents) +
+          ' runner cut (' + G.RUNNER_CUT_PCT + '%)'
+        : 'Paid in full - nothing is deducted from a win';
       $('payoutOdds').textContent = spec.label + ' hits ' + chance.wins + ' times in 1,000 draws · ' +
         'average return ' + fmt(expected) + ' per ' + fmt(draft.stakeCents) + ' staked';
 
@@ -1277,7 +1284,7 @@
     }
 
     function renderFeed() {
-      [$('homeFeed'), $('blockFeed')].forEach(function (list) {
+      [$('homeFeed'), $('winnersFeed')].forEach(function (list) {
         replaceChildren(list, FEED_ITEMS.map(function (item) {
           var text = el('p', { class: 'feed-text' });
           item.tokens.forEach(function (token) {

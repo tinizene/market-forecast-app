@@ -3,7 +3,7 @@
  * document skeleton (Claude Artifacts): inline game.js, drop the <html>/<head>/
  * <body> wrapper and the head-only meta tags, and lead with the <title>.
  *
- * Usage: node harlem-numbers/build-artifact.mjs [outfile]
+ * Usage: node africa-numbers/build-artifact.mjs [outfile]
  *
  * The app itself is unchanged - this exists so the published page is generated
  * from index.html rather than forked from it.
@@ -28,5 +28,5 @@ const inlined = body.replace(
 
 if (inlined.includes('<script src=')) throw new Error('an external script survived inlining');
 
-writeFileSync(out, ['<title>Harlem Numbers</title>', style, inlined, ''].join('\n'));
+writeFileSync(out, ['<title>Africa Numbers</title>', style, inlined, ''].join('\n'));
 console.log(`wrote ${out}`);

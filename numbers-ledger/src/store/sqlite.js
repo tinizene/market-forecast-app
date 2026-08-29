@@ -77,11 +77,17 @@ class SqliteStore {
    */
   constructor(filename, { busyTimeoutMs = 5000 } = {}) {
     this.#db = new DatabaseSync(filename);
+    // busy_timeout FIRST, and this order is load-bearing. Setting the journal
+    // mode takes a lock of its own, so opening a second connection while
+    // another process is mid-write threw 'database is locked' from the
+    // constructor - before the timeout that exists to wait for exactly that
+    // was in force. It surfaced as a worker dying in the concurrency test
+    // roughly half the time.
+    this.#db.exec(`PRAGMA busy_timeout = ${Number(busyTimeoutMs)}`);
     // WAL lets readers work while a writer holds the lock; busy_timeout makes a
     // contending writer wait rather than fail instantly.
     this.#db.exec('PRAGMA journal_mode = WAL');
     this.#db.exec('PRAGMA foreign_keys = ON');
-    this.#db.exec(`PRAGMA busy_timeout = ${Number(busyTimeoutMs)}`);
     this.#db.exec(SCHEMA);
     this.#prepare();
   }

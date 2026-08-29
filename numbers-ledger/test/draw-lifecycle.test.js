@@ -6,7 +6,7 @@ const draws = require('../src/draws.js');
 
 // The prototype's real payout and hit rules, so settlement is exercised against
 // the game as shipped rather than a stand-in written to agree with itself.
-const game = require('../../harlem-numbers/game.js');
+const game = require('../../africa-numbers/game.js');
 
 const KEY = '2026-08-27';
 const COMMITTED_AT = '2026-08-26T12:00:00Z';
@@ -52,7 +52,7 @@ test('the happy path: commit, bet, cutoff, reveal, settle, verify', () => {
   assert.equal(settled.winners, 1);
   assert.equal(settled.betsSettled, 2);
   assert.equal(settled.totalStakes, 2_00);
-  assert.equal(settled.totalPayout, 540_00, 'a $1 straight pays $540 net of the cut');
+  assert.equal(settled.totalPayout, 500_00, 'a $1 straight pays $500, with nothing deducted');
 
   const receipt = op.drawReceipt(KEY);
   assert.equal(receipt.verification.ok, true, 'anyone can check the number afterwards');
@@ -179,6 +179,6 @@ test('every bet type settles by the game rules against the revealed number', () 
   const settled = op.settleDraw({ id: 'st', at: '2026-08-27T19:01:00Z', drawKey: KEY, evaluate: byGameRules });
 
   assert.equal(settled.winners, 2, 'the straight and the front pair both hit');
-  assert.equal(settled.totalPayout, 540_00 + 45_00);
+  assert.equal(settled.totalPayout, 500_00 + 41_00, 'straight $500 plus front pair $41');
   assert.equal(op.ledger.trialBalance().balanced, true);
 });

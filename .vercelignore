@@ -3,11 +3,11 @@
 # Vercel serves this repo's root statically (no build step, no outputDirectory),
 # so any directory committed here is otherwise reachable on the live domain.
 #
-# harlem-numbers is a self-contained play-money prototype, unrelated to the
+# africa-numbers is a self-contained play-money prototype, unrelated to the
 # Scere Training course and not linked from it. Kept out of the deployment so a
 # gambling-themed demo is not served from the course's domain. Run it locally
-# by opening harlem-numbers/index.html.
-harlem-numbers
+# by opening africa-numbers/index.html.
+africa-numbers
 
 # numbers-ledger is server-side code for a separate product. It is not part of
 # any deployed site and must not be reachable as static files.

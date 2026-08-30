@@ -46,6 +46,94 @@ class Operator {
   }
 
   /**
+   * Player protection is off until it is switched on.
+   *
+   * No policy posted means no check runs: an operator that has not set limits
+   * is not silently subject to invented ones. Turning it on is an event with a
+   * timestamp against it, so "when did you enable this" has an answer that is
+   * not somebody's memory of a deployment.
+   *
+   * @returns {null|{dailyStakeMinor: number|null, dailyLossMinor: number|null}}
+   */
+  static #limitsFor(v, playerId) {
+    const override = v.getState('playerLimit', playerId);
+    const global = v.getState('protection', 'global');
+    if (!override && !global) return null;
+    const pick = (field) => {
+      if (override && override[field] !== null && override[field] !== undefined) return override[field];
+      return global ? global[field] : null;
+    };
+    return { dailyStakeMinor: pick('dailyStakeMinor'), dailyLossMinor: pick('dailyLossMinor') };
+  }
+
+  /**
+   * Exclusion is computed, never stored as a flag. A cooling-off period lapses
+   * on its own: a player who asked for a week off should not have to ask to be
+   * let back in, and an operator should not be able to forget to.
+   */
+  static #excludedAt(record, at) {
+    if (!record || !record.excluded) return false;
+    if (record.until === null) return true;
+    return Date.parse(at) < Date.parse(record.until);
+  }
+
+  static #assertNotExcluded(v, playerId, at) {
+    const record = v.getState('player', playerId);
+    if (!Operator.#excludedAt(record, at)) return;
+    Operator.#fail(
+      record.until === null
+        ? `Player ${playerId} is self-excluded`
+        : `Player ${playerId} is self-excluded until ${record.until}`
+    );
+  }
+
+  /**
+   * The daily caps, checked against the day the money moves.
+   *
+   * `countsAsLoss` is false for a free ticket: it adds to the day's play, so
+   * it counts against a stake cap, but it cannot lose the player money, so it
+   * is not in the loss figure.
+   */
+  static #assertWithinLimits(v, playerId, at, stakeMinor, countsAsLoss) {
+    const limits = Operator.#limitsFor(v, playerId);
+    if (!limits) return;
+    const day = Operator.#dayOf(at);
+    const bucket = v.getState('playerDay', `${playerId}:${day}`) ||
+      { stakedMinor: 0, paidStakedMinor: 0, wonMinor: 0 };
+
+    if (limits.dailyStakeMinor !== null && bucket.stakedMinor + stakeMinor > limits.dailyStakeMinor) {
+      Operator.#fail(
+        `Player ${playerId} has staked ${format(bucket.stakedMinor)} of a ${format(limits.dailyStakeMinor)} ` +
+        `daily limit on ${day}, cannot stake ${format(stakeMinor)}`
+      );
+    }
+
+    if (countsAsLoss && limits.dailyLossMinor !== null) {
+      // Net of what the day has already paid back. A win credited tomorrow
+      // does not restore today's headroom - the conservative direction, and
+      // the one a player asking for a limit is asking for.
+      const netLoss = bucket.paidStakedMinor - bucket.wonMinor + stakeMinor;
+      if (netLoss > limits.dailyLossMinor) {
+        Operator.#fail(
+          `Player ${playerId} would be down ${format(netLoss)} against a ${format(limits.dailyLossMinor)} ` +
+          `daily loss limit on ${day}`
+        );
+      }
+    }
+  }
+
+  /** Add to a player's day bucket. Every field is a running total for that day. */
+  static #recordPlay(s, playerId, at, { stakedMinor = 0, paidStakedMinor = 0, wonMinor = 0 }) {
+    const key = `${playerId}:${Operator.#dayOf(at)}`;
+    const bucket = s.getState('playerDay', key) || { stakedMinor: 0, paidStakedMinor: 0, wonMinor: 0 };
+    s.putState('playerDay', key, {
+      stakedMinor: bucket.stakedMinor + stakedMinor,
+      paidStakedMinor: bucket.paidStakedMinor + paidStakedMinor,
+      wonMinor: bucket.wonMinor + wonMinor
+    });
+  }
+
+  /**
    * A suspended runner cannot take money from players.
    *
    * Note what is *not* guarded: paying a winner (T7) and selling float back
@@ -151,6 +239,8 @@ class Operator {
     }, {
       precondition: (v) => {
         Operator.#assertNotSuspended(v, agentId);
+        // Money in is refused for an excluded player; money out never is.
+        Operator.#assertNotExcluded(v, playerId, at);
         const available = v.balance(float);
         if (available < amountMinor) {
           Operator.#fail(`Agent ${agentId} has ${format(available)} float, cannot sell ${format(amountMinor)}`);
@@ -323,12 +413,16 @@ class Operator {
         // Both checks run against the server-supplied `at`, never a device clock.
         Operator.#assertAcceptsBets(v, drawKey, at);
 
+        Operator.#assertNotExcluded(v, playerId, at);
+        Operator.#assertWithinLimits(v, playerId, at, stakeMinor, true);
+
         const balance = v.balance(wallet);
         if (balance < stakeMinor) {
           Operator.#fail(`Player ${playerId} has ${format(balance)}, cannot stake ${format(stakeMinor)}`);
         }
       },
       onCommit: (s) => {
+        Operator.#recordPlay(s, playerId, at, { stakedMinor: stakeMinor, paidStakedMinor: stakeMinor });
         s.putState('bet', betId, { playerId, drawKey, stakeMinor, selection, settled: false });
         const draw = s.getState('draw', drawKey);
         s.putState('draw', drawKey, { ...draw, betIds: [...draw.betIds, betId] });
@@ -351,6 +445,7 @@ class Operator {
     }
 
     let summary = { totalStakes: 0, totalPayout: 0, betsSettled: 0, winners: 0, result: null };
+    let paidByPlayer = {};
 
     const result = this.ledger.post({
       id, kind: 'SETTLE_DRAW', at, memo,
@@ -372,6 +467,7 @@ class Operator {
         // whoever called it.
         let totalPayout = 0;
         let winners = 0;
+        paidByPlayer = {};
         for (const betId of open) {
           const bet = v.getState('bet', betId);
           const payout = evaluate({ betId, ...bet }, draw.result) || 0;
@@ -381,6 +477,7 @@ class Operator {
           totalPayout += payout;
           entries.push({ account: 'PRIZE_PAYOUTS', debit: payout });
           entries.push({ account: accountId('PLAYER_WALLET', bet.playerId), credit: payout });
+          paidByPlayer[bet.playerId] = (paidByPlayer[bet.playerId] || 0) + payout;
         }
 
         summary = { totalStakes, totalPayout, betsSettled: open.length, winners, result: draw.result };
@@ -399,6 +496,11 @@ class Operator {
         for (const betId of draw.betIds) {
           const bet = s.getState('bet', betId);
           if (!bet.settled) s.putState('bet', betId, { ...bet, settled: true });
+        }
+        // Winnings land in the day they are credited, so a loss limit is net
+        // of what the player got back rather than gross of what they staked.
+        for (const [playerId, wonMinor] of Object.entries(paidByPlayer)) {
+          Operator.#recordPlay(s, playerId, at, { wonMinor });
         }
         s.putState('draw', drawKey, { ...draw, settled: true });
       }
@@ -586,9 +688,14 @@ class Operator {
         }
         if (v.getState('bet', betId)) Operator.#fail(`Bet ${betId} already exists`);
         Operator.#assertAcceptsBets(v, drawKey, at);
+        // A free ticket is still play: it counts against a stake limit. It
+        // cannot lose the player money, so it is not in the loss figure.
+        Operator.#assertNotExcluded(v, ticket.playerId, at);
+        Operator.#assertWithinLimits(v, ticket.playerId, at, ticket.faceMinor, false);
       },
       onCommit: (s) => {
         const ticket = s.getState('freeTicket', ticketId);
+        Operator.#recordPlay(s, ticket.playerId, at, { stakedMinor: ticket.faceMinor });
         s.putState('freeTicket', ticketId, { ...ticket, redeemedBy: ticket.playerId, betId });
         s.putState('bet', betId, {
           playerId: ticket.playerId, drawKey, stakeMinor: ticket.faceMinor,
@@ -673,6 +780,127 @@ class Operator {
         s.putState('draw', drawKey, { ...draw, jackpotPaid: { playerId, amountMinor } });
       }
     });
+  }
+
+  // ----------------------------------------------------- player protection
+
+  /**
+   * Switch protection on. Nothing below is enforced until this is posted:
+   * limits are policy the operator sets, not defaults the ledger invents.
+   *
+   * An event rather than configuration, because "when were limits introduced,
+   * and at what level" is a question with a regulatory answer, and a constant
+   * in a deployment cannot answer it. Posting again replaces the policy, and
+   * both versions stay in the log.
+   *
+   * @param {number|null} dailyStakeMinor  most a player may stake in a UTC day
+   * @param {number|null} dailyLossMinor   most a player may be down in a day,
+   *        net of that day's winnings. Either may be null for "no limit".
+   */
+  setProtection({ id, at, dailyStakeMinor = null, dailyLossMinor = null, memo }) {
+    for (const [label, value] of [['dailyStakeMinor', dailyStakeMinor], ['dailyLossMinor', dailyLossMinor]]) {
+      if (value !== null) assertAmount(value, label);
+    }
+    if (dailyStakeMinor === null && dailyLossMinor === null) {
+      Operator.#fail('setProtection needs at least one limit; use clearProtection to switch it off');
+    }
+
+    return this.ledger.event({
+      id, kind: 'PROTECTION_SET', at, memo, data: { dailyStakeMinor, dailyLossMinor }
+    }, {
+      onCommit: (s) => s.putState('protection', 'global', { dailyStakeMinor, dailyLossMinor, since: at })
+    });
+  }
+
+  /** Switch the global limits off again. Per-player limits are untouched. */
+  clearProtection({ id, at, memo }) {
+    return this.ledger.event({ id, kind: 'PROTECTION_CLEARED', at, memo, data: {} }, {
+      precondition: (v) => {
+        if (!v.getState('protection', 'global')) Operator.#fail('No protection policy is in force');
+      },
+      onCommit: (s) => s.putState('protection', 'global', null)
+    });
+  }
+
+  /**
+   * A limit for one player, tighter or looser than the house policy. A player
+   * who asks for their own limit gets one whether or not the operator has set
+   * a global policy - which is the point of asking.
+   *
+   * A null field inherits the global policy rather than removing the limit.
+   */
+  setPlayerLimit({ id, at, playerId, dailyStakeMinor = null, dailyLossMinor = null, memo }) {
+    parseAccount(accountId('PLAYER_WALLET', playerId));
+    for (const [label, value] of [['dailyStakeMinor', dailyStakeMinor], ['dailyLossMinor', dailyLossMinor]]) {
+      if (value !== null) assertAmount(value, label);
+    }
+
+    return this.ledger.event({
+      id, kind: 'PLAYER_LIMIT_SET', at, memo, data: { playerId, dailyStakeMinor, dailyLossMinor }
+    }, {
+      onCommit: (s) => s.putState('playerLimit', playerId, { dailyStakeMinor, dailyLossMinor, since: at })
+    });
+  }
+
+  /**
+   * Self-exclusion, and cooling-off, which is the same thing with an end date.
+   *
+   * Refuses staking and top-ups. It does *not* refuse a withdrawal or a
+   * payout: a player who has stopped must still be able to take out what they
+   * are owed, and a protection measure that traps money is not one.
+   *
+   * @param {string|null} until ISO timestamp for a cooling-off period, or null
+   *        for indefinite exclusion, which only a reinstatement lifts.
+   */
+  excludePlayer({ id, at, playerId, until = null, reason = null, memo }) {
+    parseAccount(accountId('PLAYER_WALLET', playerId));
+    if (until !== null) {
+      if (Number.isNaN(Date.parse(until))) Operator.#fail(`until must be an ISO timestamp, got ${until}`);
+      if (Date.parse(until) <= Date.parse(at)) Operator.#fail('A cooling-off period must end in the future');
+    }
+
+    return this.ledger.event({
+      id, kind: 'PLAYER_EXCLUDED', at, memo, data: { playerId, until, reason }
+    }, {
+      precondition: (v) => {
+        if (Operator.#excludedAt(v.getState('player', playerId), at)) {
+          Operator.#fail(`Player ${playerId} is already excluded`);
+        }
+      },
+      onCommit: (s) => s.putState('player', playerId, { excluded: true, until, reason, since: at })
+    });
+  }
+
+  /**
+   * Lift an indefinite exclusion. A cooling-off period lapses on its own and
+   * needs no call - and deliberately cannot be cut short by one, because an
+   * exclusion a player can reverse in the moment they want to play is not a
+   * protection.
+   */
+  reinstatePlayer({ id, at, playerId, memo }) {
+    return this.ledger.event({ id, kind: 'PLAYER_REINSTATED', at, memo, data: { playerId } }, {
+      precondition: (v) => {
+        const record = v.getState('player', playerId);
+        if (!Operator.#excludedAt(record, at)) Operator.#fail(`Player ${playerId} is not excluded`);
+        if (record.until !== null) {
+          Operator.#fail(`Player ${playerId} is in a cooling-off period until ${record.until}, which cannot be cut short`);
+        }
+      },
+      onCommit: (s) => s.putState('player', playerId, { excluded: false, until: null, reason: null, since: at })
+    });
+  }
+
+  /** Whether protection is on at all, and at what level. For the operator's own screen. */
+  protectionStatus() {
+    const global = this.ledger.readState('protection', 'global');
+    return {
+      active: Boolean(global),
+      dailyStakeMinor: global ? global.dailyStakeMinor : null,
+      dailyLossMinor: global ? global.dailyLossMinor : null,
+      since: global ? global.since : null,
+      playerLimits: this.ledger.listState('playerLimit').filter(([, v]) => v).length,
+      excluded: this.ledger.listState('player').filter(([, v]) => v && v.excluded).length
+    };
   }
 
   // -------------------------------------------------------- runner tooling
@@ -811,9 +1039,38 @@ class Operator {
     };
   }
 
-  playerStatement(playerId) {
+  /**
+   * What a player holds, what they have played today, and what is limiting
+   * them. Support needs this to answer a question at a counter, and a player
+   * asking "how much have I spent today" deserves an answer that is not an
+   * estimate.
+   */
+  playerStatement(playerId, at = null) {
     const walletMinor = this.ledger.balance(accountId('PLAYER_WALLET', playerId));
-    return { playerId, walletMinor, walletFormatted: format(walletMinor) };
+    const record = this.ledger.readState('player', playerId);
+    const day = at === null ? null : new Date(Date.parse(at)).toISOString().slice(0, 10);
+    const bucket = (day && this.ledger.readState('playerDay', `${playerId}:${day}`)) ||
+      { stakedMinor: 0, paidStakedMinor: 0, wonMinor: 0 };
+
+    const override = this.ledger.readState('playerLimit', playerId);
+    const global = this.ledger.readState('protection', 'global');
+    const pick = (field) => {
+      if (override && override[field] !== null && override[field] !== undefined) return override[field];
+      return global ? global[field] : null;
+    };
+
+    return {
+      playerId, walletMinor, walletFormatted: format(walletMinor),
+      day,
+      stakedTodayMinor: bucket.stakedMinor,
+      wonTodayMinor: bucket.wonMinor,
+      netTodayMinor: bucket.wonMinor - bucket.paidStakedMinor,
+      excluded: Operator.#excludedAt(record, at || new Date(0).toISOString()),
+      excludedUntil: record ? record.until : null,
+      limits: (override || global)
+        ? { dailyStakeMinor: pick('dailyStakeMinor'), dailyLossMinor: pick('dailyLossMinor') }
+        : null
+    };
   }
 
   /** What one campaign has cost, and what of it is still owed. */

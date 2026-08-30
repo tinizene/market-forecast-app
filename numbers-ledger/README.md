@@ -65,6 +65,9 @@ writes are serialised.
 | D1 | `openDraw` | Commitment must be published before betting opens |
 | D2 | `revealDraw` | Seed must match the commitment; not before the draw time |
 | A1 | `suspendAgent` / `reinstateAgent` | Each happens once; read under the same lock every sale is checked against |
+| P1 | `setProtection` / `clearProtection` | Off until posted; a policy must limit something |
+| P2 | `setPlayerLimit` | Overrides the house policy either way; a null field inherits it |
+| P3 | `excludePlayer` / `reinstatePlayer` | A cooling-off period lapses by itself and cannot be cut short |
 
 T10–T13 are the promotional transactions. A free ticket differs from a sold
 voucher (T3) by exactly one line — that one debits the runner's float because a
@@ -96,6 +99,34 @@ back (T8). Suspending must not strand a runner's money or leave a player unpaid.
 first float purchase — not the balance rows, because a runner sitting at
 exactly zero has no balance row, and that is precisely the runner who cannot
 serve the next draw (F4).
+
+## Player protection
+
+**Off until it is switched on.** No policy posted means no check runs — an
+operator that has not set limits is not silently subject to invented ones.
+Switching it on is an event with a timestamp, because "when did you introduce
+limits, and at what level" is a question with a regulatory answer that a
+constant in a deployment cannot give.
+
+| | Control | Applies to |
+| --- | --- | --- |
+| Daily stake cap | most a player may stake in a UTC day | paid bets **and** free tickets |
+| Daily loss cap | most they may be down in a day, net of that day's winnings | paid bets only |
+| Self-exclusion | indefinite, lifted only by reinstatement | staking and top-ups |
+| Cooling-off | exclusion with an end date | lapses on its own; cannot be cut short |
+
+Two asymmetries are deliberate:
+
+- **Money out is never blocked.** An excluded player cannot stake and cannot be
+  topped up, but can always withdraw (T6) or be paid at a runner (T7). A
+  protection measure that traps a balance is not one.
+- **A free ticket counts against a stake cap, never a loss cap.** It adds to
+  the day's play, so it belongs in a limit meant to bound play; it cannot lose
+  the player money, so it does not belong in one meant to bound losses.
+
+`playerStatement(playerId, at)` answers what a player has staked and won today,
+what they are net, and which limits are in force — for support at a counter,
+and for the player who asks.
 
 ## What the tests actually prove
 
@@ -130,6 +161,9 @@ serve the next draw (F4).
 - **Suspension holds where it should and yields where it must.** A suspended
   runner is refused every way of taking money from a player, and still allowed
   every way of settling up.
+- **Protection is inert until switched on**, and enforced the moment it is. A
+  refused bet writes neither the entry, the bet, nor the day's counter, and the
+  counters survive a restart, so a limit cannot be reset by a redeploy.
 - **A free bet is a bet.** It settles under the same rules and pays the same
   prize as a paid one, revenue is grossed up by the free stake against the
   expense recognised at issue, and the promotion nets to its true cost rather

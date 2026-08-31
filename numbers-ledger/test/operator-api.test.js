@@ -476,6 +476,78 @@ test('a free ticket is a callable liability the moment it is issued', () => {
   assert.equal(campaign.spentMinor, 50_00);
 });
 
+// -------------------------------------------------------------------- reports
+
+function tradedDay(app, op, operator) {
+  const { seed, result } = openDraw(app, op);
+  operator.buyFloat({ id: 'f', at: AT, agentId: 'ag-1', paidMinor: 95_000_00, floatMinor: 100_000_00 });
+  operator.cashIn({ id: 'in', at: AT, agentId: 'ag-1', playerId: 'p-1', amountMinor: 1_000_00 });
+  operator.placeBet({
+    id: 'b1', at: AT, betId: 'b1', playerId: 'p-1', drawKey: 'D1', stakeMinor: 10_00,
+    selection: { type: 'straight', digits: result }
+  });
+  clock = AFTER_DRAW;
+  call(app, 'POST', '/operator/draws/D1/reveal', { token: op, body: { seed } });
+  call(app, 'POST', '/operator/draws/D1/settle', { token: op, body: {} });
+  return result;
+}
+
+test('the daily close is served for a named day and reconciles', () => {
+  const { app, op, operator } = rig();
+  tradedDay(app, op, operator);
+
+  const close = call(app, 'GET', '/operator/reports/close?day=2026-08-27', { token: op });
+  assert.equal(close.status, 200);
+  assert.equal(close.body.day, '2026-08-27');
+  assert.equal(close.body.totals.paidHandle, 10_00);
+  assert.equal(close.body.totals.stakesRecognised, 10_00);
+  assert.ok(close.body.checks.every((c) => c.ok), 'every check on the close passes');
+});
+
+test('a day that is not a date is a 400, not a report about nothing', () => {
+  const { app, op } = rig();
+  assert.equal(call(app, 'GET', '/operator/reports/close?day=last-tuesday', { token: op }).status, 400);
+  assert.equal(call(app, 'GET', '/operator/reports/close?from=nope', { token: op }).status, 400);
+  assert.equal(call(app, 'GET', '/operator/reports/liabilities?at=nope', { token: op }).status, 400);
+  assert.equal(call(app, 'GET', '/operator/reports/tax?rate=-4', { token: op }).status, 400);
+});
+
+test('every report can leave as CSV', () => {
+  const { app, op, operator } = rig();
+  tradedDay(app, op, operator);
+
+  for (const path of ['close?day=2026-08-27', 'revenue', 'tax?rate=10', 'promotions', 'liabilities']) {
+    const answer = call(app, 'GET', `/operator/reports/${path}${path.includes('?') ? '&' : '?'}format=csv`,
+      { token: op });
+    assert.equal(answer.status, 200, path);
+    assert.match(answer.type, /text\/csv/, path);
+    assert.match(answer.raw, /^"/, path);
+  }
+});
+
+test('the tax report answers decision D6 with numbers rather than a position', () => {
+  const { app, op, operator } = rig();
+  tradedDay(app, op, operator);
+  operator.issueFreeTicket({
+    id: 'ft', at: AT, campaignId: 'welcome', ticketId: 't-1', playerId: 'p-1', faceMinor: 5_00
+  });
+
+  const tax = call(app, 'GET', '/operator/reports/tax?rate=15', { token: op }).body;
+  const [allStakes, paidStakes] = tax.totals.bases;
+  assert.equal(allStakes.baseMinor, 10_00, 'the free ticket was issued, not yet staked');
+  assert.equal(paidStakes.baseMinor, 10_00);
+  assert.equal(allStakes.taxMinor, 150);
+});
+
+test('reports are operator-only and read-only', () => {
+  const { app, agent, op } = rig();
+  for (const path of ['close', 'revenue', 'tax', 'promotions', 'liabilities']) {
+    assert.equal(call(app, 'GET', `/operator/reports/${path}`, { token: agent }).status, 403, path);
+    // No idempotency key needed: a report writes nothing.
+    assert.equal(call(app, 'GET', `/operator/reports/${path}`, { token: op, key: false }).status, 200, path);
+  }
+});
+
 // -------------------------------------------------------- the rules that hold
 
 test('every new operator route is closed to a runner', () => {
@@ -491,7 +563,10 @@ test('every new operator route is closed to a runner', () => {
     ['DELETE', '/operator/protection'],
     ['GET', '/operator/mobile-money'], ['POST', '/operator/mobile-money/reconcile'],
     ['GET', '/operator/jackpot'], ['POST', '/operator/jackpot/fund'], ['POST', '/operator/jackpot/pay'],
-    ['GET', '/operator/promotions/c-1'], ['POST', '/operator/promotions/free-tickets']
+    ['GET', '/operator/promotions/c-1'], ['POST', '/operator/promotions/free-tickets'],
+    ['GET', '/operator/reports/close'], ['GET', '/operator/reports/revenue'],
+    ['GET', '/operator/reports/tax'], ['GET', '/operator/reports/promotions'],
+    ['GET', '/operator/reports/liabilities']
   ];
   for (const [method, url] of routes) {
     // A runner presenting their own valid token, which is the case that

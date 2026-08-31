@@ -30,12 +30,13 @@ directory as a module path. Pass a glob or a file.
 | `src/http/` | Identity and roles, and the HTTP surface over the whole thing |
 | `src/ussd/` | The USSD session engine: five keypresses, 182 characters, no state on the handset |
 | `src/console/` | The operator console: no framework, no build step, no inline script |
+| `src/reporting.js` | Operator reporting, derived from the journal on the way past |
 | `src/draws.js` | Commit-reveal, result derivation, and the betting window |
 | `src/errors.js` | `Refusal` — an expected answer, told apart from a fault by its type |
 | `src/store/memory.js` | In-memory store — the default, for tests |
 | `src/store/sqlite.js` | Durable store on Node's built-in SQLite |
 | `bin/console-server.js` | The composition root: the only way to actually run any of this |
-| `test/` | 207 tests: unit, a simulated trading day, durability, concurrency, draws, channels, the API surface |
+| `test/` | 237 tests: unit, a simulated trading day, durability, concurrency, draws, channels, the API surface |
 
 ## Durable or in-memory
 
@@ -277,8 +278,8 @@ discovered later — in-memory storage, a simulated provider, webhook signatures
 off, plain HTTP on loopback. A console that looks the same whether the money is
 real or simulated is a console somebody will eventually be wrong about.
 
-Seven screens: the book's health and position, runners, draws, players,
-protection, money in flight, promotions. Each is a view over calls that already
+Eight screens: the book's health and position, runners, draws, players,
+protection, money in flight, promotions, and reports. Each is a view over calls that already
 existed plus about twenty that did not — selling float to a runner, settlement,
 capital, per-player limits, PIN resets, the jackpot — because the ledger could
 do all of it and nothing could reach it without curl.
@@ -334,6 +335,88 @@ And `buyFloat`'s refusal said the opposite of what it checks — commission is a
 discount on float, so the rule is that money paid cannot exceed float granted,
 and the message claimed the reverse.
 
+## Reporting
+
+`src/reporting.js` answers the questions a business asks of its books, and
+answers them from the journal on the way past. Nothing is stored, nothing is
+cached, and no report reads a running total — which is the only reason a figure
+in a report means the same thing as the entries behind it.
+
+Five reports, each available as JSON or CSV (`?format=csv`):
+
+- **Daily close** — handle, revenue, costs, the movement of real money, and
+  what was owed at the end of it.
+- **Revenue and hold** — gross gaming revenue and what it was as a share of
+  stakes, with a per-draw table underneath.
+- **Tax base** — the three numbers a gaming tax could be levied on, side by
+  side.
+- **Promotions** — cost per campaign, tickets issued and redeemed, what is
+  still owed, the jackpot pool.
+- **Liabilities** — what is owed, split by whether a player can call it.
+
+Four properties do most of the work.
+
+**Windows are half-open, `[from, to)`.** A day's close and the next day's cannot
+both claim the same transaction, and none falls between two reports. The test
+that pins this is the one about a transaction stamped at exactly midnight: it
+belongs to the day beginning, never the day that ended. Making the window
+closed instead passes every other test in the file, which is why that one
+exists.
+
+**Balances are as at a moment, not as at now.** Last Tuesday's close shows what
+was owed last Tuesday, recomputed from the entries that existed by then. A
+report that quietly used today's balances would look right and be wrong, and
+nothing on the page would give it away.
+
+**Handle and revenue are different numbers about different bets, and the report
+refuses to merge them.** A stake taken today is handle today; it becomes revenue
+on the day its draw settles. Usually the same day. Not guaranteed to be, and a
+line that added the two would be inviting the mistake on the days it is not.
+
+**Nothing is silently uncategorised.** The real-money section buckets movements
+by what caused them, against a list of named causes. A transaction kind the
+report has never heard of appears as *unexplained* and fails a check, rather
+than disappearing into a subtotal — the same discipline as the `other` bucket in
+a runner's statement. Add a transaction type later and the report says so.
+
+### What the tax report is actually for
+
+Decision D6 is open: whether gaming tax is levied on stakes or on gross gaming
+revenue. So the report gives all three candidate bases rather than picking one —
+all stakes, paid stakes only, and gross gaming revenue — and names the gap.
+
+That gap is the point. Promotional stakes are money the operator never received.
+On the trading day in the fixture, a 15% tax on all stakes is L$36.00 of which
+L$4.50 falls on tickets nobody paid for; on gross gaming revenue it is nil,
+because the operator lost money that day. Three figures that differ by more than
+an order of magnitude, from one set of entries, and which one is right is a
+question for counsel rather than for this code.
+
+A negative base is taxed at nil, never at a credit. No regime this would be
+licensed under pays an operator for a bad night, and printing a negative tax
+would be answering the carry-forward question quietly and wrongly.
+
+### The one stored figure, and why it is checked
+
+The journal cannot say which draw a `SETTLE_DRAW` belonged to, so each draw
+records its own settlement summary at the moment it settles — stakes, payout,
+winners, bet count. That is a fact written once, not a running total, which is
+what makes it acceptable at all. The revenue report then checks the draws
+settled in a window against the journal's own revenue and payout movements: a
+summary that disagrees with the entries fails the check rather than being
+believed. A test tampers with a stored summary and watches that happen.
+
+### CSV
+
+A close that only exists in a browser tab is not something an accountant can
+work from, and reading figures off a screen to retype them is how they change.
+Every report exports as CSV with every field quoted unconditionally — a campaign
+id or a note containing a comma must not become two columns.
+
+The console fetches it as an authenticated request and hands the result to the
+browser as a file, because the token travels as a header rather than a cookie
+and a plain download link therefore cannot carry it.
+
 ## What the tests actually prove
 
 - **Trial balance.** Debits equal credits across the whole journal.
@@ -357,6 +440,11 @@ and the message claimed the reverse.
 - **The console cannot reach outside its own directory or its own origin.** No
   path resolves out of `src/console/`, and every `src`/`href` on the page is a
   relative path under `/console/`.
+- **A report window is half-open at its boundary.** A transaction at exactly
+  midnight lands in one day's close and not the other's.
+- **A report of a past period does not move when something happens today.**
+- **A stored settlement summary that disagrees with the journal fails a check**
+  rather than being reported as revenue.
 - **Balances are derivable.** A test rebuilds every balance from the journal
   alone and compares. A stored balance that disagrees with its entries is the
   classic ledger bug; the only way to be immune is not to keep one.
@@ -473,9 +561,14 @@ one provider's request format, which is not worth writing before the provider
 is chosen.
 
 The console has no screen for a runner and none for a player — both are served
-by other channels — and it does no reporting beyond the current position: no
-daily close, no gross gaming revenue over a period, no tax return. Those are
-all derivable from the journal and none of them is written.
+by other channels.
+
+Reporting stops at the figures. There is no comparison against a previous
+period, no trend, and no chart: a day's close says what that day did and leaves
+the reader to know whether it was a good one. There is also no scheduled
+delivery — a close is run when somebody asks for it, not emailed at midnight —
+and no report is signed or sealed, so a CSV is evidence of what the ledger said
+when it was exported and nothing stronger.
 
 The HTTP layer is a reference implementation, not a deployment. It has no TLS
 termination, no rate limiting beyond the PIN lock, no CORS policy, no request

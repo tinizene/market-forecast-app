@@ -36,6 +36,7 @@
     <button class="tab" data-tab="protection">Protection</button>
     <button class="tab" data-tab="money">Money in flight</button>
     <button class="tab" data-tab="promotions">Promotions</button>
+    <button class="tab" data-tab="reports">Reports</button>
   </nav>
 
   <p id="banner" class="banner" hidden></p>
@@ -358,6 +359,43 @@
           cover turns the solvency light red before anyone tries to redeem one.</p>
         <button type="submit">Issue</button>
       </form>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------------- reports -->
+  <section class="panel" data-panel="reports" hidden>
+    <div class="card wide">
+      <h2>Report</h2>
+      <form class="row" id="reportForm">
+        <label for="reportKind">Report</label>
+        <select id="reportKind" name="kind">
+          <option value="close">Daily close</option>
+          <option value="revenue">Revenue and hold</option>
+          <option value="tax">Tax base</option>
+          <option value="promotions">Promotions</option>
+          <option value="liabilities">Liabilities</option>
+        </select>
+        <label for="reportDay">Day (UTC)</label>
+        <input id="reportDay" class="tight" name="day" placeholder="2026-08-27">
+        <label for="reportFrom">or from</label>
+        <input id="reportFrom" name="from" placeholder="2026-08-01T00:00:00Z">
+        <label for="reportTo">to</label>
+        <input id="reportTo" name="to" placeholder="2026-09-01T00:00:00Z">
+        <label for="reportRate">tax rate %</label>
+        <input id="reportRate" class="tight" name="rate" inputmode="decimal" placeholder="15">
+        <button type="submit">Run</button>
+        <button type="button" id="downloadCsv" class="ghost" disabled>Download CSV</button>
+      </form>
+      <p class="muted small">The operator's day is UTC, which for Liberia is also the local day.
+        Windows are half-open: a day's close and the next day's cannot both claim one transaction.</p>
+    </div>
+
+    <div class="card wide" id="reportOut" hidden>
+      <h2 id="reportTitle"></h2>
+      <table class="grid" id="reportLines"><tbody></tbody></table>
+      <div id="reportTables"></div>
+      <h2>Checks</h2>
+      <table class="grid" id="reportChecks"><tbody></tbody></table>
     </div>
   </section>
 </main>

@@ -3,6 +3,7 @@
 const { Auth } = require('./auth.js');
 const { consoleFiles, SECURITY_HEADERS } = require('./static.js');
 const { Refusal } = require('../errors.js');
+const { Reports, toCsv, dayWindow } = require('../reporting.js');
 
 /**
  * The HTTP surface.
@@ -76,6 +77,7 @@ function createApp({
 }) {
   if (!operator) throw new TypeError('createApp needs an operator');
   const identity = auth || new Auth({ ledger: operator.ledger });
+  const reports = new Reports({ ledger: operator.ledger, operator });
   const routes = [];
 
   const route = (method, pattern, options, handler) => {
@@ -317,6 +319,64 @@ function createApp({
         winners: summary.winners, totalStakes: summary.totalStakes, totalPayout: summary.totalPayout
       }
     };
+  });
+
+  // ------------------------------------------------------- operator: reports
+
+  /**
+   * A report leaves as JSON or as CSV, chosen by `format`. The CSV exists
+   * because a close that only lives in a browser tab is not something an
+   * accountant can work from, and asking them to read a screen is how figures
+   * get retyped.
+   */
+  const served = (ctx, report) => (ctx.query.format === 'csv'
+    ? { status: 200, raw: toCsv(report), type: 'text/csv; charset=utf-8' }
+    : { status: 200, body: report });
+
+  /**
+   * A day, or an explicit window - and `day` works on every report, not only
+   * the close. A selector that silently did nothing on four screens out of
+   * five would be worse than not offering it.
+   *
+   * The day is UTC, which for Liberia is also the local day. Said out loud
+   * because a report labelled by date has to mean the same span to the person
+   * reading it as to the code writing it.
+   */
+  const reportWindow = (ctx) => {
+    if (!ctx.query.day) return window(ctx);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(ctx.query.day)) throw new HttpError(400, 'day must be YYYY-MM-DD');
+    return dayWindow(ctx.query.day);
+  };
+
+  route('GET', '/operator/reports/close', { roles: ['operator'] }, (ctx) => {
+    if (ctx.query.day && !/^\d{4}-\d{2}-\d{2}$/.test(ctx.query.day)) {
+      throw new HttpError(400, 'day must be YYYY-MM-DD');
+    }
+    const report = ctx.query.day
+      ? reports.dailyClose({ day: ctx.query.day })
+      : reports.close(window(ctx));
+    return served(ctx, report);
+  });
+
+  route('GET', '/operator/reports/revenue', { roles: ['operator'] }, (ctx) =>
+    served(ctx, reports.revenue(reportWindow(ctx))));
+
+  route('GET', '/operator/reports/tax', { roles: ['operator'] }, (ctx) => {
+    const rate = ctx.query.rate === undefined || ctx.query.rate === '' ? null : Number(ctx.query.rate);
+    if (rate !== null && (!Number.isFinite(rate) || rate < 0)) {
+      throw new HttpError(400, 'rate must be a non-negative percentage');
+    }
+    return served(ctx, reports.taxBase({ ...reportWindow(ctx), ratePercent: rate }));
+  });
+
+  route('GET', '/operator/reports/promotions', { roles: ['operator'] }, (ctx) =>
+    served(ctx, reports.promotions(reportWindow(ctx))));
+
+  route('GET', '/operator/reports/liabilities', { roles: ['operator'] }, (ctx) => {
+    if (ctx.query.at && Number.isNaN(Date.parse(ctx.query.at))) {
+      throw new HttpError(400, 'at must be an ISO timestamp');
+    }
+    return served(ctx, reports.liabilities({ at: ctx.query.at || null }));
   });
 
   // ------------------------------------------------------- operator: players

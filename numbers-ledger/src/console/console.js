@@ -639,6 +639,151 @@
     });
   };
 
+  // ---------------------------------------------------------------- reports
+
+  var lastReport = null;
+
+  /**
+   * Build the query for the chosen report. A day and an explicit window are
+   * alternatives, not a blend: sending both would let the label on the page
+   * disagree with the span the server actually used.
+   */
+  function reportQuery(kind) {
+    var params = [];
+    var day = $('reportDay').value.trim();
+    var from = $('reportFrom').value.trim();
+    var to = $('reportTo').value.trim();
+    var rate = $('reportRate').value.trim();
+
+    if (kind === 'liabilities') {
+      if (to) params.push('at=' + encodeURIComponent(to));
+    } else if (day) {
+      params.push('day=' + encodeURIComponent(day));
+    } else {
+      if (from) params.push('from=' + encodeURIComponent(from));
+      if (to) params.push('to=' + encodeURIComponent(to));
+    }
+    if (kind === 'tax' && rate) params.push('rate=' + encodeURIComponent(rate));
+    return params.length ? '?' + params.join('&') : '';
+  }
+
+  var REPORT_TITLES = {
+    'daily-close': 'Daily close',
+    close: 'Close',
+    revenue: 'Revenue and hold',
+    'tax-base': 'Tax base',
+    promotions: 'Promotions',
+    liabilities: 'Liabilities'
+  };
+
+  function reportPeriod(report) {
+    if (report.day) return report.day;
+    if (report.report === 'liabilities') return 'as at ' + (report.at || 'now');
+    return (report.from || 'the beginning') + ' to ' + (report.to || 'now');
+  }
+
+  function paintReport(report) {
+    lastReport = report;
+    $('downloadCsv').disabled = false;
+    $('reportOut').hidden = false;
+    $('reportTitle').textContent =
+      (REPORT_TITLES[report.report] || report.report) + '  -  ' + reportPeriod(report);
+
+    var lines = $('reportLines').tBodies[0];
+    lines.textContent = '';
+    (report.lines || []).forEach(function (line) {
+      var tr = document.createElement('tr');
+      tr.appendChild(el('td', line.label, 'key'));
+      tr.appendChild(el('td', line.formatted, 'num'));
+      tr.appendChild(el('td', line.note || '', 'note'));
+      lines.appendChild(tr);
+    });
+
+    var host = $('reportTables');
+    host.textContent = '';
+    (report.tables || []).forEach(function (table) {
+      var wrap = el('div', null, 'report-table');
+      wrap.appendChild(el('h3', table.name));
+      if (!table.rows.length) {
+        wrap.appendChild(el('p', 'Nothing in this window.', 'muted small'));
+        host.appendChild(wrap);
+        return;
+      }
+      var scroll = el('div', null, 'scroll');
+      var node = document.createElement('table');
+      node.className = 'grid';
+      var head = document.createElement('thead');
+      var headRow = document.createElement('tr');
+      table.columns.forEach(function (column, i) {
+        headRow.appendChild(el('th', column, (table.numeric || []).indexOf(i) === -1 ? '' : 'num'));
+      });
+      head.appendChild(headRow);
+      node.appendChild(head);
+      var body = document.createElement('tbody');
+      // Only the columns the report calls numeric are right-aligned. A note
+      // in a column of money reads as a number that lost its decimal point.
+      var numeric = table.numeric || [];
+      table.rows.forEach(function (row) {
+        var tr = document.createElement('tr');
+        row.forEach(function (cell, i) {
+          tr.appendChild(el('td', cell, numeric.indexOf(i) === -1 ? '' : 'num'));
+        });
+        body.appendChild(tr);
+      });
+      node.appendChild(body);
+      scroll.appendChild(node);
+      wrap.appendChild(scroll);
+      host.appendChild(wrap);
+    });
+
+    var checks = $('reportChecks').tBodies[0];
+    checks.textContent = '';
+    (report.checks || []).forEach(function (item) {
+      var tr = document.createElement('tr');
+      tr.appendChild(el('td', item.ok ? 'ok' : 'FAILED', item.ok ? 'ok' : 'bad'));
+      tr.appendChild(el('td', item.label));
+      tr.appendChild(el('td', item.detail, 'muted'));
+      checks.appendChild(tr);
+    });
+  }
+
+  function runReport() {
+    var kind = $('reportKind').value;
+    return api('GET', '/operator/reports/' + kind + reportQuery(kind)).then(paintReport);
+  }
+
+  /**
+   * Fetch the CSV and hand it to the browser as a file.
+   *
+   * A plain link cannot do this: the token travels as a header, not a cookie,
+   * so the download has to be an authenticated request whose body is then
+   * saved.
+   */
+  function downloadReport() {
+    var kind = $('reportKind').value;
+    var query = reportQuery(kind);
+    var url = '/operator/reports/' + kind + query + (query ? '&' : '?') + 'format=csv';
+    var headers = { accept: 'text/csv' };
+    var current = token();
+    if (current) headers.authorization = 'Bearer ' + current;
+
+    return window.fetch(url, { headers: headers }).then(function (response) {
+      if (!response.ok) throw new Error(core.describeError(response.status, {}));
+      return response.text();
+    }).then(function (text) {
+      var blob = new Blob([text], { type: 'text/csv;charset=utf-8' });
+      var href = URL.createObjectURL(blob);
+      var link = document.createElement('a');
+      link.href = href;
+      link.download = (lastReport ? lastReport.report : kind) + '-' +
+        (lastReport && lastReport.day ? lastReport.day : new Date().toISOString().slice(0, 10)) + '.csv';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(href);
+    });
+  }
+
   // ------------------------------------------------------------------ shell
 
   var LOADERS = {
@@ -648,7 +793,10 @@
     players: function () { return Promise.resolve(); },
     protection: function () { return loadOverview(); },
     money: loadMoney,
-    promotions: loadJackpot
+    promotions: loadJackpot,
+    // A report is run on demand: the window matters, so guessing one and
+    // painting it would be answering a question nobody asked.
+    reports: function () { return Promise.resolve(); }
   };
 
   function show(name) {
@@ -706,6 +854,28 @@
     $('seedSaved').addEventListener('change', function (event) {
       $('openDrawBtn').disabled = !event.target.checked;
     });
+
+    $('reportForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      runReport().catch(fail);
+    });
+    $('downloadCsv').addEventListener('click', function () { downloadReport().catch(fail); });
+    var fieldsFor = function () {
+      var kind = $('reportKind').value;
+      // A field that does nothing on the chosen report is disabled rather
+      // than ignored, so the form cannot promise a window it will not use.
+      $('reportDay').disabled = kind === 'liabilities';
+      $('reportFrom').disabled = kind === 'liabilities' || $('reportDay').value.trim() !== '';
+      $('reportRate').disabled = kind !== 'tax';
+      $('reportTo').disabled = kind !== 'liabilities' && $('reportDay').value.trim() !== '';
+    };
+    $('reportKind').addEventListener('change', function () {
+      $('downloadCsv').disabled = true;
+      $('reportOut').hidden = true;
+      fieldsFor();
+    });
+    $('reportDay').addEventListener('input', fieldsFor);
+    fieldsFor();
 
     $('floatFilter').addEventListener('submit', function (event) {
       event.preventDefault();

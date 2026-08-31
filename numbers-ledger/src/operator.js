@@ -505,7 +505,17 @@ class Operator {
         for (const [playerId, wonMinor] of Object.entries(paidByPlayer)) {
           Operator.#recordPlay(s, playerId, at, { wonMinor });
         }
-        s.putState('draw', drawKey, { ...draw, settled: true });
+        // The settlement summary is recorded on the draw, not recomputed
+        // later. It is a fact about one moment, written once and never
+        // updated - the journal cannot say which draw a SETTLE_DRAW belonged
+        // to, and a report that guessed would be guessing about revenue. The
+        // revenue report checks these against the journal's own movements
+        // rather than trusting them.
+        s.putState('draw', drawKey, {
+          ...draw, settled: true, settledAt: at,
+          totalStakes: summary.totalStakes, totalPayout: summary.totalPayout,
+          winners: summary.winners, betsSettled: summary.betsSettled
+        });
       }
     });
 

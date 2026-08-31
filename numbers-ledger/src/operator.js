@@ -4,6 +4,7 @@ const { Ledger } = require('./ledger.js');
 const { assertAmount, assertNonNegative, format } = require('./money.js');
 const { accountId, parseAccount } = require('./accounts.js');
 const draws = require('./draws.js');
+const { Refusal } = require('./errors.js');
 
 /**
  * The operator's book: the ledger, plus the state that is not itself a balance
@@ -35,7 +36,8 @@ class Operator {
   }
 
   static #fail(message) {
-    throw new Error(message);
+    // Typed, so the service layer can answer 409 without reading the wording.
+    throw new Refusal(message);
   }
 
   /** UTC calendar day of a timestamp - the bucket the promotional cap counts in. */
@@ -199,7 +201,7 @@ class Operator {
     assertAmount(floatMinor, 'floatMinor');
     const commission = floatMinor - paidMinor;
     if (commission < 0) {
-      Operator.#fail(`Float granted (${format(floatMinor)}) cannot exceed money paid plus zero commission`);
+      Operator.#fail(`Money paid (${format(paidMinor)}) cannot exceed the float granted (${format(floatMinor)}) - commission is a discount on float, never a charge for it`);
     }
 
     const entries = [{ account: 'SETTLEMENT', debit: paidMinor }];

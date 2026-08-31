@@ -29,10 +29,13 @@ directory as a module path. Pass a glob or a file.
 | `src/mobilemoney/` | The provider contract, a deliberately unreliable simulator, and the gateway between them and the ledger |
 | `src/http/` | Identity and roles, and the HTTP surface over the whole thing |
 | `src/ussd/` | The USSD session engine: five keypresses, 182 characters, no state on the handset |
+| `src/console/` | The operator console: no framework, no build step, no inline script |
 | `src/draws.js` | Commit-reveal, result derivation, and the betting window |
+| `src/errors.js` | `Refusal` — an expected answer, told apart from a fault by its type |
 | `src/store/memory.js` | In-memory store — the default, for tests |
 | `src/store/sqlite.js` | Durable store on Node's built-in SQLite |
-| `test/` | 59 tests: unit, a simulated trading day, durability, concurrency, draws |
+| `bin/console-server.js` | The composition root: the only way to actually run any of this |
+| `test/` | 207 tests: unit, a simulated trading day, durability, concurrency, draws, channels, the API surface |
 
 ## Durable or in-memory
 
@@ -258,6 +261,79 @@ takes `{sessionId, msisdn, input}` and returns `CON`/`END` text, which is what
 every gateway speaks, but the request encoding differs per provider and there
 is no point guessing which one.
 
+## The operator console
+
+`src/console/` is the screen behind all of the above, and `bin/console-server.js`
+is the composition root that serves it:
+
+```
+NUMBERS_DB=./numbers.db npm run console
+# Operator console   http://127.0.0.1:8787/console
+# Operator token     an_...
+```
+
+Everything alarming about a default run is printed at startup rather than
+discovered later — in-memory storage, a simulated provider, webhook signatures
+off, plain HTTP on loopback. A console that looks the same whether the money is
+real or simulated is a console somebody will eventually be wrong about.
+
+Seven screens: the book's health and position, runners, draws, players,
+protection, money in flight, promotions. Each is a view over calls that already
+existed plus about twenty that did not — selling float to a runner, settlement,
+capital, per-player limits, PIN resets, the jackpot — because the ledger could
+do all of it and nothing could reach it without curl.
+
+**No framework and no build step**, for the reason the rest of the package has
+none: a person deciding whether to trust this with money should be able to read
+it. Three files, served from a fixed list rather than a path derived from the
+request, under a content security policy that allows the page its own two
+scripts and calls to its own origin and nothing else. No inline handlers, no
+inline styles, no remote anything.
+
+**The token is pasted in and kept in `sessionStorage`** — gone when the tab
+closes, never written to disk. Nothing rides on a cookie, so there is no
+cross-site request that can act as the operator.
+
+Three decisions worth arguing with:
+
+**The seed never reaches the server before the reveal.** The console generates
+it in the browser, shows it once, and sends only the commitment. An operator
+who can read tomorrow's seed out of their own database can bet on tomorrow's
+number, so the commit-reveal scheme is only worth as much as the seed's
+custody — and custody outside this system is the honest answer until there is
+somewhere real to put it. The cost is stated on the screen: lose the seed and
+the draw can never be revealed.
+
+**Health is derived, never reported.** The overview recomputes solvency, the
+accounting equation, the trial balance and the cache-drift check on every
+refresh. A server that sent `ok: true` alongside numbers that disagreed would
+still show red — there is a test for exactly that.
+
+**Amounts are parsed as strings and refused when they do not fit.** The obvious
+`Math.round(Number(text) * 100)` returns 100 for `1.005`, because that product
+is `100.49999999999999` — a cent less than what was typed, silently. Anything
+the currency cannot represent exactly is refused and the operator retypes it.
+
+The parts of the console that could be wrong about money live in
+`console-core.js`, which loads in a browser with a `<script>` tag and in the
+test suite with `require()` — the same UMD-lite trick as the game rules. It
+carries a second implementation of `format()`, unavoidably, because a browser
+cannot require the ledger's; a test asserts the two agree across a range of
+values, and that test is why the duplication is acceptable. What is left in
+`console.js` is fetching and painting, and it is not under test: a mistake
+there shows the wrong text rather than moves the wrong money. It was driven in
+a real browser instead, which is how the one bug in it was found — panes were
+toggled with the `hidden` property while their class set `display`, so the
+sign-in card stayed on screen behind the signed-in console.
+
+Two things the console changed underneath itself. A refusal is now a **type**
+(`src/errors.js`) rather than a message the service layer pattern-matches: a
+guard phrased in a wording the pattern did not know about was arriving as a
+500, which tells the operator nothing and invites a retry that cannot succeed.
+And `buyFloat`'s refusal said the opposite of what it checks — commission is a
+discount on float, so the rule is that money paid cannot exceed float granted,
+and the message claimed the reverse.
+
 ## What the tests actually prove
 
 - **Trial balance.** Debits equal credits across the whole journal.
@@ -273,6 +349,14 @@ is no point guessing which one.
   A retried mobile-money callback cannot pay a winner twice.
 - **Guards hold under failure.** Every rejected operation leaves the trial
   balance intact — there is no partial write.
+- **Every operator route is closed to a runner holding a valid token.** One
+  test enumerates them, because a route that forgets its role is not caught by
+  an anonymous call.
+- **Every route that moves money refuses to act without an `Idempotency-Key`.**
+  Enumerated the same way.
+- **The console cannot reach outside its own directory or its own origin.** No
+  path resolves out of `src/console/`, and every `src`/`href` on the page is a
+  relative path under `/console/`.
 - **Balances are derivable.** A test rebuilds every balance from the journal
   alone and compares. A stored balance that disagrees with its entries is the
   classic ledger bug; the only way to be immune is not to keep one.
@@ -383,10 +467,15 @@ is worth weighing.
 
 ## What is deliberately not here
 
-No operator screens, and no adapter from a named USSD gateway to the engine.
-The engine is transport-agnostic and tested; what is missing is the dozen lines
-that decode one provider's request format, which is not worth writing before
-the provider is chosen.
+No adapter from a named USSD gateway to the engine. The engine is
+transport-agnostic and tested; what is missing is the dozen lines that decode
+one provider's request format, which is not worth writing before the provider
+is chosen.
+
+The console has no screen for a runner and none for a player — both are served
+by other channels — and it does no reporting beyond the current position: no
+daily close, no gross gaming revenue over a period, no tax return. Those are
+all derivable from the journal and none of them is written.
 
 The HTTP layer is a reference implementation, not a deployment. It has no TLS
 termination, no rate limiting beyond the PIN lock, no CORS policy, no request

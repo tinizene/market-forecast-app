@@ -28,9 +28,14 @@ test('T1 - buying float credits the runner and books the discount as commission'
   assert.equal(op.ledger.solvency().ok, true);
 });
 
-test('T1 - float cannot exceed money paid plus commission', () => {
+test('T1 - money paid cannot exceed the float granted', () => {
   const op = new Operator();
-  assert.throws(() => op.buyFloat({ id: 'b', at: AT, agentId: 'ag-1', paidMinor: 100, floatMinor: 99 }), /cannot exceed/);
+  // Commission is a discount on float, so float is always at least the cash
+  // taken. The refusal used to say the reverse of what it checks.
+  assert.throws(
+    () => op.buyFloat({ id: 'b', at: AT, agentId: 'ag-1', paidMinor: 100, floatMinor: 99 }),
+    /cannot exceed the float granted/
+  );
 });
 
 test('T2 - cash-in moves value between two liabilities and touches no asset', () => {

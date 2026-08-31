@@ -231,16 +231,28 @@ test('a refused guard is a conflict, not a server error', () => {
 
 test('an unexpected failure says nothing useful to an attacker', () => {
   const errors = [];
-  const operator = new Operator();
-  const app = createApp({ operator, now, logger: (e) => errors.push(e) });
-  const auth = app.auth;
+  const real = new Operator();
+  const auth = new Auth({ ledger: real.ledger });
+  // A book that throws the way a bug throws: not a refusal, just broken.
+  const broken = { ledger: { solvency() { throw new TypeError('undefined has no properties'); } } };
+  const app = createApp({ operator: broken, auth, now, logger: (e) => errors.push(e), serveConsole: false });
   const token = auth.issueToken({ id: 't', at: AT, kind: 'operator', subject: 's', roles: ['operator'] });
 
-  // agentStatement throws on a malformed window - a bug, not a guard.
-  const res = call(app, 'GET', '/operator/agents/ag-1/statement?from=not-a-date', { token });
+  const res = call(app, 'GET', '/operator/solvency', { token });
   assert.equal(res.status, 500);
   assert.deepEqual(res.body, { error: 'Internal error' });
   assert.equal(errors.length, 1, 'but it is logged for the operator');
+});
+
+/**
+ * The other half of the same rule: a guard's refusal is a 409 and its message
+ * reaches the caller intact, because it was written for them.
+ */
+test('a mistyped statement window is the caller\'s mistake, not a server fault', () => {
+  const { app, operatorToken } = rig();
+  const res = call(app, 'GET', '/operator/agents/ag-1/statement?from=not-a-date', { token: operatorToken });
+  assert.equal(res.status, 400);
+  assert.match(res.body.error, /from must be an ISO timestamp/);
 });
 
 test('a malformed body is a 400, and an unknown route a 404', () => {

@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Africa Numbers - operator console</title>
+<link rel="icon" href="/console/favicon.svg">
+<link rel="stylesheet" href="/console/console.css">
+</head>
+<body>
+
+<header class="bar">
+  <div class="brand">Africa&nbsp;Numbers <span class="muted">operator console</span></div>
+  <div id="healthPills" class="pills"></div>
+  <button id="signOut" class="ghost" hidden>Sign out</button>
+</header>
+
+<main id="signin" class="pane centred">
+  <form id="signinForm" class="card narrow">
+    <h1>Sign in</h1>
+    <p class="muted">Paste an operator token. It is kept for this tab only and is
+      gone when the tab closes - nothing is written to disk and no cookie is set.</p>
+    <label for="tokenInput">Operator token</label>
+    <input id="tokenInput" type="password" autocomplete="off" spellcheck="false" placeholder="an_...">
+    <button type="submit">Sign in</button>
+    <p id="signinError" class="error" hidden></p>
+  </form>
+</main>
+
+<main id="app" class="pane" hidden>
+  <nav id="tabs" class="tabs">
+    <button class="tab" data-tab="overview">Overview</button>
+    <button class="tab" data-tab="runners">Runners</button>
+    <button class="tab" data-tab="draws">Draws</button>
+    <button class="tab" data-tab="players">Players</button>
+    <button class="tab" data-tab="protection">Protection</button>
+    <button class="tab" data-tab="money">Money in flight</button>
+    <button class="tab" data-tab="promotions">Promotions</button>
+  </nav>
+
+  <p id="banner" class="banner" hidden></p>
+
+  <!-- ------------------------------------------------------------ overview -->
+  <section class="panel" data-panel="overview">
+    <div class="card">
+      <h2>Is the book sound</h2>
+      <table class="grid" id="healthTable"><tbody></tbody></table>
+      <p class="muted small">Each row is recomputed from the journal on every refresh.
+        None of them is a stored flag.</p>
+    </div>
+
+    <div class="card">
+      <h2>Position</h2>
+      <dl class="figures" id="figures"></dl>
+      <button id="refresh" class="ghost">Refresh</button>
+    </div>
+
+    <div class="card">
+      <h2>Treasury</h2>
+      <form class="row" data-action="capital">
+        <label for="capitalAmount">Inject capital</label>
+        <input id="capitalAmount" name="amount" inputmode="decimal" placeholder="0.00">
+        <input name="memo" placeholder="memo (optional)">
+        <button type="submit">Inject</button>
+      </form>
+      <form class="row" data-action="tax">
+        <label for="taxAmount">Accrue gaming tax</label>
+        <input id="taxAmount" name="amount" inputmode="decimal" placeholder="0.00">
+        <input name="memo" placeholder="memo (optional)">
+        <button type="submit">Accrue</button>
+      </form>
+    </div>
+
+    <div class="card wide">
+      <h2>Accounts with a balance</h2>
+      <div class="scroll"><table class="grid" id="snapshotTable"><tbody></tbody></table></div>
+    </div>
+
+    <div class="card wide">
+      <h2>Recent transactions</h2>
+      <div class="scroll"><table class="grid" id="journalTable">
+        <thead><tr><th>at</th><th>kind</th><th>id</th><th>entries</th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------------- runners -->
+  <section class="panel" data-panel="runners" hidden>
+    <div class="card wide">
+      <h2>Runners</h2>
+      <form class="row" id="floatFilter">
+        <label for="belowInput">Show only those below</label>
+        <input id="belowInput" name="below" inputmode="decimal" placeholder="e.g. 500.00">
+        <button type="submit">Filter</button>
+        <button type="button" id="clearFilter" class="ghost">All</button>
+      </form>
+      <div class="scroll"><table class="grid" id="agentsTable">
+        <thead><tr><th>runner</th><th>float</th><th>status</th><th></th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+    </div>
+
+    <div class="card">
+      <h2>Sell float</h2>
+      <form data-action="buyFloat">
+        <label for="fAgent">Runner</label>
+        <input id="fAgent" name="agentId" placeholder="ag-1" required>
+        <label for="fPaid">Money received</label>
+        <input id="fPaid" name="paid" inputmode="decimal" placeholder="0.00" required>
+        <label for="fFloat">Float granted</label>
+        <input id="fFloat" name="float" inputmode="decimal" placeholder="0.00" required>
+        <p class="muted small">The difference is the runner's commission, fixed at the
+          moment they take the risk. Granting more float than money received is refused.</p>
+        <button type="submit">Sell float</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Buy float back</h2>
+      <form data-action="sellFloatBack">
+        <label for="bAgent">Runner</label>
+        <input id="bAgent" name="agentId" placeholder="ag-1" required>
+        <label for="bAmount">Amount</label>
+        <input id="bAmount" name="amount" inputmode="decimal" placeholder="0.00" required>
+        <button type="submit">Buy back</button>
+      </form>
+
+      <h2>Issue a runner token</h2>
+      <form data-action="agentToken">
+        <label for="tAgent">Runner</label>
+        <input id="tAgent" name="agentId" placeholder="ag-1" required>
+        <button type="submit">Issue</button>
+      </form>
+      <p id="tokenOut" class="secret" hidden></p>
+    </div>
+
+    <div class="card wide">
+      <h2>Statement</h2>
+      <form class="row" data-action="agentStatement">
+        <input name="agentId" placeholder="ag-1" required>
+        <label for="sFrom">from</label><input id="sFrom" name="from" placeholder="2026-08-01T00:00:00Z">
+        <label for="sTo">to</label><input id="sTo" name="to" placeholder="2026-09-01T00:00:00Z">
+        <button type="submit">Show</button>
+      </form>
+      <table class="grid" id="statementTable"><tbody></tbody></table>
+    </div>
+  </section>
+
+  <!-- --------------------------------------------------------------- draws -->
+  <section class="panel" data-panel="draws" hidden>
+    <div class="card wide">
+      <h2>Draws</h2>
+      <div class="scroll"><table class="grid" id="drawsTable">
+        <thead><tr><th>draw</th><th>opens</th><th>cutoff</th><th>drawn at</th><th>bets</th><th>result</th><th>state</th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+    </div>
+
+    <div class="card">
+      <h2>Open a draw</h2>
+      <form data-action="openDraw">
+        <label for="dKey">Draw key</label>
+        <input id="dKey" name="drawKey" placeholder="2026-09-01" required>
+        <label for="dAt">Draw time (UTC)</label>
+        <input id="dAt" name="drawAt" placeholder="2026-09-01T19:00:00Z" required>
+        <label for="dLead">Cutoff, minutes before</label>
+        <input id="dLead" name="lead" inputmode="numeric" value="5">
+        <label for="dCommit">Commitment</label>
+        <input id="dCommit" name="commitment" placeholder="64 hex characters" required spellcheck="false">
+        <button type="button" id="genSeed" class="ghost">Generate a seed and its commitment</button>
+        <div id="seedBox" class="secret" hidden>
+          <strong>Seed - shown once, stored nowhere.</strong>
+          <code id="seedValue"></code>
+          <p class="small">This never leaves your browser. Only the commitment is sent.
+            Save it somewhere the operator controls: without it this draw can never be
+            revealed, and every bet on it would have to be refunded.</p>
+          <label class="check"><input type="checkbox" id="seedSaved"> I have saved the seed</label>
+        </div>
+        <button type="submit" id="openDrawBtn">Open draw</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Reveal</h2>
+      <form data-action="revealDraw">
+        <label for="rKey">Draw key</label>
+        <input id="rKey" name="drawKey" required>
+        <label for="rSeed">Seed</label>
+        <input id="rSeed" name="seed" placeholder="64 hex characters" required spellcheck="false">
+        <p class="muted small">The server checks the seed against the published commitment
+          and refuses one that does not match, before anyone else has to catch it.</p>
+        <button type="submit">Reveal</button>
+      </form>
+
+      <h2>Settle</h2>
+      <form data-action="settleDraw">
+        <label for="stKey">Draw key</label>
+        <input id="stKey" name="drawKey" required>
+        <p class="muted small">Winners are decided by the game's rules against the
+          revealed number. There is no list of winners to hand in.</p>
+        <button type="submit">Settle</button>
+      </form>
+      <p id="settleOut" class="muted small"></p>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------------- players -->
+  <section class="panel" data-panel="players" hidden>
+    <div class="card">
+      <h2>Look up a player</h2>
+      <form class="row" data-action="player">
+        <input name="playerId" placeholder="231770000001" required>
+        <button type="submit">Show</button>
+      </form>
+      <table class="grid" id="playerTable"><tbody></tbody></table>
+    </div>
+
+    <div class="card">
+      <h2>Credentials</h2>
+      <form data-action="setPin">
+        <label for="pPlayer">Player</label>
+        <input id="pPlayer" name="playerId" required>
+        <label for="pPin">New PIN (4-8 digits)</label>
+        <input id="pPin" name="pin" type="password" inputmode="numeric" autocomplete="off" required>
+        <p class="muted small">There is no self-service reset over USSD: a channel that can
+          reset its own credential from the handset is not a second factor.</p>
+        <button type="submit">Set PIN</button>
+      </form>
+      <form class="row" data-action="unlockPlayer">
+        <input name="playerId" placeholder="player id" required>
+        <button type="submit">Unlock after failed PINs</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Per-player limits</h2>
+      <form data-action="playerLimits">
+        <label for="lPlayer">Player</label>
+        <input id="lPlayer" name="playerId" required>
+        <label for="lStake">Daily stake cap</label>
+        <input id="lStake" name="stake" inputmode="decimal" placeholder="blank = use the global limit">
+        <label for="lLoss">Daily loss cap</label>
+        <input id="lLoss" name="loss" inputmode="decimal" placeholder="blank = use the global limit">
+        <button type="submit">Set limits</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Self-exclusion</h2>
+      <form data-action="excludePlayer">
+        <label for="xPlayer">Player</label>
+        <input id="xPlayer" name="playerId" required>
+        <label for="xUntil">Until (blank = indefinite)</label>
+        <input id="xUntil" name="until" placeholder="2026-12-01T00:00:00Z">
+        <label for="xReason">Reason</label>
+        <input id="xReason" name="reason" placeholder="requested by the player">
+        <button type="submit">Exclude</button>
+      </form>
+      <form class="row" data-action="reinstatePlayer">
+        <input name="playerId" placeholder="player id" required>
+        <button type="submit">Reinstate</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------- protection -->
+  <section class="panel" data-panel="protection" hidden>
+    <div class="card">
+      <h2>Player protection</h2>
+      <p class="muted">Off until it is switched on here. That is deliberate: a limit
+        nobody chose is a limit nobody owns, so turning these on is a decision with a
+        date against it. Once on, they are enforced inside the same write transaction
+        as the bet, not checked beforehand.</p>
+      <table class="grid" id="protectionTable"><tbody></tbody></table>
+      <form data-action="setProtection">
+        <label for="gStake">Daily stake cap, everyone</label>
+        <input id="gStake" name="stake" inputmode="decimal" placeholder="0.00">
+        <label for="gLoss">Daily loss cap, everyone</label>
+        <input id="gLoss" name="loss" inputmode="decimal" placeholder="0.00">
+        <button type="submit">Switch on</button>
+      </form>
+      <form data-action="clearProtection">
+        <button type="submit" class="danger">Switch off entirely</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- --------------------------------------------------------------- money -->
+  <section class="panel" data-panel="money" hidden>
+    <div class="card wide">
+      <h2>In flight</h2>
+      <p class="muted small">A disbursement leaves the wallet when it is requested and is
+        held here until the provider confirms. A failure returns it; it is not a reversal.</p>
+      <div class="scroll"><table class="grid" id="pendingTable">
+        <thead><tr><th>reference</th><th>type</th><th>amount</th><th>opened</th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+      <form data-action="reconcile"><button type="submit">Run a reconciliation sweep</button></form>
+    </div>
+    <div class="card wide">
+      <h2>Anomalies</h2>
+      <p class="muted small">Callbacks that could not be applied. Nobody's queue unless
+        somebody looks at it.</p>
+      <div class="scroll"><table class="grid" id="anomalyTable">
+        <thead><tr><th>reference</th><th>reason</th><th>detail</th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------- promotions -->
+  <section class="panel" data-panel="promotions" hidden>
+    <div class="card">
+      <h2>Jackpot</h2>
+      <table class="grid" id="jackpotTable"><tbody></tbody></table>
+      <form data-action="fundJackpot">
+        <label for="jKey">Fund from draw</label>
+        <input id="jKey" name="drawKey" required>
+        <label for="jAmount">Contribution</label>
+        <input id="jAmount" name="amount" inputmode="decimal" placeholder="0.00" required>
+        <p class="muted small">The cost is recognised draw by draw as the pot is built, so
+          one jackpot night is not a catastrophic loss in the accounts - and an unwon pot
+          is never mistaken for profit.</p>
+        <button type="submit">Fund</button>
+      </form>
+      <form data-action="payJackpot">
+        <label for="jpKey">Pay out for draw</label>
+        <input id="jpKey" name="drawKey" required>
+        <label for="jpPlayer">Player</label>
+        <input id="jpPlayer" name="playerId" required>
+        <label for="jpAmount">Amount</label>
+        <input id="jpAmount" name="amount" inputmode="decimal" placeholder="0.00" required>
+        <button type="submit">Pay</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Campaigns</h2>
+      <form class="row" data-action="campaign">
+        <input name="campaignId" placeholder="campaign id" required>
+        <button type="submit">Show</button>
+      </form>
+      <table class="grid" id="campaignTable"><tbody></tbody></table>
+
+      <h2>Issue a free ticket</h2>
+      <form data-action="freeTicket">
+        <label for="ftCampaign">Campaign</label>
+        <input id="ftCampaign" name="campaignId" required>
+        <label for="ftTicket">Ticket id</label>
+        <input id="ftTicket" name="ticketId" required>
+        <label for="ftPlayer">Player</label>
+        <input id="ftPlayer" name="playerId" required>
+        <label for="ftFace">Face value</label>
+        <input id="ftFace" name="face" inputmode="decimal" placeholder="0.00" required>
+        <p class="muted small">A free ticket is a promise to pay. It is a callable
+          liability from the moment it is issued, so issuing past what the operator can
+          cover turns the solvency light red before anyone tries to redeem one.</p>
+        <button type="submit">Issue</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<script src="/console/console-core.js"></script>
+<script src="/console/console.js"></script>
+</body>
+</html>

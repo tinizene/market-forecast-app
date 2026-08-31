@@ -1,6 +1,7 @@
 'use strict';
 
 const { ProviderRejected, ProviderTimeout, ProviderUnavailable, STATUS } = require('./provider.js');
+const { Refusal } = require('../errors.js');
 
 /**
  * Between a mobile money provider and the ledger.
@@ -44,7 +45,7 @@ class MobileMoneyGateway {
   }
 
   static #fail(message) {
-    throw new Error(message);
+    throw new Refusal(message);
   }
 
   #record(ref) {

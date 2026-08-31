@@ -25,7 +25,9 @@ directory as a module path. Pass a glob or a file.
 | `src/money.js` | Integer minor units. No floats anywhere near a balance |
 | `src/accounts.js` | Chart of accounts, classes, partitioning, what counts as callable |
 | `src/ledger.js` | Append-only double-entry journal, balances, invariants |
-| `src/operator.js` | The transaction types T0–T9 and the draw lifecycle, each with its guard |
+| `src/operator.js` | The transaction types T0–T17 and the draw lifecycle, each with its guard |
+| `src/mobilemoney/` | The provider contract, a deliberately unreliable simulator, and the gateway between them and the ledger |
+| `src/http/` | Identity and roles, and the HTTP surface over the whole thing |
 | `src/draws.js` | Commit-reveal, result derivation, and the betting window |
 | `src/store/memory.js` | In-memory store — the default, for tests |
 | `src/store/sqlite.js` | Durable store on Node's built-in SQLite |
@@ -58,8 +60,161 @@ writes are serialised.
 | T7 | `cashPayout` | Bounded by the wallet; repays the runner in float |
 | T8 | `sellFloatBack` | Bounded by float held and funds on hand |
 | T9 | `accrueGamingTax` | — |
+| T10 | `issueFreeTicket` | One ticket per id; the daily promotional budget is a posting guard |
+| T11 | `redeemFreeTicket` | Single use; obeys the betting window exactly as T4 does |
+| T12 | `fundJackpot` | Only from a settled draw, and only once per draw |
+| T13 | `payJackpot` | Bounded by the pool; once per draw, never before the reveal |
 | D1 | `openDraw` | Commitment must be published before betting opens |
 | D2 | `revealDraw` | Seed must match the commitment; not before the draw time |
+| A1 | `suspendAgent` / `reinstateAgent` | Each happens once; read under the same lock every sale is checked against |
+| P1 | `setProtection` / `clearProtection` | Off until posted; a policy must limit something |
+| P2 | `setPlayerLimit` | Overrides the house policy either way; a null field inherits it |
+| P3 | `excludePlayer` / `reinstatePlayer` | A cooling-off period lapses by itself and cannot be cut short |
+| T14 | `topUpWallet` | Posted only once the provider confirms |
+| T15 | `reserveDisbursement` | Bounded by the wallet *and* by funds on hand; holds the money in flight |
+| T16 | `confirmDisbursement` | Bounded by what is actually in flight |
+| T17 | `returnDisbursement` | Bounded by what is actually in flight |
+
+T10–T13 are the promotional transactions. A free ticket differs from a sold
+voucher (T3) by exactly one line — that one debits the runner's float because a
+runner paid for it, this one debits promotional cost because nobody did — and
+that line is the whole cost of a campaign. Redeeming turns it straight into a
+stake without passing through the wallet, so a grant cannot be withdrawn as
+cash. Both `PROMO_VOUCHERS` and `JACKPOT_POOL` are **callable**, which is the
+point: promising more than the operator holds fails the solvency check before
+the promise can be redeemed.
+
+## Runner tooling
+
+`agentStatement(agentId, { from, to })` produces the six lines the daily
+reconciliation asks for — opening float, purchases, sales, payouts handled,
+commission earned, closing float — derived from the journal rather than kept as
+a running total, so it cannot disagree with the entries it summarises. The
+window is half-open, so one day's statement and the next cannot both claim the
+same transaction. A kind that moves float but is not recognised lands in
+`other` rather than vanishing.
+
+`AGENT_COMMISSION` is partitioned by runner, because a statement that cannot
+say what this runner earned is not a statement.
+
+**Suspension stops selling, never settling.** A suspended runner cannot cash in,
+sell vouchers or buy more float; they can still pay winners (T7) and sell float
+back (T8). Suspending must not strand a runner's money or leave a player unpaid.
+
+`agents()` and `agentsBelow(threshold)` read a roster written on a runner's
+first float purchase — not the balance rows, because a runner sitting at
+exactly zero has no balance row, and that is precisely the runner who cannot
+serve the next draw (F4).
+
+## Player protection
+
+**Off until it is switched on.** No policy posted means no check runs — an
+operator that has not set limits is not silently subject to invented ones.
+Switching it on is an event with a timestamp, because "when did you introduce
+limits, and at what level" is a question with a regulatory answer that a
+constant in a deployment cannot give.
+
+| | Control | Applies to |
+| --- | --- | --- |
+| Daily stake cap | most a player may stake in a UTC day | paid bets **and** free tickets |
+| Daily loss cap | most they may be down in a day, net of that day's winnings | paid bets only |
+| Self-exclusion | indefinite, lifted only by reinstatement | staking and top-ups |
+| Cooling-off | exclusion with an end date | lapses on its own; cannot be cut short |
+
+Two asymmetries are deliberate:
+
+- **Money out is never blocked.** An excluded player cannot stake and cannot be
+  topped up, but can always withdraw (T6) or be paid at a runner (T7). A
+  protection measure that traps a balance is not one.
+- **A free ticket counts against a stake cap, never a loss cap.** It adds to
+  the day's play, so it belongs in a limit meant to bound play; it cannot lose
+  the player money, so it does not belong in one meant to bound losses.
+
+`playerStatement(playerId, at)` answers what a player has staked and won today,
+what they are net, and which limits are in force — for support at a counter,
+and for the player who asks.
+
+## Mobile money
+
+`src/mobilemoney/` is an adapter, a simulator, and the gateway between them.
+There is no real provider behind it and no agreement to sign one yet — which
+turns out not to be the obstacle. The API call is the easy half. What breaks in
+production is the callback that arrives twice, the one that arrives out of
+order, the request that times out with the money already moving, and the outage
+that lands mid-run. All of those are reproducible here, deterministically,
+without a telco.
+
+Two rules decide the accounting, and they deliberately point in opposite
+directions:
+
+- **Money in is recognised when it is confirmed.** A collection in flight is
+  not an asset, because money that might arrive is not money.
+- **Money out is reserved when it is requested.** The wallet is debited before
+  the transfer is attempted — so the same balance cannot be withdrawn twice
+  while the first attempt is in the air — and waits in `PENDING_DISBURSEMENTS`,
+  a callable liability, until the provider says which way it went. A failure is
+  a **return**, not a reversal: the player was owed it throughout.
+
+Three things make a timeout survivable. The client reference is ours and is on
+disk *before* the provider is called; `getStatus` is asked by that reference
+rather than the provider's; and a timeout leaves the request `PENDING` rather
+than guessing. "We do not know" is a state, and it is the one a payments
+integration most often lies to itself about.
+
+Nothing that cannot be applied is dropped. A callback with the wrong amount, a
+callback contradicting a terminal answer, and a callback for a reference nobody
+started all become anomalies — recorded once each, however many reconciliation
+sweeps re-find them, because a queue that grows a duplicate row every sweep is
+a queue nobody reads.
+
+Every resolution that moves money writes the request log in the same ledger
+transaction, through an optional `onCommit` on the five transactions the
+gateway uses. There is no window where the books say a payout happened and the
+request log still calls it pending.
+
+## The service layer
+
+`src/http/` is a hand-rolled router over `node:http`, for the same reason the
+rest of this package has no dependencies: what it does has to be readable in
+one sitting by somebody deciding whether to trust it with money.
+
+Four principals, and they are not variations on one another. **Operator** staff
+open draws, suspend runners and set limits. An **agent** can move value into a
+wallet and pay a winner from their own cash, and can never spend from a wallet.
+A **player** holds a wallet: their token proves who they are, and the PIN
+authorises each spend, because possession of a handset is not consent. A
+**provider** callback is authenticated by signature, not by token.
+
+Four rules are enforced in the dispatcher rather than left to each handler,
+because each is a way this shape of API is routinely broken:
+
+1. **The server stamps the time.** `at` is never read from a request. A
+   client-supplied timestamp would defeat the cutoff, and the cutoff is why the
+   draw can be trusted at all.
+2. **The subject comes from the token.** A runner's `agentId` and a player's
+   `playerId` come from their credentials, never from the body. Letting a
+   caller name the account they are acting on is the classic broken-access
+   control bug, and here it is a theft primitive.
+3. **Money moves only with an `Idempotency-Key`.** It becomes the ledger
+   transaction id, so a retry — a dropped USSD session, a mobile client on a
+   bad connection — is a no-op rather than a second payment.
+4. **A refused guard is a 409, not a 500.** "You cannot stake more than your
+   wallet" is an expected answer; an API that reports it as a server fault
+   teaches its callers to retry.
+
+Tokens are stored as hashes, so a leaked database does not hand over working
+credentials, and the plaintext is returned once and never again. A PIN is
+scrypt-hashed and locks after three wrong guesses — it is four digits, visible
+on screen as it is typed over USSD, and cannot be the only thing protecting an
+account. Sign-in gives one answer for every failure, because telling "no PIN
+set" from "wrong PIN" is an account-enumeration oracle on a public endpoint.
+Webhook signatures cover the timestamp **and the raw bytes**: without the time
+in the signed material a captured callback replays for ever, and re-serialising
+the parsed body is how a signature check comes to pass on something other than
+what arrived.
+
+`GET /draws/:key` needs no credentials at all. The commitment and the revealed
+seed are public on purpose — that is the whole point of publishing them.
 
 ## What the tests actually prove
 
@@ -68,7 +223,10 @@ writes are serialised.
   expenses. Trial balance alone would not catch an expense booked as a
   liability; this does.
 - **Solvency.** Settlement funds cover every callable liability — agent float,
-  player wallets, unredeemed vouchers, unsettled stakes.
+  player wallets, unredeemed vouchers, unsettled stakes, unredeemed free
+  tickets and the jackpot pool. A test issues promotions past the operator's
+  capital and watches the check go red while the books still balance:
+  insolvency is not a bookkeeping error (failure case F16).
 - **Idempotency.** A replayed transaction id is a no-op, not a second payment.
   A retried mobile-money callback cannot pay a winner twice.
 - **Guards hold under failure.** Every rejected operation leaves the trial
@@ -85,6 +243,34 @@ writes are serialised.
   float that only covers one of them: exactly one wins, the other seven fail
   the guard, and the runner never goes negative. Same for double-redeeming a
   voucher.
+- **A runner's statement reconciles.** Opening plus movements equals closing,
+  and closing equals the balance the ledger holds. One day closes where the
+  next opens, and one runner's activity never appears on another's statement.
+- **Suspension holds where it should and yields where it must.** A suspended
+  runner is refused every way of taking money from a player, and still allowed
+  every way of settling up.
+- **The four dispatcher rules hold under attack.** A runner naming another
+  runner in the body still spends their own float; a player naming another
+  wallet still spends their own; a bet with a valid token but no PIN is
+  refused; a body claiming an earlier timestamp is still judged against the
+  server clock and rejected after the cutoff; a replayed webhook signature is
+  refused once its timestamp is stale. Each was checked by removing the guard
+  and watching a test that names it fail.
+- **A misbehaving provider cannot corrupt the books.** A scripted run of six
+  requests — success, failure, timeout, duplicate callback, outage, amount
+  mismatch — reconciles: each ends resolved or visibly queued, the trial
+  balance and the accounting equation hold, solvency holds, and there is no
+  cache drift. Money is credited exactly once in every case where it moved,
+  and returned in every case where it did not.
+- **Protection is inert until switched on**, and enforced the moment it is. A
+  refused bet writes neither the entry, the bet, nor the day's counter, and the
+  counters survive a restart, so a limit cannot be reset by a redeploy.
+- **A free bet is a bet.** It settles under the same rules and pays the same
+  prize as a paid one, revenue is grossed up by the free stake against the
+  expense recognised at issue, and the promotion nets to its true cost rather
+  than its face. The daily budget stops issuance rather than draining the
+  float, and a rejected issue writes neither the entry, the ticket, nor the
+  day's counter.
 
 ## The draw authority
 
@@ -151,8 +337,24 @@ is worth weighing.
 
 ## What is deliberately not here
 
-No HTTP, no auth, no mobile money. Those come next, and none of them are worth
-building on a ledger that does not balance.
+No USSD channel and no operator screens. The service layer exists but the
+things that call it do not, apart from tests.
+
+The HTTP layer is a reference implementation, not a deployment. It has no TLS
+termination, no rate limiting beyond the PIN lock, no CORS policy, no request
+size cap and no structured audit log of who called what — all of which a real
+deployment needs and most of which belong in front of the process rather than
+inside it. Tokens do not expire, which is fine for a runner's device and wrong
+for a player session.
+
+There is no real mobile money provider either — only the contract, a simulator
+and the gateway. Writing a driver for an actual telco is the remaining work,
+and it is the small half.
+
+The promotional budget cap is a constructor option rather than a stored,
+auditable policy. That is enough for the guard to fail closed, which is the
+property that matters, but a licensed operation will want the cap itself to be
+an append-only event with a name against it.
 
 The ledger still holds no bet types of its own: a selection is an opaque blob it
 stores and hands back to the evaluator. That keeps the rules in one place

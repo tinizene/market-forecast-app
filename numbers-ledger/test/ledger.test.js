@@ -111,7 +111,7 @@ test('issuing float against no capital is caught as a shortfall', () => {
     id: 'f', kind: 'BUY_FLOAT', at: AT,
     entries: [
       { account: 'SETTLEMENT', debit: 450 },
-      { account: 'AGENT_COMMISSION', debit: 50 },
+      { account: 'AGENT_COMMISSION:ag-1', debit: 50 },
       { account: 'AGENT_FLOAT:ag-1', credit: 500 }
     ]
   });

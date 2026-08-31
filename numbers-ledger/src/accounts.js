@@ -26,10 +26,36 @@ const ACCOUNTS = {
   UNSETTLED_STAKES:    { class: LIABILITY, partitioned: false, callable: true, label: 'Unsettled stakes' },
   STAKES_REVENUE:      { class: REVENUE,   partitioned: false, label: 'Stakes revenue' },
   PRIZE_PAYOUTS:       { class: EXPENSE,   partitioned: false, label: 'Prize payouts' },
-  AGENT_COMMISSION:    { class: EXPENSE,   partitioned: false, label: 'Agent commission' },
+  // Partitioned by runner: a statement that cannot say what this runner
+  // earned is not a statement, and the daily reconciliation in the design
+  // lists commission as one of its six lines.
+  AGENT_COMMISSION:    { class: EXPENSE,   partitioned: true,  label: 'Agent commission' },
   TRANSACTION_FEES:    { class: EXPENSE,   partitioned: false, label: 'Transaction fees' },
   GAMING_TAX_PAYABLE:  { class: LIABILITY, partitioned: false, callable: false, label: 'Gaming tax payable' },
   GAMING_TAX_EXPENSE:  { class: EXPENSE,   partitioned: false, label: 'Gaming tax' },
+
+  /**
+   * Money owed to a player whose transfer is in flight. Callable, because the
+   * player is still owed it: a disbursement that has left the wallet but not
+   * yet been confirmed by the provider is not the operator's money and is not
+   * gone either. Parking it here is what makes a failed transfer a return
+   * rather than a reversal of something that never happened.
+   */
+  PENDING_DISBURSEMENTS: { class: LIABILITY, partitioned: false, callable: true, label: 'Disbursements in flight' },
+
+  /**
+   * Promotions. Both liabilities are callable: a free ticket and an advertised
+   * jackpot are promises to pay, and a promise is owed whether or not the
+   * player paid for it. That is deliberate and it bites - issuing a free
+   * ticket credits a callable liability while debiting an expense, so it
+   * consumes headroom without adding an asset. An operator that promotes
+   * beyond its capital fails the solvency check before the promotion can be
+   * redeemed, which is the correct moment to find out.
+   */
+  PROMO_EXPENSE:        { class: EXPENSE,   partitioned: true,  label: 'Promotional cost' },
+  PROMO_VOUCHERS:       { class: LIABILITY, partitioned: false, callable: true, label: 'Unredeemed free tickets' },
+  JACKPOT_CONTRIBUTION: { class: EXPENSE,   partitioned: false, label: 'Jackpot contribution' },
+  JACKPOT_POOL:         { class: LIABILITY, partitioned: false, callable: true, label: 'Jackpot pool' },
 
   /**
    * The operator's own money in the business. Not callable by anyone outside

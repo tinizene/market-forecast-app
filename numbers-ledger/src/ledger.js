@@ -105,6 +105,11 @@ class Ledger {
     return this.#store.read((view) => view.getState(kind, key));
   }
 
+  /** Every stored record of one kind, as [key, value] pairs. */
+  listState(kind) {
+    return this.#store.read((view) => view.listState(kind));
+  }
+
   get events() {
     return this.#store.events();
   }

@@ -22,7 +22,8 @@ function funded({ capital = 5_000_00, paid = 9_500_00, float = 10_000_00 } = {})
 test('T1 - buying float credits the runner and books the discount as commission', () => {
   const op = funded();
   assert.equal(op.ledger.balance('AGENT_FLOAT:ag-1'), 10_000_00);
-  assert.equal(op.ledger.balance('AGENT_COMMISSION'), 500_00);
+  assert.equal(op.ledger.balance('AGENT_COMMISSION:ag-1'), 500_00);
+  assert.equal(op.ledger.controlBalance('AGENT_COMMISSION'), 500_00, 'and rolls up across the network');
   assert.equal(op.ledger.balance('SETTLEMENT'), 5_000_00 + 9_500_00);
   assert.equal(op.ledger.solvency().ok, true);
 });

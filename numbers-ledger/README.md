@@ -27,6 +27,7 @@ directory as a module path. Pass a glob or a file.
 | `src/ledger.js` | Append-only double-entry journal, balances, invariants |
 | `src/operator.js` | The transaction types T0–T17 and the draw lifecycle, each with its guard |
 | `src/mobilemoney/` | The provider contract, a deliberately unreliable simulator, and the gateway between them and the ledger |
+| `src/http/` | Identity and roles, and the HTTP surface over the whole thing |
 | `src/draws.js` | Commit-reveal, result derivation, and the betting window |
 | `src/store/memory.js` | In-memory store — the default, for tests |
 | `src/store/sqlite.js` | Durable store on Node's built-in SQLite |
@@ -171,6 +172,50 @@ transaction, through an optional `onCommit` on the five transactions the
 gateway uses. There is no window where the books say a payout happened and the
 request log still calls it pending.
 
+## The service layer
+
+`src/http/` is a hand-rolled router over `node:http`, for the same reason the
+rest of this package has no dependencies: what it does has to be readable in
+one sitting by somebody deciding whether to trust it with money.
+
+Four principals, and they are not variations on one another. **Operator** staff
+open draws, suspend runners and set limits. An **agent** can move value into a
+wallet and pay a winner from their own cash, and can never spend from a wallet.
+A **player** holds a wallet: their token proves who they are, and the PIN
+authorises each spend, because possession of a handset is not consent. A
+**provider** callback is authenticated by signature, not by token.
+
+Four rules are enforced in the dispatcher rather than left to each handler,
+because each is a way this shape of API is routinely broken:
+
+1. **The server stamps the time.** `at` is never read from a request. A
+   client-supplied timestamp would defeat the cutoff, and the cutoff is why the
+   draw can be trusted at all.
+2. **The subject comes from the token.** A runner's `agentId` and a player's
+   `playerId` come from their credentials, never from the body. Letting a
+   caller name the account they are acting on is the classic broken-access
+   control bug, and here it is a theft primitive.
+3. **Money moves only with an `Idempotency-Key`.** It becomes the ledger
+   transaction id, so a retry — a dropped USSD session, a mobile client on a
+   bad connection — is a no-op rather than a second payment.
+4. **A refused guard is a 409, not a 500.** "You cannot stake more than your
+   wallet" is an expected answer; an API that reports it as a server fault
+   teaches its callers to retry.
+
+Tokens are stored as hashes, so a leaked database does not hand over working
+credentials, and the plaintext is returned once and never again. A PIN is
+scrypt-hashed and locks after three wrong guesses — it is four digits, visible
+on screen as it is typed over USSD, and cannot be the only thing protecting an
+account. Sign-in gives one answer for every failure, because telling "no PIN
+set" from "wrong PIN" is an account-enumeration oracle on a public endpoint.
+Webhook signatures cover the timestamp **and the raw bytes**: without the time
+in the signed material a captured callback replays for ever, and re-serialising
+the parsed body is how a signature check comes to pass on something other than
+what arrived.
+
+`GET /draws/:key` needs no credentials at all. The commitment and the revealed
+seed are public on purpose — that is the whole point of publishing them.
+
 ## What the tests actually prove
 
 - **Trial balance.** Debits equal credits across the whole journal.
@@ -204,6 +249,13 @@ request log still calls it pending.
 - **Suspension holds where it should and yields where it must.** A suspended
   runner is refused every way of taking money from a player, and still allowed
   every way of settling up.
+- **The four dispatcher rules hold under attack.** A runner naming another
+  runner in the body still spends their own float; a player naming another
+  wallet still spends their own; a bet with a valid token but no PIN is
+  refused; a body claiming an earlier timestamp is still judged against the
+  server clock and rejected after the cutoff; a replayed webhook signature is
+  refused once its timestamp is stale. Each was checked by removing the guard
+  and watching a test that names it fail.
 - **A misbehaving provider cannot corrupt the books.** A scripted run of six
   requests — success, failure, timeout, duplicate callback, outage, amount
   mismatch — reconciles: each ends resolved or visibly queued, the trial
@@ -285,8 +337,15 @@ is worth weighing.
 
 ## What is deliberately not here
 
-No HTTP and no auth. Those come next, and neither is worth building on a
-ledger that does not balance.
+No USSD channel and no operator screens. The service layer exists but the
+things that call it do not, apart from tests.
+
+The HTTP layer is a reference implementation, not a deployment. It has no TLS
+termination, no rate limiting beyond the PIN lock, no CORS policy, no request
+size cap and no structured audit log of who called what — all of which a real
+deployment needs and most of which belong in front of the process rather than
+inside it. Tokens do not expire, which is fine for a runner's device and wrong
+for a player session.
 
 There is no real mobile money provider either — only the contract, a simulator
 and the gateway. Writing a driver for an actual telco is the remaining work,

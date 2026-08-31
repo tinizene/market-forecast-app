@@ -8,7 +8,7 @@ on:
   pull_request:
     paths:
       - 'numbers-ledger/**'
-      # The draw-lifecycle test settles against africa-numbers/game.js - the real
+      # The draw-lifecycle and USSD tests both use africa-numbers/game.js - the real
       # payout and hit rules - so a change there must re-run this suite.
       - 'africa-numbers/game.js'
       - '.github/workflows/numbers-ledger-tests.yml'

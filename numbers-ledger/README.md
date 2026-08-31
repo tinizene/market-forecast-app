@@ -28,6 +28,7 @@ directory as a module path. Pass a glob or a file.
 | `src/operator.js` | The transaction types T0–T17 and the draw lifecycle, each with its guard |
 | `src/mobilemoney/` | The provider contract, a deliberately unreliable simulator, and the gateway between them and the ledger |
 | `src/http/` | Identity and roles, and the HTTP surface over the whole thing |
+| `src/ussd/` | The USSD session engine: five keypresses, 182 characters, no state on the handset |
 | `src/draws.js` | Commit-reveal, result derivation, and the betting window |
 | `src/store/memory.js` | In-memory store — the default, for tests |
 | `src/store/sqlite.js` | Durable store on Node's built-in SQLite |
@@ -216,6 +217,47 @@ what arrived.
 `GET /draws/:key` needs no credentials at all. The commitment and the revealed
 seed are public on purpose — that is the whole point of publishing them.
 
+## USSD
+
+The primary channel, not a fallback: requiring a smartphone would exclude most
+of the market. It is also a different medium from a browser, and five
+constraints from the architecture shape the engine.
+
+**182 characters a screen.** Every reply is clamped, and a test walks the whole
+reachable graph — every menu, every re-prompt, every refusal — asserting each
+one already fits without the clamp ever firing.
+
+**Five keypresses to a bet**: menu, bet type, number, stake, PIN. Each screen
+asks exactly one thing.
+
+**All state lives on the server**, against the session id, and deliberately in
+memory. "Nothing written, nothing charged, no partial bet" is a promise that
+persisting a half-built bet would quietly break — so a draft is not persisted,
+it expires, and a test abandons the flow at every one of its five steps and
+checks the journal is untouched each time.
+
+**The bet is written when the PIN lands**, judged against the server clock. A
+session opened before the cutoff and confirmed after it is refused; the test
+dials thirty seconds before the cutoff so the session is still alive when the
+confirmation arrives late.
+
+**Nothing is secret over USSD.** The PIN is visible on screen as it is typed,
+so it authorises a spend and never identifies the spender. The wallet belongs
+to a number, not a handset: a session id replayed from a different MSISDN is a
+different caller and gets nothing. A balance sits behind the PIN because
+handsets are shared; the last draw result does not, because it is already
+public.
+
+The engine holds no bet types and no game rules. It is handed the catalogue and
+the validator — the same ones the app uses — so a selection the game refuses is
+caught while it is still free rather than after the PIN, and the channel cannot
+drift from the rules.
+
+Mounting it behind a shortcode is a small gateway-specific adapter: the engine
+takes `{sessionId, msisdn, input}` and returns `CON`/`END` text, which is what
+every gateway speaks, but the request encoding differs per provider and there
+is no point guessing which one.
+
 ## What the tests actually prove
 
 - **Trial balance.** Debits equal credits across the whole journal.
@@ -249,6 +291,10 @@ seed are public on purpose — that is the whole point of publishing them.
 - **Suspension holds where it should and yields where it must.** A suspended
   runner is refused every way of taking money from a player, and still allowed
   every way of settling up.
+- **A dropped USSD session costs nothing.** The flow is abandoned at each of
+  its five steps in turn and the journal is unchanged every time; an expired
+  session says so and charges nothing; a gateway replaying a whole session
+  buys one ticket, not two.
 - **The four dispatcher rules hold under attack.** A runner naming another
   runner in the body still spends their own float; a player naming another
   wallet still spends their own; a bet with a valid token but no PIN is
@@ -337,8 +383,10 @@ is worth weighing.
 
 ## What is deliberately not here
 
-No USSD channel and no operator screens. The service layer exists but the
-things that call it do not, apart from tests.
+No operator screens, and no adapter from a named USSD gateway to the engine.
+The engine is transport-agnostic and tested; what is missing is the dozen lines
+that decode one provider's request format, which is not worth writing before
+the provider is chosen.
 
 The HTTP layer is a reference implementation, not a deployment. It has no TLS
 termination, no rate limiting beyond the PIN lock, no CORS policy, no request

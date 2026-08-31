@@ -93,6 +93,39 @@ class MemoryStore {
     return this.#events.slice();
   }
 
+  /**
+   * Recompute every balance from the entries and compare against the cache.
+   *
+   * The SQLite store has always had this; the in-memory one did not, which
+   * meant a test could only check for cache drift on one of the two stores the
+   * interface promises are interchangeable. Found by a test that assumed they
+   * were.
+   */
+  verify() {
+    const computed = new Map();
+    for (const record of this.#journal) {
+      for (const entry of record.entries) {
+        const totals = computed.get(entry.account) || { debits: 0, credits: 0 };
+        totals.debits += entry.debit;
+        totals.credits += entry.credit;
+        computed.set(entry.account, totals);
+      }
+    }
+
+    const drift = [];
+    for (const [account, have] of computed) {
+      const cached = this.#totals.get(account) || { debits: 0, credits: 0 };
+      if (cached.debits !== have.debits || cached.credits !== have.credits) {
+        drift.push({ account, cached, computed: have });
+      }
+    }
+    for (const [account, cached] of this.#totals) {
+      if (computed.has(account)) continue;
+      if (cached.debits !== 0 || cached.credits !== 0) drift.push({ account, cached, computed: null });
+    }
+    return drift;
+  }
+
   close() {}
 }
 

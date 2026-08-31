@@ -194,7 +194,7 @@ class Operator {
    * difference between the float granted and the money paid - the runner's
    * margin, fixed at the moment they take the risk.
    */
-  buyFloat({ id, at, agentId, paidMinor, floatMinor, memo }) {
+  buyFloat({ id, at, agentId, paidMinor, floatMinor, memo, onCommit = null }) {
     assertAmount(paidMinor, 'paidMinor');
     assertAmount(floatMinor, 'floatMinor');
     const commission = floatMinor - paidMinor;
@@ -215,6 +215,7 @@ class Operator {
         if (!s.getState('agent', agentId)) {
           s.putState('agent', agentId, { agentId, suspended: false, reason: null, since: at });
         }
+        if (onCommit) onCommit(s);
       }
     });
   }
@@ -536,6 +537,123 @@ class Operator {
           Operator.#fail(`Settlement funds ${format(funds)} cannot cover ${format(amountMinor + feeMinor)}`);
         }
       }
+    });
+  }
+
+  // ---------------------------------- T14-T17: the asynchronous money paths
+  //
+  // Each of these takes an optional onCommit(stateView), so a caller with its
+  // own bookkeeping - the mobile money gateway and its request log - can have
+  // it written inside the same transaction as the money. Without that the two
+  // can disagree after a crash, and a payments integration whose request log
+  // disagrees with its ledger is one nobody can reconcile.
+
+  /**
+   * A player funds their wallet from their own mobile money account - path C
+   * in the architecture, and the cheapest route for the operator because no
+   * runner and no cash is involved.
+   *
+   * Posted only once the provider has confirmed. A collection in flight is not
+   * an asset: money that might arrive is not money.
+   */
+  topUpWallet({ id, at, playerId, amountMinor, memo, onCommit = null }) {
+    assertAmount(amountMinor, 'amountMinor');
+    return this.ledger.post({
+      id, kind: 'TOP_UP_WALLET', at, memo,
+      entries: [
+        { account: 'SETTLEMENT', debit: amountMinor },
+        { account: accountId('PLAYER_WALLET', playerId), credit: amountMinor }
+      ]
+    }, {
+      precondition: (v) => Operator.#assertNotExcluded(v, playerId, at),
+      onCommit
+    });
+  }
+
+  /**
+   * Step one of a withdrawal through a provider that answers later: take the
+   * money out of the wallet and hold it in flight.
+   *
+   * The wallet is debited now, not on confirmation, so the same balance cannot
+   * be withdrawn twice while the first transfer is still in the air. Nothing
+   * has left the operator yet, which is why settlement funds are untouched -
+   * but they are checked, because promising a transfer the operator cannot
+   * fund is how a payout queue turns into a shortfall.
+   *
+   * The fee is not booked here. A transfer that fails costs nothing.
+   */
+  reserveDisbursement({ id, at, playerId, amountMinor, memo, onCommit = null }) {
+    assertAmount(amountMinor, 'amountMinor');
+    const wallet = accountId('PLAYER_WALLET', playerId);
+
+    return this.ledger.post({
+      id, kind: 'RESERVE_DISBURSEMENT', at, memo,
+      entries: [
+        { account: wallet, debit: amountMinor },
+        { account: 'PENDING_DISBURSEMENTS', credit: amountMinor }
+      ]
+    }, {
+      precondition: (v) => {
+        const balance = v.balance(wallet);
+        if (balance < amountMinor) {
+          Operator.#fail(`Player ${playerId} has ${format(balance)}, cannot withdraw ${format(amountMinor)}`);
+        }
+        const funds = v.balance('SETTLEMENT');
+        if (funds < amountMinor) {
+          Operator.#fail(`Settlement funds ${format(funds)} cannot cover ${format(amountMinor)}`);
+        }
+      },
+      onCommit
+    });
+  }
+
+  /** Step two, on confirmation: the money actually leaves, and the fee is real. */
+  confirmDisbursement({ id, at, amountMinor, feeMinor = 0, memo, onCommit = null }) {
+    assertAmount(amountMinor, 'amountMinor');
+    assertNonNegative(feeMinor, 'feeMinor');
+
+    const entries = [{ account: 'PENDING_DISBURSEMENTS', debit: amountMinor }];
+    if (feeMinor > 0) entries.push({ account: 'TRANSACTION_FEES', debit: feeMinor });
+    entries.push({ account: 'SETTLEMENT', credit: amountMinor + feeMinor });
+
+    return this.ledger.post({ id, kind: 'CONFIRM_DISBURSEMENT', at, memo, entries }, {
+      precondition: (v) => {
+        const inFlight = v.balance('PENDING_DISBURSEMENTS');
+        if (inFlight < amountMinor) {
+          Operator.#fail(`Only ${format(inFlight)} is in flight, cannot confirm ${format(amountMinor)}`);
+        }
+        const funds = v.balance('SETTLEMENT');
+        if (funds < amountMinor + feeMinor) {
+          Operator.#fail(`Settlement funds ${format(funds)} cannot cover ${format(amountMinor + feeMinor)}`);
+        }
+      },
+      onCommit
+    });
+  }
+
+  /**
+   * Step two, on failure: the money goes back to the player.
+   *
+   * A return, not a reversal. The player was owed it throughout - it moved
+   * from their wallet to a holding account and back - so the books never
+   * claimed a payment that did not happen.
+   */
+  returnDisbursement({ id, at, playerId, amountMinor, memo, onCommit = null }) {
+    assertAmount(amountMinor, 'amountMinor');
+    return this.ledger.post({
+      id, kind: 'RETURN_DISBURSEMENT', at, memo,
+      entries: [
+        { account: 'PENDING_DISBURSEMENTS', debit: amountMinor },
+        { account: accountId('PLAYER_WALLET', playerId), credit: amountMinor }
+      ]
+    }, {
+      precondition: (v) => {
+        const inFlight = v.balance('PENDING_DISBURSEMENTS');
+        if (inFlight < amountMinor) {
+          Operator.#fail(`Only ${format(inFlight)} is in flight, cannot return ${format(amountMinor)}`);
+        }
+      },
+      onCommit
     });
   }
 

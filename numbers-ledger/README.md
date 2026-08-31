@@ -25,7 +25,8 @@ directory as a module path. Pass a glob or a file.
 | `src/money.js` | Integer minor units. No floats anywhere near a balance |
 | `src/accounts.js` | Chart of accounts, classes, partitioning, what counts as callable |
 | `src/ledger.js` | Append-only double-entry journal, balances, invariants |
-| `src/operator.js` | The transaction types T0–T13 and the draw lifecycle, each with its guard |
+| `src/operator.js` | The transaction types T0–T17 and the draw lifecycle, each with its guard |
+| `src/mobilemoney/` | The provider contract, a deliberately unreliable simulator, and the gateway between them and the ledger |
 | `src/draws.js` | Commit-reveal, result derivation, and the betting window |
 | `src/store/memory.js` | In-memory store — the default, for tests |
 | `src/store/sqlite.js` | Durable store on Node's built-in SQLite |
@@ -68,6 +69,10 @@ writes are serialised.
 | P1 | `setProtection` / `clearProtection` | Off until posted; a policy must limit something |
 | P2 | `setPlayerLimit` | Overrides the house policy either way; a null field inherits it |
 | P3 | `excludePlayer` / `reinstatePlayer` | A cooling-off period lapses by itself and cannot be cut short |
+| T14 | `topUpWallet` | Posted only once the provider confirms |
+| T15 | `reserveDisbursement` | Bounded by the wallet *and* by funds on hand; holds the money in flight |
+| T16 | `confirmDisbursement` | Bounded by what is actually in flight |
+| T17 | `returnDisbursement` | Bounded by what is actually in flight |
 
 T10–T13 are the promotional transactions. A free ticket differs from a sold
 voucher (T3) by exactly one line — that one debits the runner's float because a
@@ -128,6 +133,44 @@ Two asymmetries are deliberate:
 what they are net, and which limits are in force — for support at a counter,
 and for the player who asks.
 
+## Mobile money
+
+`src/mobilemoney/` is an adapter, a simulator, and the gateway between them.
+There is no real provider behind it and no agreement to sign one yet — which
+turns out not to be the obstacle. The API call is the easy half. What breaks in
+production is the callback that arrives twice, the one that arrives out of
+order, the request that times out with the money already moving, and the outage
+that lands mid-run. All of those are reproducible here, deterministically,
+without a telco.
+
+Two rules decide the accounting, and they deliberately point in opposite
+directions:
+
+- **Money in is recognised when it is confirmed.** A collection in flight is
+  not an asset, because money that might arrive is not money.
+- **Money out is reserved when it is requested.** The wallet is debited before
+  the transfer is attempted — so the same balance cannot be withdrawn twice
+  while the first attempt is in the air — and waits in `PENDING_DISBURSEMENTS`,
+  a callable liability, until the provider says which way it went. A failure is
+  a **return**, not a reversal: the player was owed it throughout.
+
+Three things make a timeout survivable. The client reference is ours and is on
+disk *before* the provider is called; `getStatus` is asked by that reference
+rather than the provider's; and a timeout leaves the request `PENDING` rather
+than guessing. "We do not know" is a state, and it is the one a payments
+integration most often lies to itself about.
+
+Nothing that cannot be applied is dropped. A callback with the wrong amount, a
+callback contradicting a terminal answer, and a callback for a reference nobody
+started all become anomalies — recorded once each, however many reconciliation
+sweeps re-find them, because a queue that grows a duplicate row every sweep is
+a queue nobody reads.
+
+Every resolution that moves money writes the request log in the same ledger
+transaction, through an optional `onCommit` on the five transactions the
+gateway uses. There is no window where the books say a payout happened and the
+request log still calls it pending.
+
 ## What the tests actually prove
 
 - **Trial balance.** Debits equal credits across the whole journal.
@@ -161,6 +204,12 @@ and for the player who asks.
 - **Suspension holds where it should and yields where it must.** A suspended
   runner is refused every way of taking money from a player, and still allowed
   every way of settling up.
+- **A misbehaving provider cannot corrupt the books.** A scripted run of six
+  requests — success, failure, timeout, duplicate callback, outage, amount
+  mismatch — reconciles: each ends resolved or visibly queued, the trial
+  balance and the accounting equation hold, solvency holds, and there is no
+  cache drift. Money is credited exactly once in every case where it moved,
+  and returned in every case where it did not.
 - **Protection is inert until switched on**, and enforced the moment it is. A
   refused bet writes neither the entry, the bet, nor the day's counter, and the
   counters survive a restart, so a limit cannot be reset by a redeploy.
@@ -236,8 +285,12 @@ is worth weighing.
 
 ## What is deliberately not here
 
-No HTTP, no auth, no mobile money. Those come next, and none of them are worth
-building on a ledger that does not balance.
+No HTTP and no auth. Those come next, and neither is worth building on a
+ledger that does not balance.
+
+There is no real mobile money provider either — only the contract, a simulator
+and the gateway. Writing a driver for an actual telco is the remaining work,
+and it is the small half.
 
 The promotional budget cap is a constructor option rather than a stored,
 auditable policy. That is enough for the guard to fail closed, which is the

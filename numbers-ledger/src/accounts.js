@@ -35,6 +35,15 @@ const ACCOUNTS = {
   GAMING_TAX_EXPENSE:  { class: EXPENSE,   partitioned: false, label: 'Gaming tax' },
 
   /**
+   * Money owed to a player whose transfer is in flight. Callable, because the
+   * player is still owed it: a disbursement that has left the wallet but not
+   * yet been confirmed by the provider is not the operator's money and is not
+   * gone either. Parking it here is what makes a failed transfer a return
+   * rather than a reversal of something that never happened.
+   */
+  PENDING_DISBURSEMENTS: { class: LIABILITY, partitioned: false, callable: true, label: 'Disbursements in flight' },
+
+  /**
    * Promotions. Both liabilities are callable: a free ticket and an advertised
    * jackpot are promises to pay, and a promise is owed whether or not the
    * player paid for it. That is deliberate and it bites - issuing a free

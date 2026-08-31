@@ -76,8 +76,8 @@ test('a token is only ever handed back once, and the store keeps a hash', () => 
 
   const stored = operator.ledger.listState('token').map(([digest]) => digest);
   assert.ok(!stored.includes(token), 'the plaintext is not in the store');
-  assert.ok(auth.principalFor(token), 'but it still resolves');
-  assert.equal(auth.principalFor('an_wrong'), null);
+  assert.ok(auth.principalFor(token, AT), 'but it still resolves');
+  assert.equal(auth.principalFor('an_wrong', AT), null);
 
   // Nothing in the event log carries the token either.
   const logged = JSON.stringify(operator.ledger.events);
@@ -185,10 +185,14 @@ test('the server stamps the time, and a client cannot move the cutoff', () => {
   const { key } = openDraw(operator);
   const token = signIn(app);
 
-  // Past the cutoff by the server's clock, whatever the body claims.
+  assert.ok(token);
+  // Past the cutoff by the server's clock, whatever the body claims. The
+  // player signs in again because a token from this morning has expired -
+  // which is the point of the expiry, not an inconvenience to work around.
   clock = '2026-08-27T18:59:00Z';
+  const fresh = signIn(app);
   const res = call(app, 'POST', '/player/bets', {
-    token, key: 'b1',
+    token: fresh, key: 'b1',
     body: { at: AT, drawKey: key, pin: '1234', stakeMinor: 1_00, selection: { type: 'straight', digits: '472' } }
   });
   assert.equal(res.status, 409);
@@ -341,7 +345,8 @@ test('a full round trip: sign in, bet, settle, withdraw, callback', () => {
 
   // Only the operator may reveal - a player's token is valid and still refused.
   clock = DRAW_AT;
-  const asPlayer = call(app, 'POST', `/operator/draws/${key}/reveal`, { token, key: 'rv-x', body: { seed } });
+  const evening = signIn(app);
+  const asPlayer = call(app, 'POST', `/operator/draws/${key}/reveal`, { token: evening, key: 'rv-x', body: { seed } });
   assert.equal(asPlayer.status, 403);
 
   const operatorToken = auth.issueToken({ id: 'tok-op2', at: AT, kind: 'operator', subject: 'staff-2', roles: ['operator'] });
@@ -354,11 +359,12 @@ test('a full round trip: sign in, bet, settle, withdraw, callback', () => {
   });
   assert.equal(operator.ledger.balance('PLAYER_WALLET:p-1'), beforeWin + 500_00);
 
-  // The player withdraws, and the provider confirms.
+  // The player withdraws, and the provider confirms. Another sign-in: the
+  // evening token was minted half an hour ago and is still good.
   clock = '2026-08-27T19:30:00Z';
   const walletBefore = operator.ledger.balance('PLAYER_WALLET:p-1');
   const withdrawal = call(app, 'POST', '/player/withdrawals', {
-    token, key: 'w-1', body: { pin: '1234', msisdn: MSISDN, amountMinor: 500_00, feeMinor: 50 }
+    token: evening, key: 'w-1', body: { pin: '1234', msisdn: MSISDN, amountMinor: 500_00, feeMinor: 50 }
   });
   assert.equal(withdrawal.status, 202, 'in flight, not complete');
   assert.equal(operator.ledger.balance('PENDING_DISBURSEMENTS'), 500_00);

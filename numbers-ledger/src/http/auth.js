@@ -25,6 +25,26 @@ const SCRYPT_KEYLEN = 32;
 const WEBHOOK_TOLERANCE_MS = 5 * 60 * 1000;
 const MAX_PIN_ATTEMPTS = 3;
 
+/**
+ * How long a token is good for, by what holds it.
+ *
+ * A player's token travels on a handset that gets shared, sold and lost, so it
+ * expires in an hour and they sign in again with the PIN. A runner's device is
+ * in one pair of hands all day and re-authenticating mid-queue is how a runner
+ * stops using the system, so theirs lasts a shift.
+ *
+ * Absolute, not sliding. A sliding expiry means a write on every request, and
+ * an attacker holding a stolen token is exactly the caller who keeps it alive.
+ * The cost is that a long session ends mid-task; the alternative is that a
+ * stolen token never ends at all.
+ */
+const TOKEN_TTL_MS = {
+  player: 60 * 60 * 1000,
+  agent: 12 * 60 * 60 * 1000,
+  operator: 12 * 60 * 60 * 1000
+};
+const DEFAULT_TTL_MS = 60 * 60 * 1000;
+
 /** Constant-time compare that does not leak length either. */
 function sameSecret(a, b) {
   const left = crypto.createHash('sha256').update(String(a)).digest();
@@ -56,13 +76,19 @@ class Auth {
    * not hand over working credentials - the same reason a password file holds
    * hashes. The plaintext is returned once and never again.
    */
-  issueToken({ id, at, kind, subject, roles }) {
+  issueToken({ id, at, kind, subject, roles, ttlMs = null }) {
     const token = `an_${crypto.randomBytes(TOKEN_BYTES).toString('hex')}`;
     const digest = hashToken(token);
+    const ttl = ttlMs === null ? (TOKEN_TTL_MS[kind] || DEFAULT_TTL_MS) : ttlMs;
+    const expiresAt = new Date(Date.parse(at) + ttl).toISOString();
+
     this.#ledger.event({
-      id, kind: 'TOKEN_ISSUED', at, data: { tokenId: digest.slice(0, 12), principalKind: kind, subject, roles }
+      id, kind: 'TOKEN_ISSUED', at,
+      data: { tokenId: digest.slice(0, 12), principalKind: kind, subject, roles, expiresAt }
     }, {
-      onCommit: (s) => s.putState('token', digest, { kind, subject, roles, issuedAt: at, revokedAt: null })
+      onCommit: (s) => s.putState('token', digest, {
+        kind, subject, roles, issuedAt: at, expiresAt, revokedAt: null
+      })
     });
     return token;
   }
@@ -78,12 +104,28 @@ class Auth {
     });
   }
 
-  /** @returns {null|{kind, subject, roles}} */
-  principalFor(token) {
+  /**
+   * Who is calling, as at the server's clock.
+   *
+   * `at` is required rather than defaulted to the wall clock: this module
+   * reads no clock of its own anywhere else, and a default here would be the
+   * one place an expiry could be checked against a time nobody chose.
+   *
+   * @returns {null|{kind, subject, roles, tokenId, expiresAt}}
+   */
+  principalFor(token, at) {
+    if (typeof at !== 'string' || Number.isNaN(Date.parse(at))) {
+      throw new TypeError('principalFor needs the server time');
+    }
     if (typeof token !== 'string' || !token.startsWith('an_')) return null;
-    const record = this.#ledger.readState('token', hashToken(token));
+    const digest = hashToken(token);
+    const record = this.#ledger.readState('token', digest);
     if (!record || record.revokedAt) return null;
-    return { kind: record.kind, subject: record.subject, roles: record.roles };
+    if (record.expiresAt && Date.parse(at) >= Date.parse(record.expiresAt)) return null;
+    return {
+      kind: record.kind, subject: record.subject, roles: record.roles,
+      tokenId: digest.slice(0, 12), expiresAt: record.expiresAt || null
+    };
   }
 
   // -------------------------------------------------------------- player PINs
@@ -180,4 +222,7 @@ class Auth {
   }
 }
 
-module.exports = { Auth, hashToken, hashPin, sameSecret, MAX_PIN_ATTEMPTS, WEBHOOK_TOLERANCE_MS };
+module.exports = {
+  Auth, hashToken, hashPin, sameSecret,
+  MAX_PIN_ATTEMPTS, WEBHOOK_TOLERANCE_MS, TOKEN_TTL_MS, DEFAULT_TTL_MS
+};

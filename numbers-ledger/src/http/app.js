@@ -1,9 +1,10 @@
 'use strict';
 
-const { Auth } = require('./auth.js');
+const { Auth, hashToken } = require('./auth.js');
 const { consoleFiles, SECURITY_HEADERS } = require('./static.js');
 const { Refusal } = require('../errors.js');
 const { Reports, toCsv, dayWindow } = require('../reporting.js');
+const { RateLimiter, LIMITS } = require('./limits.js');
 
 /**
  * The HTTP surface.
@@ -34,6 +35,15 @@ const { Reports, toCsv, dayWindow } = require('../reporting.js');
  */
 
 const JSON_TYPE = { 'content-type': 'application/json; charset=utf-8' };
+
+/**
+ * The largest body this service will read.
+ *
+ * Every request it accepts is a handful of fields. A cap that generous is
+ * still four orders of magnitude more than any of them needs, and without one
+ * a single request can hold as much memory as the sender cares to send.
+ */
+const MAX_BODY_BYTES = 64 * 1024;
 
 class HttpError extends Error {
   constructor(status, message, detail = null) {
@@ -73,11 +83,13 @@ function statusForLedgerError(error) {
  */
 function createApp({
   operator, gateway = null, auth = null, evaluate = null,
-  now = () => new Date().toISOString(), logger = null, serveConsole = true
+  now = () => new Date().toISOString(), logger = null, serveConsole = true,
+  audit = null, maxBodyBytes = MAX_BODY_BYTES, limits = LIMITS
 }) {
   if (!operator) throw new TypeError('createApp needs an operator');
   const identity = auth || new Auth({ ledger: operator.ledger });
   const reports = new Reports({ ledger: operator.ledger, operator });
+  const limiter = new RateLimiter({ now });
   const routes = [];
 
   const route = (method, pattern, options, handler) => {
@@ -143,7 +155,7 @@ function createApp({
   // with an operator token the person pastes in.
   if (serveConsole) {
     for (const file of consoleFiles()) {
-      route('GET', file.url, { auth: false }, () => ({ status: 200, raw: file.body, type: file.type }));
+      route('GET', file.url, { auth: false, static: true }, () => ({ status: 200, raw: file.body, type: file.type }));
     }
   }
 
@@ -192,7 +204,10 @@ function createApp({
     operator.setProtection({
       id: ctx.txId, at: ctx.at,
       dailyStakeMinor: ctx.body.dailyStakeMinor ?? null,
-      dailyLossMinor: ctx.body.dailyLossMinor ?? null
+      dailyLossMinor: ctx.body.dailyLossMinor ?? null,
+      // From the token, never the body. A policy change with a name against it
+      // is only worth anything if the name is one the caller cannot choose.
+      by: ctx.principal.subject
     });
     return { status: 200, body: operator.protectionStatus() };
   });
@@ -210,10 +225,45 @@ function createApp({
     return { status: 201, body: operator.drawReceipt(ctx.body.drawKey) };
   });
 
+  /**
+   * Open a draw whose seed this operator does not keep: it is sealed under a
+   * key split among custodians, and the shares come back exactly once.
+   *
+   * The response is the only place those shares ever exist. It must not be
+   * logged, cached, or written down anywhere but the custodians' own hands -
+   * which is why the audit log records that this call happened and never what
+   * it returned.
+   */
+  route('POST', '/operator/draws/prepare', { roles: ['operator'], money: true }, (ctx) => {
+    requireBody(ctx, 'drawKey', 'opensAt', 'cutoffAt', 'drawAt');
+    const shares = ctx.body.shares === undefined ? 3 : ctx.body.shares;
+    const threshold = ctx.body.threshold === undefined ? 2 : ctx.body.threshold;
+    if (!Number.isInteger(shares) || !Number.isInteger(threshold)) {
+      throw new HttpError(400, 'shares and threshold must be whole numbers');
+    }
+    if (threshold < 2) throw new HttpError(400, 'threshold must be at least 2 - a one-of-n split is not custody');
+    if (shares < threshold) throw new HttpError(400, 'shares must be at least the threshold');
+
+    const prepared = operator.prepareDraw({
+      id: ctx.txId, at: ctx.at, drawKey: ctx.body.drawKey,
+      opensAt: ctx.body.opensAt, cutoffAt: ctx.body.cutoffAt, drawAt: ctx.body.drawAt,
+      shares, threshold
+    });
+    return { status: 201, body: prepared, secret: true };
+  });
+
   route('POST', '/operator/draws/:key/reveal', { roles: ['operator'], money: true }, (ctx) => {
+    // A seed, or the shares that unseal one. Both end at the same commitment
+    // check, so custody never becomes something the result has to be trusted to.
+    if (Array.isArray(ctx.body.shares)) {
+      const revealed = operator.revealSealedDraw({
+        id: ctx.txId, at: ctx.at, drawKey: ctx.params.key, shares: ctx.body.shares
+      });
+      return { status: 200, body: { drawKey: ctx.params.key, result: revealed.result, custody: 'shares' } };
+    }
     requireBody(ctx, 'seed');
     const revealed = operator.revealDraw({ id: ctx.txId, at: ctx.at, drawKey: ctx.params.key, seed: ctx.body.seed });
-    return { status: 200, body: { drawKey: ctx.params.key, result: revealed.result } };
+    return { status: 200, body: { drawKey: ctx.params.key, result: revealed.result, custody: 'seed' } };
   });
 
   // ------------------------------------------------- operator: the whole book
@@ -426,7 +476,7 @@ function createApp({
   });
 
   route('DELETE', '/operator/protection', { roles: ['operator'], money: true }, (ctx) => {
-    operator.clearProtection({ id: ctx.txId, at: ctx.at });
+    operator.clearProtection({ id: ctx.txId, at: ctx.at, by: ctx.principal.subject });
     return { status: 200, body: operator.protectionStatus() };
   });
 
@@ -469,6 +519,34 @@ function createApp({
       playerId: ctx.body.playerId, amountMinor: amount(ctx, 'amountMinor')
     });
     return { status: 201, body: operator.jackpotStatement() };
+  });
+
+  /**
+   * The promotional cap lives under /operator/policy rather than under
+   * /operator/promotions, because a literal path segment there would be
+   * swallowed by the :campaignId route below - the router matches in
+   * registration order and a campaign could legitimately be called "cap".
+   */
+  route('GET', '/operator/policy/promo-cap', { roles: ['operator'] }, (ctx) => ({
+    status: 200, body: operator.promoCapStatus(ctx.at)
+  }));
+
+  route('POST', '/operator/policy/promo-cap', { roles: ['operator'], money: true }, (ctx) => {
+    const cap = ctx.body.dailyCapMinor;
+    // Zero is a real cap - it stops issuance dead - so this cannot use the
+    // positive-amount helper, and it must not treat 0 as "unset".
+    if (!Number.isInteger(cap) || cap < 0) {
+      throw new HttpError(400, 'dailyCapMinor must be a whole number of minor units, zero or more');
+    }
+    operator.setPromoCap({
+      id: ctx.txId, at: ctx.at, dailyCapMinor: cap, by: ctx.principal.subject, memo: ctx.body.memo || null
+    });
+    return { status: 201, body: operator.promoCapStatus(ctx.at) };
+  });
+
+  route('DELETE', '/operator/policy/promo-cap', { roles: ['operator'], money: true }, (ctx) => {
+    operator.clearPromoCap({ id: ctx.txId, at: ctx.at, by: ctx.principal.subject });
+    return { status: 200, body: operator.promoCapStatus(ctx.at) };
   });
 
   route('GET', '/operator/promotions/:campaignId', { roles: ['operator'] }, (ctx) => ({
@@ -583,7 +661,9 @@ function createApp({
     }
 
     const header = req.headers.authorization || '';
-    const principal = identity.principalFor(header.startsWith('Bearer ') ? header.slice(7) : null);
+    // Expiry is checked against the server's clock, here, on every request -
+    // not at issue time and not by the holder.
+    const principal = identity.principalFor(header.startsWith('Bearer ') ? header.slice(7) : null, at);
     if (!principal) throw new HttpError(401, 'Authentication required');
     if (match.roles && !match.roles.some((role) => principal.roles.includes(role))) {
       throw new HttpError(403, 'Not permitted');
@@ -596,15 +676,45 @@ function createApp({
    * @param {string} rawBody the bytes as they arrived - the webhook signature
    *        covers these, not a re-serialisation of the parsed object.
    */
+  /**
+   * How much this request is allowed, and under what key.
+   *
+   * Sign-in is keyed on the account being signed in to rather than on whoever
+   * is asking: the attack is a thousand attempts against one player, from a
+   * thousand places, and a per-caller key would let every one of them through.
+   * Authenticated calls are keyed on the token, which is the only identity
+   * this process can actually verify.
+   */
+  function rateKey(match, req, url, body) {
+    if (url.pathname === '/player/session') {
+      return { key: `signin:${body && body.playerId ? body.playerId : 'unknown'}`, rule: limits.signIn };
+    }
+    if (match.auth === 'webhook') return { key: 'webhook', rule: limits.webhook };
+    const header = req.headers.authorization || '';
+    if (header.startsWith('Bearer ')) {
+      return { key: `token:${hashToken(header.slice(7)).slice(0, 16)}`, rule: limits.authenticated };
+    }
+    return { key: 'anonymous', rule: limits.anonymous };
+  }
+
   function handle(req, rawBody = '') {
     const at = now();
     const url = new URL(req.url, 'http://service.invalid');
     const match = routes.find((r) => r.method === req.method && r.regex.test(url.pathname));
+    let principalForAudit = null;
+    let answer;
 
     try {
       if (!match) throw new HttpError(404, 'No such endpoint');
 
+      // Size first, before anything parses or hashes it. A body this service
+      // will refuse should cost it nothing to refuse.
+      if (Buffer.byteLength(rawBody, 'utf8') > maxBodyBytes) {
+        throw new HttpError(413, `Body may not exceed ${maxBodyBytes} bytes`);
+      }
+
       const principal = authenticate(match, req, rawBody, at);
+      principalForAudit = principal;
 
       let body = {};
       if (rawBody) {
@@ -615,6 +725,18 @@ function createApp({
         }
         if (body === null || typeof body !== 'object' || Array.isArray(body)) {
           throw new HttpError(400, 'Body must be a JSON object');
+        }
+      }
+
+      // After the body is parsed, because sign-in is limited per account and
+      // the account is in the body. Static console files are not limited:
+      // they are a page, and refusing to serve its stylesheet to a person
+      // reloading twice would be a limiter working against its own operator.
+      if (!match.static) {
+        const { key, rule } = rateKey(match, req, url, body);
+        const allowed = limiter.take(key, rule);
+        if (!allowed.ok) {
+          throw new HttpError(429, 'Too many requests', { retryAfterSeconds: allowed.retryAfterSeconds });
         }
       }
 
@@ -631,27 +753,99 @@ function createApp({
         query: Object.fromEntries(url.searchParams)
       };
 
-      return match.handler(ctx);
+      answer = match.handler(ctx);
     } catch (error) {
       if (error instanceof HttpError) {
-        return { status: error.status, body: { error: error.message, ...(error.detail || {}) } };
+        answer = { status: error.status, body: { error: error.message, ...(error.detail || {}) } };
+      } else {
+        const status = statusForLedgerError(error);
+        if (status === 500 && logger) logger(error);
+        answer = {
+          status,
+          // A guard's message is written for the caller. An unexpected failure's
+          // is not, and saying so beats leaking a stack trace.
+          body: { error: status === 409 ? error.message : 'Internal error' }
+        };
       }
-      const status = statusForLedgerError(error);
-      if (status === 500 && logger) logger(error);
-      return {
-        status,
-        // A guard's message is written for the caller. An unexpected failure's
-        // is not, and saying so beats leaking a stack trace.
-        body: { error: status === 409 ? error.message : 'Internal error' }
-      };
+    }
+
+    record(req, url, at, principalForAudit, answer);
+    return answer;
+  }
+
+  /**
+   * Who called what, and what they were told.
+   *
+   * Reads are logged as well as writes. "Who looked at this player's wallet"
+   * is a question with the same regulatory weight as "who moved money", and a
+   * log that answers only the second one answers it alone.
+   *
+   * What is never logged: the body, the response, the bearer token, and a
+   * PIN. The token is identified by the same short digest the issue event
+   * carries, so a line here joins to a line there without either holding a
+   * working credential. A response marked `secret` - the one that hands over
+   * custody shares - records that it happened and nothing about what it said.
+   */
+  function record(req, url, at, principal, answer) {
+    if (!audit) return;
+    try {
+      audit({
+        at,
+        method: req.method,
+        path: url.pathname,
+        status: answer.status,
+        principalKind: principal ? principal.kind : null,
+        subject: principal ? principal.subject : null,
+        tokenId: principal && principal.tokenId ? principal.tokenId : null,
+        idempotencyKey: req.headers['idempotency-key'] || null,
+        secret: answer.secret === true
+      });
+    } catch (error) {
+      // An audit sink that throws must not turn a good request into a 500 -
+      // but it must not be silent either, or the log stops and nobody knows.
+      if (logger) logger(error);
     }
   }
 
-  /** Adapter for node:http. Kept separate so the app is testable without a socket. */
+  /**
+   * Adapter for node:http. Kept separate so the app is testable without a
+   * socket - which is also why the size cap is enforced in both places: here,
+   * to stop reading bytes it will not use, and in handle(), because that is
+   * the entry point the tests and any other transport go through.
+   *
+   * No CORS header is ever emitted, by omission and on purpose. The credential
+   * is a bearer header rather than a cookie, so a browser on another origin
+   * cannot attach it without a preflight this service will not answer, and
+   * there is no cross-site request that can act as a caller.
+   */
   function listener(req, res) {
     const chunks = [];
-    req.on('data', (chunk) => chunks.push(chunk));
+    let bytes = 0;
+    let aborted = false;
+
+    req.on('data', (chunk) => {
+      if (aborted) return;
+      bytes += chunk.length;
+      if (bytes > maxBodyBytes) {
+        aborted = true;
+        const payload = JSON.stringify({ error: `Body may not exceed ${maxBodyBytes} bytes` });
+        res.writeHead(413, {
+          'content-type': JSON_TYPE['content-type'],
+          'content-length': Buffer.byteLength(payload),
+          connection: 'close',
+          ...SECURITY_HEADERS
+        });
+        res.end(payload);
+        // Stop reading. Draining a body already refused is doing the sender's
+        // work for them.
+        req.destroy();
+        return;
+      }
+      chunks.push(chunk);
+    });
+
     req.on('end', () => {
+      if (aborted) return;
       const rawBody = Buffer.concat(chunks).toString('utf8');
       const result = handle(req, rawBody);
       const isRaw = typeof result.raw === 'string';
@@ -659,6 +853,9 @@ function createApp({
       res.writeHead(result.status, {
         'content-type': isRaw ? result.type : JSON_TYPE['content-type'],
         'content-length': Buffer.byteLength(payload),
+        ...(result.status === 429 && result.body && result.body.retryAfterSeconds
+          ? { 'retry-after': String(result.body.retryAfterSeconds) }
+          : {}),
         ...SECURITY_HEADERS
       });
       res.end(payload);
@@ -668,4 +865,4 @@ function createApp({
   return { handle, listener, auth: identity, routes: routes.map((r) => `${r.method} ${r.regex.source}`) };
 }
 
-module.exports = { createApp, HttpError };
+module.exports = { createApp, HttpError, MAX_BODY_BYTES };

@@ -159,7 +159,41 @@
     </div>
 
     <div class="card">
+      <h2>Prepare a sealed draw</h2>
+      <p class="muted small">The seed is generated on the server, sealed, and split among custodians.
+        Nobody holds it, including this operator - the shares below are the only way back to it, and
+        any two of them together open the envelope.</p>
+      <form data-action="prepareDraw">
+        <label for="sKey">Draw key</label>
+        <input id="sKey" name="drawKey" placeholder="2026-09-01" required>
+        <label for="sAt">Draw time (UTC)</label>
+        <input id="sAt" name="drawAt" placeholder="2026-09-01T19:00:00Z" required>
+        <label for="sLead">Cutoff, minutes before</label>
+        <input id="sLead" name="lead" inputmode="numeric" value="5">
+        <label for="sShares">Custodians</label>
+        <input id="sShares" name="shares" inputmode="numeric" value="3">
+        <label for="sThreshold">Shares needed to reveal</label>
+        <input id="sThreshold" name="threshold" inputmode="numeric" value="2">
+        <button type="submit">Prepare and seal</button>
+      </form>
+      <div id="sharesOut" class="secret" hidden></div>
+
+      <h2>Reveal a sealed draw</h2>
+      <form data-action="revealSealed">
+        <label for="rsKey">Draw key</label>
+        <input id="rsKey" name="drawKey" required>
+        <label for="rsShares">Shares, one per line</label>
+        <textarea id="rsShares" name="shares" rows="4" spellcheck="false"
+          placeholder="an1.2.1.&hellip;&#10;an1.2.3.&hellip;"></textarea>
+        <button type="submit">Reveal</button>
+      </form>
+    </div>
+
+    <div class="card">
       <h2>Open a draw</h2>
+      <p class="muted small">The other custody model: the seed is generated in your browser and never
+        sent. Nothing here can reveal the draw without you - and nothing here can recover it if the
+        seed is lost.</p>
       <form data-action="openDraw">
         <label for="dKey">Draw key</label>
         <input id="dKey" name="drawKey" placeholder="2026-09-01" required>
@@ -334,6 +368,20 @@
         <input id="jpAmount" name="amount" inputmode="decimal" placeholder="0.00" required>
         <button type="submit">Pay</button>
       </form>
+    </div>
+
+    <div class="card wide">
+      <h2>Daily promotional budget</h2>
+      <table class="grid" id="capTable"><tbody></tbody></table>
+      <form class="row" data-action="setPromoCap">
+        <label for="capAmount">Cap per UTC day</label>
+        <input id="capAmount" name="amount" inputmode="decimal" placeholder="0.00" required>
+        <button type="submit">Set</button>
+        <button type="button" id="clearCap" class="danger">Remove the cap</button>
+      </form>
+      <p class="muted small">Evaluated inside the transaction that issues a ticket, so a campaign with
+        a bug stops issuing rather than draining the float. Zero is a real value and stops issuance
+        dead; removing the cap is different, and means no limit at all.</p>
     </div>
 
     <div class="card">

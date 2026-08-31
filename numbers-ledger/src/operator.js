@@ -4,6 +4,7 @@ const { Ledger } = require('./ledger.js');
 const { assertAmount, assertNonNegative, format } = require('./money.js');
 const { accountId, parseAccount } = require('./accounts.js');
 const draws = require('./draws.js');
+const custody = require('./custody.js');
 const { Refusal } = require('./errors.js');
 
 /**
@@ -25,8 +26,9 @@ class Operator {
   /**
    * @param {{currency?: object, store?: object, promoDailyCapMinor?: number}} [options]
    *        pass a SqliteStore for durability; defaults to in-memory.
-   *        promoDailyCapMinor caps what promotions may cost in a single day;
-   *        null (the default) means uncapped.
+   *        promoDailyCapMinor is a bootstrap cap for a book that has never had
+   *        one posted; null (the default) means uncapped. A cap set with
+   *        setPromoCap overrides it, and is the one a regulator can be shown.
    */
   constructor(options = {}) {
     this.ledger = new Ledger(options);
@@ -315,7 +317,7 @@ class Operator {
    * append-only one. A commitment that could be edited afterwards would prove
    * nothing.
    */
-  openDraw({ id, at, drawKey, commitment, opensAt, cutoffAt, drawAt, memo }) {
+  openDraw({ id, at, drawKey, commitment, opensAt, cutoffAt, drawAt, sealed = null, memo }) {
     if (typeof commitment !== 'string' || !/^[0-9a-f]{64}$/.test(commitment)) {
       Operator.#fail('commitment must be 64 hex characters (sha256)');
     }
@@ -334,16 +336,78 @@ class Operator {
 
     return this.ledger.event({
       id, kind: 'DRAW_OPENED', at, memo,
-      data: { drawKey, commitment, opensAt, cutoffAt, drawAt }
+      // The event records that a draw was sealed and under what threshold, not
+      // the envelope: the journal is the part an auditor reads, and it has no
+      // reason to carry ciphertext.
+      data: { drawKey, commitment, opensAt, cutoffAt, drawAt, custody: custody.custodySummary(sealed) }
     }, {
       precondition: (v) => {
         if (v.getState('draw', drawKey)) Operator.#fail(`Draw ${drawKey} is already open`);
       },
       onCommit: (s) => s.putState('draw', drawKey, {
         status: 'open', commitment, opensAt, cutoffAt, drawAt,
-        seed: null, result: null, betIds: [], settled: false
+        seed: null, result: null, betIds: [], settled: false, sealed
       })
     });
+  }
+
+  /**
+   * Open a draw whose seed the operator does not keep.
+   *
+   * The seed is generated here, sealed under a data key, and the key is split
+   * among custodians - k of whom must present their shares to reveal it. The
+   * envelope is stored beside the commitment because it is inert without them.
+   *
+   * The shares are returned once and never again. Nothing here stores them,
+   * and the seed itself is never returned at all: after this call the only
+   * paths to tomorrow's number are k custodians agreeing, or the draw time
+   * arriving. That is the property the commitment alone cannot give, because
+   * a commitment says nothing about who already knows the answer.
+   *
+   * `seed` is injectable for a test, and for an operator who would rather
+   * generate the seed somewhere else and hand it over.
+   *
+   * @returns {{drawKey, commitment, shares: string[], custody: object}}
+   */
+  prepareDraw({
+    id, at, drawKey, opensAt, cutoffAt, drawAt, memo,
+    shares = 3, threshold = 2, seed = null
+  }) {
+    const material = seed === null ? draws.createSeed() : seed;
+    const commitment = draws.commit(drawKey, material);
+    const sealedUp = custody.sealSeed(material, { shares, threshold });
+
+    this.openDraw({ id, at, drawKey, commitment, opensAt, cutoffAt, drawAt, sealed: sealedUp.envelope, memo });
+
+    return {
+      drawKey, commitment,
+      shares: sealedUp.shares,
+      custody: custody.custodySummary(sealedUp.envelope)
+    };
+  }
+
+  /**
+   * Reveal a sealed draw by presenting shares instead of the seed.
+   *
+   * Unsealing happens outside the transaction because it is a pure
+   * computation, and the seed it produces is then checked against the
+   * published commitment inside one - so a tampered envelope, a wrong set of
+   * shares, or a swapped ciphertext all fail the same check that a swapped
+   * seed would. The custody layer never becomes something the result has to
+   * be trusted to.
+   */
+  revealSealedDraw({ id, at, drawKey, shares, memo }) {
+    const draw = this.ledger.readState('draw', drawKey);
+    if (!draw) Operator.#fail(`Draw ${drawKey} was never opened`);
+    if (!draw.sealed) Operator.#fail(`Draw ${drawKey} was not sealed; reveal it with its seed`);
+
+    let seed;
+    try {
+      seed = custody.openSeed(draw.sealed, shares);
+    } catch (error) {
+      Operator.#fail(error.message);
+    }
+    return this.revealDraw({ id, at, drawKey, seed, memo });
   }
 
   // ----------------------------------------------------- D2: reveal the seed
@@ -388,6 +452,10 @@ class Operator {
     const { commitment, seed, result, opensAt, cutoffAt, drawAt, status, settled } = draw;
     return {
       drawKey, status, settled, commitment, seed, result, opensAt, cutoffAt, drawAt,
+      // The summary, never the envelope. Publishing the ciphertext would give
+      // nothing away, and there is still no reason to hand an attacker the
+      // thing they would have to break.
+      custody: custody.custodySummary(draw.sealed),
       verification: seed ? draws.verifyDraw({ drawKey, seed, commitment, result }) : null
     };
   }
@@ -744,6 +812,83 @@ class Operator {
   // ----------------------------------------------- T10-T11: free tickets
 
   /**
+   * The cap in force, read from inside a transaction.
+   *
+   * A stored policy wins over the constructor's value. The constructor is a
+   * bootstrap for a process that has never had a policy posted - useful in a
+   * test and on day one, and not something a regulator can be shown, because
+   * a constant in a deployment cannot answer "what was the cap in March, and
+   * who set it".
+   */
+  #promoCapFrom(view) {
+    const policy = view.getState('policy', 'promoCap');
+    if (policy) return policy.dailyCapMinor;
+    return this.promoDailyCapMinor;
+  }
+
+  /**
+   * Set the daily promotional budget, as an event with a name and a date
+   * against it.
+   *
+   * Zero is a real value and means no promotions may be issued at all - the
+   * fastest way to stop a campaign that is misbehaving, and different from
+   * clearing the policy, which removes the cap entirely.
+   *
+   * @param {string|null} by who set it. Comes from the caller's credentials
+   *        at the service layer, never from a request body.
+   */
+  setPromoCap({ id, at, dailyCapMinor, by = null, memo }) {
+    if (!Number.isInteger(dailyCapMinor) || dailyCapMinor < 0) {
+      Operator.#fail('dailyCapMinor must be a whole number of minor units, zero or more');
+    }
+    return this.ledger.event({
+      id, kind: 'PROMO_CAP_SET', at, memo, data: { dailyCapMinor, by }
+    }, {
+      onCommit: (s) => s.putState('policy', 'promoCap', { dailyCapMinor, since: at, by })
+    });
+  }
+
+  /** Remove the cap entirely. Not the same as setting it to zero. */
+  clearPromoCap({ id, at, by = null, memo }) {
+    return this.ledger.event({ id, kind: 'PROMO_CAP_CLEARED', at, memo, data: { by } }, {
+      precondition: (v) => {
+        if (!v.getState('policy', 'promoCap')) Operator.#fail('No promotional cap is in force');
+      },
+      onCommit: (s) => s.putState('policy', 'promoCap', null)
+    });
+  }
+
+  /**
+   * What the cap is, where it came from, and what is left of today's budget.
+   *
+   * `source` matters: a cap that came from `construction` is one nobody
+   * decided in a way the log records, and the console says so rather than
+   * showing a number that looks like policy.
+   */
+  promoCapStatus(at = null) {
+    const policy = this.ledger.readState('policy', 'promoCap');
+    const dailyCapMinor = policy ? policy.dailyCapMinor : this.promoDailyCapMinor;
+    const source = policy ? 'policy' : (this.promoDailyCapMinor === null ? 'none' : 'construction');
+
+    const day = at === null ? null : Operator.#dayOf(at);
+    const spentTodayMinor = day === null
+      ? null
+      : (this.ledger.readState('promoDay', day) || { spentMinor: 0 }).spentMinor;
+
+    return {
+      inForce: dailyCapMinor !== null,
+      dailyCapMinor,
+      source,
+      since: policy ? policy.since : null,
+      by: policy ? policy.by : null,
+      day,
+      spentTodayMinor,
+      remainingMinor: dailyCapMinor === null || spentTodayMinor === null
+        ? null : Math.max(0, dailyCapMinor - spentTodayMinor)
+    };
+  }
+
+  /**
    * A promotional ticket the operator grants. One line separates this from a
    * sold voucher (T3): that one debits the runner's float, because a runner
    * paid for it, and this one debits promotional cost, because nobody did.
@@ -761,7 +906,6 @@ class Operator {
     parseAccount(accountId('PLAYER_WALLET', playerId));
     const expense = accountId('PROMO_EXPENSE', campaignId);
     const day = Operator.#dayOf(at);
-    const cap = this.promoDailyCapMinor;
 
     return this.ledger.post({
       id, kind: 'ISSUE_FREE_TICKET', at, memo,
@@ -772,6 +916,11 @@ class Operator {
     }, {
       precondition: (v) => {
         if (v.getState('freeTicket', ticketId)) Operator.#fail(`Free ticket ${ticketId} already exists`);
+        // Read inside the transaction, not captured before it. A cap lowered
+        // while a campaign is issuing takes effect on the next ticket rather
+        // than on the next restart - which is the whole reason the cap is a
+        // posting guard instead of a configuration value.
+        const cap = this.#promoCapFrom(v);
         if (cap === null) return;
         const spent = (v.getState('promoDay', day) || { spentMinor: 0 }).spentMinor;
         if (spent + faceMinor > cap) {
@@ -927,7 +1076,7 @@ class Operator {
    * @param {number|null} dailyLossMinor   most a player may be down in a day,
    *        net of that day's winnings. Either may be null for "no limit".
    */
-  setProtection({ id, at, dailyStakeMinor = null, dailyLossMinor = null, memo }) {
+  setProtection({ id, at, dailyStakeMinor = null, dailyLossMinor = null, by = null, memo }) {
     for (const [label, value] of [['dailyStakeMinor', dailyStakeMinor], ['dailyLossMinor', dailyLossMinor]]) {
       if (value !== null) assertAmount(value, label);
     }
@@ -936,15 +1085,15 @@ class Operator {
     }
 
     return this.ledger.event({
-      id, kind: 'PROTECTION_SET', at, memo, data: { dailyStakeMinor, dailyLossMinor }
+      id, kind: 'PROTECTION_SET', at, memo, data: { dailyStakeMinor, dailyLossMinor, by }
     }, {
-      onCommit: (s) => s.putState('protection', 'global', { dailyStakeMinor, dailyLossMinor, since: at })
+      onCommit: (s) => s.putState('protection', 'global', { dailyStakeMinor, dailyLossMinor, since: at, by })
     });
   }
 
   /** Switch the global limits off again. Per-player limits are untouched. */
-  clearProtection({ id, at, memo }) {
-    return this.ledger.event({ id, kind: 'PROTECTION_CLEARED', at, memo, data: {} }, {
+  clearProtection({ id, at, by = null, memo }) {
+    return this.ledger.event({ id, kind: 'PROTECTION_CLEARED', at, memo, data: { by } }, {
       precondition: (v) => {
         if (!v.getState('protection', 'global')) Operator.#fail('No protection policy is in force');
       },
@@ -1028,6 +1177,7 @@ class Operator {
       dailyStakeMinor: global ? global.dailyStakeMinor : null,
       dailyLossMinor: global ? global.dailyLossMinor : null,
       since: global ? global.since : null,
+      by: global ? global.by || null : null,
       playerLimits: this.ledger.listState('playerLimit').filter(([, v]) => v).length,
       excluded: this.ledger.listState('player').filter(([, v]) => v && v.excluded).length
     };

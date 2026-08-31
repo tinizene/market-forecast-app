@@ -419,6 +419,76 @@
     });
   };
 
+  /**
+   * Prepare a sealed draw and show the shares once.
+   *
+   * They are on the screen and nowhere else: this does not store them, the
+   * server does not store them, and asking again produces a different draw
+   * rather than the same shares. So the screen says what to do with them
+   * before it says anything else.
+   */
+  handlers.prepareDraw = function (form) {
+    var drawKey = value(form, 'drawKey');
+    var drawAt = value(form, 'drawAt');
+    var lead = Number(value(form, 'lead') || 5);
+    var draw = Date.parse(drawAt);
+    if (Number.isNaN(draw)) throw new Error('Draw time must be an ISO timestamp, e.g. 2026-09-01T19:00:00Z.');
+    if (!Number.isInteger(lead) || lead < 0) throw new Error('Cutoff lead must be a whole number of minutes.');
+
+    var shares = Number(value(form, 'shares'));
+    var threshold = Number(value(form, 'threshold'));
+    if (!Number.isInteger(shares) || !Number.isInteger(threshold)) throw new Error('Custodians and threshold are whole numbers.');
+    if (threshold < 2) throw new Error('At least two shares must be needed - one custodian is not custody.');
+    if (shares < threshold) throw new Error('There cannot be fewer custodians than shares needed.');
+
+    var cutoff = new Date(draw - lead * 60000).toISOString();
+    var opens = new Date(Date.parse(cutoff) - 24 * 3600 * 1000).toISOString();
+
+    return api('POST', '/operator/draws/prepare', {
+      action: 'prepare:' + drawKey,
+      body: {
+        drawKey: drawKey, opensAt: opens, cutoffAt: cutoff,
+        drawAt: new Date(draw).toISOString(), shares: shares, threshold: threshold
+      }
+    }).then(function (prepared) {
+      var out = $('sharesOut');
+      out.textContent = '';
+      out.appendChild(el('strong', 'Shown once. Give each line to a different person.'));
+      out.appendChild(el('p', 'Any ' + prepared.custody.threshold + ' of these ' + prepared.custody.shares +
+        ' shares reveal draw ' + prepared.drawKey + '. Fewer reveal nothing. Lose more than ' +
+        (prepared.custody.shares - prepared.custody.threshold) +
+        ' and the draw can never be revealed and every bet on it has to be refunded.', 'small'));
+      var list = document.createElement('ol');
+      prepared.shares.forEach(function (share) {
+        var item = document.createElement('li');
+        item.appendChild(el('code', share));
+        list.appendChild(item);
+      });
+      out.appendChild(list);
+      out.appendChild(el('p', 'Commitment ' + prepared.commitment, 'small muted'));
+      out.hidden = false;
+      form.reset();
+      return loadDraws();
+    });
+  };
+
+  handlers.revealSealed = function (form) {
+    var drawKey = value(form, 'drawKey');
+    var shares = $('rsShares').value.split('\n')
+      .map(function (line) { return line.trim(); })
+      .filter(function (line) { return line !== ''; });
+    if (!shares.length) throw new Error('Paste the shares, one per line.');
+
+    return api('POST', '/operator/draws/' + encodeURIComponent(drawKey) + '/reveal', {
+      action: 'reveal:' + drawKey, body: { shares: shares }
+    }).then(function (data) {
+      say('Draw ' + drawKey + ' drew ' + data.result + '.', true);
+      form.reset();
+      $('rsShares').value = '';
+      return loadDraws();
+    });
+  };
+
   // ---------------------------------------------------------------- players
 
   function showPlayer(statement) {
@@ -592,6 +662,38 @@
       return Promise.all([loadJackpot(), loadOverview()]);
     });
   };
+
+  function paintCap(status) {
+    pairs($('capTable'), [
+      ['Cap per day', status.inForce ? money(status.dailyCapMinor) : 'none', status.inForce ? 'num' : 'warn'],
+      ['Set by', status.by || (status.source === 'construction' ? 'nobody - it came from configuration' : '-'),
+        status.source === 'construction' ? 'warn' : ''],
+      ['In force since', status.since || '-'],
+      ['Issued today', status.spentTodayMinor === null ? '-' : money(status.spentTodayMinor), 'num'],
+      ['Left today', status.remainingMinor === null ? 'no limit' : money(status.remainingMinor), 'num']
+    ]);
+  }
+
+  function loadCap() {
+    return api('GET', '/operator/policy/promo-cap').then(paintCap);
+  }
+
+  handlers.setPromoCap = function (form) {
+    return api('POST', '/operator/policy/promo-cap', {
+      action: 'promo-cap', body: { dailyCapMinor: minorFrom(form, 'amount') }
+    }).then(function (status) {
+      say('Daily promotional budget set to ' + money(status.dailyCapMinor) + '.', true);
+      form.reset();
+      paintCap(status);
+    });
+  };
+
+  function clearCap() {
+    return api('DELETE', '/operator/policy/promo-cap', { action: 'promo-cap-off' }).then(function (status) {
+      say('The promotional cap is removed. Nothing limits issuance now.', true);
+      paintCap(status);
+    });
+  }
 
   handlers.campaign = function (form) {
     return api('GET', '/operator/promotions/' + encodeURIComponent(value(form, 'campaignId'))).then(function (c) {
@@ -793,7 +895,7 @@
     players: function () { return Promise.resolve(); },
     protection: function () { return loadOverview(); },
     money: loadMoney,
-    promotions: loadJackpot,
+    promotions: function () { return Promise.all([loadJackpot(), loadCap()]); },
     // A report is run on demand: the window matters, so guessing one and
     // painting it would be answering a question nobody asked.
     reports: function () { return Promise.resolve(); }
@@ -854,6 +956,8 @@
     $('seedSaved').addEventListener('change', function (event) {
       $('openDrawBtn').disabled = !event.target.checked;
     });
+
+    $('clearCap').addEventListener('click', function () { clearCap().catch(fail); });
 
     $('reportForm').addEventListener('submit', function (event) {
       event.preventDefault();

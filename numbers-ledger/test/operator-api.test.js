@@ -593,3 +593,161 @@ test('every new operator route that moves money demands an idempotency key', () 
     assert.match(answer.body.error, /Idempotency-Key/);
   }
 });
+
+// ------------------------------------------------------ the promotional cap
+
+test('the cap is a stored policy with a name and a date against it', () => {
+  const { app, op, operator } = rig();
+
+  const before = call(app, 'GET', '/operator/policy/promo-cap', { token: op }).body;
+  assert.equal(before.inForce, false);
+  assert.equal(before.source, 'none');
+
+  const set = call(app, 'POST', '/operator/policy/promo-cap', { token: op, body: { dailyCapMinor: 500_00 } });
+  assert.equal(set.status, 201);
+  assert.equal(set.body.dailyCapMinor, 500_00);
+  assert.equal(set.body.source, 'policy');
+  assert.equal(set.body.by, 'staff-1', 'from the token, not the body');
+  assert.equal(set.body.since, AT);
+
+  // And it is in the log, which a constant in a deployment could never be.
+  const events = operator.ledger.events.filter((e) => e.kind === 'PROMO_CAP_SET');
+  assert.equal(events.length, 1);
+  assert.equal(events[0].data.by, 'staff-1');
+});
+
+test('the caller cannot name somebody else as the one who set the cap', () => {
+  const { app, op } = rig();
+  const set = call(app, 'POST', '/operator/policy/promo-cap', {
+    token: op, body: { dailyCapMinor: 100_00, by: 'somebody-else' }
+  });
+  assert.equal(set.body.by, 'staff-1');
+});
+
+test('the cap in force stops issuance, and lowering it takes effect at once', () => {
+  const { app, op } = rig();
+  call(app, 'POST', '/operator/policy/promo-cap', { token: op, body: { dailyCapMinor: 30_00 } });
+
+  const first = call(app, 'POST', '/operator/promotions/free-tickets', {
+    token: op, body: { campaignId: 'c', ticketId: 't-1', playerId: 'p-1', faceMinor: 20_00 }
+  });
+  assert.equal(first.status, 201);
+
+  const over = call(app, 'POST', '/operator/promotions/free-tickets', {
+    token: op, body: { campaignId: 'c', ticketId: 't-2', playerId: 'p-1', faceMinor: 20_00 }
+  });
+  assert.equal(over.status, 409);
+  assert.match(over.body.error, /Promotional budget/);
+
+  // Lower it below what has already gone out: nothing more issues today.
+  call(app, 'POST', '/operator/policy/promo-cap', { token: op, body: { dailyCapMinor: 5_00 } });
+  const status = call(app, 'GET', '/operator/policy/promo-cap', { token: op }).body;
+  assert.equal(status.remainingMinor, 0);
+  assert.equal(call(app, 'POST', '/operator/promotions/free-tickets', {
+    token: op, body: { campaignId: 'c', ticketId: 't-3', playerId: 'p-1', faceMinor: 1_00 }
+  }).status, 409);
+});
+
+/**
+ * Zero is a real cap and stops issuance dead - the fastest way to halt a
+ * campaign that is misbehaving. Removing the cap is a different act with the
+ * opposite effect, and the two must not be spelled the same way.
+ */
+test('a cap of zero stops everything, and removing the cap is not the same thing', () => {
+  const { app, op } = rig();
+  call(app, 'POST', '/operator/policy/promo-cap', { token: op, body: { dailyCapMinor: 0 } });
+  assert.equal(call(app, 'GET', '/operator/policy/promo-cap', { token: op }).body.inForce, true);
+  assert.equal(call(app, 'POST', '/operator/promotions/free-tickets', {
+    token: op, body: { campaignId: 'c', ticketId: 't-1', playerId: 'p-1', faceMinor: 1 }
+  }).status, 409);
+
+  const removed = call(app, 'DELETE', '/operator/policy/promo-cap', { token: op });
+  assert.equal(removed.body.inForce, false);
+  assert.equal(call(app, 'POST', '/operator/promotions/free-tickets', {
+    token: op, body: { campaignId: 'c', ticketId: 't-2', playerId: 'p-1', faceMinor: 1_000_00 }
+  }).status, 201, 'no limit at all');
+});
+
+test('a cap that is not a whole number of minor units is refused', () => {
+  const { app, op } = rig();
+  for (const dailyCapMinor of [-1, 12.5, '500', null]) {
+    assert.equal(call(app, 'POST', '/operator/policy/promo-cap', { token: op, body: { dailyCapMinor } }).status,
+      400, `accepted ${dailyCapMinor}`);
+  }
+  assert.equal(call(app, 'DELETE', '/operator/policy/promo-cap', { token: op }).status, 409,
+    'removing a cap that is not there is a refusal, not a silent success');
+});
+
+test('a campaign called cap is a campaign, not the policy', () => {
+  const { app, op } = rig();
+  call(app, 'POST', '/operator/policy/promo-cap', { token: op, body: { dailyCapMinor: 100_00 } });
+  call(app, 'POST', '/operator/promotions/free-tickets', {
+    token: op, body: { campaignId: 'cap', ticketId: 't-1', playerId: 'p-1', faceMinor: 5_00 }
+  });
+
+  const campaign = call(app, 'GET', '/operator/promotions/cap', { token: op }).body;
+  assert.equal(campaign.campaignId, 'cap');
+  assert.equal(campaign.spentMinor, 5_00);
+});
+
+// ------------------------------------------------------------- sealed draws
+
+test('a sealed draw is prepared and revealed over HTTP without a seed anywhere', () => {
+  const { app, op } = rig();
+  const prepared = call(app, 'POST', '/operator/draws/prepare', {
+    token: op,
+    body: {
+      drawKey: 'S1', opensAt: AT, cutoffAt: '2026-08-27T18:55:00Z',
+      drawAt: '2026-08-27T19:00:00Z', shares: 3, threshold: 2
+    }
+  });
+
+  assert.equal(prepared.status, 201);
+  assert.equal(prepared.body.shares.length, 3);
+  assert.equal(prepared.secret, true, 'marked so the audit log records it without its contents');
+
+  clock = AFTER_DRAW;
+  const revealed = call(app, 'POST', '/operator/draws/S1/reveal', {
+    token: op, body: { shares: [prepared.body.shares[0], prepared.body.shares[2]] }
+  });
+  assert.equal(revealed.status, 200);
+  assert.equal(revealed.body.custody, 'shares');
+
+  const receipt = call(app, 'GET', '/draws/S1').body;
+  assert.equal(receipt.verification.ok, true);
+  assert.deepEqual(receipt.custody, { sealed: true, threshold: 2, shares: 3 });
+});
+
+test('too few shares is a refusal a person can act on', () => {
+  const { app, op } = rig();
+  const prepared = call(app, 'POST', '/operator/draws/prepare', {
+    token: op,
+    body: {
+      drawKey: 'S1', opensAt: AT, cutoffAt: '2026-08-27T18:55:00Z',
+      drawAt: '2026-08-27T19:00:00Z', shares: 3, threshold: 2
+    }
+  });
+
+  clock = AFTER_DRAW;
+  const refused = call(app, 'POST', '/operator/draws/S1/reveal', {
+    token: op, body: { shares: [prepared.body.shares[0]] }
+  });
+  assert.equal(refused.status, 409);
+  assert.match(refused.body.error, /needs 2 shares; 1 supplied/);
+});
+
+test('a one-of-n split is refused at the door', () => {
+  const { app, op } = rig();
+  const body = {
+    drawKey: 'S2', opensAt: AT, cutoffAt: '2026-08-27T18:55:00Z', drawAt: '2026-08-27T19:00:00Z'
+  };
+  assert.equal(call(app, 'POST', '/operator/draws/prepare', {
+    token: op, body: { ...body, shares: 3, threshold: 1 }
+  }).status, 400);
+  assert.equal(call(app, 'POST', '/operator/draws/prepare', {
+    token: op, body: { ...body, shares: 2, threshold: 3 }
+  }).status, 400);
+  assert.equal(call(app, 'POST', '/operator/draws/prepare', {
+    token: op, body: { ...body, shares: 2.5, threshold: 2 }
+  }).status, 400);
+});

@@ -31,12 +31,13 @@ directory as a module path. Pass a glob or a file.
 | `src/ussd/` | The USSD session engine: five keypresses, 182 characters, no state on the handset |
 | `src/console/` | The operator console: no framework, no build step, no inline script |
 | `src/reporting.js` | Operator reporting, derived from the journal on the way past |
+| `src/custody.js` | Sealed draw seeds: k-of-n shares over GF(256), and the envelope they open |
 | `src/draws.js` | Commit-reveal, result derivation, and the betting window |
 | `src/errors.js` | `Refusal` — an expected answer, told apart from a fault by its type |
 | `src/store/memory.js` | In-memory store — the default, for tests |
 | `src/store/sqlite.js` | Durable store on Node's built-in SQLite |
 | `bin/console-server.js` | The composition root: the only way to actually run any of this |
-| `test/` | 237 tests: unit, a simulated trading day, durability, concurrency, draws, channels, the API surface |
+| `test/` | 279 tests: unit, a simulated trading day, durability, concurrency, draws, channels, the API surface |
 
 ## Durable or in-memory
 
@@ -335,6 +336,126 @@ And `buyFloat`'s refusal said the opposite of what it checks — commission is a
 discount on float, so the rule is that money paid cannot exceed float granted,
 and the message claimed the reverse.
 
+## Custody of the draw seed
+
+The commit-reveal scheme is only worth as much as the custody of the seed
+behind it. Publishing a commitment stops the operator choosing a number after
+seeing the book. It says nothing about somebody who already knows tomorrow's
+number, and nothing about somebody who loses it.
+
+`prepareDraw` answers both. The seed is generated, sealed under a data key with
+AES-256-GCM, and the key is split by Shamir's scheme over GF(256) into n shares
+of which k reconstruct it. The envelope is stored beside the commitment, because
+it is inert without shares. The shares come back once and are never stored
+anywhere.
+
+```
+POST /operator/draws/prepare   { drawKey, drawAt, shares: 3, threshold: 2 }
+  -> { commitment, shares: [ "an1.2.1.…", … ] }        shown once, then gone
+POST /operator/draws/:key/reveal  { shares: [ … ] }    any k of them
+```
+
+**What this defends against:** read access to the database, a single dishonest
+custodian, and losing the seed while any k custodians still hold theirs.
+
+**What it does not:** whoever controls the process at the moment the seed is
+generated, because the plaintext is in memory then. That is a deployment and
+access-control problem, and pretending otherwise would be the worst thing this
+module could do.
+
+The alternative is still there and is the honest other half of the trade: the
+console can generate a seed in the browser, show it once, and send only the
+commitment — nothing server-side ever sees it, and nothing server-side can
+recover it if it is lost. The screen says both of those out loud.
+
+Three details worth the space:
+
+**A one-of-n split is refused.** It would be custody in name only.
+
+**A mistyped share is named.** Each share carries a four-character checksum, so
+a custodian reading one off paper months later is told "share 2 is mistyped"
+rather than watching the whole process fail at the end. Shares that are
+individually well-formed but belong to another envelope are caught by the
+authentication tag, which is why the cipher is GCM and not something
+unauthenticated that would hand back a plausible wrong seed.
+
+**Custody never becomes something the result is trusted to.** Whatever the
+shares produce is checked against the commitment published before betting
+opened, inside the write transaction, exactly as a hand-typed seed is. A test
+swaps the envelope for one sealing a different seed, presents its shares, and
+watches the commitment check refuse it.
+
+## Policy that is posted, not configured
+
+The daily promotional cap used to be a constructor argument. It is now an event
+with a name and a date against it:
+
+```
+POST /operator/policy/promo-cap   { dailyCapMinor: 50000 }
+```
+
+The constructor value survives as a bootstrap for a book that has never had a
+policy posted, and `promoCapStatus()` reports `source: 'construction'` when that
+is where the number came from — because a constant in a deployment cannot answer
+"what was the cap in March, and who set it", and the console should say so
+rather than showing a figure that looks like a decision.
+
+Two things follow from making it a policy rather than a constant.
+
+**The cap is read inside the write transaction that issues the ticket**, not
+captured when the process started. Lowering it stops the next ticket, not the
+next restart.
+
+**Zero is a real value and is not the same as no policy.** A cap of zero halts
+issuance dead, which is what you want at 2am when a campaign is misbehaving.
+Removing the cap means no limit at all. Spelling those the same way would be a
+mistake somebody makes once.
+
+`by` comes from the caller's token and never from the request body — a policy
+change with a name against it is worth nothing if the name is one the caller
+can choose. The same is now true of the protection limits.
+
+## Hardening the service
+
+Four things the service layer did not do, and now does.
+
+**Tokens expire.** A player's lasts an hour, a runner's and an operator's a
+shift, checked against the server clock on every request. Absolute, not sliding:
+a sliding expiry means a write per request, and the caller who keeps a stolen
+token alive is exactly the attacker. The cost is that a long session ends
+mid-task, and the alternative is that a stolen token never ends at all.
+
+**Bodies are capped at 64KB**, enforced twice — in `handle()`, which is what the
+tests and any other transport go through, and in the socket adapter, which stops
+reading and closes rather than buffering bytes it has already refused.
+
+**Rate limits.** A token bucket per key, refilling continuously rather than
+resetting on a window boundary — fixed windows let twice the limit through
+across a boundary, which is the failure mode that makes people believe a limiter
+is working. Sign-in is the tight one at five a minute and is keyed on *the
+account being signed in to*, not on the caller: the attack is a thousand
+attempts against one player from a thousand places, and a per-caller key lets
+every one of them through. A refused attempt never reaches the PIN check, which
+is the scrypt this is defending.
+
+Two honest limits on it: it is per process, so it is a floor rather than a
+policy and a real deployment puts one in front; and it is in memory, so a
+restart forgives everybody — which is why the PIN lock, which is durable, stays
+separate rather than being folded into it.
+
+**An audit log**, as a sink the composition root wires to an append-only JSONL
+file. Reads are logged as well as writes: "who looked at this player's wallet"
+carries the same regulatory weight as "who moved money", and a log that answers
+only the second answers it alone. What is never in it: the body, the response,
+the bearer token, a PIN. A token appears as the same short digest its issue
+event carries, so a line here joins to a line there without either holding a
+working credential. The one response marked `secret` — the call that hands over
+custody shares — records that it happened and nothing about what it said.
+
+No CORS header is ever emitted, by omission and on purpose: the credential is a
+bearer header rather than a cookie, so there is no cross-site request that can
+act as a caller.
+
 ## Reporting
 
 `src/reporting.js` answers the questions a business asks of its books, and
@@ -445,6 +566,14 @@ and a plain download link therefore cannot carry it.
 - **A report of a past period does not move when something happens today.**
 - **A stored settlement summary that disagrees with the journal fails a check**
   rather than being reported as revenue.
+- **Any k of n shares open a sealed draw and any k-1 do not** — every
+  three-of-five subset, not a convenient one.
+- **A token stops working when its time is up**, and using it does not extend
+  it.
+- **Sign-in is limited per account**, and exhausting one account's allowance
+  does not lock out another.
+- **The audit log carries no token, no body and no PIN**, including on the one
+  call that hands over custody shares.
 - **Balances are derivable.** A test rebuilds every balance from the journal
   alone and compares. A stored balance that disagrees with its entries is the
   classic ledger bug; the only way to be immune is not to keep one.
@@ -570,21 +699,19 @@ delivery — a close is run when somebody asks for it, not emailed at midnight �
 and no report is signed or sealed, so a CSV is evidence of what the ledger said
 when it was exported and nothing stronger.
 
-The HTTP layer is a reference implementation, not a deployment. It has no TLS
-termination, no rate limiting beyond the PIN lock, no CORS policy, no request
-size cap and no structured audit log of who called what — all of which a real
-deployment needs and most of which belong in front of the process rather than
-inside it. Tokens do not expire, which is fine for a runner's device and wrong
-for a player session.
+The HTTP layer is still a reference implementation rather than a deployment. It
+has no TLS termination and no way to know a caller's real address behind a
+proxy, so the rate limiter keys on the token and on the account rather than on
+where a request came from. Both belong in front of the process. There is no
+refresh flow either: an expired token means signing in again, which is right for
+a player and abrupt for a runner mid-queue.
+
+Custody protects the seed from the database and from a single custodian. It does
+not protect it from whoever controls the process at the moment it is generated.
 
 There is no real mobile money provider either — only the contract, a simulator
 and the gateway. Writing a driver for an actual telco is the remaining work,
 and it is the small half.
-
-The promotional budget cap is a constructor option rather than a stored,
-auditable policy. That is enough for the guard to fail closed, which is the
-property that matters, but a licensed operation will want the cap itself to be
-an append-only event with a name against it.
 
 The ledger still holds no bet types of its own: a selection is an opaque blob it
 stores and hands back to the evaluator. That keeps the rules in one place

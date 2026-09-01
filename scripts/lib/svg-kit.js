@@ -15,19 +15,33 @@
 const W = 900;
 const H = 560;
 
+// Every entry is a custom property, not a hex. The diagrams are inlined into the
+// document rather than fetched as images, so a var() inside an SVG attribute resolves
+// against :root exactly like any other rule — which is what lets one drawing serve
+// both themes instead of two drawings drifting apart.
+//
+// The ratios these have to hold are declared in scripts/contrast-audit.js, which runs
+// them against both palettes. assertPalette() below checks the wiring: that every
+// entry is a token, and that styles.css actually defines it.
+const fs = require('fs');
+const path = require('path');
+
 const C = {
-  bg: '#0f172a',
-  text: '#e2e8f0',
-  muted: '#94a3b8',
-  blue: '#3b82f6',
-  blueText: '#60a5fa',
-  green: '#22c55e',
-  greenText: '#4ade80',
-  red: '#ef4444',
-  redText: '#f87171',
-  amber: '#eab308',
-  amberText: '#facc15',
-  grid: '#334155',
+  bg: 'var(--diagram-bg)',
+  panel: 'var(--diagram-panel)',
+  text: 'var(--diagram-text)',
+  strong: 'var(--diagram-strong)',
+  muted: 'var(--diagram-muted)',
+  blue: 'var(--info-500)',
+  blueText: 'var(--info-text)',
+  green: 'var(--success-500)',
+  greenText: 'var(--success-text)',
+  red: 'var(--danger-500)',
+  redText: 'var(--danger-text)',
+  amber: 'var(--warning-500)',
+  amberText: 'var(--warning-text)',
+  grid: 'var(--diagram-grid)',
+  axis: 'var(--diagram-axis)',
 };
 
 // ---------- accessibility guard ----------
@@ -48,12 +62,21 @@ function contrast(a, b) {
 const TEXT_COLOURS = ['text', 'muted', 'blueText', 'greenText', 'redText', 'amberText'];
 
 function assertPalette() {
-  const failures = TEXT_COLOURS
-    .map((k) => [k, contrast(C[k], C.bg)])
-    .filter(([, r]) => r < 4.5);
-  if (failures.length) {
-    console.error('Text colours below WCAG AA on the diagram background:');
-    failures.forEach(([k, r]) => console.error(`  ${k} ${C[k]} — ${r.toFixed(2)}:1`));
+  // Ratios are contrast-audit.js's job now, and it checks both themes. What is left to
+  // verify here is the wiring: a palette entry that is not a token, or is a token
+  // styles.css never defines, resolves to nothing and paints a diagram in browser
+  // defaults — black text on transparent, which looks broken rather than wrong.
+  const css = fs.readFileSync(path.join(__dirname, '..', '..', 'styles.css'), 'utf8');
+  const defined = new Set([...css.matchAll(/(--[a-z0-9-]+)\s*:/gi)].map((m) => m[1]));
+  const problems = [];
+  for (const [name, value] of Object.entries(C)) {
+    const m = /^var\((--[a-z0-9-]+)\)$/.exec(value);
+    if (!m) problems.push(`${name} is ${value}, not a var(--token) — a diagram cannot follow a theme through a literal`);
+    else if (!defined.has(m[1])) problems.push(`${name} points at ${m[1]}, which styles.css does not define`);
+  }
+  if (problems.length) {
+    console.error('Diagram palette is not wired to the stylesheet:');
+    problems.forEach((p) => console.error(`  ${p}`));
     process.exit(1);
   }
 }

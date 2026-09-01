@@ -112,6 +112,26 @@
   --neg-text: #f87171;
 
   /* ---- borders ---- */
+  /* ---- lesson diagrams ----
+     83 inline SVGs draw on their own ground rather than the page's, so they get their
+     own surface and ink. Everything else in a diagram reuses the role ramps. */
+  --diagram-bg: #0f172a;
+  --diagram-panel: #1e293b;
+  --diagram-text: #e2e8f0;
+  --diagram-strong: #cbd5e1;
+  --diagram-muted: #94a3b8;
+  --diagram-faint: #8195ae;
+  --diagram-grid: #334155;
+  --diagram-axis: #6b7f97;
+  /* Neutral blocks drawn ON the diagram ground. Their job is to stand out, and 32 of
+     them carry no stroke, so the fill alone has to do it. In dark they are light
+     blocks with dark text; in light they invert to dark blocks with light text,
+     because a pale block on a pale page has nothing left to stand out against. */
+  --diagram-block: #ffffff;
+  --diagram-block-2: #e2e8f0;
+  --diagram-band: #cbd5e1;
+  --diagram-block-ink: #0f172a;
+
   /* Shadows are a colour too. A dark theme's black at 0.45 on a light page reads as
      dirt rather than depth, so each theme states its own. */
   --shadow-soft: rgba(0, 0, 0, 0.30);
@@ -225,6 +245,20 @@
 
   --pos-text: #15803d;
   --neg-text: #b91c1c;
+
+  /* ---- lesson diagrams ---- */
+  --diagram-bg: #ffffff;
+  --diagram-panel: #f0f6f5;
+  --diagram-text: #1f2c3a;
+  --diagram-strong: #334155;
+  --diagram-muted: #45535f;
+  --diagram-faint: #5a6875;
+  --diagram-grid: #cbdad7;
+  --diagram-axis: #64748b;
+  --diagram-block: #334155;
+  --diagram-block-2: #3d4d5c;
+  --diagram-band: #475569;
+  --diagram-block-ink: #f1f5f9;
 
   --shadow-soft: rgba(15, 42, 55, 0.06);
   --shadow: rgba(15, 42, 55, 0.10);
@@ -1432,10 +1466,8 @@
 /* Lesson diagrams are authored art with their own dark ground baked into the SVG.
    They are not restyled by a theme; they are framed as figures so that on a light
    page they read as an illustration rather than as a hole. */
-:root[data-theme="light"] .lesson-image-card {
-  background: var(--bg-app-deep);
-  border-color: var(--border-default);
-}
+/* Diagrams draw their own ground via --diagram-bg, so the card is only a frame. */
+.lesson-image-card { background-color: transparent; }
 
 /* ---- theme toggle in the nav ---- */
 .theme-toggle {

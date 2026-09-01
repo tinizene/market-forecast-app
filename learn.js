@@ -44,394 +44,394 @@ function showApiKeyBanner(message) {
 const FOUNDATION_SVGS = {
   'barter-diagram': `
     <svg viewBox="0 0 700 340" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, sans-serif" role="img" aria-label="Diagram of the double coincidence of wants in barter">
-      <rect width="700" height="340" fill="#0f172a" rx="12"/>
-      <text x="350" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="#e2e8f0">The Double Coincidence of Wants</text>
+      <rect width="700" height="340" fill="var(--diagram-bg)" rx="12"/>
+      <text x="350" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="var(--diagram-text)">The Double Coincidence of Wants</text>
 
-      <rect x="40" y="70" width="230" height="100" rx="10" fill="rgba(239,68,68,0.10)" stroke="#ef4444" stroke-width="1.5"/>
-      <text x="155" y="98" text-anchor="middle" font-size="13" font-weight="700" fill="#fecaca">Farmer</text>
-      <text x="155" y="120" text-anchor="middle" font-size="11.5" fill="#e2e8f0">Has: Vegetables</text>
-      <text x="155" y="138" text-anchor="middle" font-size="11.5" fill="#e2e8f0">Wants: Shoes</text>
+      <rect x="40" y="70" width="230" height="100" rx="10" fill="var(--danger-soft)" stroke="var(--danger-500)" stroke-width="1.5"/>
+      <text x="155" y="98" text-anchor="middle" font-size="13" font-weight="700" fill="var(--danger-text)">Farmer</text>
+      <text x="155" y="120" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">Has: Vegetables</text>
+      <text x="155" y="138" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">Wants: Shoes</text>
 
-      <line x1="288" y1="105" x2="312" y2="135" stroke="#ef4444" stroke-width="4" stroke-linecap="round"/>
-      <line x1="312" y1="105" x2="288" y2="135" stroke="#ef4444" stroke-width="4" stroke-linecap="round"/>
+      <line x1="288" y1="105" x2="312" y2="135" stroke="var(--danger-500)" stroke-width="4" stroke-linecap="round"/>
+      <line x1="312" y1="105" x2="288" y2="135" stroke="var(--danger-500)" stroke-width="4" stroke-linecap="round"/>
 
-      <rect x="330" y="70" width="230" height="100" rx="10" fill="rgba(239,68,68,0.10)" stroke="#ef4444" stroke-width="1.5"/>
-      <text x="445" y="98" text-anchor="middle" font-size="13" font-weight="700" fill="#fecaca">Shoemaker</text>
-      <text x="445" y="120" text-anchor="middle" font-size="11.5" fill="#e2e8f0">Has: Shoes</text>
-      <text x="445" y="138" text-anchor="middle" font-size="11.5" fill="#e2e8f0">Wants: Meat</text>
+      <rect x="330" y="70" width="230" height="100" rx="10" fill="var(--danger-soft)" stroke="var(--danger-500)" stroke-width="1.5"/>
+      <text x="445" y="98" text-anchor="middle" font-size="13" font-weight="700" fill="var(--danger-text)">Shoemaker</text>
+      <text x="445" y="120" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">Has: Shoes</text>
+      <text x="445" y="138" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">Wants: Meat</text>
 
-      <text x="350" y="196" text-anchor="middle" font-size="12" font-style="italic" fill="#fca5a5">No match — trade fails</text>
+      <text x="350" y="196" text-anchor="middle" font-size="12" font-style="italic" fill="var(--danger-text)">No match — trade fails</text>
 
-      <line x1="350" y1="215" x2="350" y2="235" stroke="#475569" stroke-width="2"/>
+      <line x1="350" y1="215" x2="350" y2="235" stroke="var(--diagram-axis)" stroke-width="2"/>
 
-      <rect x="130" y="245" width="440" height="70" rx="10" fill="rgba(34,197,94,0.10)" stroke="#22c55e" stroke-width="1.5"/>
-      <text x="350" y="270" text-anchor="middle" font-size="12.5" font-weight="700" fill="#bbf7d0">With money: no matching wants needed</text>
-      <text x="350" y="290" text-anchor="middle" font-size="11" fill="#e2e8f0">Both trades happen separately — money is accepted by everyone</text>
+      <rect x="130" y="245" width="440" height="70" rx="10" fill="var(--success-soft)" stroke="var(--success-500)" stroke-width="1.5"/>
+      <text x="350" y="270" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--success-text)">With money: no matching wants needed</text>
+      <text x="350" y="290" text-anchor="middle" font-size="11" fill="var(--diagram-text)">Both trades happen separately — money is accepted by everyone</text>
     </svg>
   `,
 
   'fractional-reserve': `
     <svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, sans-serif" role="img" aria-label="Diagram of fractional reserve banking and the bank run risk it creates">
-      <rect width="700" height="400" fill="#0f172a" rx="12"/>
-      <text x="350" y="32" text-anchor="middle" font-size="15" font-weight="700" fill="#e2e8f0">Fractional Reserve Banking — The Risk</text>
+      <rect width="700" height="400" fill="var(--diagram-bg)" rx="12"/>
+      <text x="350" y="32" text-anchor="middle" font-size="15" font-weight="700" fill="var(--diagram-text)">Fractional Reserve Banking — The Risk</text>
 
-      <rect x="40" y="55" width="280" height="85" rx="10" fill="rgba(59,130,246,0.10)" stroke="#3b82f6" stroke-width="1.5"/>
-      <text x="180" y="82" text-anchor="middle" font-size="12.5" font-weight="700" fill="#93c5fd">Bank Vault</text>
-      <text x="180" y="104" text-anchor="middle" font-size="11.5" fill="#e2e8f0">100 gold coins actually held</text>
-      <text x="180" y="122" text-anchor="middle" font-size="11" fill="#94a3b8">but 500 IOUs promised on demand</text>
+      <rect x="40" y="55" width="280" height="85" rx="10" fill="var(--info-soft)" stroke="var(--info-500)" stroke-width="1.5"/>
+      <text x="180" y="82" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--info-text)">Bank Vault</text>
+      <text x="180" y="104" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">100 gold coins actually held</text>
+      <text x="180" y="122" text-anchor="middle" font-size="11" fill="var(--diagram-muted)">but 500 IOUs promised on demand</text>
 
-      <rect x="380" y="55" width="280" height="85" rx="10" fill="rgba(234,179,8,0.10)" stroke="#eab308" stroke-width="1.5"/>
-      <text x="520" y="82" text-anchor="middle" font-size="12.5" font-weight="700" fill="#fde68a">The Risk</text>
-      <text x="520" y="104" text-anchor="middle" font-size="11.5" fill="#e2e8f0">Only 1 in 5 IOUs could be paid</text>
-      <text x="520" y="122" text-anchor="middle" font-size="11" fill="#94a3b8">if everyone showed up the same day</text>
+      <rect x="380" y="55" width="280" height="85" rx="10" fill="var(--warning-soft)" stroke="var(--warning-500)" stroke-width="1.5"/>
+      <text x="520" y="82" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--warning-text)">The Risk</text>
+      <text x="520" y="104" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">Only 1 in 5 IOUs could be paid</text>
+      <text x="520" y="122" text-anchor="middle" font-size="11" fill="var(--diagram-muted)">if everyone showed up the same day</text>
 
-      <line x1="350" y1="150" x2="350" y2="175" stroke="#ef4444" stroke-width="3"/>
-      <rect x="90" y="185" width="520" height="75" rx="10" fill="rgba(239,68,68,0.10)" stroke="#ef4444" stroke-width="1.5"/>
-      <text x="350" y="212" text-anchor="middle" font-size="13" font-weight="700" fill="#fca5a5">Bank Run</text>
-      <text x="350" y="234" text-anchor="middle" font-size="11" fill="#e2e8f0">If many holders demand gold at once, the bank runs out —</text>
-      <text x="350" y="250" text-anchor="middle" font-size="11" fill="#e2e8f0">even though it did nothing differently that day.</text>
+      <line x1="350" y1="150" x2="350" y2="175" stroke="var(--danger-500)" stroke-width="3"/>
+      <rect x="90" y="185" width="520" height="75" rx="10" fill="var(--danger-soft)" stroke="var(--danger-500)" stroke-width="1.5"/>
+      <text x="350" y="212" text-anchor="middle" font-size="13" font-weight="700" fill="var(--danger-text)">Bank Run</text>
+      <text x="350" y="234" text-anchor="middle" font-size="11" fill="var(--diagram-text)">If many holders demand gold at once, the bank runs out —</text>
+      <text x="350" y="250" text-anchor="middle" font-size="11" fill="var(--diagram-text)">even though it did nothing differently that day.</text>
 
-      <line x1="350" y1="260" x2="350" y2="285" stroke="#22c55e" stroke-width="3"/>
-      <rect x="60" y="295" width="580" height="80" rx="10" fill="rgba(34,197,94,0.10)" stroke="#22c55e" stroke-width="1.5"/>
-      <text x="350" y="322" text-anchor="middle" font-size="13" font-weight="700" fill="#bbf7d0">Central Bank (e.g. Bank of England, 1694)</text>
-      <text x="350" y="344" text-anchor="middle" font-size="11" fill="#e2e8f0">Centralizes note issuance and sets reserve rules —</text>
-      <text x="350" y="360" text-anchor="middle" font-size="11" fill="#e2e8f0">one trusted currency replaces hundreds of competing notes.</text>
+      <line x1="350" y1="260" x2="350" y2="285" stroke="var(--success-500)" stroke-width="3"/>
+      <rect x="60" y="295" width="580" height="80" rx="10" fill="var(--success-soft)" stroke="var(--success-500)" stroke-width="1.5"/>
+      <text x="350" y="322" text-anchor="middle" font-size="13" font-weight="700" fill="var(--success-text)">Central Bank (e.g. Bank of England, 1694)</text>
+      <text x="350" y="344" text-anchor="middle" font-size="11" fill="var(--diagram-text)">Centralizes note issuance and sets reserve rules —</text>
+      <text x="350" y="360" text-anchor="middle" font-size="11" fill="var(--diagram-text)">one trusted currency replaces hundreds of competing notes.</text>
     </svg>
   `,
 
   'gold-standard-timeline': `
     <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, sans-serif" role="img" aria-label="Timeline of the classical gold standard from 1879 through the Great Depression">
-      <rect width="700" height="300" fill="#0f172a" rx="12"/>
-      <text x="350" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="#e2e8f0">The Classical Gold Standard — Rise and Fall</text>
+      <rect width="700" height="300" fill="var(--diagram-bg)" rx="12"/>
+      <text x="350" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="var(--diagram-text)">The Classical Gold Standard — Rise and Fall</text>
 
-      <line x1="55" y1="130" x2="645" y2="130" stroke="#3b82f6" stroke-width="3"/>
+      <line x1="55" y1="130" x2="645" y2="130" stroke="var(--info-500)" stroke-width="3"/>
 
-      <circle cx="100" cy="130" r="7" fill="#3b82f6"/>
-      <text x="100" y="112" text-anchor="middle" font-size="11" font-weight="700" fill="#93c5fd">1879</text>
-      <rect x="45" y="145" width="110" height="70" rx="6" fill="rgba(59,130,246,0.10)" stroke="#3b82f6" stroke-width="1.2"/>
-      <text x="100" y="164" text-anchor="middle" font-size="10" font-weight="700" fill="#e2e8f0">U.S. Adopts Gold</text>
-      <text x="100" y="180" text-anchor="middle" font-size="9" fill="#94a3b8">Dollars convertible</text>
-      <text x="100" y="193" text-anchor="middle" font-size="9" fill="#94a3b8">to gold on demand</text>
+      <circle cx="100" cy="130" r="7" fill="var(--info-500)"/>
+      <text x="100" y="112" text-anchor="middle" font-size="11" font-weight="700" fill="var(--info-text)">1879</text>
+      <rect x="45" y="145" width="110" height="70" rx="6" fill="var(--info-soft)" stroke="var(--info-500)" stroke-width="1.2"/>
+      <text x="100" y="164" text-anchor="middle" font-size="10" font-weight="700" fill="var(--diagram-text)">U.S. Adopts Gold</text>
+      <text x="100" y="180" text-anchor="middle" font-size="9" fill="var(--diagram-muted)">Dollars convertible</text>
+      <text x="100" y="193" text-anchor="middle" font-size="9" fill="var(--diagram-muted)">to gold on demand</text>
 
-      <circle cx="270" cy="130" r="7" fill="#ef4444"/>
-      <text x="270" y="112" text-anchor="middle" font-size="11" font-weight="700" fill="#fca5a5">1914</text>
-      <rect x="215" y="145" width="110" height="70" rx="6" fill="rgba(239,68,68,0.10)" stroke="#ef4444" stroke-width="1.2"/>
-      <text x="270" y="164" text-anchor="middle" font-size="10" font-weight="700" fill="#e2e8f0">WWI Suspension</text>
-      <text x="270" y="180" text-anchor="middle" font-size="9" fill="#94a3b8">War spending forces</text>
-      <text x="270" y="193" text-anchor="middle" font-size="9" fill="#94a3b8">nations off gold</text>
+      <circle cx="270" cy="130" r="7" fill="var(--danger-500)"/>
+      <text x="270" y="112" text-anchor="middle" font-size="11" font-weight="700" fill="var(--danger-text)">1914</text>
+      <rect x="215" y="145" width="110" height="70" rx="6" fill="var(--danger-soft)" stroke="var(--danger-500)" stroke-width="1.2"/>
+      <text x="270" y="164" text-anchor="middle" font-size="10" font-weight="700" fill="var(--diagram-text)">WWI Suspension</text>
+      <text x="270" y="180" text-anchor="middle" font-size="9" fill="var(--diagram-muted)">War spending forces</text>
+      <text x="270" y="193" text-anchor="middle" font-size="9" fill="var(--diagram-muted)">nations off gold</text>
 
-      <circle cx="440" cy="130" r="7" fill="#ef4444"/>
-      <text x="440" y="112" text-anchor="middle" font-size="11" font-weight="700" fill="#fca5a5">1929–33</text>
-      <rect x="385" y="145" width="110" height="70" rx="6" fill="rgba(239,68,68,0.10)" stroke="#ef4444" stroke-width="1.2"/>
-      <text x="440" y="164" text-anchor="middle" font-size="10" font-weight="700" fill="#e2e8f0">Great Depression</text>
-      <text x="440" y="180" text-anchor="middle" font-size="9" fill="#94a3b8">Defend the peg, or</text>
-      <text x="440" y="193" text-anchor="middle" font-size="9" fill="#94a3b8">ease the crisis</text>
+      <circle cx="440" cy="130" r="7" fill="var(--danger-500)"/>
+      <text x="440" y="112" text-anchor="middle" font-size="11" font-weight="700" fill="var(--danger-text)">1929–33</text>
+      <rect x="385" y="145" width="110" height="70" rx="6" fill="var(--danger-soft)" stroke="var(--danger-500)" stroke-width="1.2"/>
+      <text x="440" y="164" text-anchor="middle" font-size="10" font-weight="700" fill="var(--diagram-text)">Great Depression</text>
+      <text x="440" y="180" text-anchor="middle" font-size="9" fill="var(--diagram-muted)">Defend the peg, or</text>
+      <text x="440" y="193" text-anchor="middle" font-size="9" fill="var(--diagram-muted)">ease the crisis</text>
 
-      <circle cx="610" cy="130" r="8" fill="#22c55e"/>
-      <text x="610" y="112" text-anchor="middle" font-size="11" font-weight="700" fill="#bbf7d0">1933–34</text>
-      <rect x="550" y="145" width="115" height="70" rx="6" fill="rgba(34,197,94,0.10)" stroke="#22c55e" stroke-width="1.2"/>
-      <text x="610" y="164" text-anchor="middle" font-size="10" font-weight="700" fill="#e2e8f0">Roosevelt Breaks Away</text>
-      <text x="610" y="180" text-anchor="middle" font-size="9" fill="#94a3b8">Dollar reset to</text>
-      <text x="610" y="193" text-anchor="middle" font-size="9" fill="#94a3b8">$35 per ounce</text>
+      <circle cx="610" cy="130" r="8" fill="var(--success-500)"/>
+      <text x="610" y="112" text-anchor="middle" font-size="11" font-weight="700" fill="var(--success-text)">1933–34</text>
+      <rect x="550" y="145" width="115" height="70" rx="6" fill="var(--success-soft)" stroke="var(--success-500)" stroke-width="1.2"/>
+      <text x="610" y="164" text-anchor="middle" font-size="10" font-weight="700" fill="var(--diagram-text)">Roosevelt Breaks Away</text>
+      <text x="610" y="180" text-anchor="middle" font-size="9" fill="var(--diagram-muted)">Dollar reset to</text>
+      <text x="610" y="193" text-anchor="middle" font-size="9" fill="var(--diagram-muted)">$35 per ounce</text>
 
-      <text x="350" y="250" text-anchor="middle" font-size="10.5" font-style="italic" fill="#94a3b8">That same $35/oz rate is exactly what Bretton</text>
-      <text x="350" y="266" text-anchor="middle" font-size="10.5" font-style="italic" fill="#94a3b8">Woods formalized internationally ten years later.</text>
+      <text x="350" y="250" text-anchor="middle" font-size="10.5" font-style="italic" fill="var(--diagram-muted)">That same $35/oz rate is exactly what Bretton</text>
+      <text x="350" y="266" text-anchor="middle" font-size="10.5" font-style="italic" fill="var(--diagram-muted)">Woods formalized internationally ten years later.</text>
     </svg>
   `,
 
   'bretton-woods-system': `
     <svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, sans-serif" role="img" aria-label="Diagram of the Bretton Woods system: gold pegged to the U.S. dollar, and other currencies pegged to the dollar">
-      <rect width="700" height="380" fill="#0f172a" rx="12"/>
-      <text x="350" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="#e2e8f0">The Bretton Woods System (1944–1971)</text>
+      <rect width="700" height="380" fill="var(--diagram-bg)" rx="12"/>
+      <text x="350" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="var(--diagram-text)">The Bretton Woods System (1944–1971)</text>
 
-      <circle cx="350" cy="85" r="34" fill="rgba(234,179,8,0.15)" stroke="#eab308" stroke-width="1.5"/>
-      <text x="350" y="81" text-anchor="middle" font-size="11" font-weight="700" fill="#fde68a">GOLD</text>
-      <text x="350" y="95" text-anchor="middle" font-size="9" fill="#fde68a">$35/oz</text>
+      <circle cx="350" cy="85" r="34" fill="var(--warning-soft)" stroke="var(--warning-500)" stroke-width="1.5"/>
+      <text x="350" y="81" text-anchor="middle" font-size="11" font-weight="700" fill="var(--warning-text)">GOLD</text>
+      <text x="350" y="95" text-anchor="middle" font-size="9" fill="var(--warning-text)">$35/oz</text>
 
-      <line x1="350" y1="119" x2="350" y2="145" stroke="#3b82f6" stroke-width="2.5"/>
-      <text x="380" y="135" font-size="9.5" fill="#94a3b8">convertible</text>
+      <line x1="350" y1="119" x2="350" y2="145" stroke="var(--info-500)" stroke-width="2.5"/>
+      <text x="380" y="135" font-size="9.5" fill="var(--diagram-muted)">convertible</text>
 
-      <rect x="250" y="150" width="200" height="55" rx="8" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="2"/>
-      <text x="350" y="173" text-anchor="middle" font-size="13" font-weight="700" fill="#93c5fd">U.S. Dollar (USD)</text>
-      <text x="350" y="190" text-anchor="middle" font-size="10" fill="#e2e8f0">The world's anchor currency</text>
+      <rect x="250" y="150" width="200" height="55" rx="8" fill="var(--info-soft)" stroke="var(--info-500)" stroke-width="2"/>
+      <text x="350" y="173" text-anchor="middle" font-size="13" font-weight="700" fill="var(--info-text)">U.S. Dollar (USD)</text>
+      <text x="350" y="190" text-anchor="middle" font-size="10" fill="var(--diagram-text)">The world's anchor currency</text>
 
-      <line x1="350" y1="205" x2="160" y2="240" stroke="#64748b" stroke-width="1.5"/>
-      <line x1="350" y1="205" x2="350" y2="240" stroke="#64748b" stroke-width="1.5"/>
-      <line x1="350" y1="205" x2="540" y2="240" stroke="#64748b" stroke-width="1.5"/>
+      <line x1="350" y1="205" x2="160" y2="240" stroke="var(--diagram-axis)" stroke-width="1.5"/>
+      <line x1="350" y1="205" x2="350" y2="240" stroke="var(--diagram-axis)" stroke-width="1.5"/>
+      <line x1="350" y1="205" x2="540" y2="240" stroke="var(--diagram-axis)" stroke-width="1.5"/>
 
-      <rect x="80" y="245" width="160" height="60" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1.2"/>
-      <text x="160" y="268" text-anchor="middle" font-size="11" font-weight="700" fill="#e2e8f0">British Pound</text>
-      <text x="160" y="286" text-anchor="middle" font-size="9.5" fill="#94a3b8">pegged to USD</text>
+      <rect x="80" y="245" width="160" height="60" rx="8" fill="var(--diagram-panel)" stroke="var(--diagram-axis)" stroke-width="1.2"/>
+      <text x="160" y="268" text-anchor="middle" font-size="11" font-weight="700" fill="var(--diagram-text)">British Pound</text>
+      <text x="160" y="286" text-anchor="middle" font-size="9.5" fill="var(--diagram-muted)">pegged to USD</text>
 
-      <rect x="270" y="245" width="160" height="60" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1.2"/>
-      <text x="350" y="268" text-anchor="middle" font-size="11" font-weight="700" fill="#e2e8f0">French Franc</text>
-      <text x="350" y="286" text-anchor="middle" font-size="9.5" fill="#94a3b8">pegged to USD</text>
+      <rect x="270" y="245" width="160" height="60" rx="8" fill="var(--diagram-panel)" stroke="var(--diagram-axis)" stroke-width="1.2"/>
+      <text x="350" y="268" text-anchor="middle" font-size="11" font-weight="700" fill="var(--diagram-text)">French Franc</text>
+      <text x="350" y="286" text-anchor="middle" font-size="9.5" fill="var(--diagram-muted)">pegged to USD</text>
 
-      <rect x="460" y="245" width="160" height="60" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1.2"/>
-      <text x="540" y="268" text-anchor="middle" font-size="11" font-weight="700" fill="#e2e8f0">Japanese Yen</text>
-      <text x="540" y="286" text-anchor="middle" font-size="9.5" fill="#94a3b8">pegged to USD</text>
+      <rect x="460" y="245" width="160" height="60" rx="8" fill="var(--diagram-panel)" stroke="var(--diagram-axis)" stroke-width="1.2"/>
+      <text x="540" y="268" text-anchor="middle" font-size="11" font-weight="700" fill="var(--diagram-text)">Japanese Yen</text>
+      <text x="540" y="286" text-anchor="middle" font-size="9.5" fill="var(--diagram-muted)">pegged to USD</text>
 
-      <text x="350" y="335" text-anchor="middle" font-size="10.5" fill="#94a3b8">Only the U.S. dollar was directly convertible to gold —</text>
-      <text x="350" y="352" text-anchor="middle" font-size="10.5" fill="#94a3b8">and only for foreign central banks, not individuals.</text>
+      <text x="350" y="335" text-anchor="middle" font-size="10.5" fill="var(--diagram-muted)">Only the U.S. dollar was directly convertible to gold —</text>
+      <text x="350" y="352" text-anchor="middle" font-size="10.5" fill="var(--diagram-muted)">and only for foreign central banks, not individuals.</text>
     </svg>
   `,
   'stop-loss-long-vs-short': `
     <svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
-  <rect width="800" height="460" fill="#0f172a"/>
-  <text x="400" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#e2e8f0">Where Your Stop-Loss Goes — Long vs. Short</text>
+  <rect width="800" height="460" fill="var(--diagram-bg)"/>
+  <text x="400" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="var(--diagram-text)">Where Your Stop-Loss Goes — Long vs. Short</text>
 
   <!-- LONG side -->
-  <text x="190" y="75" text-anchor="middle" font-size="16" font-weight="bold" fill="#e2e8f0">Long Position (buy)</text>
-  <line x1="190" y1="95" x2="190" y2="400" stroke="#475569" stroke-width="3"/>
+  <text x="190" y="75" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--diagram-text)">Long Position (buy)</text>
+  <line x1="190" y1="95" x2="190" y2="400" stroke="var(--diagram-axis)" stroke-width="3"/>
 
   <!-- Take-profit (top, green) -->
-  <rect x="80" y="100" width="220" height="55" rx="8" fill="rgba(34,197,94,0.10)" stroke="#22c55e" stroke-width="2"/>
-  <text x="190" y="122" text-anchor="middle" font-size="13" font-weight="bold" fill="#22c55e">Take-Profit</text>
-  <text x="190" y="142" text-anchor="middle" font-size="11.5" fill="#e2e8f0">Price rises — you exit in profit</text>
+  <rect x="80" y="100" width="220" height="55" rx="8" fill="var(--success-soft)" stroke="var(--success-500)" stroke-width="2"/>
+  <text x="190" y="122" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--success-text)">Take-Profit</text>
+  <text x="190" y="142" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">Price rises — you exit in profit</text>
 
   <!-- Entry (middle, blue) -->
-  <rect x="80" y="222" width="220" height="55" rx="8" fill="rgba(59,130,246,0.10)" stroke="#3b82f6" stroke-width="2"/>
-  <text x="190" y="244" text-anchor="middle" font-size="13" font-weight="bold" fill="#e2e8f0">Entry Price</text>
-  <text x="190" y="264" text-anchor="middle" font-size="11.5" fill="#e2e8f0">Where you buy in</text>
+  <rect x="80" y="222" width="220" height="55" rx="8" fill="var(--info-soft)" stroke="var(--info-500)" stroke-width="2"/>
+  <text x="190" y="244" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--diagram-text)">Entry Price</text>
+  <text x="190" y="264" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">Where you buy in</text>
 
   <!-- Stop-loss (bottom, red) -->
-  <rect x="80" y="345" width="220" height="55" rx="8" fill="rgba(239,68,68,0.10)" stroke="#ef4444" stroke-width="2"/>
-  <text x="190" y="367" text-anchor="middle" font-size="13" font-weight="bold" fill="#ef4444">Stop-Loss</text>
-  <text x="190" y="387" text-anchor="middle" font-size="11.5" fill="#e2e8f0">Price falls — you exit, capped loss</text>
+  <rect x="80" y="345" width="220" height="55" rx="8" fill="var(--danger-soft)" stroke="var(--danger-500)" stroke-width="2"/>
+  <text x="190" y="367" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--danger-text)">Stop-Loss</text>
+  <text x="190" y="387" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">Price falls — you exit, capped loss</text>
 
   <!-- arrows showing direction -->
-  <text x="190" y="195" text-anchor="middle" font-size="20" fill="#22c55e">↑</text>
-  <text x="190" y="320" text-anchor="middle" font-size="20" fill="#ef4444">↓</text>
+  <text x="190" y="195" text-anchor="middle" font-size="20" fill="var(--success-text)">↑</text>
+  <text x="190" y="320" text-anchor="middle" font-size="20" fill="var(--danger-text)">↓</text>
 
   <!-- Divider -->
-  <line x1="400" y1="70" x2="400" y2="420" stroke="#334155" stroke-width="2"/>
+  <line x1="400" y1="70" x2="400" y2="420" stroke="var(--diagram-grid)" stroke-width="2"/>
 
   <!-- SHORT side -->
-  <text x="610" y="75" text-anchor="middle" font-size="16" font-weight="bold" fill="#e2e8f0">Short Position (sell)</text>
-  <line x1="610" y1="95" x2="610" y2="400" stroke="#475569" stroke-width="3"/>
+  <text x="610" y="75" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--diagram-text)">Short Position (sell)</text>
+  <line x1="610" y1="95" x2="610" y2="400" stroke="var(--diagram-axis)" stroke-width="3"/>
 
   <!-- Stop-loss (top, red) -->
-  <rect x="500" y="100" width="220" height="55" rx="8" fill="rgba(239,68,68,0.10)" stroke="#ef4444" stroke-width="2"/>
-  <text x="610" y="122" text-anchor="middle" font-size="13" font-weight="bold" fill="#ef4444">Stop-Loss</text>
-  <text x="610" y="142" text-anchor="middle" font-size="11.5" fill="#e2e8f0">Price rises — you exit, capped loss</text>
+  <rect x="500" y="100" width="220" height="55" rx="8" fill="var(--danger-soft)" stroke="var(--danger-500)" stroke-width="2"/>
+  <text x="610" y="122" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--danger-text)">Stop-Loss</text>
+  <text x="610" y="142" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">Price rises — you exit, capped loss</text>
 
   <!-- Entry (middle, blue) -->
-  <rect x="500" y="222" width="220" height="55" rx="8" fill="rgba(59,130,246,0.10)" stroke="#3b82f6" stroke-width="2"/>
-  <text x="610" y="244" text-anchor="middle" font-size="13" font-weight="bold" fill="#e2e8f0">Entry Price</text>
-  <text x="610" y="264" text-anchor="middle" font-size="11.5" fill="#e2e8f0">Where you sell/short</text>
+  <rect x="500" y="222" width="220" height="55" rx="8" fill="var(--info-soft)" stroke="var(--info-500)" stroke-width="2"/>
+  <text x="610" y="244" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--diagram-text)">Entry Price</text>
+  <text x="610" y="264" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">Where you sell/short</text>
 
   <!-- Take-profit (bottom, green) -->
-  <rect x="500" y="345" width="220" height="55" rx="8" fill="rgba(34,197,94,0.10)" stroke="#22c55e" stroke-width="2"/>
-  <text x="610" y="367" text-anchor="middle" font-size="13" font-weight="bold" fill="#22c55e">Take-Profit</text>
-  <text x="610" y="387" text-anchor="middle" font-size="11.5" fill="#e2e8f0">Price falls — you exit in profit</text>
+  <rect x="500" y="345" width="220" height="55" rx="8" fill="var(--success-soft)" stroke="var(--success-500)" stroke-width="2"/>
+  <text x="610" y="367" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--success-text)">Take-Profit</text>
+  <text x="610" y="387" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">Price falls — you exit in profit</text>
 
-  <text x="610" y="195" text-anchor="middle" font-size="20" fill="#ef4444">↑</text>
-  <text x="610" y="320" text-anchor="middle" font-size="20" fill="#22c55e">↓</text>
+  <text x="610" y="195" text-anchor="middle" font-size="20" fill="var(--danger-text)">↑</text>
+  <text x="610" y="320" text-anchor="middle" font-size="20" fill="var(--success-text)">↓</text>
 
-  <text x="400" y="440" text-anchor="middle" font-size="12.5" font-style="italic" fill="#94a3b8">The direction flips completely — because in a short, you profit when price falls, not rises.</text>
+  <text x="400" y="440" text-anchor="middle" font-size="12.5" font-style="italic" fill="var(--diagram-muted)">The direction flips completely — because in a short, you profit when price falls, not rises.</text>
 </svg>
   `,
   'inflation-three-markets': `
     <svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
-  <rect width="900" height="520" fill="#0f172a"/>
-  <text x="450" y="40" text-anchor="middle" font-size="24" font-weight="bold" fill="#e2e8f0">Inflation Rises — Three Different Ripples</text>
+  <rect width="900" height="520" fill="var(--diagram-bg)"/>
+  <text x="450" y="40" text-anchor="middle" font-size="24" font-weight="bold" fill="var(--diagram-text)">Inflation Rises — Three Different Ripples</text>
 
   <!-- Center node -->
-  <rect x="350" y="65" width="200" height="60" rx="10" fill="rgba(234,179,8,0.10)" stroke="#eab308" stroke-width="2.5"/>
-  <text x="450" y="90" text-anchor="middle" font-size="15" font-weight="bold" fill="#fde68a">Inflation Rises</text>
-  <text x="450" y="108" text-anchor="middle" font-size="11" fill="#fde68a">Central bank likely reacts</text>
+  <rect x="350" y="65" width="200" height="60" rx="10" fill="var(--warning-soft)" stroke="var(--warning-500)" stroke-width="2.5"/>
+  <text x="450" y="90" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--warning-text)">Inflation Rises</text>
+  <text x="450" y="108" text-anchor="middle" font-size="11" fill="var(--warning-text)">Central bank likely reacts</text>
 
   <!-- Lines down -->
-  <line x1="450" y1="125" x2="180" y2="175" stroke="#475569" stroke-width="2.5"/>
-  <line x1="450" y1="125" x2="450" y2="175" stroke="#475569" stroke-width="2.5"/>
-  <line x1="450" y1="125" x2="720" y2="175" stroke="#475569" stroke-width="2.5"/>
+  <line x1="450" y1="125" x2="180" y2="175" stroke="var(--diagram-axis)" stroke-width="2.5"/>
+  <line x1="450" y1="125" x2="450" y2="175" stroke="var(--diagram-axis)" stroke-width="2.5"/>
+  <line x1="450" y1="125" x2="720" y2="175" stroke="var(--diagram-axis)" stroke-width="2.5"/>
 
   <!-- Forex column -->
-  <rect x="60" y="180" width="240" height="105" rx="10" fill="rgba(59,130,246,0.10)" stroke="#3b82f6" stroke-width="2"/>
-  <text x="180" y="205" text-anchor="middle" font-size="15" font-weight="bold" fill="#3b82f6">Forex</text>
-  <text x="180" y="226" text-anchor="middle" font-size="11.5" fill="#e2e8f0">Rate hikes often attract</text>
-  <text x="180" y="242" text-anchor="middle" font-size="11.5" fill="#e2e8f0">foreign capital → currency</text>
-  <text x="180" y="258" text-anchor="middle" font-size="11.5" fill="#e2e8f0">often strengthens...</text>
-  <text x="180" y="276" text-anchor="middle" font-size="11" font-style="italic" fill="#ef4444">...unless sentiment overrides it</text>
+  <rect x="60" y="180" width="240" height="105" rx="10" fill="var(--info-soft)" stroke="var(--info-500)" stroke-width="2"/>
+  <text x="180" y="205" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--info-text)">Forex</text>
+  <text x="180" y="226" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">Rate hikes often attract</text>
+  <text x="180" y="242" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">foreign capital → currency</text>
+  <text x="180" y="258" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">often strengthens...</text>
+  <text x="180" y="276" text-anchor="middle" font-size="11" font-style="italic" fill="var(--danger-text)">...unless sentiment overrides it</text>
 
   <!-- Stocks column -->
-  <rect x="330" y="180" width="240" height="105" rx="10" fill="rgba(59,130,246,0.10)" stroke="#3b82f6" stroke-width="2"/>
-  <text x="450" y="205" text-anchor="middle" font-size="15" font-weight="bold" fill="#3b82f6">Stocks</text>
-  <text x="450" y="226" text-anchor="middle" font-size="11.5" fill="#e2e8f0">Higher discount rate on</text>
-  <text x="450" y="242" text-anchor="middle" font-size="11.5" fill="#e2e8f0">future earnings → short-term</text>
-  <text x="450" y="258" text-anchor="middle" font-size="11.5" fill="#e2e8f0">headwind, growth stocks hit hardest</text>
-  <text x="450" y="276" text-anchor="middle" font-size="11" font-style="italic" fill="#22c55e">Long run: often a hedge</text>
+  <rect x="330" y="180" width="240" height="105" rx="10" fill="var(--info-soft)" stroke="var(--info-500)" stroke-width="2"/>
+  <text x="450" y="205" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--info-text)">Stocks</text>
+  <text x="450" y="226" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">Higher discount rate on</text>
+  <text x="450" y="242" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">future earnings → short-term</text>
+  <text x="450" y="258" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">headwind, growth stocks hit hardest</text>
+  <text x="450" y="276" text-anchor="middle" font-size="11" font-style="italic" fill="var(--success-text)">Long run: often a hedge</text>
 
   <!-- Crypto column -->
-  <rect x="600" y="180" width="240" height="105" rx="10" fill="rgba(59,130,246,0.10)" stroke="#3b82f6" stroke-width="2"/>
-  <text x="720" y="205" text-anchor="middle" font-size="15" font-weight="bold" fill="#3b82f6">Crypto</text>
-  <text x="720" y="226" text-anchor="middle" font-size="11.5" fill="#e2e8f0">"Digital gold" narrative vs.</text>
-  <text x="720" y="242" text-anchor="middle" font-size="11.5" fill="#e2e8f0">rate hikes pulling speculative</text>
-  <text x="720" y="258" text-anchor="middle" font-size="11.5" fill="#e2e8f0">capital back out — mixed signal</text>
-  <text x="720" y="276" text-anchor="middle" font-size="11" font-style="italic" fill="#ef4444">Volatility undermines the theory</text>
+  <rect x="600" y="180" width="240" height="105" rx="10" fill="var(--info-soft)" stroke="var(--info-500)" stroke-width="2"/>
+  <text x="720" y="205" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--info-text)">Crypto</text>
+  <text x="720" y="226" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">"Digital gold" narrative vs.</text>
+  <text x="720" y="242" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">rate hikes pulling speculative</text>
+  <text x="720" y="258" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">capital back out — mixed signal</text>
+  <text x="720" y="276" text-anchor="middle" font-size="11" font-style="italic" fill="var(--danger-text)">Volatility undermines the theory</text>
 
   <!-- Bottom unifying message -->
-  <rect x="130" y="330" width="640" height="140" rx="12" fill="#1e293b" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6,4"/>
-  <text x="450" y="360" text-anchor="middle" font-size="15" font-weight="bold" fill="#e2e8f0">The Same Signal, Three Different Reads</text>
-  <text x="450" y="386" text-anchor="middle" font-size="12.5" fill="#e2e8f0">Inflation is one signal — but it moves each market through a different</text>
-  <text x="450" y="405" text-anchor="middle" font-size="12.5" fill="#e2e8f0">mechanism, and none of them are guaranteed. In every case, the "textbook"</text>
-  <text x="450" y="424" text-anchor="middle" font-size="12.5" fill="#e2e8f0">direction can be overridden by sentiment, timing, or a stronger competing factor.</text>
-  <text x="450" y="450" text-anchor="middle" font-size="12" font-style="italic" fill="#94a3b8">Learning to read a market well means learning its specific mechanism —</text>
-  <text x="450" y="467" text-anchor="middle" font-size="12" font-style="italic" fill="#94a3b8">not just memorizing a rule that sometimes breaks.</text>
+  <rect x="130" y="330" width="640" height="140" rx="12" fill="var(--diagram-panel)" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="450" y="360" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--diagram-text)">The Same Signal, Three Different Reads</text>
+  <text x="450" y="386" text-anchor="middle" font-size="12.5" fill="var(--diagram-text)">Inflation is one signal — but it moves each market through a different</text>
+  <text x="450" y="405" text-anchor="middle" font-size="12.5" fill="var(--diagram-text)">mechanism, and none of them are guaranteed. In every case, the "textbook"</text>
+  <text x="450" y="424" text-anchor="middle" font-size="12.5" fill="var(--diagram-text)">direction can be overridden by sentiment, timing, or a stronger competing factor.</text>
+  <text x="450" y="450" text-anchor="middle" font-size="12" font-style="italic" fill="var(--diagram-muted)">Learning to read a market well means learning its specific mechanism —</text>
+  <text x="450" y="467" text-anchor="middle" font-size="12" font-style="italic" fill="var(--diagram-muted)">not just memorizing a rule that sometimes breaks.</text>
 
-  <text x="450" y="500" text-anchor="middle" font-size="11.5" fill="#94a3b8">This is exactly what the Forex, Stocks, and Crypto tracks each go on to teach in depth.</text>
+  <text x="450" y="500" text-anchor="middle" font-size="11.5" fill="var(--diagram-muted)">This is exactly what the Forex, Stocks, and Crypto tracks each go on to teach in depth.</text>
 </svg>
   `,
   'diversifier-hedge-safe-haven': `
     <svg viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
-  <rect width="900" height="480" fill="#0f172a"/>
-  <text x="450" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#e2e8f0">Diversifier vs. Hedge vs. Safe Haven</text>
-  <text x="450" y="62" text-anchor="middle" font-size="12.5" font-style="italic" fill="#94a3b8">Three different relationships — not three names for the same thing</text>
+  <rect width="900" height="480" fill="var(--diagram-bg)"/>
+  <text x="450" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="var(--diagram-text)">Diversifier vs. Hedge vs. Safe Haven</text>
+  <text x="450" y="62" text-anchor="middle" font-size="12.5" font-style="italic" fill="var(--diagram-muted)">Three different relationships — not three names for the same thing</text>
 
   <!-- Diversifier column -->
-  <rect x="40" y="90" width="255" height="330" rx="12" fill="rgba(59,130,246,0.10)" stroke="#3b82f6" stroke-width="2"/>
-  <text x="167" y="122" text-anchor="middle" font-size="16" font-weight="bold" fill="#3b82f6">Diversifier</text>
-  <line x1="70" y1="140" x2="265" y2="140" stroke="#475569" stroke-width="1.5"/>
-  <text x="167" y="165" text-anchor="middle" font-size="12" fill="#e2e8f0">Average correlation:</text>
-  <text x="167" y="185" text-anchor="middle" font-size="14" font-weight="bold" fill="#3b82f6">Positive, but imperfect</text>
-  <text x="167" y="215" text-anchor="middle" font-size="11.5" fill="#e2e8f0">Still tends to move with</text>
-  <text x="167" y="233" text-anchor="middle" font-size="11.5" fill="#e2e8f0">your other holdings —</text>
-  <text x="167" y="251" text-anchor="middle" font-size="11.5" fill="#e2e8f0">just not in lockstep.</text>
-  <text x="167" y="281" text-anchor="middle" font-size="11.5" fill="#e2e8f0">Smooths day-to-day</text>
-  <text x="167" y="299" text-anchor="middle" font-size="11.5" fill="#e2e8f0">swings. No special</text>
-  <text x="167" y="317" text-anchor="middle" font-size="11.5" fill="#e2e8f0">promise during a crisis.</text>
-  <rect x="65" y="345" width="205" height="55" rx="8" fill="#FFFFFF" stroke="#475569" stroke-width="1.2"/>
-  <text x="167" y="368" text-anchor="middle" font-size="10.5" fill="#94a3b8">Example claim in the</text>
-  <text x="167" y="384" text-anchor="middle" font-size="10.5" fill="#94a3b8">literature: crypto, per the</text>
-  <text x="167" y="398" text-anchor="middle" font-size="10.5" fill="#3b82f6" font-weight="bold">2021 Dutch thesis finding</text>
+  <rect x="40" y="90" width="255" height="330" rx="12" fill="var(--info-soft)" stroke="var(--info-500)" stroke-width="2"/>
+  <text x="167" y="122" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--info-text)">Diversifier</text>
+  <line x1="70" y1="140" x2="265" y2="140" stroke="var(--diagram-axis)" stroke-width="1.5"/>
+  <text x="167" y="165" text-anchor="middle" font-size="12" fill="var(--diagram-text)">Average correlation:</text>
+  <text x="167" y="185" text-anchor="middle" font-size="14" font-weight="bold" fill="var(--info-text)">Positive, but imperfect</text>
+  <text x="167" y="215" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">Still tends to move with</text>
+  <text x="167" y="233" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">your other holdings —</text>
+  <text x="167" y="251" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">just not in lockstep.</text>
+  <text x="167" y="281" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">Smooths day-to-day</text>
+  <text x="167" y="299" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">swings. No special</text>
+  <text x="167" y="317" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">promise during a crisis.</text>
+  <rect x="65" y="345" width="205" height="55" rx="8" fill="var(--diagram-block)" stroke="var(--diagram-axis)" stroke-width="1.2"/>
+  <text x="167" y="368" text-anchor="middle" font-size="10.5" fill="var(--diagram-muted)">Example claim in the</text>
+  <text x="167" y="384" text-anchor="middle" font-size="10.5" fill="var(--diagram-muted)">literature: crypto, per the</text>
+  <text x="167" y="398" text-anchor="middle" font-size="10.5" fill="var(--info-text)" font-weight="bold">2021 Dutch thesis finding</text>
 
   <!-- Hedge column -->
-  <rect x="322" y="90" width="255" height="330" rx="12" fill="rgba(234,179,8,0.10)" stroke="#eab308" stroke-width="2"/>
-  <text x="449" y="122" text-anchor="middle" font-size="16" font-weight="bold" fill="#fde68a">Hedge</text>
-  <line x1="352" y1="140" x2="547" y2="140" stroke="rgba(234,179,8,0.35)" stroke-width="1.5"/>
-  <text x="449" y="165" text-anchor="middle" font-size="12" fill="#e2e8f0">Average correlation:</text>
-  <text x="449" y="185" text-anchor="middle" font-size="14" font-weight="bold" fill="#fde68a">Zero or negative</text>
-  <text x="449" y="215" text-anchor="middle" font-size="11.5" fill="#e2e8f0">Holds across ALL</text>
-  <text x="449" y="233" text-anchor="middle" font-size="11.5" fill="#e2e8f0">conditions — calm</text>
-  <text x="449" y="251" text-anchor="middle" font-size="11.5" fill="#e2e8f0">markets and turbulent</text>
-  <text x="449" y="269" text-anchor="middle" font-size="11.5" fill="#e2e8f0">ones alike, on average.</text>
-  <text x="449" y="299" text-anchor="middle" font-size="11.5" fill="#e2e8f0">Does not guarantee it</text>
-  <text x="449" y="317" text-anchor="middle" font-size="11.5" fill="#e2e8f0">reduces losses in any</text>
-  <text x="449" y="335" text-anchor="middle" font-size="11.5" fill="#e2e8f0">one specific event.</text>
-  <rect x="347" y="345" width="205" height="55" rx="8" fill="#FFFFFF" stroke="rgba(234,179,8,0.35)" stroke-width="1.2"/>
-  <text x="449" y="368" text-anchor="middle" font-size="10.5" fill="#94a3b8">Example claim in the</text>
-  <text x="449" y="384" text-anchor="middle" font-size="10.5" fill="#94a3b8">literature: gold, in the</text>
-  <text x="449" y="398" text-anchor="middle" font-size="10.5" fill="#fde68a" font-weight="bold">2026 CBCG journal study</text>
+  <rect x="322" y="90" width="255" height="330" rx="12" fill="var(--warning-soft)" stroke="var(--warning-500)" stroke-width="2"/>
+  <text x="449" y="122" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--warning-text)">Hedge</text>
+  <line x1="352" y1="140" x2="547" y2="140" stroke="var(--warning-border)" stroke-width="1.5"/>
+  <text x="449" y="165" text-anchor="middle" font-size="12" fill="var(--diagram-text)">Average correlation:</text>
+  <text x="449" y="185" text-anchor="middle" font-size="14" font-weight="bold" fill="var(--warning-text)">Zero or negative</text>
+  <text x="449" y="215" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">Holds across ALL</text>
+  <text x="449" y="233" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">conditions — calm</text>
+  <text x="449" y="251" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">markets and turbulent</text>
+  <text x="449" y="269" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">ones alike, on average.</text>
+  <text x="449" y="299" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">Does not guarantee it</text>
+  <text x="449" y="317" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">reduces losses in any</text>
+  <text x="449" y="335" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">one specific event.</text>
+  <rect x="347" y="345" width="205" height="55" rx="8" fill="var(--diagram-block)" stroke="var(--warning-border)" stroke-width="1.2"/>
+  <text x="449" y="368" text-anchor="middle" font-size="10.5" fill="var(--diagram-muted)">Example claim in the</text>
+  <text x="449" y="384" text-anchor="middle" font-size="10.5" fill="var(--diagram-muted)">literature: gold, in the</text>
+  <text x="449" y="398" text-anchor="middle" font-size="10.5" fill="var(--warning-text)" font-weight="bold">2026 CBCG journal study</text>
 
   <!-- Safe Haven column -->
-  <rect x="604" y="90" width="255" height="330" rx="12" fill="rgba(34,197,94,0.10)" stroke="#22c55e" stroke-width="2"/>
-  <text x="731" y="122" text-anchor="middle" font-size="16" font-weight="bold" fill="#22c55e">Safe Haven</text>
-  <line x1="634" y1="140" x2="829" y2="140" stroke="rgba(34,197,94,0.35)" stroke-width="1.5"/>
-  <text x="731" y="165" text-anchor="middle" font-size="12" fill="#e2e8f0">Correlation specifically</text>
-  <text x="731" y="183" text-anchor="middle" font-size="12" fill="#e2e8f0">during market stress:</text>
-  <text x="731" y="205" text-anchor="middle" font-size="14" font-weight="bold" fill="#22c55e">Zero or negative</text>
-  <text x="731" y="235" text-anchor="middle" font-size="11.5" fill="#e2e8f0">May behave completely</text>
-  <text x="731" y="253" text-anchor="middle" font-size="11.5" fill="#e2e8f0">differently outside of a</text>
-  <text x="731" y="271" text-anchor="middle" font-size="11.5" fill="#e2e8f0">crisis — the promise is</text>
-  <text x="731" y="289" text-anchor="middle" font-size="11.5" fill="#e2e8f0">narrow and specific.</text>
-  <rect x="629" y="345" width="205" height="55" rx="8" fill="#FFFFFF" stroke="rgba(34,197,94,0.35)" stroke-width="1.2"/>
-  <text x="731" y="368" text-anchor="middle" font-size="10.5" fill="#94a3b8">Example claim in the</text>
-  <text x="731" y="384" text-anchor="middle" font-size="10.5" fill="#94a3b8">literature: Bitcoin, in the</text>
-  <text x="731" y="398" text-anchor="middle" font-size="10.5" fill="#22c55e" font-weight="bold">2026 CBCG journal study</text>
+  <rect x="604" y="90" width="255" height="330" rx="12" fill="var(--success-soft)" stroke="var(--success-500)" stroke-width="2"/>
+  <text x="731" y="122" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--success-text)">Safe Haven</text>
+  <line x1="634" y1="140" x2="829" y2="140" stroke="var(--success-border)" stroke-width="1.5"/>
+  <text x="731" y="165" text-anchor="middle" font-size="12" fill="var(--diagram-text)">Correlation specifically</text>
+  <text x="731" y="183" text-anchor="middle" font-size="12" fill="var(--diagram-text)">during market stress:</text>
+  <text x="731" y="205" text-anchor="middle" font-size="14" font-weight="bold" fill="var(--success-text)">Zero or negative</text>
+  <text x="731" y="235" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">May behave completely</text>
+  <text x="731" y="253" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">differently outside of a</text>
+  <text x="731" y="271" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">crisis — the promise is</text>
+  <text x="731" y="289" text-anchor="middle" font-size="11.5" fill="var(--diagram-text)">narrow and specific.</text>
+  <rect x="629" y="345" width="205" height="55" rx="8" fill="var(--diagram-block)" stroke="var(--success-border)" stroke-width="1.2"/>
+  <text x="731" y="368" text-anchor="middle" font-size="10.5" fill="var(--diagram-muted)">Example claim in the</text>
+  <text x="731" y="384" text-anchor="middle" font-size="10.5" fill="var(--diagram-muted)">literature: Bitcoin, in the</text>
+  <text x="731" y="398" text-anchor="middle" font-size="10.5" fill="var(--success-text)" font-weight="bold">2026 CBCG journal study</text>
 
-  <text x="450" y="440" text-anchor="middle" font-size="12" fill="#e2e8f0">Two separate academic studies reached different conclusions about Bitcoin — not because one is wrong,</text>
-  <text x="450" y="458" text-anchor="middle" font-size="12" fill="#e2e8f0">but because the underlying relationship genuinely shifts over time. Treat any single "safe haven" claim with care.</text>
+  <text x="450" y="440" text-anchor="middle" font-size="12" fill="var(--diagram-text)">Two separate academic studies reached different conclusions about Bitcoin — not because one is wrong,</text>
+  <text x="450" y="458" text-anchor="middle" font-size="12" fill="var(--diagram-text)">but because the underlying relationship genuinely shifts over time. Treat any single "safe haven" claim with care.</text>
 </svg>
   `,
   'trend-support-resistance': `
     <svg viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
-  <rect width="900" height="460" fill="#0f172a"/>
-  <text x="450" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#e2e8f0">Trend, Support &amp; Resistance</text>
+  <rect width="900" height="460" fill="var(--diagram-bg)"/>
+  <text x="450" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="var(--diagram-text)">Trend, Support &amp; Resistance</text>
 
   <!-- Uptrend panel -->
-  <text x="220" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="#22c55e">Uptrend — Higher Highs, Higher Lows</text>
-  <rect x="60" y="85" width="320" height="180" rx="10" fill="rgba(34,197,94,0.10)" stroke="#22c55e" stroke-width="1.5"/>
-  <polyline points="80,240 130,160 160,190 210,120 240,150 290,90 340,110" fill="none" stroke="#22c55e" stroke-width="3"/>
-  <circle cx="130" cy="160" r="4" fill="#22c55e"/>
-  <circle cx="210" cy="120" r="4" fill="#22c55e"/>
-  <circle cx="290" cy="90" r="4" fill="#22c55e"/>
-  <text x="130" y="150" text-anchor="middle" font-size="9.5" fill="#22c55e">High 1</text>
-  <text x="210" y="110" text-anchor="middle" font-size="9.5" fill="#22c55e">High 2</text>
-  <text x="290" y="80" text-anchor="middle" font-size="9.5" fill="#22c55e">High 3</text>
-  <circle cx="160" cy="190" r="4" fill="#3b82f6"/>
-  <circle cx="240" cy="150" r="4" fill="#3b82f6"/>
-  <text x="160" y="210" text-anchor="middle" font-size="9.5" fill="#3b82f6">Low 1</text>
-  <text x="240" y="170" text-anchor="middle" font-size="9.5" fill="#3b82f6">Low 2</text>
-  <text x="220" y="255" text-anchor="middle" font-size="11" font-style="italic" fill="#e2e8f0">Each high and low tops the last</text>
+  <text x="220" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--success-text)">Uptrend — Higher Highs, Higher Lows</text>
+  <rect x="60" y="85" width="320" height="180" rx="10" fill="var(--success-soft)" stroke="var(--success-500)" stroke-width="1.5"/>
+  <polyline points="80,240 130,160 160,190 210,120 240,150 290,90 340,110" fill="none" stroke="var(--success-500)" stroke-width="3"/>
+  <circle cx="130" cy="160" r="4" fill="var(--success-500)"/>
+  <circle cx="210" cy="120" r="4" fill="var(--success-500)"/>
+  <circle cx="290" cy="90" r="4" fill="var(--success-500)"/>
+  <text x="130" y="150" text-anchor="middle" font-size="9.5" fill="var(--success-text)">High 1</text>
+  <text x="210" y="110" text-anchor="middle" font-size="9.5" fill="var(--success-text)">High 2</text>
+  <text x="290" y="80" text-anchor="middle" font-size="9.5" fill="var(--success-text)">High 3</text>
+  <circle cx="160" cy="190" r="4" fill="var(--info-500)"/>
+  <circle cx="240" cy="150" r="4" fill="var(--info-500)"/>
+  <text x="160" y="210" text-anchor="middle" font-size="9.5" fill="var(--info-text)">Low 1</text>
+  <text x="240" y="170" text-anchor="middle" font-size="9.5" fill="var(--info-text)">Low 2</text>
+  <text x="220" y="255" text-anchor="middle" font-size="11" font-style="italic" fill="var(--diagram-text)">Each high and low tops the last</text>
 
   <!-- Downtrend panel -->
-  <text x="680" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="#ef4444">Downtrend — Lower Highs, Lower Lows</text>
-  <rect x="520" y="85" width="320" height="180" rx="10" fill="rgba(239,68,68,0.10)" stroke="#ef4444" stroke-width="1.5"/>
-  <polyline points="540,110 590,150 620,130 670,190 700,170 750,230 800,215" fill="none" stroke="#ef4444" stroke-width="3"/>
-  <circle cx="590" cy="150" r="4" fill="#ef4444"/>
-  <circle cx="670" cy="190" r="4" fill="#ef4444"/>
-  <circle cx="750" cy="230" r="4" fill="#ef4444"/>
-  <text x="590" y="140" text-anchor="middle" font-size="9.5" fill="#ef4444">Low 1</text>
-  <text x="670" y="180" text-anchor="middle" font-size="9.5" fill="#ef4444">Low 2</text>
-  <text x="750" y="220" text-anchor="middle" font-size="9.5" fill="#ef4444">Low 3</text>
-  <circle cx="620" cy="130" r="4" fill="#3b82f6"/>
-  <circle cx="700" cy="170" r="4" fill="#3b82f6"/>
-  <text x="620" y="120" text-anchor="middle" font-size="9.5" fill="#3b82f6">High 1</text>
-  <text x="700" y="160" text-anchor="middle" font-size="9.5" fill="#3b82f6">High 2</text>
-  <text x="680" y="255" text-anchor="middle" font-size="11" font-style="italic" fill="#e2e8f0">Each high and low falls below the last</text>
+  <text x="680" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--danger-text)">Downtrend — Lower Highs, Lower Lows</text>
+  <rect x="520" y="85" width="320" height="180" rx="10" fill="var(--danger-soft)" stroke="var(--danger-500)" stroke-width="1.5"/>
+  <polyline points="540,110 590,150 620,130 670,190 700,170 750,230 800,215" fill="none" stroke="var(--danger-500)" stroke-width="3"/>
+  <circle cx="590" cy="150" r="4" fill="var(--danger-500)"/>
+  <circle cx="670" cy="190" r="4" fill="var(--danger-500)"/>
+  <circle cx="750" cy="230" r="4" fill="var(--danger-500)"/>
+  <text x="590" y="140" text-anchor="middle" font-size="9.5" fill="var(--danger-text)">Low 1</text>
+  <text x="670" y="180" text-anchor="middle" font-size="9.5" fill="var(--danger-text)">Low 2</text>
+  <text x="750" y="220" text-anchor="middle" font-size="9.5" fill="var(--danger-text)">Low 3</text>
+  <circle cx="620" cy="130" r="4" fill="var(--info-500)"/>
+  <circle cx="700" cy="170" r="4" fill="var(--info-500)"/>
+  <text x="620" y="120" text-anchor="middle" font-size="9.5" fill="var(--info-text)">High 1</text>
+  <text x="700" y="160" text-anchor="middle" font-size="9.5" fill="var(--info-text)">High 2</text>
+  <text x="680" y="255" text-anchor="middle" font-size="11" font-style="italic" fill="var(--diagram-text)">Each high and low falls below the last</text>
 
   <!-- Support/Resistance panel -->
-  <text x="450" y="300" text-anchor="middle" font-size="16" font-weight="bold" fill="#e2e8f0">Support and Resistance — Levels Price Reacts To</text>
-  <rect x="150" y="315" width="600" height="120" rx="10" fill="rgba(59,130,246,0.10)" stroke="#3b82f6" stroke-width="1.5"/>
-  <line x1="180" y1="345" x2="720" y2="345" stroke="#ef4444" stroke-width="2" stroke-dasharray="6,4"/>
-  <text x="730" y="349" font-size="11" fill="#ef4444" font-weight="bold">Resistance</text>
-  <line x1="180" y1="410" x2="720" y2="410" stroke="#22c55e" stroke-width="2" stroke-dasharray="6,4"/>
-  <text x="730" y="414" font-size="11" fill="#22c55e" font-weight="bold">Support</text>
-  <polyline points="190,378 230,347 270,378 310,410 350,380 390,347 430,378 470,410 510,380 550,347 590,378 630,410 670,380" fill="none" stroke="#e2e8f0" stroke-width="2.5"/>
-  <text x="450" y="453" text-anchor="middle" font-size="11" font-style="italic" fill="#94a3b8">Price repeatedly reverses at these levels — a probability built from history, not a guaranteed wall.</text>
+  <text x="450" y="300" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--diagram-text)">Support and Resistance — Levels Price Reacts To</text>
+  <rect x="150" y="315" width="600" height="120" rx="10" fill="var(--info-soft)" stroke="var(--info-500)" stroke-width="1.5"/>
+  <line x1="180" y1="345" x2="720" y2="345" stroke="var(--danger-500)" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="730" y="349" font-size="11" fill="var(--danger-text)" font-weight="bold">Resistance</text>
+  <line x1="180" y1="410" x2="720" y2="410" stroke="var(--success-500)" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="730" y="414" font-size="11" fill="var(--success-text)" font-weight="bold">Support</text>
+  <polyline points="190,378 230,347 270,378 310,410 350,380 390,347 430,378 470,410 510,380 550,347 590,378 630,410 670,380" fill="none" stroke="var(--diagram-text)" stroke-width="2.5"/>
+  <text x="450" y="453" text-anchor="middle" font-size="11" font-style="italic" fill="var(--diagram-muted)">Price repeatedly reverses at these levels — a probability built from history, not a guaranteed wall.</text>
 </svg>
   `,
   'verify-a-claim': `
     <svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
-  <rect width="900" height="500" fill="#0f172a"/>
-  <text x="450" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#e2e8f0">Verifying an "It Works" Claim</text>
+  <rect width="900" height="500" fill="var(--diagram-bg)"/>
+  <text x="450" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="var(--diagram-text)">Verifying an "It Works" Claim</text>
 
   <!-- Left: unverified -->
-  <rect x="50" y="65" width="370" height="330" rx="12" fill="rgba(239,68,68,0.10)" stroke="#ef4444" stroke-width="2"/>
-  <text x="235" y="95" text-anchor="middle" font-size="16" font-weight="bold" fill="#ef4444">Unverified Claim</text>
-  <text x="235" y="118" text-anchor="middle" font-size="12" font-style="italic" fill="#fca5a5">"70% success rate" — seen on a blog</text>
+  <rect x="50" y="65" width="370" height="330" rx="12" fill="var(--danger-soft)" stroke="var(--danger-500)" stroke-width="2"/>
+  <text x="235" y="95" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--danger-text)">Unverified Claim</text>
+  <text x="235" y="118" text-anchor="middle" font-size="12" font-style="italic" fill="var(--danger-text)">"70% success rate" — seen on a blog</text>
 
-  <text x="75" y="150" font-size="12.5" fill="#e2e8f0">✗ No named author or institution</text>
-  <text x="75" y="178" font-size="12.5" fill="#e2e8f0">✗ No journal, no link, no DOI</text>
-  <text x="75" y="206" font-size="12.5" fill="#e2e8f0">✗ Market/time period unspecified</text>
-  <text x="75" y="234" font-size="12.5" fill="#e2e8f0">✗ Number shifts between sources</text>
-  <text x="75" y="262" font-size="12.5" fill="#e2e8f0">✗ Repeated as fact, never re-tested</text>
+  <text x="75" y="150" font-size="12.5" fill="var(--diagram-text)">✗ No named author or institution</text>
+  <text x="75" y="178" font-size="12.5" fill="var(--diagram-text)">✗ No journal, no link, no DOI</text>
+  <text x="75" y="206" font-size="12.5" fill="var(--diagram-text)">✗ Market/time period unspecified</text>
+  <text x="75" y="234" font-size="12.5" fill="var(--diagram-text)">✗ Number shifts between sources</text>
+  <text x="75" y="262" font-size="12.5" fill="var(--diagram-text)">✗ Repeated as fact, never re-tested</text>
 
-  <rect x="75" y="290" width="320" height="85" rx="8" fill="#FFFFFF" stroke="rgba(239,68,68,0.35)" stroke-width="1.2"/>
-  <text x="235" y="313" text-anchor="middle" font-size="11" fill="#94a3b8">Example: Bulkowski's pattern statistics —</text>
-  <text x="235" y="331" text-anchor="middle" font-size="11" fill="#94a3b8">a private investor's own backtest, not peer-</text>
-  <text x="235" y="349" text-anchor="middle" font-size="11" fill="#94a3b8">reviewed, admittedly regime-dependent —</text>
-  <text x="235" y="367" text-anchor="middle" font-size="11" fill="#fca5a5" font-weight="bold">yet quoted everywhere as settled fact.</text>
+  <rect x="75" y="290" width="320" height="85" rx="8" fill="var(--diagram-block)" stroke="var(--danger-border)" stroke-width="1.2"/>
+  <text x="235" y="313" text-anchor="middle" font-size="11" fill="var(--diagram-muted)">Example: Bulkowski's pattern statistics —</text>
+  <text x="235" y="331" text-anchor="middle" font-size="11" fill="var(--diagram-muted)">a private investor's own backtest, not peer-</text>
+  <text x="235" y="349" text-anchor="middle" font-size="11" fill="var(--diagram-muted)">reviewed, admittedly regime-dependent —</text>
+  <text x="235" y="367" text-anchor="middle" font-size="11" fill="var(--danger-text)" font-weight="bold">yet quoted everywhere as settled fact.</text>
 
   <!-- Right: verified -->
-  <rect x="480" y="65" width="370" height="330" rx="12" fill="rgba(34,197,94,0.10)" stroke="#22c55e" stroke-width="2"/>
-  <text x="665" y="95" text-anchor="middle" font-size="16" font-weight="bold" fill="#22c55e">Peer-Reviewed Finding</text>
-  <text x="665" y="118" text-anchor="middle" font-size="12" font-style="italic" fill="#bbf7d0">Published, verifiable research</text>
+  <rect x="480" y="65" width="370" height="330" rx="12" fill="var(--success-soft)" stroke="var(--success-500)" stroke-width="2"/>
+  <text x="665" y="95" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--success-text)">Peer-Reviewed Finding</text>
+  <text x="665" y="118" text-anchor="middle" font-size="12" font-style="italic" fill="var(--success-text)">Published, verifiable research</text>
 
-  <text x="505" y="150" font-size="12.5" fill="#e2e8f0">✓ Named authors, institution</text>
-  <text x="505" y="178" font-size="12.5" fill="#e2e8f0">✓ Named journal, real DOI/link</text>
-  <text x="505" y="206" font-size="12.5" fill="#e2e8f0">✓ Market, dates, method specified</text>
-  <text x="505" y="234" font-size="12.5" fill="#e2e8f0">✓ Consistent across citing sources</text>
-  <text x="505" y="262" font-size="12.5" fill="#e2e8f0">✓ Reviewed by independent experts</text>
+  <text x="505" y="150" font-size="12.5" fill="var(--diagram-text)">✓ Named authors, institution</text>
+  <text x="505" y="178" font-size="12.5" fill="var(--diagram-text)">✓ Named journal, real DOI/link</text>
+  <text x="505" y="206" font-size="12.5" fill="var(--diagram-text)">✓ Market, dates, method specified</text>
+  <text x="505" y="234" font-size="12.5" fill="var(--diagram-text)">✓ Consistent across citing sources</text>
+  <text x="505" y="262" font-size="12.5" fill="var(--diagram-text)">✓ Reviewed by independent experts</text>
 
-  <rect x="505" y="290" width="320" height="85" rx="8" fill="#FFFFFF" stroke="rgba(34,197,94,0.35)" stroke-width="1.2"/>
-  <text x="665" y="313" text-anchor="middle" font-size="11" fill="#94a3b8">Example: Lo, Mamaysky &amp; Wang (2000),</text>
-  <text x="665" y="331" text-anchor="middle" font-size="11" fill="#94a3b8">Journal of Finance — found real signal,</text>
-  <text x="665" y="349" text-anchor="middle" font-size="11" fill="#94a3b8">but explicitly noted statistical significance</text>
-  <text x="665" y="367" text-anchor="middle" font-size="11" fill="#22c55e" font-weight="bold">≠ guaranteed trading profit.</text>
+  <rect x="505" y="290" width="320" height="85" rx="8" fill="var(--diagram-block)" stroke="var(--success-border)" stroke-width="1.2"/>
+  <text x="665" y="313" text-anchor="middle" font-size="11" fill="var(--diagram-muted)">Example: Lo, Mamaysky &amp; Wang (2000),</text>
+  <text x="665" y="331" text-anchor="middle" font-size="11" fill="var(--diagram-muted)">Journal of Finance — found real signal,</text>
+  <text x="665" y="349" text-anchor="middle" font-size="11" fill="var(--diagram-muted)">but explicitly noted statistical significance</text>
+  <text x="665" y="367" text-anchor="middle" font-size="11" fill="var(--success-text)" font-weight="bold">≠ guaranteed trading profit.</text>
 
-  <text x="450" y="425" text-anchor="middle" font-size="13" fill="#e2e8f0">Both can exist for the same pattern. The question is never just "does it work" —</text>
-  <text x="450" y="447" text-anchor="middle" font-size="13" fill="#e2e8f0">it's "how do I know, and how sure can I actually be?"</text>
+  <text x="450" y="425" text-anchor="middle" font-size="13" fill="var(--diagram-text)">Both can exist for the same pattern. The question is never just "does it work" —</text>
+  <text x="450" y="447" text-anchor="middle" font-size="13" fill="var(--diagram-text)">it's "how do I know, and how sure can I actually be?"</text>
 </svg>
   `,
 };

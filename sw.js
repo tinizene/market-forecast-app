@@ -36,7 +36,7 @@
 // rejects as a unit, so the Tailwind CDN is now cached best-effort alongside the
 // shell rather than inside it.
 //
-const CACHE_NAME = 'scere-training-v23';
+const CACHE_NAME = 'scere-training-v24';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

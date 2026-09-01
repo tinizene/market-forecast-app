@@ -22,7 +22,9 @@ const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
 const PAGES = ['index.html', 'learn.html', 'lesson.html', 'track.html', 'research.html', 'privacy-policy.html'];
-const SCRIPTS = ['app.js', 'learn.js', 'research.js', 'legend.js', 'nav.js', 'ui.js', 'progress.js'];
+const SCRIPTS = ['app.js', 'learn.js', 'research.js', 'legend.js', 'nav.js', 'ui.js', 'progress.js',
+  'theme.js', 'data/course/src/forex-content.js', 'data/course/src/crypto-content.js',
+  'data/course/src/stocks-svgs.js', 'data/course/src/crypto-svgs-ch456.js'];
 
 // styles.css is where colour belongs; theme.js only ever reads it back. The SVG
 // diagram library in learn.js is authored art with its own ground baked in — those
@@ -32,12 +34,12 @@ const COLOUR_UTILITY = /\b(bg|text|border|from|to|via|decoration|ring|placeholde
 const RAW_COLOUR = /#[0-9a-fA-F]{3,8}\b|\brgba?\([^)]*\)/g;
 
 const problems = [];
+const checked = { diagrams: 0 };
 
-function svgFreeSource(file, src) {
-  // Drop the inline SVG diagram library before looking for raw colour.
-  if (file !== 'learn.js') return src;
-  return src.replace(/const FOUNDATION_SVGS = \{[\s\S]*?\n\};/, '/* diagram library elided */');
-}
+// Nothing is exempt any more. The 83 lesson diagrams used to be, because they were
+// authored art with a dark ground baked in; they are drawn through tokens now, so a
+// literal in one is the same regression as a literal anywhere else.
+function svgFreeSource(file, src) { return src; }
 
 for (const file of [...PAGES, ...SCRIPTS]) {
   const full = path.join(ROOT, file);
@@ -90,9 +92,37 @@ for (const page of PAGES) {
   }
 }
 
+// The bundles under data/course are what /api/course actually serves. A source file
+// can be clean while the built JSON still carries the old literals — that is exactly
+// what happened to the four Swahili bundles, which are derived and were a rebuild
+// behind. Check what ships, not only what is authored.
+{
+  const dir = path.join(ROOT, 'data', 'course');
+  let diagrams = 0;
+  for (const file of fs.readdirSync(dir).filter((f) => f.endsWith('.json'))) {
+    let json;
+    try { json = JSON.parse(fs.readFileSync(path.join(dir, file), 'utf8')); } catch (e) { continue; }
+    if (!Array.isArray(json.lessons)) continue;
+    const literals = new Set();
+    for (const lesson of json.lessons) {
+      for (const block of lesson.blocks || []) {
+        if (!block.svgMarkup) continue;
+        diagrams++;
+        for (const c of block.svgMarkup.match(/#[0-9a-fA-F]{3,9}\b|rgba?\([0-9\s,.]+\)/g) || []) literals.add(c);
+      }
+    }
+    if (literals.size) {
+      problems.push(`data/course/${file}: ${literals.size} colour literal(s) in shipped diagrams: ${[...literals].slice(0, 5).join(', ')}`
+        + `\n      Re-run scripts/build-course-data.js and scripts/build-course-i18n.js after editing a diagram.`);
+    }
+  }
+  if (!diagrams) problems.push('data/course: no diagrams found to check — the build may not have run');
+  else checked.diagrams = diagrams;
+}
+
 if (problems.length) {
   console.error(`\n${problems.length} theme problem(s):`);
   problems.forEach((p) => console.error(`  ✗ ${p}`));
   process.exit(1);
 }
-console.log(`\n${PAGES.length} pages and ${SCRIPTS.length} scripts name no colour of their own`);
+console.log(`\n${PAGES.length} pages, ${SCRIPTS.length} scripts and ${checked.diagrams} shipped diagrams name no colour of their own`);

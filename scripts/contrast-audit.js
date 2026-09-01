@@ -142,6 +142,29 @@ const PAIRS = [
   ['free badge label', '--text-inverse', '--success-400', [], AA],
   ['paid badge label', '--text-inverse', '--premium-400', [], AA],
 
+  // --- lesson diagrams, which draw on their own ground in both themes ---
+  ['diagram text on diagram', '--diagram-text', '--diagram-bg', [], AA],
+  ['diagram text on panel', '--diagram-text', '--diagram-panel', [], AA],
+  ['diagram strong on diagram', '--diagram-strong', '--diagram-bg', [], AA],
+  ['diagram muted on diagram', '--diagram-muted', '--diagram-bg', [], AA],
+  ['diagram muted on panel', '--diagram-muted', '--diagram-panel', [], AA],
+  ['diagram faint on diagram', '--diagram-faint', '--diagram-bg', [], AA],
+  ['diagram axis vs diagram', '--diagram-axis', '--diagram-bg', [], AA_LARGE],
+  ['diagram block ink on block', '--diagram-block-ink', '--diagram-block', [], AA],
+  ['diagram block ink on block-2', '--diagram-block-ink', '--diagram-block-2', [], AA],
+  ['diagram block ink on band', '--diagram-block-ink', '--diagram-band', [], AA],
+  ['diagram block vs diagram', '--diagram-block', '--diagram-bg', [], AA_LARGE],
+  ['diagram block-2 vs diagram', '--diagram-block-2', '--diagram-bg', [], AA_LARGE],
+  ['diagram band vs diagram', '--diagram-band', '--diagram-bg', [], AA_LARGE],
+  ['diagram success label on tint', '--success-text', '--diagram-bg', ['--success-soft'], AA],
+  ['diagram danger label on tint', '--danger-text', '--diagram-bg', ['--danger-soft'], AA],
+  ['diagram warning label on tint', '--warning-text', '--diagram-bg', ['--warning-soft'], AA],
+  ['diagram info label on tint', '--info-text', '--diagram-bg', ['--info-soft'], AA],
+  ['diagram success stroke vs diagram', '--success-500', '--diagram-bg', [], AA_LARGE],
+  ['diagram danger stroke vs diagram', '--danger-500', '--diagram-bg', [], AA_LARGE],
+  ['diagram warning stroke vs diagram', '--warning-500', '--diagram-bg', [], AA_LARGE],
+  ['diagram info stroke vs diagram', '--info-500', '--diagram-bg', [], AA_LARGE],
+
   // --- states shown on the page background ---
   ['positive figure on app', '--pos-text', '--bg-app', [], AA],
   ['negative figure on app', '--neg-text', '--bg-app', [], AA],
@@ -206,6 +229,12 @@ function main() {
     '--primary-700', '--link-underline',
     // Shadows sit under content, never behind text, so they carry no ratio to promise.
     '--shadow-soft', '--shadow', '--shadow-strong',
+    // Chart gridlines are scaffolding, not content: WCAG 1.4.11 covers graphics
+    // REQUIRED to understand the information, and a gridline is deliberately
+    // subordinate to the series drawn over it. Forcing it to 3:1 would make every
+    // chart harder to read, so it is exempt by decision rather than by omission.
+    // The axis line IS structural and is checked above.
+    '--diagram-grid',
   ]);
 
   // A token that no pair mentions has never been checked. Say so rather than let it

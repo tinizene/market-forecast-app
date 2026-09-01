@@ -63,6 +63,11 @@ const SCOPE = {
   ],
   evidence: [
     { dir: 'numbers-ledger/test', pattern: /\.js$/ },
+    // The laboratory harness. Pinned, so the environment a tester was given is
+    // identifiable, and outside the runtime section, so the code that can make
+    // a draw land on a chosen number is provably not in the certified build.
+    // No pattern: every file under it is listed, README included.
+    { dir: 'numbers-ledger/lab' },
     { file: 'numbers-ledger/README.md' },
     { file: 'africa-numbers/game.test.js' }
   ]

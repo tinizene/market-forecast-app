@@ -1,8 +1,8 @@
 {
   "version": 1,
   "algorithm": "sha256",
-  "generatedAt": "2026-09-01T10:13:22.349Z",
-  "buildId": "232c4faf9a7a6f698c260fe925f8e636f22f6a9959855e8ef6c882ac50e1d196",
+  "generatedAt": "2026-09-01T10:24:50.093Z",
+  "buildId": "1e7a371d38a61d0444bfa05282c9a057843fc606ca49ef0e8ecf3bc892bb59ae",
   "scope": {
     "runtime": [
       {
@@ -26,6 +26,9 @@
         "pattern": {}
       },
       {
+        "dir": "numbers-ledger/lab"
+      },
+      {
         "file": "numbers-ledger/README.md"
       },
       {
@@ -44,7 +47,7 @@
   ],
   "sections": {
     "runtime": {
-      "digest": "232c4faf9a7a6f698c260fe925f8e636f22f6a9959855e8ef6c882ac50e1d196",
+      "digest": "1e7a371d38a61d0444bfa05282c9a057843fc606ca49ef0e8ecf3bc892bb59ae",
       "files": [
         {
           "path": "africa-numbers/game.js",
@@ -68,8 +71,8 @@
         },
         {
           "path": "numbers-ledger/package.json",
-          "bytes": 588,
-          "sha256": "bfbabf39317658b0b54503fca20ceafa32e0c5792e364edf0a75e06bb3389c0d"
+          "bytes": 667,
+          "sha256": "cd66d242f52798cb8ff7d3878d8ceabf81b28328d690deb0b4c3e24002b59717"
         },
         {
           "path": "numbers-ledger/src/accounts.js",
@@ -153,8 +156,8 @@
         },
         {
           "path": "numbers-ledger/src/manifest.js",
-          "bytes": 12225,
-          "sha256": "5a7370a2e5b3cd519716bdd64410894b7a3526166b83aa9e991f4f91895ca598"
+          "bytes": 12565,
+          "sha256": "ddfa81299cb3455365f89a0ac31b90da59fff64a76507d19ff1d4d60ceeee924"
         },
         {
           "path": "numbers-ledger/src/mobilemoney/gateway.js",
@@ -204,7 +207,7 @@
       ]
     },
     "evidence": {
-      "digest": "3ddc6ab8c5fa8f2a19c436141a6209c161f153e7b72123874139c08800799c5e",
+      "digest": "b572a2e8ff30c2c33145c76fb69cb4322b5ef6f414bcf216965c8ac6aac604d3",
       "files": [
         {
           "path": "africa-numbers/game.test.js",
@@ -213,8 +216,33 @@
         },
         {
           "path": "numbers-ledger/README.md",
-          "bytes": 44912,
-          "sha256": "21dd651b5087664863638e160a00ca67c3ef014b68ecd5a28b3e1ca4378b01db"
+          "bytes": 49327,
+          "sha256": "cc49716b1a8c1c8e56b41e1829a14caf4f700802dfa8d4ff682d18deb629e2a9"
+        },
+        {
+          "path": "numbers-ledger/lab/README.md",
+          "bytes": 5699,
+          "sha256": "b5b64ce992ca2b69547909b9507c26c6f6516393f1076a7c84a5288ddc3096f4"
+        },
+        {
+          "path": "numbers-ledger/lab/bin/lab-server.js",
+          "bytes": 3077,
+          "sha256": "ca09ecea857f92b7a41bfa92ee5b3d684f818a7ccba07a10593969b1d96d95b3"
+        },
+        {
+          "path": "numbers-ledger/lab/fixtures.js",
+          "bytes": 7503,
+          "sha256": "5ce2e6eb9dd5f7abc8f58bbf729759190bc1455c22d1a13a0ccf272be384fa1e"
+        },
+        {
+          "path": "numbers-ledger/lab/harness.js",
+          "bytes": 9521,
+          "sha256": "2a85eda270b4dc67f58eb253dac9f139c0f28d30ac1dca8d2c4eeb77d7b024a4"
+        },
+        {
+          "path": "numbers-ledger/lab/seed-search.js",
+          "bytes": 2779,
+          "sha256": "e01f303bb825f0bcbc27f8a7c97dc3d853ed029abc6d72109e8a6f6e2c04e5c8"
         },
         {
           "path": "numbers-ledger/test/concurrency.test.js",
@@ -270,6 +298,11 @@
           "path": "numbers-ledger/test/http.test.js",
           "bytes": 18948,
           "sha256": "f9bcb95a9dcbd1789a9e46db5eda32017809cc9f35704bda4cddcd2609dad861"
+        },
+        {
+          "path": "numbers-ledger/test/lab.test.js",
+          "bytes": 12923,
+          "sha256": "bbe578f1364b7ecc13412f5289177122d5b1d90c95178f2a65e3a45217d22ac8"
         },
         {
           "path": "numbers-ledger/test/ledger.test.js",

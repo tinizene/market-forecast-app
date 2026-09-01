@@ -41,7 +41,8 @@ directory as a module path. Pass a glob or a file.
 | `bin/console-server.js` | The composition root: the only way to actually run any of this |
 | `bin/build-manifest.js` | Writes `MANIFEST.json` at release, and checks it in CI |
 | `bin/verify-build.js` | What an inspector runs on a production host |
-| `test/` | 295 tests: unit, a simulated trading day, durability, concurrency, draws, channels, the API surface |
+| `lab/` | The laboratory environment. Pinned as evidence, absent from the build |
+| `test/` | 313 tests: unit, a simulated trading day, durability, concurrency, draws, channels, the API surface |
 
 ## Durable or in-memory
 
@@ -339,6 +340,83 @@ guard phrased in a wording the pattern did not know about was arriving as a
 And `buyFloat`'s refusal said the opposite of what it checks — commission is a
 discount on float, so the rule is that money paid cannot exceed float granted,
 and the message claimed the reverse.
+
+## The laboratory environment
+
+A running system for a tester to drive, with the ability to make a draw land on
+a chosen number.
+
+```
+npm run lab
+```
+
+Two servers on two ports. The **product** is composed from `src/` exactly as
+`bin/console-server.js` composes it — the software a certificate would name,
+with nothing added and nothing switched on. The **control surface** is
+everything else: the fixture book, the credentials, the forced outcomes, the
+clock, the reset. `lab/README.md` is written for the tester.
+
+### There is no laboratory mode
+
+The obvious way to let a laboratory force outcomes is a flag in the draw code.
+That flag then exists in production, set to `false`, and "set to `false`" is a
+sentence somebody has to trust.
+
+So there is no flag. The result is a deterministic function of the seed, so a
+wanted number is reached by generating seeds until one produces it — about a
+thousand tries, a few milliseconds. Everything downstream is completely
+ordinary: a real seed, a real commitment published before betting opens, a real
+reveal that verifies against it. `lab/seed-search.js` imports `src/draws.js` and
+nothing else, and a test asserts exactly that, because the moment it needs the
+operator or the ledger the claim has stopped being true.
+
+Two things make the absence checkable rather than asserted:
+
+- **The product's route table has nothing called `/lab`**, and a test walks it.
+- **The build manifest excludes `lab/` from the runtime section** and pins it as
+  evidence, so the harness is identifiable without being certified. A test
+  asserts both halves.
+
+### The property boundary this exposes
+
+Commit-reveal stops the operator changing the number *after seeing the book*. It
+does not stop them choosing the number *before the book exists* — which is
+exactly what the harness does, in a few milliseconds, using public functions.
+
+That is not a flaw the harness introduces; it is the reason the timing rule
+carries as much weight as the cryptography. The commitment must be published
+before betting opens, and then a chosen number is worth nothing because no bets
+exist yet. A commitment published late is a guarantee that is retrospective,
+which is to say absent. Better to say this first than to have a laboratory
+find it.
+
+### The clock is the tester's, not the harness's
+
+A reveal before the draw time is refused in the laboratory exactly as it is in
+production. The harness supplies the seed; whether it is time is the product's
+decision, made against the clock it was given. The tester winds the clock with
+`POST /lab/clock` rather than arguing with the rule — and only forwards, because
+a clock that can go backwards is one where a bet placed after a cutoff can be
+made to look as though it was not.
+
+That the clock is injectable at all is a production property rather than a hook
+added for testing: it is how the cutoff is kept off the caller's device.
+Production wires it to the wall clock.
+
+### The book a tester finds
+
+Seeded through the same public operations the product uses, so no fixture can
+create a state the product could not have reached on its own: three runners with
+one suspended for not reconciling, twelve players with history and one PIN
+between them, yesterday's draw settled with winners on real tickets, a
+promotional ticket issued and played, a funded jackpot, an excluded player, a
+player under their own limit, and a disbursement the provider never answered.
+
+Building it turned up something worth knowing: a guard reads state as it *is*,
+not as it was at the timestamp on the transaction. Suspending a runner before
+writing their historical cash-ins refuses those cash-ins. Correct behaviour —
+the guard answers "can this runner sell right now" — and a fixture has to be
+written in call order rather than in timestamp order.
 
 ## What software is this
 
@@ -669,6 +747,12 @@ and a plain download link therefore cannot carry it.
   extension.
 - **A change to a test does not change the build id**, and a change to a runtime
   file does.
+- **A draw can be made to land on any number and still verifies publicly** —
+  the harness needs no hook in the product to do it.
+- **Nothing under `lab/` is in the certified build**, and the product serves no
+  control route.
+- **The seeded laboratory book reconciles** and contains every state a tester
+  needs to find.
 - **Balances are derivable.** A test rebuilds every balance from the journal
   alone and compares. A stored balance that disagrees with its entries is the
   classic ledger bug; the only way to be immune is not to keep one.
@@ -803,6 +887,10 @@ a player and abrupt for a runner mid-queue.
 
 Custody protects the seed from the database and from a single custodian. It does
 not protect it from whoever controls the process at the moment it is generated.
+
+The laboratory environment runs in memory, so a restart is a reset. That is
+deliberate for a test bench and means it cannot be used to rehearse a restore
+from backup, which a laboratory may also want to see.
 
 There is no real mobile money provider either — only the contract, a simulator
 and the gateway. Writing a driver for an actual telco is the remaining work,

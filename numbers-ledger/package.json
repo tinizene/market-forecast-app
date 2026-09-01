@@ -12,6 +12,7 @@
     "console": "node --disable-warning=ExperimentalWarning bin/console-server.js",
     "manifest": "node bin/build-manifest.js",
     "manifest:check": "node bin/build-manifest.js --check",
-    "verify": "node bin/verify-build.js"
+    "verify": "node bin/verify-build.js",
+    "lab": "node --disable-warning=ExperimentalWarning lab/bin/lab-server.js"
   }
 }

@@ -440,35 +440,35 @@ function renderLessonBlock(block, idBase, index) {
   const readId = `ru-${idBase}-b${index}`;
   switch (block.type) {
     case 'paragraph':
-      return `<p class="text-sm text-slate-300 leading-relaxed mb-3" data-read-unit id="${readId}">${escapeHtml(block.text)}</p>`;
+      return `<p class="text-sm u-fg-body leading-relaxed mb-3" data-read-unit id="${readId}">${escapeHtml(block.text)}</p>`;
 
     case 'definition':
       return `
         <div class="lesson-block lesson-block-definition">
           <span class="lesson-block-label" data-i18n="learn.block.definition">Definition</span>
-          <p class="text-sm font-semibold text-slate-100 mb-1">${escapeHtml(block.term)}</p>
-          <p class="text-sm text-slate-300 leading-relaxed" data-read-unit id="${readId}">${escapeHtml(block.text)}</p>
+          <p class="text-sm font-semibold u-fg mb-1">${escapeHtml(block.term)}</p>
+          <p class="text-sm u-fg-body leading-relaxed" data-read-unit id="${readId}">${escapeHtml(block.text)}</p>
         </div>`;
 
     case 'example':
       return `
         <div class="lesson-block lesson-block-example">
           <span class="lesson-block-label" data-i18n="learn.block.example">Example</span>
-          <p class="text-sm text-slate-300 leading-relaxed" data-read-unit id="${readId}">${escapeHtml(block.text)}</p>
+          <p class="text-sm u-fg-body leading-relaxed" data-read-unit id="${readId}">${escapeHtml(block.text)}</p>
         </div>`;
 
     case 'warning':
       return `
         <div class="lesson-block lesson-block-warning">
           <span class="lesson-block-label" data-i18n="learn.block.warning">Worth Noting</span>
-          <p class="text-sm text-slate-300 leading-relaxed" data-read-unit id="${readId}">${escapeHtml(block.text)}</p>
+          <p class="text-sm u-fg-body leading-relaxed" data-read-unit id="${readId}">${escapeHtml(block.text)}</p>
         </div>`;
 
     case 'practice':
       return `
         <div class="lesson-block lesson-block-practice">
           <span class="lesson-block-label" data-i18n="learn.block.practice">Think It Through</span>
-          <p class="text-sm text-slate-300 leading-relaxed" data-read-unit id="${readId}">${escapeHtml(block.text)}</p>
+          <p class="text-sm u-fg-body leading-relaxed" data-read-unit id="${readId}">${escapeHtml(block.text)}</p>
         </div>`;
 
     case 'image': {
@@ -580,13 +580,13 @@ function renderFoundationLessonCard(lesson) {
   const keyTermsHtml = renderKeyTerms(lesson.keyTerms);
 
   return `
-    <section id="lesson-${escapeHtml(lesson.id)}" class="current-card bg-slate-800 rounded-2xl p-5 shadow-lg" data-lesson-section>
+    <section id="lesson-${escapeHtml(lesson.id)}" class="current-card u-bg-card rounded-2xl p-5 shadow-lg" data-lesson-section>
       <div class="flex items-start justify-between gap-3 mb-1">
-        <p class="text-xs uppercase tracking-wider text-blue-300">${escapeHtml(tr('learn.chapter-lesson', 'Chapter {c} · Lesson {l}', { c: lesson.chapterNumber, l: lesson.lessonNumber }))}</p>
+        <p class="text-xs uppercase tracking-wider u-fg-info">${escapeHtml(tr('learn.chapter-lesson', 'Chapter {c} · Lesson {l}', { c: lesson.chapterNumber, l: lesson.lessonNumber }))}</p>
         <button type="button" class="lesson-listen-btn hidden" data-lesson-listen="${escapeHtml(lesson.id)}"><span aria-hidden="true">🔊</span> <span data-i18n="learn.listen">Listen</span></button>
       </div>
       <h2 class="text-lg font-bold mb-2" data-read-unit id="ru-${escapeHtml(lesson.id)}-title">${escapeHtml(lesson.title)}</h2>
-      <p class="text-sm text-blue-200 font-medium mb-3" data-read-unit id="ru-${escapeHtml(lesson.id)}-keyidea">${escapeHtml(lesson.keyIdea)}</p>
+      <p class="text-sm u-fg-info font-medium mb-3" data-read-unit id="ru-${escapeHtml(lesson.id)}-keyidea">${escapeHtml(lesson.keyIdea)}</p>
       <div class="space-y-1">${blocksHtml}</div>
       ${quizHtml}
       ${keyTermsHtml}
@@ -598,10 +598,10 @@ function renderChapterDivider(lesson) {
   return `
     <div class="pt-2 pb-1">
       <div class="flex items-center gap-3">
-        <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 rounded-full px-2.5 py-1">${escapeHtml(tr('learn.chapter-n', 'Chapter {c}', { c: lesson.chapterNumber }))}</span>
-        <div class="h-px flex-1 bg-slate-700"></div>
+        <span class="text-[10px] font-bold uppercase tracking-[0.2em] u-fg-success u-bg-success border u-bd-success rounded-full px-2.5 py-1">${escapeHtml(tr('learn.chapter-n', 'Chapter {c}', { c: lesson.chapterNumber }))}</span>
+        <div class="h-px flex-1 u-bg-elevated"></div>
       </div>
-      <h3 class="text-base font-bold text-slate-100 mt-2">${escapeHtml(lesson.chapterTitle || '')}</h3>
+      <h3 class="text-base font-bold u-fg mt-2">${escapeHtml(lesson.chapterTitle || '')}</h3>
     </div>`;
 }
 
@@ -614,8 +614,8 @@ function renderFoundationTrack() {
   const header = `
     <div class="mb-2">
       <span class="foundation-badge" data-i18n="learn.badge.free">Free</span>
-      <p class="text-[11px] uppercase tracking-[0.15em] text-slate-400 mt-2">${escapeHtml(track.trackTitle || '')}</p>
-      <p class="text-xs text-slate-400 mt-1">${escapeHtml(track.trackTagline || '')}</p>
+      <p class="text-[11px] uppercase tracking-[0.15em] u-fg-muted mt-2">${escapeHtml(track.trackTitle || '')}</p>
+      <p class="text-xs u-fg-muted mt-1">${escapeHtml(track.trackTagline || '')}</p>
     </div>`;
 
   let lastChapter = null;
@@ -646,8 +646,8 @@ function renderForexTrack() {
   const header = `
     <div class="mb-2">
       <span class="paid-badge" data-i18n="learn.badge.paid">Paid track</span>
-      <p class="text-[11px] uppercase tracking-[0.15em] text-slate-400 mt-2">${escapeHtml(track.trackTitle || '')}</p>
-      <p class="text-xs text-slate-400 mt-1">${escapeHtml(track.trackTagline || '')}</p>
+      <p class="text-[11px] uppercase tracking-[0.15em] u-fg-muted mt-2">${escapeHtml(track.trackTitle || '')}</p>
+      <p class="text-xs u-fg-muted mt-1">${escapeHtml(track.trackTagline || '')}</p>
     </div>`;
 
   let lastChapter = null;
@@ -677,8 +677,8 @@ function renderCryptoTrack() {
   const header = `
     <div class="mb-2">
       <span class="paid-badge" data-i18n="learn.badge.paid">Paid track</span>
-      <p class="text-[11px] uppercase tracking-[0.15em] text-slate-400 mt-2">${escapeHtml(track.trackTitle || '')}</p>
-      <p class="text-xs text-slate-400 mt-1">${escapeHtml(track.trackTagline || '')}</p>
+      <p class="text-[11px] uppercase tracking-[0.15em] u-fg-muted mt-2">${escapeHtml(track.trackTitle || '')}</p>
+      <p class="text-xs u-fg-muted mt-1">${escapeHtml(track.trackTagline || '')}</p>
     </div>`;
 
   let lastChapter = null;
@@ -699,14 +699,14 @@ function renderCryptoTrack() {
 
 function renderLessonCard(lesson, index) {
   return `
-    <section id="lesson-${escapeHtml(lesson.id)}" class="current-card bg-slate-800 rounded-2xl p-5 shadow-lg" data-lesson-section>
+    <section id="lesson-${escapeHtml(lesson.id)}" class="current-card u-bg-card rounded-2xl p-5 shadow-lg" data-lesson-section>
       <div class="flex items-start justify-between gap-3 mb-1">
-        <p class="text-xs uppercase tracking-wider text-blue-300">${escapeHtml(tr('learn.lesson-n', 'Lesson {n}', { n: index + 1 }))}</p>
+        <p class="text-xs uppercase tracking-wider u-fg-info">${escapeHtml(tr('learn.lesson-n', 'Lesson {n}', { n: index + 1 }))}</p>
         <button type="button" class="lesson-listen-btn hidden" data-lesson-listen="${escapeHtml(lesson.id)}"><span aria-hidden="true">🔊</span> <span data-i18n="learn.listen">Listen</span></button>
       </div>
       <h2 class="text-lg font-bold mb-2" data-read-unit id="ru-${escapeHtml(lesson.id)}-title">${escapeHtml(lesson.title)}</h2>
-      <p class="text-sm text-blue-200 font-medium mb-3" data-read-unit id="ru-${escapeHtml(lesson.id)}-keyidea">${escapeHtml(lesson.keyIdea)}</p>
-      <div class="space-y-3 text-sm text-slate-300 leading-relaxed">
+      <p class="text-sm u-fg-info font-medium mb-3" data-read-unit id="ru-${escapeHtml(lesson.id)}-keyidea">${escapeHtml(lesson.keyIdea)}</p>
+      <div class="space-y-3 text-sm u-fg-body leading-relaxed">
         ${lesson.body.map((p, i) => `<p data-read-unit id="ru-${escapeHtml(lesson.id)}-p${i}">${escapeHtml(p)}</p>`).join('')}
       </div>
     </section>
@@ -730,7 +730,7 @@ function renderFeeTable() {
       <div class="w-full overflow-x-auto">
         <table class="w-full text-xs border-collapse">
           <thead>
-            <tr class="text-left text-slate-400 uppercase tracking-wide">
+            <tr class="text-left u-fg-muted uppercase tracking-wide">
               <th class="pb-2 pr-3 font-semibold" data-i18n="learn.fees.col-fund">Fund</th>
               <th class="pb-2 pr-3 font-semibold" data-i18n="learn.fees.col-tracks">Tracks</th>
               <th class="pb-2 pr-3 font-semibold" data-i18n="learn.fees.col-expense">Expense ratio</th>
@@ -739,11 +739,11 @@ function renderFeeTable() {
           </thead>
           <tbody>
             ${rows.map((r) => `
-              <tr class="border-t border-slate-700/60 align-top">
-                <td class="py-2 pr-3 text-slate-200 font-medium">${escapeHtml(r.symbol)} <span class="block text-slate-400 font-normal">${escapeHtml(r.name)}</span></td>
-                <td class="py-2 pr-3 text-slate-300">${escapeHtml(r.indexTracked)}</td>
-                <td class="py-2 pr-3 text-slate-100 font-semibold">${r.expenseRatioPct}%</td>
-                <td class="py-2 pr-3"><a href="${escapeHtml(r.source)}" target="_blank" rel="noopener noreferrer" class="text-sky-400 underline decoration-sky-700 underline-offset-2">${escapeHtml(tr('learn.fees.as-of', 'as of {date}', { date: r.asOf }))}</a></td>
+              <tr class="border-t u-bd align-top">
+                <td class="py-2 pr-3 u-fg-body font-medium">${escapeHtml(r.symbol)} <span class="block u-fg-muted font-normal">${escapeHtml(r.name)}</span></td>
+                <td class="py-2 pr-3 u-fg-body">${escapeHtml(r.indexTracked)}</td>
+                <td class="py-2 pr-3 u-fg font-semibold">${r.expenseRatioPct}%</td>
+                <td class="py-2 pr-3"><a href="${escapeHtml(r.source)}" target="_blank" rel="noopener noreferrer" class="u-fg-link underline u-dec-link underline-offset-2">${escapeHtml(tr('learn.fees.as-of', 'as of {date}', { date: r.asOf }))}</a></td>
               </tr>
             `).join('')}
           </tbody>
@@ -766,26 +766,26 @@ function renderDcaCalculatorShell() {
       <p class="font-semibold text-sm mb-1" data-i18n="learn.dca.title">See what regular contributions would have grown to</p>
       <p class="text-xs opacity-80 mb-3" data-i18n="learn.dca.blurb">Real historical prices and dividends, computed live. Not a prediction — this shows what already happened, not what will happen.</p>
       <div class="w-full grid grid-cols-2 gap-2 mb-3">
-        <label class="text-xs text-slate-400 col-span-2 sm:col-span-1">
+        <label class="text-xs u-fg-muted col-span-2 sm:col-span-1">
           <span data-i18n="learn.dca.field-fund">Fund</span>
-          <select id="dcaSymbol" class="mt-1 w-full bg-slate-700 text-white rounded-lg p-2 text-sm outline-none border border-slate-600 focus:border-blue-500">
+          <select id="dcaSymbol" class="mt-1 w-full u-bg-elevated u-fg rounded-lg p-2 text-sm outline-none border u-bd focus:u-bd-info">
             ${instruments.map((i) => `<option value="${escapeHtml(i.symbol)}">${escapeHtml(i.label)} (${escapeHtml(i.symbol)})</option>`).join('')}
           </select>
         </label>
-        <label class="text-xs text-slate-400">
+        <label class="text-xs u-fg-muted">
           <span data-i18n="learn.dca.field-amount">Monthly amount (USD)</span>
-          <input id="dcaAmount" type="number" min="1" step="1" value="150" class="mt-1 w-full bg-slate-700 text-white rounded-lg p-2 text-sm outline-none border border-slate-600 focus:border-blue-500">
+          <input id="dcaAmount" type="number" min="1" step="1" value="150" class="mt-1 w-full u-bg-elevated u-fg rounded-lg p-2 text-sm outline-none border u-bd focus:u-bd-info">
         </label>
-        <label class="text-xs text-slate-400">
+        <label class="text-xs u-fg-muted">
           <span data-i18n="learn.dca.field-years">Years back</span>
-          <select id="dcaYears" class="mt-1 w-full bg-slate-700 text-white rounded-lg p-2 text-sm outline-none border border-slate-600 focus:border-blue-500">
+          <select id="dcaYears" class="mt-1 w-full u-bg-elevated u-fg rounded-lg p-2 text-sm outline-none border u-bd focus:u-bd-info">
             <option value="5" data-i18n="learn.dca.years-5">5 years</option>
             <option value="10" selected data-i18n="learn.dca.years-10">10 years</option>
             <option value="20" data-i18n="learn.dca.years-20">20 years (or full history)</option>
           </select>
         </label>
       </div>
-      <button id="dcaCalculate" type="button" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg py-2.5 transition" data-i18n="learn.dca.calculate">Calculate</button>
+      <button id="dcaCalculate" type="button" class="w-full u-bg-info-solid hover:u-bg-info-solid u-fg text-sm font-semibold rounded-lg py-2.5 transition" data-i18n="learn.dca.calculate">Calculate</button>
       <div id="dcaResult" class="w-full mt-3"></div>
     </section>
   `;
@@ -831,11 +831,11 @@ async function runDcaCalculation() {
   const resultEl = document.getElementById('dcaResult');
 
   if (amount <= 0) {
-    resultEl.innerHTML = '<p class="text-xs text-red-300" data-i18n="learn.dca.err-amount">Enter a monthly amount greater than zero.</p>';
+    resultEl.innerHTML = '<p class="text-xs u-fg-danger" data-i18n="learn.dca.err-amount">Enter a monthly amount greater than zero.</p>';
     return;
   }
 
-  resultEl.innerHTML = '<p class="text-xs text-slate-400" data-i18n="learn.dca.calculating">Calculating from real historical data…</p>';
+  resultEl.innerHTML = '<p class="text-xs u-fg-muted" data-i18n="learn.dca.calculating">Calculating from real historical data…</p>';
 
   try {
     const res = await fetch(`/api/adjusted-history?symbol=${encodeURIComponent(symbol)}`);
@@ -843,32 +843,32 @@ async function runDcaCalculation() {
 
     if (data.error === 'not_configured') {
       showApiKeyBanner(data.message || 'This deployment has no ALPHA_VANTAGE_API_KEY set yet, so the calculator can\'t load historical data. See README.md.');
-      resultEl.innerHTML = '<p class="text-xs text-red-300" data-i18n="learn.dca.err-unavailable">Historical data unavailable — see the notice above.</p>';
+      resultEl.innerHTML = '<p class="text-xs u-fg-danger" data-i18n="learn.dca.err-unavailable">Historical data unavailable — see the notice above.</p>';
       return;
     }
     if (data.error || !data.points || !data.points.length) {
-      resultEl.innerHTML = `<p class="text-xs text-red-300">${escapeHtml(tr('learn.dca.err-load', 'Could not load historical data for {symbol}.', { symbol: symbol }))}${data.detail ? ` ${escapeHtml(data.detail)}` : ''}</p>`;
+      resultEl.innerHTML = `<p class="text-xs u-fg-danger">${escapeHtml(tr('learn.dca.err-load', 'Could not load historical data for {symbol}.', { symbol: symbol }))}${data.detail ? ` ${escapeHtml(data.detail)}` : ''}</p>`;
       return;
     }
 
     const result = computeDca(data.points, amount, years);
     if (!result) {
-      resultEl.innerHTML = '<p class="text-xs text-red-300" data-i18n="learn.dca.err-range">Not enough historical data for that time range.</p>';
+      resultEl.innerHTML = '<p class="text-xs u-fg-danger" data-i18n="learn.dca.err-range">Not enough historical data for that time range.</p>';
       return;
     }
 
-    const gainClass = result.gain >= 0 ? 'text-emerald-400' : 'text-red-400';
+    const gainClass = result.gain >= 0 ? 'u-fg-success' : 'u-fg-danger';
     resultEl.innerHTML = `
-      <div class="bg-slate-900/40 rounded-lg p-3 space-y-1.5">
-        <div class="flex justify-between text-xs"><span class="text-slate-400">${escapeHtml(tr('learn.dca.contributed', 'Contributed ({months} months, {from} to {to})', { months: result.months, from: result.startDate, to: result.endDate }))}</span><span class="text-slate-200 font-medium">${formatUsd(result.totalContributed)}</span></div>
-        <div class="flex justify-between text-xs"><span class="text-slate-400" data-i18n="learn.dca.worth-today">Would be worth today</span><span class="text-slate-100 font-semibold">${formatUsd(result.finalValue)}</span></div>
-        <div class="flex justify-between text-xs"><span class="text-slate-400" data-i18n="learn.dca.gain-loss">Gain / loss</span><span class="${gainClass} font-semibold">${result.gain >= 0 ? '+' : ''}${formatUsd(result.gain)} (${result.gainPct >= 0 ? '+' : ''}${result.gainPct.toFixed(1)}%)</span></div>
+      <div class="u-bg-sunken rounded-lg p-3 space-y-1.5">
+        <div class="flex justify-between text-xs"><span class="u-fg-muted">${escapeHtml(tr('learn.dca.contributed', 'Contributed ({months} months, {from} to {to})', { months: result.months, from: result.startDate, to: result.endDate }))}</span><span class="u-fg-body font-medium">${formatUsd(result.totalContributed)}</span></div>
+        <div class="flex justify-between text-xs"><span class="u-fg-muted" data-i18n="learn.dca.worth-today">Would be worth today</span><span class="u-fg font-semibold">${formatUsd(result.finalValue)}</span></div>
+        <div class="flex justify-between text-xs"><span class="u-fg-muted" data-i18n="learn.dca.gain-loss">Gain / loss</span><span class="${gainClass} font-semibold">${result.gain >= 0 ? '+' : ''}${formatUsd(result.gain)} (${result.gainPct >= 0 ? '+' : ''}${result.gainPct.toFixed(1)}%)</span></div>
       </div>
-      <p class="text-[11px] text-slate-500 mt-2">${escapeHtml(tr('learn.dca.footnote', "Computed from {symbol}'s real, dividend-adjusted monthly price history. Past performance is not a guarantee of future results — this is what happened historically, not a forecast. Doesn't account for taxes, brokerage fees, or currency conversion.", { symbol: symbol }))}</p>
+      <p class="text-[11px] u-fg-faint mt-2">${escapeHtml(tr('learn.dca.footnote', "Computed from {symbol}'s real, dividend-adjusted monthly price history. Past performance is not a guarantee of future results — this is what happened historically, not a forecast. Doesn't account for taxes, brokerage fees, or currency conversion.", { symbol: symbol }))}</p>
     `;
   } catch (err) {
     console.error('DCA calculation failed:', err);
-    resultEl.innerHTML = '<p class="text-xs text-red-300" data-i18n="learn.dca.err-generic">Something went wrong loading historical data. Try again shortly.</p>';
+    resultEl.innerHTML = '<p class="text-xs u-fg-danger" data-i18n="learn.dca.err-generic">Something went wrong loading historical data. Try again shortly.</p>';
   }
 }
 
@@ -899,9 +899,9 @@ function renderCountryPanelShell() {
     <section class="advisory-card !items-start flex-col !flex">
       <p class="font-semibold text-sm mb-1" data-i18n="learn.country.title">Your country at a glance</p>
       <p class="text-xs opacity-80 mb-3" data-i18n="learn.country.blurb">Real data from the World Bank's Indicators API — pick any country to see its most recent published figures. Not tied to any recommendation; just real context for the environment you're investing from.</p>
-      <label class="text-xs text-slate-400 w-full">
+      <label class="text-xs u-fg-muted w-full">
         <span data-i18n="learn.country.field">Country</span>
-        <select id="countrySelect" class="mt-1 w-full bg-slate-700 text-white rounded-lg p-2 text-sm outline-none border border-slate-600 focus:border-blue-500">
+        <select id="countrySelect" class="mt-1 w-full u-bg-elevated u-fg rounded-lg p-2 text-sm outline-none border u-bd focus:u-bd-info">
           <option value="" data-i18n="learn.country.loading-list">Loading countries…</option>
         </select>
       </label>
@@ -920,23 +920,23 @@ function renderCountryIndicatorCards(data) {
 
     if (formatted === null) {
       return `
-        <div class="bg-slate-900/40 rounded-lg p-3">
-          <p class="text-xs text-slate-400">${escapeHtml(ind.label)}</p>
-          <p class="text-sm text-slate-500 mt-1">${escapeHtml(tr('learn.country.not-available', "Not available for {country} in the World Bank's recent data.", { country: countryName }))}</p>
+        <div class="u-bg-sunken rounded-lg p-3">
+          <p class="text-xs u-fg-muted">${escapeHtml(ind.label)}</p>
+          <p class="text-sm u-fg-faint mt-1">${escapeHtml(tr('learn.country.not-available', "Not available for {country} in the World Bank's recent data.", { country: countryName }))}</p>
         </div>
       `;
     }
 
     return `
-      <div class="bg-slate-900/40 rounded-lg p-3">
+      <div class="u-bg-sunken rounded-lg p-3">
         <div class="flex items-baseline justify-between gap-2">
-          <p class="text-xs text-slate-400">${escapeHtml(ind.label)}</p>
-          <span class="text-[11px] text-slate-500">${escapeHtml(ind.year)}</span>
+          <p class="text-xs u-fg-muted">${escapeHtml(ind.label)}</p>
+          <span class="text-[11px] u-fg-faint">${escapeHtml(ind.year)}</span>
         </div>
-        <p class="text-lg font-semibold text-slate-100 mt-0.5">${escapeHtml(formatted)}</p>
-        ${blurb ? `<p class="text-xs text-slate-400 mt-1.5">${blurb}</p>` : ''}
-        ${ind.note ? `<p class="text-[11px] text-slate-500 mt-1">${escapeHtml(ind.note)}</p>` : ''}
-        <a href="${escapeHtml(ind.sourceUrl)}" target="_blank" rel="noopener noreferrer" class="text-[11px] text-sky-400 underline decoration-sky-700 underline-offset-2 mt-1 inline-block" data-i18n="learn.country.source">World Bank source</a>
+        <p class="text-lg font-semibold u-fg mt-0.5">${escapeHtml(formatted)}</p>
+        ${blurb ? `<p class="text-xs u-fg-muted mt-1.5">${blurb}</p>` : ''}
+        ${ind.note ? `<p class="text-[11px] u-fg-faint mt-1">${escapeHtml(ind.note)}</p>` : ''}
+        <a href="${escapeHtml(ind.sourceUrl)}" target="_blank" rel="noopener noreferrer" class="text-[11px] u-fg-link underline u-dec-link underline-offset-2 mt-1 inline-block" data-i18n="learn.country.source">World Bank source</a>
       </div>
     `;
   }).join('');
@@ -953,21 +953,21 @@ async function loadCountryIndicators(countryId) {
     return;
   }
 
-  resultEl.innerHTML = '<p class="text-xs text-slate-400" data-i18n="learn.country.loading-data">Loading real data…</p>';
+  resultEl.innerHTML = '<p class="text-xs u-fg-muted" data-i18n="learn.country.loading-data">Loading real data…</p>';
 
   try {
     const res = await fetch(`/api/country-indicators?country=${encodeURIComponent(countryId)}`);
     const data = await res.json();
 
     if (data.error && !data.indicators?.length) {
-      resultEl.innerHTML = `<p class="text-xs text-red-300" data-i18n="learn.country.err-load">Could not load data for this country.</p>`;
+      resultEl.innerHTML = `<p class="text-xs u-fg-danger" data-i18n="learn.country.err-load">Could not load data for this country.</p>`;
       return;
     }
 
     resultEl.innerHTML = renderCountryIndicatorCards(data);
   } catch (err) {
     console.error('country indicators failed:', err);
-    resultEl.innerHTML = '<p class="text-xs text-red-300" data-i18n="learn.country.err-generic">Something went wrong loading country data. Try again shortly.</p>';
+    resultEl.innerHTML = '<p class="text-xs u-fg-danger" data-i18n="learn.country.err-generic">Something went wrong loading country data. Try again shortly.</p>';
   }
 }
 
@@ -1788,7 +1788,7 @@ function wireCourseButtons(root) {
 // once — two copies of the sentence is how they end up saying different things.
 function renderRestoreLine() {
   if (!courseAccess.configured || courseAccess.ownsCourse) return '';
-  return `<p class="text-[11px] text-slate-500 mt-3"><span data-i18n="learn.restore.already-paid">Already paid?</span> <button type="button" data-restore-access class="underline hover:text-slate-300" data-i18n="learn.restore.cta">Restore access</button></p>`;
+  return `<p class="text-[11px] u-fg-faint mt-3"><span data-i18n="learn.restore.already-paid">Already paid?</span> <button type="button" data-restore-access class="underline hover:u-fg-body" data-i18n="learn.restore.cta">Restore access</button></p>`;
 }
 
 // Coming back from Stripe: verify the session so the entitlement cookie is set BEFORE
@@ -1865,7 +1865,7 @@ function renderPurchaseOutcome() {
     <div class="state-card" role="status">
       <p class="state-title" data-i18n="learn.outcome.unconfirmed-title">Payment received — still unlocking</p>
       <p class="state-msg" data-i18n="learn.outcome.unconfirmed-msg">Your payment went through, but we couldn’t confirm access on this device just yet. Refresh in a moment, or choose “Restore access” below and we’ll email you a sign-in link.</p>
-      <p class="state-msg"><button type="button" data-restore-access class="underline hover:text-slate-300" data-i18n="learn.restore.cta">Restore access</button></p>
+      <p class="state-msg"><button type="button" data-restore-access class="underline hover:u-fg-body" data-i18n="learn.restore.cta">Restore access</button></p>
     </div>`;
 }
 
@@ -1876,16 +1876,16 @@ function renderCourseOffer() {
   if (courseAccess.ownsCourse) {
     return `
       <div class="toc-offer is-owned">
-        <p class="text-sm font-semibold text-emerald-300"><span aria-hidden="true">✓</span> <span data-i18n="learn.outcome.owned-title">You own the course</span></p>
-        <p class="text-xs text-slate-400 mt-1" data-i18n="learn.offer.owned-msg">Every lesson below is yours permanently.</p>
+        <p class="text-sm font-semibold u-fg-success"><span aria-hidden="true">✓</span> <span data-i18n="learn.outcome.owned-title">You own the course</span></p>
+        <p class="text-xs u-fg-muted mt-1" data-i18n="learn.offer.owned-msg">Every lesson below is yours permanently.</p>
       </div>`;
   }
   if (!courseAccess.available) return '';
   const price = courseAccess.priceLabel ? escapeHtml(courseAccess.priceLabel) : '';
   return `
     <div class="toc-offer">
-      <p class="text-sm font-semibold text-white">${escapeHtml(price ? tr('learn.offer.title-priced', 'The course — {price}', { price: courseAccess.priceLabel }) : tr('learn.offer.title', 'The course'))}</p>
-      <p class="text-xs text-slate-400 mt-1 mb-3 max-w-md" data-i18n="learn.offer.blurb">Crypto, Forex and Stocks &amp; ETFs. One payment, yours permanently — and it includes three months of the daily high-conviction ideas so you can watch the method work while you learn it.</p>
+      <p class="text-sm font-semibold u-fg">${escapeHtml(price ? tr('learn.offer.title-priced', 'The course — {price}', { price: courseAccess.priceLabel }) : tr('learn.offer.title', 'The course'))}</p>
+      <p class="text-xs u-fg-muted mt-1 mb-3 max-w-md" data-i18n="learn.offer.blurb">Crypto, Forex and Stocks &amp; ETFs. One payment, yours permanently — and it includes three months of the daily high-conviction ideas so you can watch the method work while you learn it.</p>
       <button type="button" data-buy-course class="upgrade-btn">${escapeHtml(courseBuyLabel())}</button>
       ${renderPromoNote()}
       ${renderRestoreLine()}
@@ -1897,17 +1897,17 @@ function renderCourseOffer() {
 // needs to be able to see what they would be buying.
 function renderLockedLesson(e) {
   return `
-    <section class="current-card bg-slate-800 rounded-2xl p-6 shadow-lg text-center">
+    <section class="current-card u-bg-card rounded-2xl p-6 shadow-lg text-center">
       <span class="paid-badge" data-i18n="learn.locked.badge">Part of the course</span>
       <h2 class="text-xl font-bold mt-3 mb-1">${escapeHtml(e.title)}</h2>
-      ${e.keyIdea ? `<p class="text-sm text-slate-400 leading-relaxed max-w-md mx-auto">${escapeHtml(e.keyIdea)}</p>` : ''}
-      <p class="text-xs text-slate-500 mt-4 max-w-sm mx-auto" data-i18n="learn.locked.blurb">This lesson is part of the course — Crypto, Forex and Stocks &amp; ETFs. One payment, yours permanently, and it includes three months of daily high-conviction ideas.</p>
+      ${e.keyIdea ? `<p class="text-sm u-fg-muted leading-relaxed max-w-md mx-auto">${escapeHtml(e.keyIdea)}</p>` : ''}
+      <p class="text-xs u-fg-faint mt-4 max-w-sm mx-auto" data-i18n="learn.locked.blurb">This lesson is part of the course — Crypto, Forex and Stocks &amp; ETFs. One payment, yours permanently, and it includes three months of daily high-conviction ideas.</p>
       ${courseAccess.available
         ? `<button type="button" data-buy-course class="upgrade-btn inline-block mt-4">${escapeHtml(courseBuyLabel())}</button>${renderPromoNote()}`
         : ''}
       ${renderRestoreLine()}
-      <p class="mt-4 text-xs text-slate-500">
-        <a href="./learn.html" class="underline decoration-slate-600 underline-offset-2 hover:text-sky-400" data-i18n="learn.locked.browse-free">Browse the free Foundation track</a>
+      <p class="mt-4 text-xs u-fg-faint">
+        <a href="./learn.html" class="underline u-dec-quiet underline-offset-2 hover:u-fg-link" data-i18n="learn.locked.browse-free">Browse the free Foundation track</a>
       </p>
     </section>`;
 }

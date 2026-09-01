@@ -17,26 +17,40 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      // Theme, before first paint. Kept inline and tiny on purpose: a separate file
+      // would be a network round trip during which the page is the wrong colour.
+      // Falls back to dark, which is what shipped before this existed.
+      (function () {
+        try {
+          var p = window.localStorage.getItem('scere-theme');
+          if (p !== 'light' && p !== 'dark') {
+            p = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+          }
+          document.documentElement.setAttribute('data-theme', p);
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script>
     <link rel="stylesheet" href="./styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] } } } };
     </script>
 </head>
-<body class="bg-slate-900 text-white font-sans min-h-screen p-4">
+<body class="u-bg-app u-fg font-sans min-h-screen p-4">
     <a data-i18n="common.skip-main-content" class="skip-link" href="#mainContent">Skip to main content</a>
     <div class="app-bg" aria-hidden="true"></div>
     <main class="relative z-10 max-w-2xl mx-auto pb-8" id="mainContent" tabindex="-1">
 
         <div id="siteNav" data-active="learn"></div>
 
-        <a data-i18n="common.larr-all-lessons" href="./learn.html" class="inline-flex items-center gap-1.5 text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg transition mb-4">&larr; All lessons</a>
+        <a data-i18n="common.larr-all-lessons" href="./learn.html" class="inline-flex items-center gap-1.5 text-xs font-semibold u-bg-card hover:u-bg-elevated u-fg px-3 py-1.5 rounded-lg transition mb-4">&larr; All lessons</a>
 
-        <div class="mb-6 rounded-xl border border-amber-600/50 bg-amber-900/20 px-4 py-3 text-xs text-amber-200" role="note">
+        <div class="mb-6 rounded-xl border u-bd-premium u-bg-premium px-4 py-3 text-xs u-fg-warning" role="note">
             ⚠️ Educational content only — not financial advice, and not a recommendation to buy or trade any specific instrument. Every historical figure is real, computed data — but past performance never guarantees future results. See the full disclaimer in the footer.
         </div>
 
-        <div id="apiKeyBanner" class="hidden mb-6 rounded-xl border border-red-600/50 bg-red-900/20 px-4 py-3 text-xs text-red-200" role="alert"></div>
+        <div id="apiKeyBanner" class="hidden mb-6 rounded-xl border u-bd-danger u-bg-danger px-4 py-3 text-xs u-fg-danger" role="alert"></div>
 
         <!-- Read-aloud control bar — hidden by default, shown by learn.js only if the
              browser's Web Speech API is available. Reads this single lesson aloud. -->
@@ -47,21 +61,22 @@
              collapse by default so the page opens where the reader actually is. -->
         <div id="trackRoot" role="status" aria-live="polite"></div>
 
-        <footer class="mt-10 text-center text-xs text-slate-500">
+        <footer class="mt-10 text-center text-xs u-fg-faint">
             Fund facts (expense ratios, index tracked) are curated from each issuer's own official page. Historical return and dividend figures come from Alpha Vantage's published, dividend-adjusted price series.
             <br>
             <span data-i18n="common.nothing-page-financial-advice-recommendation" class="block mt-2 max-w-sm mx-auto">Nothing on this page is financial advice or a recommendation to buy or sell any security. Data may be delayed or incomplete. Consult a licensed financial advisor before making investment decisions.</span>
             <br>
-            <a data-i18n="common.privacy-policy" href="./privacy-policy.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Privacy Policy</a>
+            <a data-i18n="common.privacy-policy" href="./privacy-policy.html" class="u-fg-faint underline u-dec-quiet underline-offset-2 transition hover:u-fg-link">Privacy Policy</a>
             ·
-            <a data-i18n="common.all-lessons" href="./learn.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">All lessons</a>
+            <a data-i18n="common.all-lessons" href="./learn.html" class="u-fg-faint underline u-dec-quiet underline-offset-2 transition hover:u-fg-link">All lessons</a>
             ·
-            <a data-i18n="common.high-conviction-ideas" href="./research.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">High-Conviction Ideas</a>
+            <a data-i18n="common.high-conviction-ideas" href="./research.html" class="u-fg-faint underline u-dec-quiet underline-offset-2 transition hover:u-fg-link">High-Conviction Ideas</a>
             ·
-            <a data-i18n="common.why-exist" href="./index.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Why we exist</a>
+            <a data-i18n="common.why-exist" href="./index.html" class="u-fg-faint underline u-dec-quiet underline-offset-2 transition hover:u-fg-link">Why we exist</a>
         </footer>
     </main>
 
+    <script src="./theme.js"></script>
     <script src="./i18n.js"></script>
     <script src="./ui.js"></script>
     <script src="./nav.js"></script>

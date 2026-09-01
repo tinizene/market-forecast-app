@@ -76,22 +76,22 @@ function renderRegimeHero(data) {
   if (top) {
     const dir = directionMeta(top.direction || top.label);
     topHtml = `
-      <div class="mt-4 pt-4 border-t border-white/20 flex items-center gap-4 flex-wrap">
+      <div class="mt-4 pt-4 border-t u-bd-subtle flex items-center gap-4 flex-wrap">
         <div class="flex-1 min-w-[9rem]">
-          <p class="text-[11px] uppercase tracking-wide text-blue-100/80 font-semibold" data-i18n="research.top-idea">Top idea today</p>
+          <p class="text-[11px] uppercase tracking-wide u-fg-info font-semibold" data-i18n="research.top-idea">Top idea today</p>
           <p class="text-lg font-bold mt-0.5">${escapeHtml(top.label || '')}${dir.label ? ` <span class="text-xs font-semibold align-middle opacity-80">${dir.label}</span>` : ''}</p>
         </div>
         ${top.confidence != null ? `<div class="text-center">
           <div class="text-3xl font-extrabold leading-none">${escapeHtml(top.confidence)}</div>
-          <div class="text-[11px] text-blue-100/80 mt-0.5" data-i18n="research.confidence-scale">confidence /100</div>
+          <div class="text-[11px] u-fg-info mt-0.5" data-i18n="research.confidence-scale">confidence /100</div>
         </div>` : ''}
       </div>`;
   }
 
   document.getElementById('regimeHero').innerHTML = `
-    <p class="text-[11px] uppercase tracking-[0.15em] text-blue-100/80 font-semibold"><span data-i18n="research.todays-regime">Today's regime</span>${dateLabel ? ` · ${escapeHtml(dateLabel)}` : ''}</p>
+    <p class="text-[11px] uppercase tracking-[0.15em] u-fg-info font-semibold"><span data-i18n="research.todays-regime">Today's regime</span>${dateLabel ? ` · ${escapeHtml(dateLabel)}` : ''}</p>
     <h2 class="text-lg font-bold mt-1 leading-snug">${escapeHtml(regimeShort)}</h2>
-    ${overall != null ? `<p class="text-blue-100/90 text-sm mt-2">${tr('research.overall-confidence', 'Overall market confidence <b>{score}/100</b> — the desk\'s read on how tradable conditions are right now.', { score: escapeHtml(overall) })}</p>` : ''}
+    ${overall != null ? `<p class="u-fg-info text-sm mt-2">${tr('research.overall-confidence', 'Overall market confidence <b>{score}/100</b> — the desk\'s read on how tradable conditions are right now.', { score: escapeHtml(overall) })}</p>` : ''}
     ${topHtml}
   `;
 }
@@ -179,20 +179,20 @@ function renderTrackRecord(data) {
   }).join('');
 
   if (!ideas.length && !hr) {
-    root.innerHTML = '<div class="record-card"><div class="record-row"><div class="rr-idea text-slate-400" data-i18n="research.record.empty">No closed or open ideas recorded yet for this report.</div></div></div>';
+    root.innerHTML = '<div class="record-card"><div class="record-row"><div class="rr-idea u-fg-muted" data-i18n="research.record.empty">No closed or open ideas recorded yet for this report.</div></div></div>';
     return;
   }
 
   root.innerHTML = `
     <div class="record-card">
       <div class="record-head">
-        <span class="pro-badge" style="background:linear-gradient(90deg,#22c55e,#16a34a)" data-i18n="research.badge.free">Free</span>
+        <span class="pro-badge u-grad-success" data-i18n="research.badge.free">Free</span>
         <strong class="text-sm" data-i18n="research.record.title">Every call, tracked in the open</strong>
         ${summaryHtml}
       </div>
       ${rows}
     </div>
-    ${pr.hitRateSummary ? `<p class="text-[11px] text-slate-500 mt-1 px-1">${escapeHtml(pr.hitRateSummary)}</p>` : ''}`;
+    ${pr.hitRateSummary ? `<p class="text-[11px] u-fg-faint mt-1 px-1">${escapeHtml(pr.hitRateSummary)}</p>` : ''}`;
 }
 
 function renderScoreBars(scoring) {
@@ -204,13 +204,13 @@ function renderScoreBars(scoring) {
     return `
       <div class="grid grid-cols-[1fr_auto] gap-2 items-center text-xs mb-1.5">
         <div class="flex items-center gap-2">
-          <span class="text-slate-300 w-28 shrink-0">${escapeHtml(r.component || '')}</span>
-          <span class="flex-1 h-1.5 rounded-full bg-slate-700 overflow-hidden"><span class="block h-full bg-blue-500" style="width:${pct.toFixed(0)}%"></span></span>
+          <span class="u-fg-body w-28 shrink-0">${escapeHtml(r.component || '')}</span>
+          <span class="flex-1 h-1.5 rounded-full u-bg-elevated overflow-hidden"><span class="block h-full u-bg-info-solid" style="width:${pct.toFixed(0)}%"></span></span>
         </div>
-        <span class="font-mono text-slate-400">${escapeHtml(r.contribution || '')}</span>
+        <span class="font-mono u-fg-muted">${escapeHtml(r.contribution || '')}</span>
       </div>`;
   }).join('');
-  return `<div class="w-full mt-2"><p class="text-[11px] uppercase tracking-wide text-slate-400 mb-1.5" data-i18n="research.six-pillar">Six-pillar score</p>${bars}</div>`;
+  return `<div class="w-full mt-2"><p class="text-[11px] uppercase tracking-wide u-fg-muted mb-1.5" data-i18n="research.six-pillar">Six-pillar score</p>${bars}</div>`;
 }
 
 // Idea headline → "Short USD/JPY" (pair + direction), free on every card.
@@ -230,12 +230,12 @@ function ideaHead(headline, biasFallback, conf, badge) {
       <span class="font-bold text-sm">${escapeHtml(core)}</span>
       ${dir.label ? `<span class="text-[10px] font-bold px-2 py-0.5 rounded ${dir.cls}">${dir.label}</span>` : ''}
       <span class="flex-1"></span>
-      ${conf != null ? `<span class="text-xs text-slate-400">${tr('research.score-of-100', 'score <b class="text-slate-200">{score}/100</b>', { score: escapeHtml(conf) })}</span>` : ''}
+      ${conf != null ? `<span class="text-xs u-fg-muted">${tr('research.score-of-100', 'score <b class="u-fg-body">{score}/100</b>', { score: escapeHtml(conf) })}</span>` : ''}
       ${badge}
     </div>`;
 }
 
-const NO_IDEAS_HTML = '<div class="advisory-card"><p class="text-sm text-slate-400" data-i18n="research.no-ideas">No open trade ideas on the desk today — often the most honest call there is.</p></div>';
+const NO_IDEAS_HTML = '<div class="advisory-card"><p class="text-sm u-fg-muted" data-i18n="research.no-ideas">No open trade ideas on the desk today — often the most honest call there is.</p></div>';
 
 // Entitled / open mode: the full thesis, no blur, no overlay.
 function renderLiveIdeasFull(ideas) {
@@ -245,24 +245,24 @@ function renderLiveIdeasFull(ideas) {
     const f = idea.fields || {};
     const fieldOrder = ['Bias', 'Entry Zone', 'Target(s)', 'Stop / Invalidation', 'Risk/Reward'];
     const fieldsHtml = fieldOrder.filter((k) => f[k]).map((k) => `
-      <div class="grid grid-cols-[8.5rem_1fr] gap-2 py-1 border-b border-slate-700/50 text-xs">
-        <span class="text-slate-400">${escapeHtml(k)}</span>
-        <span class="text-slate-100 font-medium">${escapeHtml(f[k])}</span>
+      <div class="grid grid-cols-[8.5rem_1fr] gap-2 py-1 border-b u-bd text-xs">
+        <span class="u-fg-muted">${escapeHtml(k)}</span>
+        <span class="u-fg font-medium">${escapeHtml(f[k])}</span>
       </div>`).join('');
     const reasoningHtml = (idea.scoring && Array.isArray(idea.scoring.rows) ? idea.scoring.rows : [])
       .filter((r) => r.reasoning)
-      .map((r) => `<li class="text-xs text-slate-400 mb-1"><span class="text-slate-300 font-medium">${escapeHtml(r.component || '')}:</span> ${escapeHtml(r.reasoning)}</li>`).join('');
+      .map((r) => `<li class="text-xs u-fg-muted mb-1"><span class="u-fg-body font-medium">${escapeHtml(r.component || '')}:</span> ${escapeHtml(r.reasoning)}</li>`).join('');
     const confirmHtml = idea.confirmationCriteria
-      ? `<p class="text-xs text-slate-400 mt-2"><span class="text-slate-300 font-medium" data-i18n="research.confirmation">Confirmation:</span> ${escapeHtml(idea.confirmationCriteria)}</p>`
+      ? `<p class="text-xs u-fg-muted mt-2"><span class="u-fg-body font-medium" data-i18n="research.confirmation">Confirmation:</span> ${escapeHtml(idea.confirmationCriteria)}</p>`
       : '';
     return `
       <div class="advisory-card !items-start flex-col !flex">
-        ${ideaHead(idea.headline, f.Bias, idea.totalConfidence, '<span class="pro-badge" style="background:linear-gradient(90deg,#22c55e,#16a34a)" data-i18n="research.badge.unlocked">Unlocked</span>')}
+        ${ideaHead(idea.headline, f.Bias, idea.totalConfidence, '<span class="pro-badge u-grad-success" data-i18n="research.badge.unlocked">Unlocked</span>')}
         ${renderScoreBars(idea.scoring)}
         <div class="w-full mt-3">
-          <p class="text-[11px] uppercase tracking-wide text-slate-400 mb-1" data-i18n="research.the-trade">The trade</p>
-          ${fieldsHtml || '<p class="text-xs text-slate-500">—</p>'}
-          ${reasoningHtml ? `<p class="text-[11px] uppercase tracking-wide text-slate-400 mt-3 mb-1" data-i18n="research.why-it-scores">Why it scores this way</p><ul class="mt-1">${reasoningHtml}</ul>` : ''}
+          <p class="text-[11px] uppercase tracking-wide u-fg-muted mb-1" data-i18n="research.the-trade">The trade</p>
+          ${fieldsHtml || '<p class="text-xs u-fg-faint">—</p>'}
+          ${reasoningHtml ? `<p class="text-[11px] uppercase tracking-wide u-fg-muted mt-3 mb-1" data-i18n="research.why-it-scores">Why it scores this way</p><ul class="mt-1">${reasoningHtml}</ul>` : ''}
           ${confirmHtml}
         </div>
       </div>`;
@@ -276,9 +276,9 @@ function renderLiveIdeasLocked(liveIdeas) {
   const root = document.getElementById('liveIdeas');
   if (!liveIdeas || !liveIdeas.length) { root.innerHTML = NO_IDEAS_HTML; return; }
   const placeholderRow = ([key, label]) => `
-    <div class="grid grid-cols-[8.5rem_1fr] gap-2 py-1 border-b border-slate-700/50 text-xs">
-      <span class="text-slate-400" data-i18n="${key}">${label}</span>
-      <span class="text-slate-100 font-medium tracking-widest">••••••••</span>
+    <div class="grid grid-cols-[8.5rem_1fr] gap-2 py-1 border-b u-bd text-xs">
+      <span class="u-fg-muted" data-i18n="${key}">${label}</span>
+      <span class="u-fg font-medium tracking-widest">••••••••</span>
     </div>`;
   root.innerHTML = liveIdeas.map((idea) => `
       <div class="advisory-card !items-start flex-col !flex">
@@ -286,7 +286,7 @@ function renderLiveIdeasLocked(liveIdeas) {
         ${renderScoreBars(idea.scoring)}
         <div class="lock-wrap w-full mt-3">
           <div class="lock-blur">
-            <p class="text-[11px] uppercase tracking-wide text-slate-400 mb-1" data-i18n="research.the-trade">The trade</p>
+            <p class="text-[11px] uppercase tracking-wide u-fg-muted mb-1" data-i18n="research.the-trade">The trade</p>
             ${[['research.field.entry-zone', 'Entry zone'], ['research.field.targets', 'Target(s)'], ['research.field.stop', 'Stop / invalidation'], ['research.field.risk-reward', 'Risk / reward']].map(placeholderRow).join('')}
           </div>
           <div class="lock-over">
@@ -367,14 +367,14 @@ function renderAccess() {
 
   if (!access.paywallActive) { // paywall not configured → fully open preview
     status.textContent = tr('research.access.open-preview', 'Open preview');
-    status.className = 'text-xs font-semibold text-slate-500';
+    status.className = 'text-xs font-semibold u-fg-faint';
     bar.innerHTML = '';
     return;
   }
 
   const idealPrice = priceNow('ideas') ? escapeHtml(priceNow('ideas')) : '';
   const coursePrice = priceNow('course') ? escapeHtml(priceNow('course')) : '';
-  const signOut = '<button id="logoutBtn" type="button" class="underline hover:text-slate-200" data-i18n="research.access.sign-out">Sign out</button>';
+  const signOut = '<button id="logoutBtn" type="button" class="underline hover:u-fg-body" data-i18n="research.access.sign-out">Sign out</button>';
 
   if (access.entitled) {
     // Included with the course vs. paid for monthly are different situations and the
@@ -382,10 +382,10 @@ function renderAccess() {
     if (access.ideasSource === 'included') {
       const until = formatDate(access.ideasUntil);
       status.textContent = `✓ ${tr('research.access.included', 'Included with your course')}`;
-      status.className = 'text-xs font-semibold text-emerald-300';
-      bar.innerHTML = `<div class="flex flex-wrap items-center gap-3 text-xs text-slate-400">
+      status.className = 'text-xs font-semibold u-fg-success';
+      bar.innerHTML = `<div class="flex flex-wrap items-center gap-3 text-xs u-fg-muted">
           <span>${until
-            ? tr('research.access.included-until', 'The daily ideas come with your course until <strong class="text-slate-200">{until}</strong>.', { until: escapeHtml(until) })
+            ? tr('research.access.included-until', 'The daily ideas come with your course until <strong class="u-fg-body">{until}</strong>.', { until: escapeHtml(until) })
             : tr('research.access.included-plain', 'The daily ideas come with your course.')} ${idealPrice
             ? tr('research.access.then-optional-priced', 'After that they are optional, at {price} — your course access is untouched either way.', { price: idealPrice })
             : tr('research.access.then-optional', 'After that they are optional — your course access is untouched either way.')}</span>
@@ -393,8 +393,8 @@ function renderAccess() {
         </div>`;
     } else {
       status.textContent = `✓ ${tr('research.access.sub-active', 'Subscription active')}`;
-      status.className = 'text-xs font-semibold text-emerald-300';
-      bar.innerHTML = `<div class="flex items-center gap-3 text-xs text-slate-400">
+      status.className = 'text-xs font-semibold u-fg-success';
+      bar.innerHTML = `<div class="flex items-center gap-3 text-xs u-fg-muted">
           <span data-i18n="research.access.full-access">You have full access to every live thesis.</span>
           ${signOut}
         </div>`;
@@ -404,7 +404,7 @@ function renderAccess() {
   }
 
   status.textContent = `🔒 ${tr('research.access.locked', 'Locked')}`;
-  status.className = 'text-xs font-semibold text-amber-300';
+  status.className = 'text-xs font-semibold u-fg-warning';
 
   // A course owner whose included months have run out is not a stranger being asked to
   // buy — they are being asked to continue. Only the subscription is offered.
@@ -412,14 +412,14 @@ function renderAccess() {
     bar.innerHTML = `
       <div class="paywall-card">
         <div class="paywall-icon">🔒</div>
-        <p class="text-sm text-slate-200 font-semibold mb-1" data-i18n="research.lapsed.title">Your three included months have ended</p>
-        <p class="text-xs text-slate-400 mb-1 max-w-sm mx-auto">${escapeHtml(idealPrice
+        <p class="text-sm u-fg-body font-semibold mb-1" data-i18n="research.lapsed.title">Your three included months have ended</p>
+        <p class="text-xs u-fg-muted mb-1 max-w-sm mx-auto">${escapeHtml(idealPrice
           ? tr('research.lapsed.msg-priced', 'Your course is unaffected and stays yours. To keep receiving the daily ideas, they are {price}. The track record above stays free, always.', { price: idealPrice })
           : tr('research.lapsed.msg', 'Your course is unaffected and stays yours. The track record above stays free, always.'))}</p>
         ${access.ideas.available ? `<button id="subscribeBtn" type="button" class="upgrade-btn">${escapeHtml(idealPrice
           ? tr('research.lapsed.keep-priced', 'Keep the daily ideas · {price}', { price: idealPrice })
           : tr('research.lapsed.keep', 'Keep the daily ideas'))}</button>${promoNote('ideas')}` : ''}
-        <p class="text-[11px] text-slate-500 mt-3"><span data-i18n="research.already-subscribed">Already subscribed?</span> <button id="restoreBtn" type="button" class="underline hover:text-slate-300" data-i18n="research.restore-access">Restore access</button></p>
+        <p class="text-[11px] u-fg-faint mt-3"><span data-i18n="research.already-subscribed">Already subscribed?</span> <button id="restoreBtn" type="button" class="underline hover:u-fg-body" data-i18n="research.restore-access">Restore access</button></p>
       </div>`;
   } else {
     // Never bought anything: lead with the course, since it is the better deal for
@@ -427,19 +427,19 @@ function renderAccess() {
     bar.innerHTML = `
       <div class="paywall-card">
         <div class="paywall-icon">🔒</div>
-        <p class="text-sm text-slate-200 font-semibold mb-1" data-i18n="research.unlock.title">Unlock every live thesis</p>
-        <p class="text-xs text-slate-400 mb-3 max-w-sm mx-auto" data-i18n="research.unlock.msg">Full entries, targets, invalidation and the weighted six-pillar scorecard, updated daily. The track record above stays free, always.</p>
+        <p class="text-sm u-fg-body font-semibold mb-1" data-i18n="research.unlock.title">Unlock every live thesis</p>
+        <p class="text-xs u-fg-muted mb-3 max-w-sm mx-auto" data-i18n="research.unlock.msg">Full entries, targets, invalidation and the weighted six-pillar scorecard, updated daily. The track record above stays free, always.</p>
         ${access.course.available ? `
           <button id="buyCourseBtn" type="button" class="upgrade-btn">${escapeHtml(coursePrice
             ? tr('research.unlock.buy-course-priced', 'Get the course · {price}', { price: coursePrice })
             : tr('research.unlock.buy-course', 'Get the course'))}</button>
-          <p class="text-[11px] text-slate-400 mt-2 max-w-sm mx-auto" data-i18n="research.unlock.course-note">Yours permanently, and it includes three months of these ideas.</p>
+          <p class="text-[11px] u-fg-muted mt-2 max-w-sm mx-auto" data-i18n="research.unlock.course-note">Yours permanently, and it includes three months of these ideas.</p>
           ${promoNote('course')}` : ''}
         ${access.ideas.available ? `
-          <p class="text-[11px] text-slate-500 mt-3"><span data-i18n="research.unlock.just-ideas">Just want the ideas?</span> <button id="subscribeBtn" type="button" class="underline hover:text-slate-300">${escapeHtml(idealPrice
+          <p class="text-[11px] u-fg-faint mt-3"><span data-i18n="research.unlock.just-ideas">Just want the ideas?</span> <button id="subscribeBtn" type="button" class="underline hover:u-fg-body">${escapeHtml(idealPrice
             ? tr('research.unlock.subscribe-priced', 'Subscribe · {price}', { price: idealPrice })
             : tr('research.unlock.subscribe', 'Subscribe'))}</button></p>` : ''}
-        <p class="text-[11px] text-slate-500 mt-2"><span data-i18n="research.already-paid">Already paid?</span> <button id="restoreBtn" type="button" class="underline hover:text-slate-300" data-i18n="research.restore-access">Restore access</button></p>
+        <p class="text-[11px] u-fg-faint mt-2"><span data-i18n="research.already-paid">Already paid?</span> <button id="restoreBtn" type="button" class="underline hover:u-fg-body" data-i18n="research.restore-access">Restore access</button></p>
       </div>`;
   }
   const sub = document.getElementById('subscribeBtn'); if (sub) sub.onclick = doSubscribe;

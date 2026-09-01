@@ -96,20 +96,20 @@ function renderCurrentCard(inst, data) {
     priceEl.textContent = `$${q.price.toFixed(2)}`;
     const sign = q.change >= 0 ? '+' : '';
     changeEl.textContent = `${sign}${q.change.toFixed(2)} (${sign}${q.changePercent.toFixed(2)}%) · ${q.latestTradingDay}`;
-    changeEl.className = q.change >= 0 ? 'text-emerald-200 font-medium' : 'text-red-200 font-medium';
+    changeEl.className = q.change >= 0 ? 'u-fg-success font-medium' : 'u-fg-danger font-medium';
   } else if (inst.type === 'macro') {
     const m = data.macro;
     if (m.error || !m.points || !m.points.length) return false;
     const last = m.points[m.points.length - 1];
     priceEl.textContent = `${last.value.toFixed(2)}${inst.unit || ''}`;
     changeEl.textContent = `As of ${last.date}`;
-    changeEl.className = 'text-blue-100 font-medium';
+    changeEl.className = 'u-fg-info font-medium';
   } else if (inst.type === 'fx') {
     const f = data.fx;
     if (f.error || f.rate == null) return false;
     priceEl.textContent = f.rate.toFixed(4);
     changeEl.textContent = `${inst.base} → ${inst.quote} · as of ${f.date}`;
-    changeEl.className = 'text-blue-100 font-medium';
+    changeEl.className = 'u-fg-info font-medium';
   }
 
   card.classList.remove('hidden');
@@ -140,14 +140,19 @@ function renderTrendChart(points, valueKey) {
   });
 
   const trendUp = values[values.length - 1] >= values[0];
-  const strokeColor = trendUp ? '#4ade80' : '#f87171';
+  // Read from the stylesheet so the sparkline follows the theme. The fallback is
+  // currentColor rather than a frozen hex: a hex here would be a dark-theme value
+  // that quietly survives into the light one.
+  const css = getComputedStyle(document.documentElement);
+  const strokeColor = (css.getPropertyValue(trendUp ? '--pos-text' : '--neg-text') || '').trim()
+    || 'currentColor';
 
   container.innerHTML = `
     <div class="w-full">
       <svg viewBox="0 0 ${width} ${height}" class="w-full h-20" preserveAspectRatio="none">
         <polyline points="${coords.join(' ')}" fill="none" stroke="${strokeColor}" stroke-width="2" vector-effect="non-scaling-stroke" />
       </svg>
-      <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+      <div class="flex justify-between text-[11px] u-fg-muted mt-1">
         <span>${points[0].date}</span>
         <span>${points[points.length - 1].date}</span>
       </div>
@@ -248,21 +253,21 @@ async function loadNews() {
   try {
     const data = await fetchJson('/api/market-news');
     if (!data.items || !data.items.length) {
-      container.innerHTML = '<p class="text-slate-400 text-sm text-center py-4">No news available right now.</p>';
+      container.innerHTML = '<p class="u-fg-muted text-sm text-center py-4">No news available right now.</p>';
       return;
     }
     container.innerHTML = data.items.map((item) => `
-      <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="row-card block hover:bg-slate-700/70 transition">
+      <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="row-card block hover:u-bg-elevated transition">
         <div class="min-w-0">
           <p class="text-sm font-medium truncate">${item.title}</p>
-          <p class="text-xs text-slate-400 mt-0.5">${item.source} · ${timeAgo(item.publishedAt)}</p>
+          <p class="text-xs u-fg-muted mt-0.5">${item.source} · ${timeAgo(item.publishedAt)}</p>
         </div>
-        <span class="text-slate-500 text-xs shrink-0 ml-2">↗</span>
+        <span class="u-fg-faint text-xs shrink-0 ml-2">↗</span>
       </a>
     `).join('');
   } catch (err) {
     console.error('Failed to load news:', err);
-    container.innerHTML = '<p class="text-slate-400 text-sm text-center py-4">Couldn\'t load market news.</p>';
+    container.innerHTML = '<p class="u-fg-muted text-sm text-center py-4">Couldn\'t load market news.</p>';
   }
 }
 

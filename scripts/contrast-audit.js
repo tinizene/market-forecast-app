@@ -56,14 +56,28 @@ function contrast(a, b) {
 
 // ---- token extraction -----------------------------------------------------
 
-function readTokens(css) {
-  const root = css.match(/:root\s*\{([\s\S]*?)\n\}/);
-  if (!root) throw new Error('no :root block found in styles.css');
+function blockOf(css, selector) {
+  const re = new RegExp(selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*\\{([\\s\\S]*?)\\n\\}');
+  const m = css.match(re);
+  if (!m) throw new Error(`no ${selector} block found in styles.css`);
+  return m[1];
+}
+
+function readTokens(css, selector) {
+  const body = blockOf(css, selector);
   const tokens = {};
   const re = /(--[a-z0-9-]+)\s*:\s*([^;]+);/gi;
   let m;
-  while ((m = re.exec(root[1]))) tokens[m[1]] = m[2].trim();
+  while ((m = re.exec(body))) tokens[m[1]] = m[2].trim();
   return tokens;
+}
+
+// The light palette overrides a subset of :root, so it inherits everything it does
+// not restate. Auditing the overrides alone would check a palette nobody renders.
+function themes(css) {
+  const dark = readTokens(css, ':root');
+  const light = { ...dark, ...readTokens(css, ':root[data-theme="light"]') };
+  return { dark, light };
 }
 
 // var(--a) may point at var(--b). Resolve until a literal falls out.
@@ -131,37 +145,50 @@ const PAIRS = [
   // --- states shown on the page background ---
   ['positive figure on app', '--pos-text', '--bg-app', [], AA],
   ['negative figure on app', '--neg-text', '--bg-app', [], AA],
-  ['skip link label', '--text-primary', '--primary-700', [], AA],
+  ['skip link label', '--skip-fg', '--skip-bg', [], AA],
+  ['body link on app', '--link-text', '--bg-app', [], AA],
+  ['body link on card', '--link-text', '--bg-card', [], AA],
   ['progress label on app', '--text-secondary', '--bg-app', [], AA],
 ];
 
 // ---- run ------------------------------------------------------------------
 
-function main() {
-  const css = fs.readFileSync(CSS, 'utf8');
-  const tokens = readTokens(css);
-  const showAll = process.argv.includes('--all');
-
+function auditPalette(tokens, label, showAll) {
   const results = [];
   for (const [name, fgName, bgName, stack, need] of PAIRS) {
     let base = colorOf(tokens, bgName);
-    if (base.a < 1) throw new Error(`background token ${bgName} must be opaque`);
+    if (base.a < 1) throw new Error(`[${label}] background token ${bgName} must be opaque`);
     let bg = base.rgb;
     for (const layer of stack) bg = composite(colorOf(tokens, layer), bg);
     const fg = composite(colorOf(tokens, fgName), bg);
     const ratio = contrast(fg, bg);
     results.push({ name, ratio, need, ok: ratio >= need });
   }
-
-  const failures = results.filter((r) => !r.ok);
   const width = Math.max(...results.map((r) => r.name.length));
   for (const r of results) {
     if (!r.ok || showAll) {
       console.log(
-        `${r.ok ? 'ok  ' : 'FAIL'}  ${r.name.padEnd(width)}  ${r.ratio.toFixed(2).padStart(6)} : 1  (needs ${r.need})`
+        `${r.ok ? 'ok  ' : 'FAIL'}  ${label.padEnd(5)}  ${r.name.padEnd(width)}  ${r.ratio.toFixed(2).padStart(6)} : 1  (needs ${r.need})`
       );
     }
   }
+  return results;
+}
+
+function main() {
+  const css = fs.readFileSync(CSS, 'utf8');
+  const palettes = themes(css);
+  const tokens = palettes.dark;
+  const showAll = process.argv.includes('--all');
+
+  // Two themes ship, so two themes are audited. A light palette that was only ever
+  // looked at is exactly how the greys got below AA the last two times.
+  const results = [];
+  for (const [label, palette] of Object.entries(palettes)) {
+    results.push(...auditPalette(palette, label, showAll));
+  }
+
+  const failures = results.filter((r) => !r.ok);
 
   // Structural tokens carry no text and so have no ratio to check: surfaces that only
   // ever sit behind a checked pair, border colours, and the mid-ramp steps kept for
@@ -174,6 +201,11 @@ function main() {
     '--premium-border', '--warning-500', '--warning-border', '--danger-500',
     '--danger-border', '--info-500', '--info-border', '--practice-border',
     '--border-subtle', '--border-default', '--border-strong',
+    // --primary-700 is reached only through --skip-bg, which is checked; an underline
+    // colour is a non-text decoration with no ratio of its own to promise.
+    '--primary-700', '--link-underline',
+    // Shadows sit under content, never behind text, so they carry no ratio to promise.
+    '--shadow-soft', '--shadow', '--shadow-strong',
   ]);
 
   // A token that no pair mentions has never been checked. Say so rather than let it
@@ -184,7 +216,21 @@ function main() {
   });
   const unchecked = colourTokens.filter((t) => !mentioned.has(t) && !STRUCTURAL.has(t));
 
-  console.log(`\n${results.length - failures.length}/${results.length} pairs pass WCAG 2.2 AA`);
+  console.log(`\n${results.length - failures.length}/${results.length} pairs pass WCAG 2.2 AA (${Object.keys(palettes).length} themes x ${PAIRS.length} pairs)`);
+
+  // Every token the dark palette defines must be answered by the light one, or the
+  // light theme silently inherits a colour designed for a dark ground.
+  const lightOverrides = new Set(Object.keys(readTokens(css, ':root[data-theme=\"light\"]')));
+  const NEUTRAL = new Set(['--reading-scale', '--reading-leading', '--reading-measure']);
+  const inherited = Object.keys(tokens).filter((t) => {
+    if (lightOverrides.has(t) || NEUTRAL.has(t)) return false;
+    try { colorOf(tokens, t); return true; } catch (e) { return false; }
+  });
+  if (inherited.length) {
+    console.log(`\n${inherited.length} colour token(s) the light theme does not restate:`);
+    console.log('  ' + inherited.join(', '));
+    process.exitCode = 1;
+  }
   if (unchecked.length) {
     console.log(`\n${unchecked.length} NEW colour token(s) with no declared pair — add one, or list as structural:`);
     console.log('  ' + unchecked.join(', '));

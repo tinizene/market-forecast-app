@@ -67,6 +67,15 @@
 
   --focus-color: var(--primary-400);
 
+  /* Links in body copy. Previously text-sky-400 hard-coded in nine files. */
+  --link-text: #7dd3fc;
+  --link-underline: rgba(125, 211, 252, 0.38);
+
+  /* The skip link used --text-primary on --primary-700, which only works on a dark
+     ground. Named tokens so each theme can answer it. */
+  --skip-bg: var(--primary-700);
+  --skip-fg: var(--text-primary);
+
   /* ---- roles ---- */
   --success-400: #4ade80;
   --success-500: #22c55e;
@@ -103,6 +112,12 @@
   --neg-text: #f87171;
 
   /* ---- borders ---- */
+  /* Shadows are a colour too. A dark theme's black at 0.45 on a light page reads as
+     dirt rather than depth, so each theme states its own. */
+  --shadow-soft: rgba(0, 0, 0, 0.30);
+  --shadow: rgba(0, 0, 0, 0.45);
+  --shadow-strong: rgba(0, 0, 0, 0.70);
+
   --border-subtle: rgba(148, 163, 184, 0.10);
   --border-default: rgba(148, 163, 184, 0.18);
   --border-strong: rgba(51, 65, 85, 0.8);
@@ -111,6 +126,114 @@
   --reading-scale: 1;
   --reading-leading: 1.65;
   --reading-measure: 68ch;
+}
+
+/* ============================================================
+   Light theme
+   ============================================================
+   Applied by theme.js setting data-theme on <html>; dark stays the default, so a
+   visitor with JS off gets exactly what shipped before.
+
+   Every colour token :root defines is restated here. contrast-audit.js fails the
+   build on any it does not, because a token left to inherit would be a colour
+   picked for a dark ground silently reused on a light one. It also runs all 31
+   pairs against BOTH palettes — the greys in this file have dropped below AA twice
+   before, both times after being eyeballed rather than measured.
+   ============================================================ */
+
+:root[data-theme="light"] {
+  /* ---- surfaces ---- */
+  --bg-app: #f7fbfa;
+  --bg-app-deep: #eaf4f2;
+  --bg-app-low: #eef6f4;
+  --bg-elevated: #eef5f3;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f2f8f7;
+  --bg-row: rgba(234, 244, 242, 0.75);
+  --bg-sunken: rgba(226, 239, 236, 0.55);
+  --bg-dialog: #ffffff;
+
+  --gradient-app:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(13, 148, 136, 0.13), transparent),
+    radial-gradient(ellipse 60% 50% at 100% 50%, rgba(37, 99, 235, 0.07), transparent),
+    radial-gradient(ellipse 50% 40% at 0% 80%, rgba(2, 132, 199, 0.06), transparent),
+    linear-gradient(180deg, #f7fbfa 0%, #eef6f4 50%, #f4faf8 100%);
+
+  /* ---- text ---- */
+  --text-primary: #0d1b2a;
+  --text-body: #1f2c3a;
+  --text-secondary: #45535f;
+  --text-tertiary: #5a6875;
+  --text-inverse: #ffffff;
+
+  /* ---- primary: teal, darkened so it can carry text on a light ground ---- */
+  --primary-300: #99f6e4;
+  --primary-400: #2dd4bf;
+  --primary-500: #14b8a6;
+  --primary-600: #0d9488;
+  --primary-700: #0f766e;
+  --primary: var(--primary-700);
+  --primary-text: #115e59;
+  --primary-soft: rgba(13, 148, 136, 0.12);
+  --primary-border: rgba(13, 148, 136, 0.34);
+
+  /* The dark theme puts a DARK label on bright teal. Inverted here: white on deep
+     teal. Same decision, same measurement, opposite direction. */
+  --cta-from: #0f766e;
+  --cta-to: #0e7490;
+  --cta-text: #ffffff;
+
+  --focus-color: #0f766e;
+
+  --link-text: #0369a1;
+  --link-underline: rgba(3, 105, 161, 0.35);
+
+  --skip-bg: #0f766e;
+  --skip-fg: #ffffff;
+
+  /* ---- roles ---- */
+  --success-400: #15803d;
+  --success-500: #16a34a;
+  --success-soft: rgba(22, 163, 74, 0.12);
+  --success-border: rgba(22, 163, 74, 0.40);
+  --success-text: #166534;
+
+  --premium-400: #b45309;
+  --premium-500: #d97706;
+  --premium-soft: rgba(217, 119, 6, 0.14);
+  --premium-border: rgba(217, 119, 6, 0.45);
+  --premium-text: #92400e;
+
+  --warning-500: #a16207;
+  --warning-soft: rgba(202, 138, 4, 0.14);
+  --warning-border: rgba(202, 138, 4, 0.45);
+  --warning-text: #854d0e;
+
+  --danger-500: #dc2626;
+  --danger-soft: rgba(220, 38, 38, 0.10);
+  --danger-border: rgba(220, 38, 38, 0.40);
+  --danger-text: #b91c1c;
+
+  --info-500: #0284c7;
+  --info-soft: rgba(2, 132, 199, 0.10);
+  --info-border: rgba(2, 132, 199, 0.35);
+  --info-text: #1d4ed8;
+
+  --practice-soft: rgba(124, 58, 237, 0.10);
+  --practice-border: #7c3aed;
+  --practice-text: #6d28d9;
+
+  --pos-text: #15803d;
+  --neg-text: #b91c1c;
+
+  --shadow-soft: rgba(15, 42, 55, 0.06);
+  --shadow: rgba(15, 42, 55, 0.10);
+  --shadow-strong: rgba(15, 42, 55, 0.16);
+
+  /* ---- borders ---- */
+  --border-subtle: rgba(15, 42, 55, 0.08);
+  --border-default: rgba(15, 42, 55, 0.14);
+  --border-strong: rgba(15, 42, 55, 0.26);
 }
 
 /* ============================================================
@@ -202,8 +325,8 @@
 .current-card {
   animation: fadeSlideIn 0.45s ease-out both;
   box-shadow:
-    0 0 0 1px rgba(148, 163, 184, 0.05),
-    0 20px 50px -12px rgba(0, 0, 0, 0.45);
+    0 0 0 1px var(--border-subtle),
+    0 20px 50px -12px var(--shadow);
 }
 
 @keyframes fadeSlideIn {
@@ -235,7 +358,7 @@
 
 .scroll-panel::-webkit-scrollbar { width: 6px; }
 .scroll-panel::-webkit-scrollbar-track { background: transparent; }
-.scroll-panel::-webkit-scrollbar-thumb { background: rgba(100, 116, 139, 0.4); border-radius: 3px; }
+.scroll-panel::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 3px; }
 
 .section-title {
   font-size: 0.875rem;
@@ -258,7 +381,7 @@
   background-color: var(--bg-card);
   border-radius: 0.75rem;
   padding: 1rem;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 2px var(--shadow-soft);
 }
 
 .advisory-card {
@@ -268,28 +391,28 @@
   background-color: var(--bg-card);
   border-radius: 0.75rem;
   padding: 1rem;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 2px var(--shadow-soft);
 }
 
 .advisory-card .advisory-icon { font-size: 1.5rem; line-height: 1; }
 
-.advisory-good { border-left: 3px solid #22c55e; }
+.advisory-good { border-left: 3px solid var(--success-500); }
 
-.alert-extreme { background-color: rgba(220, 38, 38, 0.15); border-color: rgba(220, 38, 38, 0.5); color: #fecaca; }
-.alert-high { background-color: rgba(234, 88, 12, 0.15); border-color: rgba(234, 88, 12, 0.5); color: #fed7aa; }
-.alert-moderate { background-color: rgba(202, 138, 4, 0.15); border-color: rgba(202, 138, 4, 0.5); color: #fef08a; }
-.alert-low { background-color: rgba(100, 116, 139, 0.15); border-color: rgba(100, 116, 139, 0.5); color: var(--text-body); }
+.alert-extreme { background-color: var(--danger-soft); border-color: var(--danger-border); color: var(--danger-text); }
+.alert-high { background-color: var(--premium-soft); border-color: var(--premium-border); color: var(--premium-text); }
+.alert-moderate { background-color: var(--warning-soft); border-color: var(--warning-border); color: var(--warning-text); }
+.alert-low { background-color: var(--border-subtle); border-color: var(--border-strong); color: var(--text-body); }
 .alert-teaser { background-color: var(--info-soft); border-color: var(--info-border); color: var(--info-text); }
 
 /* Trend badges — reuse the AQI color ramp from the weather app for the same
    "traffic light at a glance" language, applied to up/down/flat market trend. */
-.trend-up { background-color: rgba(34, 197, 94, 0.15); border-color: rgba(34, 197, 94, 0.5); color: #bbf7d0; }
-.trend-flat { background-color: rgba(234, 179, 8, 0.15); border-color: rgba(234, 179, 8, 0.5); color: #fef08a; }
-.trend-down { background-color: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.5); color: #fecaca; }
+.trend-up { background-color: var(--success-soft); border-color: var(--success-border); color: var(--success-text); }
+.trend-flat { background-color: var(--warning-soft); border-color: var(--warning-border); color: var(--warning-text); }
+.trend-down { background-color: var(--danger-soft); border-color: var(--danger-border); color: var(--danger-text); }
 
 .paywall-card {
   text-align: center;
-  background: linear-gradient(160deg, rgba(13, 148, 136, 0.22), rgba(15, 23, 42, 0.45));
+  background: linear-gradient(160deg, var(--primary-soft), var(--bg-sunken));
   border: 1px dashed var(--primary-border);
   border-radius: 1rem;
   padding: 2rem 1.5rem;
@@ -311,7 +434,7 @@
   vertical-align: middle;
 }
 
-/* Gradient darkened one step (#3b82f6→#2563eb, #6366f1→#4f46e5). White on the old
+/* Gradient darkened one step (var(--info-500)→#2563eb, #6366f1→#4f46e5). White on the old
    blue measured 3.68:1 — a WCAG AA failure on the single most important control in
    the app, the one people press to pay. Now 5.17:1 at the lighter stop. */
 .upgrade-btn {
@@ -360,15 +483,15 @@
 }
 
 .lesson-listen-btn:active { transform: scale(0.96); }
-.lesson-listen-btn.is-reading { background: var(--primary-soft); color: #dbeafe; }
+.lesson-listen-btn.is-reading { background: var(--primary-soft); color: var(--info-text); }
 
 /* ---------------------------------------------------------------------------
    Foundation track — lesson content blocks (definition/example/warning) and
    quiz interactivity. New for "The Foundation of Money and Trade" track.
    Deliberately reuses the exact color tokens already established elsewhere in
-   this file (advisory-good green #22c55e, alert-moderate amber #eab308/rgba
-   (234,179,8), alert-extreme/trend-down red #ef4444/rgba(239,68,68), and the
-   existing blue #3b82f6/rgba(59,130,246) used by alert-teaser and the TTS
+   this file (advisory-good green var(--success-500), alert-moderate amber var(--warning-500)/rgba
+   (234,179,8), alert-extreme/trend-down red var(--danger-500)/rgba(239,68,68), and the
+   existing blue var(--info-500)/rgba(59,130,246) used by alert-teaser and the TTS
    reading-highlight) rather than introducing a new palette. --------------- */
 
 .lesson-block {
@@ -390,18 +513,18 @@
 .lesson-block-definition { background-color: var(--info-soft); border-color: var(--info-500); }
 .lesson-block-definition .lesson-block-label { color: var(--info-text); }
 
-.lesson-block-example { background-color: rgba(34, 197, 94, 0.10); border-color: #22c55e; }
+.lesson-block-example { background-color: var(--success-soft); border-color: var(--success-500); }
 .lesson-block-example .lesson-block-label { color: var(--success-text); }
 
-.lesson-block-warning { background-color: rgba(234, 179, 8, 0.10); border-color: #eab308; }
+.lesson-block-warning { background-color: var(--warning-soft); border-color: var(--warning-500); }
 .lesson-block-warning .lesson-block-label { color: var(--warning-text); }
 
-.lesson-block-practice { background-color: rgba(167, 139, 250, 0.10); border-color: #a78bfa; }
+.lesson-block-practice { background-color: var(--practice-soft); border-color: var(--practice-border); }
 .lesson-block-practice .lesson-block-label { color: var(--practice-text); }
 
 .lesson-image-card {
   background-color: var(--bg-app);
-  border: 1px solid rgba(148, 163, 184, 0.15);
+  border: 1px solid var(--border-default);
   border-radius: 0.75rem;
   padding: 0.75rem;
   margin: 0.75rem 0;
@@ -415,7 +538,7 @@
 
 .quiz-card {
   background-color: var(--bg-card);
-  border: 1px solid rgba(148, 163, 184, 0.15);
+  border: 1px solid var(--border-default);
   border-radius: 0.75rem;
   padding: 1rem;
   margin: 0.75rem 0;
@@ -438,17 +561,17 @@
   width: 100%;
   text-align: left;
   background-color: var(--bg-app);
-  border: 1px solid rgba(148, 163, 184, 0.25);
+  border: 1px solid var(--border-strong);
   border-radius: 0.6rem;
   padding: 0.6rem 0.85rem;
   font-size: 0.85rem;
   color: var(--text-body);
   cursor: pointer;
 }
-.quiz-option:hover:not(:disabled) { border-color: #3b82f6; }
+.quiz-option:hover:not(:disabled) { border-color: var(--info-500); }
 .quiz-option:disabled { cursor: default; }
-.quiz-option.correct { background-color: rgba(34, 197, 94, 0.15); border-color: #22c55e; color: #bbf7d0; font-weight: 600; }
-.quiz-option.incorrect { background-color: rgba(239, 68, 68, 0.15); border-color: #ef4444; color: #fecaca; font-weight: 600; }
+.quiz-option.correct { background-color: var(--success-soft); border-color: var(--success-500); color: var(--success-text); font-weight: 600; }
+.quiz-option.incorrect { background-color: var(--danger-soft); border-color: var(--danger-500); color: var(--danger-text); font-weight: 600; }
 .quiz-option .quiz-option-icon { font-weight: 700; }
 .quiz-feedback {
   font-size: 0.8rem;
@@ -458,8 +581,8 @@
   display: none;
 }
 .quiz-feedback.show { display: block; }
-.quiz-feedback.correct { background-color: rgba(34, 197, 94, 0.12); color: #bbf7d0; border: 1px solid rgba(34, 197, 94, 0.4); }
-.quiz-feedback.incorrect { background-color: rgba(239, 68, 68, 0.12); color: #fecaca; border: 1px solid rgba(239, 68, 68, 0.4); }
+.quiz-feedback.correct { background-color: var(--success-soft); color: var(--success-text); border: 1px solid var(--success-border); }
+.quiz-feedback.incorrect { background-color: var(--danger-soft); color: var(--danger-text); border: 1px solid var(--danger-border); }
 
 .key-terms-card {
   background-color: var(--bg-card);
@@ -476,7 +599,7 @@
   margin-bottom: 0.6rem;
   display: block;
 }
-.key-term-row { padding: 0.4rem 0; border-top: 1px solid rgba(148, 163, 184, 0.12); }
+.key-term-row { padding: 0.4rem 0; border-top: 1px solid var(--border-subtle); }
 .key-term-row:first-of-type { border-top: none; }
 .key-term-name { font-size: 0.82rem; font-weight: 600; color: var(--text-body); }
 .key-term-def { font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.1rem; }
@@ -518,8 +641,8 @@
   flex-wrap: wrap;
   margin-bottom: 1.25rem;
   padding: 0.55rem 0.7rem;
-  background: rgba(15, 23, 42, 0.7);
-  border: 1px solid rgba(51, 65, 85, 0.7);
+  background: var(--bg-sunken);
+  border: 1px solid var(--border-strong);
   border-radius: 0.9rem;
   backdrop-filter: blur(6px);
 }
@@ -556,13 +679,13 @@
   border-radius: 0.5rem;
   transition: background-color 0.15s ease, color 0.15s ease;
 }
-.site-nav .nav-link:hover { color: var(--text-body); background: rgba(51, 65, 85, 0.5); }
+.site-nav .nav-link:hover { color: var(--text-body); background: var(--border-default); }
 .site-nav .nav-link.is-active { color: var(--primary-text); background: var(--primary-soft); }
 .site-nav .nav-spacer { flex: 1 1 auto; }
 .site-nav .nav-access {
   font-size: 0.72rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--bg-app);
   text-decoration: none;
   padding: 0.32rem 0.7rem;
   border-radius: 9999px;
@@ -576,13 +699,13 @@
   text-decoration: none;
   border-radius: 1rem;
   padding: 1.15rem 1.25rem;
-  border: 1px solid rgba(51, 65, 85, 0.8);
-  background: linear-gradient(160deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.5));
+  border: 1px solid var(--border-strong);
+  background: linear-gradient(160deg, var(--bg-row), var(--bg-sunken));
   transition: transform 0.15s ease, border-color 0.15s ease;
 }
 .path-card:hover { transform: translateY(-2px); border-color: var(--primary-border); }
-.path-card.path-free { border-color: rgba(34, 197, 94, 0.35); }
-.path-card.path-paid { border-color: rgba(234, 179, 8, 0.35); }
+.path-card.path-free { border-color: var(--success-border); }
+.path-card.path-paid { border-color: var(--warning-border); }
 .path-card .path-title { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin: 0.5rem 0 0.35rem; }
 .path-card .path-desc { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; }
 .path-card .path-cta { display: inline-block; margin-top: 0.75rem; font-size: 0.8rem; font-weight: 600; color: var(--primary-text); }
@@ -590,10 +713,10 @@
 /* --- Compact market snapshot strip (home) --- */
 .snapshot-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 0.5rem; }
 .snapshot-tile {
-  border: 1px solid rgba(51, 65, 85, 0.7);
+  border: 1px solid var(--border-strong);
   border-radius: 0.7rem;
   padding: 0.6rem 0.7rem;
-  background: rgba(15, 23, 42, 0.5);
+  background: var(--bg-sunken);
 }
 .snapshot-tile .st-name { font-size: 0.68rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.03em; }
 .snapshot-tile .st-price { font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-top: 0.15rem; }
@@ -603,18 +726,18 @@
 .snapshot-tile .st-chg.flat { color: var(--text-secondary); }
 
 /* --- Research desk: track record (free, before paywall) --- */
-.record-card { border: 1px solid rgba(51, 65, 85, 0.8); border-radius: 0.9rem; overflow: hidden; background: rgba(15, 23, 42, 0.5); }
-.record-head { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; padding: 0.8rem 1rem; border-bottom: 1px solid rgba(51, 65, 85, 0.6); }
+.record-card { border: 1px solid var(--border-strong); border-radius: 0.9rem; overflow: hidden; background: var(--bg-sunken); }
+.record-head { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; padding: 0.8rem 1rem; border-bottom: 1px solid var(--border-default); }
 .record-head .record-summary { margin-left: auto; font-size: 0.72rem; color: var(--text-secondary); }
 .record-head .record-summary b { color: var(--success-text); }
-.record-row { display: grid; grid-template-columns: 1.4fr auto auto; gap: 0.6rem; align-items: center; padding: 0.7rem 1rem; border-top: 1px solid rgba(24, 39, 64, 0.9); }
+.record-row { display: grid; grid-template-columns: 1.4fr auto auto; gap: 0.6rem; align-items: center; padding: 0.7rem 1rem; border-top: 1px solid var(--bg-elevated); }
 .record-row:first-of-type { border-top: none; }
 .record-row .rr-idea { font-size: 0.82rem; color: var(--text-body); font-weight: 600; }
 .record-row .rr-sub { font-size: 0.72rem; color: var(--text-secondary); font-weight: 400; margin-top: 0.1rem; }
 .status-chip { justify-self: start; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.2rem 0.55rem; border-radius: 9999px; white-space: nowrap; }
-.status-chip.win { background: rgba(34, 197, 94, 0.14); color: var(--success-text); border: 1px solid rgba(34, 197, 94, 0.35); }
-.status-chip.inv { background: rgba(239, 68, 68, 0.12); color: var(--danger-text); border: 1px solid rgba(239, 68, 68, 0.35); }
-.status-chip.pending { background: rgba(100, 116, 139, 0.15); color: var(--text-body); border: 1px solid rgba(100, 116, 139, 0.4); }
+.status-chip.win { background: var(--success-soft); color: var(--success-text); border: 1px solid var(--success-border); }
+.status-chip.inv { background: var(--danger-soft); color: var(--danger-text); border: 1px solid var(--danger-border); }
+.status-chip.pending { background: var(--border-subtle); color: var(--text-body); border: 1px solid var(--border-default); }
 .rr-pl { font-size: 0.78rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; text-align: right; }
 .rr-pl.pos { color: var(--pos-text); } .rr-pl.neg { color: var(--neg-text); } .rr-pl.na { color: var(--text-secondary); }
 
@@ -625,7 +748,7 @@
 .lock-over {
   position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
   text-align: center; gap: 0.5rem; padding: 1.25rem;
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.82));
+  background: linear-gradient(180deg, var(--bg-sunken), var(--bg-sunken));
 }
 .lock-wrap.is-unlocked .lock-over { display: none; }
 .lock-over .lock-ic { font-size: 1.6rem; }
@@ -641,16 +764,16 @@
    match .paywall-card, so "this is the boundary you pay to cross" reads the same
    everywhere it appears. */
 .toc-offer {
-  background: linear-gradient(160deg, rgba(13, 148, 136, 0.22), rgba(15, 23, 42, 0.45));
+  background: linear-gradient(160deg, var(--primary-soft), var(--bg-sunken));
   border: 1px dashed var(--primary-border);
   border-radius: 1rem;
   padding: 1.25rem 1.25rem 1.35rem;
   margin-bottom: 1.75rem;
 }
 .toc-offer.is-owned {
-  background: rgba(16, 185, 129, 0.08);
+  background: var(--success-soft);
   border-style: solid;
-  border-color: rgba(16, 185, 129, 0.35);
+  border-color: var(--success-border);
   padding-bottom: 1.25rem;
 }
 
@@ -660,10 +783,10 @@
 .toc-row {
   display: flex; align-items: flex-start; gap: 0.85rem; text-decoration: none;
   padding: 0.8rem 0.9rem; margin-bottom: 0.5rem; border-radius: 0.8rem;
-  background: rgba(30, 41, 59, 0.55); border: 1px solid rgba(51, 65, 85, 0.7);
+  background: var(--bg-row); border: 1px solid var(--border-strong);
   transition: transform 0.12s ease, border-color 0.12s ease, background-color 0.12s ease;
 }
-.toc-row:hover { transform: translateX(2px); border-color: var(--primary-border); background: rgba(30, 41, 59, 0.85); }
+.toc-row:hover { transform: translateX(2px); border-color: var(--primary-border); background: var(--bg-card); }
 .toc-num {
   flex-shrink: 0; font-size: 0.75rem; font-weight: 700; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   color: var(--primary-text); background: var(--primary-soft); border-radius: 0.5rem;
@@ -683,10 +806,10 @@
 .lesson-nav-btn {
   display: flex; flex-direction: column; gap: 0.2rem; text-decoration: none;
   padding: 0.85rem 1rem; border-radius: 0.8rem;
-  background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(51, 65, 85, 0.8);
+  background: var(--bg-row); border: 1px solid var(--border-strong);
   transition: border-color 0.12s ease, background-color 0.12s ease;
 }
-.lesson-nav-btn:hover { border-color: var(--primary-border); background: rgba(30, 41, 59, 0.9); }
+.lesson-nav-btn:hover { border-color: var(--primary-border); background: var(--bg-card); }
 .lesson-nav-btn.is-empty { background: transparent; border-color: transparent; pointer-events: none; }
 .lesson-nav-btn.next { text-align: right; }
 .lnav-dir { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary-text); }
@@ -699,7 +822,7 @@
    nonce mining, and a tamperable block chain.
    ============================================================ */
 
-.lab-card { border-color: var(--primary-soft); background: rgba(30, 41, 59, 0.55); }
+.lab-card { border-color: var(--primary-soft); background: var(--bg-row); }
 .lab-head { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 0.35rem; }
 .lab-badge {
   font-size: 0.6rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
@@ -709,7 +832,7 @@
 
 /* hash / result readouts */
 .lab-out {
-  background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(51, 65, 85, 0.8);
+  background: var(--bg-sunken); border: 1px solid var(--border-strong);
   border-radius: 0.6rem; padding: 0.6rem 0.75rem;
 }
 .lab-out-label {
@@ -724,7 +847,7 @@
 /* mining stat tiles */
 .lab-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
 .lab-stat {
-  background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(51, 65, 85, 0.7);
+  background: var(--bg-sunken); border: 1px solid var(--border-strong);
   border-radius: 0.6rem; padding: 0.55rem 0.6rem; text-align: center;
 }
 .lab-stat-n {
@@ -741,21 +864,21 @@
 
 /* chain tamper lab */
 .chain-block {
-  border: 1px solid rgba(34, 197, 94, 0.4); border-left: 3px solid #22c55e;
-  background: rgba(15, 23, 42, 0.6); border-radius: 0.7rem;
+  border: 1px solid var(--success-border); border-left: 3px solid var(--success-500);
+  background: var(--bg-sunken); border-radius: 0.7rem;
   padding: 0.7rem 0.85rem; margin-bottom: 0.6rem;
   transition: border-color 0.15s ease;
 }
-.chain-block.is-broken { border-color: rgba(239, 68, 68, 0.5); border-left-color: #ef4444; }
+.chain-block.is-broken { border-color: var(--danger-border); border-left-color: var(--danger-500); }
 .chain-block-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.4rem; }
 .chain-idx { font-size: 0.8rem; font-weight: 700; color: var(--text-body); }
 .chain-state {
   font-size: 0.6rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
   padding: 0.15rem 0.45rem; border-radius: 9999px;
-  background: rgba(34, 197, 94, 0.15); color: var(--success-text); border: 1px solid rgba(34, 197, 94, 0.35);
+  background: var(--success-soft); color: var(--success-text); border: 1px solid var(--success-border);
 }
 .chain-block.is-broken .chain-state {
-  background: rgba(239, 68, 68, 0.15); color: var(--danger-text); border-color: rgba(239, 68, 68, 0.4);
+  background: var(--danger-soft); color: var(--danger-text); border-color: var(--danger-border);
 }
 .chain-meta {
   display: grid; grid-template-columns: auto 1fr; gap: 0.2rem 0.6rem;
@@ -768,13 +891,13 @@
 }
 .chain-remine {
   margin-top: 0.55rem; font-size: 0.7rem; font-weight: 600;
-  background: rgba(51, 65, 85, 0.8); color: var(--text-body);
-  border: 1px solid rgba(71, 85, 105, 0.9); border-radius: 0.5rem;
+  background: var(--border-strong); color: var(--text-body);
+  border: 1px solid var(--bg-elevated); border-radius: 0.5rem;
   padding: 0.3rem 0.7rem; cursor: pointer; transition: background-color 0.15s ease;
 }
-.chain-remine:hover:not(:disabled) { background: rgba(71, 85, 105, 0.9); }
+.chain-remine:hover:not(:disabled) { background: var(--bg-elevated); }
 .chain-remine:disabled { opacity: 0.6; cursor: default; }
-.lab-card :focus-visible, .chain-block :focus-visible { outline: 2px solid #60a5fa; outline-offset: 2px; }
+.lab-card :focus-visible, .chain-block :focus-visible { outline: 2px solid var(--info-text); outline-offset: 2px; }
 
 @media (max-width: 380px) { .lab-stats { grid-template-columns: 1fr; } }
 
@@ -791,9 +914,9 @@
   border-radius: 1rem;
   background: var(--bg-dialog);
   color: var(--text-body);
-  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 24px 60px -12px var(--shadow-strong);
 }
-.ui-dialog::backdrop { background: rgba(2, 6, 23, 0.72); }
+.ui-dialog::backdrop { background: var(--bg-sunken); }
 .ui-dialog.is-fallback {
   position: fixed;
   top: 50%; left: 50%;
@@ -804,8 +927,8 @@
 .ui-dialog-title { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin: 0 0 0.4rem; }
 .ui-dialog-title:focus-visible { outline: none; }
 .ui-dialog-msg { font-size: 0.85rem; line-height: 1.55; color: var(--text-body); margin: 0; }
-.ui-dialog.tone-error { border-color: rgba(239, 68, 68, 0.45); }
-.ui-dialog.tone-error .ui-dialog-title { color: #fecaca; }
+.ui-dialog.tone-error { border-color: var(--danger-border); }
+.ui-dialog.tone-error .ui-dialog-title { color: var(--danger-text); }
 
 .ui-field { margin-top: 1rem; }
 .ui-label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-body); margin-bottom: 0.3rem; }
@@ -813,8 +936,8 @@
   width: 100%;
   font-size: 1rem;                 /* 16px minimum, or iOS Safari zooms on focus */
   color: var(--text-primary);
-  background: #0b1222;
-  border: 1px solid rgba(100, 116, 139, 0.7);
+  background: var(--bg-app-low);
+  border: 1px solid var(--border-strong);
   border-radius: 0.6rem;
   padding: 0.6rem 0.75rem;
   min-height: 44px;
@@ -835,8 +958,8 @@
 }
 .ui-btn-primary { background: linear-gradient(90deg, var(--cta-from), var(--cta-to)); color: var(--cta-text); border: none; }
 .ui-btn-primary:disabled { opacity: 0.7; cursor: progress; }
-.ui-btn-ghost { background: transparent; color: var(--text-body); border: 1px solid rgba(100, 116, 139, 0.8); }
-.ui-btn-ghost:hover { background: rgba(51, 65, 85, 0.6); color: var(--text-primary); }
+.ui-btn-ghost { background: transparent; color: var(--text-body); border: 1px solid var(--border-strong); }
+.ui-btn-ghost:hover { background: var(--border-default); color: var(--text-primary); }
 
 .btn-spinner {
   width: 0.85em; height: 0.85em;
@@ -852,15 +975,15 @@
    spinner cannot — the content then appears in place instead of shoving the page. */
 .skeleton-wrap { display: flex; flex-direction: column; gap: 0.6rem; }
 .skeleton-row {
-  background: rgba(30, 41, 59, 0.5);
-  border: 1px solid rgba(51, 65, 85, 0.6);
+  background: var(--bg-row);
+  border: 1px solid var(--border-default);
   border-radius: 0.8rem;
   padding: 0.9rem 1rem;
   display: flex; flex-direction: column; gap: 0.5rem;
 }
 .skeleton-bar {
   display: block; height: 0.65rem; border-radius: 9999px;
-  background: linear-gradient(90deg, rgba(100,116,139,0.18), rgba(148,163,184,0.34), rgba(100,116,139,0.18));
+  background: linear-gradient(90deg, var(--border-subtle), var(--border-strong), var(--border-subtle));
   background-size: 200% 100%;
   animation: uiShimmer 1.4s ease-in-out infinite;
 }
@@ -873,10 +996,10 @@
    so turns "this app is broken" into "you have no signal". */
 .ui-offline {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 80;
-  background: #78350f; color: #fef3c7;
+  background: var(--premium-500); color: var(--warning-text);
   font-size: 0.8rem; text-align: center;
   padding: 0.6rem 1rem;
-  border-top: 1px solid rgba(253, 230, 138, 0.35);
+  border-top: 1px solid var(--warning-border);
 }
 .ui-offline[hidden] { display: none; }
 
@@ -884,16 +1007,16 @@
    leaving a blank region the reader has to interpret. */
 .state-card {
   text-align: center;
-  background: rgba(30, 41, 59, 0.55);
-  border: 1px solid rgba(51, 65, 85, 0.8);
+  background: var(--bg-row);
+  border: 1px solid var(--border-strong);
   border-radius: 1rem;
   padding: 2rem 1.5rem;
 }
 .state-card .state-icon { font-size: 1.75rem; display: block; margin-bottom: 0.5rem; }
 .state-card .state-title { font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.3rem; }
 .state-card .state-msg { font-size: 0.82rem; color: var(--text-body); line-height: 1.55; max-width: 26rem; margin: 0 auto; }
-.state-card.is-error { border-color: rgba(239, 68, 68, 0.4); background: rgba(127, 29, 29, 0.18); }
-.state-card.is-error .state-title { color: #fecaca; }
+.state-card.is-error { border-color: var(--danger-border); background: var(--danger-soft); }
+.state-card.is-error .state-title { color: var(--danger-text); }
 .state-card .ui-btn { margin-top: 1rem; }
 
 /* Promotion-code feedback. Stated next to the button that will charge, and stated
@@ -919,7 +1042,7 @@
 .prog { display: flex; align-items: center; gap: 0.6rem; margin-top: 0.7rem; }
 .prog-bar {
   flex: 1; height: 0.4rem; border-radius: 9999px;
-  background: rgba(148, 163, 184, 0.18); overflow: hidden;
+  background: var(--border-default); overflow: hidden;
 }
 .prog-fill {
   display: block; height: 100%; border-radius: 9999px;
@@ -933,7 +1056,7 @@
 .continue-card {
   display: block; text-decoration: none;
   border: 1px solid var(--primary-border);
-  background: linear-gradient(160deg, rgba(13, 148, 136, 0.22), rgba(15, 23, 42, 0.45));
+  background: linear-gradient(160deg, var(--primary-soft), var(--bg-sunken));
   border-radius: 1rem; padding: 1rem 1.15rem; margin-bottom: 1.25rem;
 }
 .continue-card:hover { border-color: var(--primary); }
@@ -954,7 +1077,7 @@
 .search-count { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-tertiary); padding: 0.25rem 0.5rem 0.4rem; }
 .search-empty { font-size: 0.8rem; color: var(--text-body); padding: 0.5rem; }
 .search-hit { display: block; text-decoration: none; padding: 0.55rem 0.6rem; border-radius: 0.6rem; }
-.search-hit:hover { background: rgba(148, 163, 184, 0.10); }
+.search-hit:hover { background: var(--border-subtle); }
 .search-hit-title { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-body); }
 .search-hit-meta { display: block; font-size: 0.72rem; color: var(--text-tertiary); margin-top: 0.1rem; }
 
@@ -962,7 +1085,7 @@
 .track-card {
   display: block; text-decoration: none;
   border: 1px solid var(--border-strong); border-radius: 1rem;
-  background: linear-gradient(160deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.5));
+  background: linear-gradient(160deg, var(--bg-row), var(--bg-sunken));
   padding: 1.15rem 1.25rem; margin-bottom: 1rem;
   transition: transform 0.15s ease, border-color 0.15s ease;
 }
@@ -1077,7 +1200,7 @@
 .site-nav .nav-lang-select:hover { color: var(--text-body); }
 /* The options list is drawn by the OS, which does not inherit the page's dark theme —
    without this the menu can render as dark text on a dark background. */
-.site-nav .nav-lang-select option { color: #0f172a; background: #ffffff; }
+.site-nav .nav-lang-select option { color: var(--bg-app); background: var(--text-primary); }
 
 /* --- lesson page: position + mark as read --- */
 .lesson-pos {
@@ -1191,7 +1314,7 @@
 .lp-shot {
   background: var(--bg-dialog); border: 1px solid var(--border-default);
   border-radius: 0.75rem 0.75rem 0 0; border-bottom: none; overflow: hidden;
-  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 30px 70px -30px var(--shadow);
 }
 @media (min-width: 900px) { .lp-shot { transform: translateY(1.6rem); } }
 .lp-shot-top { display: flex; align-items: center; gap: 0.4rem; padding: 0.65rem 0.85rem; border-bottom: 1px solid var(--border-default); }
@@ -1253,3 +1376,76 @@
 
 /* ---- prose sections keep a readable measure inside the wider shell ---- */
 .lp-measure { max-width: var(--reading-measure); margin-inline: auto; }
+
+/* ============================================================
+   Theme-aware utilities
+   ============================================================
+   These replace the Tailwind colour utilities the markup used to hard-code
+   (text-slate-400, bg-slate-900, border-slate-700 and 51 others). Those resolve to
+   fixed hex at build time in the CDN bundle, so no amount of token work could ever
+   reach them — which is why this app had no light theme rather than a broken one.
+
+   Colour only. Width, size and spacing utilities stay Tailwind's job.
+   scripts/check-theme-tokens.js fails the build if a raw colour utility comes back.
+   ============================================================ */
+
+/* text */
+.u-fg          { color: var(--text-primary); }
+.u-fg-body     { color: var(--text-body); }
+.u-fg-muted    { color: var(--text-secondary); }
+.u-fg-faint    { color: var(--text-tertiary); }
+.u-fg-link     { color: var(--link-text); }
+.u-fg-info     { color: var(--info-text); }
+.u-fg-success  { color: var(--success-text); }
+.u-fg-warning  { color: var(--warning-text); }
+.u-fg-danger   { color: var(--danger-text); }
+.u-fg-primary  { color: var(--primary-text); }
+.u-fg-inverse  { color: var(--text-inverse); }
+
+/* surfaces */
+.u-bg-app       { background-color: var(--bg-app); }
+.u-bg-sunken    { background-color: var(--bg-sunken); }
+.u-bg-card      { background-color: var(--bg-card); }
+.u-bg-card-soft { background-color: var(--bg-row); }
+.u-bg-elevated  { background-color: var(--bg-elevated); }
+.u-bg-success   { background-color: var(--success-soft); }
+.u-bg-premium   { background-color: var(--premium-soft); }
+.u-bg-danger    { background-color: var(--danger-soft); }
+.u-bg-info      { background-color: var(--info-soft); }
+.u-bg-info-solid { background-color: var(--info-500); color: var(--text-inverse); }
+.u-grad-info    { background-image: linear-gradient(90deg, var(--info-500), var(--practice-border)); color: var(--text-inverse); }
+.u-grad-success { background-image: linear-gradient(90deg, var(--success-500), var(--success-400)); color: var(--text-inverse); }
+
+/* borders — width stays with the utility that set it */
+.u-bd         { border-color: var(--border-strong); }
+.u-bd-subtle  { border-color: var(--border-subtle); }
+.u-bd-default { border-color: var(--border-default); }
+.u-bd-info    { border-color: var(--info-border); }
+.u-bd-success { border-color: var(--success-border); }
+.u-bd-premium { border-color: var(--premium-border); }
+.u-bd-danger  { border-color: var(--danger-border); }
+
+/* underlines */
+.u-dec-quiet { text-decoration-color: var(--border-strong); }
+.u-dec-link  { text-decoration-color: var(--link-underline); }
+
+/* Lesson diagrams are authored art with their own dark ground baked into the SVG.
+   They are not restyled by a theme; they are framed as figures so that on a light
+   page they read as an illustration rather than as a hole. */
+:root[data-theme="light"] .lesson-image-card {
+  background: var(--bg-app-deep);
+  border-color: var(--border-default);
+}
+
+/* ---- theme toggle in the nav ---- */
+.theme-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 2rem; height: 2rem; border-radius: 0.5rem;
+  border: 1px solid var(--border-default); background: var(--bg-row);
+  color: var(--text-secondary); cursor: pointer; flex: none;
+}
+.theme-toggle:hover { color: var(--text-primary); border-color: var(--primary-border); }
+.theme-toggle svg { width: 1rem; height: 1rem; }
+.theme-toggle .icon-dark { display: none; }
+:root[data-theme="light"] .theme-toggle .icon-dark { display: block; }
+:root[data-theme="light"] .theme-toggle .icon-light { display: none; }

@@ -28,13 +28,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      // Theme, before first paint. Kept inline and tiny on purpose: a separate file
+      // would be a network round trip during which the page is the wrong colour.
+      // Falls back to dark, which is what shipped before this existed.
+      (function () {
+        try {
+          var p = window.localStorage.getItem('scere-theme');
+          if (p !== 'light' && p !== 'dark') {
+            p = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+          }
+          document.documentElement.setAttribute('data-theme', p);
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script>
     <link rel="stylesheet" href="./styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] } } } };
     </script>
 </head>
-<body class="bg-slate-900 text-white font-sans min-h-screen p-4">
+<body class="u-bg-app u-fg font-sans min-h-screen p-4">
     <a data-i18n="common.skip-main-content" class="skip-link" href="#mainContent">Skip to main content</a>
     <div class="app-bg" aria-hidden="true"></div>
     <main class="relative z-10 max-w-2xl mx-auto pb-8" id="mainContent" tabindex="-1">
@@ -42,15 +56,15 @@
         <div id="siteNav" data-active="research"></div>
 
         <header class="text-center my-4 relative">
-            <p data-i18n="research.research-desk-paid" class="text-[11px] uppercase tracking-[0.2em] text-amber-300 mb-1">The research desk · paid</p>
+            <p data-i18n="research.research-desk-paid" class="text-[11px] uppercase tracking-[0.2em] u-fg-warning mb-1">The research desk · paid</p>
             <h1 data-i18n="common.high-conviction-ideas" class="text-2xl font-bold tracking-wide">High-Conviction Ideas</h1>
-            <p data-i18n="research.real-due-diligence-research-scored-daily" class="text-slate-400 text-sm mt-1">Real due-diligence research, scored daily — with the receipts</p>
+            <p data-i18n="research.real-due-diligence-research-scored-daily" class="u-fg-muted text-sm mt-1">Real due-diligence research, scored daily — with the receipts</p>
             <div class="absolute top-0 right-0">
-                <select id="historySelect" aria-label="Choose report date" class="text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white px-2 py-1.5 rounded-lg transition outline-none border border-slate-700"></select>
+                <select id="historySelect" aria-label="Choose report date" class="text-xs font-semibold u-bg-card hover:u-bg-elevated u-fg px-2 py-1.5 rounded-lg transition outline-none border u-bd"></select>
             </div>
         </header>
 
-        <div class="mb-4 rounded-xl border border-amber-600/50 bg-amber-900/20 px-4 py-3 text-xs text-amber-200" role="note">
+        <div class="mb-4 rounded-xl border u-bd-premium u-bg-premium px-4 py-3 text-xs u-fg-warning" role="note">
             ⚠️ Analytical scenarios for your own judgment — not personalized financial advice or a recommendation to trade. Verify every level on your own chart before acting.
         </div>
 
@@ -61,7 +75,7 @@
             <span class="advisory-icon">🔎</span>
             <div>
                 <p data-i18n="research.track-record-free-open" class="font-semibold text-sm">Track record is free and in the open.</p>
-                <p data-i18n-html="research.every-closed-idea-shows-its-outcome" class="text-xs opacity-90 mt-0.5">Every closed idea shows its outcome — a win or an invalidation — before you hit any wall. Today's <em>live</em> theses (entries, targets, invalidation, full scorecards) unlock with a paid track. The exact six-pillar method is taught, step by step, in the <a href="./learn.html" class="underline decoration-blue-400/60 hover:text-white">Forex track</a>.</p>
+                <p data-i18n-html="research.every-closed-idea-shows-its-outcome" class="text-xs opacity-90 mt-0.5">Every closed idea shows its outcome — a win or an invalidation — before you hit any wall. Today's <em>live</em> theses (entries, targets, invalidation, full scorecards) unlock with a paid track. The exact six-pillar method is taught, step by step, in the <a href="./learn.html" class="underline u-dec-link hover:u-fg">Forex track</a>.</p>
             </div>
         </div>
 
@@ -72,7 +86,7 @@
 
             <!-- Today's regime + top idea — free hook -->
             <section>
-                <div id="regimeHero" class="current-card bg-gradient-to-br from-blue-600 to-indigo-700 p-5 rounded-2xl shadow-xl"></div>
+                <div id="regimeHero" class="current-card bg-gradient-to-br u-grad-info p-5 rounded-2xl shadow-xl"></div>
             </section>
 
             <section id="noTradeSection" class="hidden">
@@ -93,7 +107,7 @@
                     <h3 data-i18n="research.today-s-live-ideas" class="section-title !mb-0">Today's live ideas</h3>
                     <span id="accessStatus" class="text-xs font-semibold"></span>
                 </div>
-                <p data-i18n="research.headline-confidence-score-free-full-thesis" class="text-xs text-slate-400 mb-3">Headline and confidence score are free. The full thesis — entry, targets, invalidation and the weighted scorecard — unlocks with a subscription.</p>
+                <p data-i18n="research.headline-confidence-score-free-full-thesis" class="text-xs u-fg-muted mb-3">Headline and confidence score are free. The full thesis — entry, targets, invalidation and the weighted scorecard — unlocks with a subscription.</p>
                 <div id="accessBar" class="mb-4"></div>
                 <div id="liveIdeas" class="space-y-4"></div>
             </section>
@@ -111,19 +125,20 @@
 
         </div>
 
-        <footer class="mt-10 text-center text-xs text-slate-500">
+        <footer class="mt-10 text-center text-xs u-fg-faint">
             Built on the same daily pipeline that writes <code>data/fx-reports/</code> — nothing new to generate. Every level is machine-parsed from the generated report.
             <br>
             <span data-i18n="research.analytical-scenarios-own-judgment-not-personalized" class="block mt-2 max-w-sm mx-auto">Analytical scenarios for your own judgment — not personalized financial advice. Data may be delayed or incomplete. Consult a licensed financial advisor before making investment decisions.</span>
             <br>
-            <a data-i18n="common.privacy-policy" href="./privacy-policy.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Privacy Policy</a>
+            <a data-i18n="common.privacy-policy" href="./privacy-policy.html" class="u-fg-faint underline u-dec-quiet underline-offset-2 transition hover:u-fg-link">Privacy Policy</a>
             ·
-            <a data-i18n="common.course" href="./learn.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">The Course</a>
+            <a data-i18n="common.course" href="./learn.html" class="u-fg-faint underline u-dec-quiet underline-offset-2 transition hover:u-fg-link">The Course</a>
             ·
-            <a data-i18n="common.why-exist" href="./index.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Why we exist</a>
+            <a data-i18n="common.why-exist" href="./index.html" class="u-fg-faint underline u-dec-quiet underline-offset-2 transition hover:u-fg-link">Why we exist</a>
         </footer>
     </main>
 
+    <script src="./theme.js"></script>
     <script src="./i18n.js"></script>
     <script src="./ui.js"></script>
     <script src="./nav.js"></script>

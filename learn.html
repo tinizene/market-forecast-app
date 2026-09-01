@@ -28,13 +28,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      // Theme, before first paint. Kept inline and tiny on purpose: a separate file
+      // would be a network round trip during which the page is the wrong colour.
+      // Falls back to dark, which is what shipped before this existed.
+      (function () {
+        try {
+          var p = window.localStorage.getItem('scere-theme');
+          if (p !== 'light' && p !== 'dark') {
+            p = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+          }
+          document.documentElement.setAttribute('data-theme', p);
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script>
     <link rel="stylesheet" href="./styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] } } } };
     </script>
 </head>
-<body class="bg-slate-900 text-white font-sans min-h-screen p-4">
+<body class="u-bg-app u-fg font-sans min-h-screen p-4">
     <a data-i18n="common.skip-main-content" class="skip-link" href="#mainContent">Skip to main content</a>
     <div class="app-bg" aria-hidden="true"></div>
     <main class="relative z-10 max-w-2xl mx-auto pb-8" id="mainContent" tabindex="-1">
@@ -42,16 +56,16 @@
         <div id="siteNav" data-active="learn"></div>
 
         <header class="text-center my-4 relative">
-            <p data-i18n="learn.get-rich-slow-education-program" class="text-[11px] uppercase tracking-[0.15em] text-blue-300">Get Rich Slow · the education program</p>
+            <p data-i18n="learn.get-rich-slow-education-program" class="text-[11px] uppercase tracking-[0.15em] u-fg-info">Get Rich Slow · the education program</p>
             <h1 data-i18n="learn.start-free-go-deep-like" class="text-2xl font-bold tracking-wide mt-1">Start free. Go as deep as you like.</h1>
-            <p data-i18n="learn.everyone-begins-same-free-foundation-then" class="text-slate-400 text-sm mt-1">Everyone begins with the same free Foundation — then choose the market you want to trade.</p>
+            <p data-i18n="learn.everyone-begins-same-free-foundation-then" class="u-fg-muted text-sm mt-1">Everyone begins with the same free Foundation — then choose the market you want to trade.</p>
         </header>
 
-        <div class="mb-6 rounded-xl border border-amber-600/50 bg-amber-900/20 px-4 py-3 text-xs text-amber-200" role="note">
+        <div class="mb-6 rounded-xl border u-bd-premium u-bg-premium px-4 py-3 text-xs u-fg-warning" role="note">
             ⚠️ Educational content only — not financial advice, and not a recommendation to buy any specific fund. Every historical figure on this page is real, computed data — but past performance never guarantees future results. See the full disclaimer in the footer.
         </div>
 
-        <div id="apiKeyBanner" class="hidden mb-6 rounded-xl border border-red-600/50 bg-red-900/20 px-4 py-3 text-xs text-red-200" role="alert"></div>
+        <div id="apiKeyBanner" class="hidden mb-6 rounded-xl border u-bd-danger u-bg-danger px-4 py-3 text-xs u-fg-danger" role="alert"></div>
 
 
         <!-- Course table of contents — every lesson across all three tracks, in
@@ -76,19 +90,20 @@
             </div>
         </a>
 
-        <footer class="mt-10 text-center text-xs text-slate-500">
+        <footer class="mt-10 text-center text-xs u-fg-faint">
             Fund facts (expense ratios, index tracked) are curated from each issuer's own official page — see the source link on each row of the fee table above. Historical return and dividend figures come from Alpha Vantage's published, dividend-adjusted price series.
             <br>
             <span data-i18n="common.nothing-page-financial-advice-recommendation" class="block mt-2 max-w-sm mx-auto">Nothing on this page is financial advice or a recommendation to buy or sell any security. Data may be delayed or incomplete. Consult a licensed financial advisor before making investment decisions.</span>
             <br>
-            <a data-i18n="common.privacy-policy" href="./privacy-policy.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Privacy Policy</a>
+            <a data-i18n="common.privacy-policy" href="./privacy-policy.html" class="u-fg-faint underline u-dec-quiet underline-offset-2 transition hover:u-fg-link">Privacy Policy</a>
             ·
-            <a data-i18n="common.high-conviction-ideas" href="./research.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">High-Conviction Ideas</a>
+            <a data-i18n="common.high-conviction-ideas" href="./research.html" class="u-fg-faint underline u-dec-quiet underline-offset-2 transition hover:u-fg-link">High-Conviction Ideas</a>
             ·
-            <a data-i18n="common.why-exist" href="./index.html" class="text-slate-500 underline decoration-slate-700 underline-offset-2 transition hover:text-sky-400">Why we exist</a>
+            <a data-i18n="common.why-exist" href="./index.html" class="u-fg-faint underline u-dec-quiet underline-offset-2 transition hover:u-fg-link">Why we exist</a>
         </footer>
     </main>
 
+    <script src="./theme.js"></script>
     <script src="./i18n.js"></script>
     <script src="./ui.js"></script>
     <script src="./nav.js"></script>

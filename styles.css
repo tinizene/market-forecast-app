@@ -1127,3 +1127,129 @@
 /* Distance-from-target on a track-record row. Deliberately quiet: the outcome chip is
    the headline, this is the detail that explains what KIND of miss it was. */
 .record-row .rr-dist { font-size: 0.7rem; color: var(--primary-text); margin-top: 0.15rem; }
+
+/* ============================================================
+   Landing page (index.html)
+   ============================================================
+   A marketing surface, so it earns a wider container and a different rhythm from
+   the reading pages. Everything here is scoped under .lp- or #mainContent.lp so
+   nothing leaks into learn/track/lesson.
+
+   No new colours. The four tracks reuse role tokens that contrast-audit.js already
+   checks as label-on-tint pairs: foundation -> success, forex -> info,
+   stocks -> practice, crypto -> premium. A track hue is an alias, not a new value.
+   ============================================================ */
+
+.lp-track[data-track="foundation"] {
+  --tint-text: var(--success-text); --tint-soft: var(--success-soft); --tint-border: var(--success-border);
+}
+.lp-track[data-track="forex"] {
+  --tint-text: var(--info-text); --tint-soft: var(--info-soft); --tint-border: var(--info-border);
+}
+.lp-track[data-track="stocks"] {
+  --tint-text: var(--practice-text); --tint-soft: var(--practice-soft); --tint-border: var(--practice-border);
+}
+.lp-track[data-track="crypto"] {
+  --tint-text: var(--premium-text); --tint-soft: var(--premium-soft); --tint-border: var(--premium-border);
+}
+
+/* ---- section heading: accent bar + two-tone ---- */
+.lp-head { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
+.lp-head .lp-bar { width: 2px; align-self: stretch; flex: none; border-radius: 2px; background: var(--primary-400); }
+.lp-head h2 { font-size: 1.5rem; line-height: 1.2; letter-spacing: -0.028em; font-weight: 700; margin: 0; color: var(--text-primary); }
+.lp-head h2 .lp-dim { color: var(--text-secondary); }
+.lp-head .lp-act { margin-left: auto; flex: none; padding-top: 0.2rem; }
+@media (max-width: 640px) { .lp-head .lp-act { display: none; } }
+
+/* ---- hero ---- */
+.lp-hero { position: relative; padding: 2.5rem 0 0; }
+.lp-hero-grid { display: grid; gap: 2.25rem; align-items: center; }
+@media (min-width: 900px) { .lp-hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr); gap: 3rem; } }
+.lp-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.55rem; border: 1px solid var(--border-default);
+  background: var(--bg-row); border-radius: 999px; padding: 0.3rem 0.4rem 0.3rem 0.8rem;
+  font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 1.4rem;
+}
+.lp-eyebrow b { color: var(--primary-text); background: var(--primary-soft); border-radius: 999px;
+  padding: 0.15rem 0.55rem; font-size: 0.72rem; font-weight: 600; }
+.lp-h1 { font-size: clamp(2rem, 6vw, 3.1rem); line-height: 1.05; letter-spacing: -0.033em;
+  font-weight: 800; margin: 0 0 1.1rem; color: var(--text-primary); }
+.lp-h1 .lp-dim { color: var(--text-secondary); }
+.lp-sub { font-size: 1rem; line-height: 1.6; color: var(--text-secondary); margin: 0 0 1.6rem; max-width: 46ch; }
+.lp-sub strong { color: var(--text-primary); font-weight: 600; }
+.lp-cta-row { display: flex; gap: 0.7rem; align-items: center; flex-wrap: wrap; }
+
+/* ghost button, to sit beside the existing .upgrade-btn without competing with it */
+.lp-ghost {
+  display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 999px;
+  border: 1px solid var(--border-strong); color: var(--text-body);
+  font-weight: 600; font-size: 0.875rem; padding: 0.6rem 1.05rem; transition: border-color 0.15s, color 0.15s;
+}
+.lp-ghost:hover { border-color: var(--primary-border); color: var(--text-primary); }
+
+/* ---- product shot: a real lesson, from the real syllabus ---- */
+.lp-shot {
+  background: var(--bg-dialog); border: 1px solid var(--border-default);
+  border-radius: 0.75rem 0.75rem 0 0; border-bottom: none; overflow: hidden;
+  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.55);
+}
+@media (min-width: 900px) { .lp-shot { transform: translateY(1.6rem); } }
+.lp-shot-top { display: flex; align-items: center; gap: 0.4rem; padding: 0.65rem 0.85rem; border-bottom: 1px solid var(--border-default); }
+.lp-shot-top i { width: 8px; height: 8px; border-radius: 50%; background: var(--border-strong); }
+.lp-shot-body { display: grid; grid-template-columns: 9.4rem 1fr; min-height: 20rem; }
+/* with the syllabus column hidden there is no second column to match heights with,
+   so the min-height would just be dead space under the citation */
+@media (max-width: 560px) { .lp-shot-body { grid-template-columns: 1fr; min-height: 0; } .lp-shot-side { display: none; } }
+.lp-shot-side { border-right: 1px solid var(--border-default); padding: 0.85rem 0.7rem; font-size: 0.7rem; }
+.lp-shot-side h6 { color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.1em;
+  font-size: 0.58rem; font-weight: 600; margin: 0 0 0.55rem; }
+.lp-shot-side p { color: var(--text-secondary); padding: 0.3rem 0.45rem; border-radius: 0.35rem; margin: 0 0 1px; line-height: 1.35; }
+.lp-shot-side p.on { background: var(--primary-soft); color: var(--primary-text); font-weight: 600; }
+.lp-shot-side p.off { opacity: 0.5; }
+.lp-shot-main { padding: 1rem 1.15rem; }
+.lp-crumb { font-size: 0.63rem; color: var(--primary-text); font-weight: 600; letter-spacing: 0.05em;
+  text-transform: uppercase; margin: 0 0 0.4rem; }
+.lp-shot-main h5 { font-size: 1.05rem; margin: 0 0 0.2rem; letter-spacing: -0.02em; color: var(--text-primary); }
+.lp-shot-main .lp-lede { font-size: 0.72rem; color: var(--text-secondary); margin: 0 0 0.8rem; }
+.lp-callout { border-left: 2px solid var(--primary-400); background: var(--primary-soft);
+  padding: 0.55rem 0.75rem; border-radius: 0 0.4rem 0.4rem 0; font-size: 0.72rem; color: var(--text-body); margin-bottom: 0.75rem; }
+.lp-para { height: 6px; border-radius: 3px; background: var(--border-default); margin-bottom: 0.45rem; }
+.lp-src { display: inline-flex; align-items: center; gap: 0.35rem; border: 1px solid var(--primary-border);
+  background: var(--primary-soft); color: var(--primary-text); border-radius: 0.35rem;
+  padding: 0.25rem 0.55rem; font-size: 0.62rem; font-weight: 600; margin-top: 0.3rem; }
+
+/* ---- the figure strip ---- */
+.lp-strip { border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-row); margin: 2.5rem 0 3rem; }
+.lp-strip ul { display: flex; align-items: center; gap: 1.6rem; flex-wrap: wrap;
+  padding: 0.85rem 1rem; margin: 0; list-style: none; }
+.lp-strip li { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--text-secondary); }
+.lp-strip li.lp-strip-label { font-weight: 600; color: var(--text-primary); }
+.lp-strip b { background: var(--primary-soft); color: var(--primary-text); border-radius: 0.3rem;
+  padding: 0.1rem 0.45rem; font-size: 0.75rem; font-weight: 600;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-variant-numeric: tabular-nums; }
+.lp-strip li.lp-strip-claim { color: var(--text-primary); font-weight: 600; }
+.lp-strip li.lp-strip-claim b { background: var(--primary-400); color: var(--text-inverse); }
+
+/* ---- track cards ---- */
+.lp-grid { display: grid; gap: 0.9rem; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .lp-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1000px) { .lp-grid { grid-template-columns: repeat(4, 1fr); } }
+.lp-track { display: block; background: var(--bg-card); border: 1px solid var(--border-default);
+  border-radius: 0.85rem; padding: 1.1rem; transition: transform 0.15s, border-color 0.15s; }
+.lp-track:hover { transform: translateY(-2px); border-color: var(--tint-border); }
+.lp-track .lp-tile { display: block; height: 5rem; border-radius: 0.55rem; margin: -0.15rem -0.15rem 0.9rem;
+  background: linear-gradient(150deg, var(--tint-soft), transparent 78%), var(--bg-elevated);
+  border: 1px solid var(--tint-border); position: relative; overflow: hidden; }
+.lp-fil { position: absolute; inset: 0; }
+.lp-fil path { fill: none; stroke: var(--tint-text); stroke-width: 1; opacity: 0.45; }
+.lp-track .lp-tag { display: inline-block; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.05em;
+  text-transform: uppercase; padding: 0.18rem 0.45rem; border-radius: 0.3rem; margin-bottom: 0.5rem;
+  background: var(--tint-soft); color: var(--tint-text); }
+.lp-track h3 { font-size: 0.95rem; margin: 0 0 0.35rem; letter-spacing: -0.015em; color: var(--text-primary); }
+.lp-track p { font-size: 0.8rem; color: var(--text-secondary); margin: 0; line-height: 1.55; }
+.lp-track .lp-n { display: block; margin-top: 0.7rem; font-size: 0.7rem; color: var(--text-tertiary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-variant-numeric: tabular-nums; }
+
+/* ---- prose sections keep a readable measure inside the wider shell ---- */
+.lp-measure { max-width: var(--reading-measure); margin-inline: auto; }

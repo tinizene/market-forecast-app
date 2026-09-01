@@ -39,24 +39,127 @@
 <body class="bg-slate-900 text-white font-sans min-h-screen p-4">
     <a data-i18n="common.skip-main-content" class="skip-link" href="#mainContent">Skip to main content</a>
     <div class="app-bg" aria-hidden="true"></div>
-    <main class="relative z-10 max-w-2xl mx-auto pb-8" id="mainContent" tabindex="-1">
+    <main class="relative z-10 max-w-5xl mx-auto pb-8 px-1" id="mainContent" tabindex="-1">
 
         <div id="siteNav" data-active="home"></div>
 
-        <!-- ============ Mission-first hero ============ -->
-        <header class="text-center my-8">
-            <p data-i18n="index.get-rich-slow" class="text-[11px] uppercase tracking-[0.2em] text-blue-300 mb-2">Get Rich Slow</p>
-            <h1 data-i18n="index.learn-how-money-actually-works-then" class="text-3xl font-extrabold tracking-tight leading-tight">Learn how money actually works — then how to use it.</h1>
-            <p data-i18n="index.most-beginners-lose-money-avoidable-mistakes" class="text-slate-400 text-sm sm:text-[15px] mt-3 max-w-lg mx-auto leading-relaxed">
-                Most beginners lose money to avoidable mistakes, not to the market. We start at the very beginning — what money is, and how it got this way — and take you through to trading crypto, forex and stocks with the maths on your side.
-            </p>
-            <a data-i18n="index.start-free" href="./learn.html" class="upgrade-btn inline-block mt-5">Start free →</a>
-            <p data-i18n="index.no-card-foundations-free-permanently" class="text-[11px] text-slate-500 mt-2">No card. The foundations are free, permanently.</p>
+        <!-- ============ Hero ============ -->
+        <!-- The product shot is a real lesson: Forex Chapter 1, Lesson 6. Its title,
+             chapter/lesson numbers, definition and key idea are copied from
+             data/course/forex.json and checked against it by
+             scripts/verify-landing.js, so the hero cannot drift from the course. -->
+        <header class="lp-hero">
+            <div class="lp-hero-grid">
+                <div>
+                    <p class="lp-eyebrow"><span data-i18n="index.get-rich-slow">Get Rich Slow</span>
+                        <b><span class="lp-fig">10</span> <span data-i18n="index.lessons-word">lessons</span> · <span data-i18n="index.free-forever">Free forever</span></b></p>
+                    <h1 class="lp-h1"><span data-i18n="index.hero-line-1">Learn how money actually works.</span><br>
+                        <span class="lp-dim" data-i18n="index.hero-line-2">Then how to use it.</span></h1>
+                    <p data-i18n="index.most-beginners-lose-money-avoidable-mistakes" class="lp-sub">
+                        Most beginners lose money to avoidable mistakes, not to the market. We start at the very beginning — what money is, and how it got this way — and take you through to trading crypto, forex and stocks with the maths on your side.
+                    </p>
+                    <div class="lp-cta-row">
+                        <a data-i18n="index.start-free-track" href="./learn.html" class="upgrade-btn">Start the free track →</a>
+                        <a data-i18n="index.see-syllabus" href="./learn.html" class="lp-ghost">See the syllabus →</a>
+                    </div>
+                    <p data-i18n="index.no-card-foundations-free-permanently" class="text-[11px] text-slate-500 mt-3">No card. The foundations are free, permanently.</p>
+                </div>
+
+                <figure class="lp-shot m-0">
+                    <span data-i18n="index.shot-caption" class="sr-only">A preview of a lesson from the Forex track, shown as it appears in the course.</span>
+                    <div aria-hidden="true">
+                        <div class="lp-shot-top"><i></i><i></i><i></i></div>
+                        <div class="lp-shot-body">
+                            <div class="lp-shot-side" data-chapter="1">
+                                <h6>Forex · Chapter 1</h6>
+                                <p>4 · Bid/Ask Spread &amp; Pips</p>
+                                <p>5 · Lot Sizes &amp; Position Sizing</p>
+                                <p class="on">6 · Leverage &amp; Margin</p>
+                                <p>7 · Order Types &amp; Trade Execution</p>
+                            </div>
+                            <div class="lp-shot-main">
+                                <p class="lp-crumb">Chapter 1 · Lesson 6</p>
+                                <h5>Leverage &amp; Margin</h5>
+                                <p class="lp-lede">Borrowed buying power that lets a trader control a position much larger than their own capital alone would allow</p>
+                                <div class="lp-callout"><strong>Key idea.</strong> Leverage lets you control a position far larger than your capital — amplifying losses by exactly the same factor as gains, which is why regulators cap it for retail traders.</div>
+                                <div class="lp-para" style="width:97%"></div>
+                                <div class="lp-para" style="width:100%"></div>
+                                <div class="lp-para" style="width:88%"></div>
+                                <div class="lp-para" style="width:71%"></div>
+                                <span class="lp-src">◆ ESMA 2018 · retail CFD accounts losing money: 74–89%</span>
+                            </div>
+                        </div>
+                    </div>
+                </figure>
+            </div>
         </header>
 
-        <!-- ============ What you get ============ -->
-        <section class="mb-8">
-            <h2 data-i18n="index.what-s-here" class="text-xs uppercase tracking-[0.16em] text-slate-500 mb-3">What's here</h2>
+        <!-- ============ What is actually here ============ -->
+        <!-- Every figure below comes from data/course/manifest.json (lessons, tracks,
+             free track) or from the LANGUAGES table in i18n.js (languages offered).
+             scripts/verify-landing.js fails the build if any of them drifts. -->
+        <div class="lp-strip">
+            <ul>
+                <li class="lp-strip-label" data-i18n="index.what-s-here">What's here</li>
+                <li><span data-i18n="index.stat-lessons">Lessons</span> <b class="lp-fig" data-fig="lessons">85</b></li>
+                <li><span data-i18n="index.stat-tracks">Tracks</span> <b class="lp-fig" data-fig="tracks">4</b></li>
+                <li class="lp-strip-claim"><span data-i18n="index.stat-free">Free, permanently</span> <b class="lp-fig" data-fig="free">10</b></li>
+                <li><span data-i18n="index.stat-languages">Languages</span> <b class="lp-fig" data-fig="languages">2</b></li>
+            </ul>
+        </div>
+
+        <!-- ============ The four tracks ============ -->
+        <section class="mb-10">
+            <div class="lp-head">
+                <span class="lp-bar" aria-hidden="true"></span>
+                <h2><span data-i18n="index.one-course-line-1">One course, from what money is</span><br>
+                    <span class="lp-dim" data-i18n="index.one-course-line-2">to how to trade it.</span></h2>
+                <a data-i18n="index.see-syllabus" href="./learn.html" class="lp-ghost lp-act">See the syllabus →</a>
+            </div>
+            <div class="lp-grid">
+                <a href="./learn.html" class="lp-track" data-track="foundation">
+                    <span class="lp-tile" aria-hidden="true"><svg class="lp-fil" viewBox="0 0 240 88" preserveAspectRatio="none">
+                        <path d="M-10 78 C60 74 90 40 240 8"/><path d="M-10 86 C60 80 90 48 240 18"/><path d="M-10 70 C60 68 90 32 240 -2"/></svg></span>
+                    <span data-i18n="index.free-forever" class="lp-tag">Free forever</span>
+                    <h3 data-i18n="index.foundation">The Foundation</h3>
+                    <p data-i18n="index.track-foundation-desc">Where money came from and why it behaves the way it does — barter, gold, Bretton Woods, and the birth of modern currency markets.</p>
+                    <span class="lp-n"><span class="lp-fig" data-fig="lessons-foundation">10</span> <span data-i18n="index.lessons-word">lessons</span></span>
+                </a>
+                <a href="./learn.html" class="lp-track" data-track="forex">
+                    <span class="lp-tile" aria-hidden="true"><svg class="lp-fil" viewBox="0 0 240 88" preserveAspectRatio="none">
+                        <path d="M-10 20 C70 24 120 66 240 70"/><path d="M-10 10 C70 16 120 58 240 62"/><path d="M-10 30 C70 34 120 74 240 80"/></svg></span>
+                    <span data-i18n="index.tag-in-course" class="lp-tag">In the course</span>
+                    <h3 data-i18n="index.track-forex">Forex</h3>
+                    <p data-i18n="index.track-forex-desc">Risk first. Position sizing, the transmission chain, and a written six-pillar thesis instead of a strong feeling.</p>
+                    <span class="lp-n"><span class="lp-fig" data-fig="lessons-forex">26</span> <span data-i18n="index.lessons-word">lessons</span></span>
+                </a>
+                <a href="./learn.html" class="lp-track" data-track="stocks">
+                    <span class="lp-tile" aria-hidden="true"><svg class="lp-fil" viewBox="0 0 240 88" preserveAspectRatio="none">
+                        <path d="M-10 60 C80 58 110 22 240 26"/><path d="M-10 70 C80 66 110 32 240 36"/><path d="M-10 50 C80 50 110 14 240 16"/></svg></span>
+                    <span data-i18n="index.tag-in-course" class="lp-tag">In the course</span>
+                    <h3 data-i18n="index.track-stocks">Stocks &amp; ETFs</h3>
+                    <p data-i18n="index.track-stocks-desc">What a share is, what fees actually cost over thirty years, and why the behaviour-gap figure everyone quotes does not survive checking.</p>
+                    <span class="lp-n"><span class="lp-fig" data-fig="lessons-stocks">25</span> <span data-i18n="index.lessons-word">lessons</span></span>
+                </a>
+                <a href="./learn.html" class="lp-track" data-track="crypto">
+                    <span class="lp-tile" aria-hidden="true"><svg class="lp-fil" viewBox="0 0 240 88" preserveAspectRatio="none">
+                        <path d="M-10 40 C60 10 140 78 240 44"/><path d="M-10 48 C60 20 140 86 240 52"/><path d="M-10 32 C60 2 140 70 240 36"/></svg></span>
+                    <span data-i18n="index.tag-in-course" class="lp-tag">In the course</span>
+                    <h3 data-i18n="index.track-crypto">Crypto</h3>
+                    <p data-i18n="index.track-crypto-desc">How the machine works and how to survive it: custody, liquidation, and three collapses taken apart in full.</p>
+                    <span class="lp-n"><span class="lp-fig" data-fig="lessons-crypto">24</span> <span data-i18n="index.lessons-word">lessons</span></span>
+                </a>
+            </div>
+        </section>
+
+        <!-- ============ How to get it ============ -->
+        <!-- The grid above is the syllabus: four tracks. This is the commercial cut of
+             the same thing: what is free, what is one payment, what is a subscription. -->
+        <section class="mb-10 lp-measure">
+            <div class="lp-head">
+                <span class="lp-bar" aria-hidden="true"></span>
+                <h2 data-i18n="index.how-to-get-it">How to get it</h2>
+            </div>
 
             <a href="./learn.html" class="path-card path-free mb-3">
                 <span data-i18n="index.free-forever" class="pro-badge" style="background:linear-gradient(90deg,#22c55e,#16a34a)">Free forever</span>
@@ -81,7 +184,7 @@
         </section>
 
         <!-- ============ How the two products fit ============ -->
-        <section class="mb-10 rounded-xl border border-slate-700 bg-slate-800/60 p-5">
+        <section class="mb-10 rounded-xl border border-slate-700 bg-slate-800/60 p-5 lp-measure">
             <h2 data-i18n="index.how-works" class="text-sm font-bold text-white mb-3">How it works</h2>
             <ul class="space-y-2.5 text-sm text-slate-300">
                 <li class="flex gap-2.5"><span class="text-blue-300 font-bold shrink-0">1.</span><span data-i18n-html="index.start-foundation-free-s-history-money">Start with the <strong class="text-white">Foundation</strong> for free. It's the history of money and the groundwork everything else rests on.</span></li>
@@ -92,7 +195,7 @@
         </section>
 
         <!-- ============ Mission — formerly the standalone manifesto page ============ -->
-        <section class="mb-8">
+        <section class="mb-8 lp-measure">
             <h2 data-i18n="common.why-exist" class="text-xs uppercase tracking-[0.16em] text-slate-500 mb-3">Why we exist</h2>
             <article class="current-card bg-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl space-y-6 text-slate-300 leading-relaxed text-[15px]">
 

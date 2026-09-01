@@ -44,5 +44,16 @@ jobs:
         with:
           node-version: '22'
 
+      # Before the tests, because a stale manifest is a specific failure with a
+      # specific fix, and reading it out of a test summary is slower than being
+      # told directly.
+      - name: Check the build manifest is current
+        run: npm run manifest:check
+
       - name: Run tests
         run: npm test
+
+      # What an inspector runs on a production host, run here on every change so
+      # that it cannot rot unnoticed between releases.
+      - name: Verify the build
+        run: npm run verify

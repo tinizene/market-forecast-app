@@ -9,6 +9,9 @@
   },
   "scripts": {
     "test": "node --disable-warning=ExperimentalWarning --test \"test/**/*.test.js\"",
-    "console": "node --disable-warning=ExperimentalWarning bin/console-server.js"
+    "console": "node --disable-warning=ExperimentalWarning bin/console-server.js",
+    "manifest": "node bin/build-manifest.js",
+    "manifest:check": "node bin/build-manifest.js --check",
+    "verify": "node bin/verify-build.js"
   }
 }

@@ -1,0 +1,332 @@
+{
+  "version": 1,
+  "algorithm": "sha256",
+  "generatedAt": "2026-09-01T10:13:22.349Z",
+  "buildId": "232c4faf9a7a6f698c260fe925f8e636f22f6a9959855e8ef6c882ac50e1d196",
+  "scope": {
+    "runtime": [
+      {
+        "dir": "numbers-ledger/src",
+        "pattern": {}
+      },
+      {
+        "dir": "numbers-ledger/bin",
+        "pattern": {}
+      },
+      {
+        "file": "numbers-ledger/package.json"
+      },
+      {
+        "file": "africa-numbers/game.js"
+      }
+    ],
+    "evidence": [
+      {
+        "dir": "numbers-ledger/test",
+        "pattern": {}
+      },
+      {
+        "file": "numbers-ledger/README.md"
+      },
+      {
+        "file": "africa-numbers/game.test.js"
+      }
+    ]
+  },
+  "forbiddenSymbols": [
+    "9152c4490a85e306ba8f89b3c7ae24d42b56be466eb52aea5882738d4e930ecb",
+    "bbc916573bfee3475403657f11b9bc4c8eed07044e3ad11b4769e91a7759b23d",
+    "128295bb82b41ec3c701af5ff889d9ae2de94bbad371b5c95c06161c121f7d17",
+    "4c104b5a697572a86c56ad1cfcc6d2eb66801e32c9bafbd7aa46cc0b2e049fdb",
+    "efe23cd14d84e327a8c9848d367acdb83e0e931ed60478823997caea149bbd2d",
+    "37b9d46dec90f1193bd10592dbba0ad75c7a49af6b58d5099b7ab32a20fea805",
+    "731b55100c400714cd7b19ef1df7934694dc6cdf975b5fe7431f7bc7caca49bc"
+  ],
+  "sections": {
+    "runtime": {
+      "digest": "232c4faf9a7a6f698c260fe925f8e636f22f6a9959855e8ef6c882ac50e1d196",
+      "files": [
+        {
+          "path": "africa-numbers/game.js",
+          "bytes": 13663,
+          "sha256": "3d8c6938d4abd03d258d6a2e1943fbbe75adc3e45786f067da973acde8ac176e"
+        },
+        {
+          "path": "numbers-ledger/bin/build-manifest.js",
+          "bytes": 2887,
+          "sha256": "bf764e69c049f22f7d3a0c1cb15adca2f60a3fc6e2510be868b4c1f3aadcb2f1"
+        },
+        {
+          "path": "numbers-ledger/bin/console-server.js",
+          "bytes": 4388,
+          "sha256": "e55f63c37a3bc53f20b0fe384e06ac4c7a6fba09baf64ab8df307b9cb752ccc3"
+        },
+        {
+          "path": "numbers-ledger/bin/verify-build.js",
+          "bytes": 3334,
+          "sha256": "1fa0281712ef20b3b3724ee27f51a6f40c95c80b9dedd178acc8d6e9830af6e9"
+        },
+        {
+          "path": "numbers-ledger/package.json",
+          "bytes": 588,
+          "sha256": "bfbabf39317658b0b54503fca20ceafa32e0c5792e364edf0a75e06bb3389c0d"
+        },
+        {
+          "path": "numbers-ledger/src/accounts.js",
+          "bytes": 5671,
+          "sha256": "3c4955309fe85f195295afdff76628595a64300509394dcb80c40eb68bb00402"
+        },
+        {
+          "path": "numbers-ledger/src/build.js",
+          "bytes": 2140,
+          "sha256": "15d16eacd49b8ea6dc34843be8b297a80c2dbfcd6cad39ccb3072fd9401c5096"
+        },
+        {
+          "path": "numbers-ledger/src/config.js",
+          "bytes": 886,
+          "sha256": "c0dd7f30eb10897c6d36a9dfbc16bb3e4bf6df4b1c6bab56382c79cfc2fcf5fa"
+        },
+        {
+          "path": "numbers-ledger/src/console/console-core.js",
+          "bytes": 8994,
+          "sha256": "d7ad70a1cfd325edfe725219c610912fc08a17cea8059f53935f4bd0ec49b015"
+        },
+        {
+          "path": "numbers-ledger/src/console/console.css",
+          "bytes": 7257,
+          "sha256": "af6de57646588ba5b1419d95c8a32650e34d250f0ea13f460b1e095532d0c831"
+        },
+        {
+          "path": "numbers-ledger/src/console/console.js",
+          "bytes": 39827,
+          "sha256": "e2590399711c52446f629df962494ce6e118a82bf6be322ba4ffc4e6966018de"
+        },
+        {
+          "path": "numbers-ledger/src/console/favicon.svg",
+          "bytes": 316,
+          "sha256": "f2a3aa3df4a075c982f3d21a1368956b0caf77b2d2c2daf8ce22ffaf47902109"
+        },
+        {
+          "path": "numbers-ledger/src/console/index.html",
+          "bytes": 20503,
+          "sha256": "8d3a10f0b1537e83ee281624568e03b2818123365bffea7a26b4193de8bf7097"
+        },
+        {
+          "path": "numbers-ledger/src/custody.js",
+          "bytes": 9580,
+          "sha256": "ea199223ceb2efecc55e170c2915bc5e53bb79765cd72d9814f7bff8f2fedc4c"
+        },
+        {
+          "path": "numbers-ledger/src/draws.js",
+          "bytes": 5225,
+          "sha256": "6943154f64c38bdad5a8968dd82a206c6141b097676162f6c0947c684a7d4a0d"
+        },
+        {
+          "path": "numbers-ledger/src/errors.js",
+          "bytes": 925,
+          "sha256": "a6cfb89a2b9df056c4488c3f9ca8a6298ed27c1bce25521acfd388ee76a2d53b"
+        },
+        {
+          "path": "numbers-ledger/src/http/app.js",
+          "bytes": 38307,
+          "sha256": "98de9ba5ffc297308b5fd4644f971e47d2578ac86186714422def5456d4510b4"
+        },
+        {
+          "path": "numbers-ledger/src/http/auth.js",
+          "bytes": 9175,
+          "sha256": "e473c7661c2ad13b99a35a2b3bcb8bd06bf6c19124d014b7f233c60602c1188c"
+        },
+        {
+          "path": "numbers-ledger/src/http/limits.js",
+          "bytes": 3436,
+          "sha256": "501da70ba5748627c0d75a826815a37db38d51bc86e2c17ec532b60dff8d5f88"
+        },
+        {
+          "path": "numbers-ledger/src/http/static.js",
+          "bytes": 2342,
+          "sha256": "d9d191fcd8d913b8deac0fbc397769cb287d406d3924c7e4a7ccfb62524e167f"
+        },
+        {
+          "path": "numbers-ledger/src/ledger.js",
+          "bytes": 10622,
+          "sha256": "305627ef2ff0af2fed147058eb3e0666efd5aa5372cc28ea7f4fa279783cf811"
+        },
+        {
+          "path": "numbers-ledger/src/manifest.js",
+          "bytes": 12225,
+          "sha256": "5a7370a2e5b3cd519716bdd64410894b7a3526166b83aa9e991f4f91895ca598"
+        },
+        {
+          "path": "numbers-ledger/src/mobilemoney/gateway.js",
+          "bytes": 12878,
+          "sha256": "a65772d7f8adb0b1089e851fdaae3da60eec4567d8a8430a97f2396f39c7a4c6"
+        },
+        {
+          "path": "numbers-ledger/src/mobilemoney/provider.js",
+          "bytes": 2846,
+          "sha256": "a33817915c2383dd6da58626eba7cccab30d899037ad3932dc2c318bf0a072ab"
+        },
+        {
+          "path": "numbers-ledger/src/mobilemoney/simulator.js",
+          "bytes": 6057,
+          "sha256": "595feaf2472cc1f157e431cf200d6d2679b8535ddf22c6a62b5d48b638374c83"
+        },
+        {
+          "path": "numbers-ledger/src/money.js",
+          "bytes": 1380,
+          "sha256": "c6f2827a5779aac538b83cd5a95673aa7f66ffcaf4c9e4c57a36aee99ebeb64c"
+        },
+        {
+          "path": "numbers-ledger/src/operator.js",
+          "bytes": 58244,
+          "sha256": "117d49ba09c64f3ec80758ef3d9c2e41ae55a88e58909ee49ca5c05d20bb14ca"
+        },
+        {
+          "path": "numbers-ledger/src/reporting.js",
+          "bytes": 25747,
+          "sha256": "4db3d5165a34827f3ea85b50ddd9561425c2a5c5b424aaf2023c77efc9bb1e15"
+        },
+        {
+          "path": "numbers-ledger/src/store/memory.js",
+          "bytes": 4592,
+          "sha256": "d05f2e79543ebd19d450d89e6c525a8df75930a1a88d48ae210b1a8d2fd766f8"
+        },
+        {
+          "path": "numbers-ledger/src/store/sqlite.js",
+          "bytes": 9053,
+          "sha256": "14e2906b3cca55b83983bfa17a7cfce51cd5bce3f1c49615059b9f0669cbc16f"
+        },
+        {
+          "path": "numbers-ledger/src/ussd/engine.js",
+          "bytes": 14500,
+          "sha256": "1acad23aa590e600e1bd4f1ce6f2c2f2e12fa3ea2bedff5e585383bea89d44f6"
+        }
+      ]
+    },
+    "evidence": {
+      "digest": "3ddc6ab8c5fa8f2a19c436141a6209c161f153e7b72123874139c08800799c5e",
+      "files": [
+        {
+          "path": "africa-numbers/game.test.js",
+          "bytes": 13724,
+          "sha256": "936b086485b97a37c4242f6aeacf8b32d8375dd6e681628591c9e3375f66e7b8"
+        },
+        {
+          "path": "numbers-ledger/README.md",
+          "bytes": 44912,
+          "sha256": "21dd651b5087664863638e160a00ca67c3ef014b68ecd5a28b3e1ca4378b01db"
+        },
+        {
+          "path": "numbers-ledger/test/concurrency.test.js",
+          "bytes": 5152,
+          "sha256": "72927ebe8f510bdd966671843c618f027c9daf716f5cabd8c57d2d983e5a2c66"
+        },
+        {
+          "path": "numbers-ledger/test/console-core.test.js",
+          "bytes": 7020,
+          "sha256": "2b96ad5e2360bcfc5b2f2a17fcfb5026ba656f0f5b35af7cb5f96a19b8c394c8"
+        },
+        {
+          "path": "numbers-ledger/test/custody.test.js",
+          "bytes": 9340,
+          "sha256": "fdd1e78fb228759affa42532558d1d32ae91c3aa46615cf229001abc8e361b42"
+        },
+        {
+          "path": "numbers-ledger/test/draw-lifecycle.test.js",
+          "bytes": 8606,
+          "sha256": "b8260a61ced9d4d1f6635d43d02b4cf5280c6c521a8c0647bd27c2d7b63be124"
+        },
+        {
+          "path": "numbers-ledger/test/draws.test.js",
+          "bytes": 4670,
+          "sha256": "9449d060c3b7a05ac7660490c6f3a20317974682cb68468ff3c030b32c3e98d2"
+        },
+        {
+          "path": "numbers-ledger/test/durability.test.js",
+          "bytes": 5997,
+          "sha256": "fa71751124740d79438034b8bbbf69a163209a205ae4f373d7b9f913ee7b8a8f"
+        },
+        {
+          "path": "numbers-ledger/test/fixtures/race-worker.js",
+          "bytes": 960,
+          "sha256": "37f11f4869a112bcde9d788257e350c99c99a070b4502bfb997443f6936c1af1"
+        },
+        {
+          "path": "numbers-ledger/test/fixtures/redeem-worker.js",
+          "bytes": 681,
+          "sha256": "d6f235aa76e9cc42e506ed1a9532714a1d1dee2739452563bbbbbe1b7b1d0b2d"
+        },
+        {
+          "path": "numbers-ledger/test/hardening.test.js",
+          "bytes": 13093,
+          "sha256": "5d99144faed0d3a3752fbc54a249a139072872c95bc109b30b9162f1f05af7b2"
+        },
+        {
+          "path": "numbers-ledger/test/helpers.js",
+          "bytes": 1061,
+          "sha256": "6d54fb34331048582abea1340ead099471cf1d8846d39a7dbc1f4abbfc865b12"
+        },
+        {
+          "path": "numbers-ledger/test/http.test.js",
+          "bytes": 18948,
+          "sha256": "f9bcb95a9dcbd1789a9e46db5eda32017809cc9f35704bda4cddcd2609dad861"
+        },
+        {
+          "path": "numbers-ledger/test/ledger.test.js",
+          "bytes": 5551,
+          "sha256": "902bace18a1fd6cc730dd7fe784e05b0cb1ebf65d8c6a3089e1244e1d2fff164"
+        },
+        {
+          "path": "numbers-ledger/test/manifest.test.js",
+          "bytes": 11639,
+          "sha256": "76f0287ee635a7f06c1196ca05d09bc7091c314157fe632f4ad1d0b09a076c57"
+        },
+        {
+          "path": "numbers-ledger/test/mobile-money.test.js",
+          "bytes": 16849,
+          "sha256": "9ea1f3b84df760fa59ed94c8599fe5ee7f0ab568b64dc2dff198ad7dce7b8eea"
+        },
+        {
+          "path": "numbers-ledger/test/operator-api.test.js",
+          "bytes": 34712,
+          "sha256": "ba651a03f8648dabcd9d133b9197ce06df15d3c5a1dae777c1e65c6fc1df5390"
+        },
+        {
+          "path": "numbers-ledger/test/operator.test.js",
+          "bytes": 10589,
+          "sha256": "d6fb9b4293094841ebca725204df374ddbc95da063732fe9c4b975301259c5f2"
+        },
+        {
+          "path": "numbers-ledger/test/player-protection.test.js",
+          "bytes": 14844,
+          "sha256": "b7aed688e968aa81803b5f0aa32b71ad85c3bc9ad3790231fe90b9ed4ce41bf4"
+        },
+        {
+          "path": "numbers-ledger/test/promotions.test.js",
+          "bytes": 15334,
+          "sha256": "b4079f313b94660fa6702524e7cc0e999a6a53a35bc7d503e0b9391a9a3b93a1"
+        },
+        {
+          "path": "numbers-ledger/test/reporting.test.js",
+          "bytes": 18016,
+          "sha256": "6e6f2d86c6fee3089eba19c8c455b40d547330556770e601172d7bbf310f2567"
+        },
+        {
+          "path": "numbers-ledger/test/runner-tooling.test.js",
+          "bytes": 9498,
+          "sha256": "9770a706485e579a91f30c00e502019b5d808f8ead7d5ada42f377a8f9abcc04"
+        },
+        {
+          "path": "numbers-ledger/test/simulation.test.js",
+          "bytes": 10322,
+          "sha256": "d43d1c93f9f78e10afa75d9401104d20fdf26c7afd7acb079af5a9a4e9be667e"
+        },
+        {
+          "path": "numbers-ledger/test/ussd.test.js",
+          "bytes": 13485,
+          "sha256": "d8217ad5413a6fca95d68369e8068865acd13fe23b0df4325e15e09e27902c96"
+        }
+      ]
+    }
+  }
+}

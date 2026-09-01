@@ -5,6 +5,7 @@ const { consoleFiles, SECURITY_HEADERS } = require('./static.js');
 const { Refusal } = require('../errors.js');
 const { Reports, toCsv, dayWindow } = require('../reporting.js');
 const { RateLimiter, LIMITS } = require('./limits.js');
+const { build } = require('../build.js');
 
 /**
  * The HTTP surface.
@@ -148,7 +149,12 @@ function createApp({
 
   // -------------------------------------------------------------------- public
 
-  route('GET', '/health', { auth: false }, () => ({ status: 200, body: { ok: true } }));
+  // The build is public on purpose. It is not a secret, and publishing it lets
+  // anyone - an inspector, a buyer, the operator's own monitoring - confirm
+  // which software they are talking to before asking it anything else.
+  route('GET', '/health', { auth: false }, () => ({
+    status: 200, body: { ok: true, build: build() }
+  }));
 
   // The console is a static page. It is served without a credential because it
   // contains no data: everything on it arrives from calls it makes afterwards
@@ -798,6 +804,9 @@ function createApp({
         subject: principal ? principal.subject : null,
         tokenId: principal && principal.tokenId ? principal.tokenId : null,
         idempotencyKey: req.headers['idempotency-key'] || null,
+        // Which software did this. A log spanning a deployment is otherwise a
+        // log about two different systems wearing one name.
+        build: build() === null ? null : build().short,
         secret: answer.secret === true
       });
     } catch (error) {

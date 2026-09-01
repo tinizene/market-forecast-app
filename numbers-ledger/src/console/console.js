@@ -914,6 +914,29 @@
     if (load) load().catch(fail);
   }
 
+  /**
+   * Show which software this console is talking to.
+   *
+   * Public and unauthenticated on purpose: an inspector should be able to read
+   * the build off the screen before anybody signs in.
+   */
+  function loadBuild() {
+    return window.fetch('/health').then(function (response) {
+      return response.json();
+    }).then(function (health) {
+      var tag = $('buildTag');
+      if (health.build) {
+        tag.textContent = 'build ' + health.build.short;
+        tag.title = health.build.id + '  generated ' + health.build.generatedAt;
+        tag.className = 'build';
+      } else {
+        tag.textContent = 'unversioned';
+        tag.title = 'No build manifest. This is not a certified build.';
+        tag.className = 'build unversioned';
+      }
+    }).catch(function () { /* the header is not worth failing a page over */ });
+  }
+
   function signIn(value) {
     setToken(value);
     return loadOverview().then(function () {
@@ -935,6 +958,7 @@
 
   function start() {
     bindForms();
+    loadBuild();
 
     $('signinForm').addEventListener('submit', function (event) {
       event.preventDefault();

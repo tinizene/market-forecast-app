@@ -398,7 +398,11 @@ test('it serves over real HTTP', async (t) => {
 
   const health = await fetch(`${base}/health`);
   assert.equal(health.status, 200);
-  assert.deepEqual(await health.json(), { ok: true });
+  const reported = await health.json();
+  assert.equal(reported.ok, true);
+  // The build is public: an inspector reads it before asking anything else.
+  // It is null in a tree with no manifest, which development is.
+  assert.ok(reported.build === null || typeof reported.build.short === 'string');
 
   const denied = await fetch(`${base}/operator/solvency`);
   assert.equal(denied.status, 401);

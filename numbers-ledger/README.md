@@ -32,12 +32,16 @@ directory as a module path. Pass a glob or a file.
 | `src/console/` | The operator console: no framework, no build step, no inline script |
 | `src/reporting.js` | Operator reporting, derived from the journal on the way past |
 | `src/custody.js` | Sealed draw seeds: k-of-n shares over GF(256), and the envelope they open |
+| `src/manifest.js` | What software this is: the build manifest, and the check against it |
+| `src/build.js` | Which build this process is running, for the log and the screen |
 | `src/draws.js` | Commit-reveal, result derivation, and the betting window |
 | `src/errors.js` | `Refusal` — an expected answer, told apart from a fault by its type |
 | `src/store/memory.js` | In-memory store — the default, for tests |
 | `src/store/sqlite.js` | Durable store on Node's built-in SQLite |
 | `bin/console-server.js` | The composition root: the only way to actually run any of this |
-| `test/` | 279 tests: unit, a simulated trading day, durability, concurrency, draws, channels, the API surface |
+| `bin/build-manifest.js` | Writes `MANIFEST.json` at release, and checks it in CI |
+| `bin/verify-build.js` | What an inspector runs on a production host |
+| `test/` | 295 tests: unit, a simulated trading day, durability, concurrency, draws, channels, the API surface |
 
 ## Durable or in-memory
 
@@ -336,6 +340,91 @@ And `buyFloat`'s refusal said the opposite of what it checks — commission is a
 discount on float, so the rule is that money paid cannot exceed float granted,
 and the message claimed the reverse.
 
+## What software is this
+
+A certificate names one build. The regulator then has to confirm that
+production is running *that* build and not something else, and the operator has
+to prove it without handing over source. Both come down to one number everybody
+can recompute.
+
+```
+npm run manifest         # write MANIFEST.json at release
+npm run manifest:check   # CI: is the manifest current for this tree
+npm run verify           # what an inspector runs on a production host
+```
+
+`GET /health` publishes the build id, the console shows it in the header, and
+every line of the audit log carries the short form — so a logged call is
+attributable to a build rather than to a date.
+
+### The digest is reproducible without this code
+
+Each file contributes one line in the format `sha256sum` already prints, in byte
+order of path, and the whole thing is hashed:
+
+```
+{ find numbers-ledger/src numbers-ledger/bin -type f;
+  echo numbers-ledger/package.json; echo africa-numbers/game.js; } \
+  | LC_ALL=C sort | xargs sha256sum | sha256sum
+```
+
+That command returns the build id. It matters because **a verifier cannot
+vouch for itself** — `bin/verify-build.js` is inside the manifest it checks, so
+a tampered copy would report success. The defence is not cleverness, it is that
+the format is boring enough to check another way. A test runs that pipeline and
+compares, and a second test pins the byte ordering the pipeline depends on with
+a filename pair that `LC_ALL=C sort` and `localeCompare` order differently.
+
+### The set is closed
+
+Verification walks the scanned directories and fails on a file that is present
+and *unlisted*, not only on one that changed — and the walk is unfiltered, so a
+file cannot escape by choosing an extension the generator would have skipped.
+
+This is the property that lets a manifest prove an absence, which is the reason
+it exists. A laboratory needs to drive the system and force outcomes to exercise
+payouts. That capability is the most dangerous thing this software could
+contain, so it is built as code that is **absent from the certified build**
+rather than disabled within it — and a verifier that only checked the files it
+knew about could not demonstrate anything of the kind.
+
+### Forbidden capabilities
+
+Alongside the closed set, the runtime tree is scanned for identifiers that must
+not appear in it at all: `forceResult`, `forceOutcome`, `forceDraw`,
+`overrideResult`, `rigDraw`, `LAB_MODE`, `TEST_MODE`. A flag called
+`allowForcedOutcomes` sitting in production, set to false, is a finding; a build
+that cannot name the concept is an argument.
+
+The manifest holds those words as hashes, and `src/manifest.js` never contains
+them. That is not obfuscation. The first version listed them in plain text and
+the scanner immediately failed on itself, which left a choice between exempting
+the scanner from its own rule — an exemption is exactly where a reviewer looks —
+and never writing the words down. Hashing takes the exemption away. A hit still
+names the token, because the token comes out of the file being scanned rather
+than out of the scanner, and a test asserts that `manifest.js` names none of
+them.
+
+It is a tripwire, not a proof: it catches a capability somebody added and named,
+not one assembled from string fragments. Its value is making the absence
+explicit and checkable.
+
+### Two sections, one build id
+
+`runtime` is what executes in production, and its digest **is** the build id.
+`evidence` — the test suite and the README — is hashed so a submitted suite is
+identifiable, and kept out of the build id so that fixing a typo in this file is
+not a new build needing a new certificate. A test asserts both halves of that.
+
+### What it cannot do
+
+The manifest sits next to the code it describes, so whoever can change the code
+can regenerate the manifest. The number means something only because the
+laboratory and the regulator were told it out of band, and because verification
+recomputes it from the files rather than reading it back. Nothing here is a
+substitute for signing a release with a key that does not live on the build
+machine — that is the next thing to build, and it is not built.
+
 ## Custody of the draw seed
 
 The commit-reveal scheme is only worth as much as the custody of the seed
@@ -574,6 +663,12 @@ and a plain download link therefore cannot carry it.
   does not lock out another.
 - **The audit log carries no token, no body and no PIN**, including on the one
   call that hands over custody shares.
+- **The build id is reproducible with `sha256sum` and `sort`** — the test runs
+  the pipeline and compares.
+- **A file that is present and unlisted fails verification**, whatever its
+  extension.
+- **A change to a test does not change the build id**, and a change to a runtime
+  file does.
 - **Balances are derivable.** A test rebuilds every balance from the journal
   alone and compares. A stored balance that disagrees with its entries is the
   classic ledger bug; the only way to be immune is not to keep one.

@@ -36,7 +36,7 @@
 // rejects as a unit, so the Tailwind CDN is now cached best-effort alongside the
 // shell rather than inside it.
 //
-const CACHE_NAME = 'scere-training-v24';
+const CACHE_NAME = 'scere-training-v25';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -51,6 +51,7 @@ const ASSETS_TO_CACHE = [
   './pwa.js',
   './ui.js',
   './nav.js',
+  './theme.js',
   './i18n.js',
   // The locale files, so a language someone has chosen survives going offline. Only
   // the ones that exist: addAll rejects as a unit, and a 404 on a locale we have not

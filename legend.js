@@ -20,7 +20,7 @@ function renderLegend() {
       (c) => `
         <div class="flex items-start gap-2.5">
           <span class="shrink-0 mt-0.5 text-[10px] font-bold uppercase tracking-wide px-2 py-1 rounded-md border ${legendEscapeHtml(c.swatchClass)}">${legendEscapeHtml(c.label)}</span>
-          <p class="text-xs text-slate-300 leading-relaxed">${legendEscapeHtml(c.description)}</p>
+          <p class="text-xs u-fg-body leading-relaxed">${legendEscapeHtml(c.description)}</p>
         </div>
       `
     )
@@ -29,20 +29,20 @@ function renderLegend() {
   const termRows = (legend.terms || [])
     .map(
       (t) => `
-        <div class="border-b border-slate-700/40 last:border-0 pb-2 last:pb-0">
-          <p class="text-xs font-semibold text-white">${legendEscapeHtml(t.term)}</p>
-          <p class="text-xs text-slate-300 leading-relaxed mt-0.5">${legendEscapeHtml(t.definition)}</p>
+        <div class="border-b u-bd last:border-0 pb-2 last:pb-0">
+          <p class="text-xs font-semibold u-fg">${legendEscapeHtml(t.term)}</p>
+          <p class="text-xs u-fg-body leading-relaxed mt-0.5">${legendEscapeHtml(t.definition)}</p>
         </div>
       `
     )
     .join('');
 
   root.innerHTML = `
-    <details class="mb-4 rounded-xl border border-slate-700 bg-slate-800/60 px-4 py-3">
-      <summary class="cursor-pointer text-sm font-semibold text-white marker:text-blue-400">How to read this page — colors &amp; terms</summary>
+    <details class="mb-4 rounded-xl border u-bd u-bg-card-soft px-4 py-3">
+      <summary class="cursor-pointer text-sm font-semibold u-fg marker:u-fg-info">How to read this page — colors &amp; terms</summary>
       <div class="mt-3 space-y-2">${colorRows}</div>
       <div class="mt-4 space-y-3">${termRows}</div>
-      <p class="mt-3 text-[11px] text-slate-500">Want the fuller version, with our own report used as the worked example? See the <a href="./due-diligence.html" class="underline decoration-slate-600 underline-offset-2 hover:text-sky-400">Due Diligence</a> hub.</p>
+      <p class="mt-3 text-[11px] u-fg-faint">Want the fuller version, with our own report used as the worked example? See the <a href="./due-diligence.html" class="underline u-dec-quiet underline-offset-2 hover:u-fg-link">Due Diligence</a> hub.</p>
     </details>
   `;
 }

@@ -10,7 +10,6 @@ name: App checks
 on:
   pull_request:
     paths-ignore:
-      - 'reports/**'
       - 'data/fx-reports/**'
       - 'africa-numbers/**'
       - 'numbers-ledger/**'
@@ -19,7 +18,6 @@ on:
   push:
     branches: [main]
     paths-ignore:
-      - 'reports/**'
       - 'data/fx-reports/**'
       - 'africa-numbers/**'
       - 'numbers-ledger/**'
@@ -69,6 +67,12 @@ jobs:
       - name: Nothing names a colour outside the stylesheet
         if: '!cancelled()'
         run: node scripts/check-theme-tokens.js
+
+      # The published reports inline the palette because they cannot link styles.css.
+      # This fails if that inlined copy has fallen behind the real one.
+      - name: The reports index carries the current tokens
+        if: '!cancelled()'
+        run: node scripts/sync-report-theme.js --check
 
       # This one needs a browser. Rather than hard-code a path that quietly moves when
       # the runner image changes, find whatever is installed and say which was used.

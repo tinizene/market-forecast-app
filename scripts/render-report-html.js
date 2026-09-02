@@ -114,37 +114,42 @@ function renderMarkdown(md) {
 
 // ---------- page ----------
 
+const { tokens, PREPAINT } = require('./lib/theme-css');
+
+// Every colour here is one of the app's tokens. The report used to carry its own
+// cyan-and-green palette, which is exactly why it stayed dark when the rest of the
+// product gained a light theme: nothing behind a var() could reach it.
 const STYLES = `
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:linear-gradient(135deg,#0f1419 0%,#1a1f2e 100%);color:#e0e0e0;
-  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;padding:20px}
+body{background:var(--gradient-app);background-attachment:fixed;color:var(--text-body);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;padding:20px;min-height:100vh}
 .container{max-width:1200px;margin:0 auto}
-header{text-align:center;margin-bottom:40px;padding:30px 0;border-bottom:2px solid #2a3f5f}
-h1{font-size:2.2em;margin-bottom:10px;background:linear-gradient(135deg,#00d9ff,#0099ff);
+header{text-align:center;margin-bottom:40px;padding:30px 0;border-bottom:2px solid var(--border-strong)}
+h1{font-size:2.2em;margin-bottom:10px;background:linear-gradient(135deg,var(--cta-from),var(--cta-to));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.date{color:#808080;margin-top:10px;font-size:1.1em}
-.disclaimer{font-size:.9em;color:#a0a0a0;font-style:italic;margin-top:10px}
-.summary{background:linear-gradient(135deg,#1a2940 0%,#1a2f42 100%);border-left:4px solid #00d9ff;
+.date{color:var(--text-tertiary);margin-top:10px;font-size:1.1em}
+.disclaimer{font-size:.9em;color:var(--text-secondary);font-style:italic;margin-top:10px}
+.summary{background:var(--bg-elevated);border-left:4px solid var(--primary);
   padding:22px;margin-bottom:30px;border-radius:8px}
 .summary .metric{display:inline-block;margin-right:28px}
-.summary .label{display:block;color:#a0a0a0;font-size:.85em}
-.summary .value{color:#00ff88;font-size:1.5em;font-weight:bold}
-.section{background:#1a1f2e;border:1px solid #2a3f5f;border-radius:8px;padding:26px;margin-bottom:26px}
-.section h2{color:#00d9ff;margin-bottom:15px;font-size:1.35em;border-bottom:2px solid #2a3f5f;padding-bottom:10px}
-.section h3{color:#00ff88;margin:20px 0 12px;font-size:1.08em}
-.section h4,.section h5,.section h6{color:#00ff88;margin:16px 0 10px;font-size:1em}
-p{margin:14px 0;color:#c0c0c0}
-strong{color:#e6e6e6}
-code{background:#252d3a;padding:1px 5px;border-radius:3px;font-size:.92em}
-a{color:#00d9ff}
-ul,ol{margin:12px 0 12px 22px;color:#c0c0c0}
+.summary .label{display:block;color:var(--text-secondary);font-size:.85em}
+.summary .value{color:var(--success-text);font-size:1.5em;font-weight:bold}
+.section{background:var(--bg-card);border:1px solid var(--border-default);border-radius:8px;padding:26px;margin-bottom:26px}
+.section h2{color:var(--primary-text);margin-bottom:15px;font-size:1.35em;border-bottom:2px solid var(--border-strong);padding-bottom:10px}
+.section h3{color:var(--success-text);margin:20px 0 12px;font-size:1.08em}
+.section h4,.section h5,.section h6{color:var(--success-text);margin:16px 0 10px;font-size:1em}
+p{margin:14px 0;color:var(--text-body)}
+strong{color:var(--text-primary)}
+code{background:var(--bg-elevated);padding:1px 5px;border-radius:3px;font-size:.92em}
+a{color:var(--link-text)}
+ul,ol{margin:12px 0 12px 22px;color:var(--text-body)}
 li{margin:6px 0}
 .table-wrap{overflow-x:auto;margin:16px 0}
 table{width:100%;border-collapse:collapse;font-size:.93em;min-width:520px}
-th{background:#252d3a;color:#00d9ff;padding:11px;text-align:left;border-bottom:2px solid #2a3f5f;font-weight:600}
-td{padding:9px 11px;border-bottom:1px solid #2a3f5f;vertical-align:top}
-tr:hover{background:rgba(0,217,255,.05)}
-.footer{text-align:center;padding:30px 0;border-top:1px solid #2a3f5f;color:#808080;font-size:.9em;margin-top:40px}
+th{background:var(--bg-elevated);color:var(--primary-text);padding:11px;text-align:left;border-bottom:2px solid var(--border-strong);font-weight:600}
+td{padding:9px 11px;border-bottom:1px solid var(--border-default);vertical-align:top}
+tr:hover{background:var(--bg-row)}
+.footer{text-align:center;padding:30px 0;border-top:1px solid var(--border-default);color:var(--text-tertiary);font-size:.9em;margin-top:40px}
 @media(max-width:640px){body{padding:12px}h1{font-size:1.6em}.section{padding:18px}}
 `;
 
@@ -182,7 +187,9 @@ function renderHtml(data) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Institutional FX Dashboard &amp; Intelligence Report — ${esc(label)}</title>
-<style>${STYLES}</style>
+<meta name="theme-color" content="#0f172a">
+${PREPAINT}
+<style>${tokens()}${STYLES}</style>
 </head>
 <body>
 <div class="container">

@@ -635,7 +635,12 @@ design proposals asserted "verified high contrast" for pairs that measured 2.49:
   Chromium and fails on two labels overlapping, or a data line drawn across a label.
   Boxes come from `getBoundingClientRect()`, not `getBBox()`: the latter ignores
   transforms and reports a rotated axis title as lying across the tick labels
-- `.github/workflows/app-checks.yml` — runs all six of the above on every pull request
+- `scripts/lib/theme-css.js`, `scripts/sync-report-theme.js` — the published FX reports
+  under `/reports` are standalone documents behind the middleware's basic auth, so they
+  cannot link `styles.css`. They inline both palettes instead, read from the real
+  stylesheet, which is why they follow the theme without keeping a second copy of it.
+  The sync is idempotent and `--check` fails when a report falls behind
+- `.github/workflows/app-checks.yml` — runs all seven of the above on every pull request
   and every push to `main`. Before it existed they ran only when someone remembered
 - `data/course/i18n/<lang>.json` — the course translation **overlay**: `sha256(english)[:12]`
   → `{en, <lang>}`, so English stays the single source of truth, a proofreader reads both

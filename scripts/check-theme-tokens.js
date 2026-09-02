@@ -24,7 +24,8 @@ const ROOT = path.join(__dirname, '..');
 const PAGES = ['index.html', 'learn.html', 'lesson.html', 'track.html', 'research.html', 'privacy-policy.html'];
 const SCRIPTS = ['app.js', 'learn.js', 'research.js', 'legend.js', 'nav.js', 'ui.js', 'progress.js',
   'theme.js', 'data/course/src/forex-content.js', 'data/course/src/crypto-content.js',
-  'data/course/src/stocks-svgs.js', 'data/course/src/crypto-svgs-ch456.js'];
+  'data/course/src/stocks-svgs.js', 'data/course/src/crypto-svgs-ch456.js',
+  'scripts/render-report-html.js'];
 
 // styles.css is where colour belongs; theme.js only ever reads it back. The SVG
 // diagram library in learn.js is authored art with its own ground baked in — those
@@ -34,7 +35,7 @@ const COLOUR_UTILITY = /\b(bg|text|border|from|to|via|decoration|ring|placeholde
 const RAW_COLOUR = /#[0-9a-fA-F]{3,8}\b|\brgba?\([^)]*\)/g;
 
 const problems = [];
-const checked = { diagrams: 0 };
+const checked = { diagrams: 0, reports: 0 };
 
 // Nothing is exempt any more. The 83 lesson diagrams used to be, because they were
 // authored art with a dark ground baked in; they are drawn through tokens now, so a
@@ -120,9 +121,47 @@ for (const page of PAGES) {
   else checked.diagrams = diagrams;
 }
 
+// The published FX reports are standalone documents — they cannot link styles.css, so
+// they inline the token blocks instead. Literals are allowed inside those blocks and
+// nowhere else, exactly as in styles.css itself. These are generated files, so a
+// literal here means someone edited output instead of the renderer, or the renderer
+// changed and the reports were never re-rendered.
+{
+  const dir = path.join(ROOT, 'reports');
+  if (fs.existsSync(dir)) {
+    let pages = 0;
+    for (const file of fs.readdirSync(dir).filter((f) => f.endsWith('.html'))) {
+      const raw = fs.readFileSync(path.join(dir, file), 'utf8');
+      pages++;
+      const rules = raw
+        .replace(/:root(\[data-theme="light"\])?\s*\{[\s\S]*?\n?\}/g, '')
+        .replace(/<!--[\s\S]*?-->/g, '');
+      const literals = [...new Set(rules.match(RAW_COLOUR) || [])]
+        .filter((c) => !rules.includes(`name="theme-color" content="${c}"`));
+      if (literals.length) {
+        problems.push(`reports/${file}: ${literals.length} colour literal(s) outside the inlined token blocks: ${literals.slice(0, 5).join(', ')}`
+          + `\n      Edit scripts/render-report-html.js and re-render, rather than the output.`);
+      }
+      if (!raw.includes("localStorage.getItem('scere-theme')")) {
+        problems.push(`reports/${file}: no pre-paint theme block — this report flashes dark before it goes light`);
+      }
+      // Two published reports were truncated mid-file, with a <script> that never
+      // closed. The page still rendered most of its prose, so nothing complained.
+      const opens = (raw.match(/<script\b/g) || []).length;
+      const closes = (raw.match(/<\/script>/g) || []).length;
+      if (opens !== closes || !/<\/html>\s*$/.test(raw)) {
+        problems.push(`reports/${file}: truncated — ${opens} <script> vs ${closes} </script>`
+          + `${/<\/html>\s*$/.test(raw) ? '' : ', and the document never closes'}`);
+      }
+    }
+    if (!pages) problems.push('reports/: no published reports found to check');
+    else checked.reports = pages;
+  }
+}
+
 if (problems.length) {
   console.error(`\n${problems.length} theme problem(s):`);
   problems.forEach((p) => console.error(`  ✗ ${p}`));
   process.exit(1);
 }
-console.log(`\n${PAGES.length} pages, ${SCRIPTS.length} scripts and ${checked.diagrams} shipped diagrams name no colour of their own`);
+console.log(`\n${PAGES.length} pages, ${SCRIPTS.length} scripts, ${checked.diagrams} shipped diagrams and ${checked.reports} published reports name no colour of their own`);

@@ -2,26 +2,199 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="theme-color" content="#0f172a">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var p=window.localStorage.getItem('scere-theme');if(p!=='light'&&p!=='dark'){p=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark';}document.documentElement.setAttribute('data-theme',p);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 <title>Institutional FX Dashboard & Intelligence Report — July 7, 2026</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
+/* theme:tokens */
+:root{
+  --bg-app: #0f172a;
+  --bg-app-deep: #020617;
+  --bg-app-low: #0c1222;
+  --bg-elevated: #172033;
+  --bg-card: #1e293b;
+  --bg-card-hover: #243044;
+  --bg-row: rgba(30, 41, 59, 0.55);
+  --bg-sunken: rgba(15, 23, 42, 0.6);
+  --bg-dialog: #131c31;
+  --gradient-app:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(45, 212, 191, 0.14), transparent),
+    radial-gradient(ellipse 60% 50% at 100% 50%, rgba(99, 102, 241, 0.10), transparent),
+    radial-gradient(ellipse 50% 40% at 0% 80%, rgba(56, 189, 248, 0.08), transparent),
+    linear-gradient(180deg, #0f172a 0%, #020617 50%, #0c1222 100%);
+  --text-primary: #f1f5f9;
+  --text-body: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #8195ae;
+  --text-inverse: #0f172a;
+  --primary-300: #5eead4;
+  --primary-400: #2dd4bf;
+  --primary-500: #14b8a6;
+  --primary-600: #0d9488;
+  --primary-700: #0f766e;
+  --primary: var(--primary-400);
+  --primary-text: #5eead4;
+  --primary-soft: rgba(45, 212, 191, 0.12);
+  --primary-border: rgba(45, 212, 191, 0.35);
+  --cta-from: #2dd4bf;
+  --cta-to: #22d3ee;
+  --cta-text: var(--text-inverse);
+  --focus-color: var(--primary-400);
+  --link-text: #7dd3fc;
+  --link-underline: rgba(125, 211, 252, 0.38);
+  --skip-bg: var(--primary-700);
+  --skip-fg: var(--text-primary);
+  --success-400: #4ade80;
+  --success-500: #22c55e;
+  --success-soft: rgba(34, 197, 94, 0.12);
+  --success-border: rgba(34, 197, 94, 0.4);
+  --success-text: #86efac;
+  --premium-400: #fbbf24;
+  --premium-500: #f59e0b;
+  --premium-soft: rgba(245, 158, 11, 0.14);
+  --premium-border: rgba(245, 158, 11, 0.4);
+  --premium-text: #fcd34d;
+  --warning-500: #eab308;
+  --warning-soft: rgba(234, 179, 8, 0.12);
+  --warning-border: rgba(234, 179, 8, 0.4);
+  --warning-text: #fde68a;
+  --danger-500: #ef4444;
+  --danger-soft: rgba(239, 68, 68, 0.12);
+  --danger-border: rgba(239, 68, 68, 0.4);
+  --danger-text: #fca5a5;
+  --info-500: #0ea5e9;
+  --info-soft: rgba(14, 165, 233, 0.12);
+  --info-border: rgba(14, 165, 233, 0.35);
+  --info-text: #7dd3fc;
+  --practice-soft: rgba(167, 139, 250, 0.12);
+  --practice-border: #a78bfa;
+  --practice-text: #c4b5fd;
+  --pos-text: #4ade80;
+  --neg-text: #f87171;
+  --diagram-bg: #0f172a;
+  --diagram-panel: #1e293b;
+  --diagram-text: #e2e8f0;
+  --diagram-strong: #cbd5e1;
+  --diagram-muted: #94a3b8;
+  --diagram-faint: #8195ae;
+  --diagram-grid: #334155;
+  --diagram-axis: #6b7f97;
+  --diagram-block: #ffffff;
+  --diagram-block-2: #e2e8f0;
+  --diagram-band: #cbd5e1;
+  --diagram-block-ink: #0f172a;
+  --shadow-soft: rgba(0, 0, 0, 0.30);
+  --shadow: rgba(0, 0, 0, 0.45);
+  --shadow-strong: rgba(0, 0, 0, 0.70);
+  --border-subtle: rgba(148, 163, 184, 0.10);
+  --border-default: rgba(148, 163, 184, 0.18);
+  --border-strong: rgba(51, 65, 85, 0.8);
+  --reading-scale: 1;
+  --reading-leading: 1.65;
+  --reading-measure: 68ch;}
+:root[data-theme="light"]{
+  --bg-app: #f7fbfa;
+  --bg-app-deep: #eaf4f2;
+  --bg-app-low: #eef6f4;
+  --bg-elevated: #eef5f3;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f2f8f7;
+  --bg-row: rgba(234, 244, 242, 0.75);
+  --bg-sunken: rgba(226, 239, 236, 0.55);
+  --bg-dialog: #ffffff;
+  --gradient-app:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(13, 148, 136, 0.13), transparent),
+    radial-gradient(ellipse 60% 50% at 100% 50%, rgba(37, 99, 235, 0.07), transparent),
+    radial-gradient(ellipse 50% 40% at 0% 80%, rgba(2, 132, 199, 0.06), transparent),
+    linear-gradient(180deg, #f7fbfa 0%, #eef6f4 50%, #f4faf8 100%);
+  --text-primary: #0d1b2a;
+  --text-body: #1f2c3a;
+  --text-secondary: #45535f;
+  --text-tertiary: #5a6875;
+  --text-inverse: #ffffff;
+  --primary-300: #99f6e4;
+  --primary-400: #2dd4bf;
+  --primary-500: #14b8a6;
+  --primary-600: #0d9488;
+  --primary-700: #0f766e;
+  --primary: var(--primary-700);
+  --primary-text: #115e59;
+  --primary-soft: rgba(13, 148, 136, 0.12);
+  --primary-border: rgba(13, 148, 136, 0.34);
+  --cta-from: #0f766e;
+  --cta-to: #0e7490;
+  --cta-text: #ffffff;
+  --focus-color: #0f766e;
+  --link-text: #0369a1;
+  --link-underline: rgba(3, 105, 161, 0.35);
+  --skip-bg: #0f766e;
+  --skip-fg: #ffffff;
+  --success-400: #15803d;
+  --success-500: #16a34a;
+  --success-soft: rgba(22, 163, 74, 0.12);
+  --success-border: rgba(22, 163, 74, 0.40);
+  --success-text: #166534;
+  --premium-400: #b45309;
+  --premium-500: #d97706;
+  --premium-soft: rgba(217, 119, 6, 0.14);
+  --premium-border: rgba(217, 119, 6, 0.45);
+  --premium-text: #92400e;
+  --warning-500: #a16207;
+  --warning-soft: rgba(202, 138, 4, 0.14);
+  --warning-border: rgba(202, 138, 4, 0.45);
+  --warning-text: #854d0e;
+  --danger-500: #dc2626;
+  --danger-soft: rgba(220, 38, 38, 0.10);
+  --danger-border: rgba(220, 38, 38, 0.40);
+  --danger-text: #b91c1c;
+  --info-500: #0284c7;
+  --info-soft: rgba(2, 132, 199, 0.10);
+  --info-border: rgba(2, 132, 199, 0.35);
+  --info-text: #1d4ed8;
+  --practice-soft: rgba(124, 58, 237, 0.10);
+  --practice-border: #7c3aed;
+  --practice-text: #6d28d9;
+  --pos-text: #15803d;
+  --neg-text: #b91c1c;
+  --diagram-bg: #ffffff;
+  --diagram-panel: #f0f6f5;
+  --diagram-text: #1f2c3a;
+  --diagram-strong: #334155;
+  --diagram-muted: #45535f;
+  --diagram-faint: #5a6875;
+  --diagram-grid: #cbdad7;
+  --diagram-axis: #64748b;
+  --diagram-block: #334155;
+  --diagram-block-2: #3d4d5c;
+  --diagram-band: #475569;
+  --diagram-block-ink: #f1f5f9;
+  --shadow-soft: rgba(15, 42, 55, 0.06);
+  --shadow: rgba(15, 42, 55, 0.10);
+  --shadow-strong: rgba(15, 42, 55, 0.16);
+  --border-subtle: rgba(15, 42, 55, 0.08);
+  --border-default: rgba(15, 42, 55, 0.14);
+  --border-strong: rgba(15, 42, 55, 0.26);}
+/* /theme:tokens */
   :root {
-    --bg: #0b0f17;
-    --card-bg: #131a26;
-    --card-border: #232d3f;
-    --text: #e6ebf2;
-    --text-dim: #9aa8bd;
-    --green: #2ecc71;
-    --red: #e74c3c;
-    --amber: #f0a93a;
-    --blue: #4f8ef7;
-    --purple: #a06cf0;
+    /* Local names kept so this page's rules read unchanged; each now points at
+       the app token that plays the same part, which is what lets it follow the theme. */
+    --bg: var(--bg-app);
+    --card-bg: var(--bg-app);
+    --card-border:var(--bg-card);
+    --text: var(--text-primary);
+    --text-dim: var(--info-text);
+    --green: var(--success-text);
+    --red: var(--danger-text);
+    --amber: var(--danger-text);
+    --blue: var(--info-text);
+    --purple: var(--info-text);
   }
   * { box-sizing: border-box; }
   body {
-    background: var(--bg);
-    color: var(--text);
+    background:var(--bg);
+    color:var(--text);
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     margin: 0;
     padding: 20px;
@@ -34,69 +207,69 @@
   .header h1 {
     font-size: 26px;
     margin: 0 0 6px 0;
-    background: linear-gradient(90deg, var(--blue), var(--purple));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    background:linear-gradient(90deg, var(--blue), var(--purple));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
   }
   .disclaimer {
     text-align: center;
-    color: var(--text-dim);
+    color:var(--text-dim);
     font-size: 12px;
     max-width: 900px;
     margin: 0 auto 24px auto;
     padding-bottom: 16px;
-    border-bottom: 1px solid var(--card-border);
+    border-bottom:1px solid var(--card-border);
   }
   .grid { display: grid; grid-template-columns: 1fr; gap: 18px; max-width: 1100px; margin: 0 auto; }
   .card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 12px;
+    background:var(--card-bg);
+    border:1px solid var(--card-border);
+    border-radius:12px;
     padding: 20px 22px;
   }
   .card h2 {
     font-size: 17px;
     margin: 0 0 12px 0;
-    color: var(--text);
+    color:var(--text);
     display: flex;
     align-items: center;
     gap: 8px;
   }
-  .card h2 .num { color: var(--blue); font-weight: 700; }
-  .card h3 { font-size: 14px; margin: 16px 0 6px 0; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; }
+  .card h2 .num { color:var(--blue); font-weight: 700; }
+  .card h3 { font-size: 14px; margin: 16px 0 6px 0; color:var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; }
   p { margin: 6px 0; font-size: 14px; }
-  table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
-  th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--card-border); vertical-align: top; }
-  th { color: var(--text-dim); font-weight: 600; font-size: 12px; text-transform: uppercase; }
-  tr:last-child td { border-bottom: none; }
-  .tag { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 11px; font-weight: 700; }
-  .tag-green { background: rgba(46,204,113,0.15); color: var(--green); }
-  .tag-red { background: rgba(231,76,60,0.15); color: var(--red); }
-  .tag-amber { background: rgba(240,169,58,0.15); color: var(--amber); }
-  .bull { color: var(--green); font-weight: 600; }
-  .bear { color: var(--red); font-weight: 600; }
-  .neutral { color: var(--amber); font-weight: 600; }
+  table { width: 100%; border-collapse:collapse; margin: 10px 0; font-size: 13px; }
+  th, td { text-align: left; padding: 7px 8px; border-bottom:1px solid var(--card-border); vertical-align: top; }
+  th { color:var(--text-dim); font-weight: 600; font-size: 12px; text-transform: uppercase; }
+  tr:last-child td { border-bottom:none; }
+  .tag { display: inline-block; padding: 2px 9px; border-radius:999px; font-size: 11px; font-weight: 700; }
+  .tag-green { background:var(--success-soft); color:var(--green); }
+  .tag-red { background:var(--danger-soft); color:var(--red); }
+  .tag-amber { background:var(--danger-soft); color:var(--amber); }
+  .bull { color:var(--green); font-weight: 600; }
+  .bear { color:var(--red); font-weight: 600; }
+  .neutral { color:var(--amber); font-weight: 600; }
   .stat-row { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
-  .big-stat { font-size: 42px; font-weight: 800; color: var(--blue); }
-  .big-stat.conf { color: var(--purple); }
-  .stat-label { color: var(--text-dim); font-size: 12px; text-transform: uppercase; }
+  .big-stat { font-size: 42px; font-weight: 800; color:var(--blue); }
+  .big-stat.conf { color:var(--purple); }
+  .stat-label { color:var(--text-dim); font-size: 12px; text-transform: uppercase; }
   .delta { font-size: 14px; font-weight: 700; }
   .chart-wrap { position: relative; height: 280px; margin: 14px 0; }
   .chart-wrap.tall { height: 230px; }
-  .idea-card { border: 1px solid var(--card-border); border-radius: 10px; padding: 16px; margin: 14px 0; background: rgba(255,255,255,0.02); }
-  .idea-card h3 { color: var(--text); font-size: 16px; margin-top: 0; text-transform: none; letter-spacing: 0; }
-  .confirm-block { background: rgba(240,169,58,0.08); border-left: 3px solid var(--amber); padding: 10px 14px; margin: 10px 0; border-radius: 4px; font-size: 13px; }
-  .confirm-block strong { color: var(--amber); }
+  .idea-card { border:1px solid var(--card-border); border-radius:10px; padding: 16px; margin: 14px 0; background:var(--bg-row); }
+  .idea-card h3 { color:var(--text); font-size: 16px; margin-top: 0; text-transform: none; letter-spacing: 0; }
+  .confirm-block { background:var(--danger-soft); border-left:3px solid var(--amber); padding: 10px 14px; margin: 10px 0; border-radius:4px; font-size: 13px; }
+  .confirm-block strong { color:var(--amber); }
   .field-row { display: flex; gap: 10px; margin: 6px 0; font-size: 13px; }
-  .field-label { color: var(--text-dim); min-width: 130px; font-weight: 600; }
-  .notrade-callout { background: rgba(231,76,60,0.08); border-left: 3px solid var(--red); padding: 10px 14px; margin: 10px 0; border-radius: 4px; font-size: 13px; }
+  .field-label { color:var(--text-dim); min-width: 130px; font-weight: 600; }
+  .notrade-callout { background:var(--danger-soft); border-left:3px solid var(--red); padding: 10px 14px; margin: 10px 0; border-radius:4px; font-size: 13px; }
   .gauge-wrap { display:flex; align-items:center; gap: 24px; flex-wrap: wrap; }
-  .perf-outcome-pending { color: var(--amber); font-weight: 700; }
-  .perf-outcome-played { color: var(--green); font-weight: 700; }
-  .perf-outcome-invalid { color: var(--red); font-weight: 700; }
-  .footer-note { text-align: center; color: var(--text-dim); font-size: 12px; margin: 30px auto; max-width: 900px; }
-  code { background: rgba(255,255,255,0.06); padding: 1px 5px; border-radius: 4px; }
+  .perf-outcome-pending { color:var(--amber); font-weight: 700; }
+  .perf-outcome-played { color:var(--green); font-weight: 700; }
+  .perf-outcome-invalid { color:var(--red); font-weight: 700; }
+  .footer-note { text-align: center; color:var(--text-dim); font-size: 12px; margin: 30px auto; max-width: 900px; }
+  code { background:var(--bg-row); padding: 1px 5px; border-radius:4px; }
   @media (max-width: 700px) {
     body { padding: 12px; }
     .card { padding: 14px; }
@@ -400,8 +573,8 @@
 <div class="footer-note">Appelton Intelligent Trading — internal use only. Generated via automated daily research process.</div>
 
 <script>
-Chart.defaults.color = '#9aa8bd';
-Chart.defaults.borderColor = '#232d3f';
+Chart.defaults.color = T('--info-text');
+Chart.defaults.borderColor = T('--border-default');
 
 // Section 3: Central Bank Rates grouped bar
 new Chart(document.getElementById('cbChart'), {
@@ -411,7 +584,7 @@ new Chart(document.getElementById('cbChart'), {
     datasets: [{
       label: 'Policy Rate (%)',
       data: [3.75, 2.25, 3.75, 1.00, 2.25, 4.35, 2.25, 0.00],
-      backgroundColor: ['#4f8ef7','#4f8ef7','#4f8ef7','#e74c3c','#4f8ef7','#2ecc71','#f0a93a','#9aa8bd']
+      backgroundColor: [T('--info-soft'),T('--info-soft'),T('--info-soft'),T('--danger-soft'),T('--info-soft'),T('--success-text'),T('--danger-text'),T('--info-text')]
     }]
   },
   options: {
@@ -431,7 +604,7 @@ new Chart(document.getElementById('tier1Chart'), {
       data: [0.0, 0.13, 0.05, 0.21, -0.13, 0.26, -0.17],
       backgroundColor: function(ctx) {
         const v = ctx.raw;
-        return v >= 0 ? '#2ecc71' : '#e74c3c';
+        return v >= 0 ? T('--success-text') : T('--danger-text');
       }
     }]
   },
@@ -450,7 +623,7 @@ new Chart(document.getElementById('strengthChart'), {
     datasets: [{
       label: 'Strength Score (0-100)',
       data: [41, 45, 48, 51, 56, 61, 65, 69],
-      backgroundColor: ['#e74c3c','#e74c3c','#f0a93a','#f0a93a','#f0a93a','#2ecc71','#2ecc71','#2ecc71']
+      backgroundColor: [T('--danger-soft'),T('--danger-soft'),T('--danger-soft'),T('--danger-soft'),T('--danger-soft'),T('--success-text'),T('--success-text'),T('--success-text')]
     }]
   },
   options: {
@@ -467,7 +640,7 @@ new Chart(document.getElementById('vixGauge'), {
     labels: ['VIX (15.81)', 'Remaining'],
     datasets: [{
       data: [15.81, 40 - 15.81],
-      backgroundColor: ['#2ecc71', '#232d3f'],
+      backgroundColor: [T('--success-soft'), T('--bg-card')],
       borderWidth: 0,
       circumference: 180,
       rotation: 270
@@ -488,7 +661,7 @@ new Chart(document.getElementById('equityChart'), {
     datasets: [{
       label: 'YTD % Return',
       data: [7.6, 37.6, 88],
-      backgroundColor: ['#4f8ef7','#2ecc71','#2ecc71']
+      backgroundColor: [T('--info-soft'),T('--success-soft'),T('--success-soft')]
     }]
   },
   options: {

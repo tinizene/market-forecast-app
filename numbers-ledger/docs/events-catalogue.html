@@ -1,0 +1,360 @@
+<title>Africa Numbers Significant Events</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Public+Sans:wght@400;600&family=Roboto+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --paper: #f1f3f5;
+    --surface: #ffffff;
+    --sunken: #e7eaee;
+    --ink: #12161b;
+    --muted: #5c6672;
+    --rule: #d3d9df;
+    --rule-strong: #adb6c0;
+    --accent: #7a2233;
+    --good: #1f6b45;
+    --note: #8a5a12;
+    --measure: 68ch;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --paper: #0d1014; --surface: #161b21; --sunken: #1d232b;
+      --ink: #e6e9ec; --muted: #97a1ac; --rule: #262e37; --rule-strong: #3a4550;
+      --accent: #e08a9b; --good: #5cc48c; --note: #d9a949;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --paper: #0d1014; --surface: #161b21; --sunken: #1d232b;
+    --ink: #e6e9ec; --muted: #97a1ac; --rule: #262e37; --rule-strong: #3a4550;
+    --accent: #e08a9b; --good: #5cc48c; --note: #d9a949;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Public Sans', system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet { max-width: 96ch; margin: 0 auto; padding: 56px 24px 110px; }
+
+  .masthead { border-bottom: 1px solid var(--rule-strong); padding-bottom: 26px; margin-bottom: 34px; }
+
+  .stamp {
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent); display: flex; flex-wrap: wrap; gap: 6px 22px; margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 400; font-size: clamp(2.2rem, 6vw, 3.4rem);
+    line-height: 1.02; letter-spacing: -0.01em; margin: 0 0 14px; text-wrap: balance;
+  }
+
+  .standfirst { font-size: 1.08rem; color: var(--muted); max-width: var(--measure); margin: 0; }
+
+  section { margin-bottom: 54px; }
+
+  h2 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 400; font-size: 1.85rem; line-height: 1.15;
+    margin: 0 0 14px; padding-top: 26px; border-top: 1px solid var(--rule);
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-family: 'Public Sans', sans-serif; font-weight: 600;
+    font-size: 0.95rem; letter-spacing: 0.01em; margin: 0 0 10px;
+  }
+  h3 .count { font-family: 'Roboto Mono', monospace; color: var(--accent); font-weight: 400; font-size: 0.86em; }
+
+  p, li { max-width: var(--measure); }
+  p { margin: 0 0 14px; }
+  ul, ol { margin: 0 0 16px; padding-left: 20px; }
+  li { margin-bottom: 8px; }
+  strong { font-weight: 600; }
+  em { font-style: italic; }
+
+  code {
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 0.85em; background: var(--sunken); padding: 1px 5px; border-radius: 2px;
+  }
+
+  .scroll { overflow-x: auto; margin: 0 0 18px; }
+
+  /* A second line inside a table cell: what the row means, in plain words. */
+  .what { color: var(--muted); font-size: 0.9em; margin: 5px 0 0; max-width: none; }
+
+  table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+  th {
+    text-align: left; font-family: 'Roboto Mono', monospace;
+    font-size: 10px; letter-spacing: 0.11em; text-transform: uppercase;
+    color: var(--muted); font-weight: 400; padding: 0 14px 8px 0;
+    border-bottom: 1px solid var(--rule-strong); white-space: nowrap;
+  }
+  td { padding: 9px 14px 9px 0; border-bottom: 1px solid var(--rule); vertical-align: baseline; }
+  tr:last-child td { border-bottom: none; }
+  th.n, td.n {
+    text-align: right; font-family: 'Roboto Mono', monospace;
+    font-variant-numeric: tabular-nums; white-space: nowrap; padding-right: 0;
+  }
+  td.name { font-weight: 600; white-space: nowrap; }
+  tbody tr.lead td { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+
+  .derivations { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .derivation { background: var(--surface); padding: 18px 20px; }
+  .derivation p { margin: 0; font-size: 0.93rem; color: var(--muted); max-width: none; }
+  .derivation p + p { margin-top: 10px; }
+  .derivation .checked { color: var(--good); }
+  .derivation .failed { color: var(--accent); font-weight: 600; }
+
+  pre {
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 0.8rem; line-height: 1.7; background: var(--sunken);
+    padding: 12px 14px; margin: 0 0 12px; overflow-x: auto; border-radius: 2px;
+  }
+
+  .callout {
+    border-left: 3px solid var(--note); background: var(--surface);
+    padding: 15px 18px; margin: 22px 0; font-size: 0.94rem; max-width: var(--measure);
+  }
+  .callout p { margin: 0 0 10px; } .callout p:last-child { margin: 0; }
+
+  .verdict {
+    display: inline-block; font-family: 'Roboto Mono', monospace;
+    font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase;
+    color: var(--good); border: 1px solid var(--good); border-radius: 2px;
+    padding: 3px 9px; margin-bottom: 14px;
+  }
+
+  .footer {
+    margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--rule-strong);
+    font-size: 0.85rem; color: var(--muted); max-width: var(--measure);
+  }
+
+  @media (max-width: 640px) {
+    .sheet { padding: 36px 16px 80px; }
+    td, th { padding-right: 10px; }
+  }
+</style>
+
+<div class="sheet">
+
+  <header class="masthead">
+    <div class="stamp"><span>Significant events</span>
+      <span>Africa Numbers</span>
+      <span>Checked from both directions</span></div>
+    <h1>What the system writes down</h1>
+    <p class="standfirst">Every event this system records, what it means, and which record it lands in.
+      A kind in the code and not on this page fails the build; so does a kind on this page
+      and not in the code, and so does one filed under the wrong record.</p>
+  </header>
+
+  <section>
+    <span class="verdict">All observed being written</span>
+    <h2>The count</h2>
+<pre>catalogued         42
+found in the code  42
+observed written   42
+transactions       19   double-entered, money moved
+events             23   a fact with no money in it</pre>
+    <p>The check is not a spell-check. It scans the source for every kind the code can
+      write, then runs the system and watches what it does write and where it lands, and
+      compares both against this page.</p>
+    <p>Every kind here was observed being written while the system was exercised.</p>
+    <div class="scroll"><table>
+        <thead><tr><th>Record</th><th>What it is</th></tr></thead>
+        <tbody>
+        <tr><td class="name">Journal</td><td class="">A double-entered transaction. Append-only, durable, and balances are derived from it rather than stored beside it.</td></tr>
+        <tr><td class="name">Event</td><td class="">A fact with no money in it &mdash; a suspension, a policy change, a PIN lockout. Same store, same durability.</td></tr>
+        <tr><td class="name">Call log</td><td class="">One line per HTTP call, to an append-only file. The only record of a <em>read</em>.</td></tr>
+        </tbody>
+      </table></div>
+  </section>
+
+  <section>
+    <h2>Money</h2>
+    <p>Value moving between the operator, a runner and a player.</p>
+    <div class="scroll"><table>
+        <thead><tr><th>Kind</th><th>What it means</th><th>Record</th><th>About</th></tr></thead>
+        <tbody>
+        <tr><td class="name"><code>CAPITAL_INJECTION</code></td><td class=""><strong>The operator funds the business</strong><p class="what">Settlement funds increase against operator capital. Nothing else in the system creates an asset.</p></td><td class="">Journal</td><td class="">operator</td></tr>
+        <tr><td class="name"><code>BUY_FLOAT</code></td><td class=""><strong>A runner buys float</strong><p class="what">Money received, float issued, commission recognised as the difference. The only way electronic value enters a runner's hands.</p></td><td class="">Journal</td><td class="">runner</td></tr>
+        <tr><td class="name"><code>SELL_FLOAT_BACK</code></td><td class=""><strong>A runner sells float back</strong><p class="what">Float returned for real money. The route that keeps a runner in a winning neighbourhood able to pay winners.</p></td><td class="">Journal</td><td class="">runner</td></tr>
+        <tr><td class="name"><code>CASH_IN</code></td><td class=""><strong>A player tops up at a runner</strong><p class="what">Float moves to a wallet. The cash itself is between two people and never appears - the single entry a regulator should look at hardest.</p></td><td class="">Journal</td><td class="">player</td></tr>
+        <tr><td class="name"><code>CASH_PAYOUT</code></td><td class=""><strong>A runner pays a winner in cash</strong><p class="what">Wallet down, runner float up, commission recognised. The mirror of a top-up.</p></td><td class="">Journal</td><td class="">player</td></tr>
+        <tr><td class="name"><code>ISSUE_VOUCHER</code></td><td class=""><strong>A runner buys voucher inventory</strong><p class="what">Float becomes an unredeemed voucher liability. Sold offline, activated later.</p></td><td class="">Journal</td><td class="">runner</td></tr>
+        <tr><td class="name"><code>REDEEM_VOUCHER</code></td><td class=""><strong>A player activates a voucher</strong><p class="what">The voucher liability becomes a wallet balance. This carries the server timestamp, which is what stops an offline sale producing a bet after a draw.</p></td><td class="">Journal</td><td class="">player</td></tr>
+        <tr><td class="name"><code>TOP_UP_WALLET</code></td><td class=""><strong>A player tops up by mobile money</strong><p class="what">Recognised only when the provider confirms, never when the request is made.</p></td><td class="">Journal</td><td class="">player</td></tr>
+        <tr><td class="name"><code>WITHDRAW_MOBILE_MONEY</code></td><td class=""><strong>A player withdraws directly</strong><p class="what">The only path where real money leaves the operator. The transfer fee is an operator cost, not a deduction from the player.</p></td><td class="">Journal</td><td class="">player</td></tr>
+        <tr><td class="name"><code>ACCRUE_GAMING_TAX</code></td><td class=""><strong>Gaming tax accrued</strong><p class="what">Recognised as an expense and a payable. Not callable by a player, so outside the solvency check.</p></td><td class="">Journal</td><td class="">operator</td></tr>
+        </tbody>
+      </table></div>
+  </section>
+
+  <section>
+    <h2>Draws</h2>
+    <p>Committing, taking bets, revealing, settling.</p>
+    <div class="scroll"><table>
+        <thead><tr><th>Kind</th><th>What it means</th><th>Record</th><th>About</th></tr></thead>
+        <tbody>
+        <tr><td class="name"><code>PLACE_BET</code></td><td class=""><strong>A bet is taken</strong><p class="what">The stake leaves the wallet for unsettled stakes. Refused after the cutoff on the server clock, whatever the request says.</p></td><td class="">Journal</td><td class="">player</td></tr>
+        <tr><td class="name"><code>DRAW_OPENED</code></td><td class=""><strong>A draw is committed</strong><p class="what">The commitment is published with the opening, cutoff and draw times, and the custody threshold if the seed was sealed. The ordering of this timestamp against the opening time is the whole integrity guarantee.</p></td><td class="">Event</td><td class="">operator</td></tr>
+        <tr><td class="name"><code>DRAW_REVEALED</code></td><td class=""><strong>The seed is revealed</strong><p class="what">The seed and the resulting number, checked against the published commitment inside the transaction that records them.</p></td><td class="">Event</td><td class="">operator</td></tr>
+        <tr><td class="name"><code>SETTLE_DRAW</code></td><td class=""><strong>A draw settles</strong><p class="what">Stakes recognised as revenue, prizes credited to wallets. Winners are decided by the game rules against the revealed number, never by a list handed in.</p></td><td class="">Journal</td><td class="">operator</td></tr>
+        </tbody>
+      </table></div>
+  </section>
+
+  <section>
+    <h2>Promotions</h2>
+    <p>What a campaign costs and what it promised.</p>
+    <div class="scroll"><table>
+        <thead><tr><th>Kind</th><th>What it means</th><th>Record</th><th>About</th></tr></thead>
+        <tbody>
+        <tr><td class="name"><code>ISSUE_FREE_TICKET</code></td><td class=""><strong>A promotional ticket is granted</strong><p class="what">Promotional cost against a callable liability. Refused if the day's budget is spent - the cap is evaluated inside this transaction.</p></td><td class="">Journal</td><td class="">player</td></tr>
+        <tr><td class="name"><code>REDEEM_FREE_TICKET</code></td><td class=""><strong>A promotional ticket is played</strong><p class="what">It becomes a stake directly and never touches the wallet, so a grant cannot be withdrawn as cash.</p></td><td class="">Journal</td><td class="">player</td></tr>
+        <tr><td class="name"><code>FUND_JACKPOT</code></td><td class=""><strong>The jackpot is funded from a settled draw</strong><p class="what">Recognised draw by draw, so an unwon pot is never mistaken for profit and a pot outgrowing settlement funds halts float sales.</p></td><td class="">Journal</td><td class="">operator</td></tr>
+        <tr><td class="name"><code>PAY_JACKPOT</code></td><td class=""><strong>The jackpot is won</strong><p class="what">The pool moves to a wallet. No expense here - it was recognised as the pot was built.</p></td><td class="">Journal</td><td class="">player</td></tr>
+        <tr><td class="name"><code>PROMO_CAP_SET</code></td><td class=""><strong>The daily promotional budget is set</strong><p class="what">Carries the amount and the staff member who set it, taken from their credentials. "What was the cap in March, and who set it" has an answer here.</p></td><td class="">Event</td><td class="">operator</td></tr>
+        <tr><td class="name"><code>PROMO_CAP_CLEARED</code></td><td class=""><strong>The promotional budget is removed</strong><p class="what">Different from a cap of zero: this is no limit at all, and the distinction is deliberate.</p></td><td class="">Event</td><td class="">operator</td></tr>
+        </tbody>
+      </table></div>
+  </section>
+
+  <section>
+    <h2>Player protection</h2>
+    <p>Limits, exclusions, and who set them.</p>
+    <div class="scroll"><table>
+        <thead><tr><th>Kind</th><th>What it means</th><th>Record</th><th>About</th></tr></thead>
+        <tbody>
+        <tr><td class="name"><code>PROTECTION_SET</code></td><td class=""><strong>House limits are switched on</strong><p class="what">Daily stake and loss caps, with the date and the staff member. Nothing is enforced until this is posted.</p></td><td class="">Event</td><td class="">operator</td></tr>
+        <tr><td class="name"><code>PROTECTION_CLEARED</code></td><td class=""><strong>House limits are switched off</strong><p class="what">Per-player limits and exclusions are untouched, because those are the player's decisions rather than the operator's.</p></td><td class="">Event</td><td class="">operator</td></tr>
+        <tr><td class="name"><code>PLAYER_LIMIT_SET</code></td><td class=""><strong>A player's own limit is set</strong><p class="what">Tighter or looser than the house policy. A player who asks for a limit gets one whether or not a house policy exists.</p></td><td class="">Event</td><td class="">player</td></tr>
+        <tr><td class="name"><code>PLAYER_EXCLUDED</code></td><td class=""><strong>A player self-excludes</strong><p class="what">With an end date or indefinitely. Survives a new handset, because it attaches to the number rather than the device.</p></td><td class="">Event</td><td class="">player</td></tr>
+        <tr><td class="name"><code>PLAYER_REINSTATED</code></td><td class=""><strong>An exclusion ends</strong><p class="what">Recorded separately from the exclusion, so a cooling-off period cannot be shortened without leaving a mark.</p></td><td class="">Event</td><td class="">player</td></tr>
+        </tbody>
+      </table></div>
+  </section>
+
+  <section>
+    <h2>Runner control</h2>
+    <p>Who may sell, and from when.</p>
+    <div class="scroll"><table>
+        <thead><tr><th>Kind</th><th>What it means</th><th>Record</th><th>About</th></tr></thead>
+        <tbody>
+        <tr><td class="name"><code>AGENT_SUSPENDED</code></td><td class=""><strong>A runner is suspended from selling</strong><p class="what">With a reason. Takes effect inside the same lock every sale is checked against, so it stops the next sale rather than the next audit.</p></td><td class="">Event</td><td class="">runner</td></tr>
+        <tr><td class="name"><code>AGENT_REINSTATED</code></td><td class=""><strong>A runner is reinstated</strong><p class="what">The pair of events answers how long a runner was out and who ended it.</p></td><td class="">Event</td><td class="">runner</td></tr>
+        </tbody>
+      </table></div>
+  </section>
+
+  <section>
+    <h2>Credentials</h2>
+    <p>Tokens and PINs. Never their values.</p>
+    <div class="scroll"><table>
+        <thead><tr><th>Kind</th><th>What it means</th><th>Record</th><th>About</th></tr></thead>
+        <tbody>
+        <tr><td class="name"><code>TOKEN_ISSUED</code></td><td class=""><strong>A bearer token is issued</strong><p class="what">Records a short digest of the token, the kind of principal, the subject and the expiry - never the token. The digest is what joins this line to a line in the call log.</p></td><td class="">Event</td><td class="">any</td></tr>
+        <tr><td class="name"><code>TOKEN_REVOKED</code></td><td class=""><strong>A token is revoked</strong><p class="what">Immediate: the next request with it is refused.</p></td><td class="">Event</td><td class="">any</td></tr>
+        <tr><td class="name"><code>PIN_SET</code></td><td class=""><strong>A player's PIN is set or reset</strong><p class="what">The PIN is scrypt-hashed and never recorded. There is no self-service reset, so every one of these was performed by staff.</p></td><td class="">Event</td><td class="">player</td></tr>
+        <tr><td class="name"><code>PIN_FAILED</code></td><td class=""><strong>A PIN was wrong</strong><p class="what">With the running count of failures. A cluster across many players is the signature of a credential attack.</p></td><td class="">Event</td><td class="">player</td></tr>
+        <tr><td class="name"><code>PIN_LOCKED</code></td><td class=""><strong>A PIN locked after repeated failures</strong><p class="what">Three wrong guesses. Durable, so a restart does not forgive an attacker.</p></td><td class="">Event</td><td class="">player</td></tr>
+        <tr><td class="name"><code>PIN_OK</code></td><td class=""><strong>A failure count is cleared</strong><p class="what">Written only when a correct PIN follows failures, so the log shows the attempt that ended a run rather than every ordinary use.</p></td><td class="">Event</td><td class="">player</td></tr>
+        <tr><td class="name"><code>PIN_UNLOCKED</code></td><td class=""><strong>A locked player is unlocked by staff</strong><p class="what">The only way out of a lock, and therefore a line a reviewer should expect to see paired with a support ticket.</p></td><td class="">Event</td><td class="">player</td></tr>
+        </tbody>
+      </table></div>
+  </section>
+
+  <section>
+    <h2>Mobile money</h2>
+    <p>The only boundary where this system does not control both sides.</p>
+    <div class="scroll"><table>
+        <thead><tr><th>Kind</th><th>What it means</th><th>Record</th><th>About</th></tr></thead>
+        <tbody>
+        <tr><td class="name"><code>MM_REQUESTED</code></td><td class=""><strong>A transfer is requested</strong><p class="what">Written before the provider is called, under a reference this system generated - which is what lets a timed-out request be asked about rather than retried.</p></td><td class="">Event</td><td class="">provider</td></tr>
+        <tr><td class="name"><code>MM_ACCEPTED</code></td><td class=""><strong>The provider accepted the request</strong><p class="what">Carries the provider's own reference. Acceptance is not confirmation and does not move money.</p></td><td class="">Event</td><td class="">provider</td></tr>
+        <tr><td class="name"><code>MM_UNRESOLVED</code></td><td class=""><strong>The provider did not answer</strong><p class="what">A timeout or an outage. The money may well be moving, so the request stays open for the next reconciliation sweep rather than being retried.</p></td><td class="">Event</td><td class="">provider</td></tr>
+        <tr><td class="name"><code>MM_FAILED</code></td><td class=""><strong>A transfer failed</strong><p class="what">Terminal. A reserved disbursement is returned to the wallet - a return, not a reversal, because nothing was ever paid.</p></td><td class="">Event</td><td class="">provider</td></tr>
+        <tr><td class="name"><code>MM_ANOMALY</code></td><td class=""><strong>A callback could not be applied</strong><p class="what">A wrong amount, an unknown reference, a contradiction of an earlier callback. Nobody's queue unless somebody looks at it, which is why it is an event and not a log line.</p></td><td class="">Event</td><td class="">provider</td></tr>
+        <tr><td class="name"><code>RESERVE_DISBURSEMENT</code></td><td class=""><strong>A payout leaves the wallet and is held</strong><p class="what">Money out is reserved before the transfer is attempted, so a wallet cannot be spent twice while a payout is in flight.</p></td><td class="">Journal</td><td class="">player</td></tr>
+        <tr><td class="name"><code>CONFIRM_DISBURSEMENT</code></td><td class=""><strong>A payout is confirmed</strong><p class="what">The held amount leaves settlement funds. Only now has money actually moved.</p></td><td class="">Journal</td><td class="">player</td></tr>
+        <tr><td class="name"><code>RETURN_DISBURSEMENT</code></td><td class=""><strong>A failed payout is returned</strong><p class="what">Back to the wallet. Recorded as its own kind so a return can never be read as a fresh top-up.</p></td><td class="">Journal</td><td class="">player</td></tr>
+        </tbody>
+      </table></div>
+  </section>
+
+  <section>
+    <h2>The call log</h2>
+    <p>One line per HTTP call &mdash; reads as well as writes, because &ldquo;who looked at this
+      player's wallet&rdquo; carries the same weight as &ldquo;who moved money&rdquo;.</p>
+    <div class="scroll"><table>
+        <thead><tr><th>Field</th><th>What it holds</th></tr></thead>
+        <tbody>
+        <tr><td class="name"><code>at</code></td><td class="">Server time. Never a value from the request.</td></tr>
+        <tr><td class="name"><code>method, path</code></td><td class="">What was called.</td></tr>
+        <tr><td class="name"><code>status</code></td><td class="">What they were told, including refusals.</td></tr>
+        <tr><td class="name"><code>principalKind, subject</code></td><td class="">Who, from their credentials rather than the body.</td></tr>
+        <tr><td class="name"><code>tokenId</code></td><td class="">The same short digest the TOKEN_ISSUED event carries, so the two join without either holding a working credential.</td></tr>
+        <tr><td class="name"><code>idempotencyKey</code></td><td class="">Which attempt this was, so a retry is identifiable as one.</td></tr>
+        <tr><td class="name"><code>build</code></td><td class="">Which software did it.</td></tr>
+        <tr><td class="name"><code>secret</code></td><td class="">Marks the one response whose contents are never recorded: the call that hands over custody shares.</td></tr>
+        </tbody>
+      </table></div>
+    <div class="callout">
+      <p><strong>Never recorded:</strong> the request body, the response body, the bearer token, a PIN, a custody share.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>What is not recorded</h2>
+    <p>The section a catalogue written by hand never has.</p>
+    <div class="derivations">
+        <div class="derivation">
+          <h3>Most events record what happened, not who did it</h3>
+          <p>Only the two policy events carry the staff member who posted them, taken from their credentials. For everything else - suspending a runner, resetting a PIN, revealing a draw - the actor is in the call log and joined to the event by time and by token digest. A single field on every event would be better, and is the first thing to add.</p>
+        </div>
+        <div class="derivation">
+          <h3>The journal is append-only by storage, not by cryptography</h3>
+          <p>Nothing is ever updated in place, balances are derived rather than stored, and a verification pass proves the cache matches the entries. But a writer with database access could still edit history, and nothing in the record would show it. A hash chain over the journal - each entry carrying the digest of the one before - would make that detectable. It is not built.</p>
+        </div>
+        <div class="derivation">
+          <h3>The call log is a file, and the events are not</h3>
+          <p>Ledger events are as durable as the money. The call log - which is the only record of a read - is an append-only JSONL file with no rotation, no retention period and no shipping. "Who looked at this player's wallet" is answered by something that can be lost in a way "who moved money" cannot.</p>
+        </div>
+        <div class="derivation">
+          <h3>A direct caller leaves no call-log line</h3>
+          <p>Anything driving the operator object directly - a script, a migration, a console session on the host - writes its ledger events but no call-log line, so the actor is unrecorded. Restricting production to the service, and saying so in the access policy, is the answer rather than more logging.</p>
+        </div>
+        <div class="derivation">
+          <h3>No retention policy is written down</h3>
+          <p>The ledger keeps everything permanently by construction. Nothing states how long the call log is kept, where it is shipped, or who may read it. That is a policy document, and it does not exist yet.</p>
+        </div>
+        <div class="derivation">
+          <h3>Nothing is recorded about the software itself</h3>
+          <p>A failed build verification, a restore from backup, a change to a rate limit or a body cap: none of these produces an event. The build id is stamped on every call-log line, which is where a deployment becomes visible, and that is the whole of it.</p>
+        </div>
+        <div class="derivation">
+          <h3>No thresholds, no alerts</h3>
+          <p>A large win, an unusual velocity, a runner reconciling badly for a third day: all of these are derivable from the journal and none of them raises anything. The reports are pull, not push.</p>
+        </div>
+        <div class="derivation">
+          <h3>The mobile money simulator ships in the certified build</h3>
+          <p>There is no driver for a real provider yet, so the composition root has nothing else to wire and the simulator is in the runtime tree. Once a real driver exists, a simulator that can stand in for it should be absent from a certified build in the same way and for the same reason that forced draw outcomes are.</p>
+        </div>
+    </div>
+  </section>
+
+  <p class="footer">Generated by <code>npm run events</code> from the source and from a full
+    exercise of the system. The catalogue is not edited by hand, and continuous integration
+    fails if the code and this page disagree.</p>
+
+</div>

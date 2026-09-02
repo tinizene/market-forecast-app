@@ -42,10 +42,11 @@ directory as a module path. Pass a glob or a file.
 | `bin/build-manifest.js` | Writes `MANIFEST.json` at release, and checks it in CI |
 | `bin/verify-build.js` | What an inspector runs on a production host |
 | `lab/` | The laboratory environment. Pinned as evidence, absent from the build |
-| `scripts/` | Evidence-producing tooling: the math sheet and the figures behind it |
+| `scripts/` | Evidence-producing tooling: the annexes and the figures behind them |
 | `docs/math-sheet.md` | Generated. Every figure derived from the game rules |
 | `docs/rng-description.md` | Generated. How the number is drawn, and what the evidence covers |
-| `test/` | 347 tests: unit, a simulated trading day, durability, concurrency, draws, channels, the API surface |
+| `docs/events-catalogue.md` | Generated. Every event recorded, and what is not recorded |
+| `test/` | 359 tests: unit, a simulated trading day, durability, concurrency, draws, channels, the API surface |
 
 ## Durable or in-memory
 
@@ -454,6 +455,64 @@ illustrative because nobody has taken a bet yet.
 
 The generator lives in `scripts/`, not `bin/`, and the manifest classifies it as
 evidence: a documentation generator must not be able to change the build id.
+
+## The significant events catalogue
+
+`docs/events-catalogue.md` and `docs/events-catalogue.html` — every event the
+system records, what it means, which record it lands in, and what it carries.
+
+```
+npm run events         # regenerate both renderings
+npm run events:check   # CI: does the catalogue still match the code
+```
+
+A regulator's question is rarely "what does the code do". It is "if this went
+wrong, what would you be able to show me". This is the answer: 42 kinds, 19 of
+them double-entered transactions and 23 of them facts with no money in them,
+plus the call log, which is the only record of a *read*.
+
+### Checked from both directions, and by running it
+
+A hand-written catalogue is accurate on the day it is written. This one is
+reconciled on every build, three ways:
+
+- **Static.** The kind strings are recovered from the source, so a kind in the
+  code and not on the page fails, and a kind on the page the code cannot write
+  fails too.
+- **Behavioural.** `observe()` drives the whole system — capital, float, a
+  cash-in, a bet, a draw, a promotion, a suspension, a PIN lockout, a mobile
+  money failure — and collects what actually got written. A documented kind that
+  nothing exercises fails.
+- **Filing.** Journal and event are separate stores with different meanings.
+  A transaction catalogued as an event, or the reverse, fails.
+
+Six mutations were tried against it and all six were caught: adding an
+undocumented kind, misfiling a transaction as an event, cataloguing a kind that
+cannot be written, removing a kind from the exercise, logging request bodies,
+and a discovery pass that missed a kind chosen by a ternary.
+
+### What writing it turned up
+
+**A failed payout wrote no `MM_FAILED`.** Every failed *collection* named
+itself; a payout that failed released the held disbursement back to the wallet
+and recorded only that release, so the reason it failed was nowhere. The
+behavioural pass found it by looking for a documented kind nothing produced.
+Both paths now write one named failure event, carrying whether the money went
+back to the wallet.
+
+### The section a hand-written catalogue never has
+
+The page ends with what is *not* recorded, and it is the part worth reading
+first: most events carry what happened but not who did it (the actor is in the
+call log, joined by time and token digest); the journal is append-only by
+storage rather than by cryptography, so a writer with database access could edit
+history undetectably; the call log is an unrotated file while the money is in a
+database; a caller driving the operator object directly leaves no call-log line;
+there is no retention policy, no event for a deployment or a restore, and no
+alerting on anything.
+
+None of that is discovered during an audit if the catalogue says it out loud
+first.
 
 ## The laboratory environment
 

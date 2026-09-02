@@ -72,3 +72,9 @@ jobs:
       # rather than the document, and it should stop a release.
       - name: Check the RNG description is current
         run: npm run rng:check
+
+      # Scans the source for every event kind, runs the system to see what it
+      # actually writes and where, and fails on a kind that is undocumented,
+      # stale, or filed under the wrong record.
+      - name: Check the events catalogue is current
+        run: npm run events:check

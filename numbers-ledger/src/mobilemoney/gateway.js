@@ -227,16 +227,25 @@ class MobileMoneyGateway {
       if (current) s.putState('mmRequest', ref, { ...current, status: STATUS.FAILED, resolvedAt: at, reason });
     };
 
-    if (record && record.type === 'payout' && record.status === STATUS.PENDING) {
+    const heldPayout = Boolean(record && record.type === 'payout' && record.status === STATUS.PENDING);
+    if (heldPayout) {
       // The money is held, not spent, so it goes back to the wallet it came
       // from - in the same transaction that closes the request.
       this.#operator.returnDisbursement({
         id: `mm-return-${ref}`, at, playerId: record.playerId,
         amountMinor: record.amountMinor, memo: `mobile money ${ref} failed`, onCommit: close
       });
-    } else {
-      this.ledger.event({ id: `mm-failed-${ref}`, kind: 'MM_FAILED', at, data: { ref, reason } }, { onCommit: close });
     }
+
+    // One named event for every failure, whichever way the money was going.
+    // This used to be written only when there was nothing to return, so a
+    // failed payout was recorded as a return with the reason buried in a memo -
+    // and anybody enumerating "transfer failed" would have found half of them.
+    // Writing the catalogue is what turned that up.
+    this.ledger.event({
+      id: `mm-failed-${ref}`, kind: 'MM_FAILED', at,
+      data: { ref, reason, returnedToWallet: heldPayout }
+    }, heldPayout ? {} : { onCommit: close });
 
     return { ref, outcome: 'applied', reason };
   }

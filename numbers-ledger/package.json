@@ -17,6 +17,8 @@
     "mathsheet": "node scripts/build-math-sheet.js",
     "mathsheet:check": "node scripts/build-math-sheet.js --check",
     "rng": "node scripts/build-rng-description.js",
-    "rng:check": "node scripts/build-rng-description.js --check"
+    "rng:check": "node scripts/build-rng-description.js --check",
+    "events": "node scripts/build-events-catalogue.js",
+    "events:check": "node scripts/build-events-catalogue.js --check"
   }
 }

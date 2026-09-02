@@ -108,6 +108,9 @@ const STYLE = `
 
   .scroll { overflow-x: auto; margin: 0 0 18px; }
 
+  /* A second line inside a table cell: what the row means, in plain words. */
+  .what { color: var(--muted); font-size: 0.9em; margin: 5px 0 0; max-width: none; }
+
   table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
   th {
     text-align: left; font-family: 'Roboto Mono', monospace;

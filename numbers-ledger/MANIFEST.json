@@ -1,8 +1,8 @@
 {
   "version": 1,
   "algorithm": "sha256",
-  "generatedAt": "2026-09-02T11:17:24.327Z",
-  "buildId": "86f0996018e46ada7951a95041e94ec0ef8ecc17b7764d7589d3b3cf743a41fb",
+  "generatedAt": "2026-09-02T15:32:36.800Z",
+  "buildId": "8c3252aeea81542f6d8746bc9fd4931b34dc83e5cb7489e122bcaefc39a31f59",
   "scope": {
     "runtime": [
       {
@@ -53,7 +53,7 @@
   ],
   "sections": {
     "runtime": {
-      "digest": "86f0996018e46ada7951a95041e94ec0ef8ecc17b7764d7589d3b3cf743a41fb",
+      "digest": "8c3252aeea81542f6d8746bc9fd4931b34dc83e5cb7489e122bcaefc39a31f59",
       "files": [
         {
           "path": "africa-numbers/game.js",
@@ -77,8 +77,8 @@
         },
         {
           "path": "numbers-ledger/package.json",
-          "bytes": 905,
-          "sha256": "b29986064cbdea81794edc931a69ef8394f97e72fa00ef58fbdf4244d4175bd6"
+          "bytes": 1031,
+          "sha256": "e488d2abd19c72d9d668e469b3f234dd925746da891edcafd68672417b6aa6a0"
         },
         {
           "path": "numbers-ledger/src/accounts.js",
@@ -167,8 +167,8 @@
         },
         {
           "path": "numbers-ledger/src/mobilemoney/gateway.js",
-          "bytes": 12878,
-          "sha256": "a65772d7f8adb0b1089e851fdaae3da60eec4567d8a8430a97f2396f39c7a4c6"
+          "bytes": 13338,
+          "sha256": "b33f0a745d15974d880b92102b53eceead903e9e9834a4653b2b55d4434c130b"
         },
         {
           "path": "numbers-ledger/src/mobilemoney/provider.js",
@@ -213,7 +213,7 @@
       ]
     },
     "evidence": {
-      "digest": "19c288af94bfe3b928b8f62fc55d323d3c8b7786d9ac3859c448b135691a05ba",
+      "digest": "201405df9f07574ba2a4dba2ffbe6a9c8037df1ef8c574abd8106b15f972a4d1",
       "files": [
         {
           "path": "africa-numbers/game.test.js",
@@ -222,13 +222,23 @@
         },
         {
           "path": "numbers-ledger/README.md",
-          "bytes": 55747,
-          "sha256": "23c47e495e251045918719f63c2ecd543a3b5918d334bcd56b2209ae2b1cf277"
+          "bytes": 58631,
+          "sha256": "d2e38fe767f161bd6334d57c98403845085e9dcd408b367774653f274f202187"
+        },
+        {
+          "path": "numbers-ledger/docs/events-catalogue.html",
+          "bytes": 27664,
+          "sha256": "b834e384b8aa7097831b322c14d77aa6eed093002fb6aa4cc3ddf16b33c4a2cb"
+        },
+        {
+          "path": "numbers-ledger/docs/events-catalogue.md",
+          "bytes": 13633,
+          "sha256": "cbc0c8a253e1fb683deb80de3d89a27a3d0e6b640425dde117a64692284e4a3f"
         },
         {
           "path": "numbers-ledger/docs/math-sheet.html",
-          "bytes": 18786,
-          "sha256": "5e7ec14409f1bd35ca4456f7faf26415727a6b73d373c67e5591847ea77e62e7"
+          "bytes": 18951,
+          "sha256": "8f6f689b21e9863d9fc4310e92f249c398b69af33d15e7dbc8d17b1e7ea8781d"
         },
         {
           "path": "numbers-ledger/docs/math-sheet.md",
@@ -237,8 +247,8 @@
         },
         {
           "path": "numbers-ledger/docs/rng-description.html",
-          "bytes": 17488,
-          "sha256": "65cba3c8e7b8c640818266dcc69abcfa804d8e045881d2b28f37ed714395386c"
+          "bytes": 17653,
+          "sha256": "d00a45d3451e49c8a67e9b662db644784af5f62d07b03eda3ea336766c75d00a"
         },
         {
           "path": "numbers-ledger/docs/rng-description.md",
@@ -271,6 +281,11 @@
           "sha256": "e01f303bb825f0bcbc27f8a7c97dc3d853ed029abc6d72109e8a6f6e2c04e5c8"
         },
         {
+          "path": "numbers-ledger/scripts/build-events-catalogue.js",
+          "bytes": 2905,
+          "sha256": "603f147ec923bdd83a8a13bb7921bd4e6f8f0500bf84ee3bad54f0a7ed1b1c09"
+        },
+        {
           "path": "numbers-ledger/scripts/build-math-sheet.js",
           "bytes": 3134,
           "sha256": "c7e5e4eed975a7aedee05c29e2b859509b50d7f4ef1f5a56895031bd51c2d602"
@@ -281,14 +296,24 @@
           "sha256": "254e0fd17eec8b8d6ac9031b37f56cb83cac88a9d58724cc530e15f9466c9e08"
         },
         {
+          "path": "numbers-ledger/scripts/events.js",
+          "bytes": 25080,
+          "sha256": "57fdec5132a313d980cb4b293c20562f68e0a00c599d9565d1a2825edd5c6cf9"
+        },
+        {
           "path": "numbers-ledger/scripts/math.js",
           "bytes": 11768,
           "sha256": "a8b5a20095e250b2a0292206ff0cb8ead094754894782ffddbabea8256355be7"
         },
         {
+          "path": "numbers-ledger/scripts/render-events.js",
+          "bytes": 11783,
+          "sha256": "561338a1e8713a74fb16b6a882ba39d18c24a5fb84141ebfafad7f181863e74f"
+        },
+        {
           "path": "numbers-ledger/scripts/render-helpers.js",
-          "bytes": 7438,
-          "sha256": "447360744ea8c205d474b558e1064c899a2ca09d65101693a20f3347826d15b3"
+          "bytes": 7603,
+          "sha256": "3fac4c619d91a17814f4c431658b9b4333961d7883c69f30142b492f0a7ddc9c"
         },
         {
           "path": "numbers-ledger/scripts/render-math-sheet.js",
@@ -334,6 +359,11 @@
           "path": "numbers-ledger/test/durability.test.js",
           "bytes": 5997,
           "sha256": "fa71751124740d79438034b8bbbf69a163209a205ae4f373d7b9f913ee7b8a8f"
+        },
+        {
+          "path": "numbers-ledger/test/events-catalogue.test.js",
+          "bytes": 5961,
+          "sha256": "1222727bffe4a9a7262d2849e97e75e38904fe08590e0de444afd06571f47b46"
         },
         {
           "path": "numbers-ledger/test/fixtures/race-worker.js",

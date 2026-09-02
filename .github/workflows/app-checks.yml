@@ -1,0 +1,86 @@
+name: App checks
+
+# The app has six gates and, until this workflow, none of them ran anywhere. They
+# fired only when someone remembered to type the command, which is most of the way
+# back to not having them: the figure guard cannot catch a stale lesson count in a
+# pull request it never sees.
+#
+# No install step — the app has no dependencies and the checks use Node's built-ins.
+
+on:
+  pull_request:
+    paths-ignore:
+      - 'reports/**'
+      - 'data/fx-reports/**'
+      - 'africa-numbers/**'
+      - 'numbers-ledger/**'
+      - 'hydrowarm/**'
+      - 'course/**'
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'reports/**'
+      - 'data/fx-reports/**'
+      - 'africa-numbers/**'
+      - 'numbers-ledger/**'
+      - 'hydrowarm/**'
+      - 'course/**'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: app-checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    # Named so a red check on a pull request says which project broke, matching the
+    # other two suites in this repo.
+    name: app-checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+
+      # Each step runs even if an earlier one failed, so one run reports every
+      # problem rather than only the first. A single failure still fails the job.
+      - name: Translations are consistent
+        if: '!cancelled()'
+        run: node scripts/check-i18n.js
+
+      - name: Course translations are consistent
+        if: '!cancelled()'
+        run: node scripts/check-course-i18n.js
+
+      - name: Colour tokens meet WCAG AA in both themes
+        if: '!cancelled()'
+        run: node scripts/contrast-audit.js
+
+      - name: Landing page figures match the course data
+        if: '!cancelled()'
+        run: node scripts/verify-landing.js
+
+      - name: Nothing names a colour outside the stylesheet
+        if: '!cancelled()'
+        run: node scripts/check-theme-tokens.js
+
+      # This one needs a browser. Rather than hard-code a path that quietly moves when
+      # the runner image changes, find whatever is installed and say which was used.
+      - name: Diagram labels do not collide
+        if: '!cancelled()'
+        run: |
+          for candidate in "$CHROME_BIN" /usr/bin/google-chrome /usr/bin/google-chrome-stable \
+                           /usr/bin/chromium-browser /usr/bin/chromium; do
+            if [ -n "$candidate" ] && [ -x "$candidate" ]; then
+              export CHROMIUM_PATH="$candidate"
+              break
+            fi
+          done
+          echo "browser: ${CHROMIUM_PATH:-none found — the check will say so and fail}"
+          node scripts/check-diagram-layout.js

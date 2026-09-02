@@ -621,6 +621,22 @@ design proposals asserted "verified high contrast" for pairs that measured 2.49:
   unreachable
 - `scripts/verify-i18n-browser.js`, `scripts/lib/local-server.js` — end-to-end i18n check
   in headless Chromium against the real `api/*` handlers; skips where no browser exists
+- `scripts/verify-landing.js` — every figure on the landing page re-derived from its
+  source: lessons, tracks and the free track from `data/course/manifest.json`, the
+  language count from the `LANGUAGES` table in `i18n.js` (offered only, never a preview
+  language). The hero's product shot claims to be Forex Chapter 1 Lesson 6, so it is
+  checked back against that lesson in `data/course/forex.json` — title, numbering,
+  definition, key idea and the ESMA figure it cites
+- `scripts/check-theme-tokens.js` — no page, renderer, stylesheet rule or shipped
+  diagram may name a colour. Only `:root` and `:root[data-theme="light"]` do. Also
+  checks every page still sets `data-theme` before the stylesheet loads, since a page
+  that misses that flashes dark on every navigation for a light-theme reader
+- `scripts/check-diagram-layout.js` — renders all 83 lesson diagrams in headless
+  Chromium and fails on two labels overlapping, or a data line drawn across a label.
+  Boxes come from `getBoundingClientRect()`, not `getBBox()`: the latter ignores
+  transforms and reports a rotated axis title as lying across the tick labels
+- `.github/workflows/app-checks.yml` — runs all six of the above on every pull request
+  and every push to `main`. Before it existed they ran only when someone remembered
 - `data/course/i18n/<lang>.json` — the course translation **overlay**: `sha256(english)[:12]`
   → `{en, <lang>}`, so English stays the single source of truth, a proofreader reads both
   languages side by side, an English edit orphans its old translation loudly instead of

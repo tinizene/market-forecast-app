@@ -4305,14 +4305,19 @@ window.SCERE_FOREX_SVGS = {
   <!-- c9 bullish --><line x1="430" y1="230" x2="430" y2="278" stroke="var(--success-500)" stroke-width="1.5"/><rect x="423" y="238" width="14" height="32" fill="var(--success-500)"/>
   <!-- c10 bullish --><line x1="470" y1="204" x2="470" y2="248" stroke="var(--success-500)" stroke-width="1.5"/><rect x="463" y="212" width="14" height="30" fill="var(--success-500)"/>
 
-  <!-- reversal candle callout -->
-  <line x1="350" y1="352" x2="350" y2="316" stroke="var(--warning-500)" stroke-width="1.2"/>
-  <text x="352" y="368" font-size="10.5" font-weight="bold" fill="var(--warning-text)">reversal candle</text>
-  <text x="352" y="382" font-size="9.5" font-style="italic" fill="var(--warning-text)">a claim to test, not trust</text>
+  <!-- reversal candle callout. Sits under the candle, inside the panel: the two lines
+       used to run to y=382, four pixels past the panel's own bottom edge. -->
+  <line x1="350" y1="344" x2="350" y2="334" stroke="var(--warning-500)" stroke-width="1.2"/>
+  <text x="352" y="356" font-size="10.5" font-weight="bold" fill="var(--warning-text)">reversal candle</text>
+  <text x="352" y="369" font-size="9.5" font-style="italic" fill="var(--warning-text)">a claim to test, not trust</text>
 
-  <!-- order-flow mechanism annotation -->
-  <text x="120" y="352" font-size="10.5" fill="var(--success-text)">Take-profit orders cluster at the level: price reverses.</text>
-  <text x="120" y="368" font-size="10.5" fill="var(--danger-text)">Stop-loss orders sit just below: a clean break would accelerate.</text>
+  <!-- Order-flow mechanism. This used to sit at x=120 on the same baseline as the
+       callout above, and the two collided over 61px. The upper right of the panel is
+       empty — the candles stop at x=478 — so it moves there, with a leader down to the
+       level it is describing. -->
+  <line x1="620" y1="156" x2="694" y2="312" stroke="var(--diagram-axis)" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="500" y="130" font-size="10.5" fill="var(--success-text)">Take-profit orders cluster at the level: price reverses.</text>
+  <text x="500" y="146" font-size="10.5" fill="var(--danger-text)">Stop-loss orders sit just below: a clean break would accelerate.</text>
 
   <!-- ================= EVIDENCE VERDICT STRIP ================= -->
   <text x="450" y="416" text-anchor="middle" font-size="14" font-weight="bold" fill="var(--diagram-text)">The honest verdict: the two halves of price action are not equally supported</text>
@@ -4384,8 +4389,9 @@ window.SCERE_FOREX_SVGS = {
   <circle cx="596" cy="381" r="7" fill="var(--danger-500)"/>
   <text x="596" y="404" text-anchor="middle" font-size="10" font-weight="bold" fill="var(--danger-text)">SELL</text>
 
-  <rect x="480" y="330" width="130" height="22" rx="4" fill="var(--warning-soft)" stroke="var(--warning-500)" stroke-width="1.2"/>
-  <text x="545" y="345" text-anchor="middle" font-size="9.5" fill="var(--warning-text)" font-weight="bold">whipsaw: quick loss</text>
+  <!-- Raised 24px: this chip's lower edge was sitting on the BUY marker's label. -->
+  <rect x="480" y="306" width="130" height="22" rx="4" fill="var(--warning-soft)" stroke="var(--warning-500)" stroke-width="1.2"/>
+  <text x="545" y="321" text-anchor="middle" font-size="9.5" fill="var(--warning-text)" font-weight="bold">whipsaw: quick loss</text>
 
   <text x="145" y="310" font-size="10.5" fill="var(--success-text)" font-weight="bold">20 SMA (fast)</text>
   <text x="145" y="470" font-size="10.5" fill="var(--info-text)" font-weight="bold">50 SMA (slow)</text>
@@ -4786,8 +4792,10 @@ window.SCERE_FOREX_SVGS = {
   <!-- rising then collapse -->
   <polyline points="70,210 180,175 280,140 350,112 380,120 420,175 470,250 520,268" fill="none" stroke="var(--success-500)" stroke-width="2.5"/>
   <polyline points="350,112 380,120 420,175 470,250 520,268" fill="none" stroke="var(--danger-500)" stroke-width="2.5"/>
-  <text x="95" y="200" font-size="10.5" fill="var(--success-text)">Build-up 2004-2007: yen weak,</text>
-  <text x="95" y="214" font-size="10.5" fill="var(--success-text)">AUD strong, carry pays.</text>
+  <!-- Dropped 45px: the rising carry line passes through y=202..175 across this label's
+       width, so at y=200 the first line was struck through by the series it describes. -->
+  <text x="95" y="245" font-size="10.5" fill="var(--success-text)">Build-up 2004-2007: yen weak,</text>
+  <text x="95" y="259" font-size="10.5" fill="var(--success-text)">AUD strong, carry pays.</text>
   <text x="300" y="104" font-size="10.5" font-weight="bold" fill="var(--success-text)">Peak ~107.80 (Oct 2007)</text>
   <text x="360" y="300" font-size="10.5" font-weight="bold" fill="var(--danger-text)">2008: -45% to ~55</text>
 

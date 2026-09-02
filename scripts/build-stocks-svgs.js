@@ -374,7 +374,10 @@ SVGS['stocks-02-5-diversification-floor'] = frame(
     line(462, 100, 462, 380, { stroke: C.amber, sw: 2, dash: '4 4' }),
     txt(468, 176, 'Statman 1987: at least 30 for a borrowing', { size: 12, bold: true, fill: C.amberText }),
     txt(468, 194, 'investor, 40 for a lending one', { size: 12, bold: true, fill: C.amberText }),
-    txt(600, 280, 'market risk: the floor no holding removes', { size: 12, bold: true, fill: C.redText }),
+    // Above the floor line this label was struck through by the total-risk curve, and
+    // at x=600 it also ran into the 'total risk' series label lineChart places at
+    // x0 + w + 8 = 798. It goes below the floor line instead, where nothing is drawn.
+    txt(470, 304, 'market risk: the floor no holding removes', { size: 12, bold: true, fill: C.redText }),
     txt(450, 448, 'Market risk survives every holding you add. That is the floor, and it is why the curve never reaches zero.', { anchor: 'middle', size: 13, bold: true, fill: C.text }),
     txt(450, 476, 'Counting is the wrong instrument anyway: twenty banks are one bet wearing twenty names.', { anchor: 'middle', size: 12, fill: C.muted }),
     txt(450, 502, 'The curve shape is illustrative. The two dated findings, and their disagreement, are the point.', { anchor: 'middle', size: 12, fill: C.muted }),

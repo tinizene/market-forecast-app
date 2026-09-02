@@ -349,7 +349,7 @@ const FOUNDATION_SVGS = {
   <text x="450" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="var(--diagram-text)">Trend, Support &amp; Resistance</text>
 
   <!-- Uptrend panel -->
-  <text x="220" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--success-text)">Uptrend — Higher Highs, Higher Lows</text>
+  <text x="220" y="64" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--success-text)">Uptrend — Higher Highs, Higher Lows</text>
   <rect x="60" y="85" width="320" height="180" rx="10" fill="var(--success-soft)" stroke="var(--success-500)" stroke-width="1.5"/>
   <polyline points="80,240 130,160 160,190 210,120 240,150 290,90 340,110" fill="none" stroke="var(--success-500)" stroke-width="3"/>
   <circle cx="130" cy="160" r="4" fill="var(--success-500)"/>
@@ -365,7 +365,7 @@ const FOUNDATION_SVGS = {
   <text x="220" y="255" text-anchor="middle" font-size="11" font-style="italic" fill="var(--diagram-text)">Each high and low tops the last</text>
 
   <!-- Downtrend panel -->
-  <text x="680" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--danger-text)">Downtrend — Lower Highs, Lower Lows</text>
+  <text x="680" y="64" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--danger-text)">Downtrend — Lower Highs, Lower Lows</text>
   <rect x="520" y="85" width="320" height="180" rx="10" fill="var(--danger-soft)" stroke="var(--danger-500)" stroke-width="1.5"/>
   <polyline points="540,110 590,150 620,130 670,190 700,170 750,230 800,215" fill="none" stroke="var(--danger-500)" stroke-width="3"/>
   <circle cx="590" cy="150" r="4" fill="var(--danger-500)"/>

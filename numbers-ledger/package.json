@@ -15,6 +15,8 @@
     "verify": "node bin/verify-build.js",
     "lab": "node --disable-warning=ExperimentalWarning lab/bin/lab-server.js",
     "mathsheet": "node scripts/build-math-sheet.js",
-    "mathsheet:check": "node scripts/build-math-sheet.js --check"
+    "mathsheet:check": "node scripts/build-math-sheet.js --check",
+    "rng": "node scripts/build-rng-description.js",
+    "rng:check": "node scripts/build-rng-description.js --check"
   }
 }

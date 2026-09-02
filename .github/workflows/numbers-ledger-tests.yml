@@ -65,3 +65,10 @@ jobs:
       # sheet not notice".
       - name: Check the math sheet is current
         run: npm run mathsheet:check
+
+      # Reruns the whole statistical battery twice over a million draws and
+      # fails if the published description differs. Also fails outright if a
+      # test comes back low on both samples - that would be the draw mechanism
+      # rather than the document, and it should stop a release.
+      - name: Check the RNG description is current
+        run: npm run rng:check

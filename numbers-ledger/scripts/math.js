@@ -194,6 +194,86 @@ function erfc(x) {
 }
 
 /**
+ * The regularised lower incomplete gamma function, by series below the mean and
+ * by continued fraction above it - the standard split, because each converges
+ * quickly only on one side.
+ *
+ * This exists so that a chi-square tail is exact rather than approximated. An
+ * earlier version used the Wilson-Hilferty transform, which is fine at 999
+ * degrees of freedom and visibly loose at nine, and a document that reports a
+ * p-value should not have a footnote about which of its p-values can be
+ * believed.
+ */
+function gammaLn(x) {
+  const c = [
+    76.18009172947146, -86.50532032941677, 24.01409824083091,
+    -1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5
+  ];
+  let y = x;
+  let tmp = x + 5.5;
+  tmp -= (x + 0.5) * Math.log(tmp);
+  let series = 1.000000000190015;
+  for (let j = 0; j < 6; j++) series += c[j] / ++y;
+  return -tmp + Math.log(2.5066282746310005 * series / x);
+}
+
+function lowerGamma(a, x) {
+  const ITERATIONS = 100_000;
+  const EPSILON = 3e-16;
+
+  if (x < 0 || a <= 0) throw new RangeError('lowerGamma needs a > 0 and x >= 0');
+  if (x === 0) return 0;
+
+  if (x < a + 1) {
+    // Series representation.
+    let ap = a;
+    let sum = 1 / a;
+    let term = sum;
+    for (let n = 0; n < ITERATIONS; n++) {
+      ap += 1;
+      term *= x / ap;
+      sum += term;
+      if (Math.abs(term) < Math.abs(sum) * EPSILON) break;
+    }
+    return sum * Math.exp(-x + a * Math.log(x) - gammaLn(a));
+  }
+
+  // Continued fraction for the upper tail, subtracted.
+  const TINY = 1e-300;
+  let b = x + 1 - a;
+  let c = 1 / TINY;
+  let d = 1 / b;
+  let h = d;
+  for (let i = 1; i <= ITERATIONS; i++) {
+    const an = -i * (i - a);
+    b += 2;
+    d = an * d + b;
+    if (Math.abs(d) < TINY) d = TINY;
+    c = b + an / c;
+    if (Math.abs(c) < TINY) c = TINY;
+    d = 1 / d;
+    const delta = d * c;
+    h *= delta;
+    if (Math.abs(delta - 1) < EPSILON) break;
+  }
+  return 1 - Math.exp(-x + a * Math.log(x) - gammaLn(a)) * h;
+}
+
+/**
+ * Chi-square tails.
+ *
+ * The upper tail is the conventional goodness-of-fit answer. The lower tail is
+ * reported alongside it because a fit that is too good is as much a reason to
+ * look again as one that is too bad, and a two-sided figure is what an honest
+ * reading of "does this look random" needs.
+ */
+function chiSquareTail(chiSquare, df) {
+  const lower = lowerGamma(df / 2, chiSquare / 2);
+  const upper = 1 - lower;
+  return { pUpper: upper, pLower: lower, p: 2 * Math.min(lower, upper) };
+}
+
+/**
  * Does the draw derivation reach all 1,000 outcomes evenly?
  *
  * Seeds are derived deterministically - sha256 of a counter - so this section
@@ -221,15 +301,10 @@ function uniformity({ samples = 1_000_000, drawKey = 'uniformity' } = {}) {
   for (const observed of buckets) chiSquare += ((observed - expected) ** 2) / expected;
 
   const df = OUTCOMES - 1;
-  const ratio = (chiSquare / df) ** (1 / 3);
-  const mean = 1 - 2 / (9 * df);
-  const sd = Math.sqrt(2 / (9 * df));
-  const z = (ratio - mean) / sd;
-  // Two-sided: a fit that is too good is as suspicious as one that is too bad.
-  const p = erfc(Math.abs(z) / Math.SQRT2);
+  const tails = chiSquareTail(chiSquare, df);
 
   return {
-    samples, drawKey, df, chiSquare, z, p,
+    samples, drawKey, df, chiSquare, ...tails,
     expectedPerOutcome: expected,
     minBucket: Math.min(...buckets),
     maxBucket: Math.max(...buckets),
@@ -253,5 +328,6 @@ function compute({ samples = 1_000_000, maxStake = 10_000 } = {}) {
 
 module.exports = {
   compute, board, mixes, uniformity, winCountsFor, selectionsFor, roundingFor, erfc,
+  chiSquareTail, lowerGamma, gammaLn,
   OUTCOMES, TYPE_ORDER, ALL_RESULTS, WEEK
 };

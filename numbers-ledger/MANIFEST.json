@@ -1,8 +1,8 @@
 {
   "version": 1,
   "algorithm": "sha256",
-  "generatedAt": "2026-09-02T10:55:27.978Z",
-  "buildId": "3ccde8fc2c89203803b2b5bf81f05a3173ffbaeaa0969946dfcb09697cbb377a",
+  "generatedAt": "2026-09-02T11:17:24.327Z",
+  "buildId": "86f0996018e46ada7951a95041e94ec0ef8ecc17b7764d7589d3b3cf743a41fb",
   "scope": {
     "runtime": [
       {
@@ -53,7 +53,7 @@
   ],
   "sections": {
     "runtime": {
-      "digest": "3ccde8fc2c89203803b2b5bf81f05a3173ffbaeaa0969946dfcb09697cbb377a",
+      "digest": "86f0996018e46ada7951a95041e94ec0ef8ecc17b7764d7589d3b3cf743a41fb",
       "files": [
         {
           "path": "africa-numbers/game.js",
@@ -77,8 +77,8 @@
         },
         {
           "path": "numbers-ledger/package.json",
-          "bytes": 787,
-          "sha256": "4b612f661367e394a0313d47677e5fa2ca555034cf5feba57da3a74c7865f48f"
+          "bytes": 905,
+          "sha256": "b29986064cbdea81794edc931a69ef8394f97e72fa00ef58fbdf4244d4175bd6"
         },
         {
           "path": "numbers-ledger/src/accounts.js",
@@ -127,8 +127,8 @@
         },
         {
           "path": "numbers-ledger/src/draws.js",
-          "bytes": 5225,
-          "sha256": "6943154f64c38bdad5a8968dd82a206c6141b097676162f6c0947c684a7d4a0d"
+          "bytes": 6244,
+          "sha256": "a6cafd03c3fdb74edc69a0de30944bb19e69e7ff5343d0f5b0e1d06f37fce7c8"
         },
         {
           "path": "numbers-ledger/src/errors.js",
@@ -213,7 +213,7 @@
       ]
     },
     "evidence": {
-      "digest": "4bb4aa1b1b8334c6a325329bb1c29ed19c340794dce7274c26575c46bba9d6af",
+      "digest": "19c288af94bfe3b928b8f62fc55d323d3c8b7786d9ac3859c448b135691a05ba",
       "files": [
         {
           "path": "africa-numbers/game.test.js",
@@ -222,18 +222,28 @@
         },
         {
           "path": "numbers-ledger/README.md",
-          "bytes": 52437,
-          "sha256": "e26f4c925192a5fea62ceabb0655618125e037bad6d79f60076693c9debb926d"
+          "bytes": 55747,
+          "sha256": "23c47e495e251045918719f63c2ecd543a3b5918d334bcd56b2209ae2b1cf277"
         },
         {
           "path": "numbers-ledger/docs/math-sheet.html",
-          "bytes": 18802,
-          "sha256": "f7bcbe3dfe599f45801296422297d1d4768a98c5d4e314dced1fb9a19d3cb756"
+          "bytes": 18786,
+          "sha256": "5e7ec14409f1bd35ca4456f7faf26415727a6b73d373c67e5591847ea77e62e7"
         },
         {
           "path": "numbers-ledger/docs/math-sheet.md",
-          "bytes": 7952,
-          "sha256": "8b6a43bd5034716542190bfe76cae0e8df5f07ee5583d24c42540373212ac34e"
+          "bytes": 7949,
+          "sha256": "df9e254147439e56537ad3aee6dd076d810464933172442bc0e6f81d5672ab3d"
+        },
+        {
+          "path": "numbers-ledger/docs/rng-description.html",
+          "bytes": 17488,
+          "sha256": "65cba3c8e7b8c640818266dcc69abcfa804d8e045881d2b28f37ed714395386c"
+        },
+        {
+          "path": "numbers-ledger/docs/rng-description.md",
+          "bytes": 9291,
+          "sha256": "debf27e7fff01e3490bdd2730b4e4c24330b4eacf35c632ba2f5e8ee8eccec96"
         },
         {
           "path": "numbers-ledger/lab/README.md",
@@ -266,14 +276,34 @@
           "sha256": "c7e5e4eed975a7aedee05c29e2b859509b50d7f4ef1f5a56895031bd51c2d602"
         },
         {
+          "path": "numbers-ledger/scripts/build-rng-description.js",
+          "bytes": 4017,
+          "sha256": "254e0fd17eec8b8d6ac9031b37f56cb83cac88a9d58724cc530e15f9466c9e08"
+        },
+        {
           "path": "numbers-ledger/scripts/math.js",
-          "bytes": 9486,
-          "sha256": "8c078bc26815062cb7200569660a58d64d5e8942f7ddd78238472e0850f14d02"
+          "bytes": 11768,
+          "sha256": "a8b5a20095e250b2a0292206ff0cb8ead094754894782ffddbabea8256355be7"
+        },
+        {
+          "path": "numbers-ledger/scripts/render-helpers.js",
+          "bytes": 7438,
+          "sha256": "447360744ea8c205d474b558e1064c899a2ca09d65101693a20f3347826d15b3"
         },
         {
           "path": "numbers-ledger/scripts/render-math-sheet.js",
-          "bytes": 25041,
-          "sha256": "1b0661229b8b0ab0ac5e58ceac2da837abc33cdd3cf7a760b3877eeee3e9f5dc"
+          "bytes": 18660,
+          "sha256": "34eb4ade12d0f174e23aa6d417408a8ce14e639c9b4756f1e9a4d964aa44f499"
+        },
+        {
+          "path": "numbers-ledger/scripts/render-rng.js",
+          "bytes": 26527,
+          "sha256": "edd6609f6faca82317c80d4aeabea7242946b83204616f2e2d2f38e07c6e566f"
+        },
+        {
+          "path": "numbers-ledger/scripts/rng.js",
+          "bytes": 11576,
+          "sha256": "a2a0332eedde334a32918a73dbfff79136f3d38d4e749df49bf08aa970e22e44"
         },
         {
           "path": "numbers-ledger/test/concurrency.test.js",
@@ -347,8 +377,8 @@
         },
         {
           "path": "numbers-ledger/test/math-sheet.test.js",
-          "bytes": 9012,
-          "sha256": "c14e8c2477d45a9521d04de5d0a8444ffa736b41e228173893bb2710f09a920b"
+          "bytes": 8805,
+          "sha256": "3aa5e91f57418abb9f724111c1584c93eb76eaada5297d89310e02bff2068011"
         },
         {
           "path": "numbers-ledger/test/mobile-money.test.js",
@@ -379,6 +409,11 @@
           "path": "numbers-ledger/test/reporting.test.js",
           "bytes": 18016,
           "sha256": "6e6f2d86c6fee3089eba19c8c455b40d547330556770e601172d7bbf310f2567"
+        },
+        {
+          "path": "numbers-ledger/test/rng-description.test.js",
+          "bytes": 11799,
+          "sha256": "ff310d6392e5ccee33ed9d06ddd2a9f9fe44fa03b7d3fed4d8a4cb6571298e8f"
         },
         {
           "path": "numbers-ledger/test/runner-tooling.test.js",

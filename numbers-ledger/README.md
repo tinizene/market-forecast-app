@@ -44,7 +44,8 @@ directory as a module path. Pass a glob or a file.
 | `lab/` | The laboratory environment. Pinned as evidence, absent from the build |
 | `scripts/` | Evidence-producing tooling: the math sheet and the figures behind it |
 | `docs/math-sheet.md` | Generated. Every figure derived from the game rules |
-| `test/` | 327 tests: unit, a simulated trading day, durability, concurrency, draws, channels, the API surface |
+| `docs/rng-description.md` | Generated. How the number is drawn, and what the evidence covers |
+| `test/` | 347 tests: unit, a simulated trading day, durability, concurrency, draws, channels, the API surface |
 
 ## Durable or in-memory
 
@@ -342,6 +343,67 @@ guard phrased in a wording the pattern did not know about was arriving as a
 And `buyFloat`'s refusal said the opposite of what it checks — commission is a
 discount on float, so the rule is that money paid cannot exceed float granted,
 and the message claimed the reverse.
+
+## The RNG description
+
+`docs/rng-description.md` and `docs/rng-description.html` — how the winning
+number is produced, what the guarantee actually covers, and where the evidence
+stops.
+
+```
+npm run rng         # regenerate both renderings
+npm run rng:check   # CI: does the draw module still match its description
+```
+
+This is the document carrying the argument a laboratory will find unfamiliar.
+They test conventional certified generators every week; commit-reveal is a
+different shape of claim, and the job of the page is to make the unfamiliar part
+easy to check rather than easy to argue about.
+
+### Eight tests, each run twice
+
+Uniformity over all 1,000 outcomes, each digit position on its own, consecutive
+pairs, serial correlation, one bit of the seed changed, and the same seed under
+a different draw key. Every one over a million draws (200,000 pairs for the
+last two), and every one repeated over an independent set of derived seeds.
+
+The replication is not padding. With eight tests there is roughly a **one in
+three chance that something lands below 0.05 on an entirely honest generator**,
+and a second sample is a better answer to that than an argument about multiple
+comparisons. Low in one column and healthy in the other is noise, visibly. Low
+in both is a finding, and the generator exits non-zero rather than writing the
+document.
+
+Seeds are derived from a counter, so every figure reproduces exactly and a
+reviewer re-running it gets these numbers rather than similar ones.
+
+### The guard no sample can check
+
+Removing the rejection sampling entirely — taking the modulo of the whole 32-bit
+range — leaves **every statistical test in the document passing**. That was
+found by doing it. The bias is one part in 4,294,967, which is far below what a
+chi-square over a million draws could see, or a billion.
+
+So the guard is established exactly instead. `scaleWord` in `src/draws.js` is now
+a separate exported function, and a test walks the boundary: the last accepted
+word maps to 999, all 296 words at or above the limit are discarded, and every
+outcome has exactly 4,294,967 words behind it.
+
+The page says this out loud, because it is the general case — a property
+statistics cannot reach has to be argued from the code, and a document that
+waves at a p-value instead is hiding the gap rather than closing it.
+
+### What the page refuses to claim
+
+**The entropy of a real seed.** That comes from the platform CSPRNG and is
+inherited, not demonstrated. Every test here is about the *mapping* from a seed
+to a result.
+
+**That the number cannot be chosen.** Commit-reveal stops the operator changing
+the number after seeing the book. It does not stop them choosing it before the
+book exists — about a thousand tries. Which is why the commitment must be
+published before betting opens, and why the ordering of those two timestamps is
+the thing worth auditing rather than the hash function.
 
 ## The math sheet
 
@@ -811,6 +873,11 @@ and a plain download link therefore cannot carry it.
   are the odds on the math sheet.
 - **Rounding never favours the house**, at any stake from 1 to 10,000 minor
   units.
+- **The scaling step discards exactly the 296 words that would bias the draw**,
+  checked at the boundary rather than measured — because no sample can see a
+  bias that small.
+- **Every statistical test is replicated on an independent sample**, and a
+  reading low in both stops the release.
 - **Balances are derivable.** A test rebuilds every balance from the journal
   alone and compares. A stored balance that disagrees with its entries is the
   classic ledger bug; the only way to be immune is not to keep one.

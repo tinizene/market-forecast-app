@@ -56,17 +56,42 @@ function verifyCommitment(drawKey, seed, commitment) {
  * The bias is tiny, but "very slightly rigged in a direction nobody chose" is
  * not a property to ship in a game of chance when the fix is six lines.
  */
+/**
+ * The largest multiple of OUTCOMES below 2^32. Anything at or above it is
+ * discarded rather than folded back in.
+ */
+const SCALE_LIMIT = Math.floor(0x1_0000_0000 / OUTCOMES) * OUTCOMES;
+
+/**
+ * One 32-bit word to one outcome, or null if the word must be discarded.
+ *
+ * Separated out and exported because the bias it removes is one part in 14.5
+ * million, which no sample of any feasible size can detect. A statistical test
+ * cannot tell a rejecting sampler from a plain modulo, so the guard has to be
+ * checked exactly rather than measured - and it cannot be checked exactly
+ * while it is buried inside a loop that only ever sees HMAC output.
+ *
+ * @param {number} value an unsigned 32-bit integer
+ * @returns {string|null} three digits, or null when the word is out of range
+ */
+function scaleWord(value) {
+  if (!Number.isInteger(value) || value < 0 || value > 0xffff_ffff) {
+    throw new RangeError(`scaleWord needs an unsigned 32-bit integer, got ${value}`);
+  }
+  if (value >= SCALE_LIMIT) return null;
+  return String(value % OUTCOMES).padStart(DIGITS, '0');
+}
+
 function resultFromSeed(drawKey, seed) {
   assertSeed(seed);
-  const limit = Math.floor(0x1_0000_0000 / OUTCOMES) * OUTCOMES;
 
   for (let counter = 0; counter < 1000; counter++) {
     const mac = crypto.createHmac('sha256', Buffer.from(seed, 'hex'))
       .update(`${drawKey}|${counter}`, 'utf8')
       .digest();
     for (let offset = 0; offset + 4 <= mac.length; offset += 4) {
-      const value = mac.readUInt32BE(offset);
-      if (value < limit) return String(value % OUTCOMES).padStart(DIGITS, '0');
+      const scaled = scaleWord(mac.readUInt32BE(offset));
+      if (scaled !== null) return scaled;
     }
   }
   // 2^-2000-ish. Throwing beats returning a biased number.
@@ -139,6 +164,8 @@ function acceptsBetsAt(draw, at) {
 module.exports = {
   DIGITS,
   OUTCOMES,
+  SCALE_LIMIT,
+  scaleWord,
   createSeed,
   commit,
   verifyCommitment,

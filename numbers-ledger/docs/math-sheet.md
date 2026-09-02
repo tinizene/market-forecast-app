@@ -166,7 +166,7 @@ samples            1,000,000
 expected per outcome 1,000
 observed range     912 to 1102, no empty outcomes
 chi-square         1033.76 on 999 degrees of freedom
-z (Wilson–Hilferty) 0.7838
+p (upper tail)     0.2166
 p (two-sided)      0.4332
 ```
 

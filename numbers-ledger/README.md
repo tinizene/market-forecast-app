@@ -42,7 +42,9 @@ directory as a module path. Pass a glob or a file.
 | `bin/build-manifest.js` | Writes `MANIFEST.json` at release, and checks it in CI |
 | `bin/verify-build.js` | What an inspector runs on a production host |
 | `lab/` | The laboratory environment. Pinned as evidence, absent from the build |
-| `test/` | 313 tests: unit, a simulated trading day, durability, concurrency, draws, channels, the API surface |
+| `scripts/` | Evidence-producing tooling: the math sheet and the figures behind it |
+| `docs/math-sheet.md` | Generated. Every figure derived from the game rules |
+| `test/` | 327 tests: unit, a simulated trading day, durability, concurrency, draws, channels, the API surface |
 
 ## Durable or in-memory
 
@@ -340,6 +342,56 @@ guard phrased in a wording the pattern did not know about was arriving as a
 And `buyFloat`'s refusal said the opposite of what it checks — commission is a
 discount on float, so the rule is that money paid cannot exceed float granted,
 and the message claimed the reverse.
+
+## The math sheet
+
+`docs/math-sheet.md` and `docs/math-sheet.html` — the first document a
+laboratory reads, generated rather than written.
+
+```
+npm run mathsheet         # regenerate both renderings
+npm run mathsheet:check   # CI: do the game rules and the sheet still agree
+```
+
+**Nothing on it is transcribed.** Win counts come from asking `isHit` about
+every selection the product accepts, against all 1,000 outcomes — a million
+questions per bet type. A table copied out of a design document and a table
+derived from the code that pays people are two different documents, and only
+the second is worth submitting.
+
+**Nothing on it is sampled, except the one thing that has to be.** With 1,000
+equally likely outcomes, enumeration is exact. The only empirical question left
+is whether the draw mechanism actually reaches them evenly, and that gets a
+chi-square over a million draws from deterministically derived seeds — so a
+reviewer re-running it gets the same numbers. The claim is stated narrowly on
+the page: it tests the *mapping* from seed to result, not the entropy of a real
+seed, which comes from the platform CSPRNG and belongs in the RNG description.
+
+### What generating it turned up
+
+**The win count is uniform across every selection, and that is checked rather
+than assumed.** Every 6-Way Box wins on exactly six draws whichever three digits
+were chosen — all 720 of them. A type where that were not true would be
+mispriced for some of its selections, which is the quiet way a board becomes
+unfair, so the sheet counts all of them and reports the spread.
+
+**One Digit returns 0.50135, not 0.500.** The architecture document says it
+"returns exactly what the straight bet returns". It returns marginally more —
+0.135 of a percentage point, in the player's favour, because 1.85 is a rounded
+multiplier rather than 1.84502. Small, and worth stating precisely, because a
+reviewer comparing the two documents will notice.
+
+**Rounding only ever favours the player, and vanishes at a whole unit.** Two
+multipliers are fractional; a one-cent stake on One Digit pays 2 rather than
+1.85. Checked over every stake from 1 to 10,000 minor units: the worst deviation
+is +0.041, always upward, and every multiplier divides exactly at L$1.00.
+
+**A board is not one hold.** It is whatever hold the players choose by what they
+play — 52.9% to 55.3% across three illustrative mixes, and the sheet labels them
+illustrative because nobody has taken a bet yet.
+
+The generator lives in `scripts/`, not `bin/`, and the manifest classifies it as
+evidence: a documentation generator must not be able to change the build id.
 
 ## The laboratory environment
 
@@ -753,6 +805,12 @@ and a plain download link therefore cannot carry it.
   control route.
 - **The seeded laboratory book reconciles** and contains every state a tester
   needs to find.
+- **Every selection of a bet type wins the same number of times** — all 720
+  6-Way Boxes, not one representative.
+- **No bet is priced above its own true odds**, and the odds the player is shown
+  are the odds on the math sheet.
+- **Rounding never favours the house**, at any stake from 1 to 10,000 minor
+  units.
 - **Balances are derivable.** A test rebuilds every balance from the journal
   alone and compares. A stored balance that disagrees with its entries is the
   classic ledger bug; the only way to be immune is not to keep one.

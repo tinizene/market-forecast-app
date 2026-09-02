@@ -57,3 +57,11 @@ jobs:
       # that it cannot rot unnoticed between releases.
       - name: Verify the build
         run: npm run verify
+
+      # Regenerates every figure from the game rules, including the million-draw
+      # uniformity sample, and fails if the published sheet differs. Separate
+      # from the tests because it takes seconds and answers a different
+      # question: not "does the mapping work" but "did a payout change and the
+      # sheet not notice".
+      - name: Check the math sheet is current
+        run: npm run mathsheet:check

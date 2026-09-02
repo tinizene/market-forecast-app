@@ -1,0 +1,357 @@
+<title>Africa Numbers Game Mathematics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Public+Sans:wght@400;600&family=Roboto+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --paper: #f1f3f5;
+    --surface: #ffffff;
+    --sunken: #e7eaee;
+    --ink: #12161b;
+    --muted: #5c6672;
+    --rule: #d3d9df;
+    --rule-strong: #adb6c0;
+    --accent: #7a2233;
+    --good: #1f6b45;
+    --note: #8a5a12;
+    --measure: 68ch;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --paper: #0d1014; --surface: #161b21; --sunken: #1d232b;
+      --ink: #e6e9ec; --muted: #97a1ac; --rule: #262e37; --rule-strong: #3a4550;
+      --accent: #e08a9b; --good: #5cc48c; --note: #d9a949;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --paper: #0d1014; --surface: #161b21; --sunken: #1d232b;
+    --ink: #e6e9ec; --muted: #97a1ac; --rule: #262e37; --rule-strong: #3a4550;
+    --accent: #e08a9b; --good: #5cc48c; --note: #d9a949;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Public Sans', system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet { max-width: 96ch; margin: 0 auto; padding: 56px 24px 110px; }
+
+  .masthead { border-bottom: 1px solid var(--rule-strong); padding-bottom: 26px; margin-bottom: 34px; }
+
+  .stamp {
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent); display: flex; flex-wrap: wrap; gap: 6px 22px; margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 400; font-size: clamp(2.2rem, 6vw, 3.4rem);
+    line-height: 1.02; letter-spacing: -0.01em; margin: 0 0 14px; text-wrap: balance;
+  }
+
+  .standfirst { font-size: 1.08rem; color: var(--muted); max-width: var(--measure); margin: 0; }
+
+  section { margin-bottom: 54px; }
+
+  h2 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 400; font-size: 1.85rem; line-height: 1.15;
+    margin: 0 0 14px; padding-top: 26px; border-top: 1px solid var(--rule);
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-family: 'Public Sans', sans-serif; font-weight: 600;
+    font-size: 0.95rem; letter-spacing: 0.01em; margin: 0 0 10px;
+  }
+  h3 .count { font-family: 'Roboto Mono', monospace; color: var(--accent); font-weight: 400; font-size: 0.86em; }
+
+  p, li { max-width: var(--measure); }
+  p { margin: 0 0 14px; }
+  ul, ol { margin: 0 0 16px; padding-left: 20px; }
+  li { margin-bottom: 8px; }
+  strong { font-weight: 600; }
+  em { font-style: italic; }
+
+  code {
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 0.85em; background: var(--sunken); padding: 1px 5px; border-radius: 2px;
+  }
+
+  .scroll { overflow-x: auto; margin: 0 0 18px; }
+
+  table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+  th {
+    text-align: left; font-family: 'Roboto Mono', monospace;
+    font-size: 10px; letter-spacing: 0.11em; text-transform: uppercase;
+    color: var(--muted); font-weight: 400; padding: 0 14px 8px 0;
+    border-bottom: 1px solid var(--rule-strong); white-space: nowrap;
+  }
+  td { padding: 9px 14px 9px 0; border-bottom: 1px solid var(--rule); vertical-align: baseline; }
+  tr:last-child td { border-bottom: none; }
+  th.n, td.n {
+    text-align: right; font-family: 'Roboto Mono', monospace;
+    font-variant-numeric: tabular-nums; white-space: nowrap; padding-right: 0;
+  }
+  td.name { font-weight: 600; white-space: nowrap; }
+  tbody tr.lead td { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+
+  .derivations { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .derivation { background: var(--surface); padding: 18px 20px; }
+  .derivation p { margin: 0; font-size: 0.93rem; color: var(--muted); max-width: none; }
+  .derivation p + p { margin-top: 10px; }
+  .derivation .checked { color: var(--good); }
+  .derivation .failed { color: var(--accent); font-weight: 600; }
+
+  pre {
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 0.8rem; line-height: 1.7; background: var(--sunken);
+    padding: 12px 14px; margin: 0 0 12px; overflow-x: auto; border-radius: 2px;
+  }
+
+  .callout {
+    border-left: 3px solid var(--note); background: var(--surface);
+    padding: 15px 18px; margin: 22px 0; font-size: 0.94rem; max-width: var(--measure);
+  }
+  .callout p { margin: 0 0 10px; } .callout p:last-child { margin: 0; }
+
+  .verdict {
+    display: inline-block; font-family: 'Roboto Mono', monospace;
+    font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase;
+    color: var(--good); border: 1px solid var(--good); border-radius: 2px;
+    padding: 3px 9px; margin-bottom: 14px;
+  }
+
+  .footer {
+    margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--rule-strong);
+    font-size: 0.85rem; color: var(--muted); max-width: var(--measure);
+  }
+
+  @media (max-width: 640px) {
+    .sheet { padding: 36px 16px 80px; }
+    td, th { padding-right: 10px; }
+  }
+</style>
+
+<div class="sheet">
+
+  <header class="masthead">
+    <div class="stamp">
+      <span>Game mathematics</span>
+      <span>Africa Numbers</span>
+      <span>Computed, not transcribed</span>
+    </div>
+    <h1>Every outcome, counted</h1>
+    <p class="standfirst">The board has 1,000 outcomes, so nothing here is sampled. Win counts come from
+      asking the settlement code about every selection the product accepts, against every
+      outcome it can produce &mdash; a million questions per bet type.</p>
+  </header>
+
+  <section>
+    <span class="verdict">All counts uniform</span>
+    <h2>The board</h2>
+    <div class="scroll"><table>
+        <thead><tr><th>Bet</th><th class="n">Selections</th><th class="n">Wins / 1,000</th><th class="n">Chance</th><th class="n">Pays</th><th class="n">Return per 1.00</th><th class="n">Hold</th><th class="n">A win in a week</th></tr></thead>
+        <tbody>
+        <tr><td class="name">Straight</td><td class="n">1,000</td><td class="n">1</td><td class="n">1 in 1,000</td><td class="n">500&times;</td><td class="n">0.50000</td><td class="n">50.000%</td><td class="n">0.7%</td></tr>
+        <tr><td class="name">6-Way Box</td><td class="n">720</td><td class="n">6</td><td class="n">1 in 166.7</td><td class="n">68&times;</td><td class="n">0.40800</td><td class="n">59.200%</td><td class="n">4.1%</td></tr>
+        <tr><td class="name">3-Way Box</td><td class="n">270</td><td class="n">3</td><td class="n">1 in 333.3</td><td class="n">135&times;</td><td class="n">0.40500</td><td class="n">59.500%</td><td class="n">2.1%</td></tr>
+        <tr><td class="name">Front Pair</td><td class="n">100</td><td class="n">10</td><td class="n">1 in 100</td><td class="n">41&times;</td><td class="n">0.41000</td><td class="n">59.000%</td><td class="n">6.8%</td></tr>
+        <tr class="lead"><td class="name">One Digit</td><td class="n">10</td><td class="n">271</td><td class="n">1 in 3.7</td><td class="n">1.85&times;</td><td class="n">0.50135</td><td class="n">49.865%</td><td class="n">89.1%</td></tr>
+        <tr><td class="name">Two Digits</td><td class="n">90</td><td class="n">54</td><td class="n">1 in 18.5</td><td class="n">8.5&times;</td><td class="n">0.45900</td><td class="n">54.100%</td><td class="n">32.2%</td></tr>
+        </tbody>
+      </table></div>
+    <p>Chance of at least one win from seven consecutive draws on the same bet:
+      1 &minus; (1 &minus; p)<sup>7</sup>. Nothing is deducted from a winning payout &mdash; the
+      network is paid out of gross gaming revenue, so the quoted multiplier is what the
+      player receives.</p>
+    <div class="callout">
+      <p><strong>One Digit returns marginally more than the straight bet, not the same.</strong>
+        0.50135 against 0.50000 &mdash; a difference of 0.135 of a percentage point, in the
+        player's favour, arising from the multiplier being rounded to two decimal places
+        rather than set to 1.84502. Worth stating precisely, because the architecture
+        document rounds it to "the same" and a reviewer comparing the two documents will
+        notice.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Where each win count comes from</h2>
+    <div class="derivations">
+        <div class="derivation">
+          <h3>Straight <span class="count">1 in 1,000</span></h3>
+<pre>wins         1
+probability  1 / 1,000 = 0.001000
+return       0.001000 &times; 500 = 0.500000
+hold         1 &minus; 0.500000 = 0.500000</pre>
+          <p>One outcome matches the three digits in the order they were chosen.</p>
+          <p>Checked across all <strong>1,000</strong> selections the product accepts:
+            <span class="checked">every one wins on exactly 1 outcome.</span></p>
+        </div>
+        <div class="derivation">
+          <h3>6-Way Box <span class="count">6 in 1,000</span></h3>
+<pre>wins         3! = 6
+probability  6 / 1,000 = 0.006000
+return       0.006000 &times; 68 = 0.408000
+hold         1 &minus; 0.408000 = 0.592000</pre>
+          <p>Three different digits can be arranged six ways, and a box bet covers every arrangement including the straight one.</p>
+          <p>Checked across all <strong>720</strong> selections the product accepts:
+            <span class="checked">every one wins on exactly 6 outcomes.</span></p>
+        </div>
+        <div class="derivation">
+          <h3>3-Way Box <span class="count">3 in 1,000</span></h3>
+<pre>wins         3!/2! = 3
+probability  3 / 1,000 = 0.003000
+return       0.003000 &times; 135 = 0.405000
+hold         1 &minus; 0.405000 = 0.595000</pre>
+          <p>One digit repeated leaves three distinct arrangements, because swapping the two identical digits changes nothing.</p>
+          <p>Checked across all <strong>270</strong> selections the product accepts:
+            <span class="checked">every one wins on exactly 3 outcomes.</span></p>
+        </div>
+        <div class="derivation">
+          <h3>Front Pair <span class="count">10 in 1,000</span></h3>
+<pre>wins         10
+probability  10 / 1,000 = 0.010000
+return       0.010000 &times; 41 = 0.410000
+hold         1 &minus; 0.410000 = 0.590000</pre>
+          <p>The first two digits are fixed and the third is free, so ten outcomes match.</p>
+          <p>Checked across all <strong>100</strong> selections the product accepts:
+            <span class="checked">every one wins on exactly 10 outcomes.</span></p>
+        </div>
+        <div class="derivation">
+          <h3>One Digit <span class="count">271 in 1,000</span></h3>
+<pre>wins         1000 - 9^3 = 1000 - 729 = 271
+probability  271 / 1,000 = 0.271000
+return       0.271000 &times; 1.85 = 0.501350
+hold         1 &minus; 0.501350 = 0.498650</pre>
+          <p>Count the outcomes that miss instead. A result avoids the chosen digit only if all three positions are one of the other nine, which is 9^3 = 729 ways; everything else contains it.</p>
+          <p>Checked across all <strong>10</strong> selections the product accepts:
+            <span class="checked">every one wins on exactly 271 outcomes.</span></p>
+        </div>
+        <div class="derivation">
+          <h3>Two Digits <span class="count">54 in 1,000</span></h3>
+<pre>wins         1000 - 9^3 - 9^3 + 8^3 = 1000 - 729 - 729 + 512 = 54
+probability  54 / 1,000 = 0.054000
+return       0.054000 &times; 8.5 = 0.459000
+hold         1 &minus; 0.459000 = 0.541000</pre>
+          <p>Inclusion and exclusion. Remove the outcomes missing the first digit and those missing the second, then add back the outcomes missing both, which were removed twice. The digits must differ, and the product refuses a repeated pair - played as one digit twice the same bet would win 271 times in 1,000 and pay 8.5x, returning 2.30 per unit staked.</p>
+          <p>Checked across all <strong>90</strong> selections the product accepts:
+            <span class="checked">every one wins on exactly 54 outcomes.</span></p>
+        </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="verdict">Exact at whole units</span>
+    <h2>Rounding</h2>
+    <p>Payouts are whole minor units. Two multipliers are fractional, so a payout is
+      rounded &mdash; upward on a half, towards the player.</p>
+    <div class="scroll"><table>
+        <thead><tr><th>Bet</th><th>Exact at whole units</th><th class="n">Worst deviation</th><th class="n">At a stake of</th></tr></thead>
+        <tbody>
+        <tr><td class="name">Straight</td><td class="">yes</td><td class="n">none</td><td class="n">&mdash;</td></tr>
+        <tr><td class="name">6-Way Box</td><td class="">yes</td><td class="n">none</td><td class="n">&mdash;</td></tr>
+        <tr><td class="name">3-Way Box</td><td class="">yes</td><td class="n">none</td><td class="n">&mdash;</td></tr>
+        <tr><td class="name">Front Pair</td><td class="">yes</td><td class="n">none</td><td class="n">&mdash;</td></tr>
+        <tr><td class="name">One Digit</td><td class="">yes</td><td class="n">+0.04065</td><td class="n">1 minor unit</td></tr>
+        <tr><td class="name">Two Digits</td><td class="">yes</td><td class="n">+0.02700</td><td class="n">1 minor unit</td></tr>
+        </tbody>
+      </table></div>
+    <p>Checked over every stake from 1 to 10,000 minor units. Every deviation is
+      in the player's favour, and every one disappears at a whole unit of currency, where
+      all six multipliers divide exactly.</p>
+  </section>
+
+  <section>
+    <h2>Volatility</h2>
+    <p>Return per unit staked is the multiplier with probability <em>p</em> and nothing
+      otherwise, so the standard deviation is <code>M &times; &radic;(p(1&minus;p))</code>.</p>
+    <div class="scroll"><table>
+        <thead><tr><th>Bet</th><th class="n">Return</th><th class="n">Standard deviation</th><th class="n">Against One Digit</th></tr></thead>
+        <tbody>
+        <tr class="lead"><td class="name">Straight</td><td class="n">0.50000</td><td class="n">15.803</td><td class="n">19.2&times;</td></tr>
+        <tr><td class="name">6-Way Box</td><td class="n">0.40800</td><td class="n">5.251</td><td class="n">6.4&times;</td></tr>
+        <tr><td class="name">3-Way Box</td><td class="n">0.40500</td><td class="n">7.383</td><td class="n">9.0&times;</td></tr>
+        <tr><td class="name">Front Pair</td><td class="n">0.41000</td><td class="n">4.079</td><td class="n">5.0&times;</td></tr>
+        <tr><td class="name">One Digit</td><td class="n">0.50135</td><td class="n">0.822</td><td class="n">1.0&times;</td></tr>
+        <tr><td class="name">Two Digits</td><td class="n">0.45900</td><td class="n">1.921</td><td class="n">2.3&times;</td></tr>
+        </tbody>
+      </table></div>
+    <p>This is the operational argument for the position-free bets, not only the marketing
+      one. A straight hit empties a runner's cash box and forces an emergency top-up; a One
+      Digit win is payable from the till every time.</p>
+  </section>
+
+  <section>
+    <h2>Blended hold</h2>
+    <p>A board is not one hold. It is whatever hold the players choose by what they play.
+      These mixes are <strong>illustrative</strong> &mdash; nobody has taken a bet yet.</p>
+    <div class="scroll"><table>
+        <thead><tr><th>Mix</th><th class="n">Blended return</th><th class="n">Hold</th></tr></thead>
+        <tbody>
+        <tr><td class="name">Traditional board only</td><td class="n">0.45410</td><td class="n">54.59%</td></tr>
+        <tr><td class="name">Even split across the six</td><td class="n">0.44723</td><td class="n">55.28%</td></tr>
+        <tr><td class="name">Frequency-led</td><td class="n">0.47144</td><td class="n">52.86%</td></tr>
+        </tbody>
+      </table></div>
+    <ul>
+      <li><strong>Traditional board only</strong> &mdash; What the game would return with no position-free bets on the screen.</li>
+      <li><strong>Even split across the six</strong> &mdash; The neutral assumption, and the least likely to happen.</li>
+      <li><strong>Frequency-led</strong> &mdash; What §07 of the architecture is trying to produce: most stakes on the bets that pay often.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Does the draw reach every outcome evenly</h2>
+    <p>Enumeration answers everything above exactly. What it cannot answer is whether the
+      draw mechanism actually reaches all 1,000 outcomes evenly, so that gets a sample.</p>
+<pre>samples               1,000,000
+expected per outcome  1,000
+observed range        912 to 1102, no empty outcomes
+chi-square            1033.76 on 999 degrees of freedom
+z (Wilson&ndash;Hilferty)  0.7838
+p (two-sided)         0.4332</pre>
+    <div class="callout">
+      <p><strong>What this shows, and what it does not.</strong> Seeds are derived
+        deterministically &mdash; <code>sha256</code> of a counter &mdash; so the figures reproduce
+        exactly and a reviewer can re-run them.</p>
+      <p>The claim is correspondingly narrow. This tests the <em>mapping</em> from a seed to a
+        result: the HMAC, the rejection sampling, and the scaling to 000&ndash;999. It says
+        nothing about the entropy of a real seed, which comes from the platform CSPRNG and
+        belongs in the RNG description rather than here.</p>
+      <p>The test is two-sided on purpose. A fit that is too good is as much a reason to
+        look again as one that is too bad.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>What a reviewer should check</h2>
+    <ol>
+      <li><strong>The odds the player is shown are these odds.</strong> <code>winChance</code> and
+        <code>expectedReturnCents</code> are what the app displays, and the test suite asserts
+        they agree with settlement across all 1,000 outcomes.</li>
+      <li><strong>No bet is priced above its own true odds.</strong> Asserted for every type.</li>
+      <li><strong>Nothing is deducted from a winning payout.</strong> A 500&times; advertised and
+        then reduced by a commission would be a 55% hold wearing a 50% headline.</li>
+      <li><strong>Two Digits refuses a repeated digit.</strong> Priced for two different digits
+        appearing &mdash; 54 in 1,000. Played as one digit twice it becomes 271 in
+        1,000 at 8.5&times;, returning 2.30 per unit staked. One unvalidated field is the
+        difference between a 46% return and a bet that bankrupts the draw.</li>
+    </ol>
+  </section>
+
+  <p class="footer">Currency LRD, 2 minor units.
+    Generated from the game rules by <code>npm run mathsheet</code> &mdash; not written by hand, and
+    continuous integration fails if it is not current.</p>
+
+</div>

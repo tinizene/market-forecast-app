@@ -1,8 +1,8 @@
 {
   "version": 1,
   "algorithm": "sha256",
-  "generatedAt": "2026-09-01T10:24:50.093Z",
-  "buildId": "1e7a371d38a61d0444bfa05282c9a057843fc606ca49ef0e8ecf3bc892bb59ae",
+  "generatedAt": "2026-09-02T10:55:27.978Z",
+  "buildId": "3ccde8fc2c89203803b2b5bf81f05a3173ffbaeaa0969946dfcb09697cbb377a",
   "scope": {
     "runtime": [
       {
@@ -29,6 +29,12 @@
         "dir": "numbers-ledger/lab"
       },
       {
+        "dir": "numbers-ledger/scripts"
+      },
+      {
+        "dir": "numbers-ledger/docs"
+      },
+      {
         "file": "numbers-ledger/README.md"
       },
       {
@@ -47,7 +53,7 @@
   ],
   "sections": {
     "runtime": {
-      "digest": "1e7a371d38a61d0444bfa05282c9a057843fc606ca49ef0e8ecf3bc892bb59ae",
+      "digest": "3ccde8fc2c89203803b2b5bf81f05a3173ffbaeaa0969946dfcb09697cbb377a",
       "files": [
         {
           "path": "africa-numbers/game.js",
@@ -71,8 +77,8 @@
         },
         {
           "path": "numbers-ledger/package.json",
-          "bytes": 667,
-          "sha256": "cd66d242f52798cb8ff7d3878d8ceabf81b28328d690deb0b4c3e24002b59717"
+          "bytes": 787,
+          "sha256": "4b612f661367e394a0313d47677e5fa2ca555034cf5feba57da3a74c7865f48f"
         },
         {
           "path": "numbers-ledger/src/accounts.js",
@@ -156,8 +162,8 @@
         },
         {
           "path": "numbers-ledger/src/manifest.js",
-          "bytes": 12565,
-          "sha256": "ddfa81299cb3455365f89a0ac31b90da59fff64a76507d19ff1d4d60ceeee924"
+          "bytes": 12790,
+          "sha256": "29b35b398336ae726a0b6479de5cae18a0477d65cd13333780a61b34709773b6"
         },
         {
           "path": "numbers-ledger/src/mobilemoney/gateway.js",
@@ -207,7 +213,7 @@
       ]
     },
     "evidence": {
-      "digest": "b572a2e8ff30c2c33145c76fb69cb4322b5ef6f414bcf216965c8ac6aac604d3",
+      "digest": "4bb4aa1b1b8334c6a325329bb1c29ed19c340794dce7274c26575c46bba9d6af",
       "files": [
         {
           "path": "africa-numbers/game.test.js",
@@ -216,8 +222,18 @@
         },
         {
           "path": "numbers-ledger/README.md",
-          "bytes": 49327,
-          "sha256": "cc49716b1a8c1c8e56b41e1829a14caf4f700802dfa8d4ff682d18deb629e2a9"
+          "bytes": 52437,
+          "sha256": "e26f4c925192a5fea62ceabb0655618125e037bad6d79f60076693c9debb926d"
+        },
+        {
+          "path": "numbers-ledger/docs/math-sheet.html",
+          "bytes": 18802,
+          "sha256": "f7bcbe3dfe599f45801296422297d1d4768a98c5d4e314dced1fb9a19d3cb756"
+        },
+        {
+          "path": "numbers-ledger/docs/math-sheet.md",
+          "bytes": 7952,
+          "sha256": "8b6a43bd5034716542190bfe76cae0e8df5f07ee5583d24c42540373212ac34e"
         },
         {
           "path": "numbers-ledger/lab/README.md",
@@ -243,6 +259,21 @@
           "path": "numbers-ledger/lab/seed-search.js",
           "bytes": 2779,
           "sha256": "e01f303bb825f0bcbc27f8a7c97dc3d853ed029abc6d72109e8a6f6e2c04e5c8"
+        },
+        {
+          "path": "numbers-ledger/scripts/build-math-sheet.js",
+          "bytes": 3134,
+          "sha256": "c7e5e4eed975a7aedee05c29e2b859509b50d7f4ef1f5a56895031bd51c2d602"
+        },
+        {
+          "path": "numbers-ledger/scripts/math.js",
+          "bytes": 9486,
+          "sha256": "8c078bc26815062cb7200569660a58d64d5e8942f7ddd78238472e0850f14d02"
+        },
+        {
+          "path": "numbers-ledger/scripts/render-math-sheet.js",
+          "bytes": 25041,
+          "sha256": "1b0661229b8b0ab0ac5e58ceac2da837abc33cdd3cf7a760b3877eeee3e9f5dc"
         },
         {
           "path": "numbers-ledger/test/concurrency.test.js",
@@ -313,6 +344,11 @@
           "path": "numbers-ledger/test/manifest.test.js",
           "bytes": 11639,
           "sha256": "76f0287ee635a7f06c1196ca05d09bc7091c314157fe632f4ad1d0b09a076c57"
+        },
+        {
+          "path": "numbers-ledger/test/math-sheet.test.js",
+          "bytes": 9012,
+          "sha256": "c14e8c2477d45a9521d04de5d0a8444ffa736b41e228173893bb2710f09a920b"
         },
         {
           "path": "numbers-ledger/test/mobile-money.test.js",

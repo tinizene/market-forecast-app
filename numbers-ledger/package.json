@@ -13,6 +13,8 @@
     "manifest": "node bin/build-manifest.js",
     "manifest:check": "node bin/build-manifest.js --check",
     "verify": "node bin/verify-build.js",
-    "lab": "node --disable-warning=ExperimentalWarning lab/bin/lab-server.js"
+    "lab": "node --disable-warning=ExperimentalWarning lab/bin/lab-server.js",
+    "mathsheet": "node scripts/build-math-sheet.js",
+    "mathsheet:check": "node scripts/build-math-sheet.js --check"
   }
 }

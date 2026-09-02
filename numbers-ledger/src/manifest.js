@@ -68,6 +68,10 @@ const SCOPE = {
     // a draw land on a chosen number is provably not in the certified build.
     // No pattern: every file under it is listed, README included.
     { dir: 'numbers-ledger/lab' },
+    // The math sheet and the code that computes it. Evidence, not product: a
+    // documentation generator must not be able to change the build id.
+    { dir: 'numbers-ledger/scripts' },
+    { dir: 'numbers-ledger/docs' },
     { file: 'numbers-ledger/README.md' },
     { file: 'africa-numbers/game.test.js' }
   ]
